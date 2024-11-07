@@ -3,6 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
+  "exports": {
+    ".": "./nuxt.config.ts",
+    "./tailwind": "./tailwind.config.js"
+  },
   "scripts": {
     "dev": "nuxi dev .playground",
     "prepare": "nuxt prepare .playground",
@@ -14,13 +18,14 @@
   "devDependencies": {
     "@nuxt/eslint": "latest",
     "@nuxtjs/tailwindcss": "^6.12.2",
-    "@vueuse/nuxt": "^11.2.0",
     "eslint": "^9.14.0",
     "nuxt": "^3.14.159",
     "typescript": "^5.6.3",
     "vue": "latest"
   },
   "dependencies": {
-    "@ourloop/product-core-config": "workspace:^"
+    "@ourloop/product-core-config": "*",
+    "@vueuse/nuxt": "^11.2.0",
+    "twin.macro": "^3.4.1"
   }
 }

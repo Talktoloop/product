@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "VITE_CJS_IGNORE_WARNING=true nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "prepare": "nuxt prepare",
@@ -21,16 +21,16 @@
     "vue-router": "latest"
   },
   "devDependencies": {
-    "@nuxtjs/storybook": "7.0.2",
-    "@storybook-vue/nuxt": "0.2.6",
-    "@storybook/addon-essentials": "8.0.8",
-    "@storybook/addon-interactions": "8.0.8",
-    "@storybook/addon-links": "8.0.8",
-    "@storybook/blocks": "8.0.8",
-    "@storybook/builder-vite": "8.0.8",
-    "@storybook/test": "8.0.8",
-    "@storybook/vue3": "8.0.8",
-    "@types/node": "^18.17.5",
-    "storybook": "8.0.8"
+    "@nuxtjs/storybook": "8.3.2",
+    "@storybook-vue/nuxt": "8.3.2",
+    "@storybook/addon-essentials": "8.4.2",
+    "@storybook/addon-interactions": "8.4.2",
+    "@storybook/addon-links": "8.4.2",
+    "@storybook/blocks": "8.4.2",
+    "@storybook/builder-vite": "8.4.2",
+    "@storybook/test": "8.4.2",
+    "@storybook/vue3": "8.4.2",
+    "@types/node": "^22.9.0",
+    "storybook": "8.4.2"
   }
 }

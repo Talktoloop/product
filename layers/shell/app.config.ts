@@ -1,12 +1,12 @@
 export default defineAppConfig({
-  myLayer: {
+  shell: {
     name: 'Hello from Nuxt layer'
   }
 })
 
 declare module '@nuxt/schema' {
   interface AppConfigInput {
-    myLayer?: {
+    shell?: {
       /** Project name */
       name?: string
     }
