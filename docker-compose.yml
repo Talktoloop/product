@@ -1,0 +1,35 @@
+version: '3.8'
+name: product
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${COMPOSE_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${COMPOSE_MYSQL_DATABASE}
+      MYSQL_USER: ${COMPOSE_MYSQL_USER}
+      MYSQL_PASSWORD: ${COMPOSE_MYSQL_PASSWORD}
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./opt/data/mysql:/var/lib/mysql
+
+  design:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.app.dockerfile
+      args:
+        - APP_NAME=design
+        - APP_PORT=${COMPOSE_APP_DESIGN_PORT}
+        - ADDITIONAL_PORT=${COMPOSE_APP_DESIGN_ADDITIONAL_PORT}
+    ports:
+      - '${COMPOSE_APP_DESIGN_PORT}:${COMPOSE_APP_DESIGN_PORT}'
+      - '${COMPOSE_APP_DESIGN_ADDITIONAL_PORT}:${COMPOSE_APP_DESIGN_ADDITIONAL_PORT}'
+    environment:
+      - NODE_ENV=development
+      - NUXT_PORT=${COMPOSE_APP_DESIGN_PORT}
+    volumes:
+      - ./core:/usr/src/product/core
+      - ./layers:/usr/src/product/layers
+      - ./apps/design:/usr/src/product/apps/design
+    depends_on:
+      - mysql

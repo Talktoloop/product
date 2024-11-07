@@ -1,7 +1,7 @@
 <template>
-  <shadcn-ui-button v-bind="$attrs">
+  <shadcn-button v-bind="$attrs">
     <slot />
-  </shadcn-ui-button>
+  </shadcn-button>
 </template>
 <script setup lang="ts">
 import type { ButtonVariants } from "../shadcn/ui/button"

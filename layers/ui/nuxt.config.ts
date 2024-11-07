@@ -1,5 +1,5 @@
-import { join, dirname } from "path"
-import { fileURLToPath } from "url"
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 const basePath = dirname(fileURLToPath(import.meta.url))
 function resolve(path: string) {
@@ -8,13 +8,16 @@ function resolve(path: string) {
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  extends: ["@ourloop/product-layer-core"],
-  modules: ["@nuxtjs/color-mode", "shadcn-nuxt"],
+  extends: ['@ourloop/product-layer-core'],
+  modules: ['@nuxtjs/color-mode', 'shadcn-nuxt'],
   colorMode: {
-    classSuffix: "",
+    classSuffix: '',
   },
   shadcn: {
-    prefix: "shadcn-",
-    componentDir: resolve("./components/shadcn"),
+    prefix: 'shadcn-',
+    componentDir: resolve('./components/shadcn/ui'),
+  },
+  tailwindcss: {
+    configPath: resolve('./tailwind.config.js'),
   },
 })

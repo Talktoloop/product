@@ -31,14 +31,40 @@ This monorepo is organized into the following workspaces:
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://gitlab.com/bahul1/mono-core.git product
    cd product
    ```
 
 2. Install dependencies:
+
    ```bash
    yarn install
+   ```
+
+3. Setup environment variables:
+
+   ```bash
+   cp .env.template .env
+   ```
+
+   or
+
+   ```bash
+   ln -s .env.template .env
+   ```
+
+4. Prepare packages:
+
+   ```bash
+   yarn prepare
+   ```
+
+5. Start the development environment:
+
+   ```bash
+   docker compose up
    ```
 
 ### Development
@@ -46,6 +72,7 @@ This monorepo is organized into the following workspaces:
 To start developing:
 
 1. Prepare packages:
+
    ```bash
    yarn prepare
    ```

@@ -40,3 +40,9 @@ yarn-error.log*
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# nuxt
+.nuxt/
+
+# data
+opt/data

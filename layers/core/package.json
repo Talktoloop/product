@@ -24,9 +24,9 @@
     "vue": "latest"
   },
   "dependencies": {
+    "@netlify/classnames-template-literals": "^1.0.3",
     "@ourloop/product-core-config": "*",
     "@vueuse/nuxt": "^11.2.0",
-    "prettier-plugin-embed": "^0.4.15",
-    "twin.macro": "^3.4.1"
+    "prettier-plugin-embed": "^0.4.15"
   }
 }

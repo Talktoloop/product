@@ -10,13 +10,12 @@
     "prepare": "turbo run prepare"
   },
   "workspaces": [
-    "opt/*",
+    "opt/packages/*",
     "core/*",
     "layers/*",
     "apps/*"
   ],
   "devDependencies": {
-    "@nuxt/test-utils": "^3.14.4",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^15.11.0",
     "playwright-core": "^1.48.2",
