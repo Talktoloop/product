@@ -1,0 +1,11 @@
+{
+  "name": "@ourloop/product",
+  "packageManager": "yarn@4.2.2",
+  "private": true,
+  "workspaces": [
+    "opt/*",
+    "core/*",
+    "layers/*",
+    "apps/*"
+  ]
+}
