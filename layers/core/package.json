@@ -1,0 +1,22 @@
+{
+  "name": "@ourloop/product-layer-core",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev .playground",
+    "prepare": "nuxt prepare .playground",
+    "build": "nuxt build .playground",
+    "generate": "nuxt generate .playground",
+    "preview": "nuxt preview .playground",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "latest",
+    "@vueuse/nuxt": "^11.2.0",
+    "eslint": "^9.14.0",
+    "nuxt": "^3.14.159",
+    "typescript": "^5.6.3",
+    "vue": "latest"
+  }
+}

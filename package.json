@@ -2,10 +2,21 @@
   "name": "@ourloop/product",
   "packageManager": "yarn@4.2.2",
   "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "test": "turbo run test",
+    "prepare": "turbo run prepare"
+  },
   "workspaces": [
     "opt/*",
     "core/*",
     "layers/*",
     "apps/*"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "turbo": "^2.2.3"
+  }
 }
