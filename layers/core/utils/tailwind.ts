@@ -1,1 +1,1 @@
-export { default as tw } from 'tailwind-merge'
+export { default as tw } from 'twin.macro'
