@@ -1,73 +1,64 @@
-# Nuxt Layer Starter
+# UI Layer
 
-Create Nuxt extendable layer with this GitHub template.
+The UI Layer is a crucial part of the `@ourloop/product` monorepo, providing reusable UI components and styles for building consistent and scalable user interfaces.
 
-## Setup
+## Purpose
 
-Make sure to install the dependencies:
+The UI Layer is designed to offer a collection of reusable UI components and styles that can be utilized across various applications within the monorepo. It ensures consistency and reusability of UI elements and design patterns.
 
-```bash
-pnpm install
+## Structure
+
+The UI Layer is organized to facilitate easy access and integration of UI components and styles:
+
+```
+.
+├── components/   # Reusable Vue components
+├── assets/       # CSS and other static assets
+└── config/       # Configuration files and settings
 ```
 
-## Working on your layer
+## Getting Started
 
-Your layer is at the root of this repository, it is exactly like a regular Nuxt project, except you can publish it on NPM.
+### Prerequisites
 
-The `.playground` directory should help you on trying your layer during development.
+- Node.js (v18+)
+- Yarn (v4.2.2)
 
-Running `pnpm dev` will prepare and boot `.playground` directory, which imports your layer itself.
+### Installation
 
-## Distributing your layer
-
-Your Nuxt layer is shaped exactly the same as any other Nuxt project, except you can publish it on NPM.
-
-To do so, you only have to check if `files` in `package.json` are valid, then run:
-
+1. Navigate to the UI directory:
 ```bash
-npm publish --access public
+cd layers/ui
 ```
 
-Once done, your users will only have to run:
-
+2. Install dependencies:
 ```bash
-npm install --save your-layer
+yarn install
 ```
 
-Then add the dependency to their `extends` in `nuxt.config`:
+### Development
 
-```ts
-defineNuxtConfig({
-  extends: 'your-layer'
+To start developing within the UI Layer:
+
+1. Build the UI package:
+```bash
+yarn build
+```
+
+2. Run tests:
+```bash
+yarn test
+```
+
+## Usage
+
+To use the UI Layer in your application:
+
+1. Add the UI Layer as a dependency in your application's `package.json`.
+2. Extend from the UI Layer in your `nuxt.config.ts`:
+```typescript
+export default defineNuxtConfig({
+  extends: ["@ourloop/product-layer-ui"]
 })
 ```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-pnpm dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-pnpm build
-```
-
-Or statically generate it with:
-
-```bash
-pnpm generate
-```
-
-Locally preview production build:
-
-```bash
-pnpm preview
-```
-
-Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+3. The components are now available for use in your Nuxt application.

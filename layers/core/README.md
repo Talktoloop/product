@@ -1,73 +1,59 @@
-# Nuxt Layer Starter
+# Core Layer
 
-Create Nuxt extendable layer with this GitHub template.
+The Core Layer is a fundamental part of the `@ourloop/product` monorepo, providing essential shared business logic and components for scalable application development.
 
-## Setup
+## Purpose
 
-Make sure to install the dependencies:
+The Core Layer is designed to house the fundamental business logic and shared functionality that can be utilized across various applications within the monorepo. It ensures consistency and reusability of core components and logic.
 
+## Structure
+
+The Core Layer is organized to facilitate easy access and integration of shared logic and components:
+
+```
+.
+├── components/   # Reusable Vue components
+├── utils/        # Utility functions and helpers
+└── config/       # Configuration files and settings
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- Yarn (v4.2.2)
+
+### Installation
+
+1. Navigate to the core directory:
 ```bash
-pnpm install
+cd layers/core
 ```
 
-## Working on your layer
-
-Your layer is at the root of this repository, it is exactly like a regular Nuxt project, except you can publish it on NPM.
-
-The `.playground` directory should help you on trying your layer during development.
-
-Running `pnpm dev` will prepare and boot `.playground` directory, which imports your layer itself.
-
-## Distributing your layer
-
-Your Nuxt layer is shaped exactly the same as any other Nuxt project, except you can publish it on NPM.
-
-To do so, you only have to check if `files` in `package.json` are valid, then run:
-
+2. Install dependencies:
 ```bash
-npm publish --access public
+yarn install
 ```
 
-Once done, your users will only have to run:
+### Development
 
+To start developing within the Core Layer:
+
+1. Build the core package:
 ```bash
-npm install --save your-layer
+yarn build
 ```
 
-Then add the dependency to their `extends` in `nuxt.config`:
-
-```ts
-defineNuxtConfig({
-  extends: 'your-layer'
-})
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
+2. Run tests:
 ```bash
-pnpm dev
+yarn test
 ```
 
-## Production
+## Contributing
 
-Build the application for production:
+Contributions to the Core Layer are welcome. Please follow the monorepo's contribution guidelines when making changes.
 
-```bash
-pnpm build
-```
+## License
 
-Or statically generate it with:
-
-```bash
-pnpm generate
-```
-
-Locally preview production build:
-
-```bash
-pnpm preview
-```
-
-Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+[Your License Here]

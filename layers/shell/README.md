@@ -1,73 +1,40 @@
-# Nuxt Layer Starter
+# Shell Layer
 
-Create Nuxt extendable layer with this GitHub template.
+The Shell Layer is a Nuxt-specific composable layer within the `@ourloop/product` monorepo. It is designed to provide foundational features and configurations that can be composed into Nuxt applications, enhancing their functionality and maintainability.
 
-## Setup
+## Purpose
 
-Make sure to install the dependencies:
+The Shell Layer serves as a base layer for Nuxt applications, offering a set of pre-configured features and settings that streamline the development process. By leveraging the Shell Layer, developers can ensure consistency across applications and reduce the overhead of setting up common configurations.
 
-```bash
-pnpm install
-```
+## Features
 
-## Working on your layer
+- **Composable Architecture**: Easily integrate the Shell Layer into your Nuxt applications to benefit from shared configurations and features.
+- **Pre-configured Settings**: Includes default settings and tools to accelerate development and maintain consistency.
 
-Your layer is at the root of this repository, it is exactly like a regular Nuxt project, except you can publish it on NPM.
+## Usage
 
-The `.playground` directory should help you on trying your layer during development.
+To use the Shell Layer in your application:
 
-Running `pnpm dev` will prepare and boot `.playground` directory, which imports your layer itself.
+1. Add the Shell Layer as a dependency in your application's `package.json`.
+2. Configure your `nuxt.config.ts` to extend from the Shell Layer.
 
-## Distributing your layer
-
-Your Nuxt layer is shaped exactly the same as any other Nuxt project, except you can publish it on NPM.
-
-To do so, you only have to check if `files` in `package.json` are valid, then run:
-
-```bash
-npm publish --access public
-```
-
-Once done, your users will only have to run:
-
-```bash
-npm install --save your-layer
-```
-
-Then add the dependency to their `extends` in `nuxt.config`:
-
-```ts
-defineNuxtConfig({
-  extends: 'your-layer'
+```typescript
+export default defineNuxtConfig({
+  extends: ["@ourloop/product-layer-shell"]
 })
 ```
 
-## Development Server
+## Development
 
-Start the development server on http://localhost:3000
+For development within the Shell Layer:
 
-```bash
-pnpm dev
-```
+1. Ensure all dependencies are installed using Yarn.
+2. Follow the monorepo's guidelines for building and running packages.
 
-## Production
+## Contributing
 
-Build the application for production:
+Contributions to the Shell Layer are welcome. Please follow the monorepo's contribution guidelines when making changes.
 
-```bash
-pnpm build
-```
+## License
 
-Or statically generate it with:
-
-```bash
-pnpm generate
-```
-
-Locally preview production build:
-
-```bash
-pnpm preview
-```
-
-Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+[Your License Here]

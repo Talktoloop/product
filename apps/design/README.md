@@ -1,75 +1,49 @@
-# Nuxt Minimal Starter
+# Design System
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Welcome to the Design System for our project. This system is built using Nuxt and integrates Storybook to provide a comprehensive environment for developing and testing UI components.
 
-## Setup
+## Getting Started
 
-Make sure to install dependencies:
+To get started with the design system, ensure you have the necessary dependencies installed. You can build and run the project using the following commands:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
+# Install dependencies
 yarn install
 
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
+# Run the development server
 yarn dev
 
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
+# Build the project
 yarn build
 
-# bun
-bun run build
+# Start Storybook
+yarn storybook
 ```
 
-Locally preview production build:
+## Key Components
+
+The design system includes a variety of components that are essential for building consistent and reusable UI elements. Some of the key components include:
+
+- **Buttons**: Customizable buttons with primary and secondary styles.
+- **Typography**: Consistent text styles for headings, paragraphs, and more.
+- **Layouts**: Predefined layouts to ensure consistent structure across pages.
+
+## Storybook Integration
+
+Storybook is integrated into the design system to facilitate the development and testing of UI components. It allows you to view components in isolation and interact with them in a controlled environment.
+
+To start Storybook, use the following command:
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+yarn storybook
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+This will launch Storybook on port 6006, where you can explore the available components and their stories.
+
+## Additional Resources
+
+For more information on using the design system and Storybook, refer to the following resources:
+
+- [Nuxt Documentation](https://nuxt.com/docs)
+- [Storybook Documentation](https://storybook.js.org/docs)
+- [Our Design System Guidelines](#)

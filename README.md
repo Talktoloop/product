@@ -1,4 +1,4 @@
-# @ourloop/product
+# Product Monorepo
 
 A Nuxt-based monorepo using a layered architecture approach for scalable application development.
 
@@ -31,29 +31,29 @@ This monorepo is organized into the following workspaces:
 ### Installation
 
 1. Clone the repository:
-```bash
-git clone https://gitlab.com/bahul1/mono-core.git product
-cd product
-```
+   ```bash
+   git clone https://gitlab.com/bahul1/mono-core.git product
+   cd product
+   ```
 
 2. Install dependencies:
-```bash
-yarn install
-```
+   ```bash
+   yarn install
+   ```
 
 ### Development
 
 To start developing:
 
-1. Build core packages:
-```bash
-yarn workspaces foreach -pt run build
-```
+1. Prepare packages:
+   ```bash
+   yarn prepare
+   ```
 
 2. Run a specific app:
-```bash
-yarn workspace @ourloop/[app-name] dev
-```
+   ```bash
+   yarn workspace @ourloop/[app-name] dev
+   ```
 
 ## Development Guidelines
 
@@ -75,7 +75,3 @@ Layers can be composed in applications by:
 1. Create a new branch
 2. Make your changes
 3. Submit a merge request
-
-## License
-
-[Your License Here]
