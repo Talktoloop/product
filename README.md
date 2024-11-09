@@ -19,7 +19,7 @@ This monorepo is organized into the following workspaces:
 - **apps/** - Contains all end-user applications
 - **core/** - Houses essential shared business logic and components
 - **layers/** - Nuxt-specific composable layers for feature composition
-- **opt/** - Optional development tools (CLI utilities, documentation generators, etc.)
+- **opt/packages/** - Optional development tools (CLI utilities, documentation generators, etc.)
 
 ## Getting Started
 
