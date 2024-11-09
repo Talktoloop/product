@@ -13,7 +13,4 @@ export default defineNuxtConfig({
   vue: {
     runtimeCompiler: true,
   },
-  tailwindcss: {
-    configPath: './tailwind.config.js',
-  },
 })

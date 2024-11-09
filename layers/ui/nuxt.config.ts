@@ -17,7 +17,4 @@ export default defineNuxtConfig({
     prefix: 'shadcn-',
     componentDir: resolve('./components/shadcn/ui'),
   },
-  tailwindcss: {
-    configPath: resolve('./tailwind.config.js'),
-  },
 })

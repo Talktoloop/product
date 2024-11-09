@@ -7,7 +7,9 @@
     "dev": "turbo run dev --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "test": "turbo run test",
-    "prepare": "turbo run prepare"
+    "prepare": "turbo run prepare",
+    "clean": "turbo run clean",
+    "clean:locks": "rimraf .turbo *.lock"
   },
   "workspaces": [
     "opt/packages/*",
@@ -23,5 +25,8 @@
     "turbo": "^2.2.3",
     "typescript": "^5.6.3",
     "vitest": "^2.1.4"
+  },
+  "dependencies": {
+    "rimraf": "^6.0.1"
   }
 }

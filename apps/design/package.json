@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "prepare": "nuxt prepare",
     "storybook": "storybook dev --port 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "clean": "rimraf .nuxt .output node_modules"
   },
   "dependencies": {
     "@nuxtjs/storybook": "^8.3.2",

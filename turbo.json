@@ -25,6 +25,11 @@
         "^prepare"
       ],
       "cache": false
+    },
+    "clean": {
+      "dependsOn": [
+        "^clean"
+      ]
     }
   }
 }

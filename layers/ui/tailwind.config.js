@@ -3,9 +3,6 @@ const { join } = require("path")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [
-    require("@ourloop/product-layer-core/tailwind"),
-  ],
   darkMode: ["class"],
   content: [
     join(__dirname, "./components/**/*.{ts,tsx,vue}"),

@@ -13,7 +13,8 @@
     "build": "nuxt build .playground",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "clean": "rimraf .nuxt .playground/.nuxt .output node_modules"
   },
   "devDependencies": {
     "@nuxt/eslint": "latest",

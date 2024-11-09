@@ -5,9 +5,6 @@ if (process.env.TRACE_CONFIG) {
 
 export default {
   darkMode: ['class'],
-  theme: {
-    extend: {},
-  },
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
