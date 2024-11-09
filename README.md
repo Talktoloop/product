@@ -33,7 +33,7 @@ This monorepo is organized into the following workspaces:
 1. Clone the repository:
 
    ```bash
-   git clone https://gitlab.com/bahul1/mono-core.git product
+   git clone https://gitlab.com/bahul1/product.git
    cd product
    ```
 
