@@ -13,7 +13,8 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 type BadgeProps = ComponentProps<typeof ShadcnBadge>
 
 interface Props {
-  variant: BadgeProps['variant']
+  variant?: BadgeProps['variant']
+  class?: BadgeProps['class']
 }
 
 defineProps<Props>()

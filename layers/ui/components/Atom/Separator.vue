@@ -13,6 +13,9 @@ type SeparatorProps = ComponentProps<typeof ShadcnSeparator>
 interface Props {
   orientation: SeparatorProps['orientation']
   decorative: SeparatorProps['decorative']
+  asChild: SeparatorProps['asChild']
+  as?: SeparatorProps['as']
+  class?: SeparatorProps['class']
 }
 
 defineProps<Props>()

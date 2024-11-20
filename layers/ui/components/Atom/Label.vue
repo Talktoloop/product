@@ -12,7 +12,9 @@ type LabelProps = ComponentProps<typeof ShadcnLabel>
 
 interface Props {
   for: LabelProps['for']
-  asChild: LabelProps['asChild']
+  asChild?: LabelProps['asChild']
+  as?: LabelProps['as']
+  class?: LabelProps['class']
 }
 
 defineProps<Props>()

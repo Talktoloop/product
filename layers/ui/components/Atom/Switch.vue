@@ -11,10 +11,15 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 type SwitchProps = ComponentProps<typeof ShadcnSwitch>
 
 interface Props {
-  checked: SwitchProps['checked']
-  disabled: SwitchProps['disabled']
-  required: SwitchProps['required']
-  name: SwitchProps['name']
+  defaultChecked?: SwitchProps['defaultChecked']
+  checked?: SwitchProps['checked']
+  disabled?: SwitchProps['disabled']
+  required?: SwitchProps['required']
+  name?: SwitchProps['name']
+  value?: SwitchProps['value']
+  asChild?: SwitchProps['asChild']
+  as?: SwitchProps['as']
+  class?: SwitchProps['class']
 }
 
 defineProps<Props>()

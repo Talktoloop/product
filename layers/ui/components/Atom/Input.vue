@@ -11,11 +11,11 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 type InputProps = ComponentProps<typeof ShadcnInput>
 
 interface Props {
-  type: InputProps['type']
-  disabled: InputProps['disabled']
-  required: InputProps['required']
-  placeholder: InputProps['placeholder']
+  defaultValue?: InputProps['defaultValue']
+  class?: InputProps['class']
 }
+
+defineModel<InputProps['modelValue']>()
 
 defineProps<Props>()
 

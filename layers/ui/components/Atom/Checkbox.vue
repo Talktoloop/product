@@ -11,10 +11,15 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 type CheckboxProps = ComponentProps<typeof ShadcnCheckbox>
 
 interface Props {
-  checked: CheckboxProps['checked']
-  disabled: CheckboxProps['disabled']
-  required: CheckboxProps['required']
-  name: CheckboxProps['name']
+  defaultChecked?: CheckboxProps['defaultChecked']
+  checked?: CheckboxProps['checked']
+  disabled?: CheckboxProps['disabled']
+  required?: CheckboxProps['required']
+  name?: CheckboxProps['name']
+  value?: CheckboxProps['value']
+  asChild?: CheckboxProps['asChild']
+  as?: CheckboxProps['as']
+  class?: CheckboxProps['class']
 }
 
 defineProps<Props>()

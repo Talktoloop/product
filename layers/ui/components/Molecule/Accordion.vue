@@ -11,8 +11,13 @@ import type { ComponentProps, ComponentSlots } from 'vue-component-type-helpers'
 type AccordionRootProps = ComponentProps<typeof ShadcnAccordion>
 type AccordionRootSlots = ComponentSlots<typeof ShadcnAccordion>
 
-interface Props extends AccordionRootProps {
-  type?: "single" | "multiple"
+interface Props {
+  collapsible?: AccordionRootProps['collapsible']
+  disabled?: AccordionRootProps['disabled']
+  dir?: AccordionRootProps['dir']
+  orientation?: AccordionRootProps['orientation']
+  type?: AccordionRootProps['type']
+  class?: AccordionRootProps['class']
 }
 
 defineProps<Props>()

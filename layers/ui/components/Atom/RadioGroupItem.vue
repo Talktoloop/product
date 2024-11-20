@@ -11,9 +11,14 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 type RadioGroupItemProps = ComponentProps<typeof ShadcnRadioGroupItem>
 
 interface Props {
+  id: RadioGroupItemProps['id']
+  name: RadioGroupItemProps['name']
+  asChild?: RadioGroupItemProps['asChild']
+  as?: RadioGroupItemProps['as']
+  class?: RadioGroupItemProps['class']
   value: RadioGroupItemProps['value']
-  disabled: RadioGroupItemProps['disabled']
-  required: RadioGroupItemProps['required']
+  disabled?: RadioGroupItemProps['disabled']
+  required?: RadioGroupItemProps['required']
 }
 
 defineProps<Props>()

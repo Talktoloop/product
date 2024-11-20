@@ -11,7 +11,8 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 type TooltipTriggerProps = ComponentProps<typeof ShadcnTooltipTrigger>
 
 interface Props {
-  asChild: TooltipTriggerProps['asChild']
+  asChild?: TooltipTriggerProps['asChild']
+  as?: TooltipTriggerProps['as']
 }
 
 defineProps<Props>()

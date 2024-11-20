@@ -11,10 +11,14 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 type ProgressProps = ComponentProps<typeof ShadcnProgress>
 
 interface Props {
-  value: ProgressProps['value']
-  max: ProgressProps['max']
+  max?: ProgressProps['max']
+  getValueLabel?: ProgressProps['getValueLabel']
+  asChild?: ProgressProps['asChild']
+  as?: ProgressProps['as']
+  class?: ProgressProps['class']
 }
 
+defineModel<ProgressProps['modelValue']>()
 defineProps<Props>()
 
 defineComponent({
