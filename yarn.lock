@@ -1967,6 +1967,7 @@ __metadata:
     vite: "npm:^5.4.10"
     vitest: "npm:^2.1.4"
     vue: "npm:latest"
+    vue-component-type-helpers: "npm:^2.1.10"
     vue-router: "npm:^4.4.5"
     vue-sonner: "npm:^1.2.5"
     zod: "npm:^3.23.8"
@@ -14266,7 +14267,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-component-type-helpers@npm:2.1.10, vue-component-type-helpers@npm:^2.0.0, vue-component-type-helpers@npm:latest":
+"vue-component-type-helpers@npm:2.1.10, vue-component-type-helpers@npm:^2.0.0, vue-component-type-helpers@npm:^2.1.10, vue-component-type-helpers@npm:latest":
   version: 2.1.10
   resolution: "vue-component-type-helpers@npm:2.1.10"
   checksum: 10c0/c8389b4db2310fca403c7ce1c1cfd4c98146a9f99922c7c1cd883de687e3934255d5e173aad55ce8e2f457a86a0098a7ed0b3cb25cb4df1be2189c8cf04c6500

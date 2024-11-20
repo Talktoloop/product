@@ -60,6 +60,7 @@
     "vite": "^5.4.10",
     "vitest": "^2.1.4",
     "vue": "latest",
+    "vue-component-type-helpers": "^2.1.10",
     "vue-router": "^4.4.5"
   }
 }
