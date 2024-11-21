@@ -1,5 +1,5 @@
 <template>
-  <shadcn-progress v-bind="$attrs">
+  <shadcn-progress v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-progress>
 </template>

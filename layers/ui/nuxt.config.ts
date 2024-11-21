@@ -9,7 +9,7 @@ function resolve(path: string) {
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ['@ourloop/product-layer-core'],
-  modules: ['@nuxtjs/color-mode', 'shadcn-nuxt'],
+  modules: ['@nuxtjs/color-mode', 'shadcn-nuxt', '@nuxt/eslint'],
   colorMode: {
     classSuffix: '',
   },

@@ -1,5 +1,5 @@
 <template>
-  <shadcn-checkbox v-bind="$attrs">
+  <shadcn-checkbox v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-checkbox>
 </template>

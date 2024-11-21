@@ -2,4 +2,5 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ['@ourloop/product-layer-core'],
+  modules: ['@nuxt/eslint'],
 })

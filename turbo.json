@@ -24,7 +24,9 @@
       "dependsOn": [
         "^prepare"
       ],
-      "cache": false
+      "outputs": [
+        ".nuxt/**"
+      ]
     },
     "clean": {
       "dependsOn": [

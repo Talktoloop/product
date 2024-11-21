@@ -1,5 +1,5 @@
 <template>
-  <shadcn-accordion v-bind="$attrs">
+  <shadcn-accordion v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-accordion>
 </template>

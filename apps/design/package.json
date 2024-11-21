@@ -10,7 +10,8 @@
     "prepare": "nuxt prepare",
     "storybook": "storybook dev --port 6006",
     "build-storybook": "storybook build",
-    "clean": "rimraf .nuxt .output node_modules"
+    "clean": "rimraf .nuxt .output node_modules",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@nuxtjs/storybook": "^8.3.2",
@@ -22,6 +23,7 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@nuxt/eslint": "^0.7.1",
     "@nuxtjs/storybook": "8.3.2",
     "@storybook-vue/nuxt": "8.3.2",
     "@storybook/addon-essentials": "8.4.2",
@@ -32,6 +34,7 @@
     "@storybook/test": "8.4.2",
     "@storybook/vue3": "8.4.2",
     "@types/node": "^22.9.0",
+    "eslint": "^9.15.0",
     "storybook": "8.4.2"
   }
 }

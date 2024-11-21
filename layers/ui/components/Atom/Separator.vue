@@ -1,5 +1,5 @@
 <template>
-  <shadcn-separator v-bind="$attrs">
+  <shadcn-separator v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-separator>
 </template>

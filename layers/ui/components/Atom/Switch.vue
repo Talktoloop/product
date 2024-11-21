@@ -1,5 +1,5 @@
 <template>
-  <shadcn-switch v-bind="$attrs">
+  <shadcn-switch v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-switch>
 </template>

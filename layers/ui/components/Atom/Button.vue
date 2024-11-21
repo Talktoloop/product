@@ -1,5 +1,5 @@
 <template>
-  <shadcn-button v-bind="$attrs">
+  <shadcn-button v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-button>
 </template>
@@ -11,8 +11,11 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 type ButtonProps = ComponentProps<typeof ShadcnButton>
 
 interface Props {
-  variant: ButtonProps['variant']
-  size: ButtonProps['size']
+  variant?: ButtonProps['variant']
+  size?: ButtonProps['size']
+  asChild?: ButtonProps['asChild']
+  as?: ButtonProps['as']
+  class?: ButtonProps['class']
 }
 
 defineProps<Props>()

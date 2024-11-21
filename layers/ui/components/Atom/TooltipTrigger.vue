@@ -1,5 +1,5 @@
 <template>
-  <shadcn-tooltip-trigger v-bind="$attrs">
+  <shadcn-tooltip-trigger v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-tooltip-trigger>
 </template>

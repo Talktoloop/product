@@ -1,5 +1,5 @@
 <template>
-  <shadcn-radio-group-item v-bind="$attrs">
+  <shadcn-radio-group-item v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-radio-group-item>
 </template>

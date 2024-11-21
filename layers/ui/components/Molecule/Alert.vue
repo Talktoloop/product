@@ -1,5 +1,5 @@
 <template>
-  <shadcn-alert v-bind="$attrs">
+  <shadcn-alert v-bind="{ ...$props, ...$attrs }">
     <template #default>
       <slot />
     </template>

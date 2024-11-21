@@ -16,7 +16,7 @@
     "@ourloop/product-layer-core": "*"
   },
   "devDependencies": {
-    "@nuxt/eslint": "latest",
+    "@nuxt/eslint": "^0.7.1",
     "eslint": "^9.14.0",
     "nuxt": "^3.14.159",
     "typescript": "^5.6.3",

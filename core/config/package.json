@@ -6,7 +6,8 @@
     "./tailwind/core": "./tailwind/core.js",
     "./tailwind/typography": "./tailwind/typography.js",
     "./tailwind/spacing": "./tailwind/spacing.js",
-    "./tailwind/colors": "./tailwind/colors.js"
+    "./tailwind/colors": "./tailwind/colors.js",
+    "./eslint": "./eslint.js"
   },
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",

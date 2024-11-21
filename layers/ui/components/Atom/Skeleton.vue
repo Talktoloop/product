@@ -1,5 +1,5 @@
 <template>
-  <shadcn-skeleton v-bind="$attrs">
+  <shadcn-skeleton v-bind="{ ...$props, ...$attrs }">
     <slot />
   </shadcn-skeleton>
 </template>

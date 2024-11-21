@@ -1,0 +1,28 @@
+import AtomSeparator from '@ourloop/product-layer-ui/components/Atom/Separator.vue'
+import type { Meta, StoryObj } from '@storybook-vue/nuxt'
+
+const meta = {
+  title: 'Atom/Separator',
+  component: AtomSeparator,
+  tags: ['autodocs'],
+} satisfies Meta<typeof AtomSeparator>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+export const Horizontal: Story = {
+  args: {
+    orientation: 'horizontal',
+    decorative: true,
+    asChild: false,
+  },
+}
+
+export const Vertical: Story = {
+  args: {
+    orientation: 'vertical',
+    decorative: true,
+    asChild: false,
+  },
+}

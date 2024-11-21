@@ -1,5 +1,5 @@
 <template>
-  <shadcn-badge v-bind="$attrs">
+  <shadcn-badge v-bind="{ ...$props, ...$attrs }">
     <template #default>
       <slot />
     </template>
