@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { toggleVariants } from '~/ui/components/shadcn/ui/toggle'
+import type { toggleVariants } from '../toggle'
 import type { VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { ToggleGroupRoot, type ToggleGroupRootEmits, type ToggleGroupRootProps, useForwardPropsEmits } from 'radix-vue'

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { FieldProps } from './interface'
-import { Checkbox } from '~/ui/components/shadcn/ui/checkbox'
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '~/ui/components/shadcn/ui/form'
-import { Switch } from '~/ui/components/shadcn/ui/switch'
+import { Checkbox } from '../checkbox'
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '../form'
+import { Switch } from '../switch'
 import { computed } from 'vue'
 import AutoFormLabel from './AutoFormLabel.vue'
 import { beautifyObjectName } from './utils'
@@ -18,13 +18,9 @@ const booleanComponent = computed(() => props.config?.component === 'switch' ? S
       <div class="space-y-0 mb-3 flex items-center gap-3">
         <FormControl>
           <slot v-bind="slotProps">
-            <component
-              :is="booleanComponent"
-              v-bind="{ ...slotProps.componentField }"
-              :disabled="disabled"
+            <component :is="booleanComponent" v-bind="{ ...slotProps.componentField }" :disabled="disabled"
               :checked="slotProps.componentField.modelValue"
-              @update:checked="slotProps.componentField['onUpdate:modelValue']"
-            />
+              @update:checked="slotProps.componentField['onUpdate:modelValue']" />
           </slot>
         </FormControl>
         <AutoFormLabel v-if="!config?.hideLabel" :required="required">

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FieldProps } from './interface'
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '~/ui/components/shadcn/ui/form'
-import { Input } from '~/ui/components/shadcn/ui/input'
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '../form'
+import { Input } from '../input'
 import AutoFormLabel from './AutoFormLabel.vue'
 import { beautifyObjectName } from './utils'
 

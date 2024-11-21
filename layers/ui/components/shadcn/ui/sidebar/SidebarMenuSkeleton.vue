@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Skeleton from '~/ui/components/shadcn/ui/skeleton/Skeleton.vue'
+import Skeleton from '../skeleton/Skeleton.vue'
 import { cn } from '@/lib/utils'
 import { computed, type HTMLAttributes } from 'vue'
 
@@ -14,20 +14,10 @@ const width = computed(() => {
 </script>
 
 <template>
-  <div
-    data-sidebar="menu-skeleton"
-    :class="cn('rounded-md h-8 flex gap-2 px-2 items-center', props.class)"
-  >
-    <Skeleton
-      v-if="showIcon"
-      class="size-4 rounded-md"
-      data-sidebar="menu-skeleton-icon"
-    />
+  <div data-sidebar="menu-skeleton" :class="cn('rounded-md h-8 flex gap-2 px-2 items-center', props.class)">
+    <Skeleton v-if="showIcon" class="size-4 rounded-md" data-sidebar="menu-skeleton-icon" />
 
-    <Skeleton
-      class="h-4 flex-1 max-w-[--skeleton-width]"
-      data-sidebar="menu-skeleton-text"
-      :style="{ '--skeleton-width': width }"
-    />
+    <Skeleton class="h-4 flex-1 max-w-[--skeleton-width]" data-sidebar="menu-skeleton-text"
+      :style="{ '--skeleton-width': width }" />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BulletLegendItemInterface } from '@unovis/ts'
-import { buttonVariants } from '~/ui/components/shadcn/ui/button'
+import { buttonVariants } from '../button'
 import { BulletLegend } from '@unovis/ts'
 import { VisBulletLegend } from '@unovis/vue'
 import { nextTick, onMounted, ref } from 'vue'
@@ -42,9 +42,6 @@ function onLegendItemClick(d: BulletLegendItemInterface, i: number) {
 
 <template>
   <div ref="elRef" class="w-max">
-    <VisBulletLegend
-      :items="items"
-      :on-legend-item-click="onLegendItemClick"
-    />
+    <VisBulletLegend :items="items" :on-legend-item-click="onLegendItemClick" />
   </div>
 </template>

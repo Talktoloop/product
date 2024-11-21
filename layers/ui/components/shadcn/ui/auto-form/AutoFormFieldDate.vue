@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { FieldProps } from './interface'
-import { Button } from '~/ui/components/shadcn/ui/button'
-import { Calendar } from '~/ui/components/shadcn/ui/calendar'
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '~/ui/components/shadcn/ui/form'
-import { Popover, PopoverContent, PopoverTrigger } from '~/ui/components/shadcn/ui/popover'
+import { Button } from '../button'
+import { Calendar } from '../calendar'
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '../form'
+import { Popover, PopoverContent, PopoverTrigger } from '../popover'
 import { cn } from '@/lib/utils'
 
 import { DateFormatter, getLocalTimeZone } from '@internationalized/date'
@@ -29,15 +29,13 @@ const df = new DateFormatter('en-US', {
           <div>
             <Popover>
               <PopoverTrigger as-child :disabled="disabled">
-                <Button
-                  variant="outline"
-                  :class="cn(
-                    'w-full justify-start text-left font-normal',
-                    !slotProps.componentField.modelValue && 'text-muted-foreground',
-                  )"
-                >
+                <Button variant="outline" :class="cn(
+                  'w-full justify-start text-left font-normal',
+                  !slotProps.componentField.modelValue && 'text-muted-foreground',
+                )">
                   <CalendarIcon class="mr-2 h-4 w-4" :size="16" />
-                  {{ slotProps.componentField.modelValue ? df.format(slotProps.componentField.modelValue.toDate(getLocalTimeZone())) : "Pick a date" }}
+                  {{ slotProps.componentField.modelValue ?
+                    df.format(slotProps.componentField.modelValue.toDate(getLocalTimeZone())) : "Pick a date" }}
                 </Button>
               </PopoverTrigger>
               <PopoverContent class="w-auto p-0">

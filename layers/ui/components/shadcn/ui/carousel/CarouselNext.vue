@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { WithClassAsProps } from './interface'
-import { Button } from '~/ui/components/shadcn/ui/button'
+import { Button } from '../button'
 import { cn } from '@/lib/utils'
 import { ArrowRight } from 'lucide-vue-next'
 import { useCarousel } from './useCarousel'

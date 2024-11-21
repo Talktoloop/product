@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { VariantProps } from 'class-variance-authority'
-import { toggleVariants } from '~/ui/components/shadcn/ui/toggle'
+import { toggleVariants } from '../toggle'
 import { cn } from '@/lib/utils'
 import { ToggleGroupItem, type ToggleGroupItemProps, useForwardProps } from 'radix-vue'
 import { computed, type HTMLAttributes, inject } from 'vue'
@@ -24,12 +24,10 @@ const forwardedProps = useForwardProps(delegatedProps)
 </script>
 
 <template>
-  <ToggleGroupItem
-    v-bind="forwardedProps" :class="cn(toggleVariants({
-      variant: context?.variant || variant,
-      size: context?.size || size,
-    }), props.class)"
-  >
+  <ToggleGroupItem v-bind="forwardedProps" :class="cn(toggleVariants({
+    variant: context?.variant || variant,
+    size: context?.size || size,
+  }), props.class)">
     <slot />
   </ToggleGroupItem>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import Input from '~/ui/components/shadcn/ui/input/Input.vue'
+import Input from '../input/Input.vue'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<{
@@ -9,13 +9,10 @@ const props = defineProps<{
 </script>
 
 <template>
-  <Input
-    data-sidebar="input"
-    :class="cn(
-      'h-8 w-full bg-background shadow-none focus-visible:ring-2 focus-visible:ring-sidebar-ring',
-      props.class,
-    )"
-  >
-    <slot />
+  <Input data-sidebar="input" :class="cn(
+    'h-8 w-full bg-background shadow-none focus-visible:ring-2 focus-visible:ring-sidebar-ring',
+    props.class,
+  )">
+  <slot />
   </Input>
 </template>

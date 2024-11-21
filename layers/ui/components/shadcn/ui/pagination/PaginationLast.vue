@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
   Button,
-} from '~/ui/components/shadcn/ui/button'
+} from '../button'
 import { cn } from '@/lib/utils'
 import { ChevronsRight } from 'lucide-vue-next'
 import { PaginationLast, type PaginationLastProps } from 'radix-vue'

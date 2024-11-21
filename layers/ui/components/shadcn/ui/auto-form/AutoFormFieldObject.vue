@@ -1,8 +1,8 @@
 <script setup lang="ts" generic="T extends ZodRawShape">
 import type { ZodAny, ZodObject, ZodRawShape } from 'zod'
 import type { Config, ConfigItem, Shape } from './interface'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/ui/components/shadcn/ui/accordion'
-import { FormItem } from '~/ui/components/shadcn/ui/form'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../accordion'
+import { FormItem } from '../form'
 import { FieldContextKey, useField } from 'vee-validate'
 import { computed, provide } from 'vue'
 import AutoFormField from './AutoFormField.vue'
@@ -62,12 +62,8 @@ provide(FieldContextKey, fieldContext)
             </AccordionTrigger>
             <AccordionContent class="p-1 space-y-5">
               <template v-for="(shape, key) in shapes" :key="key">
-                <AutoFormField
-                  :config="config?.[key as keyof typeof config] as ConfigItem"
-                  :field-name="`${fieldName}.${key.toString()}`"
-                  :label="key.toString()"
-                  :shape="shape"
-                />
+                <AutoFormField :config="config?.[key as keyof typeof config] as ConfigItem"
+                  :field-name="`${fieldName}.${key.toString()}`" :label="key.toString()" :shape="shape" />
               </template>
             </AccordionContent>
           </AccordionItem>

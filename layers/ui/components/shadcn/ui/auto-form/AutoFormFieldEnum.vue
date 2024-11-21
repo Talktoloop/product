@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { FieldProps } from './interface'
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '~/ui/components/shadcn/ui/form'
-import { Label } from '~/ui/components/shadcn/ui/label'
-import { RadioGroup, RadioGroupItem } from '~/ui/components/shadcn/ui/radio-group'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/ui/components/shadcn/ui/select'
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '../form'
+import { Label } from '../label'
+import { RadioGroup, RadioGroupItem } from '../radio-group'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../select'
 import AutoFormLabel from './AutoFormLabel.vue'
 import { beautifyObjectName } from './utils'
 
@@ -20,7 +20,8 @@ defineProps<FieldProps & {
       </AutoFormLabel>
       <FormControl>
         <slot v-bind="slotProps">
-          <RadioGroup v-if="config?.component === 'radio'" :disabled="disabled" :orientation="'vertical'" v-bind="{ ...slotProps.componentField }">
+          <RadioGroup v-if="config?.component === 'radio'" :disabled="disabled" :orientation="'vertical'"
+            v-bind="{ ...slotProps.componentField }">
             <div v-for="(option, index) in options" :key="option" class="mb-2 flex items-center gap-3 space-y-0">
               <RadioGroupItem :id="`${option}-${index}`" :value="option" />
               <Label :for="`${option}-${index}`">{{ beautifyObjectName(option) }}</Label>

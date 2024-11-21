@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { buttonVariants } from '~/ui/components/shadcn/ui/button'
+import { buttonVariants } from '../button'
 import { cn } from '@/lib/utils'
 import { AlertDialogAction, type AlertDialogActionProps } from 'radix-vue'
 import { computed, type HTMLAttributes } from 'vue'

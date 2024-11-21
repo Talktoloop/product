@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Tooltip from '~/ui/components/shadcn/ui/tooltip/Tooltip.vue'
-import TooltipContent from '~/ui/components/shadcn/ui/tooltip/TooltipContent.vue'
-import TooltipTrigger from '~/ui/components/shadcn/ui/tooltip/TooltipTrigger.vue'
+import Tooltip from '../tooltip/Tooltip.vue'
+import TooltipContent from '../tooltip/TooltipContent.vue'
+import TooltipTrigger from '../tooltip/TooltipTrigger.vue'
 import { type Component, computed } from 'vue'
 import SidebarMenuButtonChild, { type SidebarMenuButtonProps } from './SidebarMenuButtonChild.vue'
 import { useSidebar } from './utils'
@@ -37,11 +37,7 @@ const delegatedProps = computed(() => {
         <slot />
       </SidebarMenuButtonChild>
     </TooltipTrigger>
-    <TooltipContent
-      side="right"
-      align="center"
-      :hidden="state !== 'collapsed' || isMobile"
-    >
+    <TooltipContent side="right" align="center" :hidden="state !== 'collapsed' || isMobile">
       <template v-if="typeof tooltip === 'string'">
         {{ tooltip }}
       </template>
