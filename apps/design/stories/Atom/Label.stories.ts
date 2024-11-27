@@ -1,4 +1,4 @@
-import AtomLabel from '@ourloop/product-layer-ui/components/Atom/Label.vue'
+import AtomLabel from '@ui/Atom/Label'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {

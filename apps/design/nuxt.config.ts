@@ -10,6 +10,7 @@ export default defineNuxtConfig({
       include: ['jsdoc-type-pratt-parser'],
     },
   },
+  watch: ['./stories/**/*.stories.ts'],
   vue: {
     runtimeCompiler: true,
   },

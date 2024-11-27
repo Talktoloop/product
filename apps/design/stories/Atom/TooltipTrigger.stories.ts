@@ -1,4 +1,4 @@
-import AtomTooltipTrigger from '@ourloop/product-layer-ui/components/Atom/TooltipTrigger.vue'
+import AtomTooltipTrigger from '@ui/Atom/TooltipTrigger'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {

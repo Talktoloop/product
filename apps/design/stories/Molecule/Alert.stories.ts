@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
-import Alert from '@ourloop/product-layer-ui/components/Molecule/Alert.vue'
+import MoleculeAlert from '@ui/Molecule/Alert'
+import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {
   title: 'Molecule/Alert',
-  component: Alert,
+  component: MoleculeAlert,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -11,29 +11,29 @@ const meta = {
       options: ['default', 'destructive'],
     },
   },
-} satisfies Meta<typeof Alert>
+} satisfies Meta<typeof MoleculeAlert>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => ({
-    components: { Alert },
+    components: { MoleculeAlert },
     template: `
-      <Alert>
+      <MoleculeAlert>
         <p>This is a default alert</p>
-      </Alert>
+      </MoleculeAlert>
     `,
   }),
 }
 
 export const Destructive: Story = {
   render: () => ({
-    components: { Alert },
+    components: { MoleculeAlert },
     template: `
-      <Alert variant="destructive">
+      <MoleculeAlert variant="destructive">
         <p>This is a destructive alert</p>
-      </Alert>
+      </MoleculeAlert>
     `,
   }),
 }

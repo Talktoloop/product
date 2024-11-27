@@ -1,4 +1,4 @@
-import AtomSkeleton from '@ourloop/product-layer-ui/components/Atom/Skeleton.vue'
+import AtomSkeleton from '@ui/Atom/Skeleton'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {

@@ -1,4 +1,4 @@
-import AtomInput from '@ourloop/product-layer-ui/components/Atom/Input.vue'
+import AtomInput from '@ui/Atom/Input'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {

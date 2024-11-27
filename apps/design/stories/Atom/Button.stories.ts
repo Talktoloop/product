@@ -1,4 +1,4 @@
-import AtomButton from '@ourloop/product-layer-ui/components/Atom/Button.vue'
+import AtomButton from '@ui/Atom/Button'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {
@@ -13,6 +13,14 @@ const meta = {
     },
     template: "<AtomButton v-bind='props'>{{ slot }}</AtomButton>",
   }),
+  argTypes: {
+    variant: control.buttonVariant,
+    size: control.buttonSize,
+  },
+  args: {
+    variant: defaultValue.buttonVariant,
+    size: defaultValue.buttonSize,
+  },
 } satisfies Meta<typeof AtomButton>
 
 export default meta

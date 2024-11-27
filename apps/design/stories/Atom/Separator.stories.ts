@@ -1,4 +1,4 @@
-import AtomSeparator from '@ourloop/product-layer-ui/components/Atom/Separator.vue'
+import AtomSeparator from '@ui/Atom/Separator'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {

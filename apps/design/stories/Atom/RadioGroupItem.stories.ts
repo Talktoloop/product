@@ -1,4 +1,4 @@
-import AtomRadioGroupItem from '@ourloop/product-layer-ui/components/Atom/RadioGroupItem.vue'
+import AtomRadioGroupItem from '@ui/Atom/RadioGroupItem'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {

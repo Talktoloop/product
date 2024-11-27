@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
-import Avatar from '@ourloop/product-layer-ui/components/Molecule/Avatar.vue'
+import MoleculeAvatar from '@ui/Molecule/Avatar'
+import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {
   title: 'Molecule/Avatar',
-  component: Avatar,
+  component: MoleculeAvatar,
   tags: ['autodocs'],
   argTypes: {
     size: {
@@ -11,40 +11,40 @@ const meta = {
       options: ['sm', 'base', 'lg'],
     },
   },
-} satisfies Meta<typeof Avatar>
+} satisfies Meta<typeof MoleculeAvatar>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => ({
-    components: { Avatar },
+    components: { MoleculeAvatar },
     template: `
-      <Avatar size="base">
+      <MoleculeAvatar size="base">
         <span>JD</span>
-      </Avatar>
+      </MoleculeAvatar>
     `,
   }),
 }
 
 export const Small: Story = {
   render: () => ({
-    components: { Avatar },
+    components: { MoleculeAvatar },
     template: `
-      <Avatar size="sm">
+      <MoleculeAvatar size="sm">
         <span>JD</span>
-      </Avatar>
+      </MoleculeAvatar>
     `,
   }),
 }
 
 export const Large: Story = {
   render: () => ({
-    components: { Avatar },
+    components: { MoleculeAvatar },
     template: `
-      <Avatar size="lg">
+      <MoleculeAvatar size="lg">
         <span>JD</span>
-      </Avatar>
+      </MoleculeAvatar>
     `,
   }),
 }

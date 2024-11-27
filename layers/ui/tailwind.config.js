@@ -6,6 +6,7 @@ module.exports = {
   darkMode: ["class"],
   content: [
     join(__dirname, "./components/**/*.{ts,tsx,vue}"),
+    join(__dirname, "./shadcn/**/*.{ts,tsx,vue}"),
   ],
   prefix: "",
   theme: {

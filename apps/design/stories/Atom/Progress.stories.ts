@@ -1,4 +1,4 @@
-import AtomProgress from '@ourloop/product-layer-ui/components/Atom/Progress.vue'
+import AtomProgress from '@ui/Atom/Progress'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {

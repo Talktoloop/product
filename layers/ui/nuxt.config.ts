@@ -15,6 +15,10 @@ export default defineNuxtConfig({
   },
   shadcn: {
     prefix: 'shadcn-',
-    componentDir: resolve('./components/shadcn/ui'),
+    componentDir: resolve('./shadcn/ui'),
+  },
+  alias: {
+    '@shadcn': resolve('./shadcn/ui'),
+    '@ui': resolve('./components'),
   },
 })

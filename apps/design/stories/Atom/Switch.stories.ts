@@ -1,18 +1,10 @@
-import AtomSwitch from '@ourloop/product-layer-ui/components/Atom/Switch.vue'
+import AtomSwitch from '@ui/Atom/Switch'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {
   title: 'Atom/Switch',
   component: AtomSwitch,
   tags: ['autodocs'],
-  render: (args) => ({
-    components: { AtomSwitch },
-    setup() {
-      const { default: slot, ...props } = args
-      return { props, slot }
-    },
-    template: "<AtomSwitch v-bind='props' />",
-  }),
 } satisfies Meta<typeof AtomSwitch>
 
 export default meta

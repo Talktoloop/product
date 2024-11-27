@@ -1,18 +1,23 @@
-import AtomBadge from '@ourloop/product-layer-ui/components/Atom/Badge.vue'
+import AtomBadge from '@ui/Atom/Badge'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {
   title: 'Atom/Badge',
   component: AtomBadge,
   tags: ['autodocs'],
-  render: (args) => ({
-    components: { AtomBadge },
-    setup() {
-      const { default: slot, ...props } = args
-      return { props, slot }
-    },
-    template: "<AtomBadge v-bind='props'>{{ slot }}</AtomBadge>",
-  }),
+  argTypes: {
+    variant: omit(control.buttonVariant, ['ghost', 'link']),
+  },
+  args: {
+    variant: exclude(defaultValue.buttonVariant, ['ghost', 'link']),
+  },
+  render(args: object) {
+    const { default: slot, ...props } = args as { default: string }
+    return {
+      components: { AtomBadge },
+      template: /* html */ ` <AtomBadge ${propList(props)}>${slot}</AtomBadge> `,
+    }
+  },
 } satisfies Meta<typeof AtomBadge>
 
 export default meta

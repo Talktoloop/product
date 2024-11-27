@@ -1,31 +1,31 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
-import Card from '@ourloop/product-layer-ui/components/Molecule/Card.vue'
+import MoleculeCard from '@ui/Molecule/Card'
+import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {
   title: 'Molecule/Card',
-  component: Card,
+  component: MoleculeCard,
   tags: ['autodocs'],
-} satisfies Meta<typeof Card>
+} satisfies Meta<typeof MoleculeCard>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => ({
-    components: { Card },
+    components: { MoleculeCard },
     template: `
-      <Card>
+      <MoleculeCard>
         <div class="p-4">Card Content</div>
-      </Card>
+      </MoleculeCard>
     `,
   }),
 }
 
 export const WithHeaderAndFooter: Story = {
   render: () => ({
-    components: { Card },
+    components: { MoleculeCard },
     template: `
-      <Card>
+      <MoleculeCard>
         <template #header>
           <div class="p-4">Card Header</div>
         </template>
@@ -33,7 +33,7 @@ export const WithHeaderAndFooter: Story = {
         <template #footer>
           <div class="p-4">Card Footer</div>
         </template>
-      </Card>
+      </MoleculeCard>
     `,
   }),
 }
