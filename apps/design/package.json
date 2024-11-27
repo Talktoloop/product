@@ -16,7 +16,7 @@
   "dependencies": {
     "@nuxtjs/storybook": "^8.3.2",
     "@ourloop/product-layer-shell": "*",
-    "@ourloop/product-layer-ui": "*",
+    "@ourloop/product-layer-ui-design": "*",
     "nuxt": "^3.14.159",
     "vite": "^5.4.10",
     "vue": "latest",
