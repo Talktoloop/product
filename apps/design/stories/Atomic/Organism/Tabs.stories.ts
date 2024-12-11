@@ -7,21 +7,12 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     defaultValue: { control: 'text' },
-    value: { control: 'text' },
     orientation: {
       control: 'select',
       options: ['horizontal', 'vertical'],
     },
-    className: { control: 'text' },
-    list: {
-      control: 'text',
-      description: 'List slot content',
-    },
-    content: {
-      control: 'text',
-      description: 'Content slot content',
-    },
   },
+  ...withSlots(OrganismTabs, 'tab-1-trigger', 'tab-1-content', 'tab-2-trigger', 'tab-2-content'),
 } satisfies Meta<typeof OrganismTabs>
 
 export default meta
@@ -29,27 +20,69 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    list: `
-      <div>Tab 1</div>
-      <div>Tab 2</div>
-    `,
-    content: `
-      <div>Content 1</div>
-      <div>Content 2</div>
-    `,
+    items: [
+      {
+        label: 'Tab 1',
+        value: 'tab-1',
+        content: 'Content 1',
+      },
+      {
+        label: 'Tab 2',
+        value: 'tab-2',
+        content: 'Content 2',
+      },
+    ],
   },
 }
 
 export const Vertical: Story = {
   args: {
     orientation: 'vertical',
-    list: `
-      <div>Tab 1</div>
-      <div>Tab 2</div>
-    `,
-    content: `
-      <div>Content 1</div>
-      <div>Content 2</div>
-    `,
+    items: [
+      {
+        label: 'Tab 1',
+        value: 'tab-1',
+        content: 'Content 1',
+      },
+      {
+        label: 'Tab 2',
+        value: 'tab-2',
+        content: 'Content 2',
+      },
+    ],
+  },
+}
+
+export const WithContentSlots: Story = {
+  args: {
+    'items': [
+      {
+        label: 'Tab 1',
+        value: 'tab-1',
+      },
+      {
+        label: 'Tab 2',
+        value: 'tab-2',
+      },
+    ],
+    'tab-1-content': 'Content 1',
+    'tab-2-content': 'Content 2',
+  },
+}
+
+export const WithTriggerSlot: Story = {
+  args: {
+    'items': [
+      {
+        value: 'tab-1',
+        content: 'Content 1',
+      },
+      {
+        value: 'tab-2',
+        content: 'Content 2',
+      },
+    ],
+    'tab-1-trigger': 'Tab 1',
+    'tab-2-trigger': 'Tab 2',
   },
 }

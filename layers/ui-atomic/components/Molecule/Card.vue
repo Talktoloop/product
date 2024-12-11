@@ -6,7 +6,7 @@ defineOptions({
 })
 
 type ShadcnCardProps = {
-  class?: HTMLAttributes['class']
+  contentClass?: HTMLAttributes['class']
 }
 
 interface Props extends ShadcnCardProps {
@@ -33,7 +33,7 @@ const forward = useForwardPropsEmits(props, undefined, [
         {{ header }}
       </slot>
     </shadcn-card-header>
-    <shadcn-card-header v-else>
+    <shadcn-card-header v-else-if="$slots.title || title || $slots.description || description">
       <shadcn-card-title v-if="$slots.title || title">
         <slot name="title">
           {{ title }}
@@ -45,7 +45,7 @@ const forward = useForwardPropsEmits(props, undefined, [
         </slot>
       </shadcn-card-description>
     </shadcn-card-header>
-    <shadcn-card-content v-if="$slots.default">
+    <shadcn-card-content v-if="$slots.default" :class="contentClass">
       <slot />
     </shadcn-card-content>
     <shadcn-card-footer v-if="$slots.footer || footer">

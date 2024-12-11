@@ -1,19 +1,25 @@
 <script lang="ts" setup>
-import type { DatePickerRootProps } from 'radix-vue'
+import type { DatePickerModel } from 'v-calendar/dist/types/src/use/datePicker.js';
 
-const props = defineProps<DatePickerRootProps>()
-
-const forward = useForwardPropsEmits(props)
-
-// The Bar Chart component from Shadcn UI is read-only,
-// can't change the name, hence the forwarded implementation
 defineOptions({
   name: 'OrganismCalendar',
 })
+
+interface Props {
+  modelModifiers?: object
+  columns?: number
+  type?: 'single' | 'range'
+}
+const props = withDefaults(defineProps<Props>(), {
+  columns: 1,
+  type: 'single',
+  modelModifiers: undefined,
+})
+const model = defineModel<string | number | Date | DatePickerModel>()
+const forward = useForwardPropsEmits(props)
+
 </script>
 
 <template>
-  <shadcn-calendar v-bind="forward">
-    <slot />
-  </shadcn-calendar>
+  <shadcn-calendar v-bind="forward" v-model="model" />
 </template>

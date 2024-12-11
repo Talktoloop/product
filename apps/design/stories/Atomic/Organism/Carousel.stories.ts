@@ -10,22 +10,9 @@ const meta = {
       control: 'select',
       options: ['horizontal', 'vertical'],
     },
-    loop: { control: 'boolean' },
-    className: { control: 'text' },
-    current: { control: 'number' },
-    previous: {
-      control: 'text',
-      description: 'Previous button slot',
-    },
-    next: {
-      control: 'text',
-      description: 'Next button slot',
-    },
-    items: {
-      control: 'text',
-      description: 'Items slot content',
-    },
   },
+  ...withSlots(OrganismCarousel, 'slide-1', 'slide-2'),
+  ...withDecorators(wrapContainer({ class: tw`max-w-[50%] mx-auto` })),
 } satisfies Meta<typeof OrganismCarousel>
 
 export default meta
@@ -33,23 +20,48 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    items: `
-      <div>Slide 1</div>
-      <div>Slide 2</div>
-      <div>Slide 3</div>
-    `,
-    previous: '<button>Previous</button>',
-    next: '<button>Next</button>',
+    items: [
+      {
+        value: 'slide-1',
+        content: 'Slide 1',
+      },
+      {
+        value: 'slide-2',
+        content: 'Slide 2',
+      },
+    ],
   },
 }
 
 export const Vertical: Story = {
   args: {
     orientation: 'vertical',
-    items: `
-      <div>Slide 1</div>
-      <div>Slide 2</div>
-      <div>Slide 3</div>
-    `,
+    items: [
+      {
+        value: 'slide-1',
+        content: 'Slide 1',
+      },
+      {
+        value: 'slide-2',
+        content: 'Slide 2',
+      },
+    ],
+  },
+}
+
+export const WithSlots: Story = {
+  args: {
+    'items': [
+      {
+        value: 'slide-1',
+      },
+      {
+        value: 'slide-2',
+      },
+    ],
+    'slide-1':
+      '<img src="https://picsum.photos/200/300" alt="Slide 1" class="aspect-square object-cover" />',
+    'slide-2':
+      '<img src="https://picsum.photos/200/300" alt="Slide 2" class="aspect-square object-cover" />',
   },
 }
