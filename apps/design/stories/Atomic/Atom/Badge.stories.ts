@@ -11,13 +11,7 @@ const meta = {
   args: {
     variant: exclude(defaultValue.buttonVariant, ['ghost', 'link']),
   },
-  render(args: object) {
-    const { default: slot, ...props } = args as { default: string }
-    return {
-      components: { AtomBadge },
-      template: /* html */ ` <AtomBadge ${propList(props)}>${slot}</AtomBadge> `,
-    }
-  },
+  ...withSlots({ AtomBadge }, 'default'),
 } satisfies Meta<typeof AtomBadge>
 
 export default meta

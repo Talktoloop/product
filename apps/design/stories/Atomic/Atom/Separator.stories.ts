@@ -5,6 +5,7 @@ const meta = {
   title: 'Atomic/Atom/Separator',
   component: AtomSeparator,
   tags: ['autodocs'],
+  ...withDecorators(wrapContainer({ class: tw`w-full h-px bg-surface-background` })),
 } satisfies Meta<typeof AtomSeparator>
 
 export default meta

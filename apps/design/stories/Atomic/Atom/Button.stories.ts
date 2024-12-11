@@ -5,14 +5,6 @@ const meta = {
   title: 'Atomic/Atom/Button',
   component: AtomButton,
   tags: ['autodocs'],
-  render: (args) => ({
-    components: { AtomButton },
-    setup() {
-      const { default: slot, ...props } = args
-      return { props, slot }
-    },
-    template: "<AtomButton v-bind='props'>{{ slot }}</AtomButton>",
-  }),
   argTypes: {
     variant: control.buttonVariant,
     size: control.buttonSize,
@@ -21,6 +13,7 @@ const meta = {
     variant: defaultValue.buttonVariant,
     size: defaultValue.buttonSize,
   },
+  ...withSlots({ AtomButton }, 'default'),
 } satisfies Meta<typeof AtomButton>
 
 export default meta

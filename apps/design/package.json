@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@nuxtjs/storybook": "^8.3.2",
+    "@ourloop/product-core-typescript": "workspace:^",
     "@ourloop/product-layer-shell": "*",
     "@ourloop/product-layer-ui-design": "*",
     "dedent": "^1.5.3",
@@ -36,6 +37,7 @@
     "@storybook/vue3": "8.4.2",
     "@types/node": "^22.9.0",
     "eslint": "^9.15.0",
-    "storybook": "8.4.2"
+    "storybook": "8.4.2",
+    "vue-component-type-helpers": "^2.1.10"
   }
 }

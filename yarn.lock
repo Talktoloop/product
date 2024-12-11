@@ -2164,6 +2164,7 @@ __metadata:
   dependencies:
     "@nuxt/eslint": "npm:^0.7.1"
     "@nuxtjs/storybook": "npm:8.3.2"
+    "@ourloop/product-core-typescript": "workspace:^"
     "@ourloop/product-layer-shell": "npm:*"
     "@ourloop/product-layer-ui-design": "npm:*"
     "@storybook-vue/nuxt": "npm:8.3.2"
@@ -2181,6 +2182,7 @@ __metadata:
     storybook: "npm:8.4.2"
     vite: "npm:^5.4.10"
     vue: "npm:latest"
+    vue-component-type-helpers: "npm:^2.1.10"
     vue-router: "npm:latest"
   languageName: unknown
   linkType: soft
@@ -2194,6 +2196,14 @@ __metadata:
     "@tailwindcss/forms": "npm:^0.5.9"
     "@tailwindcss/typography": "npm:^0.5.15"
     tailwindcss: "npm:^3.4.14"
+  languageName: unknown
+  linkType: soft
+
+"@ourloop/product-core-typescript@workspace:^, @ourloop/product-core-typescript@workspace:core/typescript":
+  version: 0.0.0-use.local
+  resolution: "@ourloop/product-core-typescript@workspace:core/typescript"
+  dependencies:
+    "@tsconfig/node23": "npm:^23.0.0"
   languageName: unknown
   linkType: soft
 
@@ -3489,6 +3499,13 @@ __metadata:
   version: 0.2.0
   resolution: "@trysound/sax@npm:0.2.0"
   checksum: 10c0/44907308549ce775a41c38a815f747009ac45929a45d642b836aa6b0a536e4978d30b8d7d680bbd116e9dd73b7dbe2ef0d1369dcfc2d09e83ba381e485ecbe12
+  languageName: node
+  linkType: hard
+
+"@tsconfig/node23@npm:^23.0.0":
+  version: 23.0.0
+  resolution: "@tsconfig/node23@npm:23.0.0"
+  checksum: 10c0/9f50e45712f4af4572d42360657bdf785ce8b2a49841021055e845a927b547c9edf0891df9b263966781d795c4e766a53b689e6bd1dd2178a77ec7684afc2a32
   languageName: node
   linkType: hard
 

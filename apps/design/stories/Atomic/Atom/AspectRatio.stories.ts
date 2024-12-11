@@ -19,7 +19,10 @@ const meta = {
       },
     },
   },
-  ...withSlots({ AtomAspectRatio }, ['default']),
+  args: {
+    class: 'bg-muted text-muted-foreground text-center flex items-center justify-center',
+  },
+  ...withSlots({ AtomAspectRatio }, 'default'),
 } satisfies Meta<typeof AtomAspectRatio>
 
 export default meta

@@ -5,14 +5,7 @@ const meta = {
   title: 'Atomic/Atom/Label',
   component: AtomLabel,
   tags: ['autodocs'],
-  render: (args) => ({
-    components: { AtomLabel },
-    setup() {
-      const { default: slot, ...props } = args
-      return { props, slot }
-    },
-    template: "<AtomLabel v-bind='props'>{{ slot }}</AtomLabel>",
-  }),
+  ...withSlots({ AtomLabel }, 'default'),
 } satisfies Meta<typeof AtomLabel>
 
 export default meta

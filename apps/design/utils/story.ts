@@ -1,0 +1,259 @@
+import type { ComponentProps } from 'vue-component-type-helpers'
+import type { Meta, StoryContext } from '@storybook/vue3'
+import dedent from 'dedent'
+import type { DecoratorFunction } from 'storybook/internal/types'
+import type { ItemOf } from '@ourloop/product-core-typescript'
+
+const reservedWords = [] as string[]
+
+/**
+ * Generates a string of props for a component template
+ * @param props - Object containing component props
+ * @param bind - Whether to bind the props using v-bind syntax
+ * @param omit - Array of prop keys to exclude
+ * @example
+ * ```ts
+ * // In a story file:
+ * const args = {
+ *   variant: 'default',
+ *   size: 'md',
+ *   class: 'custom-class'
+ * }
+ * propList(args) // => 'variant="default" size="md" class="custom-class"'
+ * propList(args, true) // => ':variant="variant" :size="size" :class="class"'
+ * ```
+ */
+export function propList<T extends object>(
+  props: T,
+  bind: boolean = false,
+  omit: (keyof T)[] = []
+) {
+  return Object.entries(props)
+    .filter(([key]) => !omit.includes(key as keyof T))
+    .map(([key, value]) => {
+      if (bind) {
+        const keyName = reservedWords.includes(key) ? `_${key}` : key
+        return `:${key}="${keyName}"`
+      }
+      if (typeof value === 'string') {
+        return `${key}='${value}'`
+      }
+      return `:${key}="${JSON.stringify(value)}"`
+    })
+    .join(' ')
+}
+
+/**
+ * Separates component args into props and slots
+ * @param args - Component args from story
+ * @param slotNames - Array of slot names to extract
+ * @example
+ * ```ts
+ * // In a story file:
+ * const args = {
+ *   title: 'Hello',
+ *   default: 'Content',
+ *   footer: 'Footer'
+ * }
+ * const { props, slots } = parseArgs(args, ['default', 'footer'])
+ * // props = { title: 'Hello' }
+ * // slots = { default: 'Content', footer: 'Footer' }
+ * ```
+ */
+export function parseArgs<T extends object>(args: T, slotNames: (keyof T)[] = []) {
+  const props = computed(() => {
+    return Object.entries(args)
+      .filter(([key]) => !slotNames.includes(key as keyof T))
+      .reduce((acc, [key, value]) => {
+        return { ...acc, [key]: value }
+      }, {} as T)
+  })
+  const slots = computed(() => {
+    return Object.entries(args)
+      .filter(([key]) => slotNames.includes(key as keyof T))
+      .reduce((acc, [key, value]) => {
+        const keyName = reservedWords.includes(key) ? `_${key}` : key
+        return { ...acc, [keyName]: value }
+      }, {} as T)
+  })
+  return { props, slots }
+}
+
+/**
+ * Generates a component template with slots
+ * @param componentName - Name of the component
+ * @param slotNames - Array of slot names to include
+ * @example
+ * ```ts
+ * // In a story file:
+ * template('MyComponent', ['default', 'footer'])
+ * // => '<MyComponent v-bind="props">
+ * //      <template #default><div v-html="slots.default" /></template>
+ * //      <template #footer><div v-html="slots.footer" /></template>
+ * //     </MyComponent>'
+ * ```
+ */
+export function template(componentName: string, slotNames: string[] = []) {
+  const slots = slotNames
+    .map(
+      (slotName) => /* html */ `
+        <template #${slotName}>
+          <div v-html="slots.${slotName}" />
+        </template>
+      `
+    )
+    .join('')
+  return dedent`
+      <${componentName} v-bind="props">
+        ${slots}
+      </${componentName}>
+    `
+}
+
+/**
+ * Transforms story source code for documentation
+ * @param componentName - Name of the component
+ * @param slotNames - Array of slot names to include
+ * @example
+ * ```ts
+ * // In a story file:
+ * parameters: {
+ *   docs: {
+ *     source: {
+ *       transform: source('MyComponent', ['default'])
+ *     }
+ *   }
+ * }
+ * ```
+ */
+export function source(componentName: string, slotNames: string[]) {
+  return (_code: string, storyContext: StoryContext) => {
+    const slots = slotNames
+      .map((slotName) =>
+        slotName === 'default' && slotNames.length === 1
+          ? storyContext.args[slotName]
+          : /* html */ `<template #${slotName}>${storyContext.args[slotName]}</template>`
+      )
+      .join('\n')
+
+    const args = propList(storyContext.args, false, slotNames)
+    return dedent`
+      <${componentName} ${args}>
+        ${slots}
+      </${componentName}>
+    `
+  }
+}
+
+/**
+ * Creates a story configuration with slot support
+ * @param component - Component to create story for
+ * @param slotNames - Array of slot names to support
+ * @example
+ * ```ts
+ * // In a story file:
+ * const meta = {
+ *   title: 'Components/MyComponent',
+ *   component: MyComponent,
+ *   ...withSlots({ MyComponent }, 'default', 'footer')
+ * } satisfies Meta<typeof MyComponent>
+ * ```
+ */
+export function withSlots(
+  component: Component | Record<string, Component>,
+  ...slotNames: string[]
+) {
+  const componentName: string | undefined =
+    'name' in component ? String(component.name) : Object.keys(component)?.[0]
+  if (!componentName) {
+    if (component.prototype.name === 'Component') {
+      throw new Error('Component must have a name, try passing as { Component }')
+    }
+    throw new Error('Component must have a name')
+  }
+  return {
+    render: (_, { args }) => ({
+      components: { [componentName]: component },
+      setup: () => parseArgs(args, slotNames),
+      template: template(componentName, slotNames),
+    }),
+    parameters: {
+      docs: {
+        source: {
+          transform: source(componentName, slotNames),
+        },
+      },
+    },
+  } as Meta<typeof component>
+}
+
+/**
+ * Creates a decorator that wraps story content in a container
+ * @param props - Props to pass to container
+ * @param container - Container component or element tag
+ * @example
+ * ```ts
+ * // In a story file:
+ * const meta = {
+ *   title: 'Components/MyComponent',
+ *   component: MyComponent,
+ *   decorators: [
+ *     decorator(wrapContainer({ class: 'p-4 bg-gray-100' }, 'div'))
+ *   ]
+ * }
+ * ```
+ */
+export function wrapContainer<C extends Component>(
+  props: ComponentProps<C>,
+  container: C | string = 'div'
+) {
+  const components = typeof container === 'string' ? {} : { container }
+  const componentName = typeof container === 'string' ? container : 'container'
+  const decorator: DecoratorFunction = (story: Component) => ({
+    components: { ...components, story },
+    setup: () => parseArgs(props),
+    template: template(componentName),
+  })
+  return decorator
+}
+
+/**
+ * Type-safe decorator function
+ * @param decorator - Storybook decorator function
+ * @example
+ * ```ts
+ * // In a story file:
+ * const customDecorator = decorator((story) => ({
+ *   components: { story },
+ *   template: '<div class="wrapper"><story /></div>'
+ * }))
+ * ```
+ */
+export function decorator<C extends Component>(decorator: DecoratorFunction) {
+  type StoryMeta = Meta<C>
+  type Decorators = StoryMeta['decorators']
+  return decorator as ItemOf<Decorators>
+}
+
+/**
+ * Combines multiple decorators into a story configuration
+ * @param args - Array of decorator functions
+ * @example
+ * ```ts
+ * // In a story file:
+ * const meta = {
+ *   title: 'Components/MyComponent',
+ *   component: MyComponent,
+ *   ...withDecorators(
+ *     wrapContainer({ class: 'p-4' }),
+ *     customDecorator
+ *   )
+ * }
+ * ```
+ */
+export function withDecorators<C extends Component>(...args: DecoratorFunction[]) {
+  const decorators = args.map(decorator<C>)
+  return {
+    decorators,
+  }
+}
