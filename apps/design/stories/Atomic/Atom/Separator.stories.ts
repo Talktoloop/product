@@ -5,7 +5,7 @@ const meta = {
   title: 'Atomic/Atom/Separator',
   component: AtomSeparator,
   tags: ['autodocs'],
-  ...withDecorators(wrapContainer({ class: tw`w-full h-px bg-surface-background` })),
+  ...withDecorators(wrapContainer({ class: tw`w-full bg-surface-background p-8 justify-center` })),
 } satisfies Meta<typeof AtomSeparator>
 
 export default meta
@@ -25,5 +25,11 @@ export const Vertical: Story = {
     orientation: 'vertical',
     decorative: true,
     asChild: false,
+  },
+}
+
+export const WithLabel: Story = {
+  args: {
+    label: 'Separator',
   },
 }

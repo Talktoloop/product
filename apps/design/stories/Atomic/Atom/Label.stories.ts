@@ -5,7 +5,7 @@ const meta = {
   title: 'Atomic/Atom/Label',
   component: AtomLabel,
   tags: ['autodocs'],
-  ...withSlots({ AtomLabel }, 'default'),
+  ...withSlots(AtomLabel, 'default'),
 } satisfies Meta<typeof AtomLabel>
 
 export default meta

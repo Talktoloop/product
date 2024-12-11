@@ -79,6 +79,9 @@ export function parseArgs<T extends object>(args: T, slotNames: (keyof T)[] = []
   return { props, slots }
 }
 
+type SlotSpec = `:${string}` | string
+type SlotSpecArray = SlotSpec[]
+
 /**
  * Generates a component template with slots
  * @param componentName - Name of the component
@@ -93,15 +96,19 @@ export function parseArgs<T extends object>(args: T, slotNames: (keyof T)[] = []
  * //     </MyComponent>'
  * ```
  */
-export function template(componentName: string, slotNames: string[] = []) {
+export function template(componentName: string, slotNames: SlotSpecArray = []) {
   const slots = slotNames
-    .map(
-      (slotName) => /* html */ `
+    .map((slotName) => {
+      if (slotName.startsWith(':')) {
+        const [, tag] = slotName.split(':')
+        return /* html */ `<${tag} />`
+      }
+      return /* html */ `
         <template #${slotName}>
           <div v-html="slots.${slotName}" />
         </template>
       `
-    )
+    })
     .join('')
   return dedent`
       <${componentName} v-bind="props">
@@ -159,21 +166,32 @@ export function source(componentName: string, slotNames: string[]) {
  * } satisfies Meta<typeof MyComponent>
  * ```
  */
-export function withSlots(
-  component: Component | Record<string, Component>,
+export function withSlots<C extends Component>(
+  component: C | Record<string, C>,
   ...slotNames: string[]
 ) {
-  const componentName: string | undefined =
-    'name' in component ? String(component.name) : Object.keys(component)?.[0]
-  if (!componentName) {
+  let _componentName: string | undefined
+  let componentClass: C
+  if ('name' in component) {
+    _componentName = String(component.name)
+    componentClass = component as C
+  } else if (Object.keys(component).length === 1) {
+    const [cName, cClass] = Object.entries(component)[0]
+    _componentName = cName
+    componentClass = cClass as C
+  }
+  if (typeof _componentName !== 'string' || !_componentName) {
     if (component.prototype.name === 'Component') {
       throw new Error('Component must have a name, try passing as { Component }')
     }
-    throw new Error('Component must have a name')
+    if (Object.keys(component).length !== 1) {
+      throw new Error('Component map must have a single entry')
+    }
   }
+  const componentName = _componentName as string
   return {
     render: (_, { args }) => ({
-      components: { [componentName]: component },
+      components: { [componentName]: componentClass },
       setup: () => parseArgs(args, slotNames),
       template: template(componentName, slotNames),
     }),
@@ -212,7 +230,7 @@ export function wrapContainer<C extends Component>(
   const decorator: DecoratorFunction = (story: Component) => ({
     components: { ...components, story },
     setup: () => parseArgs(props),
-    template: template(componentName),
+    template: template(componentName, [':story']),
   })
   return decorator
 }

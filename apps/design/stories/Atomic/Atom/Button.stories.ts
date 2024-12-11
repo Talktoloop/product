@@ -13,7 +13,7 @@ const meta = {
     variant: defaultValue.buttonVariant,
     size: defaultValue.buttonSize,
   },
-  ...withSlots({ AtomButton }, 'default'),
+  ...withSlots(AtomButton, 'default'),
 } satisfies Meta<typeof AtomButton>
 
 export default meta

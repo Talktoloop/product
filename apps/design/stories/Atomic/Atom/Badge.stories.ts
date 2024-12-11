@@ -11,7 +11,7 @@ const meta = {
   args: {
     variant: exclude(defaultValue.buttonVariant, ['ghost', 'link']),
   },
-  ...withSlots({ AtomBadge }, 'default'),
+  ...withSlots(AtomBadge, 'default'),
 } satisfies Meta<typeof AtomBadge>
 
 export default meta
