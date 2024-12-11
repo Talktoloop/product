@@ -17,6 +17,7 @@
     "vue": "html",
     "vue-html": "html"
   },
+  "css.lint.unknownAtRules": "ignore",
   "tailwindCSS.experimental.classRegex": [
     "tw`([^`]*)",
     "tw=\"([^\"]*)",

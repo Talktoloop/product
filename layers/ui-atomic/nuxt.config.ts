@@ -5,6 +5,8 @@ const basePath = dirname(fileURLToPath(import.meta.url))
 function resolve(path: string) {
   return join(basePath, path)
 }
+
+const shadcnComponentDir = resolve('./shadcn/ui')
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -15,10 +17,10 @@ export default defineNuxtConfig({
   },
   shadcn: {
     prefix: 'shadcn-',
-    componentDir: resolve('./shadcn/ui'),
+    componentDir: shadcnComponentDir,
   },
   alias: {
-    '@ui/shadcn': resolve('./shadcn/ui'),
+    '@ui/shadcn': shadcnComponentDir,
     '@ui/atomic': resolve('./components'),
   },
 })

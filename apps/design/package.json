@@ -17,6 +17,7 @@
     "@nuxtjs/storybook": "^8.3.2",
     "@ourloop/product-layer-shell": "*",
     "@ourloop/product-layer-ui-design": "*",
+    "dedent": "^1.5.3",
     "nuxt": "^3.14.159",
     "vite": "^5.4.10",
     "vue": "latest",

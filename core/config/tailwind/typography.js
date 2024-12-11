@@ -1,10 +1,14 @@
+import process from 'node:process'
+import console from 'node:console'
+import typography from '@tailwindcss/typography'
+
 if (process.env.TRACE_CONFIG) {
   console.log('Loading tailwind config: core/config/tailwind/typography.js');
 }
 /** @type {import('tailwindcss').Config} */
 
 export default {
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [typography],
   theme: {
     extend: {
       typography: {

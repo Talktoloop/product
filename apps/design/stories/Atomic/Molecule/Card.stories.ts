@@ -1,39 +1,28 @@
-import MoleculeCard from '@ui/atomic/Molecule/Card'
-import type { Meta, StoryObj } from '@storybook-vue/nuxt'
+import type { Meta, StoryObj } from '@storybook/vue3'
+import MoleculeCard from '@ui/atomic/Molecule/Card.vue'
 
 const meta = {
   title: 'Atomic/Molecule/Card',
   component: MoleculeCard,
   tags: ['autodocs'],
+  argTypes: {
+    className: { control: 'text' },
+    header: { control: 'text' },
+    title: { control: 'text' },
+    description: { control: 'text' },
+    content: { control: 'text' },
+    footer: { control: 'text' },
+  },
 } satisfies Meta<typeof MoleculeCard>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => ({
-    components: { MoleculeCard },
-    template: `
-      <MoleculeCard>
-        <div class="p-4">Card Content</div>
-      </MoleculeCard>
-    `,
-  }),
-}
-
-export const WithHeaderAndFooter: Story = {
-  render: () => ({
-    components: { MoleculeCard },
-    template: `
-      <MoleculeCard>
-        <template #header>
-          <div class="p-4">Card Header</div>
-        </template>
-        <div class="p-4">Card Content</div>
-        <template #footer>
-          <div class="p-4">Card Footer</div>
-        </template>
-      </MoleculeCard>
-    `,
-  }),
+  args: {
+    title: 'Card Title',
+    description: 'Card Description',
+    content: 'Card Content',
+    footer: 'Card Footer',
+  },
 }

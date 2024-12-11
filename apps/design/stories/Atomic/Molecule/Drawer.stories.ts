@@ -1,15 +1,20 @@
+import type { Meta, StoryObj } from '@storybook/vue3'
 import MoleculeDrawer from '@ui/atomic/Molecule/Drawer.vue'
-import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {
   title: 'Atomic/Molecule/Drawer',
   component: MoleculeDrawer,
   tags: ['autodocs'],
   argTypes: {
-    direction: {
-      control: 'select',
-      options: ['left', 'right', 'top', 'bottom'],
-    },
+    direction: control.drawerDirection,
+    default: { control: 'text' },
+    trigger: { control: 'text' },
+    header: { control: 'text' },
+    footer: { control: 'text' },
+    close: { control: 'text' },
+  },
+  args: {
+    direction: defaultValue.drawerDirection,
   },
 } satisfies Meta<typeof MoleculeDrawer>
 
@@ -18,26 +23,19 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    direction: 'bottom',
-    default: 'Simple Drawer',
+    direction: 'right',
+    trigger: '<button>Open Drawer</button>',
+    header: '<h2 class="text-lg font-bold">Drawer Title</h2>',
+    default: '<div class="p-4"><p>This is the drawer content</p></div>',
+    footer: '<div class="flex justify-end">Footer content</div>',
   },
 }
 
-export const RightSide: Story = {
-  render: () => ({
-    components: { MoleculeDrawer },
-    template: `
-      <MoleculeDrawer direction="right">
-        <template #trigger>
-          <button>Open Right Drawer</button>
-        </template>
-        <template #content>
-          <div class="p-4">
-            <h2 class="text-lg font-bold">Right Drawer</h2>
-            <p>This drawer opens from the right</p>
-          </div>
-        </template>
-      </MoleculeDrawer>
-    `,
-  }),
+export const LeftSide: Story = {
+  args: {
+    direction: 'left',
+    trigger: '<button>Open Left Drawer</button>',
+    header: '<h2 class="text-lg font-bold">Left Drawer</h2>',
+    default: '<div class="p-4"><p>This drawer opens from the left</p></div>',
+  },
 }

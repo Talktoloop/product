@@ -1,3 +1,6 @@
+import process from 'node:process'
+import console from 'node:console'
+
 if (process.env.TRACE_CONFIG) {
   console.log('Loading tailwind config: core/config/tailwind/spacing.js');
 }

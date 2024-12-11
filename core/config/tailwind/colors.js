@@ -1,8 +1,11 @@
+import process from 'node:process'
+import console from 'node:console'
+
 if (process.env.TRACE_CONFIG) {
   console.log('Loading tailwind config: core/config/tailwind/colors.js');
 }
-/** @type {import('tailwindcss').Config} */
 
+/** @type {import('tailwindcss').Config} */
 export default {
   theme: {
     extend: {
@@ -46,7 +49,7 @@ export default {
         },
 
         // Emphasis Blue (#0066FF)
-        emphasis: {
+        accent: {
           DEFAULT: 'hsl(217 100% 45%)',  // Main emphasis color
           foreground: 'hsl(0 0% 100%)',  // White foreground for emphasis color
           50: 'hsl(217 100% 95%)',   // Lightest variant of emphasis color
@@ -115,6 +118,8 @@ export default {
 
         // Neutral Colors
         muted: {
+          DEFAULT: 'hsl(0 0% 95%)',
+          foreground: 'hsl(0 0% 10%)',
           50: 'hsl(0 0% 98%)',    // Lightest neutral color
           100: 'hsl(0 0% 97%)',   // #F7F7F7
           200: 'hsl(0 0% 92%)',   // #EBEBEB
@@ -166,7 +171,7 @@ export default {
             950: 'hsl(176 57% 93%)',
           },
 
-          emphasis: {
+          accent: {
             DEFAULT: 'hsl(217 100% 60%)',  // Lighter version of emphasis-blue
             foreground: 'hsl(0 0% 100%)', // White foreground for dark emphasis color
             50: 'hsl(217 100% 35%)',
@@ -245,6 +250,14 @@ export default {
           },
         },
       },
+      ringColor: {
+        'ring': 'hsl(222 47% 11%)', // Color: Loop Purple
+      },
+    },
+  },
+  variants: {
+    extend: {
+      ringColor: ['focus-visible'],
     },
   },
 };

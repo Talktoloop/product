@@ -116,7 +116,7 @@ const vCalendarSlots = computed(() => {
 }
 
 .calendar .vc-pane-layout {
-  @apply grid gap-4 max-sm: !grid-cols-1;
+  @apply grid gap-4 max-sm:grid-cols-1;
 }
 
 .calendar .vc-title {

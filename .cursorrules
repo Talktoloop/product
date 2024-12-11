@@ -1,0 +1,24 @@
+- This is a yarn based project.
+- It uses Nuxt 3:
+  - with packages in:
+    - layers/\* - Nuxt layers
+    - apps/\* - Nuxt apps
+  - All components are auto-imported and named in PascalCase using the file path.
+  - All exports in the top level of utils are imported into global scope.
+  - The layer hierarchy is as follows:
+    - apps/\* - Nuxt apps
+      - extends: layers/ui-design, layers/shell
+    - layers/ui-design - Design system
+      - extends: layers/ui-atomic
+      - depends on:
+        - core/config
+    - layers/ui-atomic - Atomic components
+      - extends: layers/core
+      - depends on:
+        - Shadcn Vue
+    - layers/core - shared core logic
+    - layers/shell - Imperative shell (i.e. where the state and model are interacted with)
+- It uses typescript everywhere possible with libraies in:
+  - core/\* - shared core logic
+  - opt/packages/\* - shared optional packages
+- It uses Vitest for testing.

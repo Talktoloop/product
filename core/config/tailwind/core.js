@@ -1,3 +1,10 @@
+import process from 'node:process'
+import console from 'node:console'
+import forms from '@tailwindcss/forms'
+import aspectRatio from '@tailwindcss/aspect-ratio'
+import containerQueries from '@tailwindcss/container-queries'
+import tailwindDefault from 'tailwindcss/defaultConfig'
+
 if (process.env.TRACE_CONFIG) {
   console.log('Loading tailwind config: core/config/tailwind/core.js');
 }
@@ -5,9 +12,10 @@ if (process.env.TRACE_CONFIG) {
 
 export default {
   darkMode: ['class'],
+  presets: [tailwindDefault],
   plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/container-queries"),
+    forms,
+    aspectRatio,
+    containerQueries,
   ],
 };

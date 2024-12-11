@@ -1,4 +1,4 @@
-import MoleculeMenuDropdown from '@ui/atomic/Molecule/Menu/Dropdown'
+import MoleculeMenuDropdown from '@ui/atomic/Molecule/Menu/Dropdown.vue'
 import type { Meta, StoryObj } from '@storybook-vue/nuxt'
 
 const meta = {

@@ -2175,6 +2175,7 @@ __metadata:
     "@storybook/test": "npm:8.4.2"
     "@storybook/vue3": "npm:8.4.2"
     "@types/node": "npm:^22.9.0"
+    dedent: "npm:^1.5.3"
     eslint: "npm:^9.15.0"
     nuxt: "npm:^3.14.159"
     storybook: "npm:8.4.2"
@@ -2236,7 +2237,9 @@ __metadata:
     "@nuxt/test-utils": "npm:^3.14.4"
     "@nuxtjs/color-mode": "npm:^3.5.2"
     "@ourloop/product-layer-core": "npm:*"
+    "@popperjs/core": "npm:^2.11.8"
     "@radix-icons/vue": "npm:^1.0.0"
+    "@types/lodash": "npm:^4.17.13"
     "@unovis/ts": "npm:1.5.0-beta.1"
     "@unovis/vue": "npm:^1.5.0-beta.1"
     "@vee-validate/zod": "npm:^4.14.7"
@@ -2247,6 +2250,7 @@ __metadata:
     embla-carousel-vue: "npm:^8.4.0"
     eslint: "npm:^9.14.0"
     h3: "npm:^1.13.0"
+    lodash: "npm:^4.17.21"
     lucide-vue-next: "npm:^0.454.0"
     nitropack: "npm:^2.10.3"
     nuxt: "npm:^3.14.159"
@@ -2485,6 +2489,13 @@ __metadata:
   version: 1.0.0-next.28
   resolution: "@polka/url@npm:1.0.0-next.28"
   checksum: 10c0/acc5ea62597e4da2fb42dbee02749d07f102ae7d6d2c966bf7e423c79cd65d1621da305af567e6e7c232f3b565e242d1ec932cbb3dcc0db1508d02e9a2cafa2e
+  languageName: node
+  linkType: hard
+
+"@popperjs/core@npm:^2.11.8":
+  version: 2.11.8
+  resolution: "@popperjs/core@npm:2.11.8"
+  checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
   languageName: node
   linkType: hard
 
@@ -3838,7 +3849,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.165":
+"@types/lodash@npm:^4.14.165, @types/lodash@npm:^4.17.13":
   version: 4.17.13
   resolution: "@types/lodash@npm:4.17.13"
   checksum: 10c0/c3d0b7efe7933ac0369b99f2f7bff9240d960680fdb74b41ed4bd1b3ca60cca1e31fe4046d9abbde778f941a41bc2a75eb629abf8659fa6c27b66efbbb0802a9
@@ -7117,7 +7128,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dedent@npm:^1.5.1":
+"dedent@npm:^1.5.1, dedent@npm:^1.5.3":
   version: 1.5.3
   resolution: "dedent@npm:1.5.3"
   peerDependencies:

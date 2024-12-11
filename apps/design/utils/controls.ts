@@ -1,75 +1,14 @@
+import { buildControl, controlSpec } from './control/utils'
+import type { ButtonVariants } from '@ui/shadcn/button'
+import type { ControlMappings, ControlSpec } from '@/types/controls'
 import type { InputType } from 'storybook/internal/types'
-import type { ButtonVariants } from '@ourloop/product-layer-ui/components/Atom/Button.js'
-
-type ControlMappings<T> = {
-  [key: string]: T
-}
-
-interface BaseControlSpec<T> {
-  description?: string
-  defaultValue?: T
-  options?: Partial<InputType>
-}
-
-interface SelectControlSpec<T> extends BaseControlSpec<T> {
-  type: 'select'
-  mappings: ControlMappings<T>
-}
-
-interface BooleanControlSpec extends BaseControlSpec<boolean> {
-  type: 'boolean'
-}
-
-type ControlSpec<T, D = T> = D extends boolean ? BooleanControlSpec : SelectControlSpec<T>
-
-type ControlMap<T extends object> = {
-  [key in keyof T]: ControlSpec<T[key]>
-}
-
-function controlSpec<T extends object>(spec: ControlMap<T>): ControlMap<T> {
-  return spec
-}
-
-export function selectControl<T>(spec: SelectControlSpec<T>): InputType {
-  return {
-    ...spec.options,
-    control: {
-      type: 'select',
-    },
-    mappings: spec.mappings,
-    options: Object.keys(spec.mappings),
-    description: spec.description,
-    table: {
-      defaultValue: { summary: String(spec.defaultValue) },
-    },
-  }
-}
-
-const booleanControl = (spec: BooleanControlSpec): InputType => {
-  return {
-    ...spec.options,
-    control: { type: 'boolean' },
-    description: spec.description,
-    table: {
-      defaultValue: {
-        summary: spec.defaultValue ? 'true' : typeof spec.defaultValue === 'boolean' ? 'false' : '',
-      },
-    },
-  }
-}
-
-const builders = {
-  select: selectControl,
-  boolean: booleanControl,
-}
-
-function buildControl<T>(spec: ControlSpec<T>): InputType {
-  const builder = builders[spec.type] as (spec: ControlSpec<T>) => InputType
-  return builder(spec)
-}
 
 type ButtonSize = ButtonVariants['size']
 type ButtonVariant = ButtonVariants['variant']
+
+type AvatarSize = 'sm' | 'base' | 'lg'
+type DrawerDirection = 'left' | 'right' | 'top' | 'bottom'
+type AlertVariant = 'default' | 'destructive'
 
 const controls = controlSpec({
   buttonSize: {
@@ -96,6 +35,36 @@ const controls = controlSpec({
     description: 'The variant of the component',
     defaultValue: 'default' as ButtonVariant,
   },
+  avatarSize: {
+    type: 'select',
+    mappings: {
+      sm: 'sm',
+      base: 'base',
+      lg: 'lg',
+    } satisfies Record<string, AvatarSize>,
+    description: 'The size of the avatar',
+    defaultValue: 'base' as AvatarSize,
+  },
+  drawerDirection: {
+    type: 'select',
+    mappings: {
+      left: 'left',
+      right: 'right',
+      top: 'top',
+      bottom: 'bottom',
+    } satisfies Record<string, DrawerDirection>,
+    description: 'The direction the drawer opens from',
+    defaultValue: 'right' as DrawerDirection,
+  },
+  alertVariant: {
+    type: 'select',
+    mappings: {
+      default: 'default',
+      destructive: 'destructive',
+    } satisfies Record<string, AlertVariant>,
+    description: 'The variant of the alert',
+    defaultValue: 'default' as AlertVariant,
+  },
   trueFalse: {
     type: 'boolean',
     description: 'A boolean value',
@@ -105,6 +74,54 @@ const controls = controlSpec({
     type: 'boolean',
     description: 'A boolean value',
     defaultValue: false,
+  },
+  labeledData: {
+    type: 'select',
+    mappings: {
+      valuePerDate: [
+        { index: '2024-01', value: 100 },
+        { index: '2024-02', value: 150 },
+        { index: '2024-03', value: 120 },
+      ],
+      labeledValues: [
+        { index: 'Visits', value: 100 },
+        { index: 'Page Views', value: 150 },
+        { index: 'Users', value: 120 },
+      ],
+    },
+    description: 'The data to be displayed in the chart',
+    defaultValue: [
+      { index: '2024-01', value: 100 },
+      { index: '2024-02', value: 150 },
+      { index: '2024-03', value: 120 },
+    ],
+  },
+  xyData: {
+    type: 'select',
+    mappings: {
+      straightLine: [
+        { x: 1, y: 1 },
+        { x: 2, y: 2 },
+        { x: 3, y: 3 },
+        { x: 4, y: 4 },
+        { x: 5, y: 5 },
+      ],
+      parabolicCurve: [
+        { x: 1, y: 1 },
+        { x: 2, y: 4 },
+        { x: 3, y: 9 },
+        { x: 4, y: 16 },
+        { x: 5, y: 25 },
+      ],
+    },
+    description: 'The data to be displayed in the chart',
+    defaultValue: [
+      { x: 1, y: 1 },
+      { x: 2, y: 2 },
+      { x: 3, y: 3 },
+      { x: 4, y: 4 },
+      { x: 5, y: 5 },
+    ],
   },
 })
 
