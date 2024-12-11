@@ -39,7 +39,7 @@ export function propList<T extends object>(
       if (typeof value === 'string') {
         return `${key}='${value}'`
       }
-      return `:${key}="${JSON.stringify(value)}"`
+      return `:${key}="${JSON.stringify(value).replace(/"/g, "'")}"`
     })
     .join(' ')
 }
@@ -105,8 +105,8 @@ export function template(componentName: string, slotNames: SlotSpecArray = []) {
         return /* html */ `<${tag} />`
       }
       return /* html */ `
-        <template #${slotName}>
-          <div v-html="slots.${slotName}" />
+        <template #${slotName} v-if="slots['${slotName}']">
+          <div v-html="slots['${slotName}']" />
         </template>
       `
     })
@@ -137,6 +137,7 @@ export function template(componentName: string, slotNames: SlotSpecArray = []) {
 export function source(componentName: string, slotNames: string[]) {
   return (_code: string, storyContext: StoryContext) => {
     const slots = slotNames
+      .filter((slotName) => storyContext.args[slotName])
       .map((slotName) =>
         slotName === 'default' && slotNames.length === 1
           ? storyContext.args[slotName]
@@ -173,6 +174,7 @@ export function withSlots<C extends Component>(
 ) {
   let _componentName: string | undefined
   let componentClass: C
+
   if ('name' in component) {
     _componentName = String(component.name)
     componentClass = component as C
@@ -181,15 +183,18 @@ export function withSlots<C extends Component>(
     _componentName = cName
     componentClass = cClass as C
   }
+
   if (typeof _componentName !== 'string' || !_componentName) {
     console.error(component)
     if (component?.prototype?.name === 'Component') {
       throw new Error('Component must have a name, try passing as { Component }')
     }
     if (Object.keys(component).length !== 1) {
-      throw new Error('Component map must have a single entry')
+      throw new Error('Component map must have a single entry or component must have a name')
     }
+    throw new Error('Error creating component slots')
   }
+
   const componentName = _componentName as string
   return {
     render: (_, { args }) => ({

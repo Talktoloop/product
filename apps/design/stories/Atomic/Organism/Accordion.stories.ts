@@ -12,12 +12,14 @@ const meta = {
     },
     collapsible: { control: 'boolean' },
     defaultValue: { control: 'text' },
-    className: { control: 'text' },
-    default: {
-      control: 'text',
-      description: 'Default slot content',
-    },
   },
+  ...withSlots(
+    OrganismAccordion,
+    'section-1-trigger',
+    'section-1-content',
+    'section-2-trigger',
+    'section-2-content'
+  ),
 } satisfies Meta<typeof OrganismAccordion>
 
 export default meta
@@ -27,35 +29,53 @@ export const Default: Story = {
   args: {
     type: 'single',
     collapsible: true,
-    default: `
-      <div class="border-b">
-        <h3>Section 1</h3>
-        <p>Content for section 1</p>
-      </div>
-      <div class="border-b">
-        <h3>Section 2</h3>
-        <p>Content for section 2</p>
-      </div>
-    `,
+    items: [
+      {
+        value: 'section-1',
+        trigger: 'Section 1',
+        content: 'Content for section 1',
+      },
+      {
+        value: 'section-2',
+        trigger: 'Section 2',
+        content: 'Content for section 2',
+      },
+    ],
   },
 }
 
-export const Multiple: Story = {
+export const multiple: Story = {
   args: {
     type: 'multiple',
-    default: `
-      <div class="border-b">
-        <h3>Section 1</h3>
-        <p>Content for section 1</p>
-      </div>
-      <div class="border-b">
-        <h3>Section 2</h3>
-        <p>Content for section 2</p>
-      </div>
-      <div class="border-b">
-        <h3>Section 3</h3>
-        <p>Content for section 3</p>
-      </div>
-    `,
+    items: [
+      {
+        value: 'section-1',
+        trigger: 'Section 1',
+        content: 'Content for section 1',
+      },
+      {
+        value: 'section-2',
+        trigger: 'Section 2',
+        content: 'Content for section 2',
+      },
+    ],
+  },
+}
+
+export const WithSlots: Story = {
+  args: {
+    'type': 'single',
+    'items': [
+      {
+        value: 'section-1',
+      },
+      {
+        value: 'section-2',
+      },
+    ],
+    'section-1-trigger': 'Section 1',
+    'section-1-content': 'Content for section 1',
+    'section-2-trigger': 'Section 2',
+    'section-2-content': 'Content for section 2',
   },
 }
