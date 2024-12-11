@@ -14,7 +14,9 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     defaultValue: '',
-  },
+    // Placeholder is a fallthough attribute, unfortunately storybook cannot detect these..
+    placeholder: 'Placeholder text',
+  } as Story['args'], // ... so we assure TS that the type is correct
 }
 
 export const WithDefaultValue: Story = {
