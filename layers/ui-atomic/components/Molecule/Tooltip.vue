@@ -11,15 +11,13 @@ interface Props extends ShadcnTooltipProps {
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits<{
-  'update:modelValue': [unknown]
-}>()
+const model = defineModel<boolean>()
 
-const forward = useForwardPropsEmits(props, emit)
+const forward = useForwardPropsEmits(props, undefined, ['trigger', 'content'])
 </script>
 
 <template>
-  <shadcn-tooltip v-bind="forward">
+  <shadcn-tooltip v-bind="forward" v-model="model">
     <shadcn-tooltip-trigger v-if="$slots.trigger || trigger" as-child>
       <slot name="trigger">
         {{ trigger }}

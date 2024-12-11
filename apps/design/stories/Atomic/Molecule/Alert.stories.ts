@@ -14,6 +14,7 @@ const meta = {
   args: {
     variant: defaultValue.alertVariant,
   },
+  ...withSlots(MoleculeAlert, 'default'),
 } satisfies Meta<typeof MoleculeAlert>
 
 export default meta

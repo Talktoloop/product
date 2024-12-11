@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { HoverCardRootEmits, HoverCardRootProps } from 'radix-vue'
 
+defineOptions({
+  name: 'MoleculeHoverCard',
+})
+
 interface Props extends HoverCardRootProps {
   trigger?: string
   content?: string
@@ -9,7 +13,7 @@ interface Props extends HoverCardRootProps {
 const props = defineProps<Props>()
 const emit = defineEmits<HoverCardRootEmits>()
 
-const forward = useForwardPropsEmits<Props, 'update:open'>(props, emit)
+const forward = useForwardPropsEmits<Props, 'update:open'>(props, emit, ['trigger', 'content'])
 </script>
 
 <template>

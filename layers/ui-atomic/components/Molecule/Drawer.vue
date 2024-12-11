@@ -3,6 +3,10 @@
 import type { DrawerRootEmits, DrawerRootProps } from 'vaul-vue'
 import { useForwardPropsEmits } from 'radix-vue'
 
+defineOptions({
+  name: 'MoleculeDrawer',
+})
+
 interface Props {
   activeSnapPoint?: DrawerRootProps['activeSnapPoint']
   closeThreshold?: DrawerRootProps['closeThreshold']

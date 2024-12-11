@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import type { RadioGroup as ShadcnRadioGroup } from '@ui/shadcn/radio-group'
-import type { ComponentEmit, ComponentProps } from 'vue-component-type-helpers'
+import type { RadioGroupRootProps } from 'radix-vue';
 
-type ShadcnRadioGroupProps = ComponentProps<typeof ShadcnRadioGroup>
-type _ShadcnRadioGroupEmits = ComponentEmit<typeof ShadcnRadioGroup>
+defineOptions({
+  name: 'MoleculeRadioGroup',
+})
 
-interface Props extends ShadcnRadioGroupProps {
+interface Props extends RadioGroupRootProps {
   modelValue?: string
   options?: Array<{
     label: string
@@ -15,17 +16,13 @@ interface Props extends ShadcnRadioGroupProps {
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits<{
-  'update:modelValue': [unknown]
-}>()
+const model = defineModel<string>()
 
-const forward = useForwardPropsEmits(props, emit)
+const forward = useForwardPropsEmits(props)
 </script>
 
 <template>
-  <shadcn-radio-group
-v-bind="forward" :model-value="modelValue"
-    @update:model-value="emit('update:modelValue', $event)">
+  <shadcn-radio-group v-bind="forward" v-model="model">
     <template v-if="options">
       <div v-for="option in options" :key="option.value" class="flex items-center space-x-2">
         <shadcn-radio-group-item :value="option.value">

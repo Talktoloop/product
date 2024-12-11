@@ -1,25 +1,24 @@
 <script lang="ts" setup>
 import type { Popover as ShadcnPopover } from '@ui/shadcn/popover'
-import type { ComponentEmit, ComponentProps } from 'vue-component-type-helpers'
+import type { PopoverRootProps } from 'radix-vue';
 
-type ShadcnPopoverProps = ComponentProps<typeof ShadcnPopover>
-type _ShadcnPopoverEmits = ComponentEmit<typeof ShadcnPopover>
+defineOptions({
+  name: 'MoleculePopover',
+})
 
-interface Props extends ShadcnPopoverProps {
+interface Props extends PopoverRootProps {
   trigger?: string
   content?: string
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits<{
-  'update:modelValue': [unknown]
-}>()
+const model = defineModel<boolean>()
 
-const forward = useForwardPropsEmits(props, emit)
+const forward = useForwardPropsEmits(props)
 </script>
 
 <template>
-  <shadcn-popover v-bind="forward">
+  <shadcn-popover v-bind="forward" v-model="model">
     <shadcn-popover-trigger v-if="$slots.trigger || trigger" as-child>
       <slot name="trigger">
         {{ trigger }}

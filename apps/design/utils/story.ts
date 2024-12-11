@@ -181,7 +181,8 @@ export function withSlots<C extends Component>(
     componentClass = cClass as C
   }
   if (typeof _componentName !== 'string' || !_componentName) {
-    if (component.prototype.name === 'Component') {
+    console.error(component)
+    if (component?.prototype?.name === 'Component') {
       throw new Error('Component must have a name, try passing as { Component }')
     }
     if (Object.keys(component).length !== 1) {

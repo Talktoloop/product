@@ -2,6 +2,10 @@
 import type { AvatarRootProps } from 'radix-vue'
 import type { HTMLAttributes } from 'vue'
 
+defineOptions({
+  name: 'MoleculeAvatar',
+})
+
 type ShadcnAvatarProps = AvatarRootProps & {
   class?: HTMLAttributes['class']
 }

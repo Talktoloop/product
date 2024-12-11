@@ -3,6 +3,10 @@ import type { VariantProps } from 'class-variance-authority'
 import type { HTMLAttributes } from 'vue'
 import type { alertVariants } from '@ui/shadcn/alert'
 
+defineOptions({
+  name: 'MoleculeAlert',
+})
+
 type ShadcnAlertProps = {
   class?: HTMLAttributes['class']
   variant?: VariantProps<typeof alertVariants>['variant']

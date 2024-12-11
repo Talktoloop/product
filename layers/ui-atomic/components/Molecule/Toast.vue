@@ -1,11 +1,8 @@
 <script lang="ts" setup>
 import type { Toast as ShadcnToast } from '@ui/shadcn/toast'
-import type { ComponentEmit, ComponentProps } from 'vue-component-type-helpers'
+import type { ToastRootEmits } from 'radix-vue';
 
-type ShadcnToastProps = ComponentProps<typeof ShadcnToast>
-type _ShadcnToastEmits = ComponentEmit<typeof ShadcnToast>
-
-interface Props extends ShadcnToastProps {
+interface Props extends ToastRootEmits {
   title?: string
   description?: string
   action?: string
@@ -14,15 +11,16 @@ interface Props extends ShadcnToastProps {
 
 const props = defineProps<Props>()
 const emit = defineEmits<{
-  'update:modelValue': [unknown]
   'dismiss': [unknown]
 }>()
 
-const forward = useForwardPropsEmits(props, emit)
+const model = defineModel<boolean>()
+
+const forward = useForwardPropsEmits<Props, 'dismiss'>(props, emit, ['title', 'description', 'action', 'altText'])
 </script>
 
 <template>
-  <shadcn-toast v-bind="forward">
+  <shadcn-toast v-bind="forward" v-model="model">
     <shadcn-toast-title v-if="$slots.title || title">
       <slot name="title">
         {{ title }}

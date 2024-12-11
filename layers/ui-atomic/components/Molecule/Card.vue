@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue'
 
+defineOptions({
+  name: 'MoleculeCard',
+})
+
 type ShadcnCardProps = {
   class?: HTMLAttributes['class']
 }
