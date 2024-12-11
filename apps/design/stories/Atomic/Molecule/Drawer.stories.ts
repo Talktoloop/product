@@ -16,6 +16,7 @@ const meta = {
   args: {
     direction: defaultValue.drawerDirection,
   },
+  ...withSlots(MoleculeDrawer, 'default', 'header', 'footer', 'trigger'),
 } satisfies Meta<typeof MoleculeDrawer>
 
 export default meta

@@ -8,20 +8,8 @@ const meta = {
   argTypes: {
     modelValue: { control: 'text' },
     placeholder: { control: 'text' },
-    disabled: { control: 'boolean' },
-    trigger: {
-      control: 'text',
-      description: 'Trigger slot content',
-    },
-    content: {
-      control: 'text',
-      description: 'Content slot content',
-    },
-    group: {
-      control: 'text',
-      description: 'Group slot content',
-    },
   },
+  ...withSlots(MoleculeSelect, 'default', 'trigger'),
 } satisfies Meta<typeof MoleculeSelect>
 
 export default meta
@@ -30,24 +18,28 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     placeholder: 'Select an option',
-    content: `
-      <div>Option 1</div>
-      <div>Option 2</div>
-      <div>Option 3</div>
-    `,
+    items: [
+      { label: 'Option 1', value: 'option-1' },
+      { label: 'Option 2', value: 'option-2' },
+      { label: 'Option 3', value: 'option-3' },
+    ],
   },
 }
 
 export const WithGroups: Story = {
   args: {
     placeholder: 'Select an option',
-    group: `
-      <div>Group 1</div>
-      <div>Group 2</div>
-    `,
-    content: `
-      <div>Option 1</div>
-      <div>Option 2</div>
-    `,
+    groups: [
+      { label: 'Group 1', items: [{ label: 'Option 1', value: 'option-1' }] },
+      { label: 'Group 2', items: [{ label: 'Option 2', value: 'option-2' }] },
+    ],
+  },
+}
+
+export const WithItemsAndGroups: Story = {
+  args: {
+    placeholder: 'Select an option',
+    items: [{ label: 'Option 1', value: 'option-1' }],
+    groups: [{ label: 'Group 1', items: [{ label: 'Option 2', value: 'option-2' }] }],
   },
 }

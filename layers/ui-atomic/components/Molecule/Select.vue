@@ -2,14 +2,25 @@
 import type { Select as ShadcnSelect } from '@ui/shadcn/select'
 import type { SelectRootEmits } from 'radix-vue';
 
+defineOptions({
+  name: 'MoleculeSelect',
+})
+
+interface Item {
+  label: string
+  value: string
+  disabled?: boolean
+}
+
+interface Groups {
+  label: string
+  items: Item[]
+}
+
 interface Props extends SelectRootEmits {
-  modelValue?: string
   placeholder?: string
-  options?: Array<{
-    label: string
-    value: string
-    disabled?: boolean
-  }>
+  items?: Item[]
+  groups?: Groups[]
 }
 
 const props = defineProps<Props>()
@@ -21,15 +32,27 @@ const forward = useForwardPropsEmits(props)
 <template>
   <shadcn-select v-bind="forward" v-model="model">
     <shadcn-select-trigger>
-      <shadcn-select-value :placeholder="placeholder" />
+      <slot name="trigger">
+        <shadcn-select-value :placeholder="placeholder" />
+      </slot>
     </shadcn-select-trigger>
     <shadcn-select-content>
-      <template v-if="options">
-        <shadcn-select-item
-v-for="option in options" :key="option.value" :value="option.value"
-          :disabled="option.disabled">
-          {{ option.label }}
+      <template v-if="items">
+        <shadcn-select-item v-for="item in items" :key="item.value" :value="item.value" :disabled="item.disabled">
+          {{ item.label }}
         </shadcn-select-item>
+      </template>
+      <template v-if="groups">
+        <shadcn-select-group v-for="group in groups" :key="group.label">
+          <shadcn-select-label>
+            {{ group.label }}
+          </shadcn-select-label>
+          <shadcn-select-item
+v-for="item in group.items" :key="item.value" :value="item.value"
+            :disabled="item.disabled">
+            {{ item.label }}
+          </shadcn-select-item>
+        </shadcn-select-group>
       </template>
       <slot />
     </shadcn-select-content>

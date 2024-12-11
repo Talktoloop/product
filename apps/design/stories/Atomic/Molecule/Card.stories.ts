@@ -6,13 +6,13 @@ const meta = {
   component: MoleculeCard,
   tags: ['autodocs'],
   argTypes: {
-    className: { control: 'text' },
+    class: { control: 'text' },
     header: { control: 'text' },
     title: { control: 'text' },
     description: { control: 'text' },
-    content: { control: 'text' },
     footer: { control: 'text' },
   },
+  ...withSlots(MoleculeCard, 'default'),
 } satisfies Meta<typeof MoleculeCard>
 
 export default meta
@@ -22,7 +22,7 @@ export const Default: Story = {
   args: {
     title: 'Card Title',
     description: 'Card Description',
-    content: 'Card Content',
+    default: 'Card Content',
     footer: 'Card Footer',
   },
 }

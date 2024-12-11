@@ -12,7 +12,7 @@ export default {
       colors: {
         // Base Theme Colors
         background: {
-          DEFAULT: 'hsl(0 0% 100%)', // White - Default page background
+          DEFAULT: 'hsl(0 0% 95%)', // Light Gray - Base page background
           contrast: 'hsl(222 47% 11%)', // Near Black - Ensures readability on background
         },
         foreground: {
@@ -156,9 +156,14 @@ export default {
 
         // Dark Theme Colors - Night Mode Variants
         dark: {
-          background: 'hsl(222 47% 11%)', // Near Black - Dark mode background
-          foreground: 'hsl(0 0% 100%)', // White - Dark mode text
-          contrast: 'hsl(0 0% 100%)', // White - Ensures readability in dark mode
+          background: {
+            DEFAULT: 'hsl(222 47% 8%)', // Very Dark Near Black - Dark mode base background
+            contrast: 'hsl(0 0% 100%)', // White - Ensures readability on dark background
+          },
+          foreground: {
+            DEFAULT: 'hsl(0 0% 100%)', // White - Dark mode text
+            contrast: 'hsl(222 47% 11%)', // Near Black - Ensures readability on dark foreground
+          },
 
           primary: {
             DEFAULT: 'hsl(255 75% 70%)',  // Light Loop Purple - Dark mode brand color
@@ -278,18 +283,18 @@ export default {
 
           // Surface Colors - Component Background Variants
           surface: {
-            DEFAULT: 'hsl(222 47% 11%)', // Near Black - Dark mode surface background
-            foreground: 'hsl(0 0% 100%)', // White - Dark mode surface text
-            contrast: 'hsl(0 0% 100%)', // White - Ensures readability on dark surface
+            DEFAULT: 'hsl(0 0% 100%)', // White - Elevated surface background
+            foreground: 'hsl(222 47% 11%)', // Near Black - Default surface text
+            contrast: 'hsl(222 47% 11%)', // Near Black - Ensures readability on surface
 
-            // Dark surface variants for different contexts
-            primary: 'hsl(255 45% 40%)',    // Dark Loop Purple - Dark mode primary surface
-            secondary: 'hsl(176 95% 25%)',   // Dark Action Teal - Dark mode secondary surface
-            accent: 'hsl(217 100% 35%)',     // Dark Emphasis Blue - Dark mode accent surface
-            muted: 'hsl(0 0% 15%)',          // Dark Gray - Dark mode muted surface
-            success: 'hsl(176 95% 25%)',     // Dark Success Teal - Dark mode success surface
-            warning: 'hsl(44 100% 35%)',     // Dark Warning Gold - Dark mode warning surface
-            destructive: 'hsl(0 100% 45%)',  // Dark Destructive Red - Dark mode destructive surface
+            // Surface variants for different contexts
+            primary: 'hsl(255 85% 96%)',   // Light Loop Purple - Primary surface
+            secondary: 'hsl(176 57% 90%)',  // Light Action Teal - Secondary surface
+            accent: 'hsl(217 100% 92%)',    // Light Emphasis Blue - Accent surface
+            muted: 'hsl(0 0% 95%)',         // Light Gray - Muted surface
+            success: 'hsl(176 57% 90%)',    // Light Success Teal - Success surface
+            warning: 'hsl(44 100% 92%)',    // Light Warning Gold - Warning surface
+            destructive: 'hsl(0 100% 92%)', // Light Destructive Red - Destructive surface
           },
 
           // Dark Input Colors - Dark Mode Form Element Backgrounds
@@ -303,7 +308,7 @@ export default {
 
         // Surface Colors - Component Background Variants
         surface: {
-          DEFAULT: 'hsl(0 0% 100%)', // White - Default surface background
+          DEFAULT: 'hsl(0 0% 100%)', // White - Elevated surface background
           foreground: 'hsl(222 47% 11%)', // Near Black - Default surface text
           contrast: 'hsl(222 47% 11%)', // Near Black - Ensures readability on surface
           ring: 'hsl(222 47% 11%)', // Loop Purple - Default ring color

@@ -55,9 +55,9 @@ const forwarded = useForwardPropsEmits(props, emit)
           <slot name="close" />
         </shadcn-drawer-close>
         <shadcn-drawer-close v-else as-child>
-          <AtomsButton variant="outline">
+          <AtomButton variant="outline">
             Close
-          </AtomsButton>
+          </AtomButton>
         </shadcn-drawer-close>
       </shadcn-drawer-footer>
     </shadcn-drawer-content>
