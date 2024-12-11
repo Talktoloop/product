@@ -6,10 +6,10 @@ const meta = {
   component: MoleculeSelect,
   tags: ['autodocs'],
   argTypes: {
-    modelValue: { control: 'text' },
     placeholder: { control: 'text' },
   },
-  ...withSlots(MoleculeSelect, 'default', 'trigger'),
+  ...withSlots(MoleculeSelect, 'default'),
+  ...withDecorators(trackModel(), withEmits('update:open')),
 } satisfies Meta<typeof MoleculeSelect>
 
 export default meta

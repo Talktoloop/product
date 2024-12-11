@@ -25,16 +25,15 @@ interface Props extends SelectRootEmits {
 
 const props = defineProps<Props>()
 const model = defineModel<string>()
+const emit = defineEmits<SelectRootEmits>()
 
-const forward = useForwardPropsEmits(props)
+const forward = useForwardPropsEmits<Props, 'update:open'>(props, emit, ['placeholder', 'items', 'groups'])
 </script>
 
 <template>
   <shadcn-select v-bind="forward" v-model="model">
     <shadcn-select-trigger>
-      <slot name="trigger">
-        <shadcn-select-value :placeholder="placeholder" />
-      </slot>
+      <shadcn-select-value :placeholder="placeholder" />
     </shadcn-select-trigger>
     <shadcn-select-content>
       <template v-if="items">

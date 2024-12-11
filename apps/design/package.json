@@ -33,7 +33,7 @@
     "@storybook/addon-links": "8.4.2",
     "@storybook/blocks": "8.4.2",
     "@storybook/builder-vite": "8.4.2",
-    "@storybook/test": "8.4.2",
+    "@storybook/test": "^8.4.7",
     "@storybook/vue3": "8.4.2",
     "@types/node": "^22.9.0",
     "eslint": "^9.15.0",

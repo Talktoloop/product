@@ -3,6 +3,7 @@ import type { Meta, StoryContext } from '@storybook/vue3'
 import dedent from 'dedent'
 import type { DecoratorFunction } from 'storybook/internal/types'
 import type { ItemOf } from '@ourloop/product-core-typescript'
+import { fn } from '@storybook/test'
 
 const reservedWords = [] as string[]
 
@@ -225,17 +226,51 @@ export function withSlots<C extends Component>(
 export function wrapContainer<C extends Component>(
   props: ComponentProps<C>,
   container: C | string = 'div'
-) {
+): DecoratorFunction {
   const components = typeof container === 'string' ? {} : { container }
   const componentName = typeof container === 'string' ? container : 'container'
-  const decorator: DecoratorFunction = (story: Component) => ({
+  return (story: Component) => ({
     components: { ...components, story },
     setup: () => parseArgs(props),
     template: template(componentName, [':story']),
   })
-  return decorator
 }
 
+export function trackModel<T>(defaultValue?: T | Ref<T>): DecoratorFunction {
+  return (story, storyContext) => {
+    const model = isRef(defaultValue) ? defaultValue : ref<T | undefined>(defaultValue)
+    const updateModel = fn((value: T) => {
+      console.log('updateModel', value)
+    })
+    storyContext.args['model-value'] = model
+    storyContext.args['onUpdate:model-value'] = updateModel
+    return story(storyContext)
+  }
+}
+
+export function withEmits(...emits: string[]): DecoratorFunction {
+  const logEvent =
+    (event: string) =>
+    (...args: unknown[]) => {
+      console.log('logEvent', event, ...args)
+    }
+  return (story, storyContext) => {
+    storyContext = {
+      ...storyContext,
+      args: {
+        ...storyContext.args,
+        ...emits.reduce(
+          (acc, emit) => ({
+            ...acc,
+            [`on${emit.charAt(0).toUpperCase()}${emit.slice(1)}`]: fn(logEvent(emit)),
+          }),
+          {}
+        ),
+      },
+    }
+    return story(storyContext)
+  }
+}
 /**
  * Type-safe decorator function
  * @param decorator - Storybook decorator function
