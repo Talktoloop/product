@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ['@ourloop/product-layer-core'],
   alias: {
-    '@ui/moudlable': resolve('./components'),
-    '@ui/moudlable/types': resolve('./types'),
+    '@ui/mouldable': resolve('./components'),
+    '@ui/mouldable/types': resolve('./types/index.ts'),
   },
 })

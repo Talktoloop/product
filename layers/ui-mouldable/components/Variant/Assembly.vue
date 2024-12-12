@@ -1,21 +1,30 @@
-<script setup lang="ts" generic="T">
-import type { Variant } from '@ui/moudlable/types/variants';
+<script setup lang="ts" generic="T, G extends GuardMap">
+import type { GuardMap, VariantMap, VariantSlots } from '@ui/mouldable/types';
 
 interface Props {
-  context: T
-  variants: Variant[]
+  value: T
+  variants: G
 }
 
 const props = defineProps<Props>()
+defineSlots<VariantSlots<T, G>>()
 
-const variant = computed(() => {
-  return props.variants.find((variant) => variant.when(props.context))
+const variantMap = computed<VariantMap<G>>(() => {
+  const entries = Object.entries(props.variants).map(([key, guard]) => {
+    return [key, variant(key, props.value, guard)]
+  })
+  return Object.fromEntries(entries)
 })
 
-const slotName = computed(() => {
-  return variant.value?.name ?? 'default'
+const matchedVariant = computed(() => {
+  const found = Object.values(variantMap.value).find((variant) => variant.when(props.value))
+  if (!found) {
+    return variant('default', props.value)
+  }
+  return found
 })
+
 </script>
 <template>
-  <slot :name="slotName" :attrs="$attrs" />
+  <slot :name="matchedVariant.name" :attrs="$attrs" :variant="matchedVariant" />
 </template>

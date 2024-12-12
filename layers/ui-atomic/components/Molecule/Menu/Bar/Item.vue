@@ -13,20 +13,43 @@ const options = computed(() => ({
   inset: props.item.inset,
 }))
 
+const variants = {
+  separator: isMenuItemSeparator,
+  checkbox: isMenuItemCheckbox,
+  radioGroup: isMenuItemRadioGroup,
+  menu: isMenuItemMenu,
+  item: isMenuItemMenuItem,
+}
+
 </script>
 
 <template>
-  <shadcn-menubar-separator v-if="isMenuItemSeparator(item)" v-bind="{ ...options, ...$attrs }" />
-  <shadcn-menubar-checkbox
-v-else-if="isMenuItemCheckbox(item)" :checked="item.checked"
-    v-bind="{ ...options, ...$attrs }" />
-  <MoleculeMenuBarRadioGroup v-else-if="isMenuItemRadioGroup(item)" :item="item" v-bind="{ ...options, ...$attrs }" />
-  <MoleculeMenuBarMenu v-else-if="isMenuItemMenu(item) && root" :item="item" v-bind="{ ...options, ...$attrs }" />
-  <MoleculeMenuBarSub v-else-if="isMenuItemMenu(item)" :item="item" v-bind="{ ...options, ...$attrs }" />
-  <shadcn-menubar-item v-else v-bind="{ ...options, ...$attrs }">
-    {{ item.label }}
-    <shadcn-menubar-item-shortcut v-if="item.shortcut">
-      {{ item.shortcut }}
-    </shadcn-menubar-item-shortcut>
-  </shadcn-menubar-item>
+  <VariantAssembly :value="item" :variants="variants">
+    <template #separator="{ attrs }">
+      <shadcn-menubar-separator v-bind="{ ...options, ...attrs }" />
+    </template>
+    <template #checkbox="{ attrs, variant: { value } }">
+      <shadcn-menubar-checkbox-item :checked="value.checked" v-bind="{ ...options, ...attrs }" />
+    </template>
+    <template #radioGroup="{ attrs, variant: { value } }">
+      <MoleculeMenuBarRadioGroup :item="value" v-bind="{ ...options, ...attrs }" />
+    </template>
+    <template #menu="{ attrs, variant: { value } }">
+      <MoleculeMenuBarMenu v-if="root" :item="value" v-bind="{ ...options, ...attrs }" />
+      <MoleculeMenuBarSub v-else :item="value" v-bind="{ ...options, ...attrs }" />
+    </template>
+    <template #item="{ attrs, variant: { value } }">
+      <shadcn-menubar-item v-bind="{ ...options, ...attrs }">
+        {{ value.label }}
+        <shadcn-menubar-item-shortcut v-if="value.shortcut">
+          {{ value.shortcut }}
+        </shadcn-menubar-item-shortcut>
+      </shadcn-menubar-item>
+    </template>
+    <template #default="{ attrs, variant: { value } }">
+      <shadcn-menubar-item v-bind="{ ...options, ...attrs }">
+        Unknown item: {{ JSON.stringify(value) }}
+      </shadcn-menubar-item>
+    </template>
+  </VariantAssembly>
 </template>

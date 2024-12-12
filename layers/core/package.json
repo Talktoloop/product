@@ -28,6 +28,7 @@
   "dependencies": {
     "@netlify/classnames-template-literals": "^1.0.3",
     "@ourloop/product-core-config": "*",
+    "@ourloop/product-core-types": "*",
     "@vueuse/nuxt": "^11.2.0",
     "prettier-plugin-embed": "^0.4.15"
   }

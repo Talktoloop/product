@@ -12,7 +12,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@ourloop/product-core-types": "*",
     "@ourloop/product-layer-core": "*"
   },
   "devDependencies": {

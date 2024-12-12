@@ -10,7 +10,7 @@ const shadcnComponentDir = resolve('./shadcn/ui')
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  extends: ['@ourloop/product-layer-core'],
+  extends: ['@ourloop/product-layer-core', '@ourloop/product-layer-ui-mouldable'],
   modules: ['@nuxtjs/color-mode', 'shadcn-nuxt', '@nuxt/eslint'],
   colorMode: {
     classSuffix: '',

@@ -8,16 +8,22 @@ function menuItem<T extends Menu.MenuItem>(type: T['__type'], item: Omit<T, 'id'
   } as T
 }
 
-export function isMenuItemMenu(item: Menu.MenuItem): item is Menu.MenuItemMenu {
-  return item.__type === 'MenuItemMenu'
+export function isMenuItem(item: unknown | Menu.MenuItem): item is Menu.MenuItem {
+  return isTypeOf(item, 'MenuItem')
+}
+
+export function isMenuItemMenu(item: unknown | Menu.MenuItemMenu): item is Menu.MenuItemMenu {
+  return isTypeOf(item, 'MenuItemMenu')
 }
 
 export function menuItemMenu(item: Omit<Menu.MenuItemMenu, '__type' | 'id'>): Menu.MenuItemMenu {
   return menuItem('MenuItemMenu', item)
 }
 
-export function isMenuItemMenuItem(item: Menu.MenuItem): item is Menu.MenuItemMenuItem {
-  return item.__type === 'MenuItemMenuItem'
+export function isMenuItemMenuItem(
+  item: unknown | Menu.MenuItemMenuItem
+): item is Menu.MenuItemMenuItem {
+  return isTypeOf(item, 'MenuItemMenuItem')
 }
 
 export function menuItemMenuItem(
@@ -26,8 +32,10 @@ export function menuItemMenuItem(
   return menuItem('MenuItemMenuItem', item)
 }
 
-export function isMenuItemCheckbox(item: Menu.MenuItem): item is Menu.MenuItemCheckbox {
-  return item.__type === 'MenuItemCheckbox'
+export function isMenuItemCheckbox(
+  item: unknown | Menu.MenuItemCheckbox
+): item is Menu.MenuItemCheckbox {
+  return isTypeOf(item, 'MenuItemCheckbox')
 }
 
 export function menuItemCheckbox(
@@ -36,8 +44,10 @@ export function menuItemCheckbox(
   return menuItem('MenuItemCheckbox', item)
 }
 
-export function isMenuItemRadioGroup(item: Menu.MenuItem): item is Menu.MenuItemRadioGroup {
-  return item.__type === 'MenuItemRadioGroup'
+export function isMenuItemRadioGroup(
+  item: unknown | Menu.MenuItemRadioGroup
+): item is Menu.MenuItemRadioGroup {
+  return isTypeOf(item, 'MenuItemRadioGroup')
 }
 
 export function menuItemRadioGroup(
@@ -46,12 +56,14 @@ export function menuItemRadioGroup(
   return menuItem('MenuItemRadioGroup', item)
 }
 
-export function isMenuItemSeparator(item: Menu.MenuItem): item is Menu.MenuItemSeparator {
-  return item.__type === 'MenuItemSeparator'
+export function isMenuItemSeparator(
+  item: unknown | Menu.MenuItemSeparator
+): item is Menu.MenuItemSeparator {
+  return isTypeOf(item, 'MenuItemSeparator')
 }
 
 export function menuItemSeparator(
-  item: Omit<Menu.MenuItemSeparator, '__type' | 'id'>
+  item: Omit<Menu.MenuItemSeparator, '__type' | 'id'> = {}
 ): Menu.MenuItemSeparator {
   return menuItem('MenuItemSeparator', item)
 }

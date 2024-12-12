@@ -1,6 +1,6 @@
 import MoleculeMenuBar from '@ui/atomic/Molecule/Menu/Bar.vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
-
+import { ChevronRightIcon } from 'lucide-vue-next'
 const meta = {
   title: 'Atomic/Molecule/Menu/Bar',
   component: MoleculeMenuBar,
@@ -14,29 +14,44 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     menu: [
-      {
-        __type: 'MenuItemMenu',
-        id: 'file',
+      menuItemMenu({
         label: 'File',
         menu: [
-          {
-            __type: 'MenuItemMenuItem',
-            id: 'file-new',
+          menuItemMenuItem({
             label: 'New',
-          },
-          {
-            __type: 'MenuItemMenuItem',
-            id: 'file-open',
+          }),
+          menuItemMenuItem({
             label: 'Open',
-          },
+          }),
+          menuItemSeparator(),
+          menuItemMenu({
+            label: 'Recent',
+            icon: ChevronRightIcon,
+            menu: [
+              menuItemMenuItem({
+                label: 'File 1',
+              }),
+            ],
+          }),
         ],
-      },
-      {
-        __type: 'MenuItemMenu',
-        id: 'edit',
+      }),
+      menuItemMenu({
         label: 'Edit',
-        menu: [],
-      },
+        menu: [
+          menuItemMenuItem({
+            label: 'Cut',
+            shortcut: '⌘X',
+          }),
+          menuItemMenuItem({
+            label: 'Copy',
+            shortcut: '⌘C',
+          }),
+          menuItemMenuItem({
+            label: 'Paste',
+            shortcut: '⌘V',
+          }),
+        ],
+      }),
     ],
   },
 }

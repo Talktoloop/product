@@ -10,11 +10,14 @@ defineProps<Props>()
 
 <template>
   <shadcn-menubar-menu>
-    <shadcn-menubar-menu-trigger>
+    <shadcn-menubar-trigger>
       {{ item.label }}
-    </shadcn-menubar-menu-trigger>
-    <shadcn-menubar-menu-content>
-      <MoleculeMenuItem v-for="subItem in item.menu" :key="subItem.id" :item="subItem" />
-    </shadcn-menubar-menu-content>
+      <shadcn-menubar-shortcut v-if="item.shortcut">
+        {{ item.shortcut }}
+      </shadcn-menubar-shortcut>
+    </shadcn-menubar-trigger>
+    <shadcn-menubar-content>
+      <MoleculeMenuBarItem v-for="subItem in item.menu" :key="subItem.id" :item="subItem" />
+    </shadcn-menubar-content>
   </shadcn-menubar-menu>
 </template>
