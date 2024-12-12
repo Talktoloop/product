@@ -14,7 +14,7 @@
     "clean:locks": "rimraf .turbo *.lock",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:staged": "turbo run prepare && lint-staged",
+    "lint:staged": "lint-staged",
     "postinstall": "husky install"
   },
   "workspaces": [

@@ -2040,9 +2040,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ourloop/product-layer-ui-mouldable@npm:*, @ourloop/product-layer-ui-mouldable@workspace:layers/ui-moudlable":
+"@ourloop/product-layer-ui-mouldable@npm:*, @ourloop/product-layer-ui-mouldable@workspace:layers/ui-mouldable":
   version: 0.0.0-use.local
-  resolution: "@ourloop/product-layer-ui-mouldable@workspace:layers/ui-moudlable"
+  resolution: "@ourloop/product-layer-ui-mouldable@workspace:layers/ui-mouldable"
   dependencies:
     "@nuxt/eslint": "npm:latest"
     "@ourloop/product-core-types": "npm:*"
