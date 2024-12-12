@@ -28,4 +28,7 @@ export default defineNuxtConfig({
   vue: {
     runtimeCompiler: true,
   },
+  experimental: {
+    appManifest: false,
+  },
 })
