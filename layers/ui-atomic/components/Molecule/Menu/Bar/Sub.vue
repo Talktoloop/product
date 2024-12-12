@@ -17,7 +17,7 @@ defineProps<Props>()
       </shadcn-menubar-shortcut>
     </shadcn-menubar-sub-trigger>
     <shadcn-menubar-sub-content>
-      <MoleculeMenuItem v-for="subItem in item.menu" :key="subItem.id" :item="subItem" />
+      <MoleculeMenuBarItem v-for="subItem in item.menu" :key="subItem.id" :item="subItem" />
     </shadcn-menubar-sub-content>
   </shadcn-menubar-sub>
 </template>

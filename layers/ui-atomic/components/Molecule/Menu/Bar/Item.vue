@@ -41,9 +41,9 @@ const variants = {
     <template #item="{ attrs, variant: { value } }">
       <shadcn-menubar-item v-bind="{ ...options, ...attrs }">
         {{ value.label }}
-        <shadcn-menubar-item-shortcut v-if="value.shortcut">
+        <shadcn-menubar-shortcut v-if="value.shortcut">
           {{ value.shortcut }}
-        </shadcn-menubar-item-shortcut>
+        </shadcn-menubar-shortcut>
       </shadcn-menubar-item>
     </template>
     <template #default="{ attrs, variant: { value } }">
