@@ -1,31 +1,20 @@
 <script lang="ts" setup>
 import type { MenubarRootEmits, MenubarRootProps } from 'radix-vue';
 import type { Emits } from '../../../composables/useForwardPropsEmits';
-
+import type { MenuItem } from '@ui/atomic/types';
 
 interface Props extends MenubarRootProps {
-  trigger?: string
-  content?: string
+  menu: MenuItem[]
 }
 
 const props = defineProps<Props>()
 const emit = defineEmits<MenubarRootEmits>()
 
-const forward = useForwardPropsEmits(props, emit as Emits<string, unknown[]>, ['trigger', 'content'])
+const forward = useForwardPropsEmits(props, emit as Emits<string, unknown[]>, ['menu'])
 </script>
 
 <template>
   <shadcn-menubar v-bind="forward">
-    <shadcn-menubar-trigger v-if="$slots.trigger || trigger" as-child>
-      <slot name="trigger">
-        {{ trigger }}
-      </slot>
-    </shadcn-menubar-trigger>
-    <shadcn-menubar-content v-if="$slots.content || content">
-      <slot name="content">
-        {{ content }}
-      </slot>
-    </shadcn-menubar-content>
-    <slot />
+    <MoleculeMenuItem v-for="item in menu" :key="item.id" :item="item" :root="true" />
   </shadcn-menubar>
 </template>

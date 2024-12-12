@@ -5,16 +5,7 @@ const meta = {
   title: 'Atomic/Molecule/Menu/Bar',
   component: MoleculeMenuBar,
   tags: ['autodocs'],
-  argTypes: {
-    menu: {
-      control: 'text',
-      description: 'Menu slot content',
-    },
-    default: {
-      control: 'text',
-      description: 'Default slot content',
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof MoleculeMenuBar>
 
 export default meta
@@ -22,9 +13,30 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    menu: `
-      <div>Menu Item 1</div>
-      <div>Menu Item 2</div>
-    `,
+    menu: [
+      {
+        __type: 'MenuItemMenu',
+        id: 'file',
+        label: 'File',
+        menu: [
+          {
+            __type: 'MenuItemMenuItem',
+            id: 'file-new',
+            label: 'New',
+          },
+          {
+            __type: 'MenuItemMenuItem',
+            id: 'file-open',
+            label: 'Open',
+          },
+        ],
+      },
+      {
+        __type: 'MenuItemMenu',
+        id: 'edit',
+        label: 'Edit',
+        menu: [],
+      },
+    ],
   },
 }

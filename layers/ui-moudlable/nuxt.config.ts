@@ -6,22 +6,12 @@ function resolve(path: string) {
   return join(basePath, path)
 }
 
-const shadcnComponentDir = resolve('./shadcn/ui')
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ['@ourloop/product-layer-core'],
-  modules: ['@nuxtjs/color-mode', 'shadcn-nuxt', '@nuxt/eslint'],
-  colorMode: {
-    classSuffix: '',
-  },
-  shadcn: {
-    prefix: 'shadcn-',
-    componentDir: shadcnComponentDir,
-  },
   alias: {
-    '@ui/shadcn': shadcnComponentDir,
-    '@ui/atomic': resolve('./components'),
-    '@ui/atomic/types': resolve('./types'),
+    '@ui/moudlable': resolve('./components'),
+    '@ui/moudlable/types': resolve('./types'),
   },
 })

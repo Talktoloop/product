@@ -1,5 +1,5 @@
 {
-  "name": "@ourloop/product-layer-ui-design",
+  "name": "@ourloop/project-layer-ui-moudlable",
   "type": "module",
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
@@ -12,12 +12,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@ourloop/product-layer-ui-atomic": "*",
-    "@ourloop/product-layer-ui-moudlable": "*"
+    "@ourloop/product-layer-core": "*"
   },
   "devDependencies": {
     "@nuxt/eslint": "latest",
-    "eslint": "^9.15.0",
+    "eslint": "^9.16.0",
     "nuxt": "^3.14.1592",
     "typescript": "^5.7.2",
     "vue": "latest"
