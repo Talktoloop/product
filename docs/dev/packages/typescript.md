@@ -28,14 +28,14 @@
     ```json
     "exports": {
       ".": "./src/index.ts",
-      "./types": "./src/types/index.ts"
+      "types": "./src/types/index.ts"
     }
     ```
 - Add a `tsconfig.json` file
   - Use the following format:
     ```json
     {
-      "$schema": "https://json.schemastore.org/tsconfig",
+      "$schema": "https://json.schemastore.org/tsconfig.json",
       "extends": "@ourloop/product-core-config/tsconfig",
       "include": ["src/**/*"]
     }
