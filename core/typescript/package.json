@@ -1,9 +1,0 @@
-{
-  "name": "@ourloop/product-core-typescript",
-  "packageManager": "yarn@4.2.2",
-  "type": "module",
-  "types": "./src/index.d.ts",
-  "dependencies": {
-    "@tsconfig/node23": "^23.0.0"
-  }
-}

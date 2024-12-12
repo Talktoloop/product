@@ -1,5 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@tsconfig/node23",
+  "extends": "@ourloop/product-core-config/tsconfig",
   "include": ["src/**/*"]
 }

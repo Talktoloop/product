@@ -2,7 +2,7 @@ import type { ComponentProps } from 'vue-component-type-helpers'
 import type { Meta, StoryContext } from '@storybook/vue3'
 import dedent from 'dedent'
 import type { DecoratorFunction } from 'storybook/internal/types'
-import type { ItemOf } from '@ourloop/product-core-typescript'
+import type { ItemOf } from '@ourloop/product-core-types'
 import { fn } from '@storybook/test'
 
 const reservedWords = [] as string[]

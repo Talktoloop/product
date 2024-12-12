@@ -14,14 +14,14 @@
     "clean:locks": "rimraf .turbo *.lock",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:staged": "lint-staged",
+    "lint:staged": "turbo run prepare && lint-staged",
     "postinstall": "husky install"
   },
   "workspaces": [
-    "opt/packages/*",
     "core/*",
     "layers/*",
-    "apps/*"
+    "apps/*",
+    "opt/packages/*"
   ],
   "devDependencies": {
     "@eslint/js": "^9.15.0",

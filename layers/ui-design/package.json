@@ -1,7 +1,7 @@
 {
   "name": "@ourloop/product-layer-ui-design",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "./nuxt.config.ts",
   "scripts": {
     "dev": "nuxi dev .playground",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ourloop/product-layer-ui-atomic": "*",
-    "@ourloop/product-layer-ui-moudlable": "*"
+    "@ourloop/product-layer-ui-mouldable": "*"
   },
   "devDependencies": {
     "@nuxt/eslint": "latest",

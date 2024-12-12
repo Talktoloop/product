@@ -1,0 +1,13 @@
+{
+  "name": "@ourloop/product-core-types",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "yarn@4.2.2",
+  "type": "module",
+  "exports": {
+    "./types": "./src/index.d.ts"
+  },
+  "dependencies": {
+    "@ourloop/product-core-config": "*"
+  }
+}

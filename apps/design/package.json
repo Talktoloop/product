@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@nuxtjs/storybook": "^8.3.2",
-    "@ourloop/product-core-typescript": "workspace:^",
+    "@ourloop/product-core-types": "*",
     "@ourloop/product-layer-shell": "*",
     "@ourloop/product-layer-ui-design": "*",
     "dedent": "^1.5.3",
