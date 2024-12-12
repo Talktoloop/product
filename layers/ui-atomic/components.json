@@ -12,7 +12,7 @@
   },
   "framework": "nuxt",
   "aliases": {
-    "components": "@/shadcn/",
+    "components": "@/ui-atomic/shadcn/",
     "utils": "@/lib/utils"
   }
 }
