@@ -26,12 +26,12 @@ defineProps<Props>()
       </template>
 
       <template #content="{ attrs, variant: { value } }">
-        <shadcn-navigation-menu-trigger :disabled="value.disabled" v-bind="attrs">
+        <shadcn-navigation-menu-trigger :disabled="value.disabled">
           <component :is="value.icon" v-if="value.icon" class="mr-2 h-4 w-4" />
           {{ value.label }}
         </shadcn-navigation-menu-trigger>
         <shadcn-navigation-menu-content>
-          <VariantContentTarget :id="value.id" :value="value" />
+          <VariantContentTarget :id="value.id" :value="attrs" />
         </shadcn-navigation-menu-content>
       </template>
     </VariantAssembly>

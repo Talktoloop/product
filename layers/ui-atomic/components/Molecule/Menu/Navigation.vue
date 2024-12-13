@@ -25,7 +25,7 @@ const contents = computed(() => props.items.filter(isNavigationItemContent) as N
   </shadcn-navigation-menu>
   <template v-for="content in contents" :key="content.id">
     <VariantContentSource :id="content.id" v-slot="{ value }">
-      <slot :name="content.slot" :value="value" />
+      <slot :name="content.slot" :attrs="value" />
     </VariantContentSource>
   </template>
 </template>
