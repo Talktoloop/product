@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { NavigationItem, NavigationItemContent } from '@ui/atomic/types';
+import type { NavigationItem, NavigationItemMenu } from '@ui/atomic/types';
 
 defineOptions({
   name: 'MoleculeMenuNavigation',
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
   orientation: 'horizontal',
 })
 
-const contents = computed(() => props.items.filter(isNavigationItemContent) as NavigationItemContent<string>[])
+const contents = computed(() => props.items.filter(isNavigationItemMenu).filter(item => item.slot) as NavigationItemMenu<string>[])
 </script>
 
 <template>
@@ -24,8 +24,8 @@ const contents = computed(() => props.items.filter(isNavigationItemContent) as N
     </shadcn-navigation-menu-list>
   </shadcn-navigation-menu>
   <template v-for="content in contents" :key="content.id">
-    <VariantContentSource :id="content.id" v-slot="{ value }">
-      <slot :name="content.slot" :attrs="value" />
+    <VariantContentSource v-if="content.slot?.id" :id="content.slot.id" v-slot="{ value }">
+      <slot :name="content.slot.name" :item="value" />
     </VariantContentSource>
   </template>
 </template>

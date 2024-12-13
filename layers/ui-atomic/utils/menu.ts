@@ -3,7 +3,7 @@ import type * as Menu from '../types/menu'
 
 function menuItem<T extends Menu.MenuItem>(type: T['__type'], item: Omit<T, 'id' | '__type'>): T {
   return {
-    id: nanoid(),
+    id: randomId('menu-item'),
     __type: type,
     ...item,
   } as T

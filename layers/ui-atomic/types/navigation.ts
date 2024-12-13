@@ -14,17 +14,19 @@ export interface NavigationItemLink<_ extends string = never> extends BaseNaviga
   link: NuxtLinkProps
 }
 
-export interface NavigationItemContent<T extends string = never> extends BaseNavigationItem {
-  __type: 'NavigationItemContent'
-  slot: T
+export interface NavigationItemMenu<T extends string = never> extends BaseNavigationItem {
+  __type: 'NavigationItemMenu'
+  rows?: 'auto' | 3 | 4 | 5 | 6
+  slot?: { id: string; name: T; link?: NuxtLinkProps }
+  menu?: NavigationItemLink<string>[]
 }
 
-export type NavigationItem<T extends string = never> =
-  | NavigationItemLink<T>
-  | NavigationItemContent<T>
+export type NavigationItem<T extends string = never> = NavigationItemLink<T> | NavigationItemMenu<T>
 
 export type NavigationContentSlots<T extends Array<unknown>> = {
-  [K in keyof T as T[K] extends NavigationItemContent<infer _> ? T[K]['slot'] : never]: (props: {
-    value: T[K]
-  }) => VNode
+  [K in keyof T as T[K] extends NavigationItemMenu<infer _>
+    ? T[K]['slot'] extends { id: string; name: infer _ }
+      ? T[K]['slot']['name']
+      : never
+    : never]: (props: { value: T[K] }) => VNode
 }

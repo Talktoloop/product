@@ -1,11 +1,11 @@
 import type * as Navigation from '../types/navigation'
 
-function navigationItem<T extends Navigation.NavigationItem>(
+function navigationItem<T extends Navigation.NavigationItem<string>>(
   type: T['__type'],
   item: Omit<T, 'id' | '__type'>
 ): T {
   return {
-    id: nanoid(),
+    id: randomId('navigation-item'),
     __type: type,
     ...item,
   } as T
@@ -29,25 +29,24 @@ export function navigationItemLink<T extends string>(
   return navigationItem('NavigationItemLink', item)
 }
 
-export function isNavigationItemContent<T extends string>(
-  item: unknown | Navigation.NavigationItemContent<T>
-): item is Navigation.NavigationItemContent<T> {
-  return isTypeOf(item, 'NavigationItemContent')
+export function isNavigationItemMenu<T extends string>(
+  item: unknown | Navigation.NavigationItemMenu<T>
+): item is Navigation.NavigationItemMenu<T> {
+  return isTypeOf(item, 'NavigationItemMenu')
 }
 
-export function navigationItemContent<T extends string>(
-  name: T,
-  item: Omit<Navigation.NavigationItemContent<T>, '__type' | 'slot' | 'id'>
-): Navigation.NavigationItemContent<T> {
-  return {
-    id: CSS.escape(`${name}-${nanoid()}`),
-    __type: 'NavigationItemContent',
-    slot: name,
-    ...item,
+export function navigationItemMenu<T extends string = never>(
+  item: Omit<Navigation.NavigationItemMenu<T>, '__type' | 'slot' | 'id'>,
+  slot?: T
+): Navigation.NavigationItemMenu<T> {
+  const menuItem = navigationItem<Navigation.NavigationItemMenu<T>>('NavigationItemMenu', item)
+  if (typeof slot === 'string') {
+    menuItem.slot = { name: slot, id: randomId('navigation-item-slot') }
   }
+  return menuItem
 }
 
 export const navigationItemVariants = {
   link: isNavigationItemLink,
-  content: isNavigationItemContent,
+  content: isNavigationItemMenu,
 }

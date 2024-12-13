@@ -1956,8 +1956,11 @@ __metadata:
     "@nuxt/eslint": "npm:^0.7.1"
     "@nuxtjs/tailwindcss": "npm:^6.12.2"
     "@ourloop/product-core-config": "npm:*"
+    "@ourloop/product-core-types": "npm:*"
+    "@types/lodash-es": "npm:^4"
     "@vueuse/nuxt": "npm:^11.2.0"
     eslint: "npm:^9.14.0"
+    lodash-es: "npm:^4.17.21"
     nanoid: "npm:^5.0.9"
     nuxt: "npm:^3.14.159"
     prettier-plugin-embed: "npm:^0.4.15"
@@ -1989,6 +1992,7 @@ __metadata:
     "@nuxt/test-utils": "npm:^3.14.4"
     "@nuxtjs/color-mode": "npm:^3.5.2"
     "@ourloop/product-layer-core": "npm:*"
+    "@ourloop/product-layer-ui-mouldable": "npm:*"
     "@popperjs/core": "npm:^2.11.8"
     "@radix-icons/vue": "npm:^1.0.0"
     "@types/lodash": "npm:^4.17.13"
@@ -2032,7 +2036,6 @@ __metadata:
   dependencies:
     "@nuxt/eslint": "npm:latest"
     "@ourloop/product-layer-ui-atomic": "npm:*"
-    "@ourloop/product-layer-ui-mouldable": "npm:*"
     eslint: "npm:^9.15.0"
     nuxt: "npm:^3.14.1592"
     typescript: "npm:^5.7.2"
@@ -2045,7 +2048,6 @@ __metadata:
   resolution: "@ourloop/product-layer-ui-mouldable@workspace:layers/ui-mouldable"
   dependencies:
     "@nuxt/eslint": "npm:latest"
-    "@ourloop/product-core-types": "npm:*"
     "@ourloop/product-layer-core": "npm:*"
     eslint: "npm:^9.16.0"
     nuxt: "npm:^3.14.1592"
@@ -3629,7 +3631,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.165, @types/lodash@npm:^4.17.13":
+"@types/lodash-es@npm:^4":
+  version: 4.17.12
+  resolution: "@types/lodash-es@npm:4.17.12"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: 10c0/5d12d2cede07f07ab067541371ed1b838a33edb3c35cb81b73284e93c6fd0c4bbeaefee984e69294bffb53f62d7272c5d679fdba8e595ff71e11d00f2601dde0
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*, @types/lodash@npm:^4.14.165, @types/lodash@npm:^4.17.13":
   version: 4.17.13
   resolution: "@types/lodash@npm:4.17.13"
   checksum: 10c0/c3d0b7efe7933ac0369b99f2f7bff9240d960680fdb74b41ed4bd1b3ca60cca1e31fe4046d9abbde778f941a41bc2a75eb629abf8659fa6c27b66efbbb0802a9
