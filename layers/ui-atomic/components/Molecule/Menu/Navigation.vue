@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { NavigationItem } from '@ui/atomic/types';
+import type { NavigationItem, NavigationItemContent } from '@ui/atomic/types';
 
 defineOptions({
   name: 'MoleculeMenuNavigation',
@@ -7,16 +7,25 @@ defineOptions({
 
 interface Props {
   orientation?: 'horizontal' | 'vertical'
-  items?: NavigationItem[]
+  items: NavigationItem<string>[]
 }
 
-defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  orientation: 'horizontal',
+})
+
+const contents = computed(() => props.items.filter(isNavigationItemContent) as NavigationItemContent<string>[])
 </script>
 
 <template>
   <shadcn-navigation-menu :orientation="orientation">
-    <shadcn-navigation-menu-list v-if="items?.length">
+    <shadcn-navigation-menu-list v-if="items.length">
       <MoleculeMenuNavigationItem v-for="item in items" :key="item.id" :item="item" />
     </shadcn-navigation-menu-list>
   </shadcn-navigation-menu>
+  <template v-for="content in contents" :key="content.id">
+    <VariantContentSource :id="content.id" v-slot="{ value }">
+      <slot :name="content.slot" :value="value" />
+    </VariantContentSource>
+  </template>
 </template>

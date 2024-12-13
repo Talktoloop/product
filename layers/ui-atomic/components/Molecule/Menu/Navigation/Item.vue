@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T extends string">
 import type { NavigationItem } from '@ui/atomic/types'
 import { navigationMenuTriggerStyle } from '@ui/shadcn/navigation-menu';
 
@@ -7,7 +7,7 @@ defineOptions({
 })
 
 interface Props {
-  item: NavigationItem
+  item: NavigationItem<T>
 }
 
 defineProps<Props>()
@@ -31,7 +31,7 @@ defineProps<Props>()
           {{ value.label }}
         </shadcn-navigation-menu-trigger>
         <shadcn-navigation-menu-content>
-          <MoleculeMenuNavigationItem v-for="contentItem in value.content" :key="contentItem.id" :item="contentItem" />
+          <VariantContentTarget :id="value.id" :value="value" />
         </shadcn-navigation-menu-content>
       </template>
     </VariantAssembly>

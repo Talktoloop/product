@@ -11,34 +11,40 @@ function navigationItem<T extends Navigation.NavigationItem>(
   } as T
 }
 
-export function isNavigationItem(
-  item: unknown | Navigation.NavigationItem
-): item is Navigation.NavigationItem {
+export function isNavigationItem<T extends string>(
+  item: unknown | Navigation.NavigationItem<T>
+): item is Navigation.NavigationItem<T> {
   return isTypeOf(item, 'NavigationItem')
 }
 
-export function isNavigationItemLink(
-  item: unknown | Navigation.NavigationItemLink
-): item is Navigation.NavigationItemLink {
+export function isNavigationItemLink<T extends string>(
+  item: unknown | Navigation.NavigationItemLink<T>
+): item is Navigation.NavigationItemLink<T> {
   return isTypeOf(item, 'NavigationItemLink')
 }
 
-export function navigationItemLink(
-  item: Omit<Navigation.NavigationItemLink, '__type' | 'id'>
-): Navigation.NavigationItemLink {
+export function navigationItemLink<T extends string>(
+  item: Omit<Navigation.NavigationItemLink<T>, '__type' | 'id'>
+): Navigation.NavigationItemLink<T> {
   return navigationItem('NavigationItemLink', item)
 }
 
-export function isNavigationItemContent(
-  item: unknown | Navigation.NavigationItemContent
-): item is Navigation.NavigationItemContent {
+export function isNavigationItemContent<T extends string>(
+  item: unknown | Navigation.NavigationItemContent<T>
+): item is Navigation.NavigationItemContent<T> {
   return isTypeOf(item, 'NavigationItemContent')
 }
 
-export function navigationItemContent(
-  item: Omit<Navigation.NavigationItemContent, '__type' | 'id'>
-): Navigation.NavigationItemContent {
-  return navigationItem('NavigationItemContent', item)
+export function navigationItemContent<T extends string>(
+  name: T,
+  item: Omit<Navigation.NavigationItemContent<T>, '__type' | 'slot' | 'id'>
+): Navigation.NavigationItemContent<T> {
+  return {
+    id: CSS.escape(`${name}-${nanoid()}`),
+    __type: 'NavigationItemContent',
+    slot: name,
+    ...item,
+  }
 }
 
 export const navigationItemVariants = {
