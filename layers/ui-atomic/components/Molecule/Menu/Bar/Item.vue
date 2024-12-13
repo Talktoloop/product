@@ -13,18 +13,10 @@ const options = computed(() => ({
   inset: props.item.inset,
 }))
 
-const variants = {
-  separator: isMenuItemSeparator,
-  checkbox: isMenuItemCheckbox,
-  radioGroup: isMenuItemRadioGroup,
-  menu: isMenuItemMenu,
-  item: isMenuItemMenuItem,
-}
-
 </script>
 
 <template>
-  <VariantAssembly :value="item" :variants="variants" v-bind="{ ...options }">
+  <VariantAssembly :value="item" :variants="menuItemVariants" v-bind="{ ...options }">
     <template #separator="{ attrs }">
       <shadcn-menubar-separator v-bind="attrs" />
     </template>

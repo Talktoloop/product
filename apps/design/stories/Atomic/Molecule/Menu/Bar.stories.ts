@@ -1,6 +1,6 @@
 import MoleculeMenuBar from '@ui/atomic/Molecule/Menu/Bar.vue'
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { ChevronRightIcon } from 'lucide-vue-next'
+
 const meta = {
   title: 'Atomic/Molecule/Menu/Bar',
   component: MoleculeMenuBar,
@@ -24,9 +24,8 @@ export const Default: Story = {
             label: 'Open',
           }),
           menuItemSeparator(),
-          menuItemMenu({
+          menuItemSubMenu({
             label: 'Recent',
-            icon: ChevronRightIcon,
             menu: [
               menuItemMenuItem({
                 label: 'File 1',

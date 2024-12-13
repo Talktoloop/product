@@ -3,6 +3,10 @@ import type { MenubarRootEmits, MenubarRootProps } from 'radix-vue';
 import type { Emits } from '../../../composables/useForwardPropsEmits';
 import type { MenuItemMenu } from '@ui/atomic/types';
 
+defineOptions({
+  name: 'MoleculeMenuBar',
+})
+
 interface Props extends MenubarRootProps {
   menu: MenuItemMenu[]
 }

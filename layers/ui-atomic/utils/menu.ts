@@ -1,3 +1,4 @@
+import { ChevronRightIcon } from 'lucide-vue-next'
 import type * as Menu from '../types/menu'
 
 function menuItem<T extends Menu.MenuItem>(type: T['__type'], item: Omit<T, 'id' | '__type'>): T {
@@ -18,6 +19,12 @@ export function isMenuItemMenu(item: unknown | Menu.MenuItemMenu): item is Menu.
 
 export function menuItemMenu(item: Omit<Menu.MenuItemMenu, '__type' | 'id'>): Menu.MenuItemMenu {
   return menuItem('MenuItemMenu', item)
+}
+
+export function menuItemSubMenu(
+  item: Omit<Menu.MenuItemMenu, '__type' | 'id' | 'icon'>
+): Menu.MenuItemMenu {
+  return menuItem('MenuItemMenu', { ...item, icon: ChevronRightIcon })
 }
 
 export function isMenuItemMenuItem(
@@ -66,4 +73,12 @@ export function menuItemSeparator(
   item: Omit<Menu.MenuItemSeparator, '__type' | 'id'> = {}
 ): Menu.MenuItemSeparator {
   return menuItem('MenuItemSeparator', item)
+}
+
+export const menuItemVariants = {
+  separator: isMenuItemSeparator,
+  checkbox: isMenuItemCheckbox,
+  radioGroup: isMenuItemRadioGroup,
+  menu: isMenuItemMenu,
+  item: isMenuItemMenuItem,
 }

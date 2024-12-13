@@ -5,27 +5,26 @@ const meta = {
   title: 'Atomic/Molecule/Menu/Dropdown',
   component: MoleculeMenuDropdown,
   tags: ['autodocs'],
+  ...withSlots(MoleculeMenuDropdown, 'trigger'),
 } satisfies Meta<typeof MoleculeMenuDropdown>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  render: () => ({
-    components: { MoleculeMenuDropdown },
-    template: `
-      <MoleculeMenuDropdown>
-        <template #trigger>
-          <button>Open Menu</button>
-        </template>
-        <template #content>
-          <div class="p-2">
-            <div class="py-1">Item 1</div>
-            <div class="py-1">Item 2</div>
-            <div class="py-1">Item 3</div>
-          </div>
-        </template>
-      </MoleculeMenuDropdown>
-    `,
-  }),
+  args: {
+    trigger: 'Open Menu',
+    menu: [
+      menuItemMenu({
+        label: 'Profile',
+        shortcut: '⇧⌘P',
+        menu: [
+          menuItemMenuItem({
+            label: 'Profile',
+            shortcut: '⇧⌘P',
+          }),
+        ],
+      }),
+    ],
+  },
 }
