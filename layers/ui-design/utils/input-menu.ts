@@ -1,4 +1,4 @@
-import type { MenuItemMenu, MenuItemMenuItem, MenuItemRadioGroup } from '@ui/atomic/types'
+import type { MenuItemMenu, MenuItemMenuItem, MenuItemRadioGroup } from '@ui/base/types'
 
 import type {
   InputMenuItem,

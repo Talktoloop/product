@@ -10,7 +10,7 @@ function resolve(path: string) {
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-07',
   devtools: { enabled: true },
-  extends: ['@ourloop/product-layer-ui-atomic'],
+  extends: ['@ourloop/product-layer-ui-base'],
   modules: ['@nuxt/eslint'],
   alias: {
     '@ui/design': resolve('./components'),

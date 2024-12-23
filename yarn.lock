@@ -1982,9 +1982,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ourloop/product-layer-ui-atomic@npm:*, @ourloop/product-layer-ui-atomic@workspace:layers/ui-atomic":
+"@ourloop/product-layer-ui-base@npm:*, @ourloop/product-layer-ui-base@workspace:layers/ui-base":
   version: 0.0.0-use.local
-  resolution: "@ourloop/product-layer-ui-atomic@workspace:layers/ui-atomic"
+  resolution: "@ourloop/product-layer-ui-base@workspace:layers/ui-base"
   dependencies:
     "@iconify-json/radix-icons": "npm:^1.2.1"
     "@iconify/vue": "npm:^4.1.2"
@@ -2035,7 +2035,7 @@ __metadata:
   resolution: "@ourloop/product-layer-ui-design@workspace:layers/ui-design"
   dependencies:
     "@nuxt/eslint": "npm:latest"
-    "@ourloop/product-layer-ui-atomic": "npm:*"
+    "@ourloop/product-layer-ui-base": "npm:*"
     eslint: "npm:^9.15.0"
     lucide-vue-next: "npm:^0.469.0"
     nuxt: "npm:^3.14.1592"

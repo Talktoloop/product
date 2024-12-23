@@ -1,4 +1,4 @@
-# Mapping Shadcn Components to Atomic Design System
+# Mapping Shadcn Components to Base Design System
 
 ## Atoms
 

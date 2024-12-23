@@ -9,10 +9,10 @@
     - apps/\* - Nuxt apps
       - extends: layers/ui-design, layers/shell
     - layers/ui-design - Design system
-      - extends: layers/ui-atomic
+      - extends: layers/ui-base
       - depends on:
         - core/config
-    - layers/ui-atomic - Atomic components
+    - layers/ui-base - Base components
       - extends: layers/core
       - depends on:
         - Shadcn Vue

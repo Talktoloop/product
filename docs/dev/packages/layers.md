@@ -41,7 +41,7 @@
   import { extendAndJoin } from '@ourloop/product-core-config/eslint'
   import core from './core/eslint.config.js'
   import shell from './shell/eslint.config.js'
-  import uiAtomic from './ui-atomic/eslint.config.js'
+  import uiBase from './ui-base/eslint.config.js'
   import uiMouldable from './ui-mouldable/eslint.config.js'
   import uiDesign from './ui-design/eslint.config.js'
   import yourLayer from './your-layer/eslint.config.js'
@@ -50,7 +50,7 @@
     {
       core,
       shell,
-      'ui-atomic': uiAtomic,
+      'ui-base': uiBase,
       'ui-mouldable': uiMouldable,
       'ui-design': uiDesign,
       'your-layer': yourLayer,

@@ -1,6 +1,6 @@
 # Mouldables
 
-While Variants are the building blocks of Mouldable UI, it is often necessary to use more than one variant in combination with Atomic components to achieve common, but more complex patterns often related to type ofcontainer.
+While Variants are the building blocks of Mouldable UI, it is often necessary to use more than one variant in combination with Base components to achieve common, but more complex patterns often related to type ofcontainer.
 
 We collect these common patterns in the Mouldables.
 

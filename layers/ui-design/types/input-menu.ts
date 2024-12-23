@@ -1,5 +1,5 @@
 import type { Component } from 'vue'
-import type { BaseMenuItem, MenuItemSeparator } from '@ui/atomic/types'
+import type { BaseMenuItem, MenuItemSeparator } from '@ui/base/types'
 
 export interface BaseInputMenu extends BaseMenuItem {
   label: string
