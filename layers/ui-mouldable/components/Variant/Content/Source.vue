@@ -1,4 +1,8 @@
 <script setup lang="ts" generic="T">
+defineOptions({
+  name: 'VariantContentSource'
+})
+
 interface Props {
   id: string
 }

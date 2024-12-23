@@ -1,34 +1,37 @@
-export interface BaseInputMenu {
-  __type: string
+import type { Component } from 'vue'
+import type { BaseMenuItem, MenuItemSeparator } from '@ui/atomic/types'
+
+export interface BaseInputMenu extends BaseMenuItem {
   label: string
-  icon?: Component | string
+  icon?: Component
+  inset?: never
 }
 
-export interface InputMenuItem<T> extends BaseInputMenu {
-  __type: 'InputMenuItem'
-  action?: InputMenuAction<T>
-}
-
-export interface InputMenuInputChoice<T> extends BaseInputMenu {
-  __type: 'InputMenuInputChoice'
-  value: T
+export interface InputMenuItemChoice extends BaseInputMenu {
+  __type: 'InputMenuItemChoice'
+  value: string
   selected: boolean
 }
 
-export interface InputMenuGroup<T> extends BaseInputMenu {
-  __type: 'InputMenuGroup'
-  items: InputMenuItem<T>[]
+export interface InputMenuItemMenu extends BaseInputMenu {
+  __type: 'InputMenuItemMenu'
+  menu: InputMenuItem[]
 }
 
-export interface InputMenuChoice<T> extends BaseInputMenu {
+export interface InputMenuChoice extends BaseInputMenu {
   __type: 'InputMenuChoice'
   multiple: boolean
-  items: InputMenuInputChoice<T>[]
+  value: string
+  items: { label: string; value: string; checked?: boolean }[]
 }
 
-export interface InputMenuAction<T> extends BaseInputMenu {
-  __type: 'InputMenuAction'
-  action: (value: T) => void
+export interface InputMenuItemMenuItem extends BaseInputMenu {
+  __type: 'InputMenuItemMenuItem'
+  action: () => void
 }
 
-export type InputMenu<T> = InputMenuGroup<T> | InputMenuChoice<T> | InputMenuAction<T>
+export type InputMenuItem =
+  | InputMenuItemMenu
+  | InputMenuChoice
+  | InputMenuItemMenuItem
+  | MenuItemSeparator

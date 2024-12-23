@@ -12,7 +12,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@ourloop/product-layer-ui-atomic": "*"
+    "@ourloop/product-layer-ui-atomic": "*",
+    "lucide-vue-next": "^0.469.0"
   },
   "devDependencies": {
     "@nuxt/eslint": "latest",

@@ -1,6 +1,10 @@
 <script setup lang="ts" generic="T, G extends GuardMap">
 import type { GuardMap, VariantMap, VariantSlots } from '@ui/mouldable/types';
 
+defineOptions({
+  name: 'VariantAssembly'
+})
+
 interface Props {
   value: T
   variants: G

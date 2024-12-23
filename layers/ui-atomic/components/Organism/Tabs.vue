@@ -15,13 +15,15 @@ interface Props extends TabsRootProps {
   items: TabItem[]
 }
 
+const model = defineModel<string>()
+
 const props = defineProps<Props>()
 
 const forward = useForwardPropsEmits(props, undefined, ['items'])
 </script>
 
 <template>
-  <shadcn-tabs v-bind="forward">
+  <shadcn-tabs v-bind="forward" v-model="model">
     <shadcn-tabs-list>
       <shadcn-tabs-trigger v-for="item in items" :key="item.value" :value="item.value">
         <slot :name="`${item.value}-trigger`" :label="item.label">

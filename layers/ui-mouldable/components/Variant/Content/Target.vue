@@ -1,4 +1,8 @@
 <script setup lang="ts" generic="T">
+defineOptions({
+  name: 'VariantContentTarget'
+})
+
 interface Props {
   id: string
   value: T

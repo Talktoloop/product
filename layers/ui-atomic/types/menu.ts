@@ -1,3 +1,9 @@
+import type { NuxtLinkProps } from '#app'
+
+export interface MenuLink extends NuxtLinkProps {
+  onClick?: () => void
+}
+
 export interface BaseMenuItem {
   __type: string
   id: string
@@ -17,6 +23,7 @@ export interface MenuItemMenuBase extends BaseMenuItem {
 
 export interface MenuItemMenuItem extends MenuItemMenuBase {
   __type: 'MenuItemMenuItem'
+  link?: MenuLink
 }
 
 export interface MenuItemMenu extends MenuItemMenuBase {
@@ -29,6 +36,7 @@ export interface MenuItemCheckbox extends BaseMenuItem {
   label: string
   icon?: Component
   shortcut?: string
+  value: string
   checked?: boolean
 }
 

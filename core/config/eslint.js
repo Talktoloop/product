@@ -20,6 +20,7 @@ export const presets = {
       'nuxt/vue/rules': {
         rules: {
           'vue/multi-word-component-names': 'off',
+          'vue/first-attribute-linebreak': 'off',
         },
       },
     },
@@ -44,6 +45,7 @@ export async function config(flatConfig, preset = 'default') {
   const configs = await mergeFlatConfig(config)
   return join(...configs)
 }
+
 
 export function join(...configs) {
   const config = composer()

@@ -2037,6 +2037,7 @@ __metadata:
     "@nuxt/eslint": "npm:latest"
     "@ourloop/product-layer-ui-atomic": "npm:*"
     eslint: "npm:^9.15.0"
+    lucide-vue-next: "npm:^0.469.0"
     nuxt: "npm:^3.14.1592"
     typescript: "npm:^5.7.2"
     vue: "npm:latest"
@@ -9633,6 +9634,15 @@ __metadata:
   peerDependencies:
     vue: ">=3.0.1"
   checksum: 10c0/f9c74cf1916266e4e07ef0d0d32c156b9a9fa0ce535e8558b55c44fbf4ca6d650d563c587f22866bad209fa007445641ddf77bd5e69a7076f04dc6a424858205
+  languageName: node
+  linkType: hard
+
+"lucide-vue-next@npm:^0.469.0":
+  version: 0.469.0
+  resolution: "lucide-vue-next@npm:0.469.0"
+  peerDependencies:
+    vue: ">=3.0.1"
+  checksum: 10c0/5691357e3e2ca9e4d1c83ac0f205d0b761f6f4efbea3f8198734631850e3346bc463929ca1a6d7281ef75ee7932db53b7dce6dd8ad2fb2a8bb65a2ce53b0c401
   languageName: node
   linkType: hard
 

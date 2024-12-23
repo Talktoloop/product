@@ -112,38 +112,38 @@ export default {
 
         // Destructive Red (#FF3B3B) - Error Color
         destructive: {
-          DEFAULT: 'hsl(0 100% 45%)',  // Destructive Red - Error indicators
+          DEFAULT: 'hsl(348.7 49.2% 40.6%)',  // Destructive Red - Error indicators
           foreground: 'hsl(0 0% 100%)', // White - Text on destructive backgrounds
           contrast: 'hsl(0 0% 100%)', // White - Ensures readability on destructive colors
-          50: 'hsl(0 100% 95%)',   // Lightest Destructive Red - Subtle error states
-          100: 'hsl(0 100% 90%)',
-          200: 'hsl(0 100% 85%)',
-          300: 'hsl(0 100% 75%)',
-          400: 'hsl(0 100% 68%)',
-          500: 'hsl(0 100% 61%)',  // Default Destructive Red - Main usage
-          600: 'hsl(0 100% 55%)',
-          700: 'hsl(0 100% 52%)',
-          800: 'hsl(0 100% 50%)',
-          900: 'hsl(0 100% 49%)',  // Darkest Destructive Red - Strong emphasis
-          950: 'hsl(0 100% 45%)',
+          50: 'hsl(348.8 61.5% 95%)',   // Lightest Destructive Red - Subtle error states
+          100: 'hsl(348.8 61.5% 89.8%)',  // #F5D5DB
+          200: 'hsl(348.9 67.9% 78%)',    // #EDA1AF
+          300: 'hsl(348.8 67.8% 65.9%)',  // #E36D83
+          400: 'hsl(348.9 54.5% 47.5%)',  // #C2304B
+          500: 'hsl(348.7 49.2% 40.6%)',  // #B21D39
+          600: 'hsl(348.8 34.8% 30.8%)',  // #8C1128
+          700: 'hsl(349 100% 22.5%)',     // #730015
+          800: 'hsl(349.5 84% 14.7%)',    // #450611
+          900: 'hsl(349.5 84% 10%)',      // Darkest Destructive Red - Strong emphasis
+          950: 'hsl(349.5 84% 5%)',
         },
 
         // Neutral Colors - UI Framework
         muted: {
-          DEFAULT: 'hsl(0 0% 95%)',  // Light Gray - Subdued UI elements
-          foreground: 'hsl(0 0% 10%)', // Near Black - Text on muted backgrounds
-          contrast: 'hsl(0 0% 10%)', // Near Black - Ensures readability on muted colors
-          50: 'hsl(0 0% 98%)',    // Lightest Gray - Subtle backgrounds
-          100: 'hsl(0 0% 97%)',   // #F7F7F7
-          200: 'hsl(0 0% 92%)',   // #EBEBEB
-          300: 'hsl(0 0% 76%)',   // #C2C2C2
-          400: 'hsl(0 0% 64%)',   // #A3A3A3
-          500: 'hsl(0 0% 45%)',   // Default Gray - Main usage
-          600: 'hsl(0 0% 25%)',   // #404040
-          700: 'hsl(0 0% 20%)',
-          800: 'hsl(0 0% 15%)',
-          900: 'hsl(0 0% 10%)',
-          950: 'hsl(0 0% 5%)',    // Darkest Gray - Strong emphasis
+          DEFAULT: 'hsl(0 0% 40%)',  // neutral-500 - Default neutral color
+          foreground: 'hsl(0 0% 10%)', // neutral-800 - Default text
+          contrast: 'hsl(0 0% 100%)', // neutral-000 - Ensures readability
+          0: 'hsl(0 0% 100%)',    // neutral-000 - White
+          50: 'hsl(0 0% 95%)',    // neutral-050 - Background, subtle borders
+          100: 'hsl(0 0% 86%)',   // neutral-100 - Hover states, dividers
+          200: 'hsl(0 0% 78%)',   // neutral-200 - Secondary borders
+          300: 'hsl(0 0% 71%)',   // neutral-300 - Disabled text
+          400: 'hsl(0 0% 57%)',   // neutral-400 - Placeholder text
+          500: 'hsl(0 0% 40%)',   // neutral-500 - Primary neutral
+          600: 'hsl(0 0% 35%)',   // neutral-600 - Strong text
+          700: 'hsl(0 0% 29%)',   // neutral-700 - Low-contrast text
+          800: 'hsl(0 0% 10%)',   // neutral-800 - High-contrast text
+          900: 'hsl(0 0% 5%)',    // neutral-900 - Extra dark text
         },
 
         // Input Colors - Form Element Backgrounds

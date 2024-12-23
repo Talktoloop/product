@@ -21,5 +21,9 @@ defineProps<Props>()
     <template #content="{ attrs, variant: { value } }">
       <MoleculeMenuNavigationMenu :item="value" v-bind="attrs" />
     </template>
+
+    <template #default="{ attrs, variant: { value } }">
+      <MoleculeMenuNavigationDefault :item="value" v-bind="attrs" />
+    </template>
   </VariantAssembly>
 </template>
