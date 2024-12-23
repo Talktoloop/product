@@ -321,9 +321,12 @@ export default {
           warning: 'hsl(44 100% 95%)',     // Very Light Warning Gold - Warning surface
           destructive: 'hsl(0 100% 95%)',  // Very Light Destructive Red - Destructive surface
         },
+        ring: {
+          DEFAULT: 'hsl(222 47% 11%)', // Color: Loop Purple
+        },
       },
       ringColor: {
-        'ring': 'hsl(222 47% 11%)', // Color: Loop Purple
+        ring: 'hsl(222 47% 11%)', // Color: Loop Purple
       },
     },
   },

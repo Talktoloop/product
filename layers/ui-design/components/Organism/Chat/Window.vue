@@ -6,10 +6,12 @@
           <slot name="header-actions" />
         </template>
       </MoleculeChatHeader>
-      <OrganismTabs v-model="activeTab" :items="[
-        { value: 'conversation', label: 'Messenger conversation' },
-        { value: 'story', label: 'Story preview' }
-      ]" />
+      <div class="mx-auto">
+        <OrganismTabs v-model="activeTab" variant="primary" :items="[
+          { value: 'conversation', label: 'Messenger conversation' },
+          { value: 'story', label: 'Story preview' }
+        ]" />
+      </div>
     </div>
 
     <div class="flex-1 overflow-y-auto">

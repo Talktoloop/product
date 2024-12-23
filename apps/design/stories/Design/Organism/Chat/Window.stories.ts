@@ -12,7 +12,7 @@ const meta = {
     messages: { control: 'object' },
   },
   ...withSlots(OrganismChatWindow, 'header-actions'),
-  ...withDecorators(wrapContainer({ class: tw`h-[600px] max-w-2xl` })),
+  ...withDecorators(wrapContainer({ class: tw`h-[600px] max-w-xl` })),
 } satisfies Meta<typeof OrganismChatWindow>
 
 export default meta

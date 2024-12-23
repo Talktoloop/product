@@ -9,13 +9,22 @@ if (process.env.TRACE_CONFIG) {
   console.log('Loading tailwind config: core/config/tailwind/core.js');
 }
 /** @type {import('tailwindcss').Config} */
-
 export default {
   darkMode: ['class'],
   presets: [tailwindDefault],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   plugins: [
     forms,
     aspectRatio,
     containerQueries,
   ],
+  experimental: {
+    logging: {
+      level: 'warn',
+      unknown: true,
+      ignore: [],
+    }
+  }
 };

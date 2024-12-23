@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 import { CheckIcon } from 'lucide-vue-next'
+
 defineOptions({
   name: 'AtomCounter',
 })
@@ -27,7 +28,7 @@ interface Props {
    * The visual style variant of the counter
    * @default 'primary'
    */
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'default'
   /**
    * The intensity of the background color
    * - dark: 700 shade
@@ -58,7 +59,7 @@ const shadeClasses = computed(() => {
   if (props.variant === 'primary') {
     switch (props.shade) {
       case 'dark':
-        return tw`bg-primary-600 text-white`
+        return tw`bg-primary-600 text-primary-contrast`
       case 'light':
         return tw`bg-white text-primary-foreground`
       default: // medium
@@ -67,7 +68,7 @@ const shadeClasses = computed(() => {
   } else {
     switch (props.shade) {
       case 'dark':
-        return tw`bg-secondary-600 text-white`
+        return tw`bg-secondary-600 text-secondary-contrast`
       case 'light':
         return tw`bg-white text-secondary-foreground`
       default: // medium
