@@ -1,0 +1,19 @@
+{
+  "name": "@ourloop/product-app-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "prepare": "nuxt prepare"
+  },
+  "dependencies": {
+    "@ourloop/product-layer-shell": "*",
+    "@ourloop/product-layer-ui-design": "*",
+    "nuxt": "^3.14.1592",
+    "vue": "latest",
+    "vue-router": "latest"
+  }
+}

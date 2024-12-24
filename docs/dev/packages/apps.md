@@ -33,11 +33,11 @@
   - Replace the contents with the following:
 
     ```js
-    import withNuxt from './.playground/.nuxt/eslint.config.mjs'
+    import withNuxt from './.nuxt/eslint.config.mjs'
     import { config, join } from '@ourloop/product-core-config/eslint'
 
     export default join(config(withNuxt(), 'nuxt'), {
-      ignores: ['.playground/**'],
+      ignores: ['.nuxt/**', '.output/**'],
     })
     ```
 
@@ -63,3 +63,29 @@
 - Move to the repository root directory and run:
   - `yarn install`
   - `yarn prepare`
+
+### 5. Tailwind
+
+The core layer has a tailwind config that is used by all apps, additionally, each of the ui layers has a tailwind config that is used by the apps that depend on it. However, you need to provide a minimal config for your app to allow tailwind to discover the classes you use in your app.
+
+- Creating a new file in the `apps/<app-name>/tailwind.config.js` file
+- Initialise it as follows:
+
+  ```js
+  const { join } = require('path')
+
+  /** @type {import('tailwindcss').Config} */
+  module.exports = {
+    content: [join(__dirname, './{components,layouts,pages,utils}/**/*.{js,ts,jsx,tsx,vue}')],
+  }
+  ```
+
+  The content array should include the path to all the files that contain tailwind classes, the default one here will include all the most common paths in the app.
+
+### 6. Getting started
+
+- The nuxt template comes with a default `app.vue` file, if you remove it you will be furnished with a default that includes:
+  - [Nuxt Layout](https://nuxt.com/docs/api/components/nuxt-layout)
+  - [Nuxt Page](https://nuxt.com/docs/api/components/nuxt-page)
+  - [Nuxt Route Announcer](https://nuxt.com/docs/api/components/nuxt-route-announcer)
+  - [Nuxt Loading Indicator](https://nuxt.com/docs/api/components/nuxt-loading-indicator)

@@ -1898,6 +1898,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ourloop/product-app-demo@workspace:apps/demo":
+  version: 0.0.0-use.local
+  resolution: "@ourloop/product-app-demo@workspace:apps/demo"
+  dependencies:
+    "@ourloop/product-layer-shell": "npm:*"
+    "@ourloop/product-layer-ui-design": "npm:*"
+    nuxt: "npm:^3.14.1592"
+    vue: "npm:latest"
+    vue-router: "npm:latest"
+  languageName: unknown
+  linkType: soft
+
 "@ourloop/product-app-design@workspace:apps/design":
   version: 0.0.0-use.local
   resolution: "@ourloop/product-app-design@workspace:apps/design"
