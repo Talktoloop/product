@@ -335,4 +335,4 @@ export default {
       ringColor: ['focus-visible'],
     },
   },
-};
+}

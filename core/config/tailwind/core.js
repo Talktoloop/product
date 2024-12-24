@@ -19,12 +19,5 @@ export default {
     forms,
     aspectRatio,
     containerQueries,
-  ],
-  experimental: {
-    logging: {
-      level: 'warn',
-      unknown: true,
-      ignore: [],
-    }
-  }
-};
+  ]
+}
