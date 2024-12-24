@@ -82,7 +82,38 @@ The core layer has a tailwind config that is used by all apps, additionally, eac
 
   The content array should include the path to all the files that contain tailwind classes, the default one here will include all the most common paths in the app.
 
-### 6. Getting started
+### 6. Docker
+
+- Add the app to the `docker-compose.yml` file:
+
+  ```yml
+  <app-name>:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.app.dockerfile
+      args:
+        - APP_NAME=<app-name>
+        - APP_PORT=${COMPOSE_APP_<app-name>_PORT}
+    ports:
+      - '${COMPOSE_APP_<app-name>_PORT}:${COMPOSE_APP_<app-name>_PORT}'
+    environment:
+      - NODE_ENV=development
+      - NUXT_PORT=${COMPOSE_APP_<app-name>_PORT}
+    volumes:
+      - ./core:/usr/src/product/core
+      - ./layers:/usr/src/product/layers
+      - ./apps/<app-name>:/usr/src/product/apps/<app-name>
+    depends_on:
+      - mysql # (optional) or other services
+  ```
+
+- Update the the template `.env` file `.env.template`:
+
+  ```
+  COMPOSE_APP_<app-name>_PORT=<port>
+  ```
+
+### 7. Getting started
 
 - The nuxt template comes with a default `app.vue` file, if you remove it you will be furnished with a default that includes:
   - [Nuxt Layout](https://nuxt.com/docs/api/components/nuxt-layout)
