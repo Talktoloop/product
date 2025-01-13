@@ -3,7 +3,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact", "vue"],
+  "eslint.enable": true,
+  "eslint.lintTask.enable": true,
+  "eslint.useFlatConfig": true,
+  "eslint.run": "onType",
+  "prettier.enable": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifier": "relative",
   "files.associations": {
@@ -13,6 +17,7 @@
     "vue": "html",
     "vue-html": "html"
   },
+  "css.lint.unknownAtRules": "ignore",
   "tailwindCSS.experimental.classRegex": [
     "tw`([^`]*)",
     "tw=\"([^\"]*)",

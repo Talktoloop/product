@@ -24,6 +24,10 @@
       "dependsOn": [
         "^prepare"
       ],
+      "outputs": [
+        ".nuxt/**",
+        ".playground/.nuxt/**"
+      ],
       "cache": false
     },
     "clean": {

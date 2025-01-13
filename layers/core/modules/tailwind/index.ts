@@ -21,6 +21,7 @@ export default defineNuxtModule({
         Object.keys(resolvedConfig.theme.letterSpacing).join(', ')
       )
       console.log('Tailwind fontWeight:', Object.keys(resolvedConfig.theme.fontWeight).join(', '))
+      console.log('Tailwind variants:', Object.keys(resolvedConfig.variants).join(', '))
     })
   },
 })
