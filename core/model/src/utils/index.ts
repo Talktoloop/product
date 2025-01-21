@@ -1,1 +1,1 @@
-export * from './story'
+export * as story from './story'

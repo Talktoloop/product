@@ -1,7 +1,7 @@
 import type { Story, StoryFilters } from '@ourloop/product-core-model'
-import { toModerationAction } from '@ourloop/product-core-model'
+import { story } from '@ourloop/product-core-model'
 import { defineStore } from 'pinia'
-import { getStories, publishStory, rejectStory } from '@shell/fns/story'
+import * as storyClient from '@shell/fns/story'
 
 export const useStoryModerationStore = defineStore('storyModeration', () => {
   const stories = ref<Story[]>([])
@@ -19,7 +19,13 @@ export const useStoryModerationStore = defineStore('storyModeration', () => {
     error.value = null
 
     try {
-      const response = await getStories(currentPage.value, pageSize.value)
+      const response = await storyClient.query(
+        story.pending({
+          page: currentPage.value,
+          limit: pageSize.value,
+          filters: filters.value,
+        })
+      )
 
       stories.value = response.items
       total.value = response.meta.totalItems
@@ -41,15 +47,15 @@ export const useStoryModerationStore = defineStore('storyModeration', () => {
 
     try {
       if (action === 'publish') {
-        await publishStory(storyId)
+        await storyClient.command(story.publish(storyId))
       } else if (action === 'reject') {
-        const moderationAction = toModerationAction({
-          storyId,
-          action,
-          reason,
-          moderatorNotes,
-        })
-        await rejectStory(storyId, moderationAction)
+        await storyClient.command(
+          story.reject({
+            storyId,
+            reason,
+            moderatorNotes,
+          })
+        )
       }
 
       await fetchStories()

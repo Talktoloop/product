@@ -1,5 +1,5 @@
 import { Client } from '@ourloop/product-core-model'
-import type { StoryModerationAction } from '@ourloop/product-core-model'
+import type { StoryCommand, StoryQuery, StoryListResponse } from '@ourloop/product-core-model'
 import type { OpenAPIConfig } from '@ourloop/product-core-api/talk-to-loop'
 import { useRuntimeConfig } from '#imports'
 
@@ -18,28 +18,12 @@ function createApiClient() {
   return new Client(openApiConfig)
 }
 
-export const getStories = async (page: number, limit: number) => {
+export const query = async (query: StoryQuery): Promise<StoryListResponse> => {
   const api = createApiClient()
-  return api.story.query({
-    type: 'pending',
-    page,
-    limit,
-  })
+  return api.story.query(query)
 }
 
-export const publishStory = async (storyId: string) => {
+export const command = async (cmd: StoryCommand): Promise<void> => {
   const api = createApiClient()
-  return api.story.do({
-    type: 'publish',
-    storyId,
-  })
-}
-
-export const rejectStory = async (storyId: string, action: StoryModerationAction) => {
-  const api = createApiClient()
-  return api.story.do({
-    type: 'reject',
-    storyId,
-    action,
-  })
+  return api.story.do(cmd)
 }

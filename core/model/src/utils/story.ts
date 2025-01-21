@@ -1,29 +1,42 @@
-import type { RejectStoriesDto } from '@ourloop/product-core-api/talk-to-loop'
-import type { StoryModerationAction } from '../types/story'
+import type { StoryCommand, StoryQuery, StoryModerationAction, StoryFilters } from '../types/story'
 
-export function toRejectStoriesDto(action: StoryModerationAction): RejectStoriesDto {
-  return {
-    storiesToReject: [
-      {
-        ...action,
-      },
-    ],
-  }
-}
+/**
+ * Query builders for stories
+ */
+export const pending = (params: {
+  page: number
+  limit: number
+  filters?: StoryFilters
+}): StoryQuery => ({
+  type: 'pending',
+  page: params.page,
+  limit: params.limit,
+  filters: params.filters,
+})
 
-export function toModerationAction(request: {
+/**
+ * Command builders for stories
+ */
+export const publish = (storyId: string): StoryCommand => ({
+  type: 'publish',
+  storyId,
+})
+
+export const reject = (params: {
   storyId: string
-  action: 'publish' | 'reject'
   reason?: string
   moderatorNotes?: string
-}): StoryModerationAction {
-  if (request.action === 'reject') {
-    return {
-      storyId: request.storyId,
-      reasonIds: [],
-      reasonTexts: request.reason ? [request.reason] : [],
-      rationale: request.moderatorNotes,
-    }
+}): StoryCommand => {
+  const action: StoryModerationAction = {
+    storyId: params.storyId,
+    reasonIds: [],
+    reasonTexts: params.reason ? [params.reason] : [],
+    rationale: params.moderatorNotes,
   }
-  throw new Error('Invalid moderation action')
+
+  return {
+    type: 'reject',
+    storyId: params.storyId,
+    action,
+  }
 }

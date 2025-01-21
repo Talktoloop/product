@@ -4,7 +4,7 @@ export { Client } from './Client'
 export type * from './types'
 
 // Re-export utility functions directly
-export { toRejectStoriesDto, toModerationAction } from './utils/story'
+export * from './utils'
 
 // Group implementation details under namespaces
 export * as impl from './clients'
