@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "name",
+    "path",
+    "templates",
+    "apis"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Package name for the generated types"
+    },
+    "path": {
+      "type": "string",
+      "description": "Output path for the generated types"
+    },
+    "templates": {
+      "type": "object",
+      "required": [
+        "path",
+        "files"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the templates directory"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of template files to copy"
+        }
+      }
+    },
+    "apis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "spec",
+          "outputDir"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the API"
+          },
+          "spec": {
+            "type": "string",
+            "description": "Path to the OpenAPI/Swagger spec file"
+          },
+          "outputDir": {
+            "type": "string",
+            "description": "Directory name for this API's generated types"
+          }
+        }
+      }
+    }
+  }
+}

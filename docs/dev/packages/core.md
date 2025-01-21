@@ -1,4 +1,4 @@
-# TypeScript Packages
+# Core Packages
 
 ## Adding a new TypeScript package
 

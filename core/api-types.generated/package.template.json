@@ -1,0 +1,10 @@
+{
+  "name": "@ourloop/product-core-api-types",
+  "apis": [
+    {
+      "name": "TalkToLoop",
+      "spec": "@ourloop/product-core-config/api/TalkToLoop-swagger-spec.json",
+      "outputDir": "talk-to-loop"
+    }
+  ]
+}

@@ -3,7 +3,8 @@
   "tasks": {
     "build": {
       "dependsOn": [
-        "^build"
+        "^build",
+        "^generate:api-types"
       ],
       "outputs": [
         "dist/**",
@@ -34,6 +35,22 @@
       "dependsOn": [
         "^clean"
       ]
+    },
+    "generate:api-types": {
+      "cache": true,
+      "outputs": [
+        "core/api-types.generated/**"
+      ],
+      "inputs": [
+        "config/api-types.json",
+        "core/config/schema/api-types.schema.json",
+        "core/config/api/TalkToLoop-swagger-spec.json",
+        "config/templates/**/*"
+      ]
+    },
+    "generate:api-types:watch": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

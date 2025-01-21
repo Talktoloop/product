@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
+    "./product/*": "./product/*",
+    "./schema/*": "./schema/*",
+    "./api/*": "./api/*",
     "./tailwind/core": "./tailwind/core.js",
     "./tailwind/typography": "./tailwind/typography.js",
     "./tailwind/spacing": "./tailwind/spacing.js",
