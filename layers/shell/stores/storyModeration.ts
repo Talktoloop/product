@@ -2,7 +2,6 @@ import type { Story, StoryFilters } from '@ourloop/product-core-model'
 import { toModerationAction } from '@ourloop/product-core-model'
 import { defineStore } from 'pinia'
 import { getStories, publishStory, rejectStory } from '@shell/fns/story'
-import { useRuntimeConfig } from '#imports'
 
 export const useStoryModerationStore = defineStore('storyModeration', () => {
   const stories = ref<Story[]>([])
@@ -14,21 +13,13 @@ export const useStoryModerationStore = defineStore('storyModeration', () => {
   const error = ref<string | null>(null)
 
   const totalPages = computed(() => Math.ceil(total.value / pageSize.value))
-  const config = useRuntimeConfig()
 
   const fetchStories = async () => {
     loading.value = true
     error.value = null
 
     try {
-      const response = await getStories(
-        {
-          baseUrl: config.api.baseUrl,
-          token: config.api.token,
-        },
-        currentPage.value,
-        pageSize.value
-      )
+      const response = await getStories(currentPage.value, pageSize.value)
 
       stories.value = response.items
       total.value = response.meta.totalItems
@@ -50,13 +41,7 @@ export const useStoryModerationStore = defineStore('storyModeration', () => {
 
     try {
       if (action === 'publish') {
-        await publishStory(
-          {
-            baseUrl: config.api.baseUrl,
-            token: config.api.token,
-          },
-          storyId
-        )
+        await publishStory(storyId)
       } else if (action === 'reject') {
         const moderationAction = toModerationAction({
           storyId,
@@ -64,14 +49,7 @@ export const useStoryModerationStore = defineStore('storyModeration', () => {
           reason,
           moderatorNotes,
         })
-        await rejectStory(
-          {
-            baseUrl: config.api.baseUrl,
-            token: config.api.token,
-          },
-          storyId,
-          moderationAction
-        )
+        await rejectStory(storyId, moderationAction)
       }
 
       await fetchStories()
