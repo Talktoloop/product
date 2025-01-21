@@ -1,4 +1,11 @@
 import type {
+  TypedObject,
+  CommandObject,
+  QueryObject,
+  ResultObject,
+  ResultEnvelope,
+} from '@ourloop/product-core-types'
+import type {
   StoryListModeratorRO,
   StoryListModeratorPaginationRO,
   RejectStoriesDto,
@@ -6,6 +13,11 @@ import type {
 
 export interface Story extends StoryListModeratorRO {}
 export interface StoryListResponse extends StoryListModeratorPaginationRO {}
+
+export interface StoryPendingResult extends ResultObject<Story[]> {
+  __type: 'StoryPendingResult'
+  data: Story[]
+}
 
 export interface StoryFilters {
   country?: string
@@ -41,13 +53,25 @@ export interface StoryModerationAction {
   notificationLanguage?: string
 }
 
-export type StoryQuery = {
-  type: 'pending'
+export interface StoryPendingQuery extends QueryObject {
+  __type: 'StoryPendingQuery'
   page: number
   limit: number
   filters?: StoryFilters
 }
 
-export type StoryCommand =
-  | { type: 'publish'; storyId: string }
-  | { type: 'reject'; storyId: string; action: StoryModerationAction }
+export interface StoryPublishCommand extends CommandObject {
+  __type: 'StoryPublishCommand'
+  storyId: string
+}
+
+export interface StoryRejectCommand extends CommandObject {
+  __type: 'StoryRejectCommand'
+  storyId: string
+  action: StoryModerationAction
+}
+
+export type StoryQuery = StoryPendingQuery
+export type StoryCommand = StoryPublishCommand | StoryRejectCommand
+export type StoryResult = StoryPendingResult
+export type StoryResultEnvelope = ResultEnvelope<StoryResult>

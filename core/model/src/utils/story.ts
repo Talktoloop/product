@@ -8,7 +8,7 @@ export const pending = (params: {
   limit: number
   filters?: StoryFilters
 }): StoryQuery => ({
-  type: 'pending',
+  __type: 'StoryPendingQuery',
   page: params.page,
   limit: params.limit,
   filters: params.filters,
@@ -18,7 +18,7 @@ export const pending = (params: {
  * Command builders for stories
  */
 export const publish = (storyId: string): StoryCommand => ({
-  type: 'publish',
+  __type: 'StoryPublishCommand',
   storyId,
 })
 
@@ -35,7 +35,7 @@ export const reject = (params: {
   }
 
   return {
-    type: 'reject',
+    __type: 'StoryRejectCommand',
     storyId: params.storyId,
     action,
   }

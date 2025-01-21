@@ -1,11 +1,17 @@
 import { TalkToLoopClient } from '@ourloop/product-core-api/talk-to-loop'
 import type { OpenAPIConfig } from '@ourloop/product-core-api/talk-to-loop'
 import type { QueryDispatcher, CommandDispatcher } from './types/dispatcher'
+import type {
+  CommandObject,
+  QueryObject,
+  ResultObject,
+  ResultEnvelope,
+} from '@ourloop/product-core-types'
 
 export abstract class ModelClient<
-  QueryType extends { type: string },
-  CommandType extends { type: string },
-  ResultType,
+  QueryType extends QueryObject,
+  CommandType extends CommandObject,
+  ResultType extends ResultObject<any>,
 > {
   protected readonly client: TalkToLoopClient
 
@@ -17,13 +23,14 @@ export abstract class ModelClient<
     this.client = new TalkToLoopClient(config)
   }
 
-  async query(query: QueryType): Promise<ResultType> {
-    const handler = this.queryDispatcher[query.type as keyof QueryDispatcher<QueryType, ResultType>]
-    return handler(this.client, query as Extract<QueryType, { type: QueryType['type'] }>)
+  async query(query: QueryType): Promise<ResultEnvelope<ResultType>> {
+    const handler =
+      this.queryDispatcher[query.__type as keyof QueryDispatcher<QueryType, ResultType>]
+    return handler(this.client, query as Extract<QueryType, { __type: QueryType['__type'] }>)
   }
 
   async do(command: CommandType): Promise<void> {
-    const handler = this.commandDispatcher[command.type as keyof CommandDispatcher<CommandType>]
-    await handler(this.client, command as Extract<CommandType, { type: CommandType['type'] }>)
+    const handler = this.commandDispatcher[command.__type as keyof CommandDispatcher<CommandType>]
+    await handler(this.client, command as Extract<CommandType, { __type: CommandType['__type'] }>)
   }
 }
