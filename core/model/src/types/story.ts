@@ -3,7 +3,7 @@ import type {
   CommandObject,
   QueryObject,
   ResultObject,
-  ResultEnvelope,
+  ListResponseMeta,
 } from '@ourloop/product-core-types'
 import type {
   StoryListModeratorRO,
@@ -17,6 +17,7 @@ export interface StoryListResponse extends StoryListModeratorPaginationRO {}
 export interface StoryPendingResult extends ResultObject<Story[]> {
   __type: 'StoryPendingResult'
   data: Story[]
+  meta: ListResponseMeta
 }
 
 export interface StoryFilters {
@@ -74,4 +75,3 @@ export interface StoryRejectCommand extends CommandObject {
 export type StoryQuery = StoryPendingQuery
 export type StoryCommand = StoryPublishCommand | StoryRejectCommand
 export type StoryResult = StoryPendingResult
-export type StoryResultEnvelope = ResultEnvelope<StoryResult>

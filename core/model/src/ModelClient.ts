@@ -1,12 +1,7 @@
 import { TalkToLoopClient } from '@ourloop/product-core-api/talk-to-loop'
 import type { OpenAPIConfig } from '@ourloop/product-core-api/talk-to-loop'
-import type { QueryDispatcher, CommandDispatcher } from './types/dispatcher'
-import type {
-  CommandObject,
-  QueryObject,
-  ResultObject,
-  ResultEnvelope,
-} from '@ourloop/product-core-types'
+import type { QueryDispatcher, CommandDispatcher, QueryResultMap } from './types/client'
+import type { CommandObject, QueryObject, ResultObject } from '@ourloop/product-core-types'
 
 export abstract class ModelClient<
   QueryType extends QueryObject,
@@ -23,10 +18,11 @@ export abstract class ModelClient<
     this.client = new TalkToLoopClient(config)
   }
 
-  async query(query: QueryType): Promise<ResultEnvelope<ResultType>> {
-    const handler =
-      this.queryDispatcher[query.__type as keyof QueryDispatcher<QueryType, ResultType>]
-    return handler(this.client, query as Extract<QueryType, { __type: QueryType['__type'] }>)
+  async query<K extends QueryType['__type']>(
+    query: Extract<QueryType, { __type: K }>
+  ): Promise<QueryResultMap<QueryType, ResultType>[K]> {
+    const handler = this.queryDispatcher[query.__type as K]
+    return handler(this.client, query)
   }
 
   async do(command: CommandType): Promise<void> {

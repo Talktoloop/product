@@ -1,4 +1,12 @@
-import type { StoryCommand, StoryQuery, StoryModerationAction, StoryFilters } from '../types/story'
+import type {
+  StoryCommand,
+  StoryQuery,
+  StoryModerationAction,
+  StoryFilters,
+  Story,
+  StoryPendingResult,
+} from '../types/story'
+import { result } from './result'
 
 /**
  * Query builders for stories
@@ -39,4 +47,28 @@ export const reject = (params: {
     storyId: params.storyId,
     action,
   }
+}
+
+interface PendingStoriesInfo {
+  items: Story[]
+  totalItems: number
+  page: number
+  limit: number
+}
+
+/**
+ * Response builders for stories
+ */
+export const response = {
+  pending: (info: PendingStoriesInfo) =>
+    result<Story[], StoryPendingResult>()
+      .withMeta.many({
+        totalItems: info.totalItems,
+        page: info.page,
+        limit: info.limit,
+      })
+      .build({
+        __type: 'StoryPendingResult',
+        data: info.items,
+      }),
 }
