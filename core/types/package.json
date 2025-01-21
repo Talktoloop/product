@@ -13,7 +13,6 @@
     }
   },
   "dependencies": {
-    "@ourloop/product-core-api-types": "*",
     "@ourloop/product-core-config": "*"
   }
 }

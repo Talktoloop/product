@@ -20,14 +20,15 @@
 </template>
 
 <script setup lang="ts">
-import type { Story, StoryModerationAction } from '@ourloop/product-core-types'
+import type { Story } from '@ourloop/product-core-model/story'
+import type { StoryModerationEmits } from '@ui/design/types'
 
-defineProps<{
+interface StoryListProps {
   stories: Story[]
   loading: boolean
   error: string | null
-}>()
+}
 
-defineEmits<{
-  moderate: [action: StoryModerationAction]
-}>()</script>
+defineProps<StoryListProps>()
+defineEmits<StoryModerationEmits>()
+</script>

@@ -57,6 +57,57 @@
           "outputDir": {
             "type": "string",
             "description": "Directory name for this API's generated types"
+          },
+          "options": {
+            "type": "object",
+            "description": "Options for openapi-typescript-codegen",
+            "default": {
+              "httpClient": "axios",
+              "exportCore": true,
+              "exportServices": true,
+              "exportModels": true
+            },
+            "properties": {
+              "httpClient": {
+                "type": "string",
+                "enum": [
+                  "fetch",
+                  "xhr",
+                  "node",
+                  "axios",
+                  "angular"
+                ],
+                "description": "HTTP client to use",
+                "default": "axios"
+              },
+              "clientName": {
+                "type": "string",
+                "description": "Custom name for the API client"
+              },
+              "useOptions": {
+                "type": "boolean",
+                "description": "Use options pattern for method parameters"
+              },
+              "useUnionTypes": {
+                "type": "boolean",
+                "description": "Use union types instead of enums"
+              },
+              "exportCore": {
+                "type": "boolean",
+                "description": "Export core functionality",
+                "default": true
+              },
+              "exportServices": {
+                "type": "boolean",
+                "description": "Export service classes",
+                "default": true
+              },
+              "exportModels": {
+                "type": "boolean",
+                "description": "Export model interfaces",
+                "default": true
+              }
+            }
           }
         }
       }

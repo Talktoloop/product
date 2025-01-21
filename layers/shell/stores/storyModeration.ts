@@ -1,9 +1,8 @@
-import type {
-  Story,
-  StoryFilters,
-  StoryListResponse,
-  StoryModerationAction,
-} from '@ourloop/product-core-types'
+import type { Story, StoryFilters } from '@ourloop/product-core-model'
+import { toModerationAction } from '@ourloop/product-core-model'
+import { defineStore } from 'pinia'
+import { getStories, publishStory, rejectStory } from '@shell/fns/story'
+import { useRuntimeConfig } from '#imports'
 
 export const useStoryModerationStore = defineStore('storyModeration', () => {
   const stories = ref<Story[]>([])
@@ -15,65 +14,86 @@ export const useStoryModerationStore = defineStore('storyModeration', () => {
   const error = ref<string | null>(null)
 
   const totalPages = computed(() => Math.ceil(total.value / pageSize.value))
+  const config = useRuntimeConfig()
 
-  async function fetchStories() {
+  const fetchStories = async () => {
     loading.value = true
     error.value = null
+
     try {
-      const queryParams = new URLSearchParams()
-      Object.entries(filters.value).forEach(([key, value]) => {
-        if (value) queryParams.append(key, String(value))
-      })
-      queryParams.append('page', String(currentPage.value))
-      queryParams.append('pageSize', String(pageSize.value))
+      const response = await getStories(
+        {
+          baseUrl: config.api.baseUrl,
+          token: config.api.token,
+        },
+        currentPage.value,
+        pageSize.value
+      )
 
-      const response = await $fetch<StoryListResponse>('/api/v1/story/moderator/pending', {
-        params: queryParams,
-      })
-
-      stories.value = response.stories
-      total.value = response.total
+      stories.value = response.items
+      total.value = response.meta.totalItems
     } catch (e) {
-      error.value = 'Failed to fetch stories'
-      console.error(e)
+      error.value = e instanceof Error ? e.message : 'An error occurred'
     } finally {
       loading.value = false
     }
   }
 
-  async function moderateStory(action: StoryModerationAction) {
+  const moderateStory = async (
+    storyId: string,
+    action: 'publish' | 'reject',
+    reason?: string,
+    moderatorNotes?: string
+  ) => {
     loading.value = true
     error.value = null
+
     try {
-      await $fetch(`/api/v1/story/moderator/${action.storyId}/${action.action}`, {
-        method: 'POST',
-        body: {
-          reason: action.reason,
-          moderatorNotes: action.moderatorNotes,
-        },
-      })
+      if (action === 'publish') {
+        await publishStory(
+          {
+            baseUrl: config.api.baseUrl,
+            token: config.api.token,
+          },
+          storyId
+        )
+      } else if (action === 'reject') {
+        const moderationAction = toModerationAction({
+          storyId,
+          action,
+          reason,
+          moderatorNotes,
+        })
+        await rejectStory(
+          {
+            baseUrl: config.api.baseUrl,
+            token: config.api.token,
+          },
+          storyId,
+          moderationAction
+        )
+      }
+
       await fetchStories()
     } catch (e) {
-      error.value = `Failed to ${action.action} story`
-      console.error(e)
+      error.value = e instanceof Error ? e.message : 'An error occurred'
     } finally {
       loading.value = false
     }
   }
 
-  function updateFilters(newFilters: Partial<StoryFilters>) {
+  const updateFilters = (newFilters: Partial<StoryFilters>) => {
     filters.value = { ...filters.value, ...newFilters }
-    currentPage.value = 1 // Reset to first page when filters change
+    currentPage.value = 1
     fetchStories()
   }
 
-  function updatePage(page: number) {
+  const goToPage = (page: number) => {
     currentPage.value = page
     fetchStories()
   }
 
   return {
-    // State
     stories,
     total,
     currentPage,
@@ -81,12 +101,10 @@ export const useStoryModerationStore = defineStore('storyModeration', () => {
     filters,
     loading,
     error,
-    // Getters
     totalPages,
-    // Actions
     fetchStories,
     moderateStory,
     updateFilters,
-    updatePage,
+    goToPage,
   }
 })

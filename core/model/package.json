@@ -1,0 +1,25 @@
+{
+  "name": "@ourloop/product-core-model",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ourloop/product-core-api": "*",
+    "axios": "^1.6.7",
+    "url-template": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/url-template": "^2.0.31",
+    "typescript": "^5.3.3"
+  }
+}

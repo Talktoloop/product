@@ -43,32 +43,57 @@ if (!validate(config)) {
   process.exit(1)
 }
 
-async function copyTemplate(
-  templateName: string,
-  targetPath: string,
-  templatesPath: string,
-  vars: Record<string, any> = {}
-) {
-  let templateContent = await fs.readFile(join(PROJECT_ROOT, templatesPath, templateName), 'utf-8')
+function processEntries<T extends object>(obj: T): T {
+  if (obj === null || typeof obj !== 'object') {
+    return obj
+  }
 
-  if (templateName.endsWith('.template.json')) {
+  if (Array.isArray(obj)) {
+    return obj.map((item) => processEntries(item)) as T
+  }
+
+  const keys = Object.keys(obj)
+  if (keys.length === 1 && keys[0] === '{$entries}') {
+    return Object.fromEntries(processEntries(obj['{$entries}'])) as T
+  }
+
+  const result = { ...obj }
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === 'object' && value !== null) {
+      result[key] = processEntries(value)
+    }
+  }
+  return result as T
+}
+
+async function copyTemplate(
+  templateFile: string,
+  outputFile: string,
+  templatePath: string,
+  data: object
+) {
+  const template = await fs.readFile(join(PROJECT_ROOT, templatePath, templateFile), 'utf-8')
+
+  if (templateFile.endsWith('.template.json')) {
     // Use ST.js for JSON templates
-    const template = JSON.parse(templateContent)
-    const result = ST.select(vars).transform(template).root()
-    await fs.writeFile(targetPath, JSON.stringify(result, null, 2))
+    let result = ST.select(JSON.parse(template)).transform(data).root()
+    // Process #entries directives
+    result = processEntries(result)
+    await fs.writeFile(outputFile, JSON.stringify(result, null, 2))
     return
   }
 
-  if (templateName.endsWith('.hbs')) {
+  if (templateFile.endsWith('.hbs')) {
     // Use Handlebars for .hbs templates
-    const template = Handlebars.compile(templateContent)
-    const result = template(vars)
-    await fs.writeFile(targetPath, result)
+    const compiled = Handlebars.compile(template)
+    const processed = processEntries(data)
+    const result = compiled(processed)
+    await fs.writeFile(outputFile, result)
     return
   }
 
   // For other files, just copy as-is
-  await fs.writeFile(targetPath, templateContent)
+  await fs.writeFile(outputFile, template)
 }
 
 async function generatePackage(config: GeneratorConfig) {
@@ -103,12 +128,9 @@ async function generatePackage(config: GeneratorConfig) {
   for (const templateFile of config.templates.files) {
     await copyTemplate(
       templateFile,
-      join(outputRoot, templateFile.replace(/\.(hbs|template)$/, '')),
+      join(outputRoot, templateFile.replace('.template.', '.')),
       config.templates.path,
-      {
-        name: config.name,
-        apis: config.apis,
-      }
+      config
     )
   }
 
@@ -125,10 +147,7 @@ async function generatePackage(config: GeneratorConfig) {
       await generate({
         input: spec,
         output: outputPath,
-        useUnionTypes: true,
-        exportCore: true,
-        exportServices: false,
-        exportModels: true,
+        ...api.options,
       })
 
       console.log(`✅ Successfully generated types for ${api.name}`)
