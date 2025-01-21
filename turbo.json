@@ -42,10 +42,10 @@
         "core/api-types.generated/**"
       ],
       "inputs": [
-        "config/api-types.json",
+        "generate/packages/api-types.json",
         "core/config/schema/api-types.schema.json",
         "core/config/api/TalkToLoop-swagger-spec.json",
-        "config/templates/**/*"
+        "generate/packages/templates/**/*"
       ]
     },
     "generate:api-types:watch": {

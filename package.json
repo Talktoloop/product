@@ -16,8 +16,8 @@
     "lint:fix": "eslint . --fix",
     "lint:staged": "lint-staged",
     "postinstall": "husky install",
-    "generate:api-types": "cd opt/packages/package-generator && yarn generate:api-types $PWD/config/api-types.json",
-    "generate:api-types:watch": "cd opt/packages/package-generator && yarn generate:api-types:watch $PWD/config/api-types.json"
+    "generate:api-types": "cd opt/packages/package-generator && yarn generate:api-types $PWD/generate/packages/api-types.json",
+    "generate:api-types:watch": "cd opt/packages/package-generator && yarn generate:api-types:watch $PWD/generate/packages/api-types.json"
   },
   "workspaces": [
     "core/*",
