@@ -42,11 +42,15 @@ Refactor all components to:
   - [*] AccordionContent.vue - Added dark mode variants and improved readability
   - [*] AccordionItem.vue - Added dark mode border color
   - [*] Accordion.vue - No styling needed (wrapper component)
-- [x] alert (ready to commit)
-  - [x] Alert variants - Added dark mode variants and improved readability
-  - [x] AlertTitle.vue - Added dark mode text color and improved readability
-  - [x] AlertDescription.vue - Added dark mode text color and improved readability
-- [ ] alert-dialog
+- [*] alert (committed fcb5627)
+  - [*] Alert variants - Added dark mode variants and improved readability
+  - [*] AlertTitle.vue - Added dark mode text color and improved readability
+  - [*] AlertDescription.vue - Added dark mode text color and improved readability
+- [x] alert-dialog (ready to commit)
+  - [x] AlertDialogContent.vue - Added dark mode variants and improved readability
+  - [x] AlertDialogTitle.vue - Added dark mode text color and improved readability
+  - [x] AlertDialogDescription.vue - Added dark mode text color and improved readability
+  - [x] Other components - No styling needed (wrapper components)
 - [ ] aspect-ratio
 - [ ] auto-form
 - [ ] avatar
@@ -108,9 +112,9 @@ TODO: List all design components
 
 ## Current Status
 
-✅ Completed alert component set:
+✅ Completed alert-dialog component set:
 
-- Added dark mode variants to alert base classes and variants
+- Added dark mode variants to content overlay and background
 - Added dark mode text colors to title and description
 - Improved readability with tw template literals
 - Ready to commit changes
