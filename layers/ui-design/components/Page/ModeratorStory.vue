@@ -1,5 +1,5 @@
 <template>
-  <TemplateStoryModeration :stories="stories" :loading="loading" :error="error" :filters="filters"
+  <TemplateViewStoryModeration :stories="stories" :loading="loading" :error="error" :filters="filters"
     :current-page="currentPage" :total-pages="totalPages" @update:filters="$emit('update:filters', $event)"
     @story:publish="$emit('story:publish', $event)" @story:reject="$emit('story:reject', $event)"
     @update:page="$emit('update:page', $event)" />
@@ -7,6 +7,10 @@
 
 <script setup lang="ts">
 import type { Story, StoryFilters } from '@ourloop/product-core-model'
+
+defineOptions({
+  name: 'PageModeratorStory'
+})
 
 interface ModeratorStoryProps {
   stories: Story[]

@@ -1,12 +1,26 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <OrganismHeader />
-    <main>
-      <slot />
-    </main>
-  </div>
+  <TemplateLayoutDefault :user="user" @logout="handleLogout">
+    <slot />
+  </TemplateLayoutDefault>
 </template>
 
 <script setup lang="ts">
-// The OrganismHeader component will be auto-imported by Nuxt
+defineOptions({
+  name: 'LayoutDefault'
+})
+
+interface User {
+  name: string
+  avatarUrl?: string
+}
+
+// Mock user data - this should come from auth state
+const user = ref<User>({
+  name: 'John Doe'
+})
+
+const handleLogout = () => {
+  // Handle logout - this should be implemented in the shell layer
+  console.log('Logout clicked')
+}
 </script>

@@ -1,18 +1,12 @@
 import type {
-  TypedObject,
   CommandObject,
   QueryObject,
   ResultObject,
   ListResponseMeta,
-  QueryContract,
-  CommandContract,
   EmptyResult,
   MessageContract,
 } from '@ourloop/product-core-types'
-import type {
-  StoryListModeratorRO,
-  StoryListModeratorPaginationRO,
-} from '@ourloop/product-core-api/talk-to-loop'
+import type { StoryListModeratorRO } from '@ourloop/product-core-api/talk-to-loop'
 
 export interface Story extends StoryListModeratorRO {}
 

@@ -54,25 +54,25 @@ const props = withDefaults(defineProps<Props>(), {
 
 const shadeClasses = computed(() => {
   if (props.disabled) {
-    return tw`bg-muted-100 text-muted-400`
+    return tw`bg-button-ghost-disabled text-button-ghost-foreground dark:bg-dark-button-ghost-disabled dark:text-dark-button-ghost-foreground`
   }
   if (props.variant === 'primary') {
     switch (props.shade) {
       case 'dark':
-        return tw`bg-primary-600 text-primary-contrast`
+        return tw`bg-button-primary-active text-button-primary-foreground dark:bg-dark-button-primary-active dark:text-dark-button-primary-foreground`
       case 'light':
-        return tw`bg-white text-primary-foreground`
+        return tw`bg-button-primary-disabled text-button-primary-foreground dark:bg-dark-button-primary-disabled dark:text-dark-button-primary-foreground`
       default: // medium
-        return tw`bg-primary-200 text-primary-foreground`
+        return tw`bg-button-primary text-button-primary-foreground dark:bg-dark-button-primary dark:text-dark-button-primary-foreground`
     }
   } else {
     switch (props.shade) {
       case 'dark':
-        return tw`bg-secondary-600 text-secondary-contrast`
+        return tw`bg-button-secondary-active text-button-secondary-foreground dark:bg-dark-button-secondary-active dark:text-dark-button-secondary-foreground`
       case 'light':
-        return tw`bg-white text-secondary-foreground`
+        return tw`bg-button-secondary-disabled text-button-secondary-foreground dark:bg-dark-button-secondary-disabled dark:text-dark-button-secondary-foreground`
       default: // medium
-        return tw`bg-secondary-200 text-secondary-foreground`
+        return tw`bg-button-secondary text-button-secondary-foreground dark:bg-dark-button-secondary dark:text-dark-button-secondary-foreground`
     }
   }
 })

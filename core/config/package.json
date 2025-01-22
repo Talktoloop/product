@@ -6,10 +6,7 @@
     "./product/*": "./product/*",
     "./schema/*": "./schema/*",
     "./api/*": "./api/*",
-    "./tailwind/core": "./tailwind/core.js",
-    "./tailwind/typography": "./tailwind/typography.js",
-    "./tailwind/spacing": "./tailwind/spacing.js",
-    "./tailwind/colors": "./tailwind/colors.js",
+    "./tailwind/*": "./tailwind/*",
     "./eslint": "./eslint.js",
     "./tsconfig": "./tsconfig.core.json"
   },
