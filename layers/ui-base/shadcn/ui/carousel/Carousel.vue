@@ -28,7 +28,6 @@ function onKeyDown(event: KeyboardEvent) {
   if (event.key === prevKey) {
     event.preventDefault()
     scrollPrev()
-
     return
   }
 
@@ -37,16 +36,15 @@ function onKeyDown(event: KeyboardEvent) {
     scrollNext()
   }
 }
+
+const carouselClasses = tw`
+  relative
+`
 </script>
 
 <template>
-  <div
-    :class="cn('relative', props.class)"
-    role="region"
-    aria-roledescription="carousel"
-    tabindex="0"
-    @keydown="onKeyDown"
-  >
+  <div :class="cn(carouselClasses, props.class)" role="region" aria-roledescription="carousel" tabindex="0"
+    @keydown="onKeyDown">
     <slot :can-scroll-next :can-scroll-prev :carousel-api :carousel-ref :orientation :scroll-next :scroll-prev />
   </div>
 </template>
