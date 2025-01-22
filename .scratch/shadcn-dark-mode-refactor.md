@@ -2,7 +2,7 @@
 
 ## Task Description
 
-IMPORTANT: Read these instructions and recite them aloud before each iteration, highlight each discrete step and it's parameters. Repeat anything marked as IMPORTANT verbsatim as the start of each iteration.
+IMPORTANT: Read these instructions and recite them aloud before each iteration, highlight each discrete step and it's parameters. Repeat anything marked as IMPORTANT verbatim as the start of each iteration.
 
 IMPORTANT: Don't change the component structure or semantics, just add the dark mode variants and improve readability
 
@@ -82,8 +82,19 @@ Refactor all components to:
   - [*] CalendarHeadCell.vue - Added dark mode variants and improved readability
   - [*] CalendarHeading.vue - Added dark mode variants and improved readability
   - [*] Other components - No styling needed (wrapper components)
-- [ ] card
-- [ ] carousel
+- [*] card (committed 8134e0a)
+  - [*] Card.vue - Added dark mode variants and improved readability
+  - [*] CardContent.vue - Improved readability with tw template literals
+  - [*] CardDescription.vue - Added dark mode variants and improved readability
+  - [*] CardFooter.vue - Improved readability with tw template literals
+  - [*] CardHeader.vue - Improved readability with tw template literals
+  - [*] CardTitle.vue - Added dark mode variants and improved readability
+- [*] carousel (committed 38a337b)
+  - [*] Carousel.vue - Improved readability with tw template literals
+  - [*] CarouselContent.vue - Improved readability with tw template literals
+  - [*] CarouselItem.vue - Improved readability with tw template literals
+  - [*] CarouselNext.vue - Improved readability with tw template literals
+  - [*] CarouselPrevious.vue - Improved readability with tw template literals
 - [ ] chart
 - [ ] checkbox
 - [ ] collapsible
@@ -136,14 +147,13 @@ TODO: List all design components
 
 ## Current Status
 
-Calendar component refactoring complete:
+Carousel component refactoring complete:
 
-1. Added dark mode variants to all text colors and backgrounds
-2. Improved readability with tw template literals
-3. Grouped related styles together for better maintainability
-4. Other components are wrappers, no styling changes needed
+1. Improved readability with tw template literals across all components
+2. Grouped related styles together for better maintainability
+3. Fixed type issues with orientation parameter
 
-Ready to commit calendar changes and move on to card component.
+Ready to commit carousel changes and move on to chart component.
 
 ## Dependencies
 

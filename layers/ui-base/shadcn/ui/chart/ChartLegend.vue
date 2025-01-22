@@ -16,12 +16,20 @@ const emits = defineEmits<{
 
 const elRef = ref<HTMLElement>()
 
+const wrapperClasses = tw`
+  w-max
+`
+
 onMounted(() => {
   const selector = `.${BulletLegend.selectors.item}`
   nextTick(() => {
     const elements = elRef.value?.querySelectorAll(selector)
-    const classes = buttonVariants({ variant: 'ghost', size: 'xs' }).split(' ')
-    elements?.forEach(el => el.classList.add(...classes, '!inline-flex', '!mr-2'))
+    const classes = [
+      ...buttonVariants({ variant: 'ghost', size: 'sm' }).split(' '),
+      '!inline-flex',
+      '!mr-2'
+    ]
+    elements?.forEach(el => el.classList.add(...classes))
   })
 })
 
@@ -41,7 +49,7 @@ function onLegendItemClick(d: BulletLegendItemInterface, i: number) {
 </script>
 
 <template>
-  <div ref="elRef" class="w-max">
+  <div ref="elRef" :class="wrapperClasses">
     <VisBulletLegend :items="items" :on-legend-item-click="onLegendItemClick" />
   </div>
 </template>
