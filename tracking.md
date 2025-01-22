@@ -24,16 +24,20 @@
   - No styling changes needed for:
     - ChartCrosshair.vue (wrapper)
     - ChartSingleTooltip.vue (wrapper)
+- [x] checkbox - Committed 3903483
+  - Added dark mode variants and improved readability with tw template literals
 
 ### In Progress
 
-- [~] checkbox
-  - Added dark mode variants and improved readability with tw template literals
+- [~] collapsible
+  - Improved readability with tw template literals for CollapsibleContent.vue
+  - No styling changes needed for:
+    - Collapsible.vue (wrapper)
+    - CollapsibleTrigger.vue (wrapper)
   - Ready to commit
 
 ### Todo
 
-- [ ] collapsible
 - [ ] command
 - [ ] context-menu
 - [ ] dialog
@@ -63,4 +67,4 @@
 
 ## Current Status
 
-Checkbox component refactoring complete. Added dark mode variants and improved readability with tw template literals. Ready to commit changes and move on to collapsible component.
+Collapsible component refactoring complete. Improved readability with tw template literals for CollapsibleContent.vue. Collapsible.vue and CollapsibleTrigger.vue are wrapper components that don't require styling changes. Ready to commit changes and move on to command component.
