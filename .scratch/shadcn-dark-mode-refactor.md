@@ -37,19 +37,22 @@ Refactor all components to:
 
 ### Shadcn Components
 
-- [x] accordion
-  - [x] AccordionTrigger.vue - Added dark mode variants and improved readability
-  - [x] AccordionContent.vue - Added dark mode variants and improved readability
-  - [x] AccordionItem.vue - Added dark mode variants and improved readability
-  - [x] Accordion.vue - No styling needed (wrapper component)
-- [ ] alert (next)
+- [*] accordion (committed f7bc513)
+  - [*] AccordionTrigger.vue - Added dark mode variants and improved readability
+  - [*] AccordionContent.vue - Added dark mode variants and improved readability
+  - [*] AccordionItem.vue - Added dark mode border color
+  - [*] Accordion.vue - No styling needed (wrapper component)
+- [x] alert (ready to commit)
+  - [x] Alert variants - Added dark mode variants and improved readability
+  - [x] AlertTitle.vue - Added dark mode text color and improved readability
+  - [x] AlertDescription.vue - Added dark mode text color and improved readability
 - [ ] alert-dialog
 - [ ] aspect-ratio
 - [ ] auto-form
 - [ ] avatar
 - [ ] badge
 - [ ] breadcrumb
-- [ ] button ✓ (already done)
+- [*] button (already done)
 - [ ] calendar
 - [ ] card
 - [ ] carousel
@@ -105,14 +108,12 @@ TODO: List all design components
 
 ## Current Status
 
-✅ Completed accordion component set:
+✅ Completed alert component set:
 
-- Added dark mode variants to AccordionTrigger and AccordionContent
-- Improved class readability with tw template literals
-- Added dark mode border color to AccordionItem
-- No changes needed for main Accordion component (wrapper)
-
-Moving on to alert component next.
+- Added dark mode variants to alert base classes and variants
+- Added dark mode text colors to title and description
+- Improved readability with tw template literals
+- Ready to commit changes
 
 ## Commit Message Template
 
