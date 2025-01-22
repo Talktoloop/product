@@ -17,21 +17,22 @@
     - CarouselItem.vue
     - CarouselNext.vue
     - CarouselPrevious.vue
-
-### In Progress
-
-- [~] chart
+- [x] chart - Committed efb33b5
   - Improved readability with tw template literals for:
     - ChartTooltip.vue
     - ChartLegend.vue
   - No styling changes needed for:
     - ChartCrosshair.vue (wrapper)
     - ChartSingleTooltip.vue (wrapper)
+
+### In Progress
+
+- [~] checkbox
+  - Added dark mode variants and improved readability with tw template literals
   - Ready to commit
 
 ### Todo
 
-- [ ] checkbox
 - [ ] collapsible
 - [ ] command
 - [ ] context-menu
@@ -62,4 +63,4 @@
 
 ## Current Status
 
-Chart component refactoring complete. Added improved readability with tw template literals for ChartTooltip and ChartLegend components. ChartCrosshair and ChartSingleTooltip are wrapper components that don't require styling changes. Ready to commit changes and move on to checkbox component.
+Checkbox component refactoring complete. Added dark mode variants and improved readability with tw template literals. Ready to commit changes and move on to collapsible component.
