@@ -34,6 +34,7 @@ Refactor all components to:
 - Update the status from `[ ]` to `[x]` after each component/sub-component/etc has been refactored.
 - Make a git commit after each root component has been refactored.
 - Update the status from `[x]` to `[*]` after the commit hase been made and the working state is clear.
+- Mark components with `[~]` if they depend on other components that need to be refactored first
 
 ### Shadcn Components
 
@@ -46,14 +47,21 @@ Refactor all components to:
   - [*] Alert variants - Added dark mode variants and improved readability
   - [*] AlertTitle.vue - Added dark mode text color and improved readability
   - [*] AlertDescription.vue - Added dark mode text color and improved readability
-- [x] alert-dialog (ready to commit)
-  - [x] AlertDialogContent.vue - Added dark mode variants and improved readability
-  - [x] AlertDialogTitle.vue - Added dark mode text color and improved readability
-  - [x] AlertDialogDescription.vue - Added dark mode text color and improved readability
-  - [x] Other components - No styling needed (wrapper components)
-- [ ] aspect-ratio
-- [ ] auto-form
-- [ ] avatar
+- [*] alert-dialog (committed d43d7c5)
+  - [*] AlertDialogContent.vue - Added dark mode variants and improved readability
+  - [*] AlertDialogTitle.vue - Added dark mode text color and improved readability
+  - [*] AlertDialogDescription.vue - Added dark mode text color and improved readability
+  - [*] Other components - No styling needed (wrapper components)
+- [x] aspect-ratio (no styling needed)
+  - [x] AspectRatio.vue - No styling needed (wrapper component)
+- [~] auto-form (depends on form, input, textarea)
+  - [~] AutoFormField.vue - Uses form components
+  - [~] AutoFormFieldInput.vue - Uses input and textarea components
+  - [~] Other field components - Use other shadcn components
+- [x] avatar (ready to commit)
+  - [x] Avatar.vue - Added dark mode variants and improved readability
+  - [x] AvatarImage.vue - Improved readability with tw template literals
+  - [x] AvatarFallback.vue - No styling needed (wrapper component)
 - [ ] badge
 - [ ] breadcrumb
 - [*] button (already done)
@@ -112,12 +120,18 @@ TODO: List all design components
 
 ## Current Status
 
-✅ Completed alert-dialog component set:
+✅ Completed avatar component set:
 
-- Added dark mode variants to content overlay and background
-- Added dark mode text colors to title and description
+- Added dark mode variants to avatar base classes
 - Improved readability with tw template literals
 - Ready to commit changes
+
+## Dependencies
+
+Some components depend on others and will be refactored after their dependencies:
+
+- auto-form → form, input, textarea
+- (more to be added as we discover them)
 
 ## Commit Message Template
 
