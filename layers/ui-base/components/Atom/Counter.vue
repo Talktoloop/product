@@ -54,25 +54,46 @@ const props = withDefaults(defineProps<Props>(), {
 
 const shadeClasses = computed(() => {
   if (props.disabled) {
-    return tw`bg-button-ghost-disabled text-button-ghost-foreground dark:bg-dark-button-ghost-disabled dark:text-dark-button-ghost-foreground`
+    return tw`
+      bg-button-ghost-disabled text-button-ghost-foreground
+      dark:bg-dark-button-ghost-disabled dark:text-dark-button-ghost-foreground
+    `
   }
   if (props.variant === 'primary') {
     switch (props.shade) {
       case 'dark':
-        return tw`bg-button-primary-active text-button-primary-foreground dark:bg-dark-button-primary-active dark:text-dark-button-primary-foreground`
+        return tw`
+          bg-button-primary-active text-button-primary-foreground
+          dark:bg-dark-button-primary-active dark:text-dark-button-primary-foreground
+        `
       case 'light':
-        return tw`bg-button-primary-disabled text-button-primary-foreground dark:bg-dark-button-primary-disabled dark:text-dark-button-primary-foreground`
+        return tw`
+          bg-button-primary-disabled text-button-primary-foreground
+          dark:bg-dark-button-primary-disabled dark:text-dark-button-primary-foreground
+        `
       default: // medium
-        return tw`bg-button-primary text-button-primary-foreground dark:bg-dark-button-primary dark:text-dark-button-primary-foreground`
+        return tw`
+          bg-button-primary text-button-primary-foreground
+          dark:bg-dark-button-primary dark:text-dark-button-primary-foreground
+        `
     }
   } else {
     switch (props.shade) {
       case 'dark':
-        return tw`bg-button-secondary-active text-button-secondary-foreground dark:bg-dark-button-secondary-active dark:text-dark-button-secondary-foreground`
+        return tw`
+          bg-button-secondary-active text-button-secondary-foreground
+          dark:bg-dark-button-secondary-active dark:text-dark-button-secondary-foreground
+        `
       case 'light':
-        return tw`bg-button-secondary-disabled text-button-secondary-foreground dark:bg-dark-button-secondary-disabled dark:text-dark-button-secondary-foreground`
+        return tw`
+          bg-button-secondary-disabled text-button-secondary-foreground
+          dark:bg-dark-button-secondary-disabled dark:text-dark-button-secondary-foreground
+        `
       default: // medium
-        return tw`bg-button-secondary text-button-secondary-foreground dark:bg-dark-button-secondary dark:text-dark-button-secondary-foreground`
+        return tw`
+          bg-button-secondary text-button-secondary-foreground
+          dark:bg-dark-button-secondary dark:text-dark-button-secondary-foreground
+        `
     }
   }
 })
