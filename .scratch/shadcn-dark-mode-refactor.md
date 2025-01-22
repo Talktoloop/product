@@ -2,9 +2,13 @@
 
 ## Task Description
 
+IMPORTANT: Read these instructions and recite them aloud before each iteration, highlight each discrete step and it's parameters. Repeat anything marked as IMPORTANT verbsatim as the start of each iteration.
+
 IMPORTANT: Don't change the component structure or semantics, just add the dark mode variants and improve readability
 
 IMPORTANT: The `tw` template tag is globally available. NEVER import it!
+
+IMPORTANT: Make a git commit after each root component has been refactored. Use a COMMIT_MESSAGE file to store the commit message and then delete it after the commit has been made.
 
 Refactor all components to:
 
@@ -12,6 +16,7 @@ Refactor all components to:
 2. Add dark mode variants
 3. Apply tw`...` template tag to improve readability (available globally)
 4. Introduce constants for complex class combinations
+5. Resolve all linting errors before committing
 
 ## Important Notes
 
@@ -32,7 +37,7 @@ Refactor all components to:
 ## Progress Tracking
 
 - Update the status from `[ ]` to `[x]` after each component/sub-component/etc has been refactored.
-- Make a git commit after each root component has been refactored.
+- Make a git commit after each root component has been refactored. after the commit has been made.
 - Update the status from `[x]` to `[*]` after the commit hase been made and the working state is clear.
 - Mark components with `[~]` if they depend on other components that need to be refactored first
 
@@ -58,14 +63,25 @@ Refactor all components to:
   - [~] AutoFormField.vue - Uses form components
   - [~] AutoFormFieldInput.vue - Uses input and textarea components
   - [~] Other field components - Use other shadcn components
-- [x] avatar (ready to commit)
-  - [x] Avatar.vue - Added dark mode variants and improved readability
-  - [x] AvatarImage.vue - Improved readability with tw template literals
-  - [x] AvatarFallback.vue - No styling needed (wrapper component)
-- [ ] badge
-- [ ] breadcrumb
+- [*] avatar (committed 8c36c3a)
+  - [*] Avatar.vue - Added dark mode variants and improved readability
+  - [*] AvatarImage.vue - Improved readability with tw template literals
+  - [*] AvatarFallback.vue - No styling needed (wrapper component)
+- [*] badge (committed ca8124d)
+  - [*] Badge variants - Added dark mode variants and improved readability with tw template literals
+  - [*] Badge.vue - No styling needed (wrapper component)
+- [*] breadcrumb (committed a6a94b5)
+  - [*] BreadcrumbList.vue - Added dark mode variants and improved readability
+  - [*] BreadcrumbLink.vue - Added dark mode variants and improved readability
+  - [*] BreadcrumbPage.vue - Added dark mode variants and improved readability
+  - [*] Other components - No styling needed (wrapper components)
 - [*] button (already done)
-- [ ] calendar
+- [*] calendar (committed 817f52c)
+  - [*] CalendarCell.vue - Added dark mode variants and improved readability
+  - [*] CalendarCellTrigger.vue - Added dark mode variants and improved readability
+  - [*] CalendarHeadCell.vue - Added dark mode variants and improved readability
+  - [*] CalendarHeading.vue - Added dark mode variants and improved readability
+  - [*] Other components - No styling needed (wrapper components)
 - [ ] card
 - [ ] carousel
 - [ ] chart
@@ -120,11 +136,14 @@ TODO: List all design components
 
 ## Current Status
 
-✅ Completed avatar component set:
+Calendar component refactoring complete:
 
-- Added dark mode variants to avatar base classes
-- Improved readability with tw template literals
-- Ready to commit changes
+1. Added dark mode variants to all text colors and backgrounds
+2. Improved readability with tw template literals
+3. Grouped related styles together for better maintainability
+4. Other components are wrappers, no styling changes needed
+
+Ready to commit calendar changes and move on to card component.
 
 ## Dependencies
 
