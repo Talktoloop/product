@@ -1,9 +1,10 @@
 import { Client } from '@ourloop/product-core-model'
-import type { StoryCommand, StoryQuery, StoryListResponse } from '@ourloop/product-core-model'
+import type { StoryQueryContract, StoryCommandContract } from '@ourloop/product-core-model'
+import type { MessageOf, ResultOf } from '@ourloop/product-core-types'
 import type { OpenAPIConfig } from '@ourloop/product-core-api/talk-to-loop'
 import { useRuntimeConfig } from '#imports'
 
-function createApiClient() {
+export function createApiClient() {
   const config = useRuntimeConfig()
   const openApiConfig: Partial<OpenAPIConfig> = {}
 
@@ -18,12 +19,16 @@ function createApiClient() {
   return new Client(openApiConfig)
 }
 
-export const query = async (query: StoryQuery): Promise<StoryListResponse> => {
+export const query = (
+  query: MessageOf<StoryQueryContract>
+): Promise<ResultOf<StoryQueryContract>> => {
   const api = createApiClient()
   return api.story.query(query)
 }
 
-export const command = async (cmd: StoryCommand): Promise<void> => {
+export const command = (
+  command: MessageOf<StoryCommandContract>
+): Promise<ResultOf<StoryCommandContract>> => {
   const api = createApiClient()
-  return api.story.do(cmd)
+  return api.story.do(command)
 }

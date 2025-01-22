@@ -1,35 +1,27 @@
 <template>
-  <PageModeratorStory :stories="stories" :loading="loading" :error="error" :filters="filters"
-    :current-page="currentPage" :total-pages="totalPages" @update:filters="updateFilters" @story:publish="publishStory"
-    @story:reject="rejectStory" @update:page="updatePage" />
+  <PageModeratorStory :stories="list" :loading="loading" :error="error" :filters="filters" :current-page="page"
+    :total-pages="pages" @update:filters="updateFilters" @story:publish="publishStory" @story:reject="rejectStory"
+    @update:page="goToPage" />
 </template>
 
 <script setup lang="ts">
-import type { StoryFilters } from '@ourloop/product-core-model'
-
 // Initialize store
-const store = useStoryModerationStore()
-const { stories, loading, error, filters, currentPage, totalPages } = storeToRefs(store)
+const store = useStoryStore()
+const { list, loading, error, filters, page, pages } = storeToRefs(store)
+const { updateFilters, publish, reject, goToPage } = store
 
 // Initialize data on mount
 onMounted(() => {
-  store.fetchStories()
+  store.fetch()
 })
 
 // Event handlers
-const updateFilters = (newFilters: StoryFilters) => {
-  store.updateFilters(newFilters)
+const publishStory = (id: string) => {
+  publish(id)
 }
 
-const publishStory = (storyId: string) => {
-  store.moderateStory(storyId, 'publish', 'Content meets guidelines')
+const rejectStory = (id: string) => {
+  reject(id, [1], ['Content violates guidelines'])
 }
 
-const rejectStory = (storyId: string) => {
-  store.moderateStory(storyId, 'reject', 'Content violates guidelines')
-}
-
-const updatePage = (page: number) => {
-  store.goToPage(page)
-}
 </script>

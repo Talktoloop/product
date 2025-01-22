@@ -1,24 +1,30 @@
-import type { QueryObject, CommandObject, ResultObject } from '@ourloop/product-core-types'
+import type {
+  MessageOf,
+  ResultOf,
+  QueryContract,
+  CommandContract,
+  MessageContract,
+  TypedObject,
+  ResultObject,
+  SelectType,
+} from '@ourloop/product-core-types'
 import type { TalkToLoopClient } from '@ourloop/product-core-api/talk-to-loop'
 
-export type QueryResultMap<Q extends QueryObject, R extends ResultObject<any>> = {
-  [K in Q['__type']]: Extract<R, { __type: `${K extends `${string}Query` ? string : never}Result` }>
-}
-
-export type CommandResultMap<C extends CommandObject> = {
-  [K in C['__type']]: void
-}
-
-export type QueryDispatcher<QueryType extends QueryObject, ResultType extends ResultObject<any>> = {
-  [K in QueryType['__type']]: (
+export type Dispatcher<T extends MessageContract<TypedObject, ResultObject<any>>> = {
+  [K in T['__type']]: <M extends Extract<T, { __type: K }>>(
     client: TalkToLoopClient,
-    query: Extract<QueryType, { __type: K }>
-  ) => Promise<QueryResultMap<QueryType, ResultType>[K]>
+    message: MessageOf<M>
+  ) => Promise<ResultOf<M>>
 }
 
-export type CommandDispatcher<CommandType extends CommandObject> = {
-  [K in CommandType['__type']]: (
-    client: TalkToLoopClient,
-    command: Extract<CommandType, { __type: K }>
-  ) => Promise<void>
-}
+export type QueryDispatcher<Query extends QueryContract> = Dispatcher<Query>
+
+export type CommandDispatcher<Command extends CommandContract> = Dispatcher<Command>
+
+export type QueryFn<Q extends QueryContract> = <K extends Q['__type']>(
+  query: MessageOf<SelectType<Q, K>>
+) => Promise<ResultOf<SelectType<Q, K>>>
+
+export type CommandFn<C extends CommandContract> = <K extends C['__type']>(
+  command: MessageOf<SelectType<C, K>>
+) => Promise<ResultOf<SelectType<C, K>>>

@@ -1,2 +1,2 @@
-export * from './dispatcher'
+export * from './client'
 export * from './story'

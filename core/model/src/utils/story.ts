@@ -1,51 +1,52 @@
 import type {
   StoryCommand,
   StoryQuery,
-  StoryModerationAction,
-  StoryFilters,
-  Story,
+  StoryPendingQuery,
+  StoryPublishCommand,
+  StoryRejectCommand,
   StoryPendingResult,
+  Story,
 } from '../types/story'
 import { result } from './result'
 
 /**
  * Query builders for stories
  */
-export const pending = (params: {
-  page: number
-  limit: number
-  filters?: StoryFilters
-}): StoryQuery => ({
-  __type: 'StoryPendingQuery',
-  page: params.page,
-  limit: params.limit,
-  filters: params.filters,
-})
+export function pending(
+  page: number,
+  limit: number,
+  options: Partial<Omit<StoryPendingQuery, 'page' | 'limit'>> = {}
+): StoryPendingQuery {
+  return {
+    __type: 'StoryPendingQuery',
+    page,
+    limit,
+    ...options,
+  }
+}
 
 /**
  * Command builders for stories
  */
-export const publish = (storyId: string): StoryCommand => ({
-  __type: 'StoryPublishCommand',
-  storyId,
-})
-
-export const reject = (params: {
-  storyId: string
-  reason?: string
-  moderatorNotes?: string
-}): StoryCommand => {
-  const action: StoryModerationAction = {
-    storyId: params.storyId,
-    reasonIds: [],
-    reasonTexts: params.reason ? [params.reason] : [],
-    rationale: params.moderatorNotes,
+export function publish(id: string): StoryPublishCommand {
+  return {
+    __type: 'StoryPublishCommand',
+    id,
   }
+}
 
+export function reject(
+  id: string,
+  reasonIds: number[],
+  reasonTexts: string[],
+  options: Partial<Omit<StoryRejectCommand, 'id' | 'reasonIds' | 'reasonTexts'>> = {}
+): StoryRejectCommand {
   return {
     __type: 'StoryRejectCommand',
-    storyId: params.storyId,
-    action,
+    id,
+    reasonIds,
+    reasonTexts,
+    ...options,
   }
 }
 
