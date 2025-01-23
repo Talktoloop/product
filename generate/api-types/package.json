@@ -1,0 +1,6 @@
+{
+  "name": "@ourloop/generate-api-types",
+  "scripts": {
+    "generate": "yarn workspace @ourloop/generate-api-types generate:api-types $PROJECT_CWD/generate/api-types/api-types.json"
+  }
+}

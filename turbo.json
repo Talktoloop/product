@@ -23,6 +23,7 @@
     },
     "prepare": {
       "dependsOn": [
+        "generate",
         "^prepare"
       ],
       "outputs": [
@@ -36,21 +37,19 @@
         "^clean"
       ]
     },
-    "generate:api-types": {
+    "generate": {
+      "dependsOn": [
+        "^generate"
+      ],
       "cache": true,
       "outputs": [
-        "core/api-types.generated/**"
+        "core/*.generated/**"
       ],
       "inputs": [
-        "generate/packages/api-types.json",
-        "core/config/schema/api-types.schema.json",
-        "core/config/api/TalkToLoop-swagger-spec.json",
-        "generate/packages/templates/**/*"
+        "generate/*",
+        "core/config/schema/*",
+        "core/config/api/*"
       ]
-    },
-    "generate:api-types:watch": {
-      "cache": false,
-      "persistent": true
     }
   }
 }

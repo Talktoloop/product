@@ -16,14 +16,14 @@
     "lint:fix": "eslint . --fix",
     "lint:staged": "lint-staged",
     "postinstall": "husky install",
-    "generate:api-types": "cd opt/packages/package-generator && yarn generate:api-types $PWD/generate/packages/api-types.json",
-    "generate:api-types:watch": "cd opt/packages/package-generator && yarn generate:api-types:watch $PWD/generate/packages/api-types.json"
+    "generate": "turbo run generate"
   },
   "workspaces": [
     "core/*",
     "layers/*",
     "apps/*",
-    "opt/packages/*"
+    "opt/packages/*",
+    "generate/*"
   ],
   "devDependencies": {
     "@eslint/js": "^9.15.0",

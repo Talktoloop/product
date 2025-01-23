@@ -3,7 +3,7 @@
   "name": "@ourloop/product-core-api",
   "path": "core/api.generated",
   "templates": {
-    "path": "generate/packages/templates",
+    "path": "generate/api-types/templates",
     "files": [
       "package.template.json",
       "tsconfig.template.json",
