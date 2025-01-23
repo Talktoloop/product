@@ -24,8 +24,8 @@ const headingClasses = tw`
 </script>
 
 <template>
-  <CalendarHeading v-slot="{ headingValue }" :class="cn(headingClasses, props.class)" v-bind="forwardedProps">
-    <slot :heading-value="headingValue">
+  <CalendarHeading v-slot="{ headingValue }" :class="cn('text-sm font-medium', props.class)" v-bind="forwardedProps">
+    <slot :heading-value>
       {{ headingValue }}
     </slot>
   </CalendarHeading>

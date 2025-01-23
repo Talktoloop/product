@@ -27,6 +27,7 @@ Refactor all components to:
 
 ## Component Refactoring Steps
 
+0. Read these instructions and recite them to yourself before each iteration
 1. Read the component file
 2. Create semantic class constants using globally available `tw` tag
 3. Add dark mode variants to the classes
@@ -76,25 +77,9 @@ Refactor all components to:
   - [*] BreadcrumbPage.vue - Added dark mode variants and improved readability
   - [*] Other components - No styling needed (wrapper components)
 - [*] button (already done)
-- [*] calendar (committed 817f52c)
-  - [*] CalendarCell.vue - Added dark mode variants and improved readability
-  - [*] CalendarCellTrigger.vue - Added dark mode variants and improved readability
-  - [*] CalendarHeadCell.vue - Added dark mode variants and improved readability
-  - [*] CalendarHeading.vue - Added dark mode variants and improved readability
-  - [*] Other components - No styling needed (wrapper components)
-- [*] card (committed 8134e0a)
-  - [*] Card.vue - Added dark mode variants and improved readability
-  - [*] CardContent.vue - Improved readability with tw template literals
-  - [*] CardDescription.vue - Added dark mode variants and improved readability
-  - [*] CardFooter.vue - Improved readability with tw template literals
-  - [*] CardHeader.vue - Improved readability with tw template literals
-  - [*] CardTitle.vue - Added dark mode variants and improved readability
-- [*] carousel (committed 38a337b)
-  - [*] Carousel.vue - Improved readability with tw template literals
-  - [*] CarouselContent.vue - Improved readability with tw template literals
-  - [*] CarouselItem.vue - Improved readability with tw template literals
-  - [*] CarouselNext.vue - Improved readability with tw template literals
-  - [*] CarouselPrevious.vue - Improved readability with tw template literals
+- [ ] calendar
+- [ ] card
+- [ ] carousel
 - [ ] chart
 - [ ] checkbox
 - [ ] collapsible
@@ -147,13 +132,11 @@ TODO: List all design components
 
 ## Current Status
 
-Carousel component refactoring complete:
+✅ Completed avatar component set:
 
-1. Improved readability with tw template literals across all components
-2. Grouped related styles together for better maintainability
-3. Fixed type issues with orientation parameter
-
-Ready to commit carousel changes and move on to chart component.
+- Added dark mode variants to avatar base classes
+- Improved readability with tw template literals
+- Ready to commit changes
 
 ## Dependencies
 
