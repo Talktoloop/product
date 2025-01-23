@@ -16,7 +16,7 @@
     "lint:fix": "eslint . --fix",
     "lint:staged": "lint-staged",
     "postinstall": "husky install",
-    "generate": "turbo run generate"
+    "generate-packages": "turbo run generate-package"
   },
   "workspaces": [
     "core/*",

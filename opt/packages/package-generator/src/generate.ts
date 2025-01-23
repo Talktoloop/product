@@ -1,18 +1,25 @@
+#!/usr/bin/env node
 import { generate } from 'openapi-typescript-codegen'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import fs from 'fs/promises'
-import Ajv from 'ajv'
+import AjvModule from 'ajv'
 import Handlebars from 'handlebars'
 import ST from 'stjs'
-import type { GeneratorConfig } from './types'
+import type { GeneratorConfig } from './types.js'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-const PROJECT_ROOT = dirname(dirname(dirname(dirname(__dirname))))
+const Ajv = AjvModule.default
+
+if (!('PROJECT_CWD' in process.env)) {
+  console.error('PROJECT_CWD environment variable is not set')
+  process.exit(1)
+}
+
+const PROJECT_ROOT = process.env['PROJECT_CWD']!
 
 // Get config path from CLI args
 const configPath = process.argv[2]
+console.log('configPath', configPath)
 if (!configPath) {
   console.error('Please provide a config path as a CLI argument')
   process.exit(1)
@@ -22,8 +29,8 @@ if (!configPath) {
 async function loadConfig() {
   try {
     const [configModule, schemaModule] = await Promise.all([
-      import(configPath),
-      import('@ourloop/product-core-config/schema/api-types.schema.json', {
+      import(configPath, { assert: { type: 'json' } }),
+      import('@ourloop/product-core-config/schema/generate-package.schema.json', {
         assert: { type: 'json' },
       }),
     ])
@@ -53,14 +60,14 @@ function processEntries<T extends object>(obj: T): T {
   }
 
   const keys = Object.keys(obj)
-  if (keys.length === 1 && keys[0] === '{$entries}') {
-    return Object.fromEntries(processEntries(obj['{$entries}'])) as T
+  if (keys.length === 1 && '{$entries}' in obj) {
+    return Object.fromEntries(processEntries(obj['{$entries}'] as any)) as T
   }
 
   const result = { ...obj }
   for (const [key, value] of Object.entries(obj)) {
     if (typeof value === 'object' && value !== null) {
-      result[key] = processEntries(value)
+      result[key as keyof T] = processEntries(value)
     }
   }
   return result as T
@@ -98,7 +105,7 @@ async function copyTemplate(
 
 async function generatePackage(config: GeneratorConfig) {
   const outputRoot = join(PROJECT_ROOT, config.path)
-
+  console.log(`Generating package ${config.name} in ${outputRoot}`)
   // Clean up old output but preserve package.json
   try {
     const packageJsonPath = join(outputRoot, 'package.json')

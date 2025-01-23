@@ -44,7 +44,7 @@
   - No styling changes needed for:
     - Drawer.vue (wrapper)
     - DrawerOverlay.vue (wrapper)
-- Dropdown Menu component set - Ready to commit
+- Dropdown Menu component set - Committed 298d41f
   - Added dark mode variants and improved readability for:
     - DropdownMenuContent.vue
     - DropdownMenuItem.vue
@@ -81,4 +81,4 @@
 
 ## Current Status
 
-Dropdown Menu component refactoring complete and ready to commit. Moving on to the form component for review of dark mode needs and readability improvements.
+Dropdown Menu component refactoring complete and committed. Moving on to the form component for review of dark mode needs and readability improvements.

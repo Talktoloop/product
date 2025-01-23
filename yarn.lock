@@ -2136,6 +2136,8 @@ __metadata:
 "@ourloop/generate-api-types@workspace:generate/api-types":
   version: 0.0.0-use.local
   resolution: "@ourloop/generate-api-types@workspace:generate/api-types"
+  dependencies:
+    "@ourloop/product-opt-package-generator": "npm:*"
   languageName: unknown
   linkType: soft
 
@@ -2341,7 +2343,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ourloop/product-opt-package-generator@workspace:opt/packages/package-generator":
+"@ourloop/product-opt-package-generator@npm:*, @ourloop/product-opt-package-generator@workspace:opt/packages/package-generator":
   version: 0.0.0-use.local
   resolution: "@ourloop/product-opt-package-generator@workspace:opt/packages/package-generator"
   dependencies:
@@ -2354,6 +2356,8 @@ __metadata:
     stjs: "npm:^0.0.5"
     tsx: "npm:^4.19.2"
     typescript: "npm:^5.3.3"
+  bin:
+    generate-package: dist/generate.js
   languageName: unknown
   linkType: soft
 

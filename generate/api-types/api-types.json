@@ -1,5 +1,5 @@
 {
-  "$schema": "../../core/config/schema/api-types.schema.json",
+  "$schema": "../../core/config/schema/generate-package.schema.json",
   "name": "@ourloop/product-core-api",
   "path": "core/api.generated",
   "templates": {

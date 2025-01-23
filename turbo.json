@@ -37,14 +37,21 @@
         "^clean"
       ]
     },
-    "generate": {
+    "build:bin": {
       "dependsOn": [
-        "^generate"
+        "^build:bin"
       ],
       "cache": true,
       "outputs": [
-        "core/*.generated/**"
+        "dist/**"
+      ]
+    },
+    "generate-package": {
+      "dependsOn": [
+        "build:bin",
+        "^generate-package"
       ],
+      "cache": true,
       "inputs": [
         "generate/*",
         "core/config/schema/*",
