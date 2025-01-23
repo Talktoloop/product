@@ -10,10 +10,14 @@ const props = defineProps<{
 
 const id = useId()
 provide(FORM_ITEM_INJECTION_KEY, id)
+
+const itemClasses = tw`
+  space-y-2
+`
 </script>
 
 <template>
-  <div :class="cn('space-y-2', props.class)">
+  <div :class="cn(itemClasses, props.class)">
     <slot />
   </div>
 </template>
