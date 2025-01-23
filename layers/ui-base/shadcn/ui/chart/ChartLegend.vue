@@ -18,6 +18,8 @@ const elRef = ref<HTMLElement>()
 
 const wrapperClasses = tw`
   w-max
+  dark:bg-dark-background
+  dark:text-dark-foreground
 `
 
 onMounted(() => {

@@ -52,7 +52,11 @@ function handleLegendItemClick(d: BulletLegendItemInterface, i: number) {
 </script>
 
 <template>
-  <div :class="cn('w-full h-[400px] flex flex-col items-end', $attrs.class ?? '')">
+  <div :class="cn(tw`
+    w-full h-[400px] flex flex-col items-end
+    dark:bg-dark-background
+    dark:text-dark-foreground
+  `, $attrs.class ?? '')">
     <ChartLegend v-if="showLegend" v-model:items="legendItems" @legend-item-click="handleLegendItemClick" />
 
     <VisXYContainer :margin="{ left: 20, right: 20 }" :data="data" :style="{ height: isMounted ? '100%' : 'auto' }">
@@ -64,6 +68,7 @@ function handleLegendItemClick(d: BulletLegendItemInterface, i: number) {
           :attributes="{
             [Line.selectors.line]: {
               opacity: legendItems.find(item => item.name === category)?.inactive ? filterOpacity : 1,
+              class: 'dark:opacity-80',
             },
           }" />
       </template>
@@ -73,7 +78,7 @@ function handleLegendItemClick(d: BulletLegendItemInterface, i: number) {
       <VisAxis v-if="showYAxis" type="y" :tick-line="false" :tick-format="yFormatter" :domain-line="false"
         :grid-line="showGridLine" :attributes="{
           [Axis.selectors.grid]: {
-            class: 'text-muted',
+            class: 'text-muted dark:text-dark-muted',
           },
         }" tick-text-color="hsl(var(--vis-text-color))" />
 

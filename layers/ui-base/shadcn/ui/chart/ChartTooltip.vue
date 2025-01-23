@@ -12,27 +12,34 @@ defineProps<{
 
 const headerClasses = tw`
   p-3 border-b
+  dark:border-dark-border
 `
 
 const contentClasses = tw`
   p-3 min-w-[180px]
   flex flex-col gap-1
+  dark:bg-dark-background
+  dark:text-dark-foreground
 `
 
 const itemClasses = tw`
   flex justify-between
+  dark:text-dark-foreground
 `
 
 const iconWrapperClasses = tw`
   flex items-center
+  dark:text-dark-foreground
 `
 
 const iconClasses = tw`
   w-2.5 h-2.5 mr-2
+  dark:text-dark-foreground
 `
 
 const valueClasses = tw`
   font-semibold ml-4
+  dark:text-dark-foreground
 `
 </script>
 

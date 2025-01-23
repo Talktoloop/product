@@ -60,7 +60,11 @@ const selectorsBar = computed(() => props.type === 'grouped' ? GroupedBar.select
 </script>
 
 <template>
-  <div :class="cn('w-full h-[400px] flex flex-col items-end', $attrs.class ?? '')">
+  <div :class="cn(tw`
+    w-full h-[400px] flex flex-col items-end
+    dark:bg-dark-background
+    dark:text-dark-foreground
+  `, $attrs.class ?? '')">
     <ChartLegend v-if="showLegend" v-model:items="legendItems" @legend-item-click="handleLegendItemClick" />
 
     <VisXYContainer :data="data" :style="{ height: isMounted ? '100%' : 'auto' }" :margin="margin">
@@ -74,6 +78,7 @@ const selectorsBar = computed(() => props.type === 'grouped' ? GroupedBar.select
               const pos = i % categories.length
               return legendItems[pos]?.inactive ? filterOpacity : 1
             },
+            class: 'dark:opacity-80',
           },
         }" />
 
@@ -82,7 +87,7 @@ const selectorsBar = computed(() => props.type === 'grouped' ? GroupedBar.select
       <VisAxis v-if="showYAxis" type="y" :tick-line="false" :tick-format="yFormatter" :domain-line="false"
         :grid-line="showGridLine" :attributes="{
           [Axis.selectors.grid]: {
-            class: 'text-muted',
+            class: 'text-muted dark:text-dark-muted',
           },
         }" tick-text-color="hsl(var(--vis-text-color))" />
 
