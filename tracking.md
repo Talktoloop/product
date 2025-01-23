@@ -29,10 +29,7 @@
     - ContextMenuTrigger.vue (wrapper)
     - ContextMenuGroup.vue (wrapper)
     - ContextMenuRadioGroup.vue (wrapper)
-
-## Ready to Commit [~]
-
-- Dialog component:
+- Dialog component set - Committed c3ed177
   - Added dark mode variants and improved readability for:
     - DialogContent.vue
     - DialogDescription.vue
@@ -41,10 +38,15 @@
     - DialogTitle.vue
   - No styling changes needed for:
     - Dialog.vue (wrapper)
+- Drawer component set - Ready to commit
+  - Added dark mode variants and improved readability for:
+    - DrawerContent.vue
+  - No styling changes needed for:
+    - Drawer.vue (wrapper)
+    - DrawerOverlay.vue (wrapper)
 
-## Todo [•]
+## Ready to Commit [~]
 
-- Drawer
 - Dropdown Menu
 - Form
 - Hover Card
@@ -71,4 +73,4 @@
 
 ## Current Status
 
-Dialog component refactoring complete, ready to commit. Added dark mode variants and improved readability for all styled components, while identifying wrapper components that don't require styling changes.
+Drawer component refactoring complete and ready to commit. Moving on to the dropdown menu component for review of dark mode needs and readability improvements.
