@@ -72,34 +72,28 @@
 - Label component set - Committed 4af70e1
   - Added dark mode variants and improved readability for:
     - Label.vue
-
-## Ready to Commit [~]
-
-- Menubar component set
+- Menubar component set - Committed a23f644
   - Added dark mode variants and improved readability for:
     - Menubar.vue
     - MenubarContent.vue
     - MenubarItem.vue
     - MenubarSeparator.vue
     - MenubarShortcut.vue
-- Navigation Menu
-- Popover
-- Progress
-- Radio Group
-- Scroll Area
-- Select
-- Separator
-- Sheet
-- Skeleton
-- Slider
-- Switch
-- Table
-- Tabs
-- Textarea
-- Toast
-- Toggle
-- Tooltip
+
+## Ready to Commit
+
+- Navigation Menu Component Set
+  - Dark mode variants added and readability improved for:
+    - NavigationMenu.vue
+    - NavigationMenuContent.vue
+    - NavigationMenuIndicator.vue
+    - NavigationMenuList.vue
+    - NavigationMenuTrigger.vue
+    - NavigationMenuViewport.vue
+  - No styling changes needed for:
+    - NavigationMenuItem.vue (wrapper)
+    - NavigationMenuLink.vue (wrapper)
 
 ## Current Status
 
-Menubar component refactoring complete and ready to commit. Moving on to the navigation menu component for review of dark mode needs and readability improvements.
+Navigation menu component refactoring is complete and ready to commit. Will move on to the popover component for review of dark mode needs and readability improvements.
