@@ -13,10 +13,7 @@
     - CommandList.vue
     - CommandSeparator.vue
     - CommandShortcut.vue
-
-## Ready to Commit [~]
-
-- Context Menu component:
+- Context Menu component set - Committed 61dafaa
   - Added dark mode variants and improved readability for:
     - ContextMenuContent.vue
     - ContextMenuItem.vue
@@ -33,9 +30,20 @@
     - ContextMenuGroup.vue (wrapper)
     - ContextMenuRadioGroup.vue (wrapper)
 
+## Ready to Commit [~]
+
+- Dialog component:
+  - Added dark mode variants and improved readability for:
+    - DialogContent.vue
+    - DialogDescription.vue
+    - DialogFooter.vue
+    - DialogHeader.vue
+    - DialogTitle.vue
+  - No styling changes needed for:
+    - Dialog.vue (wrapper)
+
 ## Todo [•]
 
-- Dialog
 - Drawer
 - Dropdown Menu
 - Form
@@ -63,4 +71,4 @@
 
 ## Current Status
 
-Context menu component refactoring complete, ready to commit. Added dark mode variants and improved readability for all styled components, while identifying wrapper components that don't require styling changes.
+Dialog component refactoring complete, ready to commit. Added dark mode variants and improved readability for all styled components, while identifying wrapper components that don't require styling changes.

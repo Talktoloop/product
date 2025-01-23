@@ -5,12 +5,15 @@ import { cn } from '@/lib/utils'
 const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
+
+const headerClasses = tw`
+  flex flex-col gap-y-1.5 
+  text-center sm:text-left
+`
 </script>
 
 <template>
-  <div
-    :class="cn('flex flex-col gap-y-1.5 text-center sm:text-left', props.class)"
-  >
+  <div :class="cn(headerClasses, props.class)">
     <slot />
   </div>
 </template>
