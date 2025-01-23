@@ -69,13 +69,19 @@
 - Input component set - Committed b710e0b
   - Added dark mode variants and improved readability for:
     - Input.vue
+- Label component set - Committed 4af70e1
+  - Added dark mode variants and improved readability for:
+    - Label.vue
 
 ## Ready to Commit [~]
 
-- Label component set
+- Menubar component set
   - Added dark mode variants and improved readability for:
-    - Label.vue
-- Menubar
+    - Menubar.vue
+    - MenubarContent.vue
+    - MenubarItem.vue
+    - MenubarSeparator.vue
+    - MenubarShortcut.vue
 - Navigation Menu
 - Popover
 - Progress
@@ -96,4 +102,4 @@
 
 ## Current Status
 
-Label component refactoring complete and ready to commit. Moving on to the menubar component for review of dark mode needs and readability improvements.
+Menubar component refactoring complete and ready to commit. Moving on to the navigation menu component for review of dark mode needs and readability improvements.
