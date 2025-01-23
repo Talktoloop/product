@@ -12,16 +12,12 @@ const delegatedProps = computed(() => {
 })
 
 const forwardedProps = useForwardProps(delegatedProps)
+
+const headingClass = tw`text-sm font-medium text-foreground dark:text-foreground`
 </script>
 
 <template>
-  <RangeCalendarHeading v-slot="{ headingValue }" :class="cn(
-    tw`
-        text-sm font-medium
-        text-foreground dark:text-foreground
-      `,
-    props.class
-  )" v-bind="forwardedProps">
+  <RangeCalendarHeading v-slot="{ headingValue }" :class="cn(headingClass, props.class)" v-bind="forwardedProps">
     <slot :heading-value>
       {{ headingValue }}
     </slot>
