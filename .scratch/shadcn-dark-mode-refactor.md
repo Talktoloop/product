@@ -198,8 +198,15 @@ Refactor all components to:
   - [*] SelectSeparator.vue - Added dark mode variants and improved readability
   - [*] SelectLabel.vue - Added dark mode variants and improved readability
   - [*] No styling needed for Select.vue, SelectGroup.vue, SelectValue.vue, SelectItemText.vue (wrappers)
-- [ ] separator
-- [ ] sheet
+- [*] separator (committed 9425907)
+  - [*] Separator.vue - Added dark mode variants and improved readability
+- [*] sheet (committed a126ec8)
+  - [*] SheetContent.vue - Added dark mode variants and improved readability
+  - [*] SheetDescription.vue - Added dark mode variants and improved readability
+  - [*] SheetTitle.vue - Added dark mode variants and improved readability
+  - [*] SheetHeader.vue - Improved readability with tw template literals
+  - [*] SheetFooter.vue - Improved readability with tw template literals
+  - [*] No styling needed for Sheet.vue, SheetClose.vue, and SheetTrigger.vue (wrappers)
 - [ ] sidebar
 - [ ] skeleton
 - [ ] slider
