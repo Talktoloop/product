@@ -39,6 +39,8 @@ function onKeyDown(event: KeyboardEvent) {
 
 const carouselClasses = tw`
   relative
+  dark:bg-dark-background
+  dark:text-dark-foreground
 `
 </script>
 

@@ -14,6 +14,8 @@ const { carouselRef, orientation } = useCarousel()
 const contentClasses = (orient: string = 'horizontal') => tw`
   flex
   ${orient === 'horizontal' ? '-ml-4' : '-mt-4 flex-col'}
+  dark:bg-dark-background
+  dark:text-dark-foreground
 `
 </script>
 

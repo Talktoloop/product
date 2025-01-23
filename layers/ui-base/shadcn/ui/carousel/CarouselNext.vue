@@ -17,11 +17,18 @@ const nextButtonClasses = (orient: string = 'horizontal') => tw`
     ? '-right-12 top-1/2 -translate-y-1/2'
     : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90'
   }
+  dark:bg-dark-background
+  dark:text-dark-foreground
+  dark:border-dark-border
+  dark:hover:bg-dark-accent
+  dark:hover:text-dark-accent-foreground
+  dark:disabled:text-dark-muted-foreground
 `
 
 const iconClasses = tw`
   h-4 w-4
   text-current
+  dark:text-dark-foreground
 `
 </script>
 
