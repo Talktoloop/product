@@ -2,6 +2,7 @@
 import { cn } from '@/lib/utils'
 import { DialogTitle, type DialogTitleProps } from 'radix-vue'
 import { computed, type HTMLAttributes } from 'vue'
+import { tw } from '@/lib/utils'
 
 const props = defineProps<DialogTitleProps & { class?: HTMLAttributes['class'] }>()
 
@@ -10,13 +11,15 @@ const delegatedProps = computed(() => {
 
   return delegated
 })
+
+const titleClass = tw`
+  text-lg font-semibold
+  text-foreground dark:text-foreground
+`
 </script>
 
 <template>
-  <DialogTitle
-    :class="cn('text-lg font-semibold text-foreground', props.class)"
-    v-bind="delegatedProps"
-  >
+  <DialogTitle :class="cn(titleClass, props.class)" v-bind="delegatedProps">
     <slot />
   </DialogTitle>
 </template>
