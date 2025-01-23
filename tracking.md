@@ -1,8 +1,8 @@
 # Component Refactoring Status
 
-## Ready to Commit [✓]
+## Completed [✓]
 
-- Command component set:
+- Command component set - Committed f40203b
   - Added dark mode variants and improved readability with tw template literals for:
     - Command.vue
     - CommandDialog.vue
@@ -14,9 +14,24 @@
     - CommandSeparator.vue
     - CommandShortcut.vue
 
-## In Progress [~]
+## Ready to Commit [~]
 
-- Context Menu component needs review for dark mode and readability improvements
+- Context Menu component:
+  - Added dark mode variants and improved readability for:
+    - ContextMenuContent.vue
+    - ContextMenuItem.vue
+    - ContextMenuSeparator.vue
+    - ContextMenuSubContent.vue
+    - ContextMenuSubTrigger.vue
+    - ContextMenuLabel.vue
+    - ContextMenuRadioItem.vue
+    - ContextMenuCheckboxItem.vue
+  - No styling changes needed for:
+    - ContextMenu.vue (wrapper)
+    - ContextMenuSub.vue (wrapper)
+    - ContextMenuTrigger.vue (wrapper)
+    - ContextMenuGroup.vue (wrapper)
+    - ContextMenuRadioGroup.vue (wrapper)
 
 ## Todo [•]
 
@@ -48,4 +63,4 @@
 
 ## Current Status
 
-Command component refactoring complete, ready to commit. Added dark mode variants and improved readability with tw template literals for all command components. Next up is the context menu component for review.
+Context menu component refactoring complete, ready to commit. Added dark mode variants and improved readability for all styled components, while identifying wrapper components that don't require styling changes.
