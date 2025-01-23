@@ -11,17 +11,30 @@ const props = defineProps<ComboboxGroupProps & {
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
+
+const groupClasses = tw`
+  overflow-hidden p-1 
+  text-foreground
+  dark:text-dark-foreground
+  [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 
+  [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium 
+  [&_[cmdk-group-heading]]:text-muted-foreground
+  dark:[&_[cmdk-group-heading]]:text-dark-muted-foreground
+`
+
+const labelClasses = tw`
+  px-2 py-1.5 
+  text-xs font-medium 
+  text-muted-foreground
+  dark:text-dark-muted-foreground
+`
 </script>
 
 <template>
-  <ComboboxGroup
-    v-bind="delegatedProps"
-    :class="cn('overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground', props.class)"
-  >
-    <ComboboxLabel v-if="heading" class="px-2 py-1.5 text-xs font-medium text-muted-foreground">
+  <ComboboxGroup v-bind="delegatedProps" :class="cn(groupClasses, props.class)">
+    <ComboboxLabel v-if="heading" :class="labelClasses">
       {{ heading }}
     </ComboboxLabel>
     <slot />
