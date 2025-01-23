@@ -53,7 +53,7 @@
     - DropdownMenuShortcut.vue
   - No styling changes needed for:
     - DropdownMenu.vue (wrapper)
-- Form component set - Ready to commit
+- Form component set - Committed 05ba64b
   - Added dark mode variants and improved readability for:
     - FormDescription.vue
     - FormLabel.vue
@@ -61,10 +61,14 @@
   - No styling changes needed for:
     - FormControl.vue (wrapper)
     - FormItem.vue (wrapper)
+- Hover Card component set - Ready to commit
+  - Added dark mode variants and improved readability for:
+    - HoverCardContent.vue
+  - No styling changes needed for:
+    - HoverCard.vue (wrapper)
 
 ## Ready to Commit [~]
 
-- Hover Card
 - Input
 - Label
 - Menubar
@@ -88,4 +92,4 @@
 
 ## Current Status
 
-Form component refactoring complete and ready to commit. Moving on to the hover card component for review of dark mode needs and readability improvements.
+Hover Card component refactoring complete and ready to commit. Moving on to the input component for review of dark mode needs and readability improvements.
