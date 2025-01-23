@@ -66,13 +66,15 @@
     - HoverCardContent.vue
   - No styling changes needed for:
     - HoverCard.vue (wrapper)
+- Input component set - Committed b710e0b
+  - Added dark mode variants and improved readability for:
+    - Input.vue
 
 ## Ready to Commit [~]
 
-- Input component set
+- Label component set
   - Added dark mode variants and improved readability for:
-    - Input.vue
-- Label
+    - Label.vue
 - Menubar
 - Navigation Menu
 - Popover
@@ -94,4 +96,4 @@
 
 ## Current Status
 
-Input component refactoring complete and ready to commit. Moving on to the label component for review of dark mode needs and readability improvements.
+Label component refactoring complete and ready to commit. Moving on to the menubar component for review of dark mode needs and readability improvements.
