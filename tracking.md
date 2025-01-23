@@ -38,7 +38,7 @@
     - DialogTitle.vue
   - No styling changes needed for:
     - Dialog.vue (wrapper)
-- Drawer component set - Ready to commit
+- Drawer component set - Committed d72d884
   - Added dark mode variants and improved readability for:
     - DrawerContent.vue
   - No styling changes needed for:
@@ -73,4 +73,4 @@
 
 ## Current Status
 
-Drawer component refactoring complete and ready to commit. Moving on to the dropdown menu component for review of dark mode needs and readability improvements.
+Drawer component refactoring complete and committed. Moving on to the dropdown menu component for review of dark mode needs and readability improvements.
