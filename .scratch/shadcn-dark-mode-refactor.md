@@ -279,7 +279,13 @@ Refactor all components to:
   - [x] TagsInputItemText.vue - Added dark mode variants and improved readability
 - [x] textarea
   - [x] Textarea.vue - Added dark mode variants and improved readability
-- [ ] toast
+- [x] toast
+  - [x] Toast variants - Added dark mode variants and improved readability
+  - [x] ToastAction.vue - Added dark mode variants and improved readability
+  - [x] ToastClose.vue - Added dark mode variants and improved readability
+  - [x] ToastDescription.vue - Added dark mode variants and improved readability
+  - [x] ToastTitle.vue - Added dark mode variants and improved readability
+  - [x] Other components - No styling needed (wrapper components)
 - [x] toggle
   - [x] Toggle.vue - Added dark mode variants and improved readability
   - [x] toggleVariants - Added dark mode variants for all states
