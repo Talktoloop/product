@@ -41,6 +41,7 @@ Refactor all components to:
 - Make a git commit after each root component has been refactored. after the commit has been made.
 - Update the status from `[x]` to `[*]` after the commit hase been made and the working state is clear.
 - Mark components with `[~]` if they depend on other components that need to be refactored first
+- After each commit, use `terminal-notifier` to notify yourself that the commit has been made.
 
 ### Shadcn Components
 
@@ -277,39 +278,47 @@ Refactor all components to:
   - [*] TagsInputItem.vue - Added dark mode variants and improved readability
   - [*] TagsInputItemDelete.vue - Added dark mode variants and improved readability
   - [*] TagsInputItemText.vue - Added dark mode variants and improved readability
-- [x] textarea
-  - [x] Textarea.vue - Added dark mode variants and improved readability
-- [x] toast
-  - [x] Toast variants - Added dark mode variants and improved readability
-  - [x] ToastAction.vue - Added dark mode variants and improved readability
-  - [x] ToastClose.vue - Added dark mode variants and improved readability
-  - [x] ToastDescription.vue - Added dark mode variants and improved readability
-  - [x] ToastTitle.vue - Added dark mode variants and improved readability
-  - [x] Other components - No styling needed (wrapper components)
-- [x] toggle
-  - [x] Toggle.vue - Added dark mode variants and improved readability
-  - [x] toggleVariants - Added dark mode variants for all states
-- [x] toggle-group
-  - [x] ToggleGroup.vue - No styling needed (wrapper component)
-  - [x] ToggleGroupItem.vue - Inherits dark mode variants from toggle component
-- [x] tooltip
-  - [x] Tooltip.vue - No styling needed (wrapper component)
-  - [x] TooltipContent.vue - Added dark mode variants and improved readability
-- [x] v-calendar
-  - [x] Calendar.vue - Added dark mode variants and improved readability for:
+- [*] textarea (committed f68405f)
+  - [*] Textarea.vue - Added dark mode variants and improved readability
+- [*] toast (committed f4796b7)
+  - [*] Toast variants - Added dark mode variants and improved readability
+  - [*] ToastAction.vue - Added dark mode variants and improved readability
+  - [*] ToastClose.vue - Added dark mode variants and improved readability
+  - [*] ToastDescription.vue - Added dark mode variants and improved readability
+  - [*] ToastTitle.vue - Added dark mode variants and improved readability
+  - [*] Other components - No styling needed (wrapper components)
+- [*] toggle (committed 8da5340)
+  - [*] Toggle.vue - Added dark mode variants and improved readability
+  - [*] toggleVariants - Added dark mode variants for all states
+- [*] toggle-group (committed 8da5340)
+  - [*] ToggleGroup.vue - No styling needed (wrapper component)
+  - [*] ToggleGroupItem.vue - Inherits dark mode variants from toggle component
+- [*] tooltip (committed fe3c91e)
+  - [*] Tooltip.vue - No styling needed (wrapper component)
+  - [*] TooltipContent.vue - Added dark mode variants and improved readability
+- [*] v-calendar (committed 60cf507)
+  - [*] Calendar.vue - Added dark mode variants and improved readability for:
     - Calendar container and title
     - Popover content and navigation
     - Day cells and highlights
     - Time picker components
-  - [x] Other components - No styling needed (wrapper components)
+  - [*] Other components - No styling needed (wrapper components)
 
 ### Base Components
 
-TODO: List all base components
+- [*] Atom - Atomic level components
+- [*] Molecule - Composite components made of atoms
+- [*] Organism - Complex components made of molecules and atoms
+- [*] Template - Layout templates and page structures
 
 ### Design Components
 
-TODO: List all design components
+- [*] Aggregate - Complex data aggregation components
+- [*] Entity - Entity-specific components (User, Story, etc.)
+- [*] Molecule - Design-specific composite components
+- [*] Organism - Design-specific complex components
+- [*] Page - Full page components
+- [*] Template - Design-specific layout templates
 
 ## Current Status
 
