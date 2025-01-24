@@ -256,7 +256,16 @@ Refactor all components to:
   - [*] Other components - No styling needed (wrapper components)
 - [*] switch (committed)
   - [*] Switch.vue - Added dark mode variants and improved readability
-- [ ] table
+- [x] table
+  - [x] Table.vue - Added dark mode variants and improved readability
+  - [x] TableCaption.vue - Added dark mode variants and improved readability
+  - [x] TableCell.vue - Added dark mode variants and improved readability
+  - [x] TableEmpty.vue - Added dark mode variants and improved readability
+  - [x] TableFooter.vue - Added dark mode variants and improved readability
+  - [x] TableHead.vue - Added dark mode variants and improved readability
+  - [x] TableHeader.vue - Added dark mode variants and improved readability
+  - [x] TableRow.vue - Added dark mode variants and improved readability
+  - [x] TableBody.vue - No styling needed (wrapper component)
 - [ ] tabs
 - [ ] tags-input
 - [ ] textarea
