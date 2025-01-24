@@ -283,8 +283,12 @@ Refactor all components to:
 - [x] toggle
   - [x] Toggle.vue - Added dark mode variants and improved readability
   - [x] toggleVariants - Added dark mode variants for all states
-- [ ] toggle-group
-- [ ] tooltip
+- [x] toggle-group
+  - [x] ToggleGroup.vue - No styling needed (wrapper component)
+  - [x] ToggleGroupItem.vue - Inherits dark mode variants from toggle component
+- [x] tooltip
+  - [x] Tooltip.vue - No styling needed (wrapper component)
+  - [x] TooltipContent.vue - Added dark mode variants and improved readability
 - [x] v-calendar
   - [x] Calendar.vue - Added dark mode variants and improved readability for:
     - Calendar container and title
