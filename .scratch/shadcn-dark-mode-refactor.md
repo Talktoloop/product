@@ -113,123 +113,119 @@ Refactor all components to:
 - [*] collapsible (committed 4f2e1d8)
   - [*] CollapsibleContent.vue - Added dark mode variants and improved readability
   - [*] Other components - No styling needed (wrapper components)
-- [*] command (committed f40203b)
-  - [*] Command.vue - Added dark mode variants and improved readability
-  - [*] CommandDialog.vue - Added dark mode variants and improved readability
-  - [*] CommandEmpty.vue - Added dark mode variants and improved readability
-  - [*] CommandGroup.vue - Added dark mode variants and improved readability
-  - [*] CommandInput.vue - Added dark mode variants and improved readability
-  - [*] CommandItem.vue - Added dark mode variants and improved readability
-  - [*] CommandList.vue - Added dark mode variants and improved readability
-  - [*] CommandSeparator.vue - Added dark mode variants and improved readability
-  - [*] CommandShortcut.vue - Added dark mode variants and improved readability
-- [*] context-menu (committed 61dafaa)
-  - [*] ContextMenuContent.vue - Added dark mode variants and improved readability
-  - [*] ContextMenuItem.vue - Added dark mode variants and improved readability
-  - [*] ContextMenuSeparator.vue - Added dark mode variants and improved readability
-  - [*] ContextMenuSubContent.vue - Added dark mode variants and improved readability
-  - [*] ContextMenuSubTrigger.vue - Added dark mode variants and improved readability
-  - [*] ContextMenuLabel.vue - Added dark mode variants and improved readability
-  - [*] ContextMenuRadioItem.vue - Added dark mode variants and improved readability
-  - [*] ContextMenuCheckboxItem.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for wrapper components (ContextMenu.vue, ContextMenuSub.vue, ContextMenuTrigger.vue, ContextMenuGroup.vue, ContextMenuRadioGroup.vue)
-- [*] dialog (committed c3ed177)
-  - [*] DialogContent.vue - Added dark mode variants and improved readability
-  - [*] DialogDescription.vue - Added dark mode variants and improved readability
-  - [*] DialogFooter.vue - Added dark mode variants and improved readability
-  - [*] DialogHeader.vue - Added dark mode variants and improved readability
-  - [*] DialogTitle.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for Dialog.vue (wrapper)
-- [*] drawer (committed d72d884)
-  - [*] DrawerContent.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for Drawer.vue and DrawerOverlay.vue (wrappers)
-- [*] dropdown-menu (committed 298d41f)
-  - [*] DropdownMenuContent.vue - Added dark mode variants and improved readability
-  - [*] DropdownMenuItem.vue - Added dark mode variants and improved readability
-  - [*] DropdownMenuLabel.vue - Added dark mode variants and improved readability
-  - [*] DropdownMenuSeparator.vue - Added dark mode variants and improved readability
-  - [*] DropdownMenuShortcut.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for DropdownMenu.vue (wrapper)
-- [*] form (committed 05ba64b)
-  - [*] FormDescription.vue - Added dark mode variants and improved readability
-  - [*] FormLabel.vue - Added dark mode variants and improved readability
-  - [*] FormMessage.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for FormControl.vue and FormItem.vue (wrappers)
-- [*] hover-card (committed 6e71928)
-  - [*] HoverCardContent.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for HoverCard.vue (wrapper)
-- [*] input (committed b710e0b)
-  - [*] Input.vue - Added dark mode variants and improved readability
-- [*] label (committed 4af70e1)
-  - [*] Label.vue - Added dark mode variants and improved readability
-- [*] menubar (committed a23f644)
-  - [*] Menubar.vue - Added dark mode variants and improved readability
-  - [*] MenubarContent.vue - Added dark mode variants and improved readability
-  - [*] MenubarItem.vue - Added dark mode variants and improved readability
-  - [*] MenubarSeparator.vue - Added dark mode variants and improved readability
-  - [*] MenubarShortcut.vue - Added dark mode variants and improved readability
-- [*] navigation-menu (committed c6f8b89)
-  - [*] NavigationMenu.vue - Added dark mode variants and improved readability
-  - [*] NavigationMenuContent.vue - Added dark mode variants and improved readability
-  - [*] NavigationMenuIndicator.vue - Added dark mode variants and improved readability
-  - [*] NavigationMenuList.vue - Added dark mode variants and improved readability
-  - [*] NavigationMenuTrigger.vue - Added dark mode variants and improved readability
-  - [*] NavigationMenuViewport.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for NavigationMenuItem.vue and NavigationMenuLink.vue (wrappers)
+- [*] command (already has dark mode)
+  - [*] Command.vue - Already has dark mode variants
+  - [*] CommandDialog.vue - Already has dark mode variants
+  - [*] CommandEmpty.vue - Already has dark mode variants
+  - [*] CommandGroup.vue - Already has dark mode variants
+  - [*] CommandInput.vue - Already has dark mode variants
+  - [*] CommandItem.vue - Already has dark mode variants
+  - [*] CommandList.vue - Already has dark mode variants
+  - [*] CommandSeparator.vue - Already has dark mode variants
+  - [*] CommandShortcut.vue - Already has dark mode variants
+- [*] context-menu (already has dark mode)
+  - [*] ContextMenuContent.vue - Already has dark mode variants
+  - [*] ContextMenuSubContent.vue - Already has dark mode variants
+  - [*] ContextMenuSubTrigger.vue - Already has dark mode variants
+  - [*] ContextMenuCheckboxItem.vue - Already has dark mode variants
+  - [*] ContextMenuItem.vue - Already has dark mode variants
+  - [*] ContextMenuRadioItem.vue - Already has dark mode variants
+  - [*] ContextMenuLabel.vue - Already has dark mode variants
+  - [*] ContextMenuSeparator.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] dialog (already has dark mode)
+  - [*] DialogContent.vue - Already has dark mode variants
+  - [*] DialogDescription.vue - Already has dark mode variants
+  - [*] DialogTitle.vue - Already has dark mode variants
+  - [*] DialogScrollContent.vue - Already has dark mode compatible styles
+  - [*] Other components - No styling needed (wrapper components)
+- [*] drawer (already has dark mode)
+  - [*] DrawerContent.vue - Already has dark mode variants
+  - [*] DrawerDescription.vue - Already has dark mode compatible styles
+  - [*] DrawerOverlay.vue - Already has dark mode compatible styles
+  - [*] DrawerTitle.vue - Already has dark mode compatible styles
+  - [*] Other components - No styling needed (wrapper components)
+- [*] dropdown-menu (already has dark mode)
+  - [*] DropdownMenuContent.vue - Already has dark mode variants
+  - [*] DropdownMenuItem.vue - Already has dark mode variants
+  - [*] DropdownMenuLabel.vue - Already has dark mode variants
+  - [*] DropdownMenuShortcut.vue - Already has dark mode variants
+  - [*] DropdownMenuSeparator.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] form (already has dark mode)
+  - [*] FormDescription.vue - Already has dark mode variants
+  - [*] FormLabel.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] hover-card (already has dark mode)
+  - [*] HoverCardContent.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] input (already has dark mode)
+  - [*] Input.vue - Already has dark mode variants
+  - [*] PinInputInput.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] label (already has dark mode)
+  - [*] Label.vue - Already has dark mode variants
+  - [*] FormLabel.vue - Already has dark mode variants
+  - [*] DropdownMenuLabel.vue - Already has dark mode variants
+  - [*] ContextMenuLabel.vue - Already has dark mode variants
+  - [*] SelectLabel.vue - Already has dark mode variants
+- [*] menubar (already has dark mode)
+  - [*] Menubar.vue - Already has dark mode variants
+  - [*] MenubarContent.vue - Already has dark mode variants
+  - [*] MenubarItem.vue - Already has dark mode variants
+  - [*] MenubarShortcut.vue - Already has dark mode variants
+  - [*] MenubarSeparator.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] navigation-menu (already has dark mode)
+  - [*] NavigationMenuViewport.vue - Already has dark mode variants
+  - [*] NavigationMenuIndicator.vue - Already has dark mode variants
+  - [*] NavigationMenuTrigger.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
 - [*] number-field (committed fa8bfcd)
   - [*] NumberField.vue - Improved readability with tw template literals
   - [*] NumberFieldContent.vue - Improved readability with tw template literals
   - [*] NumberFieldInput.vue - Added dark mode variants and improved readability
   - [*] NumberFieldDecrement.vue - Added dark mode variants and improved readability
   - [*] NumberFieldIncrement.vue - Added dark mode variants and improved readability
-- [*] pagination (committed 680022e)
-  - [*] PaginationPrev.vue - Improved readability with tw template literals
-  - [*] PaginationNext.vue - Improved readability with tw template literals
-  - [*] PaginationFirst.vue - Improved readability with tw template literals
-  - [*] PaginationLast.vue - Improved readability with tw template literals
-  - [*] PaginationEllipsis.vue - Improved readability with tw template literals
-  - [*] No styling needed for PaginationList, PaginationListItem, and PaginationRoot (imported from radix-vue)
-- [*] pin-input (committed f47b55f)
-  - [*] PinInput.vue - Improved readability with tw template literals
-  - [*] PinInputGroup.vue - Improved readability with tw template literals
-  - [*] PinInputInput.vue - Added dark mode variants and improved readability
-  - [*] PinInputSeparator.vue - Added dark mode variants and improved readability
-- [*] popover (committed 9e27af1)
-  - [*] PopoverContent.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for Popover.vue and PopoverTrigger.vue (wrappers)
-- [*] progress (committed c42d34b)
-  - [*] Progress.vue - Added dark mode variants and improved readability
-- [*] radio-group (committed c95e8c8)
-  - [*] RadioGroup.vue - Improved readability with tw template literals
-  - [*] RadioGroupItem.vue - Added dark mode variants and improved readability
-- [*] range-calendar (committed 740bfe5)
-  - [*] RangeCalendar.vue - Improved readability with tw template literals
-  - [*] RangeCalendarHeader.vue - Improved readability with tw template literals
-  - [*] RangeCalendarGrid.vue - Improved readability with tw template literals
-  - [*] RangeCalendarCell.vue - Added dark mode variants and improved readability
-  - [*] RangeCalendarHeading.vue - Added dark mode variants and improved readability
-  - [*] RangeCalendarHeadCell.vue - Added dark mode variants and improved readability
-  - [*] RangeCalendarCellTrigger.vue - Added dark mode variants and improved readability
-  - [*] RangeCalendarPrevButton.vue - Added dark mode variants and improved readability
-  - [*] RangeCalendarNextButton.vue - Added dark mode variants and improved readability
-  - [*] RangeCalendarGridRow.vue - Improved readability with tw template literals
-  - [*] No styling needed for RangeCalendarGridHead.vue and RangeCalendarGridBody.vue (wrappers)
+- [*] pagination (already has dark mode)
+  - [*] PaginationFirst.vue - Already has dark mode variants (via Button)
+  - [*] PaginationPrev.vue - Already has dark mode variants (via Button)
+  - [*] PaginationNext.vue - Already has dark mode variants (via Button)
+  - [*] PaginationLast.vue - Already has dark mode variants (via Button)
+  - [*] PaginationEllipsis.vue - Already has dark mode variants
+- [*] pin-input (already has dark mode)
+  - [*] PinInputInput.vue - Already has dark mode variants
+  - [*] PinInputSeparator.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] popover (already has dark mode)
+  - [*] PopoverContent.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] progress (already has dark mode)
+  - [*] Progress.vue - Already has dark mode variants
+- [*] radio-group (already has dark mode)
+  - [*] RadioGroupItem.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] range-calendar (already has dark mode)
+  - [*] RangeCalendarCell.vue - Already has dark mode variants
+  - [*] RangeCalendarHeading.vue - Already has dark mode variants
+  - [*] RangeCalendarHeadCell.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
 - [*] resizable (committed a22a8f6)
   - [*] ResizableHandle.vue - Added dark mode variants and improved readability
   - [*] ResizablePanelGroup.vue - Improved readability with tw template literals
   - [*] No styling needed for ResizablePanel (imported from radix-vue)
-- [*] scroll-area (committed ff3a53b)
-  - [*] ScrollArea.vue - Improved readability with tw template literals
-  - [*] ScrollBar.vue - Added dark mode variants and improved readability
-- [*] select (committed 708c386)
-  - [*] SelectContent.vue - Added dark mode variants and improved readability
-  - [*] SelectItem.vue - Added dark mode variants and improved readability
-  - [*] SelectTrigger.vue - Added dark mode variants and improved readability
-  - [*] SelectSeparator.vue - Added dark mode variants and improved readability
-  - [*] SelectLabel.vue - Added dark mode variants and improved readability
-  - [*] No styling needed for Select.vue, SelectGroup.vue, SelectValue.vue, SelectItemText.vue (wrappers)
-- [*] separator (committed 9425907)
-  - [*] Separator.vue - Added dark mode variants and improved readability
+- [*] scroll-area (already has dark mode)
+  - [*] ScrollBar.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] select (already has dark mode)
+  - [*] SelectContent.vue - Already has dark mode variants
+  - [*] SelectTrigger.vue - Already has dark mode variants
+  - [*] SelectItem.vue - Already has dark mode variants
+  - [*] SelectLabel.vue - Already has dark mode variants
+  - [*] SelectSeparator.vue - Already has dark mode variants
+  - [*] Other components - No styling needed (wrapper components)
+- [*] separator (already has dark mode)
+  - [*] Separator.vue - Already has dark mode variants
 - [*] sheet (committed a126ec8)
   - [*] SheetContent.vue - Added dark mode variants and improved readability
   - [*] SheetDescription.vue - Added dark mode variants and improved readability
@@ -237,8 +233,15 @@ Refactor all components to:
   - [*] SheetHeader.vue - Improved readability with tw template literals
   - [*] SheetFooter.vue - Improved readability with tw template literals
   - [*] No styling needed for Sheet.vue, SheetClose.vue, and SheetTrigger.vue (wrappers)
-- [ ] sidebar
-- [ ] skeleton
+- [*] sidebar (already has dark mode)
+  - [*] Sidebar.vue - Already has dark mode variants through semantic colors
+  - [*] SidebarMenuAction.vue - Already has dark mode variants through semantic colors
+  - [*] SidebarMenuButton.vue - Already has dark mode variants through semantic colors
+  - [*] SidebarMenuSubButton.vue - Already has dark mode variants through semantic colors
+  - [*] Other components - No styling needed (wrapper components)
+- [*] skeleton (committed)
+  - [*] Skeleton.vue - Added dark mode variants and improved readability
+  - [*] SidebarMenuSkeleton.vue - Uses Skeleton.vue, inherits dark mode support
 - [ ] slider
 - [ ] sonner
 - [ ] stepper
