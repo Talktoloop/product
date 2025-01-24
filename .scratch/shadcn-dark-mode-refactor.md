@@ -244,8 +244,16 @@ Refactor all components to:
   - [*] SidebarMenuSkeleton.vue - Uses Skeleton.vue, inherits dark mode support
 - [*] slider (committed)
   - [*] Slider.vue - Added dark mode variants and improved readability
-- [ ] sonner
-- [ ] stepper
+- [*] sonner (already has dark mode)
+  - [*] Sonner.vue - Already has dark mode variants through semantic colors (bg-background, text-foreground, border-border)
+  - [*] Other components - No styling needed (wrapper components)
+- [*] stepper (committed)
+  - [*] StepperDescription.vue - Added dark mode variants and improved readability
+  - [*] StepperIndicator.vue - Added dark mode variants and improved readability
+  - [*] StepperSeparator.vue - Added dark mode variants and improved readability
+  - [*] StepperTitle.vue - Added dark mode variants and improved readability
+  - [*] StepperTrigger.vue - Added dark mode variants and improved readability
+  - [*] Other components - No styling needed (wrapper components)
 - [ ] switch
 - [ ] table
 - [ ] tabs
