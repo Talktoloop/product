@@ -277,12 +277,19 @@ Refactor all components to:
   - [x] TagsInputItem.vue - Added dark mode variants and improved readability
   - [x] TagsInputItemDelete.vue - Added dark mode variants and improved readability
   - [x] TagsInputItemText.vue - Added dark mode variants and improved readability
-- [ ] textarea
+- [x] textarea
+  - [x] Textarea.vue - Added dark mode variants and improved readability
 - [ ] toast
 - [ ] toggle
 - [ ] toggle-group
 - [ ] tooltip
-- [ ] v-calendar
+- [x] v-calendar
+  - [x] Calendar.vue - Added dark mode variants and improved readability for:
+    - Calendar container and title
+    - Popover content and navigation
+    - Day cells and highlights
+    - Time picker components
+  - [x] Other components - No styling needed (wrapper components)
 
 ### Base Components
 
