@@ -280,7 +280,9 @@ Refactor all components to:
 - [x] textarea
   - [x] Textarea.vue - Added dark mode variants and improved readability
 - [ ] toast
-- [ ] toggle
+- [x] toggle
+  - [x] Toggle.vue - Added dark mode variants and improved readability
+  - [x] toggleVariants - Added dark mode variants for all states
 - [ ] toggle-group
 - [ ] tooltip
 - [x] v-calendar
