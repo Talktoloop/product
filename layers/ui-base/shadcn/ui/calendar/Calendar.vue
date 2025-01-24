@@ -3,7 +3,14 @@ import { cn } from '@/lib/utils'
 import { CalendarRoot, type CalendarRootEmits, type CalendarRootProps, useForwardPropsEmits } from 'radix-vue'
 import { computed, type HTMLAttributes } from 'vue'
 import { CalendarCell, CalendarCellTrigger, CalendarGrid, CalendarGridBody, CalendarGridHead, CalendarGridRow, CalendarHeadCell, CalendarHeader, CalendarHeading, CalendarNextButton, CalendarPrevButton } from '.'
-import { tw } from '@/lib/utils'
+
+interface CalendarRootSlotProps {
+  grid: Array<{
+    value: Date
+    rows: Date[][]
+  }>
+  weekDays: string[]
+}
 
 const props = defineProps<CalendarRootProps & { class?: HTMLAttributes['class'] }>()
 
@@ -16,23 +23,30 @@ const delegatedProps = computed(() => {
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
+
+const rootClasses = tw`
+  p-3
+  bg-background
+  dark:bg-dark-background
+`
+
+const gridContainerClasses = tw`
+  flex flex-col gap-y-4 mt-4
+  sm:flex-row sm:gap-x-4 sm:gap-y-0
+`
+
+const gridRowClasses = tw`mt-2 w-full`
 </script>
 
 <template>
-  <CalendarRoot v-slot="{ grid, weekDays }" :class="cn(tw`
-      p-3
-      dark:bg-dark-background
-    `, props.class)" v-bind="forwarded">
+  <CalendarRoot v-slot="{ grid, weekDays }" :class="cn(rootClasses, props.class)" v-bind="forwarded">
     <CalendarHeader>
       <CalendarPrevButton />
       <CalendarHeading />
       <CalendarNextButton />
     </CalendarHeader>
 
-    <div :class="tw`
-      flex flex-col gap-y-4 mt-4
-      sm:flex-row sm:gap-x-4 sm:gap-y-0
-    `">
+    <div :class="gridContainerClasses">
       <CalendarGrid v-for="month in grid" :key="month.value.toString()">
         <CalendarGridHead>
           <CalendarGridRow>
@@ -42,7 +56,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
           </CalendarGridRow>
         </CalendarGridHead>
         <CalendarGridBody>
-          <CalendarGridRow v-for="(weekDates, index) in month.rows" :key="`weekDate-${index}`" :class="tw`mt-2 w-full`">
+          <CalendarGridRow v-for="(weekDates, index) in month.rows" :key="`weekDate-${index}`" :class="gridRowClasses">
             <CalendarCell v-for="weekDate in weekDates" :key="weekDate.toString()" :date="weekDate">
               <CalendarCellTrigger :day="weekDate" :month="month.value" />
             </CalendarCell>
