@@ -16,7 +16,17 @@ const forwardedProps = useForwardProps(delegatedProps)
 </script>
 
 <template>
-  <TagsInputItem v-bind="forwardedProps" :class="cn('flex h-6 items-center rounded bg-secondary data-[state=active]:ring-ring data-[state=active]:ring-2 data-[state=active]:ring-offset-2 ring-offset-background', props.class)">
+  <TagsInputItem v-bind="forwardedProps" :class="cn(tw`
+    flex h-6 items-center rounded 
+    bg-secondary
+    dark:bg-dark-secondary
+    data-[state=active]:ring-ring 
+    dark:data-[state=active]:ring-dark-ring
+    data-[state=active]:ring-2 
+    data-[state=active]:ring-offset-2 
+    ring-offset-background
+    dark:ring-offset-dark-background
+  `, props.class)">
     <slot />
   </TagsInputItem>
 </template>

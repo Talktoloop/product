@@ -271,7 +271,12 @@ Refactor all components to:
   - [x] TabsContent.vue - Added dark mode variants and improved readability
   - [x] TabsTrigger.vue - Added dark mode variants and improved readability
   - [x] Tabs.vue - No styling needed (wrapper component)
-- [ ] tags-input
+- [x] tags-input
+  - [x] TagsInput.vue - Added dark mode variants and improved readability
+  - [x] TagsInputInput.vue - Added dark mode variants and improved readability
+  - [x] TagsInputItem.vue - Added dark mode variants and improved readability
+  - [x] TagsInputItemDelete.vue - Added dark mode variants and improved readability
+  - [x] TagsInputItemText.vue - Added dark mode variants and improved readability
 - [ ] textarea
 - [ ] toast
 - [ ] toggle
