@@ -65,7 +65,8 @@ onMounted(async () => {
     calendarRef.value.focusDate(modelValue.value)
 })
 
-const $slots = useSlots()
+type VCalendarSlots = Record<string, unknown>
+const $slots: VCalendarSlots = useSlots()
 const vCalendarSlots = computed(() => {
   return Object.keys($slots)
     .filter(name => isVCalendarSlot(name))
