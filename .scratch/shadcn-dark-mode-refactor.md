@@ -254,7 +254,8 @@ Refactor all components to:
   - [*] StepperTitle.vue - Added dark mode variants and improved readability
   - [*] StepperTrigger.vue - Added dark mode variants and improved readability
   - [*] Other components - No styling needed (wrapper components)
-- [ ] switch
+- [*] switch (committed)
+  - [*] Switch.vue - Added dark mode variants and improved readability
 - [ ] table
 - [ ] tabs
 - [ ] tags-input
