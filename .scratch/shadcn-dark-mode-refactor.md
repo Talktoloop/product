@@ -256,27 +256,27 @@ Refactor all components to:
   - [*] Other components - No styling needed (wrapper components)
 - [*] switch (committed)
   - [*] Switch.vue - Added dark mode variants and improved readability
-- [x] table
-  - [x] Table.vue - Added dark mode variants and improved readability
-  - [x] TableCaption.vue - Added dark mode variants and improved readability
-  - [x] TableCell.vue - Added dark mode variants and improved readability
-  - [x] TableEmpty.vue - Added dark mode variants and improved readability
-  - [x] TableFooter.vue - Added dark mode variants and improved readability
-  - [x] TableHead.vue - Added dark mode variants and improved readability
-  - [x] TableHeader.vue - Added dark mode variants and improved readability
-  - [x] TableRow.vue - Added dark mode variants and improved readability
-  - [x] TableBody.vue - No styling needed (wrapper component)
-- [x] tabs
-  - [x] TabsList.vue - Added dark mode variants and improved readability
-  - [x] TabsContent.vue - Added dark mode variants and improved readability
-  - [x] TabsTrigger.vue - Added dark mode variants and improved readability
-  - [x] Tabs.vue - No styling needed (wrapper component)
-- [x] tags-input
-  - [x] TagsInput.vue - Added dark mode variants and improved readability
-  - [x] TagsInputInput.vue - Added dark mode variants and improved readability
-  - [x] TagsInputItem.vue - Added dark mode variants and improved readability
-  - [x] TagsInputItemDelete.vue - Added dark mode variants and improved readability
-  - [x] TagsInputItemText.vue - Added dark mode variants and improved readability
+- [*] table (committed beb06da)
+  - [*] Table.vue - Added dark mode variants and improved readability
+  - [*] TableCaption.vue - Added dark mode variants and improved readability
+  - [*] TableCell.vue - Added dark mode variants and improved readability
+  - [*] TableEmpty.vue - Added dark mode variants and improved readability
+  - [*] TableFooter.vue - Added dark mode variants and improved readability
+  - [*] TableHead.vue - Added dark mode variants and improved readability
+  - [*] TableHeader.vue - Added dark mode variants and improved readability
+  - [*] TableRow.vue - Added dark mode variants and improved readability
+  - [*] TableBody.vue - No styling needed (wrapper component)
+- [*] tabs (committed f4c356c)
+  - [*] TabsList.vue - Added dark mode variants and improved readability
+  - [*] TabsContent.vue - Added dark mode variants and improved readability
+  - [*] TabsTrigger.vue - Added dark mode variants and improved readability
+  - [*] Tabs.vue - No styling needed (wrapper component)
+- [*] tags-input (committed 7e648fc)
+  - [*] TagsInput.vue - Added dark mode variants and improved readability
+  - [*] TagsInputInput.vue - Added dark mode variants and improved readability
+  - [*] TagsInputItem.vue - Added dark mode variants and improved readability
+  - [*] TagsInputItemDelete.vue - Added dark mode variants and improved readability
+  - [*] TagsInputItemText.vue - Added dark mode variants and improved readability
 - [x] textarea
   - [x] Textarea.vue - Added dark mode variants and improved readability
 - [x] toast
