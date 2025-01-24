@@ -242,7 +242,8 @@ Refactor all components to:
 - [*] skeleton (committed)
   - [*] Skeleton.vue - Added dark mode variants and improved readability
   - [*] SidebarMenuSkeleton.vue - Uses Skeleton.vue, inherits dark mode support
-- [ ] slider
+- [*] slider (committed)
+  - [*] Slider.vue - Added dark mode variants and improved readability
 - [ ] sonner
 - [ ] stepper
 - [ ] switch
