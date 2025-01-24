@@ -2,7 +2,6 @@
 import { cn } from '@/lib/utils'
 import { DialogTitle, type DialogTitleProps } from 'radix-vue'
 import { computed, type HTMLAttributes } from 'vue'
-import { tw } from '@/lib/utils'
 
 const props = defineProps<DialogTitleProps & { class?: HTMLAttributes['class'] }>()
 

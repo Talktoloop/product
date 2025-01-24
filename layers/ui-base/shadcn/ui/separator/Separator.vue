@@ -2,7 +2,6 @@
 import { cn } from '@/lib/utils'
 import { Separator, type SeparatorProps } from 'radix-vue'
 import { computed, type HTMLAttributes } from 'vue'
-import { tw } from '@/lib/utils'
 
 const props = defineProps<
   SeparatorProps & { class?: HTMLAttributes['class'], label?: string }

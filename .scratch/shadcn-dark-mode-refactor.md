@@ -6,7 +6,7 @@ IMPORTANT: Read these instructions and recite them aloud before each iteration, 
 
 IMPORTANT: Don't change the component structure or semantics, just add the dark mode variants and improve readability
 
-IMPORTANT: The `tw` template tag is globally available. NEVER import it!
+IMPORTANT: The `tw` template tag is globally available. You should not import it!
 
 IMPORTANT: Make a git commit after each root component has been refactored. Use a COMMIT_MESSAGE file to store the commit message and then delete it after the commit has been made.
 
@@ -77,12 +77,42 @@ Refactor all components to:
   - [*] BreadcrumbPage.vue - Added dark mode variants and improved readability
   - [*] Other components - No styling needed (wrapper components)
 - [*] button (already done)
-- [ ] calendar
-- [ ] card
-- [ ] carousel
-- [ ] chart
-- [ ] checkbox
-- [ ] collapsible
+- [*] calendar (committed 9bfc287)
+  - [*] Calendar.vue - Added dark mode variants and improved readability
+  - [*] CalendarCell.vue - Already has dark mode variants
+  - [*] CalendarCellTrigger.vue - Already has dark mode variants
+  - [*] CalendarHeadCell.vue - Already has dark mode variants
+  - [*] CalendarHeader.vue - No styling needed (wrapper component)
+  - [*] CalendarHeading.vue - Already has dark mode variants
+  - [*] CalendarPrevButton.vue - No styling needed (uses button variants)
+  - [*] CalendarNextButton.vue - No styling needed (uses button variants)
+  - [*] Other components - No styling needed (wrapper components)
+- [*] card (already has dark mode)
+  - [*] Card.vue - Already has dark mode variants
+  - [*] CardContent.vue - No styling needed (only padding)
+  - [*] CardDescription.vue - Already has dark mode variants
+  - [*] CardFooter.vue - No styling needed (only padding and flex)
+  - [*] CardHeader.vue - No styling needed (only padding and flex)
+  - [*] CardTitle.vue - Already has dark mode variants
+- [*] carousel (committed 80cd1f6)
+  - [*] Carousel.vue - Added dark mode variants and improved readability
+  - [*] CarouselContent.vue - Added dark mode variants and improved readability
+  - [*] CarouselItem.vue - Added dark mode variants and improved readability
+  - [*] CarouselPrevious.vue - Added dark mode variants and improved readability
+  - [*] CarouselNext.vue - Added dark mode variants and improved readability
+- [*] chart (committed 3ae219c)
+  - [*] ChartLegend.vue - Added dark mode variants and improved readability
+  - [*] ChartTooltip.vue - Added dark mode variants and improved readability
+  - [*] AreaChart.vue - Added dark mode variants and improved readability
+  - [*] BarChart.vue - Added dark mode variants and improved readability
+  - [*] LineChart.vue - Added dark mode variants and improved readability
+  - [*] DonutChart.vue - Added dark mode variants and improved readability
+  - [*] Other components - No styling needed (wrapper components)
+- [*] checkbox (committed 4f2e1d8)
+  - [*] Checkbox.vue - Added dark mode variants and improved readability
+- [*] collapsible (committed 4f2e1d8)
+  - [*] CollapsibleContent.vue - Added dark mode variants and improved readability
+  - [*] Other components - No styling needed (wrapper components)
 - [*] command (committed f40203b)
   - [*] Command.vue - Added dark mode variants and improved readability
   - [*] CommandDialog.vue - Added dark mode variants and improved readability

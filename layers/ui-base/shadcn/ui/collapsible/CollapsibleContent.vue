@@ -8,6 +8,8 @@ const contentClasses = tw`
   transition-all 
   data-[state=closed]:animate-collapsible-up 
   data-[state=open]:animate-collapsible-down
+  dark:bg-dark-background
+  dark:text-dark-foreground
 `
 </script>
 

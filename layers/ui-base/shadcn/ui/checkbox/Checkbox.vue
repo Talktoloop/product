@@ -24,14 +24,19 @@ const checkboxClasses = tw`
   data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground
   dark:border-dark-primary dark:ring-offset-dark-background
   dark:data-[state=checked]:bg-dark-primary dark:data-[state=checked]:text-dark-primary-foreground
+  dark:focus-visible:ring-dark-ring dark:focus-visible:ring-offset-dark-background
 `
 
 const indicatorClasses = tw`
-  flex h-full w-full items-center justify-center text-current
+  flex h-full w-full 
+  items-center justify-center 
+  text-current
+  dark:text-dark-foreground
 `
 
 const iconClasses = tw`
   h-4 w-4
+  dark:text-dark-foreground
 `
 </script>
 

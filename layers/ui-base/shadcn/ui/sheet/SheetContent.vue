@@ -12,7 +12,6 @@ import {
 } from 'radix-vue'
 import { computed, type HTMLAttributes } from 'vue'
 import { type SheetVariants, sheetVariants } from '.'
-import { tw } from '@/lib/utils'
 
 interface SheetContentProps extends DialogContentProps {
   class?: HTMLAttributes['class']
