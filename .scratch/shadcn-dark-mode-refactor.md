@@ -266,7 +266,11 @@ Refactor all components to:
   - [x] TableHeader.vue - Added dark mode variants and improved readability
   - [x] TableRow.vue - Added dark mode variants and improved readability
   - [x] TableBody.vue - No styling needed (wrapper component)
-- [ ] tabs
+- [x] tabs
+  - [x] TabsList.vue - Added dark mode variants and improved readability
+  - [x] TabsContent.vue - Added dark mode variants and improved readability
+  - [x] TabsTrigger.vue - Added dark mode variants and improved readability
+  - [x] Tabs.vue - No styling needed (wrapper component)
 - [ ] tags-input
 - [ ] textarea
 - [ ] toast
