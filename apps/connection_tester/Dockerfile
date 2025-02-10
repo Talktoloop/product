@@ -19,6 +19,4 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 EXPOSE 3000
 
-WORKDIR /app/.output/server
-
-CMD ["node", "index.mjs"] 
+CMD ["node", ".output/server/index.mjs"] 
