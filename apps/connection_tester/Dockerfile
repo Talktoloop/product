@@ -1,4 +1,4 @@
-FROM node:20 as builder
+FROM node:20-slim as builder
 
 WORKDIR /app
 
@@ -8,16 +8,15 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM node:20-alpine
-
-ARG REDIS_URL
-ENV REDIS_URL=${REDIS_URL}
+FROM node:20-slim as final
 
 WORKDIR /app
 
-COPY --from=builder /app/.output /app
+COPY --from=builder /app/.output /app/.output
+COPY --from=builder /app/node_modules /app/node_modules
 
-ENV HOST 0.0.0.0
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
 EXPOSE 3000
 
-CMD ["node", "server/index.mjs"] 
+CMD ["node", ".output/server/index.mjs"] 
