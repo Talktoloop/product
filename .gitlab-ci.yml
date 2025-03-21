@@ -45,6 +45,17 @@ include:
   environment:
     name: production
 
+connection-tester-dev:
+  variables:
+    PIPELINE_NAME: ${CONNECTION_TESTER_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/connection_tester/**
+  stage: deploy
+
 connection-tester-staging:
   variables:
     PIPELINE_NAME: ${CONNECTION_TESTER_PIPELINE_NAME}

@@ -1,8 +1,9 @@
-- This is a yarn based project.
-- It uses Nuxt 3:
+- This is a monorepo
+- It uses yarn for all javascript dependecy management
+- It uses Nuxt 3 as the main app framework:
   - with packages in:
     - layers/\* - Nuxt layers
-    - apps/\* - Nuxt apps
+    - apps/\* - Apps, could be self hosted 3rd party app, nuxt apps, or apps using other frameworks
   - All components are auto-imported and named in PascalCase using the file path.
   - All exports in the top level of utils are imported into global scope.
   - The layer hierarchy is as follows:
