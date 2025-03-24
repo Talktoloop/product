@@ -56,7 +56,7 @@ connection-tester-dev:
         - apps/connection_tester/**
   stage: deploy
 
-  lambda-create-challenge-dev:
+lambda-create-challenge-dev:
   variables:
     PIPELINE_NAME: ${LAMBDA_CREATE_CHALLENGE_PIPELINE_NAME}
   extends:
