@@ -56,13 +56,13 @@ connection-tester-dev:
         - apps/connection_tester/**
   stage: deploy
 
-connection-tester-staging:
+  lambda-create-challenge-dev:
   variables:
-    PIPELINE_NAME: ${CONNECTION_TESTER_PIPELINE_NAME}
+    PIPELINE_NAME: ${LAMBDA_CREATE_CHALLENGE_PIPELINE_NAME}
   extends:
-    - .deploy-staging
+    - .deploy-dev
   rules:
-    - if: $CI_COMMIT_BRANCH == "staging"
+    - if: $CI_COMMIT_BRANCH == "develop"
       changes:
-        - apps/connection_tester/**
+        - lambdas/auth/create_challenge/**
   stage: deploy
