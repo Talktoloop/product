@@ -33,3 +33,204 @@ services:
       - ./apps/design:/usr/src/product/apps/design
     depends_on:
       - mysql
+
+  cerbos:
+    image: ghcr.io/cerbos/cerbos:latest
+    container_name: cerbos
+    ports:
+      - 3592:3592 # HTTP API
+      - 3593:3593 # gRPC API
+    volumes:
+      - ./apps/cerbos/config.yaml:/config.yaml
+      - ./apps/cerbos/policies:/policies
+    command: [ "server", "--config=/config.yaml" ]
+
+  db:
+    image: arm64v8/mysql:8
+    container_name: db
+    ports:
+      - 3307:3306
+    volumes:
+      - ./opt/mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: loop
+    entrypoint: sh -c " echo 'CREATE DATABASE IF NOT EXISTS loop_test;' > /docker-entrypoint-initdb.d/init.sql; /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+    command: [ '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--mysql-native-password=ON' ]
+
+  redis:
+    image: redis:5.0.7
+    container_name: redis
+    command: [ '--requirepass redis_password', '--notify-keyspace-events KEA' ]
+    ports:
+      - 6379:6379
+
+  gateway:
+    build:
+      context: ./apps/gateway/service
+      dockerfile: Dockerfile.local
+      args:
+        NPM_TOKEN: ***REMOVED***
+        NODE_ENV: development
+    container_name: gateway
+    ports:
+      - 5005:5005
+    volumes:
+      - ./apps/gateway/service:/var/www/backend
+    tty: true
+    depends_on:
+      - db
+      - redis
+      - cerbos
+    environment:
+      - CERBOS_HOST=http://cerbos:3592
+      - APP_PORT=5005
+      - NODE_ENV=local
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=loop
+      - DB_HOST=db
+      - DB_PORT=3306
+      - FRONTEND_URL=http://localhost
+      - BACKEND_URL=http://localhost
+      - LANDING_PAGE_URL=http://localhost
+      - GLOBAL_PREFIX=api/v1
+      - COGNITO_ACCESS_KEY_ID=***REMOVED***
+      - COGNITO_SECRET_ACCESS_KEY=***REMOVED***
+      - COGNITO_USER_POOL_ID=eu-central-1_jBCJjWLiS
+      - COGNITO_CLIENT_ID=4itvr6pd2fp7stj5f5l9soaf9d
+      - COGNITO_REGION=eu-central-1
+      - MAILJET_API_KEY=***REMOVED***
+      - MAILJET_API_SECRET=***REMOVED***
+      - MAILJET_EMAIL=local@talktoloop.org
+      - MAILJET_USERNAME=OurLoop.io
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_USER=redis
+      - REDIS_PASSWORD=redis_password
+      - REDIS_SCHEMA=redis
+      - ROLLBAR_ACCESS_TOKEN=***REMOVED***
+      - ANONYMIZE_CHARTS=false
+      - DISABLE_IVR_PUBLICATION_NOTIFICATIONS=false
+      - DISABLE_IVR_REJECT_NOTIFICATIONS=false
+      - AIRTABLE_BASE=appFrN4PbPgx8a1eO
+      - AIRTABLE_APIKEY=***REMOVED***
+      - AIRTABLE_SENSITIVE_CASES_BASE=appFrN4PbPgx8a1eO
+      - AIRTABLE_DASHBOARD_BASE=appFrN4PbPgx8a1eO
+      - BASIC_TOKEN=test1234
+      - AWS_ACCESS_KEY=***REMOVED***
+      - AWS_SECRET_KEY=***REMOVED***
+      - AWS_S3_BUCKET=ivrr-development
+      - AWS_REGION=eu-central-1
+      - AZURE_SUBSCRIPTION_TOKEN=x
+      - ONLY_GET_REQUEST=false
+      - TWILIO_ACCOUNT_SID=***REMOVED***
+      - TWILIO_AUTH_TOKEN=***REMOVED***
+      - JWT_SECRET=***REMOVED***
+      - DISABLE_NOTIFICATIONS=false
+      - TRANSLATION_MINIMUM_PROBABILITY=70
+      - GOOGLE_PROJECT_ID=ourloop
+      - GOOGLE_TRANSLATION_PROJECT_ID=ourloop
+      - GOOGLE_TRANSLATION_LOCATION=global
+      - GOOGLE_CREDENTIALS='{"type":"service_account","project_id":"ourloop","private_key_id":"***REMOVED***","private_key":"-----BEGIN PRIVATE KEY-----\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n***REMOVED***\\n-----END PRIVATE KEY-----\\n","client_email":"translation@ourloop.iam.gserviceaccount.com","client_id":"105273811855971116931","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_x509_cert_url":"https://www.googleapis.com/robot/v1/metadata/x509/translation%40ourloop.iam.gserviceaccount.com","universe_domain":"googleapis.com"}'
+      - LOOP_PREMIUM_REQUEST_EMAILS_RECEIVERS=abe@talktoloop.org
+      - AIRTABLE_USERS_URL=https://api.airtable.com/v0/appZ6XTSgQfRMPCSp/Users
+      - SUPPORT_EMAIL=abe@talktoloop.org
+      - COMMUNICATION_TIMEOUT=5000
+      - POSTHOG_KEY=***REMOVED***
+      - POSTHOG_HOST=https://eu.i.posthog.com
+      - METABASE_SECRET_KEY=***REMOVED***
+      - BREVO_API_KEY=
+      - TRANSLATE_FUNCTION_ARN=TranslateFunction
+      - TRANSCRIBE_FUNCTION_ARN=TranscribeFunction
+  ivr:
+    build:
+      context: ./apps/ivrr-bot/
+      dockerfile: Dockerfile.local
+      args:
+        NPM_TOKEN: ***REMOVED***
+        NODE_ENV: development
+    container_name: voice
+    ports:
+      - 5007:5007
+    volumes:
+      - ./apps/ivrr-bot/:/var/www/backend
+    tty: true
+    depends_on:
+      - db
+      - redis
+      - cerbos
+    environment:
+      - BASIC_TOKEN=test1234
+      - TWILIO_ACCSID=***REMOVED***
+      - TWILIO_AUTH_TOKEN=***REMOVED***
+      - APP_PORT=5007
+      - NODE_ENV=local
+      - GLOBAL_PREFIX=ivrrbot/api/v1
+      - COMMUNICATION_TIMEOUT=5000
+      - TWILIO_PHONE_NUMBERS=[{"twilioPhoneNumber":"+3197010286886","utcTimeDiff":2,"inboundFlowId":"FW89ca55c4d2bc1ad66b9791f757fcbc19"},{"twilioPhoneNumber":"6464","utcTimeDiff":2,"inboundFlowId":"FW81c904d4575a8cc96177bea4e4ec65e7","trunkSid":"BY2ee728e910ad95c1c23e006e2de8edb9","country":"so"},{"twilioPhoneNumber":"2023","utcTimeDiff":2,"inboundFlowId":"FW4fc2eadeec31af22c5f3a628c0f474d5","trunkSid":"BY2ee728e910ad95c1c23e006e2de8edb9","country":"so"},{"twilioPhoneNumber":"4343","utcTimeDiff":2,"inboundFlowId":"FWbcc10233f71c3eb0c63368d05b76c399","trunkSid":"BY2da0a20ddce264148522eb8d13caa590","country":"zm"},{"twilioPhoneNumber":"+16419006371","utcTimeDiff":2,"inboundFlowId":"FW81c904d4575a8cc96177bea4e4ec65e7","country":"so"},{"twilioPhoneNumber":"+15138781782","utcTimeDiff":2,"inboundFlowId":"FW3c3fddeb744bc5d276516435c668e657","country":"so"}]
+      - FLOW_TTL=3600
+      - PROCESS_CALL_DELAY=1
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_USER=redis
+      - REDIS_PASSWORD=redis_password
+      - REDIS_SCHEMA=redis
+      - AWS_S3_BUCKET=ivrr-development
+      - IVRR_SERVICE_URL=localhost:5007
+      - ARCHIVE_DATA_MONTHS=2
+      - START_NIGHT_HOUR=24
+      - END_NIGHT_HOUR=1
+      - SCHEDULER_DIFF_IN_HOURS=0
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=loop
+      - DB_HOST=db
+      - DB_PORT=3306
+      - ROLLBAR_ACCESS_TOKEN=***REMOVED***
+      - AWS_REGION=eu-central-1
+      - AWS_ACCESS_KEY=***REMOVED***
+      - AWS_SECRET_KEY=***REMOVED***
+      - POSTHOG_KEY=***REMOVED***
+      - POSTHOG_HOST=https://eu.i.posthog.com
+  whatsapp:
+    build:
+      context: ./apps/social-media-bot/service
+      dockerfile: Dockerfile.local
+      args:
+        NPM_TOKEN: ***REMOVED***
+        NODE_ENV: development
+    container_name: whatsapp
+    ports:
+      - 5009:5009
+    volumes:
+      - ./apps/social-media-bot/service/:/var/www/backend
+    tty: true
+    depends_on:
+      - db
+      - redis
+      - cerbos
+    environment:
+      - BASIC_TOKEN=test1234
+      - TWILIO_ACCSID=***REMOVED***
+      - TWILIO_AUTH_TOKEN=***REMOVED***
+      - APP_PORT=5009
+      - NODE_ENV=local
+      - COMMUNICATION_TIMEOUT=5000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_USER=redis
+      - REDIS_PASSWORD=redis_password
+      - REDIS_SCHEMA=redis
+      - SUPPORTED_QUICK_REPLIES=false
+      - PROVIDER_CONFIG={"accountSid":"***REMOVED***","authToken":"***REMOVED***","callbackUrl":"REPLACE_WITH_YOUR_NGROK_URL","numbers":[{"pageId":"whatsapp:+380997222736","supportedLanguages":[{"lang":"en","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/International_English2x.png"},{"lang":"uk","thanksImageUrl":"https://social-media.loop.elitecrew.io/uk/Ukraine_Ukrainian2x.png"}],"defaultLanguage":"uk"},{"pageId":"whatsapp:+3197010286886","supportedLanguages":[{"lang":"en","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/International_English2x.png"}],"defaultLanguage":"en"},{"pageId":"whatsapp:+628112365555","supportedLanguages":[{"lang":"en","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/Indonesia_English2x.png"},{"lang":"id","thanksImageUrl":"https://social-media.loop.elitecrew.io/ind/Indonesia_Bahasa2x.png"}],"defaultLanguage":"id"},{"pageId":"whatsapp:+260976256521","supportedLanguages":[{"lang":"en","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/International_English2x.png"},{"lang":"bem","thanksImageUrl":"https://social-media.loop.elitecrew.io/bem/Zambia_Bemba2x.png"},{"lang":"ny","thanksImageUrl":"https://social-media.loop.elitecrew.io/ny/Zambia_Nyanja2x.png"},{"lang":"loz","thanksImageUrl":"https://social-media.loop.elitecrew.io/loz/Zambia_Lozi2x.png"},{"lang":"tog","thanksImageUrl":"https://social-media.loop.elitecrew.io/tog/Zambia_Tonga2x.png"}],"defaultLanguage":"en"},{"pageId":"whatsapp:+48888880017","supportedLanguages":[{"lang":"en","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/International_English2x.png"},{"lang":"pl","thanksImageUrl":"https://social-media.loop.elitecrew.io/pl/Poland_Polish2x.png"},{"lang":"uk","thanksImageUrl":"https://social-media.loop.elitecrew.io/uk/Ukraine_Ukrainian2x.png"}],"defaultLanguage":"en"},{"pageId":"whatsapp:+252770659792","supportedLanguages":[{"lang":"en","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/International_English2x.png"},{"lang":"so","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/International_English2x.png"}],"defaultLanguage":"so"}]}
+      - PROVIDER_NAME=whatsapp
+      - COMMUNICATOR_USER_FLOW_TTL=900
+      - COMMUNICATOR_MODERATOR_TTL=19800
+      - AWS_REGION=eu-central-1
+      - AWS_ACCESS_KEY=***REMOVED***
+      - AWS_SECRET_KEY=***REMOVED***
+      - ROLLBAR_ACCESS_TOKEN=***REMOVED***
+      - POSTHOG_KEY=***REMOVED***
+      - POSTHOG_HOST=https://eu.i.posthog.com

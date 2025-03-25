@@ -1,0 +1,16 @@
+export enum RESPONSIVENESS_STATUS {
+  pendingDecisionOfAllegationReferral = 'Pending decision of allegation referral',
+  pendingDecisionOfAllegationReferralForMoreThan48Hours = 'Pending decision of allegation referral for more than 48 hours',
+  pendingDecisionOfAllegationReferralForMoreThan1Week = 'Pending decision of allegation referral for more than 1 week',
+  pendingOrganisationResponse = 'Pending organisation response',
+  pendingOrganisationResponseForMoreThan48Hours = 'Pending organisation response for more than 48 hours',
+  pendingOrganisationResponseForMoreThan1Week = 'Pending organisation response for more than 1 week',
+  pendingDecisionToInvestigate = 'Pending decision to investigate',
+  pendingDecisionToInvestigateOngoingForMoreThan6Weeks = 'Pending decision to investigate ongoing for more than 6 weeks',
+  pendingDecisionToInvestigateOngoingForMoreThan3Months = 'Pending decision to investigate ongoing for more than 3 months',
+  investigationOpen = 'Investigation open',
+  investigationOpenFoMoreThan3Months = 'Investigation open for more than 3 months',
+  investigationOpenForMoreThan2Years = 'Investigation open for more than 2 years',
+  pendingAuthorNotification = 'Pending author notification',
+  pendingAuthorNotificationForMoreThan48Hours = 'Pending author notification for more than 48 hours',
+}
