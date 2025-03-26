@@ -66,3 +66,47 @@ lambda-create-challenge-dev:
       changes:
         - lambdas/auth/create_challenge/**
   stage: deploy
+
+  lambda-define-challenge-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_DEFINE_CHALLENGE_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/auth/define_challenge/**
+  stage: deploy
+
+  lambda-pre-signup-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_PRE_SIGNUP_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/auth/pre_signup/**
+  stage: deploy
+
+  lambda-verify-challenge-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_VERIFY_CHALLENGE_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/auth/verify_challenge/**
+  stage: deploy
+
+  lambda-login-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_LOGIN_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/auth/login/**
+  stage: deploy
