@@ -12,7 +12,7 @@ phases:
       - echo Building the Docker image...
       - cd ${APP_PATH}
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-8)
-      - docker build . --target=final --tag $ECR_URL:$IMAGE_TAG
+      - docker build . --target=final --tag $ECR_URL:$IMAGE_TAG --build-arg NPM_TOKEN=$NPM_TOKEN
 
   post_build:
     commands:
