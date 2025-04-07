@@ -110,3 +110,14 @@ lambda-login-dev:
       changes:
         - lambdas/auth/login/**
   stage: deploy
+
+gateway-dev:
+  variables:
+    PIPELINE_NAME: ${GATEWAY_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/gateway/**
+  stage: deploy
