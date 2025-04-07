@@ -119,5 +119,5 @@ gateway-dev:
   rules:
     - if: $CI_COMMIT_BRANCH == "develop"
       changes:
-        - apps/gateway/**
+        - apps/gateway/service/**
   stage: deploy
