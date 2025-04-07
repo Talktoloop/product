@@ -5,7 +5,7 @@
 1. Use file https://gitlab.com/ourloop/archived/backend/devops/-/blob/develop/docker-compose-dev.yml to run relational database and Redis locally.
 2. go to `service` directory
 3. copy `env.tpl` to `.env`
-4. create `.npmrc` with content
+4. create `.npmrc` with content:
 
 ```
 //registry.npmjs.org/:_authToken=sharedToken
