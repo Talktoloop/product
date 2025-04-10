@@ -1,0 +1,51 @@
+@import 'variables';
+@import 'mixins';
+@import 'loop-design-system/colors';
+
+$actions-font-size: 1rem;
+$action-min-width: 2.5rem;
+
+.upvote {
+  $self: &;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.477rem 0.938rem;
+  border-radius: 4px;
+  border: solid 1px $light-grey-2;
+  color: $light-grey-2;
+  background-color: #ffffff;
+  font-size: 1rem;
+  width: 3.063rem;
+  height: 2.938rem;
+  font-weight: bold;
+  line-height: normal;
+
+  &:hover {
+    cursor: pointer;
+    border-color: $loop-purple-100;
+  }
+
+  &__icon {
+    margin-bottom: 0.188rem;
+    height: 0.422rem;
+    transform: translateY(-8px);
+  }
+
+  &.voted {
+    color: #ffffff;
+    background-color: $loop-blue;
+    border: none;
+
+    #{ $self }__icon {
+      color: #ffffff;
+    }
+  }
+
+  &:not(.voted) {
+    #{$self}__text {
+      color: $loop-green-100;
+    }
+  }
+}

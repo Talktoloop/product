@@ -1,0 +1,130 @@
+<form [formGroup]="form">
+  <div class="filter-dropdown">
+    <div class="dropdown-header">
+      <span class="selected-filter-title">{{ selectedFilterTitle | translate }}</span>
+    </div>
+    <ng-container [ngSwitch]="config.type">
+      <ng-container *ngSwitchCase="FilterType.ORGANISATION">
+        <loop-organisation-filter
+          (organisationsDataChange)="onOrganisationsChange($event)"
+          (dropdownClose)="closeDropdown()"
+          [selectedOrganizations]="data"
+          [formControlName]="config.internalName"
+          [placeholder]="'filtersV2.organisation.placeholder' | translate"
+          [showAddOption]="true"
+          [showAllWhenEmpty]="true"
+        >
+        </loop-organisation-filter>
+      </ng-container>
+
+      <!-- CHECKBOX -->
+      <ng-container *ngSwitchCase="FilterType.CHECKBOX">
+        <loop-checkbox-wrapper
+          [options]="data.data"
+          [formControlName]="config.internalName"
+          (totalSelectedChange)="updateTotalCount($event)"
+          [isModal]="false"
+          [strictTranslationCode]="true"
+        ></loop-checkbox-wrapper>
+      </ng-container>
+
+      <!-- PRESET -->
+      <ng-container *ngSwitchCase="FilterType.PRESET">
+        <loop-filters-preset
+          (presetApplied)="onPresetApplied($event)"
+          [form]="form">
+        </loop-filters-preset>
+      </ng-container>
+
+      <!-- CHECKBOX SINGLE -->
+      <ng-container *ngSwitchCase="FilterType.CHECKBOX_SINGLE">
+        <loop-checkbox-wrapper
+          [options]="data.data"
+          [formControlName]="config.internalName"
+          [isModal]="false"
+          [singleValue]="true"
+          [bulkActionVisible]="false"
+          [strictTranslationCode]="true"
+        ></loop-checkbox-wrapper>
+      </ng-container>
+
+      <!-- CHECKBOX TABS -->
+      <ng-container *ngSwitchCase="FilterType.CHECKBOX_TABS">
+        <loop-checkbox-tabs-filter
+          [config]="config"
+          [isCases]="isCases"
+          [form]="form.get(config.internalName)"
+          [data]="data"
+          (totalSelectedChange)="totalSelectedChange($event)"
+          [isModal]="false"
+        ></loop-checkbox-tabs-filter>
+      </ng-container>
+
+      <!-- CHECKBOX LIST -->
+      <ng-container *ngSwitchCase="FilterType.CHECKBOX_LIST">
+        <loop-checkbox-filter-wrapper-grouped
+          [filterData]="data"
+          [form]="form"
+          [controlName]="config.internalName"
+          [isModal]="false"
+          (totalSelectedChange)="totalSelectedChange($event)"
+          (groupDetailsClicked)="applyButtonVisibilityChange(true)"
+          (rootBackClicked)="processButtonVisibility()"
+        ></loop-checkbox-filter-wrapper-grouped>
+      </ng-container>
+
+      <!-- AUTOCOMPLETE -->
+      <ng-container *ngSwitchCase="FilterType.AUTOCOMPLETE">
+        <loop-autocomplete-filter [config]="config" [formControlName]="config.internalName"></loop-autocomplete-filter>
+      </ng-container>
+
+      <!-- DOUBLE AUTOCOMPLETE -->
+      <ng-container *ngSwitchCase="FilterType.DOUBLE_AUTOCOMPLETE">
+        <loop-location-wrapper-filter
+          [isCases]="isCases"
+          [lastLocationQuery]="lastRegionId"
+          [countryControlName]="'country'"
+          [locationControlName]="'location'"
+          (locationQueryChanged)="regionIdChanged.emit($event)"
+          [form]="form.get(config.internalName)"
+          [isModal]="isModal"
+        ></loop-location-wrapper-filter>
+      </ng-container>
+
+      <!-- REGION -->
+      <ng-container *ngSwitchCase="FilterType.REGION">
+        <app-location
+          (totalSelectedChange)="totalSelectedChange($event)"
+          [onlyWithStories]="true"
+          [canChooseMoreThanOne]="true"
+          [isOnlyDropdown]="true"
+          (multiData$)="onLocationsChange($event)"
+          [semiClicked]="form.get('region')?.value?.semiClicked || []"
+          [selectedRegionsOrCountries]="form.get('region')?.value?.selectedRegionsOrCountries || []"
+        ></app-location>
+      </ng-container>
+
+      <!-- CALENDAR -->
+      <ng-container *ngSwitchCase="FilterType.CALENDAR">
+        <loop-date-wrapper-filter
+          [isCases]="isCases"
+          [isModal]="isModal"
+          [form]="form"
+          [controlName]="config.internalName"
+        ></loop-date-wrapper-filter>
+      </ng-container>
+
+      <!-- LENGTH -->
+      <ng-container *ngSwitchCase="FilterType.LENGTH">
+        <loop-length-filter [isModal]="isModal" [formControlName]="config.internalName"></loop-length-filter>
+      </ng-container>
+    </ng-container>
+    <app-button *ngIf="applyVisible"
+                (clicked)="onFiltersApply()"
+                (blured)="handleBlurApplyBtn($event)"
+                class="apply-btn"
+                [mode]="'v2'">
+      <span>{{ 'filtersV2.apply' | translate }}{{ currentFiltersCount > 0 ? ' (' + currentFiltersCount + ')' : '' }}</span>
+    </app-button>
+  </div>
+</form>

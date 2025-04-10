@@ -1,0 +1,164 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep {
+    .checkbox {
+      border-radius: 4px;
+      border: 1px solid transparent;
+      font-size: 1rem;
+      transition: 0.2s;
+
+      label {
+        width: 100%;
+        padding: 0.875rem 0.938rem !important;
+      }
+
+      .square {
+        img {
+          display: none !important;
+        }
+
+        &:after {
+          content: '';
+          display: flex;
+          height: 0.3rem;
+          width: 0.6rem;
+          @include margin-left(0.063rem, true);
+          margin-top: 0.125rem;
+
+          border-left: 2px solid transparent;
+          border-bottom: 2px solid transparent;
+          transform: rotate(-50deg);
+
+          @include mobile-up {
+            height: 0.3rem;
+            width: 0.7rem;
+            @include margin-left(0.125rem, true);
+            margin-top: 0.188rem;
+          }
+        }
+      }
+
+      &:not(.checked):hover,
+      &:focus {
+        @media (hover: hover) {
+          border-color: $header-green;
+
+          .square {
+            position: relative;
+            border-color: $tab-inactive-color;
+            background-color: $tab-inactive-color;
+            transition: 0.2s;
+
+            &:after {
+              border-color: white;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        background-color: #f6f6f9;
+        border-color: $menu-active-color;
+      }
+
+      &.checked {
+        background-color: #d9eeed;
+
+        .square {
+          border-color: $header-green;
+          background-color: $header-green;
+
+          &:after {
+            border-color: $color-green-10;
+          }
+        }
+
+        .checkbox-filter-wrapper__badge {
+          background-color: white;
+        }
+      }
+
+      .square {
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid black;
+        border-radius: 2px;
+      }
+
+      @include mobile-up {
+        font-size: 1.125rem;
+
+        .square {
+          width: 1.188rem;
+          height: 1.188rem;
+        }
+      }
+    }
+  }
+}
+
+.checkbox-filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8px;
+  border: 1px solid #e0e0e5;
+  border-radius: 4px;
+
+  @include mobile-up {
+    &.wide {
+      width: auto;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      >* {
+        flex: 0 49.5%;
+        gap: 0;
+      }
+
+      .select-all {
+        flex: 100% !important;
+        text-align: left;
+      }
+    }
+  }
+
+  &.modal-view {}
+
+  &__name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.313rem;
+    min-width: 1.875rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 3.125rem;
+    background-color: $tab-inactive-color;
+    font-size: 0.75rem;
+    font-weight: bold;
+
+    @include mobile-up {
+      min-height: 1.5rem;
+      min-width: 2.063rem;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.select-all {
+  font-size: 0.875rem;
+
+  @include mobile-up {
+    font-size: 1.125rem;
+  }
+}

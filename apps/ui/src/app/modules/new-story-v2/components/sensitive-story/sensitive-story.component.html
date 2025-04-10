@@ -1,0 +1,27 @@
+<form class="sensitive-story d-flex f-column" [formGroup]="form">
+  <h4 class="font-big bold">{{ 'newStoryV2.form.content.sensitive.label' | translate }}?</h4>
+  <span class="new-story-v2__info-link">
+    <app-lock-icon class="mr-0625"></app-lock-icon>
+    <span class="input-description">{{ 'newStoryV2.form.content.sensitive.info' | translate }}</span>
+  </span>
+  <app-radio-group formControlName="isSensitive">
+    <loop-new-story-radio
+      cy="sensitive-story-radio"
+      [label]="'newStoryV2.form.content.sensitive.no' | translate"
+      [value]="false"
+      [checked]="!form.get('isSensitive').value"
+    ></loop-new-story-radio>
+    <loop-new-story-radio
+      cy="sensitive-story-radio"
+      [label]="'newStoryV2.form.content.sensitive.yes' | translate"
+      [value]="true"
+      [checked]="form.get('isSensitive').value"
+    ></loop-new-story-radio>
+  </app-radio-group>
+  <loop-info-link
+    (clicked)="openModal()"
+    cy="sensitive-story-explanation-link"
+    class="new-story-v2__explanation-link"
+    [text]="('newStoryV2.form.content.sensitive.explanation' | translate) + '?'"
+  ></loop-info-link>
+</form>

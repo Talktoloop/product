@@ -1,0 +1,185 @@
+@import 'variables';
+@import 'mixins';
+@import 'loop-design-system/colors';
+
+:host {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .bottom-bar {
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    height: 56px;
+    position: fixed;
+    @include left(0);
+    align-items: center;
+    z-index: $navigation-zindex;
+    $buttons-transition-time: 0.4s;
+    justify-content: space-between;
+    transition: transform 0.8s ease;
+
+    &.hide {
+      transform: translateY(150%);
+    }
+
+    &.disable {
+      display: none;
+    }
+
+    * {
+      outline: none;
+
+      &:focus,
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    &--new-story-button {
+      width: 94px;
+      height: 100%;
+      position: relative;
+
+      >.image {
+        top: 0;
+        @include left(-2px);
+        width: calc(100% + 4px);
+        height: 100%;
+        position: absolute;
+
+        ::ng-deep svg {
+          path {
+            transition: fill $buttons-transition-time;
+          }
+        }
+      }
+
+      .button {
+        border: 0;
+        @include left(16px);
+        width: 60px;
+        height: 60px;
+        bottom: 24px;
+        display: flex;
+        line-height: 0;
+        color: $white;
+        font-size: 32px;
+        cursor: pointer;
+        border-radius: 50%;
+        position: absolute;
+        background: $loop-interactive-01;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+
+        >img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    &.stories {
+      .bottom-bar--new-story-button {
+        >.image {
+          ::ng-deep svg {
+            path {
+              &:nth-of-type(1) {
+                @include only-ltr {
+                  fill: $grey-1;
+                }
+              }
+
+              &:nth-of-type(2) {
+                @include only-rtl {
+                  fill: $grey-1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.statistics {
+      .bottom-bar--new-story-button {
+        >.image {
+          ::ng-deep svg {
+            path {
+              &:nth-of-type(2) {
+                @include only-ltr {
+                  fill: $grey-1;
+                }
+              }
+
+              &:nth-of-type(1) {
+                @include only-rtl {
+                  fill: $grey-1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &--button {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      background: $white;
+      flex-direction: column;
+      justify-content: center;
+      border-top: 0.125rem solid $loop-yellow;
+      transition: background-color $buttons-transition-time;
+
+      .icon-filled {
+        display: none;
+      }
+
+      .icon-shaped {
+        display: block;
+      }
+
+      &.active {
+        background: $color-green-20;
+
+        .icon-filled {
+          display: block;
+        }
+
+        .icon-shaped {
+          display: none;
+        }
+
+        span {
+          font-weight: 600;
+        }
+      }
+
+      &.inbox {
+        &-mobile-bottom-nav {
+          order: 3;
+        }
+      }
+
+      img {
+        width: 1rem;
+        height: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      span {
+        color: $color-green-90;
+        font-size: 0.875rem;
+        font-weight: normal;
+        text-align: center;
+        line-height: 1;
+      }
+    }
+  }
+}

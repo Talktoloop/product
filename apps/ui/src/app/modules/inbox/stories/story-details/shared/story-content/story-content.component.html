@@ -1,0 +1,20 @@
+<div class="story-content-container">
+  <loop-textarea [formControl]="originalContentControl" [minRows]="1" [minlength]="5" [maxLength]="30000" [required]="true"></loop-textarea>
+  <ng-template [ngIf]="storyDetailsService.isReviewStep">
+    <app-slide-toggle
+      [checked]="isEditEnable"
+      (changed$)="onEditStateChange($event)"
+      [disabled]="canEdit"
+      [text]="'story.details.review.editStory.editButton' | translate"
+    ></app-slide-toggle>
+    <loop-textarea
+      [customErrorKeys]="getCustomErrorKeys()"
+      [formControl]="editedContentControl"
+      *ngIf="isEditEnable"
+      [minRows]="1"
+      [minlength]="5"
+      [maxLength]="30000"
+      [required]="true"
+    ></loop-textarea>
+  </ng-template>
+</div>

@@ -1,0 +1,146 @@
+<ng-container *ngIf="title; else desktopView">
+  <!-- mobile view -->
+  <div class="filter-v2-container__section-title">
+    <span class="filter-v2-container__section-title-name">{{ title }}</span>
+    <div class="separator"></div>
+    <div class="preset-icon-container">
+      <button (click)="openSavePresetModal()" class="save-preset-btn">
+        {{ 'filtersV2.preset.savePreset' | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="savedFilters && savedFilters.length > 0" class="preset-filters-container">
+      <ng-container *ngTemplateOutlet="presetTemplate"></ng-container>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #desktopView>
+  <!-- desktop view -->
+  <div class="filter-v2-container__section-title">
+    <div class="preset-icon-container">
+      <button (click)="openSavePresetModal()" class="save-preset-btn">
+        {{ 'filtersV2.preset.savePreset' | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="savedFilters && savedFilters.length > 0" class="preset-filters-container">
+      <ng-container *ngTemplateOutlet="presetTemplate"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Modal window for saving preset -->
+<div class="modal-overlay" *ngIf="showModalName" (click)="onModalOutsideClick($event)">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <h3>{{ 'filtersV2.preset.modalLabel' | translate }}</h3>
+    <input
+      [(ngModel)]="presetName"
+      placeholder="{{ 'filtersV2.preset.placeholder' | translate }}"
+      class="form-control"
+    />
+    <div class="modal-buttons">
+      <button
+        (click)="onSaveClick(); $event.stopPropagation()"
+        [disabled]="!presetName.trim()"
+        class="btn btn-primary"
+      >
+        {{ 'filtersV2.preset.buttons.confirm' | translate }}
+      </button>
+      <button
+        (click)="closeModalSave(); $event.stopPropagation()"
+        class="btn btn-secondary"
+      >
+        {{ 'filtersV2.preset.buttons.cancel' | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #presetTemplate>
+  <!-- Owner list of saved presets -->
+  <div *ngFor="let preset of savedFilters"
+       [attr.data-id]="preset.id"
+       class="preset-item">
+    <span
+      class="preset-name"
+      (click)="applyPreset(preset.filters)"
+    >
+      {{ preset.name }}
+    </span>
+    <div class="preset-action-buttons">
+      <button
+        class="btn-share"
+        (click)="openModalButtons('share', preset)"
+        [disabled]="isSharing[preset.id]">
+        <span class="tooltip">{{ 'filtersV2.preset.tooltip.share' | translate }}</span>
+        <loop-icon
+          [name]="LoopIcon.Name.OrganizationUser"
+          [theme]="LoopIcon.Theme.Emphasis"
+          [isButton]="false"
+          [clickable]="true"
+          [size]="20"
+        ></loop-icon>
+      </button>
+      <button
+        class="btn-edit"
+        (click)="openModalButtons('update', preset)"
+        [disabled]="isUpdating[preset.id]">
+        <span class="tooltip">{{ 'filtersV2.preset.tooltip.update' | translate }}</span>
+        <loop-icon
+          [name]="LoopIcon.Name.AudioPlayerReplay"
+          [theme]="LoopIcon.Theme.Primary"
+          [isButton]="false"
+          [clickable]="true"
+          [size]="20"
+        ></loop-icon>
+      </button>
+      <button class="btn-remove" (click)="openModalButtons('delete', preset)">
+        <span class="tooltip">{{ 'filtersV2.preset.tooltip.delete' | translate }}</span>
+        <loop-icon
+          [name]="LoopIcon.Name.AudioPlayerDelete"
+          [theme]="LoopIcon.Theme.Danger"
+          [isButton]="false"
+          [clickable]="true"
+          [size]="20"
+        ></loop-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal window for choosing action -->
+  <div class="modal-overlay" *ngIf="showModalButtons" (click)="onModalOutsideClick($event)">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <h3 *ngIf="modalType === 'share'">
+        {{ 'filtersV2.preset.shareConfirmation' | translate }}
+      </h3>
+      <h3 *ngIf="modalType === 'update'">
+        {{ 'filtersV2.preset.editConfirmation' | translate }}
+      </h3>
+      <h3 *ngIf="modalType === 'delete'">
+        {{ 'filtersV2.preset.deleteConfirmation' | translate }}
+      </h3>
+      <p *ngIf="modalType === 'share'">
+        {{ 'filtersV2.preset.shareExplanation' | translate }}
+      </p>
+      <p *ngIf="modalType === 'update'">
+        {{ 'filtersV2.preset.editExplanation' | translate }}
+      </p>
+      <p *ngIf="modalType === 'delete'">
+        {{ 'filtersV2.preset.deleteExplanation' | translate }}
+      </p>
+      <div class="modal-buttons">
+        <button class="btn btn-primary"
+                (click)="confirmAction();
+                $event.stopPropagation()">
+          {{ 'filtersV2.preset.buttons.confirm' | translate }}
+        </button>
+        <button class="btn btn-secondary"
+                (click)="closeModalButtons();
+                $event.stopPropagation()">
+          {{ 'filtersV2.preset.buttons.cancel' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

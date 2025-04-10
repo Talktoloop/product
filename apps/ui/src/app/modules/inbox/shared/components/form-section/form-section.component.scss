@@ -1,0 +1,99 @@
+@import 'variables';
+@import 'mixins';
+@import 'loop-design-system/helpers';
+
+:host {
+  ::ng-deep {
+    .dropdown__apply-btn {
+      display: flex;
+      height: 3.75rem;
+      margin-top: pxToRem(30);
+
+      button {
+        padding: pxToRem(17.5);
+        width: 100%;
+      }
+    }
+
+    .select-all {
+      background: transparent;
+      outline: 0;
+      border: 0;
+      color: $loop-interactive-01;
+      font-size: pxToRem(18);
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.form-section {
+  &__title {
+    align-items: center;
+    color: #000;
+    display: flex;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: pxToRem(8);
+    text-transform: capitalize;
+
+    @include mobile-up {
+      font-size: 1rem;
+    }
+  }
+
+  &__title-label {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #494949;
+  }
+
+  &__tags {
+    @include flex-gap(8px);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+
+      loop-simple-tag {
+        margin-bottom: pxToRem(10);
+        @include margin-right(pxToRem(10));
+      }
+    }
+  }
+
+  loop-required-tag {
+    @include margin-left(pxToRem(12));
+  }
+}
+
+.dropdown {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 7px 20px 0 rgb(0 0 0 / 25%);
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  min-width: 18.5rem;
+  padding: 1.25rem;
+  width: fit-content;
+  z-index: 1;
+
+  &__title {
+    font-size: pxToRem(18);
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: pxToRem(10);
+  }
+}

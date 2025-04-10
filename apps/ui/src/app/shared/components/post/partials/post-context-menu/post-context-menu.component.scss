@@ -1,0 +1,37 @@
+@import 'variables';
+@import 'mixins';
+
+button {
+  padding: 0.719rem 0 0 0.5rem;
+  color: $light-grey-3;
+
+  app-dots-horizontal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+  }
+
+  &:hover,
+  &.opened {
+    color: $color-purple-90;
+  }
+}
+
+loop-select {
+  ::ng-deep {
+    .select {
+      width: 13.25rem;
+      padding: 0.625rem;
+      .select__options {
+        margin: 0;
+      }
+    }
+
+    loop-select-option {
+      .select-option {
+        padding: 0.5rem 0.938rem;
+      }
+    }
+  }
+}

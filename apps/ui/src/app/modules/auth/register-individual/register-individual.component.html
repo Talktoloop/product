@@ -1,0 +1,15 @@
+<app-auth-page-wrapper [currentStep]="1" [showSignOutButton]="true" (signOut)="onSignOut()">
+  <div class="wrapper">
+    <div class="form-container">
+      <h2>{{ 'auth.registerIndividual.header' | translate }}</h2>
+      <span class="form-container__description">
+        {{ 'auth.registerIndividual.description' | translate }}
+      </span>
+      <app-full-name-form [prefill]="true" [hideLastName]="hideLastName"></app-full-name-form>
+    </div>
+
+    <div class="continue-button">
+      <app-button mode="v3" variant="primary" (click)="continue()">{{ 'auth.registerIndividual.button.text' | translate }}</app-button>
+    </div>
+  </div>
+</app-auth-page-wrapper>

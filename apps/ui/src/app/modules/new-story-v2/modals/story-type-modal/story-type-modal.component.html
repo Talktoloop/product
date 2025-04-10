@@ -1,0 +1,14 @@
+<loop-modal [title]="'newStoryV2.modals.storyType.title' | translate" class="new-story-v2" class="new-story-v2">
+  <div class="story-type-modal">
+    <p class="loop-modal__paragraph pb-0625-125">{{ 'newStoryV2.modals.storyType.paragraph' | translate }}</p>
+    <div class="story-type-modal__section" *ngFor="let section of sections">
+      <h4 class="story-type-modal__section__title font-bold">
+        {{ 'newStoryV2.modals.storyType.sections.' + section + '.title' | translate }}
+      </h4>
+      <p class="story-type-modal__section__content">{{ 'newStoryV2.modals.storyType.sections.' + section + '.content' | translate }}</p>
+    </div>
+  </div>
+  <div action-buttons>
+    <app-button (clicked)="onModalClose()" mode="v2" variant="primary">{{ 'newStoryV2.modals.ok' | translate }}</app-button>
+  </div>
+</loop-modal>

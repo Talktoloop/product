@@ -1,0 +1,94 @@
+@import 'variables';
+@import 'mixins';
+
+.share-content {
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 16.375rem;
+    padding: 3px;
+    border: 1px solid $dark-grey;
+    border-radius: 2px;
+
+    @include mobile-up {
+      min-height: 21.25rem;
+    }
+
+    @media screen and (max-width: $breakpoint-md - 0.1) {
+      ::ng-deep &:focus-within.state .share-content__input-state {
+        display: flex;
+        flex-direction: column;
+        background-color: $purple-background-light !important;
+
+        .share-content__input-state__text {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .icon-desktop {
+          display: none;
+        }
+      }
+    }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      resize: none;
+      border: 0;
+      outline: 0;
+      font-size: 0.875rem;
+
+      @include mobile-up {
+        font-size: 1.125rem;
+      }
+    }
+
+    &.state {
+      ::ng-deep .share-content__input-state {
+        @media screen and (min-width: $breakpoint-md) {
+          display: flex;
+        }
+
+        &__text {
+          display: flex !important;
+        }
+
+        &__progress {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  &__info-text {
+    margin: 0.625rem 0 2.438rem;
+
+    @media screen and (min-width: $breakpoint-md) {
+      margin: 1.25rem 0;
+    }
+  }
+
+  &__publish-info {
+    margin-top: 0.938rem;
+
+    @media screen and (min-width: $breakpoint-md) {
+      margin-top: 1.25rem;
+    }
+  }
+
+  ::ng-deep .info-text {
+    display: flex;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: $color-green-90;
+
+    svg {
+      @include margin-right(0.625rem);
+    }
+  }
+}

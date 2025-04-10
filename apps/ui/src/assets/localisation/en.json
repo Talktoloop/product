@@ -1,0 +1,3256 @@
+{
+  "global": {
+    "Stories": "Feedback",
+    "Replies": "Replies",
+    "Annonymous": "Anonymous",
+    "replied": "replied",
+    "ago": "ago",
+    "units": {
+      "minutes": "m",
+      "hours": "h",
+      "days": "d",
+      "months": "M"
+    },
+    "loading": "Loading",
+    "required": "Required",
+    "optional": "Optional",
+    "gender": "Gender",
+    "isUrgent": "Is this feedback urgent?",
+    "isMinority": "Does this author belong to a minority group?",
+    "age": "Age",
+    "disability": "Disability",
+    "errorMessage": "An error has occured",
+    "noMoreData": "No more data provided",
+    "difficulty": "Difficulty",
+    "problems": "Problems",
+    "previousStep": "Previous step",
+    "nextStep": "Next step",
+    "language": "Language",
+    "reload": "Reload",
+    "selectOption": "Select option(s)",
+    "to": "To:",
+    "you": "You",
+    "today": "Today",
+    "readMore": "Read more",
+    "views": "views",
+    "comments": "comments",
+    "upvote": "Upvote",
+    "replies": "replies",
+    "upvoted": "Upvoted",
+    "cancel": "Cancel",
+    "unitsLong": {
+      "hours": "hours",
+      "days": "days",
+      "weeks": "weeks",
+      "months": "months",
+      "years": "years",
+      "year": "year",
+      "month": "month",
+      "week": "week",
+      "day": "day",
+      "hour": "hour",
+      "stories": "feedback",
+      "cases": "cases",
+      "investigations": "investigations"
+    },
+    "next": "Next",
+    "here": "Here",
+    "sort": {
+      "newest_first": "Newest",
+      "oldest_first": "Oldest",
+      "not_started": "Not started first",
+      "pending_publication": "Ready to publish first",
+      "desc": "Newest",
+      "asc": "Oldest",
+      "upvoted": "Upvoted"
+    },
+    "sortBy": "Sort by",
+    "order": "Order",
+    "dummyDataBanner": "Current displaying sample data",
+    "show": "Show",
+    "hide": "Hide",
+    "hideText": "Hide text",
+    "showText": "Show text",
+    "hideReply": "Hide reply",
+    "showReply": "Show reply",
+    "recordReply": "Record reply",
+    "authorName": "Author's Name",
+    "transcribeReply": "Transcribe reply"
+  },
+  "error": {
+    "generic": {
+      "title": "Something wrong",
+      "subtitle": "Something wrong happened. Review your request or contact support@talktoloop.org"
+    }
+  },
+  "header": {
+    "navLabel": "Loop website header",
+    "link": {
+      "home": "Home",
+      "feedback": "Feedback",
+      "newStory": "Submit feedback",
+      "profile": "User account",
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "statistics": "Statistics",
+      "inbox": "Inbox",
+      "cases": "Cases",
+      "about": "About",
+      "outbox": "Outbox"
+    },
+    "search": {
+      "aria": {
+        "back": "Close search input",
+        "title": "Search",
+        "label": "Search feedback"
+      },
+      "placeholder": "Search feedback on Loop"
+    },
+    "filters": {
+      "aria": {
+        "title": "Filter",
+        "label": "Filter feedback"
+      }
+    },
+    "topBar": {
+      "backToInbox": "Back to inbox"
+    },
+    "topNotificationShort": "Get started with Loop today 🚀",
+    "topNotificationLong": "Get started and become an accountability champion today 🏆️",
+    "hybernationInfo": {
+      "text": "Talk to Loop is in hibernation due to lack of funds."
+    }
+  },
+  "storiesList": {
+    "text": {
+      "noMoreStories": "No more feedback.",
+      "loading": "Loading {{value}} more feedback."
+    },
+    "aria": {
+      "expandOrganisations": "Expand organisations",
+      "clickToVote": "Click to vote for this feedback",
+      "clickToUnvote": "Click to unvote this feedback"
+    }
+  },
+  "story": {
+    "replyForm": {
+      "text": {
+        "content": {
+          "label": "Reply to feedback",
+          "placeholder": "Type your reply here",
+          "invalid": "Please type your reply (minimum {{value}} characters)."
+        },
+        "name": {
+          "label": "Name or nickname",
+          "placeholder": "Optional",
+          "info": "Leave blank to stay anonymous"
+        },
+        "organisation": {
+          "label": "Your organisation",
+          "placeholder": "Optional"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "someone@example.com",
+          "invalid": "Your email address is invalid.",
+          "info": "Get notified when you receive a comment. We don’t share your email with third parties."
+        },
+        "checkbox": "I consent to my feedback being published on TalkToLoop.org and shared online to help improve services",
+        "submit": "Submit reply",
+        "submitting": "Submitting reply",
+        "smsTooltip": "Reply constrained to 320 characters so we can forward your reply to the author via SMS",
+        "warningSignIn": "If you're replying on behalf of an organization, you must sign in using your work email"
+      },
+      "toast": {
+        "success": {
+          "title": "Reply submitted",
+          "subtitle": "The reply is live on the platform"
+        },
+        "error": {
+          "title": "Error submitting reply",
+          "subtitle": "An error has occurred. Please try again"
+        }
+      },
+      "success": {
+        "text": {
+          "line1": "Thank you for leaving your reply. ",
+          "line2": "Your reply will be visible in 1-2 working days."
+        },
+        "action": "Leave another reply"
+      },
+      "header": {
+        "text": "Your reply"
+      },
+      "signOut": "Sign out",
+      "replyingAs": "Replying as:"
+    },
+    "status": {
+      "not_started": "Not started",
+      "pending_translation": "Pending translation",
+      "awaiting_replay": "Waiting for reply",
+      "published": "Published",
+      "rejected": "Rejected",
+      "issuer_replied": "Author replied",
+      "issuer_did_not_replied": "Author did not reply",
+      "pending_publication": "Ready to publish",
+      "sent_from_case_manager_to_loop": "Returned by Case Manager",
+      "pending_transcription": "Pending transcription",
+      "transcription_in_progress": "Transcription in progress",
+      "transcription_failed": "Transcription failed",
+      "sent_to_case_manager": "Sent to Case Manager",
+      "pending_edit": "Returned for editing",
+      "pending_rejection_not_sensitive": "Pending rejection not sensitive"
+    },
+    "details": {
+      "viewStory": "View feedback",
+      "storyInformation": {
+        "type": {
+          "label": "Type of feedback"
+        },
+        "age": {
+          "label": "Age"
+        },
+        "gender": {
+          "label": "Gender"
+        },
+        "disability": {
+          "label": "Disability"
+        },
+        "sentBy": {
+          "label": "Sent by"
+        },
+        "thematic": {
+          "label": "Thematic area"
+        },
+        "isUrgent": {
+          "label": "Urgent"
+        },
+        "heading": "Feedback information"
+      },
+      "translations": {
+        "suggestTranslation": "Suggest a translation",
+        "requestTranslation": "Request a translation",
+        "heading": "View feedback in:"
+      },
+      "jumpToReplies": "Jump to replies ({{value}})",
+      "step": {
+        "review": "Review",
+        "translate": "Translate",
+        "transcribe": "Transcribe"
+      },
+      "transcribe": {
+        "header": {
+          "subtitle": "Listen to the recording and write what you hear. Once done, continue to review the information."
+        },
+        "content": {
+          "placeholder": "Start writing your feedback"
+        },
+        "footer": {
+          "reviewStory": "Review feedback",
+          "poorAudioQuality": "Poor audio quality",
+          "rejectStory": "Reject feedback",
+          "cancel": "Cancel"
+        },
+        "toast": {
+          "storyRejected": {
+            "success": {
+              "title": "Feedback has been rejected",
+              "subtitle": "The feedback has been rejected and the author will be informed."
+            },
+            "error": {
+              "title": "Something went wrong",
+              "subtitle": "We can’t reject this feedback right now. Please try again later. "
+            }
+          },
+          "reviewStory": {
+            "error": {
+              "title": "Something went wrong",
+              "subtitle": "We can't review this feedback right now. Please try again later."
+            }
+          }
+        },
+        "storyRejectModal": {
+          "subtitle": "The author will be informed that their feedback was not published because the audio was not audible.",
+          "title": "You are about to reject this feedback",
+          "confirm": "Do you wish to proceed?"
+        }
+      },
+      "review": {
+        "other": {
+          "header": {
+            "subTitle": "Review the feedback and the tags provided by the user, add any missing tags and translate the feedback once done.",
+            "title": "Review and translate feedback"
+          },
+          "noHistory": "No previous history for this author."
+        },
+        "content": {
+          "readStory": "Read feedback"
+        },
+        "info": {
+          "organisations": "Organisations",
+          "thematicArea": "Thematic area",
+          "disabilities": "Disabilities",
+          "location": "Location",
+          "originalLanguage": "Original language",
+          "channel": "Channel",
+          "gender": "Gender",
+          "minority": "Minority group",
+          "urgent": "Urgent",
+          "age": "Age",
+          "storyType": "Feedback type",
+          "storyInformation": "Feedback information",
+          "country": "Country"
+        },
+        "buttons": {
+          "back": "Back",
+          "rejectStory": "Reject feedback",
+          "translate": "Translate",
+          "publishStory": "Publish feedback",
+          "storyAlreadyPublished": "Feedback is already published",
+          "storyAlreadyRejected": "Feedback is already rejected",
+          "storyAlreadySentToCaseManager": "Feedback is already sent to case manager"
+        },
+        "form": {
+          "sensitiveLabel": "Sensitive feedback is never published on the Loop website.",
+          "demographicalInfo": "Demographical information",
+          "geographicalInfo": "Geographical information",
+          "otherInfo": "Other information",
+          "toast": {
+            "error": {
+              "reviewError": "Please fill in all the elements marked with “required” in order to proceed."
+            }
+          }
+        },
+        "header": {
+          "toRecipient": "to:"
+        },
+        "tabs": {
+          "smsConversation": "SMS conversation",
+          "storyPreview": "Feedback preview",
+          "whatsAppConversation": "WhatsApp conversation",
+          "messengerConversation": "Messenger conversation",
+          "review": "Review",
+          "storyInformation": "Feedback information",
+          "telegramConversation": "Telegram conversation",
+          "authorHistory": "Author history"
+        },
+        "guard": {
+          "toast": {
+            "warning": {
+              "title": "Review step is not available yet.",
+              "subtitle": "Please complete transcribe feedback step before reviewing it."
+            }
+          }
+        },
+        "editStory": {
+          "minLengthErrorMessage": "The feedback must be at least 5 characters long to publish. If this edit is not needed, please disable the toggle above this text field.",
+          "editButton": "Feedback needs to be edited before posting."
+        }
+      },
+      "translate": {
+        "guard": {
+          "toast": {
+            "warning": {
+              "title": "Translate step is not available yet.",
+              "subtitle": "Please complete review feedback step before translating it."
+            }
+          }
+        },
+        "tabs": {
+          "translation": "Translation"
+        },
+        "ivrr": {
+          "header": {
+            "title": "Translate feedback",
+            "subTitle": "Listen to the recording and write out what you hear. Once done, continue to reviewing the information."
+          }
+        }
+      }
+    },
+    "comments": {
+      "viewReplies": "View replies ({{count}})",
+      "hideReplies": "Hide replies ({{count}})"
+    },
+    "originalStoryIn": "Original feedback submitted in {{language}}",
+    "translatedTo": "Translated to {{language}}",
+    "notTranslatedTo": "Not translated to {{language}}",
+    "changeTranslation": "Change translation",
+    "toast": {
+      "errors": {
+        "failedToLoad": "Something went wrong",
+        "failedToLoadSubtitle": "We can’t download feedback details right now. Please try again later. "
+      }
+    },
+    "review": {
+      "authorName": {
+        "placeholder": "Keep author anonymous"
+      },
+      "player": {
+        "escape": {
+          "key": {
+            "info": "⌨️ Press [esc] on your keyboard to start and stop the audio while typing in this box."
+          }
+        }
+      }
+    }
+  },
+  "newStory": {
+    "title": "Submit feedback",
+    "steps": {
+      "first": "Your feedback",
+      "second": "Details",
+      "third": "About you",
+      "fourth": "Consent",
+      "confirmation": "Confirmation"
+    },
+    "navigation": {
+      "next": "Next",
+      "back": "Back",
+      "submit": "Submit"
+    },
+    "form": {
+      "content": {
+        "label": "What would you like to share today?",
+        "placeholder": "",
+        "helperText": "Is there a memorable experience you had with a service in your area? Was it good or bad? What would you like to say to the organisation?",
+        "publishInfo": "If published, this will be public",
+        "invalid": "Please type at least 10 characters."
+      },
+      "nickname": {
+        "label": "Name or nickname",
+        "placeholder": "Optional",
+        "additional": "This will appear alongside your feedback. Leave blank to stay anonymous."
+      },
+      "place": {
+        "label": "Where did your feedback take place?",
+        "helperText": "City / town / village / camp"
+      },
+      "country": {
+        "label": "Which country did your feedback take place in?"
+      },
+      "organisations": {
+        "label": "Which organisation(s) is your feedback about?",
+        "placeholder": "Search for an organisation",
+        "new": {
+          "header": "New organisation",
+          "text": "We couldn't find any matches for \"{{value}}\". Use the tag below to tag them anyway."
+        },
+        "invitations": "On publication of this feedback, invitations will be sent to:"
+      },
+      "genderManual": {
+        "label": "Specify gender",
+        "placeholder": "Optional"
+      },
+      "maternityStatus": {
+        "label": "Are you pregnant or breastfeeding?"
+      },
+      "difficulties": {
+        "label": "Disability"
+      },
+      "categories": {
+        "label": "Type"
+      },
+      "consent": {
+        "text": "I consent to my feedback being published on TalkToLoop.org and shared online to help organisations improve their services."
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Optional",
+        "helperText": "Provide your email address to get notified of replies. You can unsubscribe from these notifications at any time.",
+        "invalid": "Your email address is invalid."
+      },
+      "preview": {
+        "tagsLabel": "These tags are visible to everyone",
+        "emailInfo": "Your email is not visible on the platform",
+        "notifications": "Notifications",
+        "previewText": "Preview of your feedback",
+        "edit": "Edit"
+      },
+      "toast": {
+        "success": {
+          "title": "Feedback submitted",
+          "subtitle": "An admin is reviewing your feedback. It will be visible here as soon as possible.",
+          "sensitive": {
+            "withContact": {
+              "subtitle": "We will handle it with care and discretion. We will keep you up-to-date with what happens. "
+            },
+            "withoutContact": {
+              "subtitle": "We will handle it with care and discretion."
+            },
+            "title": "A moderator is reviewing your sensitive feedback"
+          }
+        },
+        "error": {
+          "title": "Error submitting feedback",
+          "subtitle": "There was an error submitting your feedback. Please try again."
+        }
+      },
+      "submitting": "Submitting feedback"
+    }
+  },
+  "comments": {
+    "replies": "Replies ({{count}})",
+    "reply": {
+      "solutionProposedTag": "Solution Proposed",
+      "reply": "Reply",
+      "hideReplyForm": "Hide reply form"
+    }
+  },
+  "auth": {
+    "login": {
+      "header": "Sign in",
+      "applyLink": "Create an account",
+      "form": {
+        "username": {
+          "label": "Email",
+          "invalid": "Please type your email."
+        },
+        "password": {
+          "label": "Password",
+          "invalid": "Please type your password."
+        },
+        "button": {
+          "text": "Sign in"
+        },
+        "submitting": "Signing in...",
+        "email": {
+          "invalid": "Please type your email."
+        },
+        "headerText": "Welcome Back!",
+        "submitText": "Log in",
+        "forgotPassword": "Forgot password?"
+      },
+      "toast": {
+        "success": {
+          "title": "Sign in success!",
+          "subtitle": "Welcome."
+        },
+        "error": {
+          "title": "Sign in error",
+          "subtitle": "An error occured, please try again."
+        }
+      },
+      "createAccount": "Don’t have an account yet?"
+    },
+    "logout": {
+      "toast": {
+        "success": {
+          "title": "Logout",
+          "subtitle": "You have logged out."
+        },
+        "expired": {
+          "title": "Session expired",
+          "subtitle": "Please log in again."
+        }
+      }
+    },
+    "confirmUser": {
+      "form": {
+        "headerText": "Set new password",
+        "newPassword": {
+          "label": "New password"
+        },
+        "confirmPassword": {
+          "label": "Confirm new password"
+        },
+        "submitText": "Set password"
+      },
+      "toast": {
+        "success": {
+          "title": "Confirmation success",
+          "subtitle": "Your account has been activated and password is set"
+        },
+        "error": {
+          "title": "Confirmation error",
+          "subtitle": "Error occured. Please contact alex@talktoloop.org"
+        },
+        "confirmedAlready": {
+          "title": "Account confirmed",
+          "subtitle": "Your account is confirmed. Please log in"
+        }
+      }
+    },
+    "back": "Back",
+    "reset": {
+      "form": {
+        "headerText": "Reset your password",
+        "subHeaderText": "Enter the email address you used to open an account and we shall send you a new password reset link.",
+        "email": {
+          "label": "Your email address"
+        },
+        "submitText": "Reset password"
+      },
+      "toast": {
+        "success": {
+          "title": "Confirmation success",
+          "subtitle": "The email was sent to reset your password"
+        },
+        "error": {
+          "title": "Confirmation error",
+          "subtitle": "Error occured. Please contact alex@talktoloop.org"
+        }
+      }
+    },
+    "create": {
+      "form": {
+        "submitText": "Save",
+        "headerText": "Create a new password",
+        "password": {
+          "label": "New password"
+        },
+        "confirmPassword": {
+          "label": "Confirm your password"
+        }
+      }
+    },
+    "resetPassword": {
+      "toast": {
+        "error": {
+          "title": "Change password error",
+          "subtitle": "Error occurred. Please contact alex@talktoloop.org"
+        },
+        "success": {
+          "subtitle": "Your password has been change",
+          "title": "Confirmation success"
+        }
+      }
+    },
+    "magicLinkLogin": {
+      "popup": {
+        "result": "Result",
+        "success": "An email has been sent",
+        "error": "An email has not been sent"
+      },
+      "form": {
+        "username": {
+          "label": "Email address",
+          "invalid": "Please type your email."
+        },
+        "button": {
+          "text": "Email me a magic link"
+        },
+        "description": "We’ll sign you in, or create an account for you, if you don’t have one yet",
+        "title": "You need an account for that!"
+      },
+      "footer": {
+        "separator": "or",
+        "button": {
+          "text": "Continue without an account"
+        }
+      },
+      "image": {
+        "description": "Respond to communities in any language, on any device"
+      }
+    },
+    "registerSelect": {
+      "button": {
+        "text": "Continue"
+      }
+    },
+    "registerIndividual": {
+      "back": "Back",
+      "header": "How should we call you?",
+      "form": {
+        "firstName": "First name",
+        "secondName": "Last name(s)",
+        "errors": {
+          "minLength": "Your display name must be at least {{requiredLength}} characters long",
+          "pattern": "Your name cannot include numbers, spaces or special characters such as ! * or $",
+          "required": "This field is mandatory"
+        },
+        "toggle": {
+          "text": "Hide my last name from public view. (You can change this setting at any time.)"
+        }
+      },
+      "button": {
+        "text": "Continue"
+      },
+      "description": "Your name appears beside anything you post on the platform."
+    },
+    "magicLinkSent": {
+      "header": "Thank you!",
+      "description": "An email has been sent to {{emailAddress}}",
+      "resendActionTimer": "Resend mail ({{timeLeft}})",
+      "resendAction": "Resend mail",
+      "loginAction": "Continue without an account"
+    },
+    "registerOrganization": {
+      "back": "Back",
+      "header": "Find your organisation",
+      "form": {
+        "label": "Organisation",
+        "placeholder": "No organisation selected",
+        "error": "This is a mandatory field"
+      },
+      "button": {
+        "text": "Continue"
+      },
+      "list": {
+        "notify": "Get notified anytime your organisation is mentioned in feedback.",
+        "display": "Displays anytime you post on Loop.",
+        "changeSetting": "Change this setting at any time."
+      },
+      "skipButton": {
+        "text": "Skip for now"
+      },
+      "fullNameForm": {
+        "description": "This helps us verify that you work at the organisation below."
+      }
+    },
+    "createNewOrganizationPage": {
+      "button": {
+        "text": "Back"
+      }
+    },
+    "processing": {
+      "title": "One moment while we verify your account",
+      "description": "This can take a minute or two, depending on your internet connection"
+    },
+    "wrapper": {
+      "steps": "Step {{currentStep}} of {{numberOfSteps}}",
+      "back": "Back"
+    },
+    "acceptTerms": {
+      "header": "We care about your data privacy",
+      "list": {
+        "title": "Loop will never:",
+        "firstItem": "Share your contact data with a third party, without your explicit consent (for example, to refer you for further assistance)",
+        "secondItem": "Ask you for your exact location"
+      },
+      "learnMore": "Learn more in our",
+      "privacyPolicy": "privacy policy",
+      "communityGuidelines": "community guidelines",
+      "and": "and",
+      "termsOfService": "terms of service",
+      "checkbox": {
+        "optinMarketing": {
+          "text": "Sign me up to the Loop newsletter"
+        },
+        "acceptTermsOfService": {
+          "text": "I agree to the terms of service",
+          "error": "Please accept the privacy policy below"
+        }
+      },
+      "button": {
+        "text": "Continue"
+      },
+      "userCreatedToast": {
+        "success": "Your account has been created"
+      },
+      "userEditedToast": {
+        "success": "Your account has been edited"
+      }
+    },
+    "confirmName": {
+      "header": "Confirm your full name",
+      "description": "This helps us verify you and your organisation.",
+      "fullName": {
+        "title": "Full name",
+        "descriptionFirstPart": "This name will only be used to verify that you work at the organisation above. It will",
+        "descriptionSecondPart": "not be posted",
+        "descriptionThirdPart": "on the platform."
+      },
+      "button": {
+        "text": "Continue"
+      },
+      "form": {
+        "errors": {
+          "required": "This is a mandatory field"
+        }
+      }
+    }
+  },
+  "profile": {
+    "header": "Profile",
+    "usernameLabel": "Name",
+    "organisationLabel": "Organisation name",
+    "notificationSwitch": {
+      "label": "Email notifications: Receive a daily digest when there is feedback relevant to your organisation",
+      "onText": "On",
+      "offText": "Off"
+    },
+    "notifications": {
+      "toast": {
+        "error": {
+          "title": "Error during update",
+          "subtitle": "Please try again."
+        },
+        "success": {
+          "title": "Profile updated",
+          "subtitle": "Notifications preferences changed."
+        }
+      }
+    },
+    "hideLastNameButton": {
+      "toast": {
+        "error": {
+          "title": "Error during update",
+          "subtitle": "Please try again."
+        },
+        "success": {
+          "title": "Hide Last Name updated",
+          "subtitle": "Last Name preferences changed."
+        }
+      }
+    },
+    "notification": {
+      "on": "Notify me by email when {{organisationName}} is tagged in feedback"
+    },
+    "logout": "Log out",
+    "reminders": {
+      "on": "Notify me by email about remaining feedback where {{organisationName}} didn't reply yet"
+    },
+    "plan": {
+      "label": "Plan",
+      "premium": "Loop Advocate",
+      "free": "Loop Free",
+      "remainingDays": "({{validityTimeInDays}} days remaining)"
+    },
+    "edit": "Edit these details",
+    "hideLastName": "Hide my last name from public view"
+  },
+  "filters": {
+    "header": "Filter feedback",
+    "reset": "Reset",
+    "search": "Search",
+    "category": "Thematic area",
+    "type": "Type",
+    "location&organisation": "Location & organisation",
+    "demographic": "Demographic",
+    "disability": "Disability",
+    "minority": "Minority",
+    "thematic": "Thematic area",
+    "place": "Place",
+    "placePlaceholder": "City / town / village / camp",
+    "age": "Age",
+    "gender": "Gender",
+    "chooseCountry": "Choose a country",
+    "chooseOrganisation": "Choose an organisation",
+    "country": "Country",
+    "taggedOrganisation": "Tagged organisation",
+    "selectAll": "Select all",
+    "clearAll": "Clear all",
+    "showAll": "Show all",
+    "showStories": "Show {{value}} feedback",
+    "chooseAreas": "Choose area(s)"
+  },
+  "gender": {
+    "female": "Female",
+    "male": "Male",
+    "nonBinary": "Non-Binary",
+    "noAnswer": "Prefer not to answer"
+  },
+  "urgent": {
+    "yes": "Needs immediate assistance",
+    "no": "Doesn't need immediate assistance"
+  },
+  "age": {
+    "under14": "Under 14",
+    "between14_17": "Between 14 and 17",
+    "between18_29": "Between 18 and 29",
+    "between30_59": "Between 30 and 59",
+    "60Plus": "60+",
+    "noAnswer": "Prefer not to answer",
+    "between0_5": "Between 0 and 5",
+    "between6_13": "Between 6 and 13"
+  },
+  "minority": {
+    "group": "Minority group"
+  },
+  "admin": {
+    "publish": "Publish",
+    "reject": "Reject",
+    "delete": "Delete permanently",
+    "deleteLabel": "Delete",
+    "pendingPosts": "Inbox",
+    "rejectedPosts": "Rejected posts",
+    "category": "type",
+    "tagsHeading": "Additional tags",
+    "organisationsLabel": "Organisation(s)",
+    "thematicLabel": "Thematic area",
+    "noMoreStories": {
+      "new": {
+        "title": "No more pending feedback",
+        "subtitle": "Your work here is done! As soon as there is more feedback, it will appear here for your review"
+      },
+      "rejected": {
+        "title": "No more rejected feedback",
+        "subtitle": "Your work here is done! As soon as there is more rejected feedback, it will appear here for your review"
+      }
+    },
+    "noMoreComments": {
+      "new": {
+        "title": "No more pending replies",
+        "subtitle": "Your work here is done! As soon as there are more replies, they'll appear here for your review"
+      },
+      "rejected": {
+        "title": "No more rejected replies",
+        "subtitle": "Your work here is done! As soon as there are more rejected replies, they'll appear here for your review"
+      }
+    },
+    "story": {
+      "rejectingLoading": "Rejecting...",
+      "publishingLoading": "Publishing...",
+      "deletingLoading": "Deleting...",
+      "loadingMore": "Loading {{value}} more feedback...",
+      "noMoreStories": "No more feedback.",
+      "modal": {
+        "title": "You are about to reject this feedback",
+        "contentVerified": "Are you sure you want to reject this feedback?",
+        "rejectButton": "Reject feedback",
+        "cancelButton": "Cancel",
+        "reason": {
+          "label": "Why is this feedback being rejected?"
+        },
+        "rationale": {
+          "label": "Any other rationale you can provide?",
+          "helperText": "Providing as much detail as possible will help ensure the author understands why their feedback was not published."
+        },
+        "sendStoryToCaseManagerTitle": "Send feedback to case manager"
+      },
+      "toast": {
+        "published": {
+          "success": {
+            "title": "Feedback published",
+            "subtitle": "Feedback has been published."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error while publishing feedback. Please try again."
+          }
+        },
+        "rejected": {
+          "success": {
+            "title": "Feedback rejected",
+            "subtitle": "Feedback has been rejected."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error while rejecting feedback. Please try again."
+          }
+        },
+        "deleted": {
+          "success": {
+            "title": "Feedback deleted",
+            "subtitle": "Feedback has been deleted permanently."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error while deleting feedback. Please try again."
+          }
+        },
+        "saved": {
+          "success": {
+            "title": "Feedback saved",
+            "subtitle": "Feedback saved successfully"
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Failed to save feedback. Changes are unsaved."
+          }
+        },
+        "sendStoryToCaseManager": {
+          "error": {
+            "subtitle": "Error while sending feedback to Case Manager. Please try again.",
+            "title": "Error"
+          },
+          "success": {
+            "title": "Feedback sent to Case Manager",
+            "subtitle": "Feedback has been sent to Case Manager"
+          }
+        },
+        "assignedToModerator": {
+          "success": {
+            "title": "{{storyCount}} Assigned To Moderator",
+            "subtitle": "{{storyCount}} has being assigned to {{nickname}}"
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Failed to assign stories. Changes are unsaved"
+          }
+        }
+      },
+      "rejectReasons": {
+        "story_replyHasOffensiveOrDiscriminatoryLanguageInIt": "The feedback has offensive or discriminatory language in it",
+        "story_replyDoesNotFollowTheCommunityStandards": "The feedback does not follow the community standards, designed to ensure a safe space to share feedback",
+        "thereIsConcernAboutTheAuthenticityOfTheStory_reply": "There is a concern about the authenticity of the feedback",
+        "thereWasConcernThatTheStory_replyCouldCauseHarmIfPostedPublicly": "There was a concern that the feedback could cause harm if posted publicly. It is being referred on to specialists",
+        "story_replyDoesNotRespectTheRightToPrivacyOfOthers": "The feedback does not respect the right to privacy of others",
+        "other": "Other",
+        "duplicate": "Duplicate",
+        "communityStandards": "Violates community standards",
+        "poorAudioQuality": "Poor audio quality",
+        "notSensitive": "Not sensitive"
+      }
+    },
+    "comment": {
+      "solutionProposedButton": "Solution Proposed",
+      "clickToPreview": "Click replies to preview thread",
+      "noMoreComments": "No more comments.",
+      "loadingMore": "Loading {{value}} more replies...",
+      "preview": {
+        "title": "Thread preview",
+        "hide": "Hide"
+      },
+      "modal": {
+        "title": "You're about to reject this reply",
+        "contentVerified": "Are you sure you want to reject this reply?",
+        "rejectButton": "Reject reply",
+        "cancelButton": "Cancel",
+        "reason": {
+          "label": "Why is this reply being rejected?"
+        },
+        "rationale": {
+          "label": "Any other rationale you can provide?",
+          "helperText": "Providing as much detail as possible will help ensure the author understands why their reply was not published."
+        }
+      },
+      "toast": {
+        "published": {
+          "success": {
+            "title": "Publish successful",
+            "subtitle": "You have published a reply."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error while publishing reply. Please try again."
+          }
+        },
+        "rejected": {
+          "success": {
+            "title": "Reject successful",
+            "subtitle": "Reply has been rejected."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error while rejecting reply. Please try again."
+          }
+        },
+        "deleted": {
+          "success": {
+            "title": "Delete successful",
+            "subtitle": "Reply has been deleted permanently."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error while deleting reply. Please try again."
+          }
+        },
+        "preview": {
+          "error": {
+            "title": "Error",
+            "subtitle": "Error during preview load. Please try again."
+          }
+        },
+        "sentToPendingRecording": {
+          "success": {
+            "title": "Reply has been published",
+            "subtitle": "The reply is now visible on the Feedback page and a copy of it has been sent to outbox for recording to the author."
+          },
+          "error": {
+            "title": "Reply was not forwarded",
+            "subtitle": "Reply was not forwarded to voice record"
+          }
+        }
+      },
+      "rejectReasons": {
+        "story_replyHasOffensiveOrDiscriminatoryLanguageInIt": "The reply has offensive or discriminatory language in it",
+        "story_replyDoesNotFollowTheCommunityStandards": "The reply does not follow the community standards, designed to ensure a safe space to share feedback",
+        "thereIsConcernAboutTheAuthenticityOfTheStory_reply": "There is a concern about the authenticity of the reply",
+        "thereWasConcernThatTheStory_replyCouldCauseHarmIfPostedPublicly": "There was a concern that the reply could cause harm if posted publicly. It is being referred on to specialists",
+        "story_replyDoesNotRespectTheRightToPrivacyOfOthers": "The reply does not respect the right to privacy of others",
+        "other": "Other",
+        "duplicate": "Duplicate",
+        "communityStandards": "The reply does not follow the community standards, designed to ensure a safe space to share feedback",
+        "poorAudioQuality": "Poor audio quality"
+      }
+    },
+    "rejectModal": {
+      "contentAnnonymous": "There are no contact details for this author, so they will not be notified.",
+      "reasonsHeading": "Select a reason:",
+      "otherReasonTextfieldPlaceholder": "Write a reason",
+      "feedbackHeading": "Feedback:",
+      "feedbackToggleLabel": "Send feedback to author",
+      "feedbackPlaceholder": "Write feedback",
+      "writeYourFeedback": "Write your feedback"
+    },
+    "assignModeratorModal": {
+      "title": "Assign Moderator",
+      "assignButton": "Assign",
+      "cancelButton": "Cancel",
+      "searchPlaceholder": "Seach Users"
+    },
+    "pendingStoryReview": {
+      "heading": "Review feedback",
+      "subheading": "Review the feedback and the tags provided by the user, add any missing tags and translate the feedback in step 2.",
+      "location": "Location",
+      "storyType": "Type of feedback",
+      "originalLanguage": "Original language",
+      "originalLanguagePlaceholder": "Select original language of feedback",
+      "iAmGoingToTranslateTheTextTo": "I am going to translate to",
+      "targetLanguagePlaceholder": "Choose language",
+      "writeTranslation": "Write translation",
+      "toRecipient": "To",
+      "review": "Review",
+      "translation": "Translation",
+      "publishStory": "Publish feedback",
+      "missingStoryType": "You must give the feedback a type before it can be published",
+      "missingOriginalLanguage": "You must select original language of feedback",
+      "storyPreview": "Feedback preview",
+      "conversationTab": {
+        "sms": "SMS conversation",
+        "messenger": "Messenger conversation",
+        "whatsapp": "WhatsApp conversation"
+      },
+      "story": "Feedback",
+      "reply": "Send",
+      "sendToCaseManager": "Send to case manager",
+      "caseManagerNotice": "The feedback can be sent to a case manager for review once the feedback is translated in step 2.",
+      "missingThematicArea": "You must select at least one thematic area.",
+      "yourNewTranslation": "Your new translation",
+      "saveTranslation": "Save translation",
+      "translate": "Translate",
+      "addAnotherTranslation": "Add another translation",
+      "storyMarkedAsSensitiveReturnedByCaseManager": "The author has marked this feedback as sensitive. However, the case manager has returned this feedback to you meaning it is not sensitive. You can no longer change the feedback type tag.",
+      "storyMarkedAsSensitiveReturnedByCaseManagerCannotPublish": "This feedback cannot be published as it has been marked as sensitive by the author. A case manager has also returned it to you as it does not meet the critieria of sensntive feedback. Please reject the feedback and consider inviting the author to submit their feedback again with a different tag.",
+      "addATranslation": "Add a translation",
+      "translationLanguage": "Translation language",
+      "manualTranslation": "Manual translation",
+      "authorWillBeNotInformed": "The author of this feedback did not leave their contact details. They will not receive any notification that this feedback was rejected."
+    },
+    "table": {
+      "dateTime": "Date / time",
+      "storyType": "Feedback type",
+      "language": "Language",
+      "country": "Country",
+      "channel": "Channel",
+      "status": "Status",
+      "reviewButton": "Review"
+    },
+    "pendingReplyReview": {
+      "heading": "Review reply",
+      "subheading": "Review and translate the reply.",
+      "reply": "Reply",
+      "originalStoryWrittenIn": "Original feedback written in",
+      "reviewStep": "Review & translate",
+      "publishReply": "Publish reply",
+      "rejectReply": "Reject reply",
+      "reviewAndTranslate": "Review & translate",
+      "publishAndForwardToVoiceRecord": "Publish & Forward to record"
+    },
+    "translationStatus": {
+      "manual_0": "Waiting to translate to {{lang}}",
+      "machine_0": "Waiting to translate to {{lang}}",
+      "manual_1": "Translating to {{lang}}",
+      "machine_1": "Translating to {{lang}}",
+      "manual_2": "Text translated to {{lang}}",
+      "machine_2": "Text translated to {{lang}}",
+      "machine_3": "Unavailable in {{lang}} right now"
+    },
+    "translationProcess": {
+      "close": "Close",
+      "cancel": "Cancel",
+      "retry": "Retry",
+      "automaticTranslation": "Automatic translation",
+      "manualTranslation": "Moderator translation",
+      "addTranslation": "Add new translation",
+      "verifyTranslation": "Verify translation",
+      "editTranslation": "Edit translation",
+      "deleteTranslation": "Delete translation",
+      "noTranslations": "No translations yet",
+      "notAvailable": "Not available",
+      "unavailableTitle": "Temporarily unavailable, reasons may be:",
+      "unavailableReason1": "",
+      "unavailableReason2": "",
+      "translating": "Translating"
+    },
+    "conversationReply": {
+      "unavailable": {
+        "userDenied": "You cannot send a message to the author, as they did not consent to Loop contacting them.",
+        "threadOpen": {
+          "content": "You cannot send a message to the author at this time, as they have another thread",
+          "link": "currently open here"
+        },
+        "cannotSend": "You cannot send a message to the author at this time."
+      },
+      "author": {
+        "loop": "Loop",
+        "anonymous": "Anonymous"
+      },
+      "toast": {
+        "send": {
+          "error": {
+            "title": "Message not sent",
+            "subtitle": "Error sending message"
+          }
+        }
+      },
+      "intro": {
+        "sms": "SMS intro",
+        "messenger": "Messenger intro",
+        "whatsapp": "WhatsApp intro",
+        "telegram": "Telegram intro"
+      }
+    },
+    "contextMenu": {
+      "edit": "Edit",
+      "unpublish": "Unpublish",
+      "success": {
+        "story": {
+          "title": "Feedback unpublished"
+        },
+        "reply": {
+          "title": "Reply unpublished"
+        },
+        "redirecting": "Redirecting to inbox...",
+        "link": "Click here to review now"
+      }
+    },
+    "sendStoryToCaseManagerModal": {
+      "immediateAssistance": {
+        "label": "Mark the feedback as:",
+        "urgent": "Urgent",
+        "notUrgent": "Not Urgent"
+      },
+      "reason": "Write a reason:"
+    },
+    "storySelection": {
+      "modal": {
+        "title": "You are about to reject {{count}} piece of feedback"
+      }
+    },
+    "storiesSelection": {
+      "modal": {
+        "title": "You are about to reject {{count}} pieces of feedback"
+      }
+    }
+  },
+  "category": {
+    "thanks": "Thanks",
+    "question": "Request for Information",
+    "opinion": "Opinion",
+    "concern": "Concern",
+    "request": "Request for Assistance",
+    "sensitive": "Sensitive",
+    "comments": "Replies"
+  },
+  "repliedTo": {
+    "repliedToByOrganisation": "Replied To By Organisation",
+    "repliedToByCommunity": "Replied To By Community",
+    "notRepliedTo": "Not Replied To"
+  },
+  "channelFilter": {
+    "sms": "SMS",
+    "web": "Web",
+    "whatsapp": "WhatsApp",
+    "messenger": "Messenger",
+    "telegram": "Telegram",
+    "ivrr": "Voice"
+  },
+  "country": {
+    "philipinnes": "Philippines",
+    "zambia": "Zambia",
+    "other": "I'm in another country"
+  },
+  "thematic": {
+    "emergencyResponse": "Emergency response",
+    "idCards": "ID cards",
+    "campManagement": "Camp management",
+    "distribution": "Distribution",
+    "cash": "Cash",
+    "foodItems": "Food items",
+    "non-foodItems": "Non-food items",
+    "health": "Health",
+    "medicalCentres": "Medical centers",
+    "quarantineFacilities": "Quarantine Facilities",
+    "vaccines": "Vaccines",
+    "insurance": "Insurance",
+    "hygienicPracticesCommunityDisinfection": "Hygienic Practices and Community Disinfection",
+    "informationEducationAndCommunicationActivities": "Information, Education, and Communication Activities",
+    "landRights": "Land Rights",
+    "landmines/UnexplodedOrdnance": "Landmines/Unexploded Ordnance",
+    "transportation": "Transportation",
+    "droughts": "Droughts",
+    "laborAndJobs": "Labor and Jobs",
+    "nutrition": "Nutrition",
+    "communitySensitisation": "Community sensitisation",
+    "gender-basedViolence": "Gender Based Violence",
+    "mentalHealth": "Mental health",
+    "sexualAndReproductiveRights": "Sexual and Reproductive Rights",
+    "epidemics/Pandemics": "Epidemics / Pandemics",
+    "covid": "COVID",
+    "ebola": "Ebola",
+    "foodSecurity": "Food security",
+    "livelihoods": "Livelihoods",
+    "training": "Training",
+    "wash": "WASH",
+    "waterPoints": "Water points",
+    "latrines": "Latrines",
+    "shelter": "Shelter",
+    "housing": "Housing",
+    "lightingAndElectricity": "Lighting and electricity",
+    "logistic": "Logistics",
+    "construction": "Construction",
+    "education": "Education",
+    "primary": "Primary",
+    "secondary": "Secondary",
+    "university/Colleges/Trades": "University / Colleges / Trades",
+    "crossCutting": "Cross-cutting",
+    "safetyAndSecurity": "Safety and Security",
+    "campCoordination/Management": "Camp coordination / management",
+    "capacityBuilding": "Capacity building",
+    "aidWorkers": "Aid workers",
+    "other": "Other",
+    "financeManagement": "Finance management",
+    "government": "Government",
+    "foodAssistance": "Food assistance",
+    "cross-cutting": "Cross-cutting",
+    "medications/MedicinesFacilitiesAndServices": "Medications / Medicines, Facilities and services",
+    "hiv/Aids": "HIV / AIDS",
+    "feeding/Malnutrition": "Feeding / Malnutrition",
+    "handwashingStations": "Handwashing stations",
+    "waterTrucking": "Water trucking",
+    "solidWaste/GarbageManagement": "Solid waste / garbage management",
+    "waterFacilitiesAndSupplies": "Water Facilities and Supplies",
+    "temporaryShelters": "Temporary shelters",
+    "campCoordinationManagement": "Camp Coordination Management",
+    "technicalSupport": "Technical support",
+    "scholarships": "Scholarships",
+    "children": "Children",
+    "youngPeople": "Young People",
+    "women": "Women",
+    "personWithDisabilities": "Person with disabilities",
+    "elderlies": "Elderlies",
+    "lgtbq+": "LGBTQ+",
+    "chronicallyIllPeople": "Chronically ill people",
+    "legalStatus(refugees)": "Legal status (refugees)",
+    "indigenousCommunity": "Indigenous community",
+    "lowIncomeFamilies": "Low income families",
+    "clan-conflict": "Clan Conflict",
+    "civicSpace": "Civic Space",
+    "telecommunications": "Telecommunications",
+    "climateChange": "Climate Change",
+    "environment": "Environment",
+    "drrAndPreparedness": "DRR and Preparedness",
+    "earlyChildhood": "Early Childhood",
+    "elections": "Elections",
+    "finance": "Finance",
+    "protection": "Protection",
+    "governance": "Governance",
+    "loopOnboarding": "Loop Onboarding",
+    "livestock": "Livestock",
+    "agriculture": "Agriculture",
+    "locust": "Locust",
+    "flooding/HeavyRains": "Flooding / Heavy rains",
+    "idp": "Internally Displaced People (IDP)",
+    "general-assistance": "General Assistance"
+  },
+  "maternity": {
+    "notPregnantOrBreastfeeding": "Not pregnant or breastfeeding",
+    "pregnant": "Pregnant",
+    "breastfeeding": "Breastfeeding",
+    "bothPregnantAndBreastfeeding": "Both pregnant and breastfeeding",
+    "notDisclosed": "Not disclosed"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "ny": "Chichewa",
+    "ar": "عربي",
+    "so": "Somali (Maxatiri)",
+    "tl": "Tagalog",
+    "ai": "Anguilla",
+    "bem": "Bemba",
+    "ceb": "Cebuano",
+    "id": "Bahasa Indonesia",
+    "maa": "Somali (af Maay)",
+    "tog": "Tonga",
+    "loz": "Lozi",
+    "pl": "Polski",
+    "uk": "Український",
+    "ru": "Русский",
+    "bju": "Somali (Baajuuni)",
+    "bnd": "Somali (Banadiri-Marka)",
+    "lt": "Lietuvių",
+    "de": "Deutsch",
+    "nl": "Nederlands"
+  },
+  "newStoryV2": {
+    "form": {
+      "content": {
+        "label": "What would you like to share?",
+        "info": "Is there an experience you have had that you would like to share? The more you can safely share here the more chances there are that something can be done to help.",
+        "publishInfo": "If published, this feedback will be visible online for anyone to see",
+        "placeholder": "Start writing your feedback (minimum 8 characters)",
+        "stateInfoGreat": "🎉 Great! More detail helps get your feedback to the right organisations",
+        "state": {
+          "great": "Great",
+          "good": "Good",
+          "superb": "Superb"
+        },
+        "stateInfoGood": "👍️ Good! You’re doing well, but keep going",
+        "sensitive": {
+          "yes": "Yes",
+          "no": "No",
+          "label": "Is this sensitive feedback",
+          "info": "Sensitive feedback (i.e. corruption, abuse, violence) is never shared on the platform",
+          "explanation": "What is sensitive feedback"
+        },
+        "stateInfoDefault": "Minimum 8 characters is required",
+        "stateInfoSuperb": "💯 Super! This much detail gives a good understanding of your situation"
+      },
+      "type": {
+        "title": "Type of feedback",
+        "subtitle": "You can choose multiple options",
+        "helperText": "Help me choose",
+        "none": "None"
+      },
+      "name": {
+        "title": "What’s your name?",
+        "info": "Use your full name, a nickname or leave blank to be anonymous",
+        "explanation": "Why do we ask this?"
+      },
+      "email": {
+        "explanation": "Why do we ask this?",
+        "sensitive": {
+          "info": "If you leave your email address, Loop may contact you to ask more details about your feedback, or refer you to an organisation that might be able to assist you. We won’t share your email with any other organisation, without checking with you first."
+        },
+        "nonSensitive": {
+          "info": "Provide your email address to get notified of replies. You can unsubscribe from these notifications at any time. Your email address will not be visible to anyone."
+        },
+        "title": "Email address"
+      },
+      "additionContactDetails": {
+        "title": "Additional contact details ",
+        "info": "Please provide us here with any relevant details regarding how to contact you including whether you share a phone and what is the best time/day to contact you safely. "
+      },
+      "sensitiveStoryContactConsent": {
+        "title": "Contact consent",
+        "info": "I consent to Loop contacting me to discuss my report in further detail so that I might receive a referral to an organisation that can help me. "
+      },
+      "gender": {
+        "title": "Gender",
+        "info": "How do you identify?",
+        "radio": {
+          "female": "Female"
+        }
+      },
+      "age": {
+        "title": "Age",
+        "info": "How old are you?",
+        "explanation": "What if I am below 14 years of age?"
+      },
+      "condition": {
+        "title": "Do you have a physical or mental health condition?",
+        "radio": {
+          "yes": "Yes",
+          "no": "No",
+          "preferNotToAnswer": "Prefer not to answer"
+        },
+        "type": {
+          "title": "Does your condition affect any of the following areas?",
+          "info": "You can choose multiple options",
+          "seeing": {
+            "title": "Seeing"
+          },
+          "hearing": {
+            "title": "Hearing"
+          },
+          "speaking": {
+            "title": "Speaking"
+          },
+          "mobility": {
+            "title": "Mobility / Dexterity"
+          },
+          "learning": {
+            "title": "Learning / Understanding"
+          },
+          "selfCare": {
+            "title": "Self-care"
+          },
+          "other": {
+            "title": "Other"
+          }
+        }
+      },
+      "phoneNumber": {
+        "title": "Phone number",
+        "info": "Your phone number will not be shared with anyone",
+        "sensitiveInfo": "If you leave your phone number, Loop may contact you to ask more details about your feedback, or refer you to an organisation that might be able to assist you. We won’t share your phone number with any other organisation, without checking with you first. ",
+        "explanation": "Why do we ask this?"
+      },
+      "phone": {
+        "title": "Phone number"
+      },
+      "country": {
+        "title": "Country",
+        "subtitle": "In which country did you have this experience?",
+        "helperText": "Why do we want to know the country you are in?",
+        "changeCountry": "Change country",
+        "selectCountry": "Select country",
+        "yourLocation": "Your location:"
+      },
+      "location": {
+        "title": "Feedback location",
+        "subtitle": "Where did your feedback take place? This can be a city, town, village or camp. We will not reveal your exact location nor share your location with anyone.",
+        "helperText": "Why do we want to know the location of your feedback?",
+        "useMyLocation": "Use my current location",
+        "useLocation": "Use approximate location",
+        "or": "or",
+        "hint": "Search for a town or city near you",
+        "cancel": "Cancel",
+        "addNew": "Use this place name",
+        "unavailable": "Location unavailable"
+      },
+      "help": {
+        "explanation": "Help me choose"
+      }
+    },
+    "steps": {
+      "step1": {
+        "label": "Write your feedback"
+      },
+      "step2": {
+        "label": "Feedback details"
+      },
+      "step3": {
+        "label": "Your details"
+      },
+      "info": {
+        "title": "Feedback information",
+        "visibility": "Visible online for anyone to see",
+        "editStory": "Edit feedback",
+        "storyType": "Type of feedback",
+        "thanks": "Thanks",
+        "organisation": "Organisation",
+        "location": "Location",
+        "storyBy": "Feedback by",
+        "consentInfo": "I consent to my feedback being published on TalkToLoop.org to help improve services",
+        "submit": "Submit feedback",
+        "visibilityHidden": "Not visible online",
+        "sensitiveConsentInfo": "I consent to Loop using the data in my feedback <strong>anonymously</strong> for statistics and reporting. This means my name, contact information and exact location will not be used.",
+        "consentInfoError": "Please consent before submitting your feedback"
+      }
+    },
+    "heading": {
+      "text": "Submit feedback",
+      "allStories": "All feedback",
+      "submitText": "Check and submit your feedback"
+    },
+    "ourloopPromise": {
+      "nonSensitive": {
+        "heading": "Loop promise",
+        "content": "Loop will do its best to direct your feedback to any relevant organisations, and encourage them to respond. We will handle your feedback sensitively with the highest data security measures. If you share your contact details with Loop then we will let you know if anyone responds to your feedback. We will not share your contact details with anyone. "
+      },
+      "sensitive": {
+        "heading": "Your feedback is safe with us",
+        "content": "If your feedback is sensitive it will not be shared online, instead your data will be managed confidentially. A dedicated Loop case manager will contact you to get your informed consent and discuss options to try to get the right organisation to assist you with services or investigate your complaint. We can only do this if you share your contact information. We will not share your personal identifiable details or contacts with anyone without your permission."
+      }
+    },
+    "caseManagerMessage": {
+      "role": "Case Manager, Loop"
+    },
+    "footerText": "© 2021 Our Loop Stichting. All rights reserved.",
+    "modals": {
+      "shareExperience": {
+        "title": "Share your experience of organisations working in your area",
+        "topParagraph": "Is there a memorable experience you have had with an organisation in your area? Was it good or bad? What would you like to share?",
+        "list": {
+          "one": "Loop will do its best to direct your feedback to the right people who might be able to take action and respond",
+          "two": "Your feedback is published online to ensure your voice is heard",
+          "three": "If your feedback is sensitive, we will treat it with confidence and no identifying details will be published online"
+        },
+        "submitButton": "Start writing your feedback"
+      },
+      "cancel": "Cancel",
+      "ok": "Ok",
+      "sensitiveStory": {
+        "title": "What is sensitive feedback?",
+        "topParagraph": "Feedback related to any of the following topics are considered sensitive:",
+        "bottomParagraph": "If you share sensitive feedback, our moderators will ensure your feedback is handled in confidence. No personal identifiable details of sensitive feedback will be published online.",
+        "list": {
+          "one": "Sexual exploitation, abuse and harassment",
+          "two": "Child protection",
+          "three": "Corruption",
+          "four": "Fraud",
+          "five": "Any other breach of code of conduct",
+          "six": "Any other misconduct",
+          "seven": "Gender-based violence",
+          "eight": "Safeguarding",
+          "nine": "Aid diversion"
+        }
+      },
+      "storyType": {
+        "title": "Type of feedback: your options",
+        "paragraph": "You can categorise your feedback as one or more of the following types of feedback. Don’t worry though, if you leave it blank, a Loop moderator will tag your feedback for you. This helps us to try to find the right people to read and respond to you.",
+        "sections": {
+          "thanks": {
+            "title": "Thanks",
+            "content": "Show your appreciation for an organisation, a service, or someone in your community by writing feedback with a message of thanks"
+          },
+          "question": {
+            "title": "Request for Information",
+            "content": "If you want to ask a question to an organisation, you can write feedback with a question in it. We can’t promise anything but we can try to get someone to respond."
+          },
+          "opinion": {
+            "content": "Do you have a strong opinion or do you want to share something you have heard about and see if it is true? Write feedback and tag it as an opinion. Loop will try to get somebody to respond to you",
+            "title": "Opinion"
+          },
+          "request": {
+            "content": "Do you have an idea on how a service, or the work of an organisation could be improved? Write feedback and tag it as a request.",
+            "title": "Request for Assistance"
+          },
+          "concern": {
+            "title": "Concern",
+            "content": "Are you worried or concerned about something in your community? Tag your feedback as a concern and Loop will encourage organisations in your area to respond."
+          }
+        }
+      },
+      "country": {
+        "title": "Why do we want to know the country you are in?",
+        "topParagraph": "Knowing the country you’re in helps us understand the context of your feedback and to better understand patterns in each context to help with advocacy.",
+        "bottomParagraph": "We automatically detect your country by using the IP address of your device. You can change or remove this country from your feedback at any time. Just click ‘Change country’"
+      },
+      "organisation": {
+        "title": "Why it is important to add an organisation to your feedback",
+        "sensitive": {
+          "paragraph": "Adding an organisation to your feedback helps us to know who can investigate your complaint. If you do not know the name of the organisation involved in your feedback, that's no problem. You can still submit your feedback without naming an organisation. However, we may not be able to assist you directly. Instead, it is possible that your feedback can be used for reporting and statistics, with your consent."
+        },
+        "nonSensitive": {
+          "topParagraph": "Adding an organisation to your feedback helps us encourage that organisation to respond to you. It also helps us show which organisations are listening and responding to feedback through Loop.",
+          "bottomParagraph": "If you don’t know the name of the organisation involved in your feedback, that’s no problem. You can still submit your feedback without naming an organisation, and our Loop moderators will do their best to find an organisation to tag. Sharing more details helps Loop moderators find the right audience for your feedback."
+        }
+      },
+      "name": {
+        "title": "Why do we ask for your name?",
+        "sensitive": {
+          "paragraph": "You can choose whether or not you provide your name. If you want to remain entirely anonymous, that’s fine as well. Simply leave the name field blank."
+        },
+        "nonSensitive": {
+          "topParagraph": "Your name is displayed alongside your feedback, if it’s published on Loop. This helps personalise your feedback, and allows anyone who responds to your feedback to reference you by your name. You can give your full name, part of your name, or even a nickname.",
+          "bottomParagraph": "If you want to remain entirely anonymous, that’s fine as well. Simply leave the name field blank, and your feedback will be tagged as anonymous."
+        }
+      },
+      "phoneNumber": {
+        "paragraph": "Your number is never published online, and we will never share your number.",
+        "title": "Why do we ask for your phone number?"
+      },
+      "email": {
+        "bottomParagraph": "Your email address is not published online, and we will never share your email address.",
+        "topParagraph": "If you leave your email address with us, we’ll let you know when your feedback has been published. We’ll also let you know if somebody responds to your feedback.",
+        "title": "Why do we ask for your email address?"
+      },
+      "age": {
+        "paragraph": "If you are younger than 14 years of age, you should ask an adult that you trust to help you fill out this form.",
+        "title": "What if I am below 14 years of age?"
+      },
+      "condition": {
+        "title": "Why do we ask if you have a medical or physical condition?",
+        "topParagraph": "People who have a physical or mental health condition are often treated differently. If we know about this we can try to find an organisation that knows more about how to help you and better meet your needs.",
+        "bottomParagraph": "It will also help to advocate for funding and services to meet any gaps identified."
+      },
+      "whatNext": {
+        "title": "What will happen next?",
+        "topParagraph": "Loop moderators will review your feedback. They’ll translate it, so that it’s understandable to as many people as possible.",
+        "bottomParagraph": "If you left your email address or phone number, we’ll let you know as soon your feedback is published online.",
+        "centerParagraph": {
+          "part1": "As long as your feedback doesn’t break the ",
+          "part3": "it will be published within 48 hours.",
+          "part2": "community guidelines"
+        }
+      },
+      "whatHappenStory": {
+        "title": "What will happen to your feedback?",
+        "list": {
+          "one": {
+            "title": "A moderator will read your feedback",
+            "content": "Moderators read and translate all feedback coming into Loop. If the moderator agrees that your feedback is sensitive, they will send it to a Loop Case Manager. If the moderator does not agree that your feedback is sensitive, it will not be published. Loop will let you know why and what to do next if you leave your email or phone number. If you can only be safely contacted at certain times please leave that in your message."
+          },
+          "two": {
+            "title": "A case manager will be assigned to your feedback",
+            "content": "If you leave your contact details, the case manager will contact you to get your informed consent and discuss options to try to get the right organisation to assist you with services or investigate your complaint. We will also ask your consent to share any personal details such as your name, contact details, and location. You can choose at that time what to do."
+          },
+          "three": {
+            "title": "We will try to get organisations to act",
+            "content": "The Loop case managers will follow-up with any organisation involved in your feedback and encourage them to take action."
+          },
+          "four": {
+            "title": "If we can contact you, we will keep you up-to-date",
+            "content": "If you leave your phone number or email address, we will let you know when there are any updates on your case."
+          }
+        }
+      },
+      "location": {
+        "title": "Why do we want to know the location of your feedback?",
+        "sensitive": {
+          "paragraph": "With your consent, Loop will use your location to identify services near you to assist you or to provide this information to organisations to support them to investigate your complaint. Loop does not gather your exact location."
+        },
+        "nonSensitive": {
+          "topParagraph": "Loop uses your approximate location (for example the district or province you are in) to encourage organisations near you, to respond to your feedback.",
+          "bottomParagraph": "Loop does not gather your exact location. However, your approximate location will be displayed alongside your feedback. This helps us find the right audience for your feedback."
+        }
+      },
+      "conditionHelpMe": {
+        "topParagraph": "What sort of a physical or mental health condition do you have?",
+        "middleParagraphPart1": "These questions are standard questions (as outlined by",
+        "middleParagraphPart2": ") to define types of disability. Please tick the relevant box if you answer yes to one or more of the following questions:",
+        "seeing": {
+          "explanation": "Do you have difficulty seeing even when wearing glasses?",
+          "label": "Seeing"
+        },
+        "hearing": {
+          "label": "Hearing",
+          "explanation": "Do you have difficulty hearing, even if using hearing aids?"
+        },
+        "speaking": {
+          "label": "Speaking",
+          "explanation": "Using your usual language, do you have difficulty communicating? For example, understanding or being understood?"
+        },
+        "selfCare": {
+          "label": "Self-care",
+          "explanation": "Do you have difficulty with self care such as washing all over or dressing?"
+        },
+        "learningUnderstanding": {
+          "label": "Learning / Understanding",
+          "explanation": "Do you have difficulty remembering or concentrating?"
+        },
+        "mobilityDexterity": {
+          "label": "Mobility / Dexterity",
+          "explanation": "Do you have difficulty walking or climbing steps?"
+        },
+        "unspecified": {
+          "label": "Unspecified",
+          "explanation": "Please specify"
+        }
+      }
+    },
+    "organisations": {
+      "addNewLabel": "Add new organisation called",
+      "heading": "Organisation",
+      "description": "Which organisation is your feedback about?",
+      "explanation": "Why is this important?",
+      "inputPlaceholder": "Choose organisation",
+      "addNewLabel2": "Add another organisation"
+    },
+    "navigation": {
+      "back": "Back",
+      "submit": "Submit",
+      "next": "Next"
+    },
+    "locationPromptText": "Please allow your internet browser to know your location so that we can determine your approximate location.",
+    "safeMode": "Safe mode — this feedback will not be public"
+  },
+  "country_name": {
+    "gg": "Guernsey",
+    "ne": "Niger",
+    "af": "Afghanistan",
+    "sv": "El Salvador",
+    "hu": "Hungary",
+    "lb": "Lebanon",
+    "la": "Laos",
+    "al": "Albania",
+    "sy": "Syrian Arab Republic",
+    "gn": "Guinea",
+    "gh": "Ghana",
+    "gb": "United Kingdom",
+    "uy": "Uruguay",
+    "tn": "Tunisia",
+    "kw": "Kuwait",
+    "ae": "United Arab Emirates",
+    "dj": "Djibouti",
+    "aq": "Antarctica",
+    "cf": "Central African Republic",
+    "ng": "Nigeria",
+    "bt": "Bhutan",
+    "kr": "South Korea",
+    "vg": "Virgin Islands, British",
+    "ag": "Antigua and Barbuda",
+    "bn": "Brunei Darussalam",
+    "mn": "Mongolia",
+    "er": "Eritrea",
+    "mt": "Malta",
+    "bw": "Botswana",
+    "yt": "Mayotte",
+    "ph": "Philippines",
+    "ve": "Venezuela",
+    "ni": "Nicaragua",
+    "pk": "Pakistan",
+    "ie": "Ireland",
+    "ss": "South Sudan",
+    "cc": "Cocos (Keeling) Islands",
+    "lu": "Luxembourg",
+    "jo": "Jordan",
+    "cy": "Cyprus",
+    "mp": "Northern Mariana Islands",
+    "fm": "Micronesia",
+    "im": "Isle of Man",
+    "tk": "Tokelau",
+    "ai": "Anguilla",
+    "de": "Germany",
+    "ml": "Mali",
+    "id": "Indonesia",
+    "me": "Montenegro",
+    "eg": "Egypt",
+    "ax": "Åland Islands",
+    "sd": "Sudan",
+    "jm": "Jamaica",
+    "vn": "Vietnam",
+    "st": "São Tomé and Príncipe",
+    "mo": "Macao",
+    "td": "Chad",
+    "nu": "Niue",
+    "ir": "Iran",
+    "ba": "Bosnia and Herzegovina",
+    "ad": "Andorra",
+    "il": "Israel",
+    "cm": "Cameroon",
+    "lc": "Saint Lucia",
+    "nc": "New Caledonia",
+    "ps": "Palestine",
+    "na": "Namibia",
+    "bb": "Barbados",
+    "pw": "Palau",
+    "gw": "Guinea-Bissau",
+    "ki": "Kiribati",
+    "as": "American Samoa",
+    "wf": "Wallis and Futuna",
+    "bv": "Bouvet Island",
+    "sa": "Saudi Arabia",
+    "se": "Sweden",
+    "kg": "Kyrgyzstan",
+    "zm": "Zambia",
+    "pt": "Portugal",
+    "cg": "Congo",
+    "vi": "Virgin Islands, U.S.",
+    "uz": "Uzbekistan",
+    "za": "South Africa",
+    "si": "Slovenia",
+    "mv": "Maldives",
+    "do": "Dominican Republic",
+    "kn": "Saint Kitts and Nevis",
+    "ee": "Estonia",
+    "vc": "Saint Vincent and the Grenadines",
+    "pr": "Puerto Rico",
+    "sh": "Saint Helena",
+    "cx": "Christmas Island",
+    "gs": "South Georgia and the South Sandwich Islands",
+    "pa": "Panama",
+    "mf": "Saint Martin",
+    "bq": "Bonaire, Sint Eustatius and Saba",
+    "gq": "Equatorial Guinea",
+    "ws": "Samoa",
+    "pl": "Poland",
+    "ug": "Uganda",
+    "kz": "Kazakhstan",
+    "gd": "Grenada",
+    "nl": "Netherlands",
+    "hr": "Croatia",
+    "gm": "Gambia",
+    "lt": "Lithuania",
+    "ro": "Romania",
+    "mr": "Mauritania",
+    "bg": "Bulgaria",
+    "io": "British Indian Ocean Territory",
+    "fk": "Falkland Islands",
+    "mg": "Madagascar",
+    "aw": "Aruba",
+    "mw": "Malawi",
+    "rs": "Serbia",
+    "jp": "Japan",
+    "bj": "Benin",
+    "pm": "Saint Pierre and Miquelon",
+    "my": "Malaysia",
+    "mh": "Marshall Islands",
+    "lk": "Sri Lanka",
+    "tj": "Tajikistan",
+    "gp": "Guadeloupe",
+    "bs": "Bahamas",
+    "nz": "New Zealand",
+    "mm": "Myanmar",
+    "bz": "Belize",
+    "py": "Paraguay",
+    "to": "Tonga",
+    "tl": "Timor-Leste",
+    "hn": "Honduras",
+    "bd": "Bangladesh",
+    "fo": "Faroe Islands",
+    "dz": "Algeria",
+    "cv": "Cabo Verde",
+    "dk": "Denmark",
+    "sx": "Sint Maarten (Dutch part)",
+    "gi": "Gibraltar",
+    "ca": "Canada",
+    "az": "Azerbaijan",
+    "ge": "Georgia",
+    "je": "Jersey",
+    "cw": "Curaçao",
+    "am": "Armenia",
+    "ms": "Montserrat",
+    "th": "Thailand",
+    "tw": "Taiwan",
+    "tr": "Turkey",
+    "hk": "Hong Kong",
+    "gr": "Greece",
+    "es": "Spain",
+    "lr": "Liberia",
+    "us": "United States",
+    "bl": "Saint Barthélemy",
+    "sn": "Senegal",
+    "zw": "Zimbabwe",
+    "by": "Belarus",
+    "in": "India",
+    "it": "Italy",
+    "ec": "Ecuador",
+    "is": "Iceland",
+    "re": "Réunion",
+    "nf": "Norfolk Island",
+    "cu": "Cuba",
+    "cn": "China",
+    "bi": "Burundi",
+    "fi": "Finland",
+    "mk": "Macedonia",
+    "gl": "Greenland",
+    "gf": "French Guiana",
+    "ly": "Libya",
+    "tc": "Turks and Caicos Islands",
+    "tm": "Turkmenistan",
+    "ua": "Ukraine",
+    "bm": "Bermuda",
+    "kh": "Cambodia",
+    "kp": "North Korea",
+    "co": "Colombia",
+    "rw": "Rwanda",
+    "ck": "Cook Islands",
+    "no": "Norway",
+    "mc": "Monaco",
+    "ci": "Côte dIvoire",
+    "br": "Brazil",
+    "hm": "Heard Island and McDonald Islands",
+    "ht": "Haiti",
+    "tg": "Togo",
+    "sg": "Singapore",
+    "so": "Somalia",
+    "ma": "Morocco",
+    "tf": "French Southern Territories",
+    "ar": "Argentina",
+    "gu": "Guam",
+    "sr": "Suriname",
+    "lv": "Latvia",
+    "bh": "Bahrain",
+    "au": "Australia",
+    "sc": "Seychelles",
+    "qa": "Qatar",
+    "li": "Liechtenstein",
+    "pf": "French Polynesia",
+    "sk": "Slovakia",
+    "va": "Vatican City",
+    "fj": "Fiji",
+    "ye": "Yemen",
+    "an": "Netherlands Antilles",
+    "sm": "San Marino",
+    "iq": "Iraq",
+    "sj": "Svalbard and Jan Mayen",
+    "mz": "Mozambique",
+    "at": "Austria",
+    "om": "Oman",
+    "bo": "Bolivia",
+    "cr": "Costa Rica",
+    "et": "Ethiopia",
+    "ke": "Kenya",
+    "tz": "Tanzania",
+    "km": "Comoros",
+    "tv": "Tuvalu",
+    "ch": "Switzerland",
+    "pn": "Pitcairn Islands",
+    "mx": "Mexico",
+    "vu": "Vanuatu",
+    "nr": "Nauru",
+    "sl": "Sierra Leone",
+    "mq": "Martinique",
+    "cz": "Czechia",
+    "be": "Belgium",
+    "gt": "Guatemala",
+    "sb": "Solomon Islands",
+    "md": "Moldova",
+    "sz": "Swaziland",
+    "ru": "Russia",
+    "ls": "Lesotho",
+    "ao": "Angola",
+    "um": "United States Minor Outlying Islands",
+    "pe": "Peru",
+    "ga": "Gabon",
+    "gy": "Guyana",
+    "fr": "France",
+    "ky": "Cayman Islands",
+    "pg": "Papua New Guinea",
+    "mu": "Mauritius",
+    "tt": "Trinidad and Tobago",
+    "dm": "Dominica",
+    "cl": "Chile",
+    "np": "Nepal",
+    "bf": "Burkina Faso",
+    "eh": "Western Sahara",
+    "cd": "Democratic Republic of the Congo",
+    "un": "Unknown"
+  },
+  "errors": {
+    "required": "This input is required",
+    "maxLength": "Maximum length is {{requiredLength}}, currently it is {{actualLength}}",
+    "email": "This is not valid email",
+    "generic": "This input is invalid",
+    "minLength": "Minimum length is {{requiredLength}}, currently it is {{actualLength}}",
+    "missingPrefix": "Prefix is missing",
+    "countryNotEntered": "Please select a country",
+    "locationNotEntered": "Please select a location",
+    "languageNotEntered": "Please select a language",
+    "thematicsNotEntered": "Please select a thematic tag",
+    "passwordMatching": "Confirm Password does not match"
+  },
+  "filtersV2": {
+    "mobileLink": "Filters",
+    "seeAllStories": "See all feedback",
+    "country": {
+      "label": "Country",
+      "placeholder": "Choose country"
+    },
+    "location": {
+      "label": "Location",
+      "searchForPlace": "Search for a place",
+      "searchForCountry": "Search for a country",
+      "setLocation": "Set location",
+      "clearSearch": "Clear search",
+      "noLocationFound": "No locations matching your search were found",
+      "tooltip": "Filter for locations inside each country by clicking the arrow"
+    },
+    "searchText":{
+      "label":  "Search Text"
+    },
+    "storyType": {
+      "label": "Type of feedback"
+    },
+    "loaction": {
+      "label": "Location"
+    },
+    "demographic": {
+      "label": "Demographic"
+    },
+    "thematicArea": {
+      "label": "Thematic area"
+    },
+    "organisation": {
+      "label": "Organisation",
+      "placeholder": "Choose organisation"
+    },
+    "repliedTo": {
+      "label": "Replied to",
+      "placeholder": "Show feedbacks that have at least 1 reply or have none"
+    },
+    "channelFilter": {
+      "label": "Channel",
+      "placeholder": "Choose channel"
+    },
+    "date": {
+      "label": "Date",
+      "from": "From",
+      "to": "To",
+      "noRangeSelected": "No date range selected",
+      "calendar": "Calendar",
+      "orEnterManually": "Or enter manually"
+    },
+    "request": {
+      "label": "Request for Assistance"
+    },
+    "moreFilters": {
+      "label": "More filters"
+    },
+    "clearAll": "Clear all",
+    "calendar": "Calendar",
+    "enterManually": "Enter manually",
+    "monthFull": {
+      "January": "January",
+      "February": "February",
+      "March": "March",
+      "April": "April",
+      "May": "May",
+      "July": "July",
+      "August": "August",
+      "September": "September",
+      "October": "October",
+      "November": "November",
+      "December": "December",
+      "June": "June"
+    },
+    "weekdayShort": {
+      "Sunday": "Su",
+      "Monday": "Mo",
+      "Tuesday": "Tu",
+      "Wednesday": "We",
+      "Thursday": "Th",
+      "Friday": "Fr",
+      "Saturday": "Sa"
+    },
+    "apply": "Apply",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "category": {
+      "thanks": "Thanks",
+      "question": "Request for Information",
+      "opinion": "Opinion",
+      "concern": "Concern",
+      "request": "Request for Assistance",
+      "sensitive": "Sensitive"
+    },
+    "modal": {
+      "moreFilters": "More filters",
+      "allFilters": "All filters"
+    },
+    "filters": {
+      "title": "Filters"
+    },
+    "outcomesOfInvestigation": {
+      "label": "Outcomes of investigation"
+    },
+    "assistanceReferred": "Assistance referred",
+    "typeOfCase": "Type of case",
+    "age": {
+      "label": "Age"
+    },
+    "gender": {
+      "label": "Gender"
+    },
+    "disability": {
+      "label": "Disability"
+    },
+    "minority": {
+      "label": "Minority"
+    },
+    "seeAll": "See all",
+    "backBtn": "Back",
+    "clear": "Clear",
+    "channel": {
+      "web": "Web",
+      "sms": "SMS",
+      "messenger": "Facebook Messenger",
+      "whatsapp": "WhatsApp",
+      "ivrr": "Voice",
+      "telegram": "Telegram",
+      "text": "Text"
+    },
+    "voiceDuration": {
+      "label": "Length"
+    },
+    "preset": {
+      "header": {
+        "label": "Edit filters",
+        "placeholder": "Search by keyword such as education, nutrition ...",
+        "button": "Search"
+      },
+      "label": "Preset filters",
+      "placeholder": "Enter preset name",
+      "savePreset": "Save current filters as a new preset",
+      "removePreset": "Remove",
+      "modalLabel": "Choose a name for your new preset",
+      "shareConfirmation": "Confirm sharing",
+      "editConfirmation": "Confirm updating",
+      "deleteConfirmation": "Confirm deletion",
+      "shareExplanation": "Sharing this preset will make it available to everyone in your organization.",
+      "editExplanation": "Are you sure you want to update this preset with the currently selected filters?",
+      "deleteExplanation": "Are you sure you want to delete this preset?",
+      "buttons": {
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      },
+      "tooltip": {
+        "share": "Share to organization",
+        "update": "Update",
+        "delete": "Delete"
+      }
+    }
+  },
+  "statistics": {
+    "comingSoon": {
+      "pill": "Stay tuned!",
+      "heading": "Coming soon",
+      "subheading": "Statistics",
+      "text": "A dashboard allowing you to analyse the trends and data of the feedback is being built and can be found here soon.",
+      "linkDescription": "In the meantime",
+      "linkText": "See the feedback"
+    },
+    "navigation": {
+      "stories": "Open feedback",
+      "cases": "Sensitive cases"
+    },
+    "replies": {
+      "title": "Replies",
+      "summary": {
+        "text1": "of feedback has been replied to",
+        "text2": "of feedback has been replied to by organisations"
+      },
+      "table": {
+        "header1": "Avg. reply time:",
+        "header2": "Total feedback:",
+        "header3": "Total replies:",
+        "header4": "No. of authors:",
+        "header5": "No. of organisations:"
+      },
+      "units": {
+        "stories": "feedback",
+        "replies": "replies",
+        "authors": "authors",
+        "organizations": "organisations tagged"
+      },
+      "moreLink": {
+        "content": "This section shows trends in the type of feedback that people are sharing on Loop over time.  It also shows information about closing the feedback loop: who is responding to what, and how quickly. The filters can refine this analysis further."
+      },
+      "infoIcon": {
+        "content": "Understanding the response time for feedback gives us an indication of how engaged with community feedback we are as a sector. "
+      }
+    },
+    "moreLink": "More about this section",
+    "section1": "Type of feedback and replies",
+    "timeline": {
+      "title": "Feedback received over time"
+    },
+    "storiesAndReplies": {
+      "title": "Feedback and replies",
+      "storyType": "Type of feedback",
+      "repliesCommunity": "Replies from community",
+      "repliesOrganization": "Replies from organisations",
+      "totalStories": "Total amount of feedback",
+      "infoIcon": {
+        "content": "By visualising who is replying to feedback, we can understand who is using Loop, and who is engaging with the feedback shared on Loop."
+      }
+    },
+    "averageTime": {
+      "title": "Average response time per feedback type",
+      "infoIcon": {
+        "content": "Some feedback receives replies within minutes, others receive replies in a few days. This graph helps us understand how responsive we are as a sector to the issues being reported to Loop."
+      }
+    },
+    "section2": "Thematic areas",
+    "section3": "Demographic breakdown",
+    "thematicArea": {
+      "title": "Feedback per thematic area"
+    },
+    "difficulty": {
+      "title": "Type of feedback × author ability",
+      "units": {
+        "stories": "feedback"
+      },
+      "seeing": "Trouble seeing:",
+      "hearing": "Trouble hearing:",
+      "walkingOrClimbingSteps": "Difficulty walking or climbing steps:",
+      "remembering": "Difficulty remembering:",
+      "selfCareForExampleWashing": "Difficulty walking or climbing steps:",
+      "communicating": "Difficulty communicating:",
+      "unspecified": "Unspecified"
+    },
+    "ageGender": {
+      "title": "Type of feedback × author’s age and gender",
+      "1417": "14-17",
+      "1829": "18-29",
+      "3059": "30-59",
+      "60": "60+",
+      "na": "N/A",
+      "male": "Male",
+      "female": "Female",
+      "nonBinary": "Non binary"
+    },
+    "thematic": {
+      "moreLink": {
+        "content": "A thematic area is the type of service being provided. In this section we can see what type of feedback (thanks, concern etc) is being shared about different types of services. The filters can refine this analysis further."
+      }
+    },
+    "demographic": {
+      "moreLink": {
+        "content": "If people share their demographic information with us, we aggregate it here. This helps us understand who is using Loop, and who we are not (yet) reaching. We can see what type of feedback they are sharing and the filters can refine this analysis further."
+      },
+      "infoIcon": {
+        "content": "If somebody tells us that they have any physical or mental health conditions, we use that information to display which groups we are hearing from, and which groups we are not. "
+      }
+    },
+    "storiesOverTime": {
+      "infoIcon": {
+        "content": "All feedback sent to Loop is tagged as Thanks, Question, Opinion, Request, Concern, or Sensitive. When visualised this helps us understand the tone of the conversation over time. The filters can refine this analysis further."
+      }
+    },
+    "ageAndGender": {
+      "infoIcon": {
+        "content": "This graph explains who are the people behind the feedback on Loop. "
+      }
+    }
+  },
+  "navbar": {
+    "social": {
+      "twitterLabel": "Our loop's twitter",
+      "facebookLabel": "Talk To Loop's Facebook",
+      "linkedinLabel": "Talk To Loop's linkedin"
+    },
+    "static": {
+      "loopWebsiteLabel": "Loop website",
+      "contactLabel": "Contact",
+      "communityGuidelinesLabel": "Community guidelines",
+      "privacyPolicyLabel": "Privacy policy",
+      "cookiePolicyLabel": "Cookie policy",
+      "termsOfUseLabel": "Terms of use"
+    },
+    "languageChange": {
+      "changeLabel": "Change language:"
+    },
+    "register": {
+      "createAccount": "Create account"
+    },
+    "header": {
+      "closeIconAlt": "Close"
+    },
+    "authStatus": {
+      "logIn": "Log in / Sign up",
+      "hi": "Hi, {{nickname}}",
+      "logInViaMagicLink": "Log in with magic link"
+    }
+  },
+  "organisationType": {
+    "label": "Organisation type",
+    "governmentAuthorities": "Government Authority",
+    "nationalArmedForces": "National Armed Forces",
+    "privateSector": "Private Sector",
+    "nationalCommunityBasedOrganisation": "National / Community Based Organisations",
+    "communityMember": "Community Member",
+    "internationalOrganisation": "International organisation",
+    "other": "Other"
+  },
+  "difficulty": {
+    "seeing": "Seeing",
+    "hearing": "Hearing",
+    "walkingOrClimbingSteps": "Mobility / Dexterity",
+    "remembering": "Learning / Understanding",
+    "communicating": "Speaking",
+    "selfCareForExampleWashing": "Self-care",
+    "learning": "Learning / Understanding",
+    "other": "Other",
+    "unspecified": "Unspecified",
+    "notAnswered": "Not answered"
+  },
+  "storyHasNotBeenPublishedOnTalkToLoop": "Your feedback has not been published on TalkToLoop.org",
+  "organisationHaveBeenTaggedInStoryOnTalkToLoop": "Your organisation have been tagged in feedback on TalkToLoop.org",
+  "replyHasNotBeenPublishedOnTalkToLoop": "Your reply has not been published on TalkToLoop.org",
+  "storyHasBeenPublishedOnTalkToLoop": "Your feedback has been published on TalkToLoop.org",
+  "statisticsCases": {
+    "section1": "How accountable are we?",
+    "moreLink": "More about this section",
+    "accountability": {
+      "moreLink": {
+        "content": "When Loop receives sensitive feedback that would do harm if it was posted on the open platform we refer it to our trained Case Manager. Best practice requires all allegations to be acknowledged, assessed, investigated if appropriate, and the person making the allegation to be informed of the outcome. Each step of this process is reflected in this Accountability Process. To ensure a survivor centred approach sector standards state the time within which each of these steps should be completed by (see here). The Loop statistics page displays the data that organisations choose to share with Loop after receiving a referral. Organisation and Survivor/ Victim identifiable data is not disclosed here."
+      }
+    },
+    "timeline": {
+      "title": "When are people reporting sensitive issues to Loop?",
+      "infoIcon": {
+        "content": "Sensitive issues reported to Loop are tagged as one of four categories. This graph shows the trends of when different types of issues are being reported to Loop."
+      }
+    },
+    "accountabilityProcess": {
+      "title": "The accountability process",
+      "seeMore": "See more",
+      "description": "From the moment a person submits sensitive feedback that proves to be an allegation, a Loop Case Manager reviews the allegation and processes the case accordingly. The responsibility of who has to act is tracked until the allegation is fully accounted for, the original author of the feedback has been informed, and the case can be closed. We call this The Accountability Process. It is designed to account for every allegation Loop receives, to create transparency for what happens to each resulting case, where it is being held up, and who is responsible to act.",
+      "stepByStepBtn": "See step-by-step process",
+      "slider": {
+        "submitStory": {
+          "title": "Submit feedback",
+          "description": "Feedback is submitted to Loop through a safe and secure channel."
+        },
+        "moderatorReview": {
+          "title": "Moderator review",
+          "description": "The feedback is reviewed by a moderator and translated if needed. If it is sensitive, the moderator will forward the feedback to a case manager."
+        },
+        "caseManagerReview": {
+          "title": "Case manager review",
+          "description": "The case manager reviews the feedback and refers on for immediate assistance, if needed"
+        },
+        "storyCase": {
+          "description": "The feedback is now entered into a process where each step must be accounted for in a timely manner, before it can be closed.",
+          "title": "Feedback – Case"
+        },
+        "processAndRefer": {
+          "title": "Process and refer",
+          "description": "Loop is responsible to process and refer the case within 48 hours."
+        },
+        "responseToReferral": {
+          "description": "When a case is referred, the recieving organisation is responsible to confirm reciept within 48 hours."
+        },
+        "decisionToInvestigate": {
+          "description": "To mitigate further risks and to protect people, an organisation is responsible to assess the information and establish if and how they will investigate the case."
+        },
+        "investigation": {
+          "description": "To ensure a timely and accountable process, Loop tracks all of these steps, including the time it takes to close an investigation and the outcome."
+        },
+        "authorInformed": {
+          "title": "Author informed",
+          "description": "To ensure a survivor centered approach, Loop tracks if and when a survivor has been informed of the outcome."
+        }
+      },
+      "seeProcess": {
+        "title": "The step-by-step accountable process",
+        "firstParagraph": "Loop is an independent charity, with the sole purpose of providing a safe mechanism for people to raise their voices to improve services at scale. As part of our duty of care we have developed a way to safely receive and refer on sensitive feedback that would do harm if they were posted on the open platform. This could include reports of Sexual Exploitation Abuse and Harassment (SEAH), fraud, corruption, protection issues or other forms of misconduct.",
+        "secondParagraph": "We safely collect data (qualitative and quantitative) that people choose to share with us, we refer them on to appropriate actors to manage and to provide assistance where appropriate. We then reflect the data at an aggregate level for all to analyse and to identify trends, hot spots, pain points and where to improve.",
+        "thirdParagraph": "Loop does not respond to sensitive feedback, investigate cases or write reports on the findings.  We are a reciprocal for engaging with hard-to-reach populations and for showing the trends of data on how different types of organisations are responding. Through this we hope to put the voices and experiences of local people on decision making tables.",
+        "fourthParagraph": "We will adapt our tags and the Accountability Process to align with evolving best practice. We can only be as useful as the data that is shared with us.",
+        "list": {
+          "1": {
+            "title": "A person submits sensitive feedback to Loop.",
+            "firstParagraph": "Anyone can submit sensitive feedback using Loop: a survivor, witness, or an organisation. They share feedback at {{homeLink}} or the local SMS number and tag it as sensitive.",
+            "secondParagraph": "The sensitive feedback will not be posted on the open platform, no one will receive identifiable or contact information about the author and high standards of data security are followed."
+          },
+          "2": {
+            "title": "The feedback is reviewed by a Loop Moderator, identified as sensitive, and forwarded to the Loop Case Manager.",
+            "secondParagraph": "Best practice requires all allegations to be acknowledged, assessed, investigated if appropriate and the person making the allegation to be informed of the outcome. Each step of this process is reflected in The Accountability Process.",
+            "firstParagraph": "The moderator will send feedback which are tagged as sensitive to the Case Manager. They will also send feedback to the Case Manager if they believe it could do harm if it is posted on the open platform. We follow the Loop Protocols to define what is posted on the open platform and what is managed through the confidential secure case management system. You can read and help us improve these protocols {{hereLink}}."
+          },
+          "3": {
+            "title": "The Case Manager reviews the sensitive feedback and refers on for immediate assistance, if needed.",
+            "firstParagraph": "The Loop Case Manager is a trained specialist in handling allegations and complaints and refers the author of the sensitive feedback on to existing referral pathways. Loop does not provide assistance directly. We do provide a way for people to safely report, and we try to get this information to the best actor to take action. We can track assistance provided if organisations share updates with the Loop Case Manager."
+          },
+          "4": {
+            "title": "The 'sensitive feedback' is now considered a 'case' and is entered into a process where each step must be accounted for in a timely manner before it can be closed.",
+            "firstParagraph": "Cases are open until they have been fully accounted for in the Accountability Process. Cases are closed when no further action is required and where possible the author has been informed of the outcome. To ensure a survivor centred approach, sector standards state the time within which each of these steps should be completed.",
+            "secondParagraph": "The Loop statistics page displays the data that organisations choose to share with Loop throughout the management of a case. Organisations, authors and Survivors identifiable date is never shown."
+          },
+          "5": {
+            "title": "Process and refer.",
+            "firstParagraph": "When Loop receives a sensitive case, Loop will process and refer it on to an appropriate organisation for 1) Accountability and 2) the provision of Assistance if needed. By sector standards, Loop is responsible to process and refer an allegation within 48 hours of receiving it. We track this information to see if Loop can deliver on this expected standard and to hold ourselves publicly accountable."
+          },
+          "6": {
+            "title": "Response to referral.",
+            "firstParagraph": "When an organisation receives a referral, it is expected, by sector standards, to acknowledge receipt within 48 hours. When Loop receives this acknowledgement, we will update the data. We track this information to see if organisations can deliver on this expected standard."
+          },
+          "7": {
+            "title": "Decision to investigate.",
+            "secondParagraph": "When an organisation receives a referral, it is expected, by sector standards, to assess and decide to investigate or not, within 6 weeks. If organisations inform Loop of this decision, we can update the data. Loop tracks this information so that we can all learn how long it takes to assess and decide to investigate or not, based on different filters/ parameters.",
+            "firstParagraph": "To mitigate further risks and to protect people, an organisation is responsible to assess the information and establish if and how they will investigate the case."
+          },
+          "8": {
+            "title": "Investigation closed.",
+            "firstParagraph": "To encourage a timely and accountable process, Loop tracks all of these steps in the process, including the time it takes to close an investigation and the outcome.",
+            "secondParagraph": "When an organisation opens an investigation there are many reasons why it can take a long time to complete. Loop keeps a track on this so that we can all learn how long it takes, on average, based on different filters/ parameters, to complete an investigation."
+          },
+          "9": {
+            "title": "Author informed.",
+            "firstParagraph": "A survivor centred approach, requires that, where possible, the person who submitted the allegation is, at minimum, informed of the outcome. If organisations inform Loop when they have done this, we can update the data. Loop tracks this data so that we can all learn if survivors/ victims are being kept informed or not. This is the last stage of the Accountability Process and a case then becomes a Closed Case and the data continues to be reflected in the overall data and filters."
+          }
+        }
+      }
+    },
+    "decisionToInvestigate": "Decision to investigate",
+    "investigation": "Investigation",
+    "whatTypeOfCasesInAccountabilityProcess": {
+      "title": "What type of cases are in the accountability process now?",
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Protection",
+        "fraudOrCorruption": "Fraud and corruption",
+        "otherMisconduct": "Other misconduct"
+      },
+      "stack": {
+        "processAndRefer": "Processing and referring",
+        "respondToAReferal": "Responding to a referral",
+        "assessWhetherToInvestigate": "Assessing whether to investigate",
+        "ongoingInvestigation": "Ongoing investigation",
+        "informingAuthorOfOutcome": "Informing author of outcome"
+      },
+      "tooltip": "Breakdown of the different types of cases currently at various stages of the accountability process"
+    },
+    "casesReceived": {
+      "title": "How many cases have been received",
+      "summary": {
+        "header": "Loop has received {{value}} sensitive cases"
+      },
+      "table": {
+        "header1": "Closed cases",
+        "header2": "Open cases",
+        "header3": "Total urgent cases",
+        "header4": "Assistance provided"
+      },
+      "infoIcon": {
+        "content": "Cases are open until they have been fully accounted for as per sector standards. Cases are closed when no further action is required and where possible the author has been informed of the outcome. A case is urgent if the author is deemed to be at immediate risk and is in need of immediate assistance."
+      }
+    },
+    "averageTimeByCase": {
+      "title": "What’s the average time taken for different types of cases to be processed?",
+      "types": {
+        "SEAH": "SEAH",
+        "protection": "Protection",
+        "fraudOrCorruption": "Fraud and corruption",
+        "otherMisconduct": "Other"
+      },
+      "onAverageToClose": "on average to close",
+      "infoIcon": {
+        "content": "If organisations share with Loop updates on each referral they have received, Loop can show trends about what happens as a result of reporting sensitive feedback. This helps us all to better understand the impact of complaints mechanisms and where to focus further to improve outcomes."
+      }
+    },
+    "averageTimeToCompleteStep": {
+      "title": "What’s the average time taken to complete each step of the accountability process?",
+      "infoTooltip": "To ensure a survivor centred approach, best practice states the time within which these steps should be completed. This section shows the average time it has taken to complete each step. Green is 'on time', yellow is 'overdue' or red is 'unresponsive'. ",
+      "timelinesLink": "Sector recommended timelines",
+      "respondToReferral": "Respond to a referral",
+      "assessWhetherToInvestigate": "Assess whether to investigate",
+      "completeInvestigation": "Complete investigation",
+      "informTheAuthorOfOutcome": "Inform author of outcome",
+      "closeCase": "Close a case",
+      "daysTo": "Days to",
+      "dayTo": "Day to",
+      "tooltip": {
+        "content": {
+          "hours": "{{casesCount}} cases, completed this stage of the process in an average time of {{value}} hours",
+          "years": "{{casesCount}} cases,completed this stage of the process in an average time of {{value}} years",
+          "days": "{{casesCount}} cases, completed this stage of the process in an average time of {{value}} days",
+          "months": "{{casesCount}} cases, completed this stage of the process in an average time of {{value}} months"
+        },
+        "footer": {
+          "hours": "Sector recommended timeframe: Within 48 hours",
+          "weeks": "Sector recommended timeframe: Within 6 weeks",
+          "years": "Sector recommended timeframe: Within 2 years"
+        }
+      },
+      "processAndRefer": "Process and refer"
+    },
+    "processAndRefer": "Process and refer",
+    "responseToReferral": "Response to referral",
+    "whatTypeOfPeopleReferredToAssistanceReceivedIt": {
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Protection",
+        "fraudOrCorruption": "Fraud and corruption",
+        "otherMisconduct": "Other misconduct"
+      },
+      "stack": {
+        "yes": "Yes",
+        "yesServiceWereAllreadyInPlace": "Yes, services were already in place",
+        "noAssistanceOfferedButNotReceived": "No, assistance offered but not received",
+        "noAssistanceNotRendered": "No, assistance not rendered",
+        "yesLongerTerm": "Yes, Longer term support rendered"
+      },
+      "title": "Did <span class=\"highlight\">{{value}}</span> people referred for assistance receive it?",
+      "tooltip": "When organisations share the data with Loop, we can show how many survivors have received assistance. This helps us all to better understand trends about if survivors are receiving the assistance that they require. This graph shows the number of referrals which have resulted in assistance being rendered."
+    },
+    "whatTypeOfOrganizationReceivingAllegation": {
+      "tooltip": "Loop does not share information which could identify an individual or an organisation. Here we show the types of organisations and where sensitive feedback is in the accountability process. This helps us all to better understand the trends and context based on filters.",
+      "stack": {
+        "governmentAuthorities": "Government authorities",
+        "nationalArmedForces": "National armed forces",
+        "privateSector": "Private sector",
+        "nationalCommunityBasedOrganisation": "National / community based organisation",
+        "communityMember": "Community member",
+        "internationalOrganisation": "International organisation",
+        "other": "Other"
+      },
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Protection",
+        "fraudOrCorruption": "Fraud and corruption",
+        "otherMisconduct": "Other misconduct"
+      },
+      "title": "What type of organisations are receiving allegations?"
+    },
+    "howAreOrganisationsHandlingAllegationsMadeAgainstThem": {
+      "title": "How are organisations handling allegations made against them?",
+      "tooltip": "Loop does not share information which could identify an individual or an organisation. Here we show the types of organisations and where sensitive feedback is in the accountability process. This helps us all to better understand the trends and context based on filters.",
+      "stack": {
+        "governmentAuthorities": "Government authorities",
+        "nationalArmedForces": "National armed forces",
+        "privateSector": "Private sector",
+        "nationalCommunityBasedOrganisation": "National / community based organisation",
+        "communityMember": "Community member",
+        "internationalOrganisation": "International organisation",
+        "other": "Other"
+      },
+      "category": {
+        "processAndRefer": "Processing and referring",
+        "respondToReferral": "Responding to a referral",
+        "decideToInvestigate": "Assessing whether to investigate",
+        "completeInvestigation": "Ongoing investigation",
+        "informAuthorOfOutcome": "Informing author of outcome",
+        "closeACase": "Case closed"
+      }
+    },
+    "survivorAge": {
+      "title": "Survivor’s age",
+      "tooltip": "When Loop has enough information for this data to ensure anonymity, we show the age of survivors by the type of allegation. This helps us all to better understand the trends and context and provides some information on who we should be tailoring support and protection activities for.",
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Protection",
+        "fraudOrCorruption": "Fraud and corruption",
+        "otherMisconduct": "Other misconduct"
+      },
+      "stack": [
+        "0-5",
+        "6-13",
+        "14-17",
+        "18-29",
+        "30-59",
+        "60+",
+        "N/A"
+      ]
+    },
+    "whoIsSharingSensitiveStories": {
+      "title": "Who is sharing sensitive feedback?",
+      "tooltip": "When Loop has enough information to ensure anonymity, we show the types of people who are sharing different types of sensitive feedback. This helps us all to better understand where the information is coming from and who else we can be encouraging to safely report sensitive feedback to help improve accountability, stop fraud and abuse and better protect people.",
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Protection",
+        "fraudOrCorruption": "Fraud or corruption",
+        "otherMisconduct": "Other misconduct"
+      },
+      "stack": {
+        "survivor": "Survivor",
+        "witness": "Witness",
+        "orgPersonnel": "Org. personnel",
+        "friendOrRelativeOfSurvivor": "Friend or relative of survivor",
+        "other": "Other"
+      }
+    },
+    "subtitle2": "What trends are there in allegations and how are organisations responding?",
+    "subtitle3": "What are the profiles of authors and survivors of sensitive issues shared with Loop?",
+    "howResponsiveWeAreByStep": {
+      "title": "How responsive are organisations to allegation referrals?",
+      "stack": {
+        "processAndRefer": "Processing and referring",
+        "respondToAReferral": "Responding to a referral",
+        "assessWhetherToInvestigate": "Assessing whether to investigate",
+        "ongoingInvestigation": "Ongoing investigation",
+        "informingAuthorOfOutcome": "Informing author of outcome"
+      },
+      "category": {
+        "actionTakenOnTime": "Action taken on time",
+        "overdue": "Overdue",
+        "unresponsive": "Unresponsive",
+        "closedCases": "Closed cases"
+      },
+      "tooltip": {
+        "overdueAfter": "Overdue after",
+        "unresponsiveAfter": "Unresponsive after",
+        "processAndRefer": {
+          "title": "Processing and referring",
+          "content": "When Loop receives a sensitive case Loop is expected, by sector standards, to process and refer it on to an appropriate organisation for 1) accountability and 2) for the provision of assistance if appropriate. We are required to do this within 48 hours. We track this information to see if Loop can deliver on this expected standard and to hold ourselves publicly accountable.",
+          "overdueAfter": "48 hours",
+          "unresponsiveAfter": "1 week"
+        },
+        "respondToAReferral": {
+          "title": "Responding to a referral",
+          "content": "When an organisation receives a referral it is expected, by sector standards, to acknowledge receipt within 48 hours. When Loop receives the acknowledgement we will update the data. We track this information to see if organisations can deliver on this expected standard.",
+          "overdueAfter": "48 hours",
+          "unresponsiveAfter": "1 week"
+        },
+        "assessWhetherToInvestigate": {
+          "title": "Decision to investigate",
+          "content": "When an organisation receives a referral it is expected, by sector standards, to assess and decide to investigate or not within 6 weeks. If organisations inform Loop of this decision we can update the data.  Loop tracks this information so that we can all learn how long it takes to assess and decide to investigate or not, based on different filters/ parameters.",
+          "overdueAfter": "6 weeks",
+          "unresponsiveAfter": "3 months"
+        },
+        "ongoingInvestigation": {
+          "title": "Investigation time",
+          "content": "When an organisation opens an investigation there are many reasons why it can take a long time to complete. Loop keeps a track on this so that we can all learn how long it takes, on average, based on different filters/ parameters, to complete an investigation.",
+          "overdueAfter": "2 years",
+          "unresponsiveAfter": "3 months"
+        },
+        "informingAuthorOfOutcome": {
+          "title": "Informing author",
+          "content": "A survivor centred approach requires that, where possible, the person who submitted the allegation is kept informed of the outcome. If organisations inform Loop when they have done this we can update the data. Loop tracks this information so that we can all learn if survivors/ victims are being informed or not.",
+          "overdueAfter": "48 hours",
+          "unresponsiveAfter": "48 hours"
+        }
+      },
+      "infoIcon": {
+        "content": "Best practice requires all allegations to be acknowledged, assessed, investigated if appropriate, and the person making the allegation to be informed of the outcome. Each step of this process is reflected in this Accountability Process. To ensure a survivor centred approach, sector standards state the time within which each of these steps should be completed by ({{infoLink}}). This diagram shows the average time all cases are taking for each step of the process. If it is green it is 'on time', yellow is 'overdue' or red is 'unresponsive'. A closed case is when no further actions are required in the Accountable Process. ",
+        "seeHere": "see here",
+        "link": "/"
+      }
+    },
+    "outcomesOfInvestigation": {
+      "infoIcon": {
+        "content": "As per sector standard reporting, if organisations share with us the outcomes of referrals and investigations, Loop can show trends about what happened as a result of referrals. This helps us all to better understand the impact of individuals reporting sensitive feedback and organisations following an Accountable Process."
+      },
+      "title": "What are the outcomes of  <span class=\"highlight\">{{value}}</span> completed investigations?",
+      "types": {
+        "notEnoughInformation": "Not enough information to assess allegation",
+        "offenceSubstantiatedAndOffender": "Offence substantiated and offender separated from the organisation and survivor as a result",
+        "offenderFacedDisciplinary": "Offender faced disciplinary action",
+        "offenderResignedFromOrganisation": "Offender resigned from organisation before/during investigation",
+        "other": "Other outcome",
+        "referralToClearCheckMade": "Referral to Clear check made",
+        "referralToMisconductDisclosureScheme": "Referral to Misconduct Disclosure scheme",
+        "notSubstantiated": "Not substantiated"
+      }
+    },
+    "survivorGender": {
+      "title": "Survivor’s gender",
+      "info": "When Loop has enough information for this data to ensure anonymity, we show the gender of survivors by the type of allegation. This helps us all to better understand the trends and context and provides some information on who we should be tailoring support and protection activities for."
+    },
+    "noAnonymousData": "Not enough cases to safely show this data and ensure anonymity"
+  },
+  "caseTypes": {
+    "SEAH": "Sexual exploitation, abuse and harassment",
+    "protection": "Protection",
+    "fraudOrCorruption": "Fraud and corruption",
+    "otherMisconduct": "Other misconduct",
+    "urgentCases": "Urgent cases",
+    "label": "Type of case"
+  },
+  "smsOpenWelcome": "This is an automated service to share feedback on your experience with organisations in your area.",
+  "smsOpenReplayOnSubmit": "Thank you. We care about your privacy. Any additional details you share will help us get your feedback to the right organisation.",
+  "smsOpenEndReplay": "Thank you for using Loop. Please let your friends and family know they can use Loop too.",
+  "smsOpenOrganisationHasReplied": "Recently you shared feedback with Loop. Somebody {organisation} has replied. Here is what they said:",
+  "smsOpenOrganisationHasRepliedEnd": "If you'd like to reply, simply send us a message with what you'd like to say. There's no obligation to reply.",
+  "smsOpenNotificationPublishedStory": "Recently you submitted feedback on TalkToLoop.org. This feedback has now been published by a moderator.",
+  "smsOpenNotificationRejectedStory": "Recently you submitted feedback to TalkToLoop.org. A moderator has decided not to publish your feedback.",
+  "smsOpenNotificationPublishedReplay": "Recently you submitted a reply to feedback on TalkToLoop.org. A moderator has now published your reply. ",
+  "smsOpenNotificationRejectedReplay": "Recently you submitted a reply to feedbaci on TalkToLoop.org. A moderator has decided not to publish your reply.",
+  "smsCloseWelcome": "This is an automated service to share an experience or make a complaint that may be sensitive. We care about your privacy.",
+  "smsCloseReplayOnSubmit": "Thank you. Giving more information will help us process your feedback.",
+  "smsCloseReplayForConsent": "Thank you. If needed can we contact you regarding your feedback? If yes, reply with \"Yes\". If no, then reply with \"No\".",
+  "smsCloseReplayOnConsentAccept": "Thank you for trusting in Loop. We will process your feedback now.",
+  "smsCloseReplayOnConsentDecline": "Thank you. We will not contact you again about this matter, but will investigate it as best we can with the information we have.",
+  "smsOpenWelcome2": "Your feedback will be visible online. We'll send any replies directly to your phone. No one else will have your phone number. You can share your feedback now.",
+  "smsOpenReplayOnSubmit2": "Reply with your name, age, location and the organization your feedback is about. Just reply with \\\"No\\\" to leave this information out.",
+  "smsOpenEndReplay2": "You can share an experience with us again by replying with \\\"Loop\\\", or \\\"X\\\" (for sensitive issues) to this number. Thank you and Goodbye.",
+  "smsOpenOrganisationHasRepliedEnd2": "You can share another experience with us again at any time by texting \\\"Loop\\\" or \\\"X\\\" (for sensitive issues) to this number. Thank you. Goodbye.",
+  "smsOpenNotificationRejectedStory2": "The reason for this is {{var:reject_reason:\"\"}}.",
+  "smsOpenNotificationRejectedReplay2": "The reason for this is {{var:reject_reason:\"\"}}}{{var:reject_rationale:\"\"}}. ",
+  "smsOpenNotificationRejectedStory3": "The admin also wrote {{var:reject_rationale:\"\"}}.",
+  "smsCloseWelcome2": "Loop will not share any personal identifying information without your consent. You can now share your feedback.",
+  "smsCloseReplayOnConsentAccept2": "You can share an experience with us again by replying with \"Loop\" (for non-sensitive issues) or \"X\" (for sensitive issues) to this number. Thank you and Goodbye",
+  "smsCloseReplayOnConsentDecline2": "You can share an experience with us again by replying with \"Loop\" or \"X\" (for sensitive issues) to this number. Thank you and Goodbye",
+  "smsCloseReplayOnSubmit2": "Please reply to this text with your name/alias, your age, gender, location, the name of the organization in your feedback. Reply with \\\"No\\\" to skip this step.",
+  "inbox": {
+    "navigation": {
+      "stories": "Feedback",
+      "replies": "Replies",
+      "requests": "Requests",
+      "suggestions": "Requests",
+      "rejections": "Rejections"
+    },
+    "filters": {
+      "labels": {
+        "language": "Language",
+        "country": "Country",
+        "channel": "Channel",
+        "targetLanguage": "Target language",
+        "sensitivity": "Sensitivity status"
+      },
+      "channel": {
+        "1": "Web",
+        "2": "SMS",
+        "3": "Facebook Messenger",
+        "4": "WhatsApp",
+        "5": "Voice"
+      }
+    },
+    "table": {
+      "assignedTo": "Assigned To",
+      "dateTime": "Date & Time",
+      "channel": "Channel",
+      "status": "Status",
+      "country": "Country",
+      "language": "Language",
+      "type": "Feedback type",
+      "stories": {
+        "label": "Feedback inbox"
+      },
+      "loading": "Loading feedback",
+      "actions": {
+        "review": "Review"
+      },
+      "replies": {
+        "label": "Replies inbox"
+      },
+      "languageAndCountry": "Language & Country",
+      "actionsColumn": "Actions"
+    },
+    "storiesList": {
+      "sensitive": "Sensitive"
+    },
+    "moderator": {
+      "tags": {
+        "sensitive": "This feedback was automatically set to sensitive because age is under 14"
+      }
+    }
+  },
+  "language": {
+    "relativeTime": {
+      "s": "few seconds ago",
+      "ss": "{{value}} seconds ago",
+      "m": "a minute ago",
+      "mm": "{{value}} minutes ago",
+      "h": "an hour ago",
+      "hh": "{{value}} hours ago",
+      "d": "a day ago",
+      "dd": "{{value}} days ago",
+      "M": "a month ago",
+      "MM": "{{value}} months ago",
+      "y": "a year ago",
+      "yy": "{{value}} years ago"
+    },
+    "monthsShort": {
+      "January": "Jan",
+      "February": "Feb",
+      "March": "Mar",
+      "April": "Apr",
+      "May": "May",
+      "June": "Jun",
+      "July": "Jul",
+      "August": "Aug",
+      "September": "Sep",
+      "October": "Oct",
+      "November": "Nov",
+      "December": "Dec"
+    }
+  },
+  "assistanceReferred": {
+    "yes": "Yes",
+    "no": "No",
+    "notApplicable": "Not Applicable",
+    "label": "Assistance reffered"
+  },
+  "outcomesOfInvestigation": {
+    "offenceSubstantiatedAndOffender": "Offence substantiated and offender separated\nfrom the organisation and survivor as a result",
+    "offenderResignedFromOrganisation": "Offender resigned from organisation\nbefore/during investigation",
+    "offenderFacedDisciplinary": "Offender faced disciplinary action",
+    "notEnoughInformation": "Not enough information to assess allegation",
+    "referralToMisconductDisclosureScheme": "Referral to Misconduct Disclosure Scheme and/or Clear check made",
+    "label": "Outcomes of Investigation",
+    "other": "Other outcome"
+  },
+  "social-bot": {
+    "messenger": {
+      "HELLO": "Hi! We detected your language as English. Do you want to change it?",
+      "YES": "✅ Yes",
+      "NO": "❌ No",
+      "CHANGED": "Changing",
+      "NOTCHANGED": "Not changing",
+      "CHOOSE_LANG": "Please choose your preferred language using the buttons below.",
+      "EN": "English",
+      "TL": "Wikang Tagalog",
+      "thanks": "🙏 Thanks",
+      "question": "❓ Request for Information",
+      "opinion": "💭 Opinion",
+      "request": "💡 Request for Assistance",
+      "concern": "☹️ Concern",
+      "STORY_TYPE_SENSITIVE_ISSUE": "⭕ Sensitive issue",
+      "LANG_CHANGED": "Language has been changed EN",
+      "SHOW_MORE": "Show more",
+      "SEND_MESSAGE": "Ok, what message of thanks would you like to share?",
+      "GET_STARTED_LOOP": "To get started, please let us know what kind of feedback you would like to share with us?",
+      "WELCOME": "👋 Hi, welcome to Loop! This is an automated service.",
+      "TALK_TO_LOOP": "You can talk to Loop about organisations working in your area. We'll translate your feedback, and try to get relevant organisations to reply.",
+      "GET_STARTED": "Get Started",
+      "GREETINGS": "👋 Hi! This is an automated service to share feedback on your experience with organisations in your area.",
+      "PROMOTE_LOOP": "If you want to discuss something sensitive such as: \n\n❌ Sexual exploitation, abuse and harassment \n❌ Child protection \n❌ Corruption \n❌ Fraud \n❌ Any other breach of code of conduct \n❌ Any other misconduct \n\nWe recommend that you do that directly on our website here: https://app.talktoloop.org/new-story \\\n\nThis ensures your data and your feedback is only on our servers. \n\nIs this what you were looking for?",
+      "ALTERNATIVE_STORY": "Ok. Would you like to share any non-sensitive feedback or an experience with an organisation in your area?",
+      "SENSITIVE_STORY_FLOW_CONFIRMATION": "Ok. We hope to receive your sensitive feedback via our website soon. You can restart this service at anytime by clicking the button below:",
+      "RESTART": "🔄 Restart",
+      "SHARE_NEW_STORY": "✏ Share feedback again",
+      "PROMOTE_DESCRIPTION": "Ok. Loop is your platform to share and feedback on the issues that matter to you. You can find out more about Loop on our website www.talktoloop.org",
+      "END_OF_SERVICE": "This is the end of this automated service. You can share another message with us at any time by clicking the button below.",
+      "THANKS": "🙏 Thanks so much for using Loop to raise your voice and create positive change.",
+      "ADDITIONAL_INFO": "Is there anything else you can share to help us get the feedback to the right people? \nIf there is, just reply to this message with the 🏛️ organisation(s) name and their 🌏️ location, or anything else you'd like to add.\nIf you're finished, just tap the button below.",
+      "FINISH": "Finish 🏁",
+      "THANKS_FOR_SHARING": "🙏 Thank you for sharing your feedback with Loop.",
+      "SHARE_DETAILS": "Is it ok if we publish these details from your Facebook profile alongside your feedback? This helps us find the most relevant organisation to respond to your feedback. \n\n📛 Your name: {{first_name}} \n⚤ Gender: {{gender}}",
+      "STORY_REVIEW": "We will review your feedback now and let you know within 48 hours when it is published online.",
+      "SHARING_THANKS": "💪 Thanks!",
+      "INVALID_OPTION": "I'm sorry, I don't understand that. Please choose from the quick options below.",
+      "SEND_QUESTION": "Ok, what question would you like to ask on TalkToLoop.org?",
+      "SEND_OPINION": "Ok, what opinion would you like to share on TalkToLoop.org?",
+      "SEND_SUGGESTION": "Ok, what request would you like to share on TalkToLoop.org?",
+      "SEND_CONCERN": "Ok, what concern would you like to share on TalkToLoop.org?",
+      "STORY_STATUS_PUBLISHED": "Recently you submitted feedback on TalkToLoop.org. This feedback has now been published by a moderator.",
+      "STORY_STATUS_REJECTED": "Recently you submitted feedback on TalkToLoop.org. A moderator has decided not to publish your feedback. The reason for this is {{reasonText}}.",
+      "ORGANIZATION_COMMENT": "Recently you shared feedback with Loop. Somebody (from {{organization}}) has replied.\n\nYou can view the reply and respond to it using this link {{reply}}\n\nYou can share more feedback with us by typing ‘Loop’ at any time.",
+      "END_OF_SERVICE_MODERATOR_FLOW": "Thanks for your reply. A moderator will review your feedback within 48 hours. You can share more feedback with us at any time by clicking the button below",
+      "ADD_STORY_NOTIFICATION": "Your feedback has been automatically added. Thank you.",
+      "ADD_STORY_NOTIFICATION_FAILED": "Your feedback cannot be added. Please contact us.",
+      "FR": "Press {index} for French",
+      "AR": "Arabic",
+      "ES": "Spanish",
+      "KEEP_ANONYMOUS": "No problem. We'll keep you anonymous."
+    },
+    "KEEP_ANONYMOUS": "No problem. We'll keep you anonymous.",
+    "SKIP": "skip",
+    "REUSE_DETAILS": "Is it ok to publish these details you shared with us before together with your feedback? Name: {{firstName}} Age: {{age}} Gender: {{gender}} Disability: {{disability}}",
+    "REUSE_DETAILS_BUTTONS": "Please use the buttons below, or type 'Yes', or 'No' to answer",
+    "PERSONAL_DETAILS": "Alright, you're nearly finished. We'd like to ask you 4 short questions about you. This helps us get your feedback to the right people.",
+    "DONT_REUSE_DETAILS": "Ok, do you want to answer these questions again?",
+    "USER_NAME": "(1/4) What's your name?",
+    "USER_AGE": "(2/4) How old are you?",
+    "USER_GENDER": "(3/4) What gender are you?",
+    "USER_DISABILITY": "(4/4) Finally, do you have a disability?",
+    "SHARE_ADDITIONAL_INFO": "Ok, the more information you share the more people might reply. For example: 🏛️  Organisation name(s) 🌏️  Country and location of feedback",
+    "CHOOSE_LANG": "What language do you speak?",
+    "INVALID_OPTION": "I'm sorry, I don't understand that. Please choose from the quick options below.",
+    "IF_SENSITIVE_STORY": "If your feedback is sensitive please go to: https://app.talktoloop.org/provide-feedback",
+    "TALK_TO_LOOP": "Otherwise, please share your feedback now.",
+    "THANKS": "Thanks for using Loop to raise your voice and create positive change. We will now review and publish your feedback within 24-48 hours, usually much quicker. We will send you replies when we get them. Goodbye. To start again type 'Loop' or tap the button below at any time 😃",
+    "ADDITIONAL_INFO": "Is there anything else you can share to help us get the feedback to the right people? \nIf there is, just reply to this message with the 🏛️ organisation(s) name and their 🌏️ location, or anything else you'd like to add.\nIf you're finished, just tap the button below.",
+    "RESTART": "🔄 Restart",
+    "ORGANIZATION_COMMENT_WRITE": "Recently you shared feedback with Loop. Somebody (from {{organisation}}) has replied.\n\nYou can view the reply and respond to it using this link: {{URL}}\n\nTo share more feedback, type 'Loop' at any time 😃",
+    "ANY_COMMENT_BUTTON": "You recently shared feedback with Loop. Somebody replied to your feedback.\n\nYou can view the reply and respond to it using this link: {{URL}}\n\nTo share more feedback, type 'Loop' or tap the button below at any time 😃",
+    "YES": "✅ Yes",
+    "NO": "❌ No",
+    "EN": "Press {index} for English",
+    "TL": "Pindutin ang {index} para sa Tagalog",
+    "WELCOME": "👋 Hi, welcome to TalkToLoop.org! This is an automated service.",
+    "GET_STARTED": "Get Started",
+    "GREETINGS": "👋 Hi! This is an automated service to share feedback on your experience with organisations in your area.",
+    "SHARE_NEW_STORY": "✏ Share more feedback",
+    "PROMOTE_DESCRIPTION": "Ok. TalkToLoop.org is your platform to share and feedback on the issues that matter to you. You can find out more about TalkToLoop on our website www.talktoloop.org",
+    "END_OF_SERVICE": "This is the end of this automated service. You can share another message with us at any time by clicking the button below.",
+    "STORY_STATUS_PUBLISHED": "Recently you submitted feedback on TalkToLoop.org. This feedback has now been published by a moderator.",
+    "STORY_STATUS_REJECTED": "Recently you submitted feedback on TalkToLoop.org. A moderator has decided not to publish your feedback. The reason for this is {{reasonText}}.",
+    "END_OF_SERVICE_MODERATOR_FLOW_BUTTON": "Thanks for your reply. A moderator will review your feedback within 48 hours. You can share more feedback with us at any time by clicking the button below.",
+    "ADD_STORY_NOTIFICATION": "Your feedback has been submitted. Thank you.",
+    "ADD_STORY_NOTIFICATION_FAILED": "Your feedback cannot be submitted. Please contact us.",
+    "FR": "Press {index} for French",
+    "AR": "اضغط على {index} للغة العربية",
+    "ES": "Presione {index} para español",
+    "UK": "Натисніть {index} для український",
+    "PL": "Kliknij {index} aby zmienić język na Polski",
+    "LOZ": "Musine {index} Mwa silozi",
+    "NY": "Dinizani {index} Muci nyanja",
+    "BEM": "Tinikeni {index} Muci Bemba",
+    "TOG": "Amutyanke {index} Muci Tonga",
+    "ID": "Pers untuk {index} Bahasa",
+    "REUSE_DETAILS_WRITE": "Please  type 'Yes', or 'No' to answer",
+    "ORGANIZATION_COMMENT_BUTTON": "Recently you shared feedback with Loop. Somebody (from {{organisation}}) has replied.\n\nYou can view the reply and respond to it using this link: {{URL}}\n\nTo share more feedback, type 'Loop' or tap the button below at any time 😃",
+    "ANY_COMMENT_WRITE": "You recently shared feedback with Loop. Somebody replied to your feedback.\n\nYou can view the reply and respond to it using this link: {{URL}}\n\nTo share more feedback type 'Loop' at any time 😃",
+    "END_OF_SERVICE_MODERATOR_FLOW_WRITE": "Thanks for your reply. A moderator will review your feedback within 48 hours. You can share more feedback with us at any time by typing 'Loop'."
+  },
+  "whatsapp-bot": {
+    "twilio": {
+      "CHOOSE_LANG": "Please select your language:",
+      "EN": "Press {index} for English",
+      "TL": "Amutyankke {index} Tagalog",
+      "WELCOME": "👋 Hi, welcome to Loop! This is an automated service.",
+      "TALK_TO_LOOP": "You can talk to Loop about organisations working in your area. We'll translate your feedback, and try to get relevant organisations to reply.",
+      "CHOOSE_LANG_DIDNT_UNDERSTAND": "Sorry, I didn't quite understand that.\n\nPlease select your language:",
+      "SEND_OPINION": "What would you like to share today?",
+      "THANKS": "All over the world, people are using Loop everyday to raise their voice and create positive change. You're helping to make a real difference in your community. 💪",
+      "ADDITIONAL_INFO_STORY": "Are there any more details you could share to help us get your feedback to the right people?\n\nFor example, the 🏛️ organisation(s) name and/or their 🌏️ location.\n\nJust reply with 'No' to leave this information out.",
+      "THANK_YOU_FOR_SHARING": "🙏 Thank you for sharing your feedback with Loop.",
+      "SHARE_YOUR_NAME": "Is it ok if we publish the name {{first_name}} beside your feedback?",
+      "SHARE_NAME_YES": "✅ Type \\\"1\\\" if it's ok for us to publish the name {{first_name}} beside your feedback.",
+      "SHARE_NAME_NO": "❌ Type \\\"2\\\" if you'd prefer to stay anonymous.",
+      "SHARE_YOUR_NAME_FALLBACK": "Sorry, I didn't quite understand that.\n\n✅ Type Yes: If it's ok for us to publish the name {{first_name}} beside your feedback.\n\n❌ Type No: If you'd prefer to stay anonymous.",
+      "FINISH": "Alright. We will review your feedback now and let you know soon when it is published online.",
+      "FINISH_RESTART": "This is the end of this automated service.\n\nYou can share another message with us at any time by typing 'Loop'.",
+      "PUBLISH_NAME_THANKS": "👍️ Thanks!",
+      "STAY_ANONYMOUS": "No problem. We'll keep you anonymous.",
+      "ABOUT_YOURSELF": "Is there anything else you could tell us about yourself? For example, your age, your gender, the place where you currently are? This helps us find the most relevant organisations to respond to your feedback.\n\nJust reply with 'No' to leave this information out.",
+      "END_OF_SERVICE_MODERATOR_FLOW": "Thanks for your reply. A moderator will review your feedback within 48 hours. You can share another message with us at any time by typing 'Loop'.",
+      "YES": "Yes",
+      "NO": "No",
+      "SHARE_YOUR_NAME_ANSWERS": "✅ Type Yes: If it's ok for us to publish the name {{first_name}} beside your feedback.\n\n❌ Type No: If you'd prefer to stay anonymous.",
+      "STORY_STATUS_PUBLISHED": "Recently you submitted feedback on TalkToLoop.org. This feedback has now been published by a moderator.",
+      "STORY_STATUS_REJECTED": "Recently you submitted feedback on TalkToLoop.org. A moderator has decided not to publish your feedback. The reason for this is {{reasonText}}.",
+      "ORGANIZATION_COMMENT": "Recently you shared feedback with Loop. Somebody (from {{organization}}) has replied.\n\nYou can view the reply and respond to it using this link {{reply}}\n\nYou can share more feedback with us by typing Loop' at any time.",
+      "ANY_COMMENT": "Recently you shared feedback with Loop. Somebody has replied. Here is what they said: {{reply}} \n\nIf you’d like to respond to this message, you just click this link {{URL}}\n\nYou can share more feedback with us by typing ‘Loop’ here at any time. ",
+      "ADD_STORY_NOTIFICATION": "Your feedback has been automatically submitted. Thank you.",
+      "ADD_STORY_NOTIFICATION_FAILED": "Your feedback cannot be added. Please contact us.",
+      "LOZ": "Press {index} for Lozi",
+      "NY": "Press {index} for Cinyanja",
+      "BEM": "Press {index} for Bemba",
+      "TOG": "Piliin ang {index} para sa Tonga",
+      "ID": "Pers untuk {{value}} Bahasa Indonesia",
+      "PRESS_FOR_LANG": "Press {{value}} for English",
+      "PL": "Kliknij {index} aby zmienić język na Polski",
+      "UK": "Натисніть {index} для український"
+    }
+  },
+  "communityGuidelines": {
+    "header": {
+      "title": "Community Guidelines",
+      "paragraph": {
+        "main": "Our overarching principle is that there is value in hearing a diverse range of views and that this powers greater impact. Therefore, we encourage all voices to be shared in a safe, supportive, enquiring manner. With respect for each other’s ideas, experiences, and viewpoints. We may not always agree, but disagreement is no excuse for poor manners. Be direct, constructive, and positive.",
+        "1": "Also, always assume the best. Understand that people may be engaging through different means and different barriers: Not using their native language; Coming from different cultures; Using pronouns other than “he” or “she”; Living in a different time zone; Facing other challenges to participate; not familiar with other social media approaches. ",
+        "2": "The conversations we have here set the tone for every new arrival. Help us influence the future of this community by choosing to engage in discussions that make this forum an interesting place to be — and avoiding those that do not. Discourse provides tools that enable the community to collectively identify the best (and worst) contributions: tag in others, upvote comments, reply and flag to Loop any concerns or issues directly to help the community get the most out of the platform.",
+        "3": "To create a safe place to listen and engage, a moderator reviews all feedback or replies before they are posted on the open transparent platform. If contact details are given the person will be informed, by the moderator, of when it was posted or why it was not posted, and what they can do to correct it, so that it can be posted.",
+        "4": "We will not post feedback or replies for five main reasons:"
+      }
+    },
+    "section": {
+      "1": {
+        "paragraph": {
+          "1": "Loop aims to encourage people to engage safely and inclusively to listen to more voices. Therefore, we will not post feedback or replies which contain:",
+          "2": "<strong>Abuse or harassment:</strong> You may not engage in the targeted harassment of someone or incite other people to do so. This includes wishing or hoping that someone experiences physical harm, insulting or belittling them. It also includes sexualized comments or jokes in interactions."
+        },
+        "title": "The Feedback/ Reply has offensive or had discriminatory language in it."
+      },
+      "2": {
+        "title": "The feedback / reply does not follow the community standards designed to ensure a safe space to share feedback.",
+        "paragraph": {
+          "1": "Loop can positively support data to inform improvements to service provision if more people from diverse backgrounds can participate to share, learn, and engage. We encourage new perspectives to be heard and listened to actively. Lead by example.",
+          "2": "<strong>Hateful conduct:</strong> You may not promote violence against, threaten, or harass other people on any basis, including: race, ethnicity, national origin, caste, sexual orientation, gender, gender identity, religious affiliation, age, disability, serious disease, native language, socio economic status, geographic location, etc. Attacking someone for their opinions, beliefs and ideas is also not acceptable nor is derogatory or rude language",
+          "3": "<strong>Violence:</strong> You may not threaten violence against an individual or a group of people. We also prohibit the glorification of violence.",
+          "4": "<strong>Terrorism/violent extremism:</strong> You may not threaten or promote terrorism or violent extremism.",
+          "5": "<strong>Exploitation:</strong> We have zero tolerance for any form of exploitation, this includes child sexual exploitation.",
+          "6": "<strong>Suicide or self-harm:</strong> You may not promote or encourage suicide or self-harm.",
+          "7": "<strong>Illegal or certain regulated goods or services:</strong> You may not use our service for any unlawful purpose or in furtherance of illegal activities."
+        }
+      },
+      "3": {
+        "paragraph": {
+          "1": "Loop encourages people to speak in the first person about their own views and experiences, which maybe that someone else told them something. This will ensure that one piece of feedback represents one experience and one person’s view to ensure fair representation of views and experiences.",
+          "2": "<strong>Impersonation or False reporting:</strong> You may not impersonate individuals, groups, or organizations.  This can mislead, confuse, or deceive others.",
+          "3": "<strong>Platform manipulation and spam:</strong> Loop cannot be used for the purpose of manipulating or interfering in civic participation. This includes posting or sharing content that may suppress participation or mislead people about when, where, or how to participate in a civic process.",
+          "4": "<strong>Computer generated posts:</strong> You may not manipulate posts to reinforce a particular view or to sway opinion. Feedback and replies need to be true experiences from the individual posting the feedback and not speak for another person without their consent.",
+          "5": "<strong>Copyright and trademark:</strong> You may not claim to represent an organisation or person without their express consent."
+        },
+        "title": "There is a concern about the authenticity of the feedback / reply."
+      },
+      "4": {
+        "title": "There is a concern that the feedback / reply could cause harm if posted publicly. It is being referred on to a specialist.",
+        "paragraph": {
+          "1": "Loop aims to Do No Harm to individuals and organisations as a result of Feedback or Replies.",
+          "2": "<strong>Protection:</strong> If, based on the feedback and other information voluntarily shared, posting the feedback on an open transparent site may jeopardise anyone’s safety in anyway, including potentially identifying them, then the feedback / reply will be returned to suggest removal of some identifying information or referred onto the sensitive feedback system. The Loop moderator may decide to remove some tags that the individual has disclosed if their is concern they can be identified and harm may result.",
+          "3": "<strong>Unconfirmed accusation:</strong> A post which contains a very inflammatory statement that could result in a significant risk to an individual or organisation will not be posted on the open site but will be referred to the Closed Loop service to be referred on to the appropriate actor to manage the information in a safe accountable manner."
+        }
+      },
+      "5": {
+        "paragraph": {
+          "1": "All posts must respect people’s right to privacy and confidentiality.",
+          "2": "<strong>Private information:</strong> You may not publish or post other people's private information (such as home phone number and address) without their express authorization and permission."
+        },
+        "title": "The feedback does not respect the right to privacy of others."
+      },
+      "6": {
+        "title": "How to report if you believe that these Community Guidelines have not been respected:",
+        "paragraph": {
+          "1": "If however you feel that a piece of feedback or a reply has been posted that may breach any of the above standards or codes, please email <a href=\"mailto: hello@talktoloop.org\">hello@TalkToLoop.org</a> with a link to the feedback / reply of concern and outline your perspective. You will receive a reply within 48 hours.",
+          "2": "In order to maintain our community, moderators reserve the right to remove any content and any user account for any reason at any time. Moderators preview all new posts; the moderators and site operators do as much as they can to keep a safe space, however we cannot take responsibility for any content posteby the community.",
+          "3": "We have used Twitter and Mozilla Rules and Codes of Conduct to inform this document. We will improve and update it as we learn and grow. Please share <a href=\"https://community.ready-initiative.org/login\">suggested edits and improvements</a>."
+        }
+      }
+    }
+  },
+  "routes": {
+    "login": "Login",
+    "resetPassword": "Reset password",
+    "changePassword": "Change password",
+    "communityGuidelines": "Community guidelines",
+    "stories": "Feedback",
+    "inbox": "Inbox",
+    "replies": "Replies",
+    "reviewReply": "Review reply",
+    "inboxStories": "Feedback",
+    "reviewStory": "Review feedback",
+    "newStory": "Submit feedback",
+    "profile": "Profile",
+    "statistics": "Statistics",
+    "openStories": "Open feedback",
+    "sensitiveCases": "Sensitive cases",
+    "storyDetails": "Feedback details",
+    "inboxReplies": "Replies",
+    "confirmUser": "Set password",
+    "translateStory": "Translate feedback",
+    "outbox": "Outbox",
+    "outboxInProgress": "In progress",
+    "outboxRejected": "Rejected",
+    "outboxPendingRecording": "Pending recording",
+    "transcribeReply": "Transcribe reply",
+    "reviewAndTranslate": "Review and translate",
+    "magicLinkLogin": "Login with magic link",
+    "register": "Welcome to Loop",
+    "registerIndividual": "How should we call you?",
+    "magicLinkSent": "Thank you!",
+    "registerOrganization": "Find your organisation",
+    "createOrganization": "Create new organization",
+    "processing": "One moment while we verify your account",
+    "acceptTerms": "We care about your data privacy",
+    "confirmName": "Confirm your full name"
+  },
+  "outbox": {
+    "navigation": {
+      "pending-recording": "Pending recording",
+      "archive": "Archive",
+      "in-progress": "In progress"
+    },
+    "table": {
+      "targetLanguage": "Target language",
+      "dateTime": "Date & time",
+      "moderator": "Moderator",
+      "reply": "Reply",
+      "actions": {
+        "review": "Review"
+      },
+      "pendingRecording": {
+        "label": "Recording outbox"
+      }
+    },
+    "details": {
+      "title": "Record outgoing message",
+      "subtitle": "Record the script in the purple box",
+      "introAudio": "Intro Audio",
+      "preRecorder": "Pre-recorded",
+      "audioToRecord": "Audio to record",
+      "outroAudio": "Outro Audio",
+      "sendThreeMessages": "Send 3 messages",
+      "hideStory": "Hide feedback",
+      "showStory": "Show feedback",
+      "backToOutbox": "Back to outbox",
+      "startHere": "Start here",
+      "noContentForSelectedLanguageToast": {
+        "title": "Language not supported yet",
+        "subtitle": "Your language is not supported via IVRR"
+      },
+      "originalStoryInformation": "Original feedback information"
+    }
+  },
+  "pin-to-story": {
+    "story": "Feedback",
+    "pinned": "Pinned to feedback",
+    "pin": "Pin to feedback",
+    "unpin": "Unpin"
+  },
+  "smsOpenLanguageSentence": "\\nPress {index} for English",
+  "smsOpenTrigger": "Thanks for contacting Loop. Please select your language:",
+  "smsCloseTrigger": "Welcome to closed Loop. Please select your language:",
+  "got": {
+    "it": "Got it"
+  },
+  "Registration": {
+    "Early_Access": "TalkToLoop.org – Early Access",
+    "Header_1": "Great you are interested in being part of Loop!",
+    "Header_2": "Having an account means that you only have to enter your details once, so staying engaged is quick and easy for you every time.",
+    "Header_3": "For organisations, it means you will also receive notifications about conversation threads you engage in or are mentioned in as well.",
+    "Header_4": "Do you work for an organisation providing support to people in need? ",
+    "Header_5": "For example a humanitarian, development, non-government, non-profit, charity or civil society organisation? If not, leave this box unchecked.",
+    "Name": "Name or nickname ",
+    "Name_1": "Please give your name or nickname below. This will appear alongside any feedback or replies you post on TalkToLoop.org.",
+    "Email": "Email address",
+    "Email_1": "Enter your email address below. We'll notify you here if there's a reply to anything you post. ",
+    "Phone": "Telephone number ",
+    "Phone_1": "To receive a one-off message when TalkToLoop.org is available for use via WhatsApp and/or SMS, enter your full phone number below. ",
+    "Phone_2": "Please include the international country code as indicated below. We will not share this number with any other party.",
+    "Phonenumber": "Philippines: +63 (0)12-345-6789",
+    "Phonenumber_1": "Zambia: +260 (0)123-456789",
+    "Consent": "Consent",
+    "Consent_1": "I consent to my name as written above being published alongside any feedback or replies I post on TalkToLoop.org",
+    "Submit": "Submit",
+    "Submit_1": "Never submit passwords through Airtable forms. Report malicious form"
+  },
+  "comment": {
+    "status": {
+      "published_and_pending_call": "Pending call"
+    },
+    "previewReply": "Preview reply",
+    "reRecordReply": "Re-record reply"
+  },
+  "createNewOrganization": {
+    "title": "Create new organisation",
+    "description": {
+      "text": "Only include a country in the name field, if it is part of the organisation’s official name. Only capitalise proper nouns (e.g. ‘Alliance for Community Action’ not ‘ALLIANCE For Community Action’).",
+      "title": "Full organisation name"
+    },
+    "acronym": {
+      "text": "This organisation is better-known by an acronym (e.g. CARE, ADRA, UNICEF)",
+      "title": "Acronym",
+      "description": "This acronym will be the primary display-name for this organisation. The full organisation name will only be visible secondarily."
+    },
+    "country": {
+      "title": "Country branch",
+      "description": "Countries are used to distinguish between different branches of the same organisation. Select a country branch for this organisation."
+    },
+    "cancel": "Cancel",
+    "create": "Create new organisation"
+  },
+  "organisation": {
+    "invitation": {
+      "title": "Invite someone to an organisation",
+      "invite": "Invite",
+      "errorMessage": "Please select an organisation to invite the email address above to join.",
+      "linkEmail": "Link email with organisation",
+      "email": "Organisation email",
+      "language": "Invitation language",
+      "userExistsPart1": "The person with the email address",
+      "userExistsPart2": "is already a member of the organisation named",
+      "userExistsPart3": "It is not possible to invite this person to another organisation.",
+      "noResult": "No organisation matching your search were found",
+      "emailInvitedPart2": "is already on the invitation list for this feedback."
+    }
+  },
+  "yourMagicLinkNotification": "Hello,\n\nTo log into your TalkToLoop.org account, click the link below\n\nMagic Link\n\nYour magic link will expire in\n\nminutes.\n\n\u2028If your link expires please\n\n log in again,\n\nto receive another link.\n\nKind regards, The TalkToLoop.org Team",
+  "youHaveBeenConnectedToOrganizationNotification": "Hello,\n\nTalkToLoop.org is a free platform that connects you with the communities you work with. Loop is spreading fast with both organisations like yours, and communities in {{var:organisation}} and further afield too.\n\n\n\nWe’ve just published feedback from the community that we think would be relevant to your organisation. \n\n\n\nView and respond to the feedback using the button below.\n\nVIEW FEEDBACK\n\nIf the button doesn’t work, copy and paste the URL below into the address bar of your browser:\n\nKind regards, The TalkToLoop.org Team",
+  "youHaveBeenInvitedToOrganizationNotification": "Hello,\n\nTalkToLoop.org is a free platform that connects you with the communities you work with. Loop is spreading fast with both organisations like yours and communities around the world.\n\nYou've been invited to join {{var:organisation.name}} on TalkToLoop.org. To accept this invitation click the button below. \n\nACCEPT INVITATION\n\nIf the button doesn't work you can copy and paste the following URL into your browser\n\nKind regards, The TalkToLoop.org Team",
+  "downloadButton": {
+    "text": "Download"
+  },
+  "unifiedFeedbackExportButton": {
+    "text": "United export"
+  },
+  "requestPremium": {
+    "modal": {
+      "header": {
+        "text": "Become a Loop Advocate to download data"
+      },
+      "table": {
+        "free": {
+          "title": "Free",
+          "subtitle": "forever"
+        },
+        "premium": {
+          "title": "Advocate",
+          "subtitle": {
+            "part1": "€1000*",
+            "part2": "/year"
+          }
+        },
+        "rows": {
+          "first": "Download data as a CSV file",
+          "second": "Extract data automatically via API",
+          "third": "Filter data on our statistics page",
+          "fourth": "Reply to feedback across languages",
+          "fifth": "Get notified when your organisation is tagged in feedback"
+        },
+        "additionalInfo": {
+          "text": "* Advocate level is available free-of-charge for local civil society organisations.",
+          "button": {
+            "text": "Apply now"
+          }
+        }
+      },
+      "footer": {
+        "cancelButton": {
+          "text": "Cancel"
+        },
+        "requestButton": {
+          "text": "Become a Loop Advocate"
+        }
+      }
+    },
+    "description": "A member of our team will be in contact with you very soon.",
+    "title": "Your request has been submitted"
+  },
+  "min": "Min",
+  "max": "Max",
+  "seconds": "Seconds",
+  "wordCount": {
+    "singleWord": "word",
+    "multipleWords": "words"
+  },
+  "duration": {
+    "minutes": "min",
+    "seconds": "sec"
+  },
+  "simplePlayer": {
+    "playing": "Playing...",
+    "play": "Play",
+    "loading": "Loading..."
+  },
+  "pagination": {
+    "info": "{{firstVisibleItemNumber}} - {{lastVisibleItemNumber}} of {{totalItems}}",
+    "itemsPerPage": "Items per page",
+    "selectAll": "Select all",
+    "reject": "Reject ({{count}})",
+    "assignModerators": "Assign Moderators ({{count}})",
+    "deselectAll": "Deselect all"
+  }
+}

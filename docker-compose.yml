@@ -1,5 +1,4 @@
-version: '3.8'
-name: product
+name: loop
 services:
   mysql:
     image: mysql:8.0
@@ -234,3 +233,16 @@ services:
       - ROLLBAR_ACCESS_TOKEN=***REMOVED***
       - POSTHOG_KEY=***REMOVED***
       - POSTHOG_HOST=https://eu.i.posthog.com
+
+  ui:
+    build:
+      context: ./apps/ui
+      dockerfile: Dockerfile.local
+    container_name: ui
+    ports:
+      - 4200:4200
+    volumes:
+      - ./apps/ui/:/usr/src/ourloop-ui
+    tty: true
+    depends_on:
+      - gateway

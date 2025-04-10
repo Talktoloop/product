@@ -1,0 +1,43 @@
+<div
+  class="pills-container"
+  [ngClass]="{
+    'pills-container--with-gap': gap === 'medium',
+    'dropdown-open': isPillsVisible
+  }"
+>
+  <!-- The management button -->
+  <button class="pill-button" (click)="toggleDropdown()">
+    {{ "filtersV2.preset.header.label" | translate }}
+    <span>({{ activeFiltersCount }})</span>
+  </button>
+
+  <!-- Field for searching -->
+  <input
+    type="text"
+    class="pill-input"
+    placeholder='{{ "filtersV2.preset.header.placeholder" | translate }}'
+    [value]="searchValue"
+    (input)="handleSearchChange($event.target.value)"
+    (keydown)="handleInputKeydown($event)"
+  />
+  <!-- Submit button -->
+  <button
+    class="submit-button"
+    (click)="submitSearch()">
+    {{ "filtersV2.preset.header.button" | translate }}
+  </button>
+
+  <!-- Dropdown content -->
+  <div class="dropdown" [ngClass]="{ 'dropdown-open': isPillsVisible }">
+    <!-- Left column with filters -->
+    <div class="dropdown-left-container">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Right column with content -->
+    <div class="dropdown-right-container">
+      <ng-content select="[right-container]"></ng-content>
+    </div>
+  </div>
+
+</div>

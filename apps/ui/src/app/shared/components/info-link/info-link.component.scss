@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'mixins';
+
+.info-link {
+  display: flex;
+  align-items: flex-start;
+  color: $loop-interactive-01;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.125rem;
+
+  @include mobile-only {
+    font-size: 1rem;
+  }
+
+  app-info-icon {
+    display: flex;
+    margin-top: 0.1rem;
+  }
+
+  &__text {
+    text-align: left;
+  }
+}

@@ -1,0 +1,11 @@
+<h3 class="chart-subtitle" [innerHTML]='title$ | async'></h3>
+<div
+  echarts
+  class="base-chart"
+  *ngIf="chartOption"
+  (chartInit)="onChartInit($event)"
+  [options]="chartOption"
+  [class]="heightClass"
+  [class.horizontal]="horizontal"
+></div>
+<loop-chart-anonymous-data *ngIf="data?.[0]?.isAnonymousData"></loop-chart-anonymous-data>

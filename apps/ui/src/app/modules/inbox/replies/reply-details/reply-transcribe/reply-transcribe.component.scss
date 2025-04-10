@@ -1,0 +1,113 @@
+@import 'variables';
+@import 'loop-design-system/helpers';
+@import 'mixins';
+
+.transcribe-container {
+  width: 592px;
+  margin: 0 auto;
+
+  @include mobile-only {
+    max-width: 100%;
+  }
+
+  .transcribe-header {
+    margin-bottom: 3rem;
+
+    @include mobile-only {
+      padding: 0 pxToRem(16);
+    }
+
+    &__title {
+      color: $dark-grey;
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: bold;
+      line-height: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    &__subtitle {
+      color: $grey;
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 1.5rem;
+    }
+  }
+
+  .transcribe-content {
+    background: $white;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+
+    @include mobile-only {
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    app-audio-player {
+      margin-bottom: 1.25rem;
+
+      @include mobile-only {
+        margin-bottom: unset;
+        margin-top: 1rem;
+        order: 1;
+      }
+    }
+  }
+
+  .transcribe-footer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    @include mobile-only {
+      flex-direction: column;
+      padding: 0 pxToRem(16);
+      align-items: flex-start;
+    }
+
+    app-slide-toggle {
+      @include mobile-only {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    &__reject-button,
+    &__review-button {
+      min-height: pxToRem(40);
+      min-width: pxToRem(208);
+
+      @include mobile-only {
+        width: 100%;
+      }
+
+      ::ng-deep {
+        button {
+          min-height: pxToRem(40);
+        }
+      }
+    }
+  }
+}
+
+.got-it__submit-btn {
+  width: fit-content;
+  padding: 0;
+  margin-top: 0.75rem;
+  background: transparent;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sensitive-story__tag {
+  display: flex;
+  margin-top: 1rem;
+
+  @include mobile-only {
+    order: 3;
+  }
+}

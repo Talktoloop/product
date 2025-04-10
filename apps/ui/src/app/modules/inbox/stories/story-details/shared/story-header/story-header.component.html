@@ -1,0 +1,31 @@
+<div class="story-header-container">
+  <h3 class="story-author">
+    {{ authorUsername$ | async }}
+  </h3>
+
+  <div class="story-date-and-place">
+    <span class="story-date">
+      {{ dateFromNow }}
+    </span>
+
+    <span class="dot">•</span>
+
+    <span *ngIf="place && !region" class="story-place">
+      {{ place }}
+    </span>
+
+    <span *ngIf="region" class="story-place">
+      {{ region | placeOrCountry : storyDetailsService.story.country | async }}
+    </span>
+  </div>
+
+  <div *ngIf="recipients.length" class="story-recipients">
+    <span class="story-to">
+      {{ 'story.details.review.header.toRecipient' | translate }}
+    </span>
+
+    <loop-simple-tag *ngFor="let recipient of recipients"
+      [tagSize]="ui.mobileView ? TagSize.EXTRA_SMALL : TagSize.SMALL" [tagTheme]="SimpleTagTheme.LOOP"
+      [text]="recipient.name" [verified]="recipient.verified"></loop-simple-tag>
+  </div>
+</div>

@@ -1,0 +1,3220 @@
+{
+  "global": {
+    "Stories": "التعليقات",
+    "Replies": "الردود",
+    "Annonymous": "مجهول",
+    "replied": "ردّ",
+    "ago": "قبل",
+    "units": {
+      "minutes": "دقيقة",
+      "hours": "ساعة",
+      "days": "يوم",
+      "months": "شهر"
+    },
+    "loading": "تحميل",
+    "required": "مطلوب",
+    "optional": "إختياري",
+    "gender": "الجنس",
+    "age": "العمر",
+    "isMinority": "هل ينتمي هذا المؤلف إلى مجموعة أقلية؟",
+    "disability": "الإعاقة",
+    "errorMessage": "حدث خطأ",
+    "noMoreData": "لا يوجد المزيد من البيانات المقدمة",
+    "difficulty": "صعوبة",
+    "problems": "المشاكل",
+    "previousStep": "الخطوة السابقة",
+    "nextStep": "الخطوة التالية",
+    "language": "اللغة",
+    "reload": "إعادة التحميل",
+    "selectOption": "تحديد الإختيار(ات)",
+    "to": "إلى:",
+    "you": "أنت\\أنتِ",
+    "today": "اليوم",
+    "readMore": "اقرأ\\اقرأي المزيد",
+    "views": "المشاهدات",
+    "comments": "التعليقات",
+    "upvote": "دعم التصويت",
+    "replies": "الردود",
+    "upvoted": "تم التصويت عليه",
+    "cancel": "إلغاء",
+    "unitsLong": {
+      "hours": "ساعات",
+      "days": "أيام",
+      "weeks": "أسابيع",
+      "months": "أشهر",
+      "years": "سنوات",
+      "year": "سنة",
+      "month": "شهر",
+      "week": "اسبوع",
+      "day": "يوم",
+      "hour": "ساعة",
+      "stories": "التعليقات",
+      "cases": "الحالات",
+      "investigations": "التحقيقات"
+    },
+    "next": "التالي",
+    "here": "هنا",
+    "sort": {
+      "newest_first": "الأحدث",
+      "oldest_first": "الاقدم",
+      "not_started": "لم يتم البدء أولاً",
+      "pending_publication": "Ready to publish first",
+      "desc": "الأحدث",
+      "asc": "الاقدم",
+      "upvoted": "تم التصويت عليه"
+    },
+    "sortBy": "ترتيب حسب",
+    "order": "طلب",
+    "dummyDataBanner": "يتم عرض بيانات العينة الحالية",
+    "show": "إظهار",
+    "hide": "إخفاء",
+    "hideText": "إخفاء النص",
+    "showText": "إظهار النص",
+    "hideReply": "إخفاء الرد",
+    "showReply": "إظهار الرد",
+    "recordReply": "تسجيل الرد",
+    "authorName": "اسم المؤلف",
+    "transcribeReply": "تدوين الرد"
+  },
+  "error": {
+    "generic": {
+      "title": "هناك خطأ ما",
+      "subtitle": "حدث خطأ ما. راجع\\راجعي طلبك أو قم\\قومي بالتواصل مع alex@talktoloop.org"
+    }
+  },
+  "header": {
+    "navLabel": "عنوان موقع Loop",
+    "link": {
+      "home": "الصفحة الرئيسية",
+      "feedback": "التعليقات",
+      "newStory": "تقديم التعليقات ",
+      "profile": "حساب المستخدم",
+      "pending": "قيد النظر",
+      "rejected": "مرفوض",
+      "statistics": "الإحصاءات",
+      "inbox": "البريد الوارد",
+      "cases": "الحالات",
+      "about": "حول",
+      "outbox": "الصندوق الصادر"
+    },
+    "search": {
+      "aria": {
+        "back": "إغلاق إدخال البحث",
+        "title": "البحث",
+        "label": "البحث عن التعليقات"
+      },
+      "placeholder": "البحث عن التعليقات على Loop"
+    },
+    "filters": {
+      "aria": {
+        "title": "ترشيح",
+        "label": "ترشيح التعليقات"
+      }
+    },
+    "topBar": {
+      "backToInbox": "العودة إلى البريد الوارد"
+    },
+    "topNotificationShort": "ابدأ\\ابدأي مع Loop اليوم 🚀",
+    "topNotificationLong": "ابدأ الآن وكن بطل المسؤولية اليوم 🏆️",
+    "hybernationInfo": {
+      "text": "Talk to Loop is in hibernation due to lack of funds."
+    }
+  },
+  "storiesList": {
+    "text": {
+      "noMoreStories": "لا يوجد المزيد من التعليقات.",
+      "loading": "جاري تحميل {{value}} مزيد من التعليقات."
+    },
+    "aria": {
+      "expandOrganisations": "توسعة المنظمات",
+      "clickToVote": "انقر\\انقري للتصويت على هذه التعليقات",
+      "clickToUnvote": "انقر\\انقري لإلغاء التصويت على هذه التعليقات"
+    }
+  },
+  "story": {
+    "replyForm": {
+      "text": {
+        "content": {
+          "label": "الرد على التعليقات",
+          "placeholder": "اكتب\\اكتبي ردك هنا",
+          "invalid": "يرجى كتابة ردك (الحد الأدنى {{value}} أحرف)"
+        },
+        "name": {
+          "label": "الاسم أو الاسم المستعار",
+          "placeholder": "إختياري",
+          "info": "اتركه\\اتركيه فارغاً لتظل\\لتظلي مجهول\\مجهولة الهوية"
+        },
+        "organisation": {
+          "label": "منظمتك",
+          "placeholder": "إختياري"
+        },
+        "email": {
+          "label": "البريد الإلكتروني",
+          "placeholder": "someone@example.com\n",
+          "invalid": "بريدك الإلكتروني غير صالح",
+          "info": "احصل على إشعار عندما تتلقى\\تتلقين تعليقاً. نحن لا نشارك بريدك الإلكتروني مع أطراف ثالثة."
+        },
+        "checkbox": "أوافق على نشر تعليقاتي على TalkToLoop.org و مشاركتها عبر الإنترنت للمساعدة في تحسين الخدمات",
+        "submit": "تقديم الرد",
+        "submitting": "يتم تقديم الرد",
+        "smsTooltip": "يجب أن يقتصر الرد على 320 حرفًا حتى نتمكن من إعادة توجيه ردك إلى المؤلف عبر الرسائل القصيرة"
+      },
+      "toast": {
+        "success": {
+          "title": "تم تقديم الرد",
+          "subtitle": "الرد مباشر على المنصة"
+        },
+        "error": {
+          "title": "خطأ في تقديم الرد",
+          "subtitle": "حدث خطأ. يرجى المحاولة مرة أخرى"
+        }
+      },
+      "success": {
+        "text": {
+          "line1": "شكرا لترك ردك.",
+          "line2": "سيظهر ردك في غضون 1-2 أيام عمل."
+        },
+        "action": "اترك رداً آخر"
+      },
+      "header": {
+        "text": "ردك\\كِ"
+      },
+      "signOut": "تسجيل الخروج",
+      "replyingAs": "الرد باسم:"
+    },
+    "status": {
+      "not_started": "لم يبدأ",
+      "pending_translation": "في انتظار الترجمة",
+      "awaiting_replay": "في انتظار الرد",
+      "published": "تم النشر",
+      "rejected": "تم الرفض",
+      "issuer_replied": "ردّ المؤلف",
+      "issuer_did_not_replied": "المؤلف لم يرد",
+      "pending_publication": "Ready to publish",
+      "sent_from_case_manager_to_loop": "تم إعادته بواسطة مدير الحالة",
+      "pending_transcription": "في انتظار التدوين",
+      "transcription_in_progress": "في إنتظار النسخ",
+      "transcription_failed": "Transcription failed",
+      "sent_to_case_manager": "Sent to Case Manager",
+      "pending_edit": "Returned for editing",
+      "pending_rejection_not_sensitive": "قيد الرفض غير الحساس"
+    },
+    "details": {
+      "viewStory": "عرض التعليقات",
+      "storyInformation": {
+        "type": {
+          "label": "نوع التعليقات"
+        },
+        "age": {
+          "label": "العمر"
+        },
+        "gender": {
+          "label": "الجنس"
+        },
+        "disability": {
+          "label": "الإعاقة"
+        },
+        "sentBy": {
+          "label": "أُرسِلت من قِبَل"
+        },
+        "thematic": {
+          "label": "المجال الموضيعي"
+        },
+        "heading": "معلومات التعليقات"
+      },
+      "translations": {
+        "suggestTranslation": "إقتراح ترجمة",
+        "requestTranslation": "طلب الترجمة",
+        "heading": "عرض التعليقات في:"
+      },
+      "jumpToReplies": "التنقل إلى الردود ({{value}})",
+      "step": {
+        "review": "مراجعة",
+        "translate": "ترجمة",
+        "transcribe": "تدوين"
+      },
+      "transcribe": {
+        "header": {
+          "subtitle": "استمع\\استمعي إلى التسجيل و اكتب ما تسمعه\\تسمعينه. بمجرد الانتهاء من ذلك، استمر\\استمري في مراجعة المعلومات."
+        },
+        "content": {
+          "placeholder": "ابدأ في كتابة تعليقك"
+        },
+        "footer": {
+          "reviewStory": "مراجعة التعليقات",
+          "poorAudioQuality": "جودة صوت رديئة",
+          "rejectStory": "رفض التعليق",
+          "cancel": "إلغاء"
+        },
+        "toast": {
+          "storyRejected": {
+            "success": {
+              "title": "تم رفض التعليق",
+              "subtitle": "تم رفض التعليق و سيتم إبلاغ المؤلف."
+            },
+            "error": {
+              "title": "حدث خطأ ما",
+              "subtitle": "لا يمكننا رفض هذا التعليق الآن. الرجاء  المحاولة في وقت لاحق."
+            }
+          },
+          "reviewStory": {
+            "error": {
+              "title": "حدث خطأ ما",
+              "subtitle": "لا يمكننا مراجعة هذه التعليقات الآن. الرجاء المحاولة في وقت لاحق."
+            }
+          }
+        },
+        "storyRejectModal": {
+          "subtitle": "سيتم إبلاغ المؤلف بأن ملاحظاته لم يتم نشرها لأن الصوت لم يكن مسموعا.",
+          "title": "أنت على وشك رفض هذا التعليق",
+          "confirm": "هل ترغب\\ترغبين في المتابعة؟"
+        }
+      },
+      "review": {
+        "other": {
+          "header": {
+            "subTitle": "راجع\\راجعي التعليقات و الوسوم التي قدمها المستخدم، و أضف\\أضيفي أي وسوم مفقودة و ترجم\\ترجمي التعليقات بمجرد الانتهاء.",
+            "title": "مراجعة و ترجمة التعليقات"
+          },
+          "noHistory": "لا يوجد سجل سابق لهذا المؤلف."
+        },
+        "content": {
+          "readStory": "قراءة التعليقات"
+        },
+        "info": {
+          "organisations": "المنظمات",
+          "thematicArea": "المجال الموضوعي",
+          "disabilities": "ذوي الإحتياجات الخاصة",
+          "location": "الموقع",
+          "originalLanguage": "اللغة الأصلية",
+          "channel": "قناة",
+          "gender": "الجنس",
+          "age": "العمر",
+          "minority": "مجموعة أقلية",
+          "storyType": "نوع التعليقات",
+          "storyInformation": "معلومات التعليقات",
+          "country": "البلد"
+        },
+        "buttons": {
+          "back": "رجوع",
+          "rejectStory": "رفض التعليقات",
+          "translate": "ترجمة",
+          "publishStory": "نشر التعليقات",
+          "storyAlreadyPublished": "Feedback is already published",
+          "storyAlreadyRejected": "Feedback is already rejected",
+          "storyAlreadySentToCaseManager": "Feedback is already sent to case manager"
+        },
+        "form": {
+          "sensitiveLabel": "لا يتم نشر التعليقات الحساسة أبداً على موقع Loop الإلكتروني.",
+          "demographicalInfo": "المعلومات الديموغرافية",
+          "geographicalInfo": "المعلومات الجغرافية",
+          "otherInfo": "معلومات أخرى",
+          "toast": {
+            "error": {
+              "reviewError": "يرجى تعبئة جميع العناصر التي تحمل علامة \"مطلوب\" من أجل المتابعة."
+            }
+          }
+        },
+        "header": {
+          "toRecipient": "إلى:"
+        },
+        "tabs": {
+          "smsConversation": "محادثة عبر الرسائل القصيرة",
+          "storyPreview": "معاينة التعليقات",
+          "whatsAppConversation": "محادثة واتساب",
+          "messengerConversation": "محادثة  ماسنجر",
+          "review": "مراجعة",
+          "storyInformation": "معلومات التعليقات",
+          "telegramConversation": "محادثة تيليغرام",
+          "authorHistory": "تاريخ المؤلف"
+        },
+        "guard": {
+          "toast": {
+            "warning": {
+              "title": "خطوة المراجعة غير متاحة بعد.",
+              "subtitle": "يرجى إكمال خطوة تدوين التعليقات قبل مراجعتها."
+            }
+          }
+        },
+        "editStory": {
+          "minLengthErrorMessage": "يجب أن تتكون التعليقات من 5 أحرف على الأقل ليتم نشرها. إذا لم يكن هناك حاجة إلى هذا التعديل، فيرجى تعطيل مفتاح التبديل فوق حقل هذا النص.",
+          "editButton": "يجب تعديل التعليقات قبل النشر."
+        }
+      },
+      "translate": {
+        "guard": {
+          "toast": {
+            "warning": {
+              "title": "خطوة الترجمة غير متاحة بعد.",
+              "subtitle": "يرجى إكمال خطوة مراجعة التعليقات قبل ترجمتها."
+            }
+          }
+        },
+        "tabs": {
+          "translation": "الترجمة"
+        },
+        "ivrr": {
+          "header": {
+            "title": "ترجمة التعليقات",
+            "subTitle": "استمع/ي إلى التسجيل و اكتب\\ي ما تسمعه\\تسمعينه. بمجرد الانتهاء من ذلك، استمر\\ي في مراجعة المعلومات."
+          }
+        }
+      }
+    },
+    "comments": {
+      "viewReplies": "عرض الردود ({{count}})",
+      "hideReplies": "إخفاء الردود ({{count}})"
+    },
+    "originalStoryIn": "سُلمت التعليقات الأصلية في {{language}}",
+    "translatedTo": "تُرجمت إلى {{language}}",
+    "notTranslatedTo": "لم تُترجم إلى {{language}}",
+    "changeTranslation": "تغيير الترجمة",
+    "toast": {
+      "errors": {
+        "failedToLoad": "حدث خطأ ما",
+        "failedToLoadSubtitle": "لا يمكننا تنزيل تفاصيل التعليقات الآن. الرجاء معاودة المحاولة في وقت لاحق."
+      }
+    },
+    "review": {
+      "authorName": {
+        "placeholder": "الرجاء إبقاء المؤلف مجهول الهوية"
+      },
+      "player": {
+        "escape": {
+          "key": {
+            "info": "⌨️ اضغط\\ي على [esc] على لوحة المفاتيح لبدء الصوت وإيقافه أثناء الكتابة في هذا الصندوق."
+          }
+        }
+      }
+    }
+  },
+  "newStory": {
+    "title": "تقديم التعليقات",
+    "steps": {
+      "first": "تعليقاتك",
+      "second": "التفاصيل",
+      "third": "حولك\\كِ",
+      "fourth": "الموافقة",
+      "confirmation": "التأكيد"
+    },
+    "navigation": {
+      "next": "التالي",
+      "back": "الرجوع",
+      "submit": "تقديم"
+    },
+    "form": {
+      "content": {
+        "label": "ما الذي تود\\تودين مشاركته اليوم؟",
+        "placeholder": "[فارغ]",
+        "helperText": "هل هناك تجربة لا تُنسى مررت بها مع خدمة في منطقتك؟ هل كانت جيدة أم سيئة؟ ماذا تود\\تودين أن تقول\\تقولين للمنظمة؟",
+        "publishInfo": "إذا تم نشره، فسيتم نشره كمنشور عام",
+        "invalid": "الرجاء كتابة ما لا يقل عن 10 أحرف"
+      },
+      "nickname": {
+        "label": "الاسم او الاسم المستعار",
+        "placeholder": "إختياري",
+        "additional": "سيظهر هذا جنباً إلى جنب مع تعليقاتك. اتركه\\اتركيه فارغاً للبقاء مجهول\\مجهولة الهوية."
+      },
+      "place": {
+        "label": "أين وقعت تعليقاتك؟",
+        "helperText": "المدينة / المنطقة / القرية / المخيم"
+      },
+      "country": {
+        "label": "في أي دولة تم تقديم تعليقاتك؟"
+      },
+      "organisations": {
+        "label": "عن أي منظمة(ات) تدور تعليقاتك؟",
+        "placeholder": "البحث عن منظمة",
+        "new": {
+          "header": "منظمة جديدة",
+          "text": "لم نتمكن من العثور على أي مطابقات ل\"{{value}}\". إستخدم\\إستخدمي الوسم أدناه للإشارة إليهم على أي حال."
+        },
+        "invitations": "عند نشر هذا التعليق، سيتم إرسال الدعوات إلى:"
+      },
+      "genderManual": {
+        "label": "قم\\قومي بتحديد الجنس",
+        "placeholder": "إختياري"
+      },
+      "maternityStatus": {
+        "label": "هل أنتِ حامل أو مُرضعة؟"
+      },
+      "difficulties": {
+        "label": "الإعاقة"
+      },
+      "categories": {
+        "label": "النوع"
+      },
+      "consent": {
+        "text": "أوافق على نشر تعليقاتي على TalkToLoop.org و مشاركتها عبر الإنترنت لمساعدة المنظمات على تحسين خدماتها."
+      },
+      "email": {
+        "label": "البريد الإلكتروني",
+        "placeholder": "إختياري",
+        "helperText": "قم بتوفير بريدك الإلكتروني ليتم إعلامك بالردود. يمكنك إلغاء الإشتراك من هذه الإشعارات في أي وقت.",
+        "invalid": "بريدك الإلكتروني غير صالح."
+      },
+      "preview": {
+        "tagsLabel": "هذه الوسومات ظاهرة للجميع",
+        "emailInfo": "بريدك الإلكتروني غير ظاهر على المنصة",
+        "notifications": "الإشعارات",
+        "previewText": "معاينة تعليقاتك",
+        "edit": "تعديل"
+      },
+      "toast": {
+        "success": {
+          "title": "التعليقات المُقدمة",
+          "subtitle": "يقوم أحد المشرفين بمراجعة تعليقاتك. سيكون ظاهراً هنا في أقرب وقت ممكن.",
+          "sensitive": {
+            "withContact": {
+              "subtitle": "سوف نتعامل مع الأمر بعناية وحذر. وسنبقيكم على اطلاع بما يحدث."
+            },
+            "withoutContact": {
+              "subtitle": "سنتعامل مع الأمر بعناية و حذر."
+            },
+            "title": "يقوم أحد المشرفين بمراجعة تعليقاتك الحساسة."
+          }
+        },
+        "error": {
+          "title": "خطأ في تقديم التعليقات",
+          "subtitle": "حدث خطأ أثناء تقديم تعليقاتك. يرجى المحاولة مرة أخرى."
+        }
+      },
+      "submitting": "تقديم التعليقات"
+    }
+  },
+  "comments": {
+    "replies": "الردود ({{count}})",
+    "reply": {
+      "solutionProposedTag": "الحل المقترح",
+      "reply": "الرد",
+      "hideReplyForm": "إخفاء نموذج الرد"
+    }
+  },
+  "auth": {
+    "login": {
+      "header": "تسجيل الدخول",
+      "applyLink": "إنشاء حساب",
+      "form": {
+        "username": {
+          "label": "البريد الالكتروني",
+          "invalid": "الرجاء كتابة بريدك الإلكتروني."
+        },
+        "password": {
+          "label": "كلمة المرور",
+          "invalid": "الرجاء كتابة رقمك السري."
+        },
+        "button": {
+          "text": "تسجيل الدخول"
+        },
+        "submitting": "يتم تسجيل الدخول...",
+        "email": {
+          "invalid": "يرجى إدخال بريدك الإلكتروني."
+        },
+        "headerText": "أهلاً بك مجدداً!",
+        "submitText": "تسجيل الدخول",
+        "forgotPassword": "هل نسيت كلمة السر؟"
+      },
+      "toast": {
+        "success": {
+          "title": "تم تسجيل الدخول بنجاح!",
+          "subtitle": "أهلاً بك."
+        },
+        "error": {
+          "title": "خطأ في تسجيل الدخول",
+          "subtitle": "حدث خطأ، يرجى إعادة المحاولة."
+        }
+      },
+      "createAccount": "ليس لديك حساب بعد؟"
+    },
+    "logout": {
+      "toast": {
+        "success": {
+          "title": "تسجيل الخروج.",
+          "subtitle": "لقد قمت بتسجيل الخروج."
+        },
+        "expired": {
+          "title": "إنتهت مدة صلاحية الجلسة",
+          "subtitle": "يرجى إعادة تسجيل الدخول."
+        }
+      }
+    },
+    "confirmUser": {
+      "form": {
+        "headerText": "وضع كلمة سر جديدة",
+        "newPassword": {
+          "label": "كلمة سر جديدة"
+        },
+        "confirmPassword": {
+          "label": "تأكيد كلمة السر الجديدة"
+        },
+        "submitText": "وضع كلمة سر"
+      },
+      "toast": {
+        "success": {
+          "title": "تم التأكيد بنجاح",
+          "subtitle": "تم تفعيل حسابك ووضع كلمة سر"
+        },
+        "error": {
+          "title": "خطأ في التأكيد",
+          "subtitle": "حدث خطأ. يرجى التواصل مع alex@talktoloop.org"
+        },
+        "confirmedAlready": {
+          "title": "تم تأكيد الحساب",
+          "subtitle": "تم تأكيد حسابك. يرجى تسجيل الدخول"
+        }
+      }
+    },
+    "back": "الرجوع",
+    "reset": {
+      "form": {
+        "headerText": "أعد تعيين كلمة المرور الخاصة بك",
+        "subHeaderText": "قم\\قومي بإدخال عنوان البريد الإلكتروني الذي اسُتخدم عند فتح حسابك وسنقوم بإرسال رابط لإعادة تعيين كلمة المرور الجديدة.",
+        "email": {
+          "label": "عنوان بريدك الإلكتروني"
+        },
+        "submitText": "إعادة تعيين كلمة المرور"
+      },
+      "toast": {
+        "success": {
+          "title": "تم التأكيد بنجاح",
+          "subtitle": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور الخاصة بك"
+        },
+        "error": {
+          "title": "خطأ في عملية التأكيد",
+          "subtitle": "واجهنا خطأ. يرجى التواصل مع alex@talktoloop.org"
+        }
+      }
+    },
+    "create": {
+      "form": {
+        "submitText": "حفظ",
+        "headerText": "انشاء كلمة مرور جديدة",
+        "password": {
+          "label": "كلمة مرور جديدة"
+        },
+        "confirmPassword": {
+          "label": "تأكيد كلمة المرور الخاصة بك"
+        }
+      }
+    },
+    "resetPassword": {
+      "toast": {
+        "error": {
+          "title": "خطأ في تغيير كلمة المرور",
+          "subtitle": "واجهنا خطأ. يرجى التواصل مع alex@talktoloop.org"
+        },
+        "success": {
+          "subtitle": "تم تغيير كلمة المرور الخاصة بك",
+          "title": "تم التأكيد بنجاح"
+        }
+      }
+    },
+    "magicLinkLogin": {
+      "popup": {
+        "result": "النتيجة",
+        "success": "تم إرسال البريد إلكتروني",
+        "error": "لم يتم إرسال البريد الإلكتروني"
+      },
+      "form": {
+        "username": {
+          "label": "عنوان البريد الإلكتروني",
+          "invalid": "الرجاء كتابة بريدك\\كِ الإلكتروني."
+        },
+        "button": {
+          "text": "أرسل لي رابط سحري بالبريد الإلكتروني"
+        },
+        "description": "سنقوم بتسجيل دخولك\\دخولكِ، أو إنشاء حساب خاص بك\\كِ، إذا لم يكن لديك\\لديكي واحد بعد",
+        "title": "أنت بحاجة إلى حساب للقيام بذلك!"
+      },
+      "footer": {
+        "separator": "أو",
+        "button": {
+          "text": "تابع\\تابعي بدون حساب"
+        }
+      },
+      "image": {
+        "description": "رد\\ردي على المجتمعات بأي لغة، على أي جهاز"
+      }
+    },
+    "registerSelect": {
+      "button": {
+        "text": "استمر"
+      }
+    },
+    "registerIndividual": {
+      "back": "العودة",
+      "header": "كيف يجب أن ندعوك؟",
+      "form": {
+        "firstName": "الاسم الأول",
+        "secondName": "الاسم الأخير",
+        "errors": {
+          "minLength": "يجب أن يكون اسمك يحتوي على الأقل {{requiredLength}} حروف",
+          "pattern": "لا يمكن أن يتضمن اسمك\\كِ أرقامًا أو مسافات أو أحرف خاصة مثل ! * أو $",
+          "required": "هذا الحقل إلزامي"
+        },
+        "toggle": {
+          "text": "الرجاء إخفاء اسم العائلة عن العرض للعامة. (يمكنك تغيير هذا الإعداد في أي وقت.)"
+        }
+      },
+      "button": {
+        "text": "استمر"
+      },
+      "description": "يظهر اسمك\\كِ بجانب أي شيء يُنشر على المنصة."
+    },
+    "magicLinkSent": {
+      "header": "شكرا لك!",
+      "description": "تم إرسال بريد إلكتروني إلى {{emailAddress}}",
+      "resendActionTimer": "أعد إرسال البريد الأكتروني\n ({{timeLeft}})",
+      "resendAction": "أعد إرسال البريد الأكتروني",
+      "loginAction": "تابع\\ي بدون حساب"
+    },
+    "registerOrganization": {
+      "back": "العودة",
+      "header": "ابحث عن منظمتك",
+      "form": {
+        "label": "منظمة",
+        "placeholder": "لم يتم اختيار أي منظمة",
+        "error": "هذا حقل إلزامي"
+      },
+      "button": {
+        "text": "استمر\\ي"
+      },
+      "list": {
+        "notify": "احصل\\ي على إشعار في أي وقت يتم ذكر منظمتك في التعليقات.",
+        "display": "يظهر في أي وقت تنشر\\تنشري في Loop.",
+        "changeSetting": "قم\\قومي بتغيير هذا الإعداد في أي وقت."
+      },
+      "skipButton": {
+        "text": "تخطى\\ي الأن"
+      },
+      "fullNameForm": {
+        "description": "هذا يساعدنا في التحقق من أنك تعمل/ي في المنظمة أدناه."
+      }
+    },
+    "createNewOrganizationPage": {
+      "button": {
+        "text": "العودة"
+      }
+    },
+    "processing": {
+      "title": "لحظة واحدة بينما نتحقق من حسابك",
+      "description": "قد يستغرق هذا دقيقة أو اثنتين، حسب االإنترنيت المتواجد عندك"
+    },
+    "wrapper": {
+      "steps": "الخطوة {{currentStep}} من {{numberOfSteps}}",
+      "back": "العودة"
+    },
+    "acceptTerms": {
+      "header": "نحن نهتم بخصوصية بياناتك",
+      "list": {
+        "title": "لن يقوم;Loop",
+        "firstItem": "مشاركة بيانات الاتصال الخاصة بك مع طرف ثالث، دون موافقتك الصريحة (على سبيل المثال، لإحالتك للحصول على مساعدة إضافية)",
+        "secondItem": "طلب منك\\كِ موقعك بشكل دقيق"
+      },
+      "learnMore": "تعرف\\ي على المزيد عن",
+      "privacyPolicy": "سياسة الخصوصية",
+      "communityGuidelines": "إرشادات المجتمع",
+      "and": "و",
+      "termsOfService": "شروط الخدمة",
+      "checkbox": {
+        "optinMarketing": {
+          "text": "سجلني في النشرة الإخبارية لـ Loop"
+        },
+        "acceptTermsOfService": {
+          "text": "أوافق على شروط الخدمة",
+          "error": "يرجى قبول سياسة الخصوصية أدناه"
+        }
+      },
+      "button": {
+        "text": "استمر"
+      },
+      "userCreatedToast": {
+        "success": "تم إنشاء حسابك"
+      },
+      "userEditedToast": {
+        "success": "تم تعديل حسابك"
+      }
+    },
+    "confirmName": {
+      "header": "الرجاء تاكيد الإسم كامل",
+      "description": "هذا يساعدنا في التحقق من هويتك ومنظمتك.",
+      "fullName": {
+        "title": "الإسم الكامل",
+        "descriptionFirstPart": "سيتم استخدام هذا الاسم فقط للتحقق من انك تعمل في المنظمة المذكورة أعلاه. سوف بُحقق.",
+        "descriptionSecondPart": "لن يتم النشر",
+        "descriptionThirdPart": "على المنصة."
+      },
+      "button": {
+        "text": "استمر"
+      },
+      "form": {
+        "errors": {
+          "required": "هذا حقل إلزامي"
+        }
+      }
+    }
+  },
+  "profile": {
+    "header": "الصفحة الشخصية",
+    "usernameLabel": "الاسم",
+    "organisationLabel": "اسم المنظمة",
+    "notificationSwitch": {
+      "label": "إشعارات البريد الإلكتروني: احصل\\احصلي على ملخص يومي عندما تكون هناك تعليقات ذات صلة بمنظمتك.",
+      "onText": "تشغيل",
+      "offText": "إيقاف"
+    },
+    "notifications": {
+      "toast": {
+        "error": {
+          "title": "خطأ أثناء التحديث",
+          "subtitle": "الرجاء إعادة المحاولة."
+        },
+        "success": {
+          "title": "تم تحديث الصفحة الشخصية",
+          "subtitle": "تم تغيير أفضليات الإشعارات."
+        }
+      }
+    },
+    "hideLastNameButton": {
+      "toast": {
+        "error": {
+          "title": "خطأ أثناء التحديث",
+          "subtitle": "يرجى المحاولة مرة أخرى."
+        },
+        "success": {
+          "title": "تم تحديث إخفاء الاسم الأخير",
+          "subtitle": "تم تغيير تفضيلات الاسم الأخير."
+        }
+      }
+    },
+    "notification": {
+      "on": "أرسل لي بريدًا إلكترونيًا عندما يتم وسم {{organisationName}} في التعليقات"
+    },
+    "logout": "تسجيل الخروج",
+    "reminders": {
+      "on": "أبلغني عبر البريد الإلكتروني حول التعليقات المتبقية التي لم يتم الرد عليها {{organisationName}} بعد"
+    },
+    "plan": {
+      "label": "خطة/مخطط",
+      "premium": "داعم لـ Loop",
+      "free": "Loop مجاني",
+      "remainingDays": "أيام متبقية"
+    },
+    "edit": "قم بتعديل هذه التفاصيل",
+    "hideLastName": "الرجاء  إخفاء اسم العائلة من العرض العام"
+  },
+  "filters": {
+    "header": "ترشيح التعليقات",
+    "reset": "إعادة التشغيل",
+    "search": "البحث",
+    "category": "المجال الموضيعي",
+    "type": "النوع",
+    "location&organisation": "الموقع و المنظمة",
+    "demographic": "الديموغرافية",
+    "disability": "الإعاقة",
+    "thematic": "المجال الموضيعي",
+    "place": "المكان",
+    "placePlaceholder": "المدينة / المنطقة / القرية / المخيم",
+    "age": "العمر",
+    "gender": "الجنس",
+    "minority": "أقلية",
+    "chooseCountry": "إختر\\إختاري الدولة",
+    "chooseOrganisation": "إختر\\إختاري المنظمة",
+    "country": "الدولة",
+    "taggedOrganisation": "المنظمة الموسومة",
+    "selectAll": "إختيار الكل",
+    "clearAll": "مسح الكل",
+    "showAll": "عرض الكل",
+    "showStories": "عرض {{value}} تعليقات",
+    "chooseAreas": "إختر\\إختاري المجال(ات)"
+  },
+  "gender": {
+    "female": "أنثى",
+    "male": "ذكر",
+    "nonBinary": "غير ثنائي",
+    "noAnswer": "أفضّل عدم الإجابة"
+  },
+  "age": {
+    "under14": "تحت 14",
+    "between14_17": "ما بين 14 و 17",
+    "between18_29": "ما بين 18 و 29",
+    "between30_59": "ما بين 30 و 59",
+    "60Plus": "+60",
+    "noAnswer": "أفضّل عدم الإجابة",
+    "between0_5": "بين 0 و 5",
+    "between6_13": "بين 6 و 13"
+  },
+  "minority": {
+    "group": "مجموعة أقلية"
+  },
+  "admin": {
+    "publish": "النشر",
+    "reject": "الرفض",
+    "delete": "الحذف النهائي",
+    "deleteLabel": "الحذف",
+    "pendingPosts": "البريد الوارد",
+    "rejectedPosts": "المنشورات التي تم رفضها",
+    "category": "النوع",
+    "tagsHeading": "الأوسمة الإضافية",
+    "organisationsLabel": "المنظمات الموسومة",
+    "thematicLabel": "المجال الموضيعي",
+    "noMoreStories": {
+      "new": {
+        "title": "لا مزيد من التعليقات المعلقة",
+        "subtitle": "عملك هنا قد تم! بمجرد وجود المزيد من التعليقات، ستظهر هنا لمراجعتك لها."
+      },
+      "rejected": {
+        "title": "لا مزيد من التعليقات المرفوضة",
+        "subtitle": "عملك هنا قد تم! بمجرد وجود المزيد من التعليقات المرفوضة، ستظهر هنا لمراجعتك."
+      }
+    },
+    "noMoreComments": {
+      "new": {
+        "title": "لا يوجد المزيد من الردود المعلقة",
+        "subtitle": "عملك هنا قد انتهى! بمجرد أن يكون هناك المزيد من الردود، سوف تظهر هنا من أجل مراجعتك لها."
+      },
+      "rejected": {
+        "title": "لا يوجد المزيد من الردود المرفوضة",
+        "subtitle": "عملك هنا قد انتهى! بمجرد أن يكون هناك المزيد من الردود المرفوضة، سوف تظهر هنا من أجل مراجعتك لها."
+      }
+    },
+    "story": {
+      "rejectingLoading": "يتم الرفض...",
+      "publishingLoading": "يتم النشر...",
+      "deletingLoading": "يتم الحذف...",
+      "loadingMore": "جاري تحميل {{value}} مزيد من التعليقات...",
+      "noMoreStories": "لا مزيد من التعليقات.",
+      "modal": {
+        "title": "أنت على وشك رفض هذه التعليقات",
+        "contentVerified": "هل انت متاكد/ة من رفض هذه التعليقات؟",
+        "rejectButton": "رفض التعليقات",
+        "cancelButton": "إلغاء",
+        "reason": {
+          "label": "لماذا يتم رفض هذه التعليقات؟"
+        },
+        "rationale": {
+          "label": "هل يمكنك تقديم أي تفسير منطقي آخر؟",
+          "helperText": "سيساعد توفير أكبر قدر ممكن من التفاصيل في ضمان فهم المؤلف لسبب عدم نشر تعليقاته."
+        },
+        "sendStoryToCaseManagerTitle": "إرسال التعليقات إلى مدير الحالة"
+      },
+      "toast": {
+        "published": {
+          "success": {
+            "title": "تم نشر التعليقات.",
+            "subtitle": "تم نشر التعليقات."
+          },
+          "error": {
+            "title": "خطأ",
+            "subtitle": "خطأ أثناء نشر التعليقات. يرجى المحاولة مرة أخرى."
+          }
+        },
+        "rejected": {
+          "success": {
+            "title": "تم رفض التعليقات",
+            "subtitle": "تم رفض التعليقات."
+          },
+          "error": {
+            "title": "خطأ",
+            "subtitle": "خطأ أثناء رفض التعليقات. يرجى المحاولة مرة أخرى."
+          }
+        },
+        "deleted": {
+          "success": {
+            "title": "تم حذف التعليقات",
+            "subtitle": "تم حذف التعليقات نهائياً."
+          },
+          "error": {
+            "title": "خطأ",
+            "subtitle": "حدث خطأ أثناء حذف التعليقات. يرجى المحاولة مرة أخرى."
+          }
+        },
+        "saved": {
+          "success": {
+            "title": "تم حفظ التعليقات",
+            "subtitle": "تم حفظ التعليقات بنجاح"
+          },
+          "error": {
+            "title": "خطأ",
+            "subtitle": "فشل في حفظ التعليقات. لم يتم حفظ التغييرات."
+          }
+        },
+        "sendStoryToCaseManager": {
+          "error": {
+            "subtitle": "حدث خطأ في إرسال الملاحظات إلى مدير القضية. يرجى المحاولة مرة أخرى.",
+            "title": "خطأ"
+          },
+          "success": {
+            "title": "تم ارسال التعليقات الى مدير الحالة",
+            "subtitle": "تم ارسال التعليقات الى مدير الحالة"
+          }
+        },
+        "assignedToModerator": {
+          "success": {
+            "title": "{{storyCount}} تم تعيينه للمشرف",
+            "subtitle": "{{storyCount}} تم تعيينه لـ {{nickname}}"
+          },
+          "error": {
+            "title": "خطأ",
+            "subtitle": "فشل في تعيين القصص. لم يتم حفظ التغييرات"
+          }
+        }
+      },
+      "rejectReasons": {
+        "story_replyHasOffensiveOrDiscriminatoryLanguageInIt": "تحتوي التعليقات على لغة مسيئة أو تمييزية",
+        "story_replyDoesNotFollowTheCommunityStandards": "لا تتبع التعليقات معايير المجتمع المصممة لضمان مساحة آمنة لمشاركة التعليقات",
+        "thereIsConcernAboutTheAuthenticityOfTheStory_reply": "هناك مخاوف بشأن مصداقية التعليقات",
+        "thereWasConcernThatTheStory_replyCouldCauseHarmIfPostedPublicly": "كان هناك مخاوف من أن التعليقات قد تسبب ضرراً إذا نُشرت علناً. يتم إحالتها إلى الخبراء المتخصصين",
+        "story_replyDoesNotRespectTheRightToPrivacyOfOthers": "لا تحترم التعليقات حق خصوصية الآخرين",
+        "other": "أخرى",
+        "duplicate": "مكرر",
+        "communityStandards": "ينتهك معايير المجتمع",
+        "poorAudioQuality": "جودة صوت رديئة"
+      }
+    },
+    "comment": {
+      "solutionProposedButton": "الحل المقترح",
+      "clickToPreview": "إضغط\\إضغطي على الردود لمعاينة السرد",
+      "noMoreComments": "لا يوجد المزيد من التعليقات.",
+      "loadingMore": "تحميل {{value}} ردود أكثر...",
+      "preview": {
+        "title": "معاينة الموضوع",
+        "hide": "إخفاء"
+      },
+      "modal": {
+        "title": "أنت على وشك رفض هذا الرد",
+        "contentVerified": "هل أنت\\تِ متأكد\\ة من أنك\\كِ تريد\\تريدين رفض هذا الرد؟",
+        "rejectButton": "رفض الرد",
+        "cancelButton": "إلغاء",
+        "reason": {
+          "label": "لماذا يتم رفض هذا الرد؟"
+        },
+        "rationale": {
+          "label": "هل يمكنك تقديم أي تفسير منطقي آخر؟",
+          "helperText": "تقديم أكبر قدر ممكن من التفاصيل سيساعد على ضمان فهم المؤلف سبب عدم نشر رده."
+        }
+      },
+      "toast": {
+        "published": {
+          "success": {
+            "title": "تم النشر بنجاح",
+            "subtitle": "لقد قمت بنشر رد."
+          },
+          "error": {
+            "title": "خطأ",
+            "subtitle": "حدث خطأ أثناء نشر الرد. يرجى المحاولة مرة أخرى."
+          }
+        },
+        "rejected": {
+          "success": {
+            "title": "تم الرفض بنجاح",
+            "subtitle": "تم رفض الرد."
+          },
+          "error": {
+            "title": "خطأ",
+            "subtitle": "حدث خطأ أثناء رفض الرد. يرجى المحاولة مرة أخرى."
+          }
+        },
+        "deleted": {
+          "success": {
+            "title": "تم الحذف بنجاح",
+            "subtitle": "تم حذف الرد بشكل دائم."
+          },
+          "error": {
+            "title": "خطأ",
+            "subtitle": "حدث خطأ أثناء حذف الرد. يرجى المحاولة مرة أخرى."
+          }
+        },
+        "preview": {
+          "error": {
+            "title": "خطأ",
+            "subtitle": "حدث خطأ أثناء تحميل العرض المسبق. الرجاء المحاولة مرة أخرى."
+          }
+        },
+        "sentToPendingRecording": {
+          "success": {
+            "title": "تم نشر الرد",
+            "subtitle": "أصبح الرد مرئيًا الآن في صفحة التعليقات وتم إرسال نسخة منه إلى البريد الصادر لتسجيله لدى المؤلف."
+          },
+          "error": {
+            "title": "لم يتم إعادة توجيه الرد",
+            "subtitle": "لم يتم إرسال الرد إلى السجل الصوتي"
+          }
+        }
+      },
+      "rejectReasons": {
+        "story_replyHasOffensiveOrDiscriminatoryLanguageInIt": "يحتوي الرد على لغة مسيئة أو تمييزية",
+        "story_replyDoesNotFollowTheCommunityStandards": "لا تتبع القصة / الرد معايير المجتمع المصممة لضمان مساحة آمنة لمشاركة الملاحظات",
+        "thereIsConcernAboutTheAuthenticityOfTheStory_reply": "هناك مخاوف بشأن صحة الرد",
+        "thereWasConcernThatTheStory_replyCouldCauseHarmIfPostedPublicly": "كان هناك مخاوف من أن الرد قد يسبب ضرراً إذا تم نشره علناً. يتم إحالته إلى المتخصصين",
+        "story_replyDoesNotRespectTheRightToPrivacyOfOthers": "الرد لا يحترم حق الآخرين في الخصوصية",
+        "other": "أخرى",
+        "poorAudioQuality": "جودة صوت رديئة",
+        "duplicate": "مكرر",
+        "communityStandards": "ينتهك معايير المجتمع"
+      }
+    },
+    "rejectModal": {
+      "contentAnnonymous": "لا توجد تفاصيل اتصال لهذا المؤلف، لذلك لن يتم إشعارهم.",
+      "reasonsHeading": "إختر\\إختاري السبب:",
+      "otherReasonTextfieldPlaceholder": "اكتب\\اكتبي السبب",
+      "feedbackHeading": "التعليقات:",
+      "feedbackToggleLabel": "إرسال التعليقات إلى المؤلف",
+      "feedbackPlaceholder": "اكتب\\اكتبي تعليقاتك",
+      "writeYourFeedback": "اكتب\\اكتبي ملاحظاتك\\كِ"
+    },
+    "assignModeratorModal": {
+      "title": "تعيين مشرف",
+      "assignButton": "تعيين",
+      "cancelButton": "إلغاء",
+      "searchPlaceholder": "البحث عن المستخدمين"
+    },
+    "pendingStoryReview": {
+      "heading": "مراجعة التعليقات",
+      "subheading": "اعرض\\اعرضي القصة و المشاركات التي يوفرها المستخدم، و أضف\\أضيفي أية أوسمة مفقودة و ترجم\\ترجمي التعليقات في الخطوة 2.",
+      "location": "الموقع",
+      "storyType": "نوع التعليقات",
+      "originalLanguage": "اللغة الأصلية",
+      "originalLanguagePlaceholder": "إختر\\إختاري اللغة الأصلية للتعليقات",
+      "iAmGoingToTranslateTheTextTo": "سأترجم إلى",
+      "targetLanguagePlaceholder": "إختر\\إختاري اللغة",
+      "writeTranslation": "كتابة الترجمة",
+      "toRecipient": "إلى",
+      "review": "العرض",
+      "translation": "ترجمة",
+      "publishStory": "نشر التعليقات",
+      "missingStoryType": "يجب تحديد نوع التعليقات قبل أن يتم نشرها",
+      "missingOriginalLanguage": "يجب تحديد اللغة الأصلية للتعليقات",
+      "storyPreview": "معاينة التعليقات",
+      "conversationTab": {
+        "sms": "محادثة عبر الرسائل القصيرة",
+        "messenger": "محادثة  ماسنجر",
+        "whatsapp": "محادثة واتساب"
+      },
+      "story": "التعليقات",
+      "reply": "إرسال",
+      "sendToCaseManager": "إرسال إلى مدير الحالة",
+      "caseManagerNotice": "يمكن إرسال التعليقات إلى مدير الحالة لمراجعتها بمجرد ترجمة التعليقات في الخطوة 2.",
+      "missingThematicArea": "يجب عليك تحديد مجال موضوعي واحد على الأقل.",
+      "yourNewTranslation": "ترجمتك الجديدة",
+      "saveTranslation": "حفظ الترجمة",
+      "translate": "ترجمة",
+      "addAnotherTranslation": "أضف\\أضيفي ترجمة أخرى",
+      "storyMarkedAsSensitiveReturnedByCaseManager": "لقد وضع المؤلف علامة على هذه التعليقات على أنها حساسة. ومع ذلك، فقد أعاد مدير الحالة هذه التعليقات لك مما يعني أنها ليست حساسة. لم يعد بإمكانك تغيير علامة نوع التعليقات.",
+      "storyMarkedAsSensitiveReturnedByCaseManagerCannotPublish": "لا يمكن نشر هذه التعليقات حيث تم تصنيفها على أنها حساسة من قبل المؤلف. لقد أعادها لك مدير الحالة أيضًا لأنها لا تستوفي معايير التعليقات الحساسة. يرجى رفض التعليقات والنظر في دعوة المؤلف لإرسال تعليقاته مرة أخرى بعلامة مختلفة.",
+      "addATranslation": "إضافة ترجمة",
+      "translationLanguage": "لغة الترجمة",
+      "manualTranslation": "الترجمة اليدوية",
+      "authorWillBeNotInformed": "لم يترك مؤلف هذه التعليقات بيانات التواصل الخاصة بهم. لن يتلقوا أي إشعار برفض هذه التعليقات."
+    },
+    "table": {
+      "dateTime": "التاريخ / الوقت",
+      "storyType": "نوع التعليقات",
+      "language": "اللغة",
+      "country": "الدولة",
+      "channel": "القناة",
+      "status": "الحالة",
+      "reviewButton": "العرض"
+    },
+    "pendingReplyReview": {
+      "heading": "عرض الرد",
+      "subheading": "عرض و ترجمة الرد.",
+      "reply": "الرد",
+      "originalStoryWrittenIn": "التعليقات الأصلية مكتوبة في",
+      "reviewStep": "العرض و الترجمة",
+      "publishReply": "نشر الرد",
+      "rejectReply": "رفض الرد",
+      "reviewAndTranslate": "العرض و الترجمة",
+      "publishAndForwardToVoiceRecord": "نشر و إعادة توجيه للتسجيل"
+    },
+    "translationStatus": {
+      "manual_0": "في إنتظار الترجمة إلى{{lang}}",
+      "machine_0": "بانتظار الترجمة إلى {{lang}}",
+      "manual_1": "الترجمة إلى {{lang}}",
+      "machine_1": "الترجمة إلى {{lang}}",
+      "manual_2": "تمت ترجمة النص إلى {{lang}}",
+      "machine_2": "تمت ترجمة النص إلى {{lang}}",
+      "machine_3": "غير متوفر في {{lang}} حالياً"
+    },
+    "translationProcess": {
+      "close": "إغلاق",
+      "cancel": "إلغاء",
+      "retry": "إعادة المحاولة",
+      "automaticTranslation": "الترجمة الآلية",
+      "manualTranslation": "ترجمة المشرف",
+      "addTranslation": "إضافة ترجمة جديدة",
+      "verifyTranslation": "التحقق من الترجمة",
+      "editTranslation": "تعديل الترجمة",
+      "deleteTranslation": "حذف الترجمة",
+      "noTranslations": "لم يتم القيام بأي ترجمات حتى الآن",
+      "notAvailable": "غير متاح",
+      "unavailableTitle": "غير متاح مؤقتاً، الأسباب قد تكون:",
+      "unavailableReason1": "فارغ",
+      "unavailableReason2": "فارغ",
+      "translating": " الترجمة"
+    },
+    "conversationReply": {
+      "unavailable": {
+        "userDenied": "لا يمكنك إرسال رسالة إلى المؤلف لأنهم لم يوافقوا على الاتصال بهم من قبل Loop.",
+        "threadOpen": {
+          "content": "لا يمكنك إرسال رسالة إلى المؤلف في هذا الوقت، لأن لديهم سرد آخر",
+          "link": "حالياً مفتوح هنا"
+        },
+        "cannotSend": "لا يمكنك إرسال رسالة إلى المؤلف في هذا الوقت."
+      },
+      "author": {
+        "loop": "Loop",
+        "anonymous": "مجهول"
+      },
+      "toast": {
+        "send": {
+          "error": {
+            "title": "لم يتم إرسال الرسالة",
+            "subtitle": "خطأ في إرسال الرسالة"
+          }
+        }
+      },
+      "intro": {
+        "sms": "مقدمة الرسائل القصيرة",
+        "messenger": "تقديم للماسنجر",
+        "whatsapp": "مقدمة واتساب",
+        "telegram": "مقدمة تيليغرام"
+      }
+    },
+    "contextMenu": {
+      "edit": "تعديل",
+      "unpublish": "إلغاء النشر",
+      "success": {
+        "story": {
+          "title": "لم يتم نشر التعليقات"
+        },
+        "reply": {
+          "title": "لم يتم نشر الرد"
+        },
+        "redirecting": "إعادة التوجيه إلى البريد الوارد ...",
+        "link": "انقر\\انقري هنا للعرض الآن"
+      }
+    },
+    "sendStoryToCaseManagerModal": {
+      "immediateAssistance": {
+        "label": "قم\\قومي بالإشارة على التعليقات على أنها:",
+        "urgent": "طارئاً",
+        "notUrgent": "ليس طارئاً"
+      },
+      "reason": "قم\\قومي بكتابة السبب:"
+    },
+    "storySelection": {
+      "modal": {
+        "title": "أنت على وشك رفض {{count}}التعليقات"
+      }
+    },
+    "storiesSelection": {
+      "modal": {
+        "title": "أنت على وشك رفض {{count}}التعليقات"
+      }
+    }
+  },
+  "category": {
+    "thanks": "شكراً",
+    "question": "طلب معلومات",
+    "opinion": "رأي",
+    "concern": "مخاوف",
+    "request": "طلب المساعدة",
+    "sensitive": "حساس",
+    "comments": "الردود"
+  },
+  "repliedTo": {
+    "repliedToByOrganisation": "تم الرد عليه من قبل المنظمة",
+    "repliedToByCommunity": "تم الرد عليه من قبل المجتمع",
+    "notRepliedTo": "لم يتم الرد عليه"
+  },
+  "country": {
+    "philipinnes": "الفلبين",
+    "zambia": "زامبيا",
+    "other": "أنا في دولة أخرى"
+  },
+  "thematic": {
+    "emergencyResponse": "الاستجابة للطوارئ",
+    "idCards": "بطاقات الهوية",
+    "campManagement": "إدارة المخيمات",
+    "distribution": "التوزيع",
+    "cash": "النقد المالي",
+    "foodItems": "المواد الغذائية",
+    "non-foodItems": "الأغراض غير الغذائية",
+    "health": "الصحة",
+    "medicalCentres": "مراكز الرعاية الصحية",
+    "quarantineFacilities": "مرافق الحجر الصحي",
+    "vaccines": "اللقاحات",
+    "insurance": "التأمين",
+    "hygienicPracticesCommunityDisinfection": "الممارسات الصحية وتعقيم المجتمع",
+    "informationEducationAndCommunicationActivities": "أنشطة المعلومات والتعليم والاتصال",
+    "landRights": "حقوق الأرض",
+    "landmines/UnexplodedOrdnance": "الألغام الأرضية / الذخائر غير المنفجرة",
+    "transportation": "النقل",
+    "droughts": "الجفاف",
+    "laborAndJobs": "العمل والوظائف",
+    "nutrition": "تَغذية",
+    "communitySensitisation": "توعية المجتمع",
+    "gender-basedViolence": "العنف القائم على نوع الجنس",
+    "mentalHealth": "الصحة العقلية",
+    "sexualAndReproductiveRights": "الحقوق الجنسية والإنجابية",
+    "epidemics/Pandemics": "الأوبئة / الأزمات الصحية العالمية",
+    "covid": "كوفيد",
+    "ebola": "إيبولا",
+    "foodSecurity": "الأمن الغذائي",
+    "livelihoods": "سُبُل العيش",
+    "training": "التدريب",
+    "wash": "الإغتسال",
+    "waterPoints": "نقاط توزيع المياه",
+    "latrines": "المراحيض/ دورات المياه",
+    "shelter": "المأوى",
+    "housing": "المسكن",
+    "lightingAndElectricity": "الإنارة و الكهرباء",
+    "logistic": "اللوجستيات",
+    "construction": "البناء",
+    "education": "التعليم",
+    "primary": "الإبتدائي",
+    "secondary": "الثانوي",
+    "university/Colleges/Trades": "جامعة / كليات / حِرف",
+    "crossCutting": "شاملة",
+    "safetyAndSecurity": "السلامة و الأمن",
+    "campCoordination/Management": "تنسيق / إدارة المخيمات",
+    "capacityBuilding": "بناء القدرات",
+    "aidWorkers": "العاملين في المساعدات الإنسانية",
+    "other": "أخرى",
+    "financeManagement": "الإدارة المالية",
+    "government": "الحكومة",
+    "foodAssistance": "المعونة الغذائية",
+    "cross-cutting": "شاملة",
+    "medications/MedicinesFacilitiesAndServices": "المستحضرات الطبية /الأدوية، المرافق و الخدمات",
+    "hiv/Aids": "فيروس نقص المناعة البشرية/الإيدز",
+    "feeding/Malnutrition": "التغذية / سوء التغذية",
+    "handwashingStations": "محطات غسل اليدين",
+    "waterTrucking": "صهاريج المياه",
+    "solidWaste/GarbageManagement": "النفايات الصلبة / إدارة القمامة",
+    "waterFacilitiesAndSupplies": "مرافق وإمدادات المياه",
+    "temporaryShelters": "الملاجئ المؤقتة",
+    "campCoordinationManagement": "إدارة تنسيق المخيم",
+    "technicalSupport": "الدعم التقني",
+    "scholarships": "المنح الدراسية",
+    "children": "الاطفال",
+    "youngPeople": "الشباب",
+    "women": "النساء",
+    "personWithDisabilities": "شخص ذو احتياجات خاصة",
+    "elderlies": "كبار السن",
+    "lgtbq+": "LGBTQ+",
+    "chronicallyIllPeople": "الأشخاص المصابين بأمراض مزمنة",
+    "legalStatus(refugees)": "الوضع القانوني (اللاجئين)",
+    "indigenousCommunity": "مجتمع السكان الأصليين",
+    "lowIncomeFamilies": "الأسر ذات الدخل المنخفض",
+    "clan-conflict": "النزاعات القبيلية",
+    "civicSpace": "الحيز المدني",
+    "telecommunications": "الاتصالات السلكية واللاسلكية",
+    "climateChange": "التغير المناخي",
+    "environment": "البيئة",
+    "drrAndPreparedness": "الحد من مخاطر الكوارث والتأهب",
+    "earlyChildhood": "الطفولة المبكرة",
+    "elections": "الانتخابات",
+    "finance": "المالية",
+    "protection": "الحماية",
+    "governance": "الإدارة",
+    "loopOnboarding": "تدريب الانضمام إلى Loop",
+    "minorityGroup": "المجموعة الأقلية",
+    "livestock": "الثروة الحيوانية (المواشي)",
+    "agriculture": "الزراعة",
+    "locust": "الجراد",
+    "flooding/HeavyRains": "الفيضانات / الأمطار الغزيرة",
+    "idp": "النازحون داخلياً (IDP)",
+    "general-assistance": "مساعدة عامة"
+  },
+  "maternity": {
+    "notPregnantOrBreastfeeding": "لست حاملاً أو مرضعة",
+    "pregnant": "حامل",
+    "breastfeeding": "الرضاعة الطبيعية",
+    "bothPregnantAndBreastfeeding": "حامل ومرضعة في نفس الوقت",
+    "notDisclosed": "لم يتم الكشف عنها"
+  },
+  "languages": {
+    "en": "الإنجليزية",
+    "fr": "الفرنسية",
+    "es": "الإسبانية",
+    "ny": "تشيشيوا",
+    "ar": "العربية",
+    "so": "Somali (Maxatiri)",
+    "tl": "التغالوغية",
+    "ai": "Anguilla",
+    "bem": "Bemba",
+    "ceb": "Cebuano",
+    "id": "Bahasa Indonesia",
+    "maa": "Somali (af Maay)",
+    "tog": "Tonga",
+    "loz": "Lozi",
+    "pl": "Polski",
+    "uk": "Український",
+    "ru": "Русский"
+  },
+  "newStoryV2": {
+    "form": {
+      "content": {
+        "label": "ما الذي تود\\تودين مشاركته؟",
+        "info": "هل لديك تجربة تود\\تودين مشاركتها؟ كلما تمكنت\\تِ من المشاركة بأمان هنا، زادت فرص عمل شيء ما للمساعدة.",
+        "publishInfo": "إذا تم نشر هذه التعليقات، فستكون ظاهرة على الإنترنت ليراها أي شخص",
+        "placeholder": "ابدأ\\ابدأي في كتابة التعليقات (الحد الأدنى 8 أحرف)",
+        "stateInfoGreat": "🎉عظيم! مزيد من التفاصيل يساعد في إيصال تعليقاتك\\كِ إلى المنظمات المناسبة",
+        "state": {
+          "great": "رائع",
+          "good": "جيد",
+          "superb": "رائع"
+        },
+        "stateInfoGood": "👍️ أنت\\تِ تقوم\\تقومين بعمل جيد، لكن إستمر\\إستمري!",
+        "sensitive": {
+          "yes": "نعم",
+          "no": "لا",
+          "label": "هل هذه التعليقات حساسة؟",
+          "info": "الملاحظات الحساسة (مثل الفساد، الإساءة، العنف) لا يتم مشاركتها أبدًا على المنصة.",
+          "explanation": "ما هي التعليقات الحساسة"
+        },
+        "stateInfoDefault": "الحد الأدنى المطلوب هو 8 أحرف",
+        "stateInfoSuperb": "💯 رائع! يعطي هذا القدر من التفاصيل فهماً جيداً لموقفك."
+      },
+      "type": {
+        "title": "نوع التعليقات",
+        "subtitle": "يمكنك\\كِ إختيار عدة خيارات",
+        "helperText": "ساعدني في الإختيار",
+        "none": "لا أحد"
+      },
+      "name": {
+        "title": "ما هو اسمك؟",
+        "info": "استخدم اسمك\\كِ الكامل أو اسم مستعار أو اتركه\\اتركيه فارغاً حتى تكون\\تكونين مجهول\\مجهولة الهوية",
+        "explanation": "لماذا نسأل هذا؟"
+      },
+      "email": {
+        "explanation": "لماذا نسأل هذا؟",
+        "sensitive": {
+          "info": "إذا قمت بترك بريدك الإلكتروني، قد يتواصل معك Loop لطلب المزيد من التفاصيل حول ملاحظاتك، أو لإحالتك إلى منظمة قد تكون قادرة على مساعدتك. لن نشارك بريدك الإلكتروني مع أي منظمة أخرى دون الرجوع إليك أولاً."
+        },
+        "nonSensitive": {
+          "info": "يرجى إدخال بريدك الإلكتروني لتلقي إشعارات بالردود. يمكنك إلغاء الاشتراك من هذه الإشعارات في أي وقت. لن يظهر بريدك الإلكتروني لأي شخص."
+        },
+        "title": "عنوان البريد الإلكتروني"
+      },
+      "additionContactDetails": {
+        "title": "تفاصيل إضافية للتواصل",
+        "info": "يرجى تزويدنا هنا بأي تفاصيل ذات صلة حول كيفية التواصل معك، بما في ذلك إذا كنت تشارك هاتفًا مع شخص آخر وما هو أفضل وقت/يوم للتواصل معك بأمان."
+      },
+      "sensitiveStoryContactConsent": {
+        "title": "الموافقة على التواصل",
+        "info": "أوافق على أن يتواصل معي Loop لمناقشة بلاغي بمزيد من التفاصيل حتى أتمكن من الحصول على إحالة إلى منظمة يمكنها مساعدتي."
+      },
+      "gender": {
+        "title": "الجنس",
+        "info": "كيف تُعرّف على نفسك؟",
+        "radio": {
+          "female": "أنثى"
+        }
+      },
+      "age": {
+        "title": "العمر",
+        "info": "كم هو عمرك؟",
+        "explanation": "ماذا لو كنت أقل من 14 سنة؟"
+      },
+      "condition": {
+        "title": "هل تعاني من حالة صحية جسدية أو عقلية؟",
+        "radio": {
+          "yes": "نعم",
+          "no": "لا",
+          "preferNotToAnswer": "أفضل عدم الإجابة"
+        },
+        "type": {
+          "title": "هل تؤثر حالتك على أي من المجالات التالية؟",
+          "info": "يمكنك اختيار عدة خيارات",
+          "seeing": {
+            "title": "النظر"
+          },
+          "hearing": {
+            "title": "السمع"
+          },
+          "speaking": {
+            "title": "التحدث"
+          },
+          "mobility": {
+            "title": "التنقل/ الحركة"
+          },
+          "learning": {
+            "title": "التعلم \\ الفهم"
+          },
+          "selfCare": {
+            "title": "العناية الذاتية"
+          },
+          "other": {
+            "title": "آخر"
+          }
+        }
+      },
+      "phoneNumber": {
+        "title": "رقم الهاتف",
+        "info": "لن يتم مشاركة رقم هاتفك مع أي شخص",
+        "sensitiveInfo": "إذا قمت\\تِ بترك رقم هاتفك\\كِ، قد تقوم Loop بالاتصال بك\\كِ للحصول على مزيد من التفاصيل حول رأيك\\كِ، أو توجيهك\\كِ إلى منظمة قد تستطيع مساعدتك\\كِ. لن نقوم بمشاركة رقم هاتفك\\كِ مع أي منظمة أخرى، إلا بعد التأكد من ذلك معك\\كِ.",
+        "explanation": "لماذا نطرح هذا السؤال؟"
+      },
+      "phone": {
+        "title": "رقم الهاتف"
+      },
+      "country": {
+        "title": "الدولة",
+        "subtitle": "في أي دولة حدثت لك\\كِ هذه التجربة؟",
+        "helperText": "لماذا نحن مهتمون بمعرفة البلد الذي تتواجد\\تتواجدين فيه؟",
+        "changeCountry": "تغيير الدولة",
+        "selectCountry": "إختار الدولة",
+        "yourLocation": "موقعك:"
+      },
+      "location": {
+        "title": "موقع التعليقات",
+        "subtitle": "في أي مكان تم تقديم تعليقاتك\\كِ؟ يمكن أن يكون هذا في مدينة، أو بلدة، أو قرية، أو مخيم. لن نكشف عن موقعك\\كِ الدقيق ولن نشارك موقعك\\كِ مع أي شخص.",
+        "helperText": "لماذا نريد معرفة موقع تعليقاتك؟",
+        "useMyLocation": "استخدم موقعي الحالي",
+        "useLocation": "استخدم\\استخدمي الموقع التقريبي",
+        "or": "أو",
+        "hint": "ابحث\\ابحثي عن مدينة أو بلدة قريبة منك.",
+        "cancel": "إلغاء",
+        "addNew": "استخدم اسم هذا المكان",
+        "unavailable": "الموقع غير متوفر"
+      },
+      "help": {
+        "explanation": "ساعدني في الاختيار"
+      }
+    },
+    "steps": {
+      "step1": {
+        "label": "اكتب تعليقاتك."
+      },
+      "step2": {
+        "label": "تفاصيل التعليقات"
+      },
+      "step3": {
+        "label": "التفاصيل الخاصة بك."
+      },
+      "info": {
+        "title": "معلومات التعليقات",
+        "visibility": "ظاهر على الإنترنت ليراه أي شخص",
+        "editStory": "تعديل التعليقات",
+        "storyType": "نوع التعليقات",
+        "thanks": "شكراً",
+        "organisation": "المنظمة",
+        "location": "الموقع",
+        "storyBy": "التعليقات من قِبل",
+        "consentInfo": "أوافق على نشر تعليقاتي على TalkToLoop.org للمساعدة في تحسين الخدمات",
+        "submit": "إرسال التعليقات",
+        "visibilityHidden": "غير ظاهرة على الإنترنت",
+        "sensitiveConsentInfo": "أوافق على استخدام Loop للبيانات الواردة في ملاحظاتي <strong>بشكل مجهول</strong> لأغراض الإحصاءات والتقارير. هذا يعني أنه لن يتم استخدام اسمي أو معلومات الاتصال الخاصة بي أو موقعي الدقيق.",
+        "consentInfoError": "يرجى إعطاء الموافقة قبل إرسال تعليقاك."
+      }
+    },
+    "heading": {
+      "text": "عرض التعليقات",
+      "allStories": "جميع التعليقات",
+      "submitText": "تحقق\\ي وأرسل\\ي تعليقاتك\\كِ"
+    },
+    "ourloopPromise": {
+      "nonSensitive": {
+        "heading": "تتعهد Loop",
+        "content": "ستبذل Loop قصارى جهدها لتوجيه تعليقاتك\\كِ إلى أي منظمات ذات صلة و تشجعها على الاستجابة. سنتعامل مع تعليقاتك\\كِ بحساسية مع أعلى تدابير أمان البيانات. إذا قمت\\تِ بمشاركة تفاصيل التواصل الخاصة بك\\كِ مع Loop، فسنخبرك إذا استجاب أي شخص لتعليقاتك\\كِ. لن نشارك تفاصيل التواصل الخاصة بك\\كِ مع أي شخص."
+      },
+      "sensitive": {
+        "heading": "تعليقاتك في أمان معنا",
+        "content": "Si tus comentarios son sensibles, no se compartirán en línea, en su lugar, tus datos se gestionarán de forma confidencial. Un gestor de casos de Loop se pondrá en contacto contigo para obtener tu consentimiento informado y discutir opciones para tratar de encontrar la organización adecuada que pueda asistirte con servicios o investigar tu queja. Solo podemos hacer esto si compartes tu información de contacto. No compartiremos tus datos personales ni tus contactos con nadie sin tu permiso."
+      }
+    },
+    "caseManagerMessage": {
+      "role": "مدير حالة Loop"
+    },
+    "footerText": "© 2021 Our Loop Stichting. جميع الحقوق محفوظة.",
+    "modals": {
+      "shareExperience": {
+        "title": "شارك\\شاركي خبرتك\\كِ مع المنظمات العاملة في مجالك\\كِ",
+        "topParagraph": "هل هناك تجربة لا تُنسى مررت\\تِ بها مع منظمة في منطقتك\\كِ؟ هل كان ذلك جيداً أو سيئاً؟ ماذا تريد\\تريدين أن تشارك\\كِ؟",
+        "list": {
+          "one": "Loop ستبذل قصارى جهدها لتوجيه تعليقاتك\\كِ إلى الأشخاص المناسبين الذين قد يكونون قادرين على اتخاذ الإجراء و الإستجابة",
+          "two": "تم نشر رأيك\\كِ على الإنترنت للتأكد من أن صوتك\\كِ مسموع",
+          "three": "إذا كانت تعليقاتك\\كِ حساسة، فسنتعامل معها بثقة ولن يتم نشر أي تفاصيل تعريفية عبر الإنترنت"
+        },
+        "submitButton": "ابدأ\\ابدأي بكتابة تعليقاتك\\كِ"
+      },
+      "cancel": "إلغاء",
+      "ok": "حسناً",
+      "sensitiveStory": {
+        "title": "ما هي التعليقات الحساسة؟",
+        "topParagraph": "تعتبر التعليقات المتعلقة بأي من المواضيع التالية حساسة:",
+        "bottomParagraph": "إذا قمت\\تِ بمشاركة تعليقات حساسة، فسوف يضمن المشرفون لدينا على التعامل مع تعليقاتك\\كِ بسرية. لن يتم نشر أي تفاصيل تعريف شخصية للتعليقات الحساسة على الإنترنت.",
+        "list": {
+          "one": "الاستغلال و الاعتداء و التحرش الجنسي",
+          "two": "حماية الطفل",
+          "three": "الفساد",
+          "four": "الإحتيال",
+          "five": "أي خرق آخر لقواعد السلوك",
+          "six": "أي سوء سلوك آخر",
+          "seven": "العنف القائم على النوع الاجتماعي",
+          "eight": "حماية الأفراد",
+          "nine": "تحويل المساعدات"
+        }
+      },
+      "storyType": {
+        "title": "نوع التعليقات: خياراتك\\كِ",
+        "paragraph": "يمكنك\\كِ تصنيف تعليقاتك\\كِ كنوع واحد أو أكثر من أنواع التعليقات التالية. لا داعي للقلق، إذا تركته\\تركتيه فارغاً، فسيقوم مشرف Loop بالإشارة على تعليقاتك\\كِ نيابة عنك\\كِ. يساعدنا هذا في محاولة العثور على الأشخاص المناسبين للقراءة والرد عليك\\كِ.",
+        "sections": {
+          "thanks": {
+            "title": "شكراً",
+            "content": "أظهر\\أظهري تقديرك\\كِ لمنظمة أو خدمة أو شخص ما في مجتمعك من خلال كتابة تعليقات مع رسالة شكر"
+          },
+          "question": {
+            "title": "طلب معلومات",
+            "content": "إذا كنت\\تِ تريد\\تريدين طرح سؤال على منظمة، فيمكنك\\كِ كتابة تعليقات مع سؤال فيها. لا يمكننا أن نعد بأي شيء و لكن يمكننا محاولة إقناع شخص ما بالرد."
+          },
+          "opinion": {
+            "content": "هل لديك رأي قوي أو تريد مشاركة شيء سمعت عنه و معرفة ما إذا كان صحيحاً؟ اكتب التعليقات و قم\\قومي بالإشارة إليها كرأي. ستحاول Loop إقناع شخص ما بالرد عليك\\كِ",
+            "title": "رأي"
+          },
+          "request": {
+            "content": "هل تمتلك اقتراحاً لتحسين خدمة أو عملية في منظمة ما؟ قم\\قومي بكتابة تعليقاتك\\كِ ووسمها كطلب.",
+            "title": "طلب المساعدة"
+          },
+          "concern": {
+            "title": "مخاوف",
+            "content": "هل أنت\\تِ قلق\\قلقة أو مكترث\\مكترثة بشأن شيء ما في مجتمعك\\كِ؟ قم\\قومي بالإشارة الى تعليقاتك\\كِ كإكتراث و ستشجع Loop المنظمات في منطقتك\\كِ على الاستجابة."
+          }
+        }
+      },
+      "country": {
+        "title": "لماذا نريد أن نعرف البلد الذي أنت فيه؟",
+        "topParagraph": "تساعدنا معرفة البلد الذي تعيش\\تعيشين فيه على فهم سياق تعليقاتك\\كِ وفهم الأنماط في كل سياق بشكل أفضل للمساعدة في الدعم.",
+        "bottomParagraph": "نحن نحدد بلدك تلقائياً عن طريق استخدام عنوان IP لجهازك. يمكنك في أي وقت تغيير أو إزالة هذا البلد من تعليقك. كل ما عليك فعله هو النقر على 'تغيير الدولة'"
+      },
+      "organisation": {
+        "title": "لماذا من المهم إضافة منظمة إلى ملاحظاتك؟",
+        "sensitive": {
+          "paragraph": "إضافة منظمة إلى ملاحظاتك يساعدنا في معرفة من يمكنه التحقيق في شكواك. إذا كنت لا تعرف اسم المنظمة المعنية، فلا مشكلة. لا يزال بإمكانك تقديم ملاحظاتك دون ذكر اسم المنظمة. ومع ذلك، قد لا نتمكن من مساعدتك مباشرة. بدلاً من ذلك، يمكن استخدام ملاحظاتك للإبلاغ والإحصائيات بموافقتك."
+        },
+        "nonSensitive": {
+          "topParagraph": "إضافة منظمة إلى ملاحظاتك يساعدنا في تشجيع تلك المنظمة على الرد عليك. كما يساعدنا في إظهار المنظمات التي تستمع إلى الملاحظات وتستجيب لها من خلال Loop.",
+          "bottomParagraph": "إذا كنت لا تعرف اسم المنظمة المعنية بملاحظاتك، فلا مشكلة. لا يزال بإمكانك تقديم ملاحظاتك دون تسمية المنظمة، وسيبذل مشرفو Loop قصارى جهدهم للعثور على منظمة للإشارة إليها. مشاركة المزيد من التفاصيل يساعد مشرفي Loop في العثور على الجمهور المناسب لملاحظاتك."
+        }
+      },
+      "name": {
+        "title": "لماذا نطلب اسمك؟",
+        "sensitive": {
+          "paragraph": "يمكنك اختيار ما إذا كنت تريد تقديم اسمك أم لا. إذا كنت تريد أن تبقى مجهول الهوية تمامًا، فلا بأس بذلك أيضًا. فقط اترك حقل الاسم فارغًا."
+        },
+        "nonSensitive": {
+          "topParagraph": "يتم عرض اسمك بجانب ملاحظاتك، إذا تم نشرها على Loop. يساعد ذلك في تخصيص ملاحظاتك ويسمح لأي شخص يرد على ملاحظاتك بالإشارة إليك باسمك. يمكنك إعطاء اسمك الكامل أو جزء منه أو حتى لقب.",
+          "bottomParagraph": "إذا كنت تريد أن تبقى مجهول الهوية تمامًا، فلا بأس بذلك أيضًا. فقط اترك حقل الاسم فارغًا، وستُصنّف ملاحظاتك على أنها مجهولة."
+        }
+      },
+      "phoneNumber": {
+        "paragraph": "رقمك لن يتم نشره على الإنترنت أبدًا، ولن نشاركه مع أي شخص.",
+        "title": "لماذا نطلب رقم هاتفك؟"
+      },
+      "email": {
+        "bottomParagraph": "عنوان بريدك\\كِ الإلكتروني غير منشور على الإنترنت، و لن نشارك أبداً عنوان بريدك\\كِ الإلكتروني.",
+        "topParagraph": "إذا تركت عنوان بريدك\\كِ الإلكتروني معنا، فسنخبرك\\كِ عندما يتم نشر تعليقاتك\\كِ. سنخبرك\\كِ أيضاً إذا رد شخص ما على تعليقاتك\\كِ.",
+        "title": "لماذا نطلب عنوان بريدك\\كِ الإلكتروني؟"
+      },
+      "age": {
+        "paragraph": "إذا كان عمرك\\كِ أقل من 14 عاماً، فيجب أن تطلب\\تطلبين من شخص بالغ تثق\\تثقين به مساعدتك\\كِ في ملء هذه الإستمارة.",
+        "title": "ماذا إذا كان عمري أقل من 14 سنة؟"
+      },
+      "condition": {
+        "title": "لماذا نسأل إذا كنت تعاني\\تعانين من حالة طبية أو جسدية؟",
+        "topParagraph": "الأشخاص الذين يعانون من حالات صحية جسدية أو عقلية غالباً ما يتم التعامل معهم بطرق مختلفة. إذا كنا نعلم بذلك، يمكننا البحث عن منظمة تمتلك معرفة أكبر حول كيفية تقديم الدعم لك وتلبية احتياجاتك\\كِ بشكل أفضل.",
+        "bottomParagraph": "كما أنه سيساعد في الترويج للتمويل و الخدمات لسد أي ثغرات يتم تحديدها."
+      },
+      "whatNext": {
+        "title": "ماذا سيحدث بعد ذلك؟",
+        "topParagraph": "سيقوم مشرفو Loop بمراجعة تعليقاتك. وسيقومون بترجمتها لتكون مفهومة للعديد من الأشخاص قدر الإمكان.",
+        "bottomParagraph": "في حال تركت لنا عنوان بريدك الإلكتروني أو رقم هاتفك، سنقوم بإعلامك فور نشر تعليقاتك على الويب.",
+        "centerParagraph": {
+          "part1": "ما دامت تعليقاتك\\كِ لا تخرق",
+          "part3": "سيتم نشره خلال 48 ساعة.",
+          "part2": "السلوكيات المجتمعية"
+        }
+      },
+      "whatHappenStory": {
+        "title": "ماذا سيحدث لملاحظاتك؟",
+        "list": {
+          "one": {
+            "title": "سيقوم المشرف بمراجعة ملاحظاتك",
+            "content": "يقوم المشرفون بقراءة وترجمة جميع الملاحظات الواردة إلى Loop. إذا رأى المشرف أن ملاحظاتك حساسة، فسيتم إرسالها إلى مدير الحالة في Loop. إذا لم يوافق المشرف على أنها حساسة، فلن يتم نشرها. سيخبرك Loop بالأسباب وما يجب عليك فعله بعد ذلك إذا تركت عنوان بريدك الإلكتروني أو رقم هاتفك. إذا كان من الآمن الاتصال بك في أوقات معينة فقط، فيرجى ذكر ذلك في رسالتك."
+          },
+          "two": {
+            "title": "سيتم تعيين مدير حالة لملاحظاتك",
+            "content": "إذا تركت تفاصيل الاتصال بك، فسيقوم مدير الحالة بالتواصل معك للحصول على موافقتك المستنيرة ومناقشة الخيارات لمحاولة توصيلك بالمنظمة المناسبة التي يمكنها مساعدتك أو التحقيق في شكواك. سنطلب أيضًا موافقتك لمشاركة أي معلومات شخصية مثل اسمك وتفاصيل الاتصال وموقعك. يمكنك حينها اختيار ما ترغب في القيام به."
+          },
+          "three": {
+            "title": "سنحاول تشجيع المنظمات على اتخاذ إجراءات",
+            "content": "سيتابع مديرو الحالات في Loop مع أي منظمة متورطة في ملاحظاتك ويشجعونها على اتخاذ الإجراءات اللازمة."
+          },
+          "four": {
+            "title": "إذا استطعنا التواصل معك، فسنُبقيك على اطلاع دائم",
+            "content": "إذا تركت رقم هاتفك أو عنوان بريدك الإلكتروني، فسنُعلمك بأي تحديثات تتعلق بقضيتك."
+          }
+        }
+      },
+      "location": {
+        "title": "لماذا نريد معرفة موقع ملاحظاتك؟",
+        "sensitive": {
+          "paragraph": "بموافقتك، سيستخدم Loop موقعك لتحديد الخدمات القريبة منك لمساعدتك أو لتقديم هذه المعلومات إلى المنظمات لدعمها في التحقيق في شكواك. لا يقوم Loop بجمع موقعك الدقيق."
+        },
+        "nonSensitive": {
+          "topParagraph": "يستخدم Loop موقعك التقريبي (على سبيل المثال، المنطقة أو المقاطعة التي تتواجد فيها) لتشجيع المنظمات القريبة منك على الرد على ملاحظاتك.",
+          "bottomParagraph": "لا يقوم Loop بجمع موقعك الدقيق. ومع ذلك، سيتم عرض موقعك التقريبي إلى جانب ملاحظاتك. يساعدنا هذا في العثور على الجمهور المناسب لملاحظاتك."
+        }
+      },
+      "conditionHelpMe": {
+        "topParagraph": "ما هي الحالة الصحية الجسدية أو العقلية التي تعاني منها؟",
+        "middleParagraphPart1": "هذه الأسئلة هي أسئلة قياسية (كما هو موضح بواسطة",
+        "middleParagraphPart2": "لتحديد أنواع الإعاقة. إذا كانت إجابتك\\كِ نعم على سؤال واحد أو أكثر من الأسئلة التالية، يرجى وضع علامة في المربع المناسب:",
+        "seeing": {
+          "explanation": "هل تجد\\تجدين صعوبة في الرؤية حتى عند ارتداء النظارات؟",
+          "label": "رؤية"
+        },
+        "hearing": {
+          "label": "السمع",
+          "explanation": "هل تواجه\\تواجهين مشكلة في السمع، حتى عند استخدامك\\كِ للأجهزة السمعية؟"
+        },
+        "speaking": {
+          "label": "الكلام",
+          "explanation": "هل تواجه\\تواجهين صعوبة في التواصل بلغتك\\كِ الأصلية؟ مثلاً، هل تجد\\تجدين صعوبة في الفهم أو في أن يفهمك\\كِ الآخرون؟"
+        },
+        "selfCare": {
+          "label": "الرعاية الذاتية",
+          "explanation": "هل تجد\\تجدين صعوبة في القيام بأعمال العناية الشخصية مثل الاستحمام أو اللباس؟"
+        },
+        "learningUnderstanding": {
+          "label": "التعلم/ الفهم",
+          "explanation": "هل تجد\\تجدين صعوبة في التذكر أو التركيز؟"
+        },
+        "mobilityDexterity": {
+          "label": "القدرة على التحرك / الرشاقة",
+          "explanation": "هل تواجه\\تواجهين صعوبة في السير أو الصعود على الدرج؟"
+        }
+      }
+    },
+    "organisations": {
+      "addNewLabel": "إضافة منظمة جديدة تُسمّى",
+      "heading": "المنظمة",
+      "description": "عن أي منظمة هو تعليقك؟",
+      "explanation": "لماذا هذا مهم؟",
+      "inputPlaceholder": "إختر\\إختاري المنظمة",
+      "addNewLabel2": "أضف\\أضيفي منظمة أخرى"
+    },
+    "navigation": {
+      "back": "الرجوع",
+      "submit": "تقديم",
+      "next": "التالي"
+    },
+    "locationPromptText": "يرجى السماح لمتصفح الإنترنت الخاص بك بمعرفة موقعك حتى نتمكن من تحديد موقعك التقريبي.",
+    "safeMode": "الوضع الآمن - هذا التعليق لن يكون متاحًا للعامة"
+  },
+  "country_name": {
+    "gg": "غيرنسي",
+    "ne": "النيجر",
+    "af": "أفغانستان",
+    "sv": "السلفادور",
+    "hu": "هنغاريا",
+    "lb": "لبنان",
+    "la": "لاوس",
+    "al": "ألبانيا",
+    "sy": "الجمهورية العربية السورية",
+    "gn": "غينيا",
+    "gh": "غانا",
+    "gb": "المملكة المتحدة",
+    "uy": "أوروغاي",
+    "tn": "تونس",
+    "kw": "الكويت",
+    "ae": "الإمارات العربية المتحدة",
+    "dj": "جيبوتي",
+    "aq": "القارة القطبية الجنوبية",
+    "cf": "جمهورية أفريقيا الوسطى",
+    "ng": "نايجيريا",
+    "bt": "بوتان",
+    "kr": "كوريا الجنوبية",
+    "vg": "جزر فيرجن البريطانية",
+    "ag": "أنتيغوا و بربودا",
+    "bn": "بروني دار السلام",
+    "mn": "منغوليا",
+    "er": "إريتريا",
+    "mt": "مالطا",
+    "bw": "بوتسوانا",
+    "yt": "مايوت",
+    "ph": "الفلبين",
+    "ve": "فنزويلا",
+    "ni": "نيكاراغوا",
+    "pk": "باكستان",
+    "ie": "إيرلندا",
+    "ss": "جنوب السودان",
+    "cc": "جزر كوكس (كيلينغ)",
+    "lu": "لكسمبرغ",
+    "jo": "الأردن",
+    "cy": "قبرص",
+    "mp": "جزر ماريانا الشمالية",
+    "fm": "ميكرونيزيا",
+    "im": "جزيرة آيل أوف مان",
+    "tk": "توكيلاو",
+    "ai": "أنغيلا",
+    "de": "ألمانيا",
+    "ml": "مالي",
+    "id": "إندونيسيا",
+    "me": "مونتينيغرو",
+    "eg": "مصر",
+    "ax": "جزر ألاند",
+    "sd": "السودان",
+    "jm": "جامايكا",
+    "vn": "فيتنام",
+    "st": "ساو تومي و برينسيب",
+    "mo": "ماكاو",
+    "td": "تشاد",
+    "nu": "نيوي",
+    "ir": "إيران",
+    "ba": "البوسنة و الهرسك",
+    "ad": "أندورا",
+    "il": "إسرائيل",
+    "cm": "كاميرون",
+    "lc": "سانت لوسيا",
+    "nc": "كاليدونيا الجديدة",
+    "ps": "فلسطين",
+    "na": "ناميبيا",
+    "bb": "بربادوس",
+    "pw": "بالاو",
+    "gw": "غينيا-بيساو",
+    "ki": "كيريباتي",
+    "as": "ساموا الأمريكية",
+    "wf": "واليس و فوتونا",
+    "bv": "جزيرة بوفيت",
+    "sa": "المملكة العربية السعودية",
+    "se": "السويد",
+    "kg": "قيرغيزستان",
+    "zm": "زامبيا",
+    "pt": "البرتغال",
+    "cg": "كونغو",
+    "vi": "جزر فرجن، الولايات المتحدة",
+    "uz": "أوزبكستان",
+    "za": "جنوب أفريقيا",
+    "si": "سلوفينيا",
+    "mv": "جزر المالديف",
+    "do": "جمهورية الدومينيكان",
+    "kn": "سانت كيتس و نيفيس",
+    "ee": "إستونيا",
+    "vc": "سانت فنسنت وجزر غرينادين",
+    "pr": "بورتوريكو",
+    "sh": "سانت هيلينا",
+    "cx": "جزيرة كريسماس",
+    "gs": "جورجيا الجنوبية وجزر ساندويتش الجنوبية",
+    "pa": "باناما",
+    "mf": "سانت مارتن",
+    "bq": "جزر بونير و سان يوستاتيوس و سابا",
+    "gq": "غينيا الإستوائية",
+    "ws": "ساموا",
+    "pl": "بولندا",
+    "ug": "اوغندا",
+    "kz": "كازاخستان",
+    "gd": "غرينادا",
+    "nl": "هولندا",
+    "hr": "كرواتيا",
+    "gm": "غامبيا",
+    "lt": "ليتوانيا",
+    "ro": "رومانيا",
+    "mr": "موريتانيا",
+    "bg": "بلغاريا",
+    "io": "إقليم المحيط الهندي البريطاني",
+    "fk": "جزر فوكلاند",
+    "mg": "مدغشقر",
+    "aw": "أروبا",
+    "mw": "ملاوي",
+    "rs": "صربيا",
+    "jp": "اليابان",
+    "bj": "بنين",
+    "pm": "سانت بيير و ميكلون",
+    "my": "ماليزيا",
+    "mh": "جزر مارشال",
+    "lk": "سري لانكا",
+    "tj": "طاجيكستان",
+    "gp": "جوادلوب",
+    "bs": "جزر البهاما",
+    "nz": "نيوزيلندا",
+    "mm": "ميانمار",
+    "bz": "بليز",
+    "py": "باراغواي",
+    "to": "تونغا",
+    "tl": "تيمور-ليشتي",
+    "hn": "هندوراس",
+    "bd": "بنغلاديش",
+    "fo": "جزر فارو",
+    "dz": "الجزائر",
+    "cv": "كابو فيردي",
+    "dk": "الدنمارك",
+    "sx": "سان مارتن (الجزء الهولندي)",
+    "gi": "جبل طارق",
+    "ca": "كندا",
+    "az": "أذربيجان",
+    "ge": "جورجيا",
+    "je": "جيرزي",
+    "cw": "كوراساو",
+    "am": "أرمينيا",
+    "ms": "مونتسيرات",
+    "th": "تايلند",
+    "tw": "تايوان",
+    "tr": "تركيا",
+    "hk": "هونغ كونغ",
+    "gr": "اليونان",
+    "es": "إسبانيا",
+    "lr": "ليبيريا",
+    "us": "الولايات المتحدة",
+    "bl": "سان بارتيلمي",
+    "sn": "السنغال",
+    "zw": "زيمبابوي",
+    "by": "بيلاروسيا",
+    "in": "الهند",
+    "it": "إيطاليا",
+    "ec": "الإكوادور",
+    "is": "آيسلاند",
+    "re": "ريونيون",
+    "nf": "جزيرة نورفولك",
+    "cu": "كوبا",
+    "cn": "الصين",
+    "bi": "بوروندي",
+    "fi": "فنلندا",
+    "mk": "مقدونيا",
+    "gl": "جرينلاند",
+    "gf": "غيانا الفرنسية",
+    "ly": "ليبيا",
+    "tc": "جزر تركس و كايكوس",
+    "tm": "تركمانستان",
+    "ua": "أوكرانيا",
+    "bm": "برمودا",
+    "kh": "كمبوديا",
+    "kp": "كوريا الشمالية",
+    "co": "كولومبيا",
+    "rw": "رواندا",
+    "ck": "جزر كوك",
+    "no": "النرويج",
+    "mc": "موناكو",
+    "ci": "كوت ديفوار",
+    "br": "البرازيل",
+    "hm": "جزيرة هيرد و جزر ماكدونالد",
+    "ht": "هايتي",
+    "tg": "توغو",
+    "sg": "سنغافورة",
+    "so": "الصومال",
+    "ma": "المغرب",
+    "tf": "الأراضي الجنوبية الفرنسية",
+    "ar": "الأرجنتين",
+    "gu": "غوام",
+    "sr": "سورينام",
+    "lv": "لاتفيا",
+    "bh": "البحرين",
+    "au": "استراليا",
+    "sc": "سيشيل",
+    "qa": "قطر",
+    "li": "ليختنشتاين",
+    "pf": "بولينزيا الفرنسية",
+    "sk": "سلوفاكيا",
+    "va": "الفاتيكان",
+    "fj": "فيجي",
+    "ye": "اليمن",
+    "an": "جزر الأنتيل الهولندية",
+    "sm": "سان مارينو",
+    "iq": "العراق",
+    "sj": "سفالبارد و جان ماين",
+    "mz": "موزامبيق",
+    "at": "النمسا",
+    "om": "عُمان",
+    "bo": "بوليفيا",
+    "cr": "كوستاريكا",
+    "et": "إثيوبيا",
+    "ke": "كينيا",
+    "tz": "تنزانيا",
+    "km": "جزر القمر",
+    "tv": "توفالو",
+    "ch": "سويسرا",
+    "pn": "جزر بيتكيرن",
+    "mx": "المكسيك",
+    "vu": "فانواتو",
+    "nr": "ناورو",
+    "sl": "سيراليون",
+    "mq": "مارتينيك",
+    "cz": "التشيك",
+    "be": "بلجيكا",
+    "gt": "غواتيمالا",
+    "sb": "جزر سليمان",
+    "md": "مولدوفا",
+    "sz": "سوازيلاند",
+    "ru": "روسيا",
+    "ls": "ليسوتو",
+    "ao": "أنغولا",
+    "um": "الجزر الصغيرة النائية التابعة للولايات المتحدة الأمريكية",
+    "pe": "بيرو",
+    "ga": "الغابون",
+    "gy": "غيانا",
+    "fr": "فرنسا",
+    "ky": "جزر كايمان",
+    "pg": "بابوا غينيا الجديدة",
+    "mu": "موريشيوس",
+    "tt": "ترينيداد و توباغو",
+    "dm": "دومينيكا",
+    "cl": "شيلي",
+    "np": "نيبال",
+    "bf": "بوركينا فاسو",
+    "eh": "الصحراء الغربية",
+    "cd": "جمهورية الكونغو الديموقراطية",
+    "un": "مجهول الهوية"
+  },
+  "errors": {
+    "required": "هذا الإدخال مطلوب",
+    "maxLength": "الحد الأقصى للطول هو {{requiredLength}}، حالياً هو {{actualLength}}",
+    "email": "هذا البريد الإلكتروني غير صالح",
+    "generic": "هذا الإدخال غير صحيح",
+    "minLength": "الحد الأدنى للطول هو {{requiredLength}}، حالياً هو {{actualLength}}",
+    "missingPrefix": "البادئة مفقودة",
+    "countryNotEntered": "الرجاء إختيار الدولة",
+    "locationNotEntered": "الرجاء إختيار الموقع",
+    "languageNotEntered": "يرجى اختيار اللغة",
+    "thematicsNotEntered": "يرجى اختيار وسم مواضيعي",
+    "passwordMatching": "كلمة المرور غير متطابقة"
+  },
+  "filtersV2": {
+    "mobileLink": "المرشحات",
+    "seeAllStories": "شاهد\\شاهدي جميع التعليقات",
+    "country": {
+      "label": "الدولة",
+      "placeholder": "اختيار الدولة"
+    },
+    "location": {
+      "label": "الموقع",
+      "searchForPlace": "ابحث\\اي عن مكان",
+      "searchForCountry": "ابحث\\ي\nعن دولة",
+      "setLocation": "تعيين الموقع",
+      "clearSearch": "مسح البحث",
+      "noLocationFound": "لم يتم العثور على مواقع تطابق بحثك",
+      "tooltip": "قم\\قومي بتصفية المواقع داخل كل بلد بالنقر على السهم"
+    },
+    "searchText": {
+      "label": "البحث عن نص"
+    },
+    "storyType": {
+      "label": "نوع التعليقات"
+    },
+    "loaction": {
+      "label": "الموقع"
+    },
+    "demographic": {
+      "label": "الديمغرافية"
+    },
+    "thematicArea": {
+      "label": "المجال الموضوعي"
+    },
+    "organisation": {
+      "label": "المنظمة",
+      "placeholder": "إختيار المنظمة"
+    },
+    "repliedTo": {
+      "label": "مع رد",
+      "placeholder": "عرض التعليقات التي تحتوي على رد واحد على الأقل أو لا تحتوي على أي رد"
+    },
+    "date": {
+      "label": "تاريخ",
+      "from": "From",
+      "to": "To",
+      "noRangeSelected": "لم يتم اختيار فترة زمنية",
+      "calendar": "التقويم",
+      "orEnterManually": "أو أدخل\\أدخلي يدوياً"
+    },
+    "request": {
+      "label": "طلب المساعدة"
+    },
+    "moreFilters": {
+      "label": "المزيد من المرشحات"
+    },
+    "clearAll": "مسح الكل",
+    "calendar": "التقويم",
+    "enterManually": "أدخال يدوي",
+    "monthFull": {
+      "January": "كانون الثاني",
+      "February": "شباط",
+      "March": "آذار",
+      "April": "نيسان",
+      "May": "أيار",
+      "July": "تموز",
+      "August": "آب",
+      "September": "أيلول",
+      "October": "تشرين الأول",
+      "November": "تشرين الثاني",
+      "December": "كانون الأول",
+      "June": "يونويه/حزيران"
+    },
+    "weekdayShort": {
+      "Sunday": "الأحد",
+      "Monday": "الاثنين",
+      "Tuesday": "الثلاثاء",
+      "Wednesday": "الاربعاء",
+      "Thursday": "الخميس",
+      "Friday": "الجمعة",
+      "Saturday": "السبت"
+    },
+    "apply": "تقديم",
+    "selectAll": "اختر الكل",
+    "deselectAll": "الغاء تحديد الكل",
+    "category": {
+      "thanks": "شكراً",
+      "question": "طلب معلومات",
+      "opinion": "رأي",
+      "concern": "قلق",
+      "request": "طلب المساعدة",
+      "sensitive": "حساس"
+    },
+    "modal": {
+      "moreFilters": "المزيد من المرشحات",
+      "allFilters": "جميع المرشحات"
+    },
+    "filters": {
+      "title": "المرشحات"
+    },
+    "outcomesOfInvestigation": {
+      "label": "نتائج التحقيق"
+    },
+    "assistanceReferred": "المساعدة المشار إليها",
+    "typeOfCase": "نوع الحالة",
+    "age": {
+      "label": "العمر"
+    },
+    "gender": {
+      "label": "الجنس"
+    },
+    "disability": {
+      "label": "الاعاقة"
+    },
+    "minority": {
+      "label": "أقلية"
+    },
+    "seeAll": "إظهار الكل",
+    "backBtn": "الرجوع",
+    "clear": "مسح",
+    "channel": {
+      "web": "الويب",
+      "sms": "رسالة قصيرة",
+      "messenger": "فيسبوك ماسنجر",
+      "whatsapp": "واتس آب",
+      "ivrr": "صوت",
+      "telegram": "تيليغرام",
+      "text": "نص"
+    },
+    "voiceDuration": {
+      "label": "Length"
+    },
+    "preset": {
+      "header": {
+        "label": "تعديل المرشحات",
+        "placeholder": "ابحث باستخدام كلمة مفتاحية مثل التعليم، التغذية ...",
+        "button": "بحث"
+      },
+      "label": "مرشحات محددة مسبقًا",
+      "placeholder": "أدخل اسم المرشح",
+      "savePreset": "حفظ المرشحات الحالية كمرشح جديد",
+      "removePreset": "إزالة",
+      "modalLabel": "اختر اسمًا للمرشح الجديد الخاص بك",
+      "shareConfirmation": "تأكيد المشاركة",
+      "editConfirmation": "تأكيد التحديث",
+      "deleteConfirmation": "تأكيد الحذف",
+      "shareExplanation": "ستجعل مشاركة هذا المرشح متاحًا للجميع في مؤسستك.",
+      "editExplanation": "هل أنت متأكد أنك تريد تحديث هذا المرشح باستخدام المرشحات المختارة حاليًا؟",
+      "deleteExplanation": "هل أنت متأكد أنك تريد حذف هذا المرشح؟",
+      "buttons": {
+        "confirm": "تأكيد",
+        "cancel": "إلغاء"
+      },
+      "tooltip": {
+        "share": "مشاركة مع المؤسسة",
+        "update": "تحديث",
+        "delete": "حذف"
+      }
+    }
+  },
+  "statistics": {
+    "comingSoon": {
+      "pill": "ابقوا متابعين!",
+      "heading": "قريباً",
+      "subheading": "إحصائيات",
+      "text": "يتم بناء لوحة تحكم تمكنك من تحليل الاتجاهات والبيانات المتعلقة بالتعليقات، وسيكون بإمكانك العثور عليها هنا قريبًا.",
+      "linkDescription": "في الوقت الحالي",
+      "linkText": "شاهد\\شاهدي التعليقات"
+    },
+    "navigation": {
+      "stories": "افتح التعليقات",
+      "cases": "الحالات الحساسة"
+    },
+    "replies": {
+      "title": "الردود",
+      "summary": {
+        "text1": "تم الرد على جزء من التعليقات",
+        "text2": "ردت المنظمات على بعض التعليقات"
+      },
+      "table": {
+        "header1": "متوسط وقت الرد:",
+        "header2": "إجمالي التعليقات:",
+        "header3": "إجمالي الردود:",
+        "header4": "عدد المؤلفين:",
+        "header5": "عدد المنظمات:"
+      },
+      "units": {
+        "stories": "التعليقات",
+        "replies": "الردود",
+        "authors": "المؤلفين",
+        "organizations": "المنظمات الموسومة"
+      },
+      "moreLink": {
+        "content": "يقدم هذا القسم نظرة على التطورات في نوع التعليقات التي يتم مشاركتها على Loop مع مرور الوقت. يظهر أيضا معلومات حول كيفية إغلاق دائرة التعليقات: من يقوم بالرد على ما، وبأي سرعة. يمكن للفلاتر تحسين هذا التحليل بشكل أكبر."
+      },
+      "infoIcon": {
+        "content": "يوفر لنا فهم وقت الرد على التعليقات دليلاً على مدى تفاعلنا مع ملاحظات المجتمع كقطاع."
+      }
+    },
+    "moreLink": "المزيد حول هذا القسم",
+    "section1": "نوع التعليقات و الردود",
+    "timeline": {
+      "title": "التعليقات المستلمة على مر الزمن"
+    },
+    "storiesAndReplies": {
+      "title": "التعليقات و الردود",
+      "storyType": "نوع التعليقات",
+      "repliesCommunity": "الردود من المجتمع",
+      "repliesOrganization": "الردود من المنظمات",
+      "totalStories": "مجموع كمية التعليقات",
+      "infoIcon": {
+        "content": "عن طريق تصور من يقوم بالرد على التعليقات، يمكننا فهم من هم المستخدمين لـ Loop، ومن هم الذين يتفاعلون مع التعليقات التي تم مشاركتها على Loop."
+      }
+    },
+    "averageTime": {
+      "title": "متوسط زمن الرد لكل نوع من أنواع التعليقات",
+      "infoIcon": {
+        "content": "تتلقى بعض التعليقات ردودًا في غضون دقائق، بينما يستغرق الرد على البعض الآخر بضعة أيام. يمكن لهذا الرسم البياني أن يوضح لنا مدى قدرتنا على الاستجابة بسرعة كقطاع للمشاكل التي يتم الإبلاغ عنها لـ Loop."
+      }
+    },
+    "section2": "المجالات الموضيعية",
+    "section3": "توزيع السكان حسب الفئات العمرية",
+    "thematicArea": {
+      "title": "التعليقات حسب المجال الموضوعي"
+    },
+    "difficulty": {
+      "title": "نوع التعليقات × قدرة المؤلف",
+      "units": {
+        "stories": "التعليقات"
+      },
+      "seeing": "صعوبة في الرؤية:",
+      "hearing": "صعوبة في السمع:",
+      "walkingOrClimbingSteps": "صعوبة في المشي أو صعود الدرج:",
+      "remembering": "صعوبة في التذكر:",
+      "selfCareForExampleWashing": "صعوبة في المشي أو صعود الدرج:",
+      "communicating": "صعوبة في التواصل:"
+    },
+    "ageGender": {
+      "title": "نوع التعليقات × عمر و جنس المؤلف",
+      "1417": "14-17",
+      "1829": "18-29",
+      "3059": "30-59",
+      "60": "60+",
+      "na": "غير متاح",
+      "male": "ذكر",
+      "female": "أنثى",
+      "nonBinary": "غير ثنائي"
+    },
+    "thematic": {
+      "moreLink": {
+        "content": "المجال الموضوعي يشير إلى نوع الخدمة التي يتم تقديمها. في هذا الجزء، يمكننا معرفة أي نوع من التعليقات (مثل الشكر، القلق، وغيرها) يتم تبادلها بخصوص الخدمات المختلفة. يمكن استخدام الفلاتر لتحسين هذا التحليل بشكل أكثر دقة."
+      }
+    },
+    "demographic": {
+      "moreLink": {
+        "content": "عندما يشارك الأشخاص معلوماتهم السكانية معنا، نقوم بتجميعها في هذا المكان. هذا يمكننا من فهم من هم المستخدمين الحاليين لـ Loop ومن لم نتمكن من الوصول إليهم بعد. نحن قادرون على رؤية النوع من التعليقات التي يشاركونها والمرشحات يمكن أن تعمق هذا التحليل أكثر."
+      },
+      "infoIcon": {
+        "content": "عندما يبلغنا أحد بأنه يعاني من حالات صحية عقلية أو جسدية، نستخدم هذه المعلومات لنعرض أي المجموعات نتلقى منها الأصوات وأيها لا نفعل."
+      }
+    },
+    "storiesOverTime": {
+      "infoIcon": {
+        "content": "يتم الإشارة الى جميع التعليقات المرسلة إلى Loop على انها شكر، سؤال، رأي، طلب، مخاوف، أو حساس. عند التصور، هذا يساعدنا على فهم نبرة المحادثة مع مرور الوقت. يمكن للمرشحات أن تصقل هذا التحليل أكثر."
+      }
+    },
+    "ageAndGender": {
+      "infoIcon": {
+        "content": "يشرح هذا الرسم البياني من هم الأشخاص الذين قدموا التعليقات على Loop."
+      }
+    }
+  },
+  "navbar": {
+    "social": {
+      "twitterLabel": "حساب تويتر/X الخاص ب Loop",
+      "facebookLabel": "تواصل\\تواصلي مع فيسبوك Loop",
+      "linkedinLabel": "تواصل\\تواصلي مع Loop عبر LinkedIn"
+    },
+    "static": {
+      "loopWebsiteLabel": "موقع Loop الإلكتروني",
+      "contactLabel": "تواصل\\تواصلي",
+      "communityGuidelinesLabel": "السلوكيات المجتمعية",
+      "privacyPolicyLabel": "سياسة الخصوصية",
+      "cookiePolicyLabel": "سياسة ملفات الكوكيز",
+      "termsOfUseLabel": "شروط الاستخدام"
+    },
+    "languageChange": {
+      "changeLabel": "تغيير اللغة:"
+    },
+    "register": {
+      "createAccount": "إنشاء حساب"
+    },
+    "header": {
+      "closeIconAlt": "إغلاق"
+    },
+    "authStatus": {
+      "logIn": "تسجيل الدخول / إنشاء حساب",
+      "hi": "مرحباً، {{nickname}}",
+      "logInViaMagicLink": "تسجيل الدخول بواسطة الرابط السحري"
+    }
+  },
+  "organisationType": {
+    "label": "نوع المنظمة",
+    "governmentAuthorities": "السلطة الحكومية",
+    "nationalArmedForces": "القوات المسلحة الوطنية",
+    "privateSector": "القطاع الخاص",
+    "nationalCommunityBasedOrganisation": "المنظمات الوطنية/ المجتمعية",
+    "communityMember": "عضو في المجتمع",
+    "internationalOrganisation": "منظمة عالمية",
+    "other": "أخرى"
+  },
+  "difficulty": {
+    "seeing": "النظر",
+    "hearing": "السمع",
+    "walkingOrClimbingSteps": "التنقل/ الحركة",
+    "remembering": "التعلم / الفهم",
+    "communicating": "التحدث",
+    "selfCareForExampleWashing": "الرعاية الذاتية",
+    "learning": "التعلم / الفهم",
+    "other": "آخر",
+    "notAnswered": "لم يتم الرد"
+  },
+  "storyHasNotBeenPublishedOnTalkToLoop": "لم يتم نشر تعليقك على موقع TalkToLoop.org",
+  "organisationHaveBeenTaggedInStoryOnTalkToLoop": "تم توجيه تعليقات إلى منظمتك على TalkToLoop.org",
+  "replyHasNotBeenPublishedOnTalkToLoop": "لم يتم نشر ردك\\كِ على TalkToLoop.org",
+  "storyHasBeenPublishedOnTalkToLoop": "تم نشر تعليقاتك على موقع TalkToLoop.org",
+  "statisticsCases": {
+    "section1": "ما مدى مسؤوليتنا؟",
+    "moreLink": "المزيد حول هذا القسم",
+    "accountability": {
+      "moreLink": {
+        "content": "عندما تتلقى Loop تعليقات حساسة من شأنها أن تضر إذا تم نشرها على المنصة المفتوحة، نقوم بتحويلها إلى مدير الحالة المدرب لدينا. تقتضي الممارسة الجيدة الاعتراف بجميع الادعاءات وتقييمها و التحقيق فيها إذا كان ذلك مناسباً. وإبلاغ الشخص الذي يقدم الادعاء بالنتيجة. و تنعكس كل خطوة من خطوات هذه العملية في عملية المساءلة هذه. لضمان اتباع نهج يركز على الناجين، تنص معايير القطاع الوقت الذي يجب أن تكتمل خلاله كل خطوة من هذه الخطوات (انظر\\انظري هنا). تعرض صفحة إحصائيات Loop البيانات التي تختار المؤسسات مشاركتها مع Loop بعد تلقي الإحالة. لا يُكشف هنا عن البيانات التي يمكن التعرف عليها عن المنظمات و الناجين/الضحايا."
+      }
+    },
+    "timeline": {
+      "title": "متى يتم تقديم تقارير حول المسائل الحساسة إلى Loop؟",
+      "infoIcon": {
+        "content": "تُصنف المسائل الحساسة التي تم الإبلاغ عنها لـ Loop في أحد أربع أقسام. هذا الرسم البياني يظهر الاتجاهات المتعلقة بتوقيت الإبلاغ عن أنواع مختلفة من المشكلات لـ Loop."
+      }
+    },
+    "accountabilityProcess": {
+      "title": "عملية المساءلة",
+      "seeMore": "شاهد\\شاهدي المزيد",
+      "description": "منذ اللحظة التي يقدم فيها الشخص تعليقات حساسة تتضمن ادعاءً، يقوم مدير الحالات في Loop بمراجعة الادعاء ومعالجة القضية بناءً على ذلك. يتم تتبع المسؤولية حتى يتم التعامل مع الادعاء بشكل كامل، وإبلاغ الشخص الذي قدم التعليقات الأولية، وبعدها يمكن إغلاق القضية. نحن نطلق على هذا اسم \"عملية المساءلة\". هذه العملية مصممة للتعامل مع كل ادعاء يتلقاه Loop، وتوفير الشفافية بشأن ما يحدث في كل قضية ناتجة، ومكان تأخرها، ومن المسؤول عن التحرك.",
+      "stepByStepBtn": "اطلع\\اطلعي على العملية خطوة بخطوة",
+      "slider": {
+        "submitStory": {
+          "title": "إرسال التعليقات",
+          "description": "يتم إرسال التعليقات إلى Loop عبر قناة آمنة ومحمية."
+        },
+        "moderatorReview": {
+          "title": "مراجعة المشرف",
+          "description": "يقوم المشرف بمراجعة التعليقات وترجمتها عند الحاجة. في حال كانت الردود حساسة، سيتم تحويلها إلى مدير الحالة."
+        },
+        "caseManagerReview": {
+          "title": "مراجعة مدير الحالة",
+          "description": "إذا كان الأمر ضرورياً، يقوم مدير الحالة بمراجعة التعليقات والإحالة للحصول على مساعدة فورية."
+        },
+        "storyCase": {
+          "description": "الآن، يتم تضمين التعليقات في عملية تتطلب مراعاة كل خطوة في الوقت المحدد، قبل أن يتم إغلاقها.",
+          "title": "التعليقات - الحالة"
+        },
+        "processAndRefer": {
+          "title": "العملية و الإحالة",
+          "description": "تتحمل Loop المسؤولية لمعالجة القضية وتحيلها خلال 48 ساعة."
+        },
+        "responseToReferral": {
+          "description": "تتحمل المنظمة المستلمة المسؤولية لتأكيد استلام الحالة المحالة خلال 48 ساعة."
+        },
+        "decisionToInvestigate": {
+          "description": "تتحمل المنظمة المسؤولية في تقييم المعلومات للحد من المخاطر الإضافية وحماية الأشخاص، وتحديد ما إذا كانت ستجري تحقيقا في القضية وكيفية ذلك."
+        },
+        "investigation": {
+          "description": "تتبع Loop جميع هذه الخطوات لضمان عملية مسؤولة وفي الوقت المحدد، بما في ذلك الوقت الذي يستغرقه إغلاق التحقيق والنتيجة."
+        },
+        "authorInformed": {
+          "title": "تم ابلاغ المؤلف.",
+          "description": "تتبع Loop ما إذا ومتى تم إبلاغ الناجي بالنتيجة لضمان تبني نهج يركز على الناجين."
+        }
+      },
+      "seeProcess": {
+        "title": "عملية المساءلة خطوة بخطوة",
+        "firstParagraph": "Loop هي منظمة خيرية مستقلة تهدف فقط إلى تقديم آلية آمنة تمكن الأفراد من التعبير عن آرائهم لتحسين الخدمات على نطاق واسع. ضمن مسؤولياتنا الرعائية، قمنا بتصميم طريقة لاستلام وتحويل الردود الحساسة بأمان، التي قد تسبب ضرراً إذا تم نشرها على المنصة العامة. هذا قد يشمل تقارير حول الاستغلال الجنسي والتحرش والإساءة (SEAH)، الاحتيال، الفساد، قضايا الحماية، أو أي أشكال أخرى من سوء السلوك.",
+        "secondParagraph": "نقوم بجمع البيانات (الكمية والنوعية) بأمان من الأشخاص الذين يختارون مشاركتها معنا، ونقوم بتحويلها إلى الجهات المناسبة للإدارة وتقديم المساعدة حسب الحاجة. بعد ذلك، نقوم بتقديم هذه البيانات على مستوى تجميعي للجميع لتحليلها وتحديد الاتجاهات، والمناطق الحرجة، ونقاط الألم، والمناطق التي تحتاج إلى تحسين.",
+        "thirdParagraph": "لا تقوم Loop بالرد على التعليقات الحساسة أو البحث في القضايا أو كتابة تقارير حول النتائج. نحن نعمل كوسيط للتفاعل مع الجماعات التي يصعب الوصول إليها ولعرض الاتجاهات البيانية لكيفية استجابة المنظمات المختلفة. نأمل من خلال هذا أن نجعل أصوات وتجارب الأشخاص المحليين جزءًا من عملية اتخاذ القرارات.",
+        "fourthParagraph": "سنقوم بتعديل الوسوم الخاصة بنا وعملية المساءلة لتتوافق مع أفضل الممارسات المتجددة. نحن فقط قادرون على أن نكون مفيدين بقدر البيانات التي يتم مشاركتها معنا.",
+        "list": {
+          "1": {
+            "title": "يرسل شخص تعليقات حساسة إلى Loop.",
+            "firstParagraph": "يستطيع الجميع، سواء كانوا ناجين أو شهود أو منظمات، تقديم ملاحظات حساسة باستخدام Loop. يمكنهم تقديم هذه الملاحظات على {{homeLink}} أو عبر رقم الرسائل القصيرة المحلي وتمييزها بأنها حساسة.",
+            "secondParagraph": "لن يتم نشر التعليقات الحساسة على المنصة العامة، ولن يحصل أحد على معلومات قابلة للتعرف أو معلومات الاتصال عن المؤلف ويتم الالتزام بمعايير عالية من أمن البيانات."
+          },
+          "2": {
+            "title": "قام مشرف Loop بمراجعة التعليقات، وتم التعرف عليها كمعلومات حساسة، وتم توجيهها إلى مدير الحالة في Loop.",
+            "secondParagraph": "تقتضي أفضل الطرق الاعتراف بكل الادعاءات، تقييمها، والتحقيق فيها إذا كان ذلك ملائما، وإعلام الشخص الذي أثار الادعاء بالنتائج. تتجسد كل خطوة من هذه العملية في عملية المساءلة.",
+            "firstParagraph": "سوف يقوم المشرف بإرسال التعليقات التي تم تمييزها بأنها حساسة إلى مدير الحالة. كما سيقومون بإرسال التعليقات إلى مدير الحالة إذا كانوا يعتقدون أن نشرها على المنصة العامة قد يسبب ضرراً. نحن نتبع بروتوكولات Loop لتحديد ما يتم نشره على المنصة العامة وما يتم التعامل معه من خلال نظام إدارة القضايا السري والآمن. يمكنك\\كِ قراءة ومساعدتنا في تحسين هذه البروتوكولات {{hereLink}}."
+          },
+          "3": {
+            "title": "يقوم مدير الحالة بمراجعة التعليقات الحساسة ويحيلها للحصول على المساعدة الفورية، إذا كان ذلك ضرورياً.",
+            "firstParagraph": "مدير حالة Loop هو خبير مدرب في التعامل مع الشكاوى والادعاءات، ويُوّجه الشخص الذي يقدم التعليقات الحساسة إلى القنوات المناسبة. Loop لا تقدم الدعم مباشرة، ولكنها توفر طريقة آمنة للأفراد للإبلاغ، وتسعى لتوصيل هذه المعلومات إلى الجهة الأكثر قدرة على اتخاذ الإجراءات اللازمة. يمكننا متابعة الدعم المقدم إذا قامت الجهات المعنية بمشاركة التحديثات مع مدير حالة Loop."
+          },
+          "4": {
+            "title": "الآن، يتم اعتبار \"التعليقات الحساسة\" كـ \"حالة\" وتدخل في عملية يجب فيها توثيق كل خطوة في الوقت المحدد قبل أن يمكن إغلاقها.",
+            "firstParagraph": "تظل الحالات قيد الفحص حتى يتم التعامل معها بشكل كامل في إطار عملية المساءلة. تتم إغلاق الحالات عندما لا يكون هناك حاجة لمزيد من الإجراءات، وعندما يكون ذلك ممكناً، يتم إعلام المؤلف بالنتائج. للتأكيد على النهج الذي يركز على الناجي، توضح المعايير القطاعية الفترة الزمنية التي يجب أن يتم فيها كل من هذه الخطوات.",
+            "secondParagraph": "تقوم صفحة إحصائيات Loop بعرض البيانات التي تقرر المؤسسات مشاركتها مع Loop أثناء التعامل مع الحالة. لا يتم عرض تاريخ التعرف على المنظمات والمؤلفين والناجين أبداً."
+          },
+          "5": {
+            "title": "العملية و الإحالة.",
+            "firstParagraph": "عندما تتلقى Loop حالة حساسة، تقوم Loop بمعالجتها و إحالتها إلى منظمة مناسبة من أجل 1) المساءلة و 2) تقديم المساعدة إذا لزم الأمر. ووفقاً لمعايير القطاع، فإن Loop مسؤولة عن معالجة الشكوى و إحالتها خلال 48 ساعة من استلامها. نحن نتتبع هذه المعلومات لمعرفة ما إذا كان بإمكان Loop تقديم هذا المعيار المتوقع و لتحميل أنفسنا المسؤولية العامة."
+          },
+          "6": {
+            "title": "الرد على الإحالة.",
+            "firstParagraph": "من المتوقع أن تقر المنظمة بتلقي الإحالة في غضون 48 ساعة وفقًا لمعايير القطاع. بمجرد استلام Loop لهذا الإقرار، سيتم تحديث البيانات. نقوم بتتبع هذه المعلومات للتحقق من قدرة المنظمات على الوفاء بهذا المعيار المتوقع."
+          },
+          "7": {
+            "title": "قرار التحقيق.",
+            "secondParagraph": "من المتوقع أن تقوم المنظمة، عند تلقيها لإحالة، بتقييم الوضع واتخاذ قرار بشأن ما إذا كان سيتم التحقيق فيه أم لا خلال 6 أسابيع، وفقًا لمعايير القطاع. إذا قامت المنظمات بإبلاغ Loop بقرارها، يمكننا تحديث البيانات. تقوم Loop بتتبع هذه المعلومات لنتعلم جميعًا المدة الزمنية التي يستغرقها التقييم واتخاذ القرار بشأن التحقيق أو عدمه، بناءً على مجموعة متنوعة من المرشحات/ المعايير.",
+            "firstParagraph": "تتحمل المنظمة المسؤولية في تقييم المعلومات للحد من المخاطر الإضافية وحماية الأشخاص، وتحديد ما إذا كانت ستجري تحقيقًا في القضية وكيفية ذلك."
+          },
+          "8": {
+            "title": "تم إغلاق التحقيق.",
+            "firstParagraph": "تتبع Loop كل الخطوات في العملية لتشجيع عملية مسؤولة وفي الوقت المحدد، بما في ذلك الوقت الذي يستغرقه إغلاق التحقيق والنتائج المترتبة عليه.",
+            "secondParagraph": "هناك العديد من الأسباب التي قد تجعل عملية التحقيق التي تقوم بها المنظمة تستغرق وقتاً طويلاً لإكمالها. تتبع Loop هذه العملية لنتعلم جميعاً متوسط الوقت الذي يستغرقه التحقيق، استناداً إلى معايير وفلاتر مختلفة، لإكماله."
+          },
+          "9": {
+            "title": "تم ابلاغ المؤلف.",
+            "firstParagraph": "النهج الذي يركز على الناجي يتطلب، بقدر الإمكان، أن يتم إعلام الشخص الذي قدم الإدعاء بالنتائج، على الأقل. إذا أخبرت المنظمات Loop عندما يقومون بذلك، يمكننا تحديث البيانات. تتبع Loop هذه البيانات لكي نتعلم جميعاً إذا كان الناجون/ الضحايا يتم إبلاغهم أم لا. هذه هي الخطوة الأخيرة في عملية المساءلة، وبعدها تصبح القضية \"قضية مغلقة\" وتستمر البيانات في الظهور في البيانات الكلية والفلاتر."
+          }
+        }
+      }
+    },
+    "decisionToInvestigate": "قرار التحقيق",
+    "investigation": "تحقيق",
+    "whatTypeOfCasesInAccountabilityProcess": {
+      "title": "ما هي أنواع الحالات الموجودة في عملية المساءلة حاليا؟",
+      "category": {
+        "SEAH": "الاستغلال الجنسي و التحرش",
+        "protection": "الحماية",
+        "fraudOrCorruption": "الاحتيال و الفساد",
+        "otherMisconduct": "سوء سلوك آخر"
+      },
+      "stack": {
+        "processAndRefer": "المعالجة و الإحالة",
+        "respondToAReferal": "الرد على الإحالة",
+        "assessWhetherToInvestigate": "تقييم الحاجة للتحقيق",
+        "ongoingInvestigation": "التحقيق مستمر",
+        "informingAuthorOfOutcome": "إبلاغ المؤلف بالنتائج"
+      },
+      "tooltip": "توضيح للأنواع المختلفة من القضايا التي تمر حالياً بمراحل متنوعة من عملية المساءلة"
+    },
+    "casesReceived": {
+      "title": "كم العدد الإجمالي للحالات التي تم استلامها؟",
+      "summary": {
+        "header": "تلقت Loop {{value}} حالات حساسة"
+      },
+      "table": {
+        "header1": "الحالات المغلقة",
+        "header2": "الحالات المفتوحة",
+        "header3": "إجمالي الحالات الطارئة",
+        "header4": "تم تقديم المساعدة"
+      },
+      "infoIcon": {
+        "content": "تظل الحالات مفتوحة حتى يتم التعامل معها بشكل كامل وفقًا لمعايير القطاع. تُغلق الحالات عندما لا يكون هناك حاجة لمزيد من الإجراءات، وعندما يكون ذلك ممكنًا، يتم إبلاغ المؤلف بالنتائج. تعتبر الحالة طارئة إذا كان المؤلف في خطر مباشر وبحاجة إلى مساعدة فورية."
+      }
+    },
+    "averageTimeByCase": {
+      "title": "ما هو متوسط الوقت المستغرق لمعالجة أنواع مختلفة من الحالات؟",
+      "types": {
+        "SEAH": "الاستغلال الجنسي و التحرش",
+        "protection": "الحماية",
+        "fraudOrCorruption": "الاحتيال والفساد",
+        "otherMisconduct": "أخرى"
+      },
+      "onAverageToClose": "في المتوسط لإغلاق",
+      "infoIcon": {
+        "content": "إذا قامت المنظمات بمشاركة Loop بتحديثات حول كل إحالة تم تلقيها، يمكن ل Loop تقديم نظرة على الاتجاهات المتعلقة بالنتائج المترتبة على الإبلاغ عن التعليقات الحساسة. هذا يعزز من فهمنا لأثر آليات الشكاوى ويوضح النقاط التي يجب التركيز عليها لتحسين النتائج."
+      }
+    },
+    "averageTimeToCompleteStep": {
+      "title": "ما هو متوسط الوقت المستغرق لإكمال كل خطوة من خطوات عملية المساءلة؟",
+      "infoTooltip": "لضمان اتباع نهج يركز على الناجين، تنص أفضل الممارسات على الوقت الذي ينبغي فيه إكمال هذه الخطوات. يوضح هذا القسم متوسط الوقت المستغرق لإكمال كل خطوة. الأخضر \"في الوقت المحدد\"، و الأصفر \"متأخر\" أو الأحمر \"غير مستجيب\".",
+      "timelinesLink": "المخططات الزمنية التي يوصى بها القطاع",
+      "respondToReferral": "الرد على الإحالة",
+      "assessWhetherToInvestigate": "تقييم ما إذا كان يجب إجراء التحقيق",
+      "completeInvestigation": "إكمال التحقيق",
+      "informTheAuthorOfOutcome": "أخبر\\أخبري المؤلف بالنتائج",
+      "closeCase": "إغلاق الحالة",
+      "daysTo": "أيام ل",
+      "dayTo": "يوم ل",
+      "tooltip": {
+        "content": {
+          "hours": "أكملت {{casesCount}} حالات هذه المرحلة من العملية في متوسط وقت قدره {{value}} ساعات",
+          "years": "أكملت {{casesCount}} حالات هذه المرحلة من العملية في متوسط وقت {{value}} سنوات",
+          "days": "أكملت {{casesCount}} حالات هذه المرحلة من العملية في متوسط وقت {{value}} أيام",
+          "months": "{{casesCount}} حالات، أكملت هذه المرحلة من العملية في متوسط وقت {{value}} أشهر"
+        },
+        "footer": {
+          "hours": "الإطار الزمني الموصى به للقطاع: خلال 48 ساعة",
+          "weeks": "الإطار الزمني الموصى به للقطاع: خلال 6 أسابيع",
+          "years": "الإطار الزمني الموصى به للقطاع: في غضون عامين"
+        }
+      },
+      "processAndRefer": "المعالجة و الإحالة"
+    },
+    "processAndRefer": "العملية و الإحالة",
+    "responseToReferral": "الرد على الإحالة",
+    "whatTypeOfPeopleReferredToAssistanceReceivedIt": {
+      "category": {
+        "SEAH": "الاستغلال الجنسي و التحرش",
+        "protection": "الحماية",
+        "fraudOrCorruption": "الاحتيال والفساد",
+        "otherMisconduct": "سوء سلوك آخر"
+      },
+      "stack": {
+        "yes": "نعم",
+        "yesServiceWereAllreadyInPlace": "نعم ، كانت الخدمات موجودة بالفعل",
+        "noAssistanceOfferedButNotReceived": "لا، تم عرض المساعدة و لكن لم يتم استلامها",
+        "noAssistanceNotRendered": "لا، لم يتم تقديم المساعدة",
+        "yesLongerTerm": "نعم ، تم تقديم الدعم على المدى الطويل"
+      },
+      "title": "هل تلقى <span class=\"highlight\">{{value}}</span> الأشخاص الذين تمت إحالتهم المساعدة؟",
+      "tooltip": "عندما تشارك المنظمات البيانات مع Loop، يمكننا إظهار عدد الناجين الذين تلقوا المساعدة. يساعدنا هذا جميعاً على فهم الانماط بشكل أفضل حول ما إذا كان الناجون يتلقون المساعدة التي يحتاجونها. يوضح هذا الرسم البياني عدد الإحالات التي أسفرت عن تقديم الدعم."
+    },
+    "whatTypeOfOrganizationReceivingAllegation": {
+      "tooltip": "لا تقوم Loop بمشاركة المعلومات التي قد تكشف عن هوية الأفراد أو المنظمات. نقدم هنا أنواع المنظمات ومكان التعليقات الحساسة ضمن عملية المساءلة. هذا يساعدنا جميعًا على تفهم الاتجاهات والسياق بشكل أفضل بناءً على الفلاتر.",
+      "stack": {
+        "governmentAuthorities": "السلطات الحكومية",
+        "nationalArmedForces": "القوات المسلحة الوطنية",
+        "privateSector": "القطاع الخاص",
+        "nationalCommunityBasedOrganisation": "منظمة وطنية/ مجتمعية",
+        "communityMember": "عضو في المجتمع",
+        "internationalOrganisation": "منظمة عالمية",
+        "other": "أخرى"
+      },
+      "category": {
+        "SEAH": "الاستغلال الجنسي و التحرش",
+        "protection": "الحماية",
+        "fraudOrCorruption": "الاحتيال والفساد",
+        "otherMisconduct": "سوء سلوك آخر"
+      },
+      "title": "ما هي أنواع المنظمات التي تستقبل الادعاءات؟"
+    },
+    "howAreOrganisationsHandlingAllegationsMadeAgainstThem": {
+      "title": "كيف تتعامل المنظمات مع الاتهامات الموجهة إليها؟",
+      "tooltip": "لا تقوم Loop بمشاركة المعلومات التي قد تكشف عن هوية الأفراد أو المنظمات. نقدم هنا تصنيفات المنظمات وموقع التعليقات الحساسة ضمن عملية المساءلة. هذا يمكننا جميعًا من فهم الاتجاهات والسياق بشكل أفضل بناءً على الفلاتر المستخدمة.",
+      "stack": {
+        "governmentAuthorities": "السلطات الحكومية",
+        "nationalArmedForces": "القوات المسلحة الوطنية",
+        "privateSector": "القطاع الخاص",
+        "nationalCommunityBasedOrganisation": "منظمة وطنية/ مجتمعية",
+        "communityMember": "عضو في المجتمع",
+        "internationalOrganisation": "منظمة عالمية",
+        "other": "آخر"
+      },
+      "category": {
+        "processAndRefer": "المعالجة و الإحالة",
+        "respondToReferral": "الاستجابة للإحالة",
+        "decideToInvestigate": "تقييم الحاجة للتحقيق",
+        "completeInvestigation": "التحقيق الجاري",
+        "informAuthorOfOutcome": "إبلاغ المؤلف بالنتيجة",
+        "closeACase": "تم إغلاق القضية"
+      }
+    },
+    "survivorAge": {
+      "title": "عمر الناجي",
+      "tooltip": "عندما تتوفر لدى Loop معلومات كافية للحفاظ على الخصوصية، نقوم بعرض أعمار الناجين بناءً على نوع الادعاء. هذا يساعدنا جميعًا على فهم الاتجاهات والسياق بشكل أفضل، وتقدم بعض المعلومات حول الأشخاص الذين يجب أن نوجه لهم أنشطة الدعم والحماية.",
+      "category": {
+        "SEAH": "الاستغلال الجنسي و التحرش",
+        "protection": "الحماية",
+        "fraudOrCorruption": "الاحتيال و الفساد",
+        "otherMisconduct": "سوء سلوك آخر"
+      },
+      "stack": [
+        "0-5",
+        "6-13",
+        "14-17",
+        "18-29",
+        "30-59",
+        "60+",
+        "غير متاح"
+      ]
+    },
+    "whoIsSharingSensitiveStories": {
+      "title": "من يشارك التعليقات الحساسة؟",
+      "tooltip": "عندما يتوفر لدى Loop بيانات كافية للحفاظ على خصوصية الهوية، نقوم بعرض فئات الأشخاص الذين يقدمون أنواع متنوعة من التعليقات الحساسة. هذا يمكننا جميعًا من فهم أفضل لمصدر المعلومات وتحديد الأشخاص الذين يمكننا تشجيعهم على الإبلاغ بأمان عن التعليقات الحساسة لتعزيز المساءلة، ومنع الاحتيال والإساءة، وحماية الأشخاص بشكل أكبر.",
+      "category": {
+        "SEAH": "الاستغلال الجنسي و التحرش",
+        "protection": "الحماية",
+        "fraudOrCorruption": "الاحتيال أو الفساد",
+        "otherMisconduct": "سوء سلوك آخر"
+      },
+      "stack": {
+        "survivor": "الناجي",
+        "witness": "الشاهد",
+        "orgPersonnel": "منظمة شؤون الموظفين",
+        "friendOrRelativeOfSurvivor": "صديق أو قريب للناجي",
+        "other": "آخر"
+      }
+    },
+    "subtitle2": "ما هي الاتجاهات السائدة في الادعاءات وكيف تتعامل المنظمات معها؟",
+    "subtitle3": "ما هي الصفحات الشخصية للمؤلفين والناجين من القضايا الحساسة التي تمت مشاركتها مع Loop؟",
+    "howResponsiveWeAreByStep": {
+      "title": "How responsive are organisations to allegation referrals?",
+      "stack": {
+        "processAndRefer": "المعالجة و الإحالة",
+        "respondToAReferral": "الاستجابة للإحالة",
+        "assessWhetherToInvestigate": "تقييم الحاجة للتحقيق",
+        "ongoingInvestigation": "التحقيق الجاري",
+        "informingAuthorOfOutcome": "إبلاغ المؤلف بالنتيجة"
+      },
+      "category": {
+        "actionTakenOnTime": "تم اتخاذ الإجراء في الوقت المناسب",
+        "overdue": "تأخر",
+        "unresponsive": "لا يستجيب",
+        "closedCases": "القضايا المغلقة"
+      },
+      "tooltip": {
+        "overdueAfter": "تأخر بعد",
+        "unresponsiveAfter": "لا يستجيب بعد",
+        "processAndRefer": {
+          "title": "المعالجة و الإحالة",
+          "content": "عندما تتلقى Loop قضية حساسة، يُتوقع من Loop، بناءً على معايير القطاع، أن تعالج القضية وتحيلها إلى منظمة مناسبة للمساءلة 1) وتقديم المساعدة 2) إذا كان ذلك مناسباً. يتعين علينا القيام بذلك في غضون 48 ساعة. نحن نراقب هذه المعلومات لنرى إذا كانت Loop قادرة على تحقيق هذا المعيار المتوقع ولنحمل أنفسنا المسؤولية العامة.",
+          "overdueAfter": "48 ساعة",
+          "unresponsiveAfter": " اسبوع"
+        },
+        "respondToAReferral": {
+          "title": "الرد على الإحالة",
+          "content": "من المتوقع أن تقر المنظمة بتلقي الإحالة في غضون 48 ساعة وفقًا لمعايير القطاع. عندما يتلقى Loop هذا الإقرار، سنقوم بتحديث البيانات. نقوم بتتبع هذه المعلومات لنرى إذا كانت المنظمات قادرة على الوفاء بهذا المعيار المتوقع.",
+          "overdueAfter": "48 ساعة",
+          "unresponsiveAfter": "1 اسبوع"
+        },
+        "assessWhetherToInvestigate": {
+          "title": "القرار بالتحقيق",
+          "content": "عندما تتلقى منظمة إحالة، من المتوقع، ووفقاً لمعايير القطاع، تقييمها و اتخاذ قرار بالتحقيق  بها أو عدم التحقيق في غضون 6 أسابيع. إذا أبلغت المنظمات Loop بهذا القرار، فيمكننا تحديث البيانات. تتعقب Loop هذه المعلومات حتى نتمكن جميعاً من معرفة الوقت الذي يستغرقه التقييم و اتخاذ قرار بالتحقيق أم لا، استناداً إلى المرشحات/ المعايير المختلفة.",
+          "overdueAfter": "6 أسابيع",
+          "unresponsiveAfter": "3 أشهر"
+        },
+        "ongoingInvestigation": {
+          "title": "وقت التحقيق",
+          "content": "عندما تفتح منظمة تحقيقاً، هناك العديد من الأسباب التي تجعل التحقيق يستغرق وقتاً طويلاً لإكماله. تحتفظ Loop بمسار حول هذا الأمر حتى نتمكن جميعاً من معرفة المدة التي يستغرقها، في المتوسط، بناءً على المرشحات/ المعايير المختلفة، لإكمال التحقيق.",
+          "overdueAfter": "سنتين",
+          "unresponsiveAfter": "3 أشهر"
+        },
+        "informingAuthorOfOutcome": {
+          "title": "إعلام المؤلف",
+          "content": "يتطلب النهج المتمحور حول الناجين، حيثما أمكن، إبقاء الشخص الذي قدم الادعاء على علم بالنتيجة. إذا أبلغت المؤسسات Loop عند قيامها بذلك، فيمكننا تحديث البيانات. تتعقب Loop هذه المعلومات حتى نتمكن جميعاً من معرفة ما إذا تم إبلاغ الناجين/ الضحايا أم لا.",
+          "overdueAfter": "48 ساعة",
+          "unresponsiveAfter": "48 ساعة"
+        }
+      },
+      "infoIcon": {
+        "content": "تتطلب أفضل الممارسات الاعتراف بجميع الادعاءات و تقييمها و التحقيق فيها إذا كان ذلك مناسباً و إبلاغ الشخص الذي يقدم الادعاء بالنتيجة. تنعكس كل خطوة من هذه العملية في عملية المساءلة هذه. لضمان اتباع نهج يركز على الناجين، تحدد معايير القطاع الوقت الذي يجب أن تكتمل خلاله كل خطوة من هذه الخطوات بواسطة {{infoLink}}. يوضح هذا الرسم البياني متوسط الوقت الذي تستغرقه جميع الحالات لكل خطوة من خطوات العملية. إذا كانت خضراء فهي \"في الوقت المحدد\"، و الأصفر \"متأخر\" أو الأحمر \"غير مستجيب\". الحالة المغلقة هي عندما لا تكون هناك حاجة إلى إجراءات أخرى في عملية المساءلة.",
+        "seeHere": "انظر\\انظري هنا",
+        "link": "/"
+      }
+    },
+    "outcomesOfInvestigation": {
+      "infoIcon": {
+        "content": "وفقًا لمعايير التقارير في القطاع، إذا قامت المنظمات بمشاركتنا نتائج الإحالات والتحقيقات، يمكن لـ Loop أن تظهر الاتجاهات المتعلقة بما نتج عن الإحالات. هذا يعزز فهمنا جميعًا للأثر الناجم عن تقديم الأفراد للتعليقات الحساسة ومتابعة المنظمات لعملية تحمل المسؤولية."
+      },
+      "title": "ما هي نتائج <span class=\"highlight\">{{value}}</span> التحقيقات المنجزة؟",
+      "types": {
+        "notEnoughInformation": "المعلومات غير كافية لتقييم الادعاء",
+        "offenceSubstantiatedAndOffender": "تم تأكيد الجريمة وتم فصل الجاني عن المنظمة والناجي نتيجة لذلك",
+        "offenderFacedDisciplinary": "واجه الجاني إجراءات تأديبية",
+        "offenderResignedFromOrganisation": "استقال الجاني من المنظمة قبل/ أثناء التحقيق",
+        "other": "نتيجة أخرى",
+        "referralToClearCheckMade": "تمت الإحالة للتحقق الواضح",
+        "referralToMisconductDisclosureScheme": "الإحالة إلى نظام الكشف عن سوء السلوك",
+        "notSubstantiated": "لم يتم إثباته"
+      }
+    },
+    "survivorGender": {
+      "title": "جنس الناجي",
+      "info": "عندما تتوفر لدى Loop معلومات كافية لضمان الخصوصية، نقوم بعرض جنس الأشخاص الذين نجوا بناءً على نوع الادعاء. هذا يمكننا جميعًا من فهم الاتجاهات والسياق بشكل أفضل، ويقدم بعض المعلومات حول الأشخاص الذين يجب أن نوجه لهم أنشطة الدعم والحماية."
+    },
+    "noAnonymousData": "لا يوجد عدد كافٍ من الحالات لعرض هذه البيانات بشكل آمن وضمان الحفاظ على الخصوصية"
+  },
+  "caseTypes": {
+    "SEAH": "الاستغلال الجنسي، الإساءة والتحرش",
+    "protection": "الحماية",
+    "fraudOrCorruption": "الاحتيال و الفساد",
+    "otherMisconduct": "سوء سلوك آخر",
+    "urgentCases": "الحالات الطارئة",
+    "label": "طبيعة القضية"
+  },
+  "smsOpenWelcome": "هذه خدمة آلية لمشاركة الملاحظات حول تجربتك مع المنظمات في منطقتك.",
+  "smsOpenReplayOnSubmit": "شكراً . خصوصيتك مهمة بالنسبة لنا. أي تفاصيل إضافية تقدمها ستساعدنا في توجيه ملاحظاتك إلى المنظمة المناسبة.",
+  "smsOpenEndReplay": "شكراً  على استخدام Loop. يرجى إخبار أصدقائك و عائلتك أنه يمكنهم استخدام Loop أيضاً.",
+  "smsOpenOrganisationHasReplied": "لقد قمت مؤخراً بمشاركة تعليقات مع Loop. أجاب شخص ما  من {organisation}. هذا ما قالوه:",
+  "smsOpenOrganisationHasRepliedEnd": "إذا كنت\\تِ ترغب\\ترغبين بالرد، ببساطة أرسل\\أرسلي لنا رسالة تحتوي على ما تود\\تودين قوله. لا يوجد أي ضرورة للرد.",
+  "smsOpenNotificationPublishedStory": "لقد قمت مؤخراً بإرسال تعليق على موقع TalkToLoop.org. وتم نشر هذه التعليقات الآن من قبل المشرف.",
+  "smsOpenNotificationRejectedStory": "قمت مؤخراً بإرسال تعليق إلى TalkToLoop.org. لكن المشرف اختار عدم نشرهه.",
+  "smsOpenNotificationPublishedReplay": "قمت مؤخراً بإرسال رد على التعليقات في TalkToLoop.org. وتم الآن نشر ردك بواسطة المشرف.",
+  "smsOpenNotificationRejectedReplay": "قمت مؤخراً بإرسال رد على التعليقات في TalkToLoop.org. لكن المشرف قرر عدم نشر الرد.",
+  "smsCloseWelcome": "هذه خدمة آلية لمشاركة تجربة أو تقديم شكوى قد تكون حساسة. نحن نهتم بخصوصيتك.",
+  "smsCloseReplayOnSubmit": "شكراً. سيساعدنا تقديم المزيد من المعلومات في معالجة تعليقاتك.",
+  "smsCloseReplayForConsent": "شكرًا لك. إذا لزم الأمر، هل يمكننا الاتصال بك بخصوص ملاحظاتك؟ إذا كانت الإجابة بنعم، فأجب\\فأجيبي بـ \"نعم\". إذا كانت الإجابة لا، فقم\\فقومي بالرد بـ \"لا\".",
+  "smsCloseReplayOnConsentAccept": "شكرا على ثقتك بـ Loop. سنبدأ الآن في معالجة تعليقاتك.",
+  "smsCloseReplayOnConsentDecline": "شكراً . لن نتواصل معك مرة أخرى حول هذا القضية، ولكننا سنقوم بالتحقيق فيها بأفضل طريقة ممكنة باستخدام المعلومات التي لدينا.",
+  "smsOpenWelcome2": "سيتم عرض تعليقاتك على الإنترنت. وسنقوم بإرسال الردود مباشرة إلى هاتفك. ولن يتمكن أي شخص آخر من الحصول على رقم هاتفك. يمكنك تقديم تعليقاتك الآن.",
+  "smsOpenReplayOnSubmit2": "أرسل\\أرسلي ردًا يتضمن اسمك و وعمرك  وموقعك والمنظمة التي تتعلق بها تعليقاتك. يمكن الرد بـ \"لا\" إذا كن لا ترغب\\ترغبين في تقديم هذه المعلومات.",
+  "smsOpenEndReplay2": "يمكنك التواصل معنا مرة أخرى ومشاركة تجربتك عن طريق الرد بـ \"\\Loop\"، أو \"\\X\" (للقضايا الحساسة) على هذا الرقم. شكراً.",
+  "smsOpenOrganisationHasRepliedEnd2": "في أي وقت، يمكنك مشاركتنا تجربة أخرى عبر إرسال رسالة نصية تحتوي على \"\\Loop\" أو \"\\X\" (للقضايا الحساسة) إلى هذا الرقم. شكراً. ",
+  "smsOpenNotificationRejectedStory2": "السبب وراء ذلك هو {{var:reject_reason:\"\"}}.",
+  "smsOpenNotificationRejectedReplay2": "السبب وراء ذلك هو {{var:reject_reason:\"\"}}}{{var:reject_rationale:\"\"}}.",
+  "smsOpenNotificationRejectedStory3": "أيضاً، قام المشرف بكتابة {{var:reject_rationale:\"\"}}.",
+  "smsCloseWelcome2": "لن تشارك Loop أي بيانات تعريف شخصية دون الحصول على موافقتك\\كِ. أنت\\تِ الآن قادر على مشاركة رأيك\\كِ.",
+  "smsCloseReplayOnConsentAccept2": "يمكنك\\كِ مشاركة تجربة أخرى معنا من خلال الرد بـ \"Loop\" (للمسائل غير الحساسة) أو \"X\" (للمسائل الحساسة) على هذا الرقم. شكراً لك\\كِ ووداعاً",
+  "smsCloseReplayOnConsentDecline2": "يمكنك\\كِ مشاركة تجربة أخرى معنا من خلال الرد بـ \"Loop\" أو \"X\" (للمسائل الحساسة) على هذا الرقم. شكراً لك\\كِ ووداعاً",
+  "smsCloseReplayOnSubmit2": "أرجو منك\\كِ الرد على هذا النص بتقديم اسمك\\كِ أو الاسم المستعار، العمر،الجنس،الموقع، واسم المنظمة في تعليقاتك. إذا أردتِ تجاوز هذه الخطوة، قم\\قومي بالرد بـ \"لا\".",
+  "inbox": {
+    "navigation": {
+      "stories": "التعليقات",
+      "replies": "الردود",
+      "requests": "طلبات",
+      "suggestions": "طلبات",
+      "rejections": "الرفض"
+    },
+    "filters": {
+      "labels": {
+        "language": "اللغة",
+        "country": "الدولة",
+        "channel": "قناة",
+        "targetLanguage": "اللغة المستهدفة",
+        "sensitivity": "حالة الحساسية"
+      },
+      "channel": {
+        "1": "الويب",
+        "2": "رسالة قصيرة",
+        "3": "فيسبوك ماسنجر",
+        "4": "واتس آب",
+        "5": "صوت"
+      }
+    },
+    "table": {
+      "dateTime": "التاريخ و الوقت",
+      "assignedTo": "تم التعيين إلى",
+      "channel": "القناة",
+      "status": "الحالة",
+      "country": "الدولة",
+      "language": "اللغة",
+      "type": "نوع التعليقات",
+      "stories": {
+        "label": "البريد الوارد للتعليقات"
+      },
+      "loading": "جارٍ تحميل التعليقات",
+      "actions": {
+        "review": "مراجعة"
+      },
+      "replies": {
+        "label": "الردود الواردة في البريد الوارد"
+      },
+      "languageAndCountry": "اللغة والبلد",
+      "actionsColumn": "Actions"
+    },
+    "storiesList": {
+      "sensitive": "حساس"
+    },
+    "moderator": {
+      "tags": {
+        "sensitive": "تم تعيين هذه الملاحظة تلقائيًا على أنها حساسة لأن العمر أقل من 14 عاما"
+      }
+    }
+  },
+  "language": {
+    "relativeTime": {
+      "s": "منذ عدة ثواني",
+      "ss": "منذ {{value}} ثواني",
+      "m": "منذ دقيقة",
+      "mm": "منذ {{value}} دقائق",
+      "h": "منذ ساعة",
+      "hh": "منذ {{value}} ساعات",
+      "d": "منذ يوم",
+      "dd": "منذ {{value}} أيام",
+      "M": "منذ شهر",
+      "MM": "منذ {{value}} أشهر",
+      "y": "منذ سنة",
+      "yy": "منذ {{value}} سنوات"
+    },
+    "monthsShort": {
+      "January": "كانون الثاني/يناير",
+      "February": "شباط/فبراير",
+      "March": "آذار/مارس",
+      "April": "نيسان/أبريل",
+      "May": "أيار/مايو",
+      "June": "حزيران/يونيو",
+      "July": "تموز/يوليو",
+      "August": "آب\\أغسطس",
+      "September": "أيلول/سمبتمر",
+      "October": "تشرين الاول",
+      "November": "تشرين الثاني/نوفمبر",
+      "December": "كانون الأول/ديسمبر"
+    }
+  },
+  "assistanceReferred": {
+    "yes": "نعم",
+    "no": "لا",
+    "notApplicable": "غير قابل للتطبيق",
+    "label": "المساعدة التي تمت الإشارة إليها"
+  },
+  "outcomesOfInvestigation": {
+    "offenceSubstantiatedAndOffender": "تم تأكيد الجريمة وتم فصل الجاني عن المنظمة والناجي نتيجة لذلك",
+    "offenderResignedFromOrganisation": "استقال الجاني من المنظمة قبل/ أثناء التحقيق",
+    "offenderFacedDisciplinary": "يواجه الجاني إجراءات تأديبية",
+    "notEnoughInformation": "لا توجد معلومات كافية لتقييم الادعاء",
+    "referralToMisconductDisclosureScheme": "تمت الإحالة إلى نظام الكشف عن المخالفات و/أو تم إجراء الفحص الواضح",
+    "label": "نتائج التحقيق",
+    "other": "نتيجة أخرى"
+  },
+  "social-bot": {
+    "messenger": {
+      "HELLO": "مرحبا! لقد تبين لنا أن لغتك هي الإنجليزية. هل تود\\تودين تغييرها؟",
+      "YES": "✅ نعم",
+      "NO": "❌ لا",
+      "CHANGED": "تغيير",
+      "NOTCHANGED": "بدون تغيير",
+      "CHOOSE_LANG": "الرجاء تحديد اللغة التي تفضلها\\تفضلينها باستخدام الأزرار الموجودة أدناه.",
+      "EN": "الإنجليزي",
+      "TL": "ويكانغ تاغالوغ",
+      "thanks": "🙏 شكراً",
+      "question": "❓ طلب معلومات",
+      "opinion": "💭 رأي",
+      "request": "💡 طلب المساعدة",
+      "concern": "☹️ مخاوف",
+      "STORY_TYPE_SENSITIVE_ISSUE": "⭕ مسألة حساسة",
+      "LANG_CHANGED": "تم تغيير اللغة إلى EN",
+      "SHOW_MORE": "عرض المزيد",
+      "SEND_MESSAGE": "حسنًا، ما هي رسالة الشكر التي ترغب\\ترغبين في مشاركتها؟",
+      "GET_STARTED_LOOP": "لنبدأ، من فضلك أخبرنا\\أخبرينا عن نوع التعليقات التي تود\\تودين مشاركتها معنا؟",
+      "WELCOME": "👋 أهلاً وسهلاً بك في Loop! هذه خدمة آليّة.",
+      "TALK_TO_LOOP": "يمكنك التواصل مع Loop بخصوص المنظمات التي تعمل في منطقتك. وسنقوم بترجمة تعليقاتك، ونحاول الحصول على ردود من المنظمات المعنية.",
+      "GET_STARTED": "ابدأ الآن",
+      "GREETINGS": "👋 مرحباً!  هذه خدمة آلية لمشاركة الملاحظات حول تجربتك مع المنظمات المختلفة في منطقتك.",
+      "PROMOTE_LOOP": "إذا كنت تود\\تودين التحدث عن موضوع حساس مثل:\n\n❌ الاستغلال الجنسي، الإساءة والتحرش\n❌ حماية الأطفال\n❌ الفساد\n❌ الاحتيال\n❌ أي انتهاك آخر لقواعد السلوك\n❌ أي سلوك غير لائق آخر\n\nنقترح عليك القيام بذلك مباشرة على موقعنا الإلكتروني هنا: https://app.talktoloop.org/new-story\n\nهذا يضمن أن معلوماتك وتعليقاتك تبقى فقط على خوادمنا.\n\nهل هذا هو ما كنت تبحث\\تبحثين عنه؟",
+      "ALTERNATIVE_STORY": "حسنًا. هل تود\\تودين مشاركة أي تعليقات غير حساسة أو تجربة مع منظمة في منطقتك؟",
+      "SENSITIVE_STORY_FLOW_CONFIRMATION": "حسنًا. نتطلع إلى تلقي تعليقاتك\\كِ الحساسة عبر موقعنا الإلكتروني في أقرب وقت ممكن. يمكنك\\كِ بدء هذه الخدمة مرة أخرى في أي وقت بالضغط على الزر أدناه:",
+      "RESTART": "🔄 إعادة التشغيل",
+      "SHARE_NEW_STORY": "✏ شارك\\شاركي الرأي مرة أخرى",
+      "PROMOTE_DESCRIPTION": "حسنًا، Loop هي المنصة التي تمكنك من المشاركة وإبداء رأيك\\كِ في القضايا التي تعنيك\\كِ. يمكنك\\كِ الحصول على معلومات أكثر عن Loop عبر زيارة موقعنا الإلكتروني www.talktoloop.org",
+      "END_OF_SERVICE": "هذه هي نهاية الخدمة الآلية. يمكنك مشاركة رسالة أخرى معنا في أي وقت من خلال النقر على الزر أدناه.",
+      "THANKS": "🙏 نشكرك كثيراً على استخدام Loop للتعبير عن رأيك وإحداث التغيير الإيجابي.",
+      "ADDITIONAL_INFO": "هل تستطيع تقديم معلومات إضافية تساعدنا في توجيه الردود إلى الأشخاص المناسبين؟\nإذا كان الأمر كذلك، يرجى الرد على هذه الرسالة بذكر اسم 🏛️ المنظمة (المنظمات) وموقعها 🌏️، أو أي تفاصيل أخرى تود\\تودين إضافتها.\nإذا انتهيت، يمكنك ببساطة الضغط على الزر أدناه.",
+      "FINISH": "إنهاء 🏁",
+      "THANKS_FOR_SHARING": "🙏 نشكرك على تقديم تعليقاتك لـ Loop.",
+      "SHARE_DETAILS": "هل يمكننا نشر هذه المعلومات من ملفكك الشخصي على Facebook مع تعليقك؟ هذا يمكننا من العثور على المنظمة الأكثر ملاءمة للرد على تعليقك.\n\n📛 اسمك\\كِ: {{first_name}}\n⚤ الجنس: {{gender}}",
+      "STORY_REVIEW": "سنقوم بمراجعة تعليقك الآن وسنعلمك خلال 48 ساعة عندما يتم نشره على الانترنت.",
+      "SHARING_THANKS": "💪 شكراً!",
+      "INVALID_OPTION": "أعتذر، لم أفهم ذلك. يرجى الاختيار من الخيارات السريعة الموجودة أدناه.",
+      "SEND_QUESTION": "حسنا، ما السؤال الذي ترغب في طرحه على TalkToLoop.org؟",
+      "SEND_OPINION": "حسنًا، ما هو الرأي الذي ترغب في مشاركته على TalkToLoop.org؟",
+      "SEND_SUGGESTION": "حسنًا، ما هو الطلب الذي ترغب في مشاركته على TalkToLoop.org؟",
+      "SEND_CONCERN": "حسناً، ما هي المخاوف التي تود\\توّدين مشاركتها على TalkToLoop.org؟",
+      "STORY_STATUS_PUBLISHED": "لقد أرسلت مؤخراً تعليقات على TalkToLoop.org. تم الآن نشر هذه التعليقات من قبل المشرف.",
+      "STORY_STATUS_REJECTED": "لقد أرسلت مؤخراً رداً على التعليقات على TalkToLoop.org. وقرر أحد المشرفين عدم نشر ردك. و السبب في ذلك هو {{reasonText}}.",
+      "ORGANIZATION_COMMENT": "لقد قمت مؤخراً بمشاركة التعليقات مع Loop. أجاب شخص ما (من {{organization}}).\n\nيمكنك عرض الرد و الاستجابة له باستخدام هذا الرابط {{reply}}\n\nيمكنك مشاركة المزيد من التعليقات معنا عن طريق كتابة \"Loop\" في أي وقت.",
+      "END_OF_SERVICE_MODERATOR_FLOW": "شكراً لردكم. سيراجع المشرف تعليقاتك خلال 48 ساعة. يمكنك مشاركة المزيد من التعليقات معنا في أي وقت من خلال النقر الزر أدناه",
+      "ADD_STORY_NOTIFICATION": "تمت إضافة تعليقك تلقائياً. شكراً.",
+      "ADD_STORY_NOTIFICATION_FAILED": "لا يمكن إضافة تعليقك. يرجى التواصل معنا.",
+      "FR": "اضغط على {index} للغة الفرنسية",
+      "AR": "العريبة",
+      "ES": "الإسبانية",
+      "KEEP_ANONYMOUS": "ليست مشكلة. ستبقي الاسم غير معروف."
+    },
+    "KEEP_ANONYMOUS": "لا مشكلة. سنحافظ على سرية هويتك.",
+    "SKIP": "تخطي",
+    "REUSE_DETAILS": "هل توافق / توافقين على نشر هذه البيانات التي شاركتها معنا من قبل الى جانب تعليقك\\كِ؟ الاسم: {{firstName}} العمر: {{age}} الجنس: {{gender}} الإعاقة: {{disability}}",
+    "REUSE_DETAILS_BUTTONS": "الرجاء استخدام الأزرار الموجودة أدناه، أو كتابة \"نعم\" أو \"لا\" للإجابة",
+    "PERSONAL_DETAILS": "حسناً، لقد انتهيت/ تقريباً. نود أن نسألك 4 أسئلة قصيرة عنك. هذا يساعدنا في إيصال تعليقاتك إلى الأشخاص المناسبين.",
+    "DONT_REUSE_DETAILS": "حسناً، هل تريد/ تريدين الإجابة على هذه الأسئلة مرة أخرى؟",
+    "USER_NAME": "(1/4) ما اسمك؟",
+    "USER_AGE": "(2/4) كم عمرك؟",
+    "USER_GENDER": "(3/4) ما جنسك؟",
+    "USER_DISABILITY": "(4/4) أخيراً، هل لديك حالة خاصة؟",
+    "SHARE_ADDITIONAL_INFO": "حسناً, كلما زاد عدد المعلومات التي تشاركها / تشاركينها، زاد عدد الأشخاص الذين قد يردون  التعليق. على سبيل المثال: 🏛️ اسم المنظمة/ات 🌏️ وبلد وموقع التعليق",
+    "CHOOSE_LANG": "ما هي اللغة التي تتحدثها / تتحدثينها؟",
+    "INVALID_OPTION": "أنا آسف، لم أفهم. الرجاء الاختيار من بين الخيارات السّريعة أدناه.",
+    "IF_SENSITIVE_STORY": "إذا كانت تعليقاتك حساسة فيرجى الانتقال إلى : https://app.talktoloop.org/provide-feedback ",
+    "TALK_TO_LOOP": "خلافاً لذلك، يرجى مشاركة تعليقك الآن.",
+    "THANKS": "شكرا لاستخدامك\\كِ Loop للتعبير عن رأيك\\كِ ولإحداث تغيير إيجابي. سنقوم الآن بمراجعة ونشر تعليقك خلال 24-48 ساعة، أو أسرع من ذلك. سوف نرسل لك\\كِ الردود عندما نحصل عليها. وداعاً. للبدء من جديد اكتب\\ي \"Loop\" أو اضغط\\اضغطي على الزر أدناه في أي وقت 😃",
+    "ADDITIONAL_INFO": "هل هناك أي شيء آخر يمكنك\\كِ مشاركته لمساعدتنا في إيصال التعليقات إلى الأشخاص المناسبين؟\nفي حال الإجابة بنعم، ما عليك\\كِ سوى الرد على هذه الرسالة باسم 🏛️ المنظمة/ات وموقعها 🌍، أو أي شيء آخر تريد\\تريدين إضافته. \nإذا انتهيت\\انتهيتي، ما عليك\\كِ سوى النقر على الزر أدناه.",
+    "RESTART": "🔄 أعد التشغيل",
+    "ORGANIZATION_COMMENT_WRITE": "لقد قمت\\ي مؤخراً بمشاركة تعليق مع Loop. وأجاب شخص (من {{organisation}}).\n\nيمكنك عرض الرد والإجابة باستخدام هذا الرابط: {{URL}}\n\nلمشاركة المزيد من التعليقات، اكتب \"Loop\" في أي وقت 😃",
+    "ANY_COMMENT_BUTTON": "لقد شاركت مؤخراً تعليق مع Loop. رد شخص ما على تعليقك.\n\nيمكنك عرض الرد و الاستجابة له باستخدام هذا الرابط: {{URL}} \n\nلمشاركة المزيد من التعليقات، اكتب \"Loop\" في أي وقت 😃",
+    "YES": "✅ نعم",
+    "NO": "❌ لا",
+    "EN": "Press {index} for English",
+    "TL": "Pindutin ang {index} para sa Tagalog",
+    "WELCOME": "👋 مرحباً  بك في TalkToLoop.org! هذه خدمة آلية.",
+    "GET_STARTED": "لنبدأ",
+    "GREETINGS": "👋 مرحباً!  هذه خدمة آلية لمشاركة الملاحظات حول تجربتك مع المنظمات في منطقتك.",
+    "SHARE_NEW_STORY": "✏ شارك المزيد من التعليقات",
+    "PROMOTE_DESCRIPTION": "حسناً. TalkToLoop.org هي المنصة الخاصة بك\\كِ للمشاركة والتعليق على القضايا التي تهمك. يمكنك معرفة المزيد عن TalkToLoop من خلال زيارة موقعنا الإلكتروني www.talktoloop.org",
+    "END_OF_SERVICE": "هذه هي نهاية الخدمة الآلية. يمكنك إرسال رسالة أخرى في أي وقت من خلال النقر على الزر أدناه.",
+    "STORY_STATUS_PUBLISHED": "لقد قمت\\تِ مؤخراً بإرسال تعليقاً على TalkToLoop.org. تم الأن نشر هذا التعليق من قِبَل المشرف. \n",
+    "STORY_STATUS_REJECTED": "قد أرسلت\\تِ مؤخراً تعليقاً على TalkToLoop.org. قرر أحد المشرفين عدم نشر ردك\\كِ. و السبب في ذلك هو {{reasonText}}.",
+    "END_OF_SERVICE_MODERATOR_FLOW_BUTTON": "شكرا لردكم. سيراجع المشرف تعليقاتكم خلال 48 ساعة. يمكنكم مشاركة المزيد من التعليقات معنا في أي وقت بواسطة النقر فوق الزر أدناه.",
+    "ADD_STORY_NOTIFICATION": "تم إرسال تعليقك. شكراً لك.",
+    "ADD_STORY_NOTIFICATION_FAILED": "لا يمكن إرسال تعليقك. يرجى التواصل معنا.",
+    "FR": "اضغط\\اي على {index} للغة الفرنسية",
+    "AR": "اضغط\\ي على {index} للغة العربية",
+    "ES": "اضغط\\اضغطي على {index} للغة الإسبانية",
+    "UK": "Натисніть {index} для український",
+    "PL": "Kliknij {index} aby zmienić język na Polski",
+    "LOZ": "Musine {index} Mwa silozi",
+    "NY": "Dinizani {index} Muci nyanja",
+    "BEM": "Tinikeni {index} Muci Bemba",
+    "TOG": "Amutyanke {index} Muci Tonga",
+    "ID": "Pers untuk {index} Bahasa",
+    "REUSE_DETAILS_WRITE": "يرجى كتابة \"نعم\" أو \"لا\" للإجابة",
+    "ORGANIZATION_COMMENT_BUTTON": "لقد قمت\\قمتي مؤخراً بمشاركة تعليق مع Loop. أجاب شخص ما (من {{organisation}}).\n\nيمكنك عرض الرد والإجابة باستخدام هذا الرابط: {{URL}}\n\nلمشاركة المزيد من التعليقات، اكتب \"Loop\" أو اضغط على الزر أدناه في أي وقت 😃",
+    "ANY_COMMENT_WRITE": "لقد شاركت مؤخراً  في تعليق مع Loop. رد شخص ما على تعليقك.\n\nيمكنك عرض الرد والإجابة باستخدام هذا الرابط: {{URL}} \n\nلمشاركة المزيد من التعليقات، اكتب \"Loop\" في أي وقت 😃",
+    "END_OF_SERVICE_MODERATOR_FLOW_WRITE": "شكرا لردكم. سيراجع المشرف تعليقاتكم خلال 48 ساعة. يمكنكم مشاركة المزيد من التعليقات معنا في أي وقت عن طريق كتابة \"Loop\"."
+  },
+  "whatsapp-bot": {
+    "twilio": {
+      "CHOOSE_LANG": "الرجاء اختيار اللغة الخاصة بك:",
+      "EN": "اضغط\\اضغطي على{index} للغة الإنجليزية",
+      "TL": "{index} Amutyankke التاغالوغية",
+      "WELCOME": "👋 أهلاً بك\\كِ في Loop! هذه خدمة تلقائية.",
+      "TALK_TO_LOOP": "يمكن التواصل مع Loop بخصوص المنظمات التي تعمل في منطقتك. سنقوم بترجمة ملاحظاتك ونحاول الحصول على ردود من المنظمات المعنية.",
+      "CHOOSE_LANG_DIDNT_UNDERSTAND": "عذراً، لم أتمكن من فهم ذلك بشكل جيد.\n\nيرجى اختيار لغتك:",
+      "SEND_OPINION": "ما الذي ترغب\\ترغبين في مشاركته اليوم؟",
+      "THANKS": "في جميع أنحاء العالم ، يستخدم الأشخاص Loop يوميًا لرفع أصواتهم وإحداث تغيير إيجابي. أنت تساعد\\تساعدين في إحداث فرق حقيقي في مجتمعك. 💪",
+      "ADDITIONAL_INFO_STORY": "هل يمكنك تقديم مزيد من التفاصيل لتساعدنا في توجيه ملاحظاتك إلى الأشخاص المناسبين؟\n\nمثل اسم 🏛️ المنظمة (المنظمات) و/أو 🌏️ موقعها.\n\nيمكنك الرد بـ \"لا\" إذا كنت لا ترغب في تقديم هذه المعلومات.",
+      "THANK_YOU_FOR_SHARING": "🙏 نشكرك على مشاركة تعليقاتك مع Loop.",
+      "SHARE_YOUR_NAME": "هل يمكننا نشر الاسم {{first_name}} بجانب نعليقاتك؟",
+      "SHARE_NAME_YES": "✅ اكتب \\ \"1 \\\" إذا كنت توافق\\توافقين على نشر الاسم {{first_name}} بجانب تعليقاتك.",
+      "SHARE_NAME_NO": "❌ اكتب \\ \"2 \\\" إذا كنت تفضل\\تفضلين عدم الكشف عن هويتك.",
+      "SHARE_YOUR_NAME_FALLBACK": "عذراً، لم أتمكن من فهم ذلك بشكل جيد.\n\n✅ اكتب نعم: إذا كنت توافق\\توافقين على نشر الاسم {{first_name}} بجانب تعليقاتك.\n\n❌ اكتب لا: إذا كنت تفضل\\تفضلين عدم الكشف عن هويتك.",
+      "FINISH": "حسنًا. سنقوم بمراجعة رأيك الآن وسنخبرك قرببا عندما يتم نشره على الإنترنت.",
+      "FINISH_RESTART": "لقد وصلنا إلى نهاية هذه الخدمة التلقائية.\n\nفي أي وقت، يمكنك مشاركتنا برسالة أخرى عبر كتابة 'Loop'.",
+      "PUBLISH_NAME_THANKS": "👍️ شكراً!",
+      "STAY_ANONYMOUS": "لا تقلق، سنحافظ على سرية هويتك.",
+      "ABOUT_YOURSELF": "هل يمكنك مشاركتنا بمعلومات إضافية عنك؟ مثل العمر، الجنس، و المكان الذي تقيم\\تقيمين فيه حالياً؟ هذه المعلومات تساعدنا في تحديد المنظمات الأكثر صلة للرد على ملاحظاتك.\n\nإذا كنت لا ترغب\\ترغبين في ذلك، فقط أرسل\\أرسلي \"لا\".",
+      "END_OF_SERVICE_MODERATOR_FLOW": "شكرا لردكم. سيقوم المشرف بمراجعة تعليقاتك خلال  48 ساعة. يمكنك مشاركة رسالة أخرى معنا في أي وقت عن طريق كتابة \"Loop\".",
+      "YES": "نعم",
+      "NO": "لا",
+      "SHARE_YOUR_NAME_ANSWERS": "✅ اكتب نعم: إذا كان من المقبول لنا نشر الاسم {{first_name}} وبجانب تعليقاتك.\n\n❌ اكتب لا: إذا كنت تفضل\\تفضلين عدم الكشف عن هويتك.",
+      "STORY_STATUS_PUBLISHED": "لقد أرسلت مؤخراً تعليقات على TalkToLoop.org. تم الآن نشر هذه التعليقات من قبل المشرف.",
+      "STORY_STATUS_REJECTED": "لقد أرسلت مؤخراً رداً على التعليقات على TalkToLoop.org. قرر أحد المشرفين عدم نشر ردك. و السبب في ذلك هو {{reasonText}}",
+      "ORGANIZATION_COMMENT": "لقد قمت مؤخراً بمشاركة تعليقات مع Loop. أجاب شخص ما (من {{organization}}).\n\nيمكنك عرض الرد و الاستجابة له باستخدام هذا الرابط {{reply}}\n\nيمكنك مشاركة المزيد من التعليقات معنا عن طريق كتابة \"Loop\" في أي وقت.",
+      "ANY_COMMENT": "لقد قمت\\قمتي مؤخراً بمشاركة تعليق مع Loop. لقد أجاب أحدهم. هذا ما قالوه: {{reply}} \n\nإذا كنت ترغب في الرد على هذه الرسالة، فما عليك سوى النقر على هذا الرابط {{URL}}\n\nيمكنك مشاركة المزيد من التعليقات معنا عن طريق كتابة \"Loop\" هنا في أي وقت.",
+      "ADD_STORY_NOTIFICATION": "تم إرسال تعليقك تلقائياً. شكراً.",
+      "ADD_STORY_NOTIFICATION_FAILED": "لا يمكن إضافة تعليقك. يرجى التواصل معنا.",
+      "LOZ": "اضغط على {index} للوزي",
+      "NY": "اضغط على {index} لشيشيوا",
+      "BEM": "اضغط على {index} لبيمبا",
+      "TOG": "Piliin ang {index} para sa Tonga",
+      "ID": "Pers untuk {{value}} Bahasa Indonesia",
+      "PRESS_FOR_LANG": "اضغط على {{value}} للغة الإنجليزية",
+      "PL": "Kliknij {index} aby zmienić język na Polski",
+      "UK": "Натисніть {index} для український"
+    }
+  },
+  "communityGuidelines": {
+    "header": {
+      "title": "إرشادات المجتمع",
+      "paragraph": {
+        "main": "المبدأ الأساسي لدينا هو أن الاستماع إلى مجموعة متنوعة من الآراء له قيمة، وأن هذا يؤدي إلى تحقيق تأثير أكبر. لذا، نحث على تبادل جميع الأراء بطريقة آمنة ومساندة وبحثية. مع احترام افكار وتجارب ووجهات نظر الآخرين. قد لا نتوافق دائماً، ولكن الخلاف ليس مبرراً للتصرف بأسلوب غير لائق. كن مباشراً وبناءً وإيجابياً.",
+        "1": "وكذلك، افترض\\افترضي الأفضل دائماً. يجب أن نتفهم أن الأشخاص قد يتفاعلون من خلال طرق متعددة وعقبات مختلفة: قد لا يستخدمون لغتهم الأم؛ قد يأتون من ثقافات متنوعة؛ قد يستخدمون ضمائر غير \"هو\" أو \"هي\"؛ قد يعيشون في مناطق زمنية مختلفة؛ قد يواجهون تحديات أخرى للمشاركة؛ قد لا يكونون ملمين بالأساليب الأخرى لوسائل التواصل الاجتماعي.",
+        "2": "تحدد المحادثات التي نجريها هنا الأجواء لكل من ينضم إلينا. ساهم\\ساهمي في تشكيل مستقبل هذا المجتمع بالمشاركة في المناقشات التي تجعل هذا المنتدى مكاناً جذاباً - وابتعد\\وابتعدي عن المناقشات التي لا تفعل ذلك. يقدم الحوار أدوات تمكن المجتمع من التعرف بشكل جماعي على أفضل (وأسوأ) المساهمات: قم\\قومي بتوجيه الآخرين، التصويت على التعليقات، الرد وتسجيل أي مخاوف أو قضايا مباشرة لمساعدة المجتمع على الاستفادة القصوى من المنصة.",
+        "3": "لضمان مكان آمن للتفاعل والاستماع، يتم مراجعة كل الردود والتعليقات من قبل المشرف قبل نشرها على المنصة المفتوحة والشفافة. في حال تم توفير تفاصيل الاتصال، سيقوم المشرف بإعلام الشخص بتوقيت النشر أو الأسباب التي منعت النشر، وما الإجراءات التي يمكن اتخاذها لتصحيح الأمر ليتم النشر.",
+        "4": "لن نقوم بنشر الردود أو التعليقات لخمسة أسباب رئيسية:"
+      }
+    },
+    "section": {
+      "1": {
+        "paragraph": {
+          "1": "تسعى Loop لتحفيز الأشخاص على المشاركة بطريقة آمنة وشاملة لسماع المزيد من الآراء. ولهذا السبب، لن نقوم بنشر أي تعليقات أو ردود تحتوي على:",
+          "2": "<strong>التحرش أو الاعتداء:</strong> لا يجوز لك بالقيام بأعمال التحرش الموجهة ضد الأشخاص أو بتحريض الآخرين على القيام بذلك. هذا يتضمن الرغبة أو الأمل في أن يتعرض شخص ما للأذى الجسدي، أو الإهانة أو التقليل من قيمتهم. ويشمل أيضاً التعليقات الجنسية أو النكت في التفاعلات."
+        },
+        "title": "التعليق/ الرد تضمنت لغة تمييزية أو مهينة."
+      },
+      "2": {
+        "title": "لا يتبع التعليق / الرد معايير المجتمع التي تم تصميمها لضمان مساحة آمنة لمشاركة التعليقات.",
+        "paragraph": {
+          "1": "يمكن لـ Loop أن تساهم بشكل إيجابي في تقديم البيانات لإجراء تحسينات على تقديم الخدمة إذا تمكن الأشخاص من خلفيات متنوعة من المشاركة والتعلم والتفاعل. نحن نحث على الاستماع بنشاط إلى الأفكار الجديدة والاحترام لها. كن قدوة.",
+          "2": "<strong>السلوك المحرض على الكراهية:</strong> من غير الجائز أن تشجع\\تشجعين على العنف ضد الأشخاص، أو تهددهم\\تهددينهم، أو تتحرش\\تتحرشين بهم بناءً على أي أساس، بما في ذلك: العرق، الإثنية، الأصل القومي، الطبقة، التوجه الجنسي، الجنس، الهوية الجنسية، الانتماء الديني، العمر، الإعاقة، الأمراض الخطيرة، اللغة الأم، الوضع الاقتصادي والاجتماعي، الموقع الجغرافي، وغيرها. الهجوم على شخص بسبب آرائه ومعتقداته وأفكاره أيضًا غير مقبول، كما أن استخدام اللغة النابية أو الإهانة غير مقبول.",
+          "3": "<strong>العنف:</strong> من غير المسموح لك بتوجيه تهديدات عنيفة ضد شخص أو مجموعة من الأشخاص. وكما نحظر تمجيد العنف.",
+          "4": "<strong>الإرهاب/ التطرف العنيف</strong> لا يجوز لك\\كِ التهديد أو الترويج للإرهاب أو التطرف العنيف.",
+          "5": "<strong>الاستغلال:</strong> نحن لا نقبل بأي شكل من أشكال الاستغلال، وهذا يشمل الاستغلال الجنسي للأطفال.",
+          "6": "<strong>الانتحار أو الإضرار بالنفس:</strong> لا يجوز لك تشجيع أو الترويج للإنتحار أو الإضرار بالنفس.",
+          "7": "<strong>سلع أو خدمات غير قانونية أو خاضعة للضوابط</strong> لا يجوز لك استخدام خدمتنا لأغراض غير قانونية أو لدعم الأنشطة الغير قانونية."
+        }
+      },
+      "3": {
+        "paragraph": {
+          "1": "تحث Loop الأفراد على التعبير عن آرائهم وتجاربهم الشخصية باللغة الأولى، التي قد يكون قد أفادهم بها شخص آخر. هذا سيضمن أن كل ردود الفعل تمثل تجربة فردية ورأي شخص واحد، لضمان تمثيل عادل للتجارب والآراء.",
+          "2": "<strong>انتحال الهوية أو الإبلاغ الكاذب:</strong> لا يُسمح لك بتقمص شخصيات الأفراد أو الجماعات أو المنظمات. هذا قد يسبب الخلط والارتباك أو يخدع الآخرين.",
+          "3": "<strong>التلاعب بالمنصة والرسائل غير المرغوب فيها:</strong> لا يُسمح باستخدام Loop للتلاعب أو التدخل في العمليات المدنية. هذا يشمل نشر أو توزيع محتوى قد يكبح المشاركة أو يضلل الأشخاص بشأن الوقت أو المكان أو الطريقة التي يمكنهم من خلالها المشاركة في العمليات المدنية.",
+          "4": "<strong>المنشورات التي تم إنشاؤها بواسطة الكمبيوتر:</strong> لا يُسمح لك بالتلاعب بالمنشورات لتأييد وجهة نظر محددة أو للتأثير على الرأي العام. يجب أن تكون الردود والتعليقات تجارب حقيقية من الشخص الذي يقوم بالنشر، ولا يجب أن تتحدث بالنيابة عن شخص آخر بدون موافقته.",
+          "5": "<strong>حقوق الطبع والنشر و العلامات التجارية</strong> لا يجوز لك الادعاء بتمثيل مؤسسة أو شخص دون موافقتهم الصريحة."
+        },
+        "title": "هناك مخاوف بشأن صحة التعليقات/ الرد."
+      },
+      "4": {
+        "title": "هناك قلق من أن التعليقات/ الردود قد تسبب ضرراً إذا تم نشرها علناً. يتم إحالته إلى أخصائي.",
+        "paragraph": {
+          "1": "تهدف Loop إلى عدم إلحاق الضرر بالأفراد و المنظمات نتيجة للتعليقات أو الردود.",
+          "2": "<strong>الحماية:</strong> إذا كانت التعليقات والمعلومات الأخرى التي تم مشاركتها بشكل طوعي، قد تعرض سلامة أي شخص للخطر، بما في ذلك التعرف عليهم بشكل محتمل، عند نشرها على موقع مفتوح وشفاف، فسيتم إعادة التعليقات/ الرد لاقتراح إزالة بعض المعلومات التعريفية أو تحويلها إلى نظام التعليقات الحساس. قد يقرر مشرف Loop إزالة بعض العلامات التي كشف عنها الفرد إذا كان هناك قلق من أنه يمكن التعرف عليهم وأن الضرر قد ينتج عن ذلك.",
+          "3": "<strong>اتهام غير مؤكد:</strong> لن يتم نشر أي منشور يحتوي على تصريح قد يشكل خطراً كبيراً على شخص أو منظمة على الموقع العام، بل سيتم توجيهه إلى خدمة Loop المغلقة لتحويله إلى الجهة المناسبة للتعامل مع المعلومات بطريقة آمنة ومسؤولة."
+        }
+      },
+      "5": {
+        "paragraph": {
+          "1": "يجب أن تحترم جميع المنشورات حق الأشخاص في الخصوصية والسرية.",
+          "2": "<strong>المعلومات الخاصة</strong> لا يجوز لك نشر أو إرسال المعلومات الخاصة بأشخاص آخرين (مثل رقم هاتف المنزل و العنوان) دون  إذن وتصريح منهم."
+        },
+        "title": "التعليقات لا تحترم حق الخصوصية للآخرين."
+      },
+      "6": {
+        "title": "كيفية الإبلاغ إذا كنت تعتقد أن إرشادات المجتمع هذه لم يتم احترامها:",
+        "paragraph": {
+          "1": "إذا كنت تعتقد أن بعض التعليقات أو الردود قد تنتهك أي من المعايير أو القواعد المذكورة أعلاه، يرجى إرسال بريد إلكتروني على <a href=\"mailto: hello@talktoloop.org\">hello@TalkToLoop.org</a> ومع رابط للتعليق/ الرد المثير للقلق وشرح وجهة نظرك. ستتلقى\\ستتلقين ردًا خلال 48 ساعة.",
+          "2": "من أجل الحفاظ على مجتمعنا، يحتفظ المشرفين بالحق في إزالة أي محتوى و أي حساب مستخدم لأي سبب في أي وقت. يقوم المشرفين باستعراض جميع المنشورات الجديدة؛ يبذل المشرفين و مشغلو الموقع كل ما في وسعهم للحفاظ على مساحة آمنة، و مع ذلك لا يمكننا تحمل المسؤولية عن أي محتوى ينشر من قبل المجتمع.",
+          "3": "لقد استخدمنا قوانين و مدونات قواعد سلوك تويتر/X و موزيلا للإبلاغ عن هذا المستند. سنقوم بتحسينها و تحديثها بينما نتعلم و ننمو. الرجاء مشاركة <a href=\"https://community.ready-initiative.org/login\">التعديلات و التحسينات المقترحة</a>"
+        }
+      }
+    }
+  },
+  "routes": {
+    "login": "تسجيل الدخول",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "changePassword": "تغيير كلمة المرور",
+    "communityGuidelines": "إرشادات المجتمع",
+    "stories": "التعليقات",
+    "inbox": "صندوق الوارد",
+    "replies": "الردود",
+    "reviewReply": "مراجعة الرد",
+    "inboxStories": "التعليقات",
+    "reviewStory": "مراجعة التعليقات",
+    "newStory": "تقديم التعليقات",
+    "profile": "حساب تعريفي",
+    "statistics": "الإحصائيات",
+    "openStories": "ردود تعليقات مفتوحة",
+    "sensitiveCases": "حالات حساسة",
+    "storyDetails": "تفاصيل التعليقات",
+    "inboxReplies": "الردود",
+    "confirmUser": "تعيين كلمة المرور",
+    "translateStory": "ترجمة التعليقات",
+    "outbox": "الصندوق الصادر",
+    "outboxInProgress": "قيد التنفيذ",
+    "outboxRejected": "مرفوض",
+    "outboxPendingRecording": "في انتظار التسجيل",
+    "transcribeReply": "تدوين الرد",
+    "reviewAndTranslate": "مراجعة و ترجمة",
+    "magicLinkLogin": "تسجيل الدخول بواسطة الرابط السحري",
+    "register": "مرحبًا بك في Loop",
+    "registerIndividual": "كيف يجب أن ندعوك؟",
+    "magicLinkSent": "شكراً لك!",
+    "registerOrganization": "ابحث عن منظمتك",
+    "createOrganization": "إنشاء منظمة جديدة",
+    "processing": "لحظة واحدة بينما نتحقق من حسابك",
+    "acceptTerms": "نحن نهتم بخصوصية بياناتك",
+    "confirmName": "الرجاء تاكيد الإسم كامل"
+  },
+  "outbox": {
+    "navigation": {
+      "pending-recording": "في انتظار التسجيل",
+      "archive": "أرشيف",
+      "in-progress": "قيد التنفيذ"
+    },
+    "table": {
+      "targetLanguage": "اللغة المستهدفة",
+      "dateTime": "التاريخ والوقت",
+      "moderator": "مشرف",
+      "reply": "رد",
+      "actions": {
+        "review": "مراجعة"
+      },
+      "pendingRecording": {
+        "label": "تسجيل صندوق الصادر"
+      }
+    },
+    "details": {
+      "title": "تسجيل الرسالة الصادرة",
+      "subtitle": "Record the script in the purple box",
+      "introAudio": "مقدمة الصوت",
+      "preRecorder": "مسجل مسبقاً",
+      "audioToRecord": "صوت للتسجيل",
+      "outroAudio": "خاتمة الصوت",
+      "sendThreeMessages": "إرسال 3 رسائل",
+      "hideStory": "إخفاء التعليقات",
+      "showStory": "إظهار التعليقات",
+      "backToOutbox": "Back to outbox",
+      "startHere": "ابدأ هنا",
+      "noContentForSelectedLanguageToast": {
+        "title": "اللغة غير مدعومة حتى الآن",
+        "subtitle": "لغتك غير مدعومة عبر IVRR"
+      },
+      "originalStoryInformation": "معلومات التعليقات الأصلية"
+    }
+  },
+  "pin-to-story": {
+    "story": "التعليقات",
+    "pinned": "مثبت على التعليقات",
+    "pin": "تثبيت على التعليقات",
+    "unpin": "إلغاء التثبيت"
+  },
+  "smsOpenLanguageSentence": "\\nاضغط\\اضغطي على {index} للغة الإنجليزية",
+  "smsOpenTrigger": "شكراً لتواصلك مع Loop. الرجاء اختيار لغتك:",
+  "smsCloseTrigger": "مرحباً بكم في Loop المغلقة. الرجاء اختيار لغتك:",
+  "got": {
+    "it": "مفهوم"
+  },
+  "Registration": {
+    "Early_Access": "TalkToLoop.org – الدخول المبكر",
+    "Header_1": "من الرائع أنك مهتم\\مهتمة بأن تكون\\تكوني جزءاً من Loop!",
+    "Header_2": "إن امتلاك حساب يعني أنه لا يتعين عليك إدخال التفاصيل الخاصة بك واحدة، لذا فإن البقاء على تواصل سيسرع و يسهل الامر بالنسبة لك\\كِ في كل مرة.",
+    "Header_3": "بالنسبة للمؤسسات، فهذا يعني أنك ستتلقى\\ستتلقين أيضاً إشعارات حول سلاسل المحادثات التي تشارك\\تشاركين فيها أو المشار إليك\\إليكِ فيها أيضاً.",
+    "Header_4": "هل تعمل\\تعملين في منظمة تقدم الدعم للأشخاص المحتاجين؟",
+    "Header_5": "على سبيل المثال، منظمة إنسانية أو تنموية أو غير حكومية أو غير ربحية أو خيرية أو مجتمع مدني؟ إذا لم يكن الأمر كذلك، فاترك هذا المربع دون تحديد.",
+    "Name": "الاسم أو الاسم المستعار",
+    "Name_1": "يرجى كتابة اسمك\\كِ أو الاسم المستعار الخاص بك\\كِ في الأسفل. سيتم عرضه بجانب أي تعليقات أو ردود تقوم بنشرها على TalkToLoop.org.",
+    "Email": "عنوان البريد الإلكتروني",
+    "Email_1": "أدخل\\ي عنوان بريدك الالكتروني أدناه. سنقوم بإعلامك هنا إذا كان هناك رد على أي شيء تقوم بنشره.",
+    "Phone": "رقم الهاتف",
+    "Phone_1": "لتلقي رسالة لمرة واحدة عندما يكون TalkToLoop.org متاحاً للاستخدام عبر WhatsApp / أو الرسائل القصيرة، أدخل رقم هاتفك الكامل أدناه.",
+    "Phone_2": "يرجى إدراج رمز البلد الدولي كما هو موضح أدناه. ولن نشارك هذا الرقم مع أي طرف آخر.",
+    "Phonenumber": "الفلبين: 6789-345-12(0) 63+",
+    "Phonenumber_1": "زامبيا: 456789-123(0) 260+",
+    "Consent": "موافقة",
+    "Consent_1": "أعطي موافقتي على نشر اسمي، كما هو مدون أعلاه، بجانب أي ردود أو تعليقات أقوم بنشرها على TalkToLoop.org",
+    "Submit": "تقديم",
+    "Submit_1": "لا تقم\\تقومي مطلقاً بإرسال كلمات المرور من خلال نماذج Airtable. أبلغ\\أبلغي عن النموذج الضار"
+  },
+  "comment": {
+    "status": {
+      "published_and_pending_call": "مكالمة معلقة"
+    },
+    "previewReply": "معاينة الرد",
+    "reRecordReply": "إعادة تسجيل الرد"
+  },
+  "createNewOrganization": {
+    "title": "إنشاء منظمة جديدة",
+    "description": {
+      "text": "قم\\قومي بتضمين البلد فقط في حقل الاسم، إذا كان جزءًا من الاسم الرسمي للمنظمة. قم\\قومي بكتابة الأسماء الخاصة فقط بحروف كبيرة (مثل 'Alliance for Community Action' وليس 'ALLIANCE For Community Action').",
+      "title": "الاسم الكامل للمنظمة"
+    },
+    "acronym": {
+      "text": "هذه المنظمة معروفة أكثر بالاختصار (مثل CARE، ADRA، UNICEF)",
+      "title": "اختصار",
+      "description": "سيكون هذا الاختصار هو الاسم الأساسي المعروض لهذه المنظمة. و سيكون الاسم الكامل للمنظمة مرئيًا فقط بشكل ثانوي."
+    },
+    "country": {
+      "title": "فرع البلد",
+      "description": "تُستخدم الدول للتمييز بين فروع مختلفة لنفس المنظمة. ارجو تحديد فرع الدولة لهذه المنظمة."
+    },
+    "cancel": "إلغاء",
+    "create": "إنشاء منظمة جديدة"
+  },
+  "organisation": {
+    "invitation": {
+      "title": "ادعو شخصا إلى منظمة",
+      "invite": "دعوة",
+      "errorMessage": "يرجى اختيار منظمة لدعوة البريد الإلكتروني أعلاه للانضمام.",
+      "linkEmail": "ربط البريد الإلكتروني بالمنظمة",
+      "email": "البريد الإلكتروني للمنظمة",
+      "language": "لغة الدعوة",
+      "userExistsPart1": "الشخص ذو العنوان البريد الإلكتروني",
+      "userExistsPart2": "هو أو هي موظف/موظفة بالفعل في المنظمة المذكورة",
+      "userExistsPart3": "لا يمكن دعوة هذا الشخص إلى منظمة أخرى.",
+      "noResult": "لم يتم العثور على أي منظمة تطابق بحثك.",
+      "emailInvitedPart2": "حاليا في قائمة الدعوة لهذا التعليق."
+    }
+  },
+  "yourMagicLinkNotification": "مرحبا،\n\nلتسجيل الدخول إلى حسابك، الرجاء الدخول إلى TalkToLoop.org، والنقر على الرابط أدناه\n\nرابط سحري\n\nستنتهي صلاحية الرابط السحري الخاص بك خلال\nدقائق.\n\nوإذا انتهت صلاحية الرابط الخاص ، يرجى\nتسجيل الدخول مرة أخرى، لتلقي رابطا أخر.\n\nمع خالص التحية،\nفريق TalkToLoop.org",
+  "youHaveBeenConnectedToOrganizationNotification": "مرحبا،\n\nTalkToLoop.org هي منصة مجانية تربطك بالمجتمعات التي تعمل معها. ويتوسع عمل Loop بسرعة مع المنظمات مثل منظمتك، والمجتمعات في {{var:organisation}} وأبعد من ذلك أيضاً.\n\nولقد نشرنا للتو تعليقات من المجتمع نعتقد أنها ستكون ذات صلة بمنظمتك.\n\nتستطيع قراءة والرد على التعليقات باستخدام الزر أدناه.\n\nعرض التعليقات\n\nإذا لم يعمل الزر، انسخ\\ي و الصق\\ي الرابط أدناه في شريط العنوان لمتصفحك:\n\nمع خالص التحية،\nفريق TalkToLoop.org",
+  "youHaveBeenInvitedToOrganizationNotification": "مرحبا،\n\nTalkToLoop.org هي منصة مجانية تربطك بالمجتمعات التي تعمل معها. ويتوسع عمل Loop بسرعة مع منظمات مثل منظمتك والمجتمعات حول العالم.\n\nلقد تمت دعوتك للانضمام إلى {{var:organisation.name}} على TalkToLoop.org. لقبول هذه الدعوة، انقر على الزر أدناه.\n\nقبول الدعوة\n\nإذا لم يعمل الزر، يمكنك نسخ ولصق الرابط التالي في متصفحك\n\nمع خالص التحية، \nفريق TalkToLoop.org\n",
+  "downloadButton": {
+    "text": "تحميل"
+  },
+  "requestPremium": {
+    "modal": {
+      "header": {
+        "text": "ادعم Loop لتحميل البيانات"
+      },
+      "table": {
+        "free": {
+          "title": "مجاني",
+          "subtitle": "للأبد"
+        },
+        "premium": {
+          "title": "داعم",
+          "subtitle": {
+            "part1": "€1000*",
+            "part2": "/السنة"
+          }
+        },
+        "rows": {
+          "first": "قم\\قومي بتحميل البيانات كملف CSV",
+          "second": "استخراج البيانات تلقائيا عبر API",
+          "third": "بتصفية البيانات على صفحة الإحصائيات الخاصة بنا",
+          "fourth": "قم بالرد على التعليقات بمختلف اللغات",
+          "fifth": "احصل على إشعار عندما يتم وسم منظمتك في التعليقات"
+        },
+        "additionalInfo": {
+          "text": "* مستوى الداعم متاح مجانًا لمنظمات المجتمع المدني المحلية.",
+          "button": {
+            "text": "قدّم الآن"
+          }
+        }
+      },
+      "footer": {
+        "cancelButton": {
+          "text": "إلغاء"
+        },
+        "requestButton": {
+          "text": "أصبح داعم لـ Loop"
+        }
+      }
+    },
+    "description": "سيتواصل معك أحد أفراد الفريق في أقرب وقت ممكن",
+    "title": "تم تقديم طلبك"
+  },
+  "min": "Min",
+  "max": "Max",
+  "seconds": "Seconds",
+  "wordCount": {
+    "singleWord": "word",
+    "multipleWords": "words"
+  },
+  "duration": {
+    "minutes": "min",
+    "seconds": "sec"
+  },
+  "simplePlayer": {
+    "playing": "Playing...",
+    "play": "Play",
+    "loading": "Loading..."
+  },
+  "pagination": {
+    "info": "{{firstVisibleItemNumber}} - {{lastVisibleItemNumber}} of {{totalItems}}",
+    "itemsPerPage": "Items per page",
+    "selectAll": "اختر الكل",
+    "reject": "رفض{{count}}",
+    "assignModerators": "تعيين المشرفين ({{count}})",
+    "deselectAll": "الغاء تحديد الكل"
+  }
+}

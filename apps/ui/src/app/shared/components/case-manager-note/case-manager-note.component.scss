@@ -1,0 +1,41 @@
+@import 'loop-design-system-v2/colors';
+@import 'mixins';
+
+:host {
+  display: block;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: $neutral-800;
+  border-radius: 0.5rem;
+  padding: 2.25rem 1.5rem;
+  border: 1px solid $neutral-500;
+  @include mobile-and-tablet-only {
+    padding: 2.125rem 1.375rem;
+  }
+  .case-manager-note {
+    &-name {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      @include mobile-and-tablet-only {
+        font-size: 1.125rem;
+        margin-bottom: 0.625rem;
+      }
+    }
+    &-date {
+      font-size: 1rem;
+      color: $neutral-500;
+      margin-bottom: 1.5rem;
+      @include mobile-and-tablet-only {
+        font-size: 0.875rem;
+        margin-bottom: 1.375rem;
+      }
+    }
+    &-text {
+      font-size: 1.125rem;
+      @include mobile-and-tablet-only {
+        font-size: 1rem;
+      }
+    }
+  }
+}

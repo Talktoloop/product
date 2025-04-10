@@ -1,0 +1,90 @@
+<div class="new-story-info" [class.review]="isReview">
+  <h4 class="new-story-info__title bold">{{ 'newStoryV2.steps.info.title' | translate }}</h4>
+  <!-- VISIBILITY -->
+  <span cy="new-story-info-visibility-text" class="new-story-info__visibility inline-flex-center-left">
+    <ng-container *ngIf="isSensitiveStory; else publicVisibility">
+      <app-visibility-hidden-icon class="mr-0938"></app-visibility-hidden-icon
+      >{{ 'newStoryV2.steps.info.visibilityHidden' | translate }}</ng-container
+    >
+    <ng-template #publicVisibility>
+      <app-visibility-icon class="mr-0938"></app-visibility-icon>{{ 'newStoryV2.steps.info.visibility' | translate }}</ng-template
+    >
+  </span>
+  <!-- STORY TEXT -->
+  <p cy="new-story-info-story-text" class="new-story-info__story-text">{{ storyText || '-' }}</p>
+  <!-- EDIT STORY -->
+  <span (click)="onEditStoryClick()" class="new-story-info__edit-story bold inline-flex-center-left">
+    <app-edit-pencil-icon class="mr-0938"></app-edit-pencil-icon>
+    {{ 'newStoryV2.steps.info.editStory' | translate }}
+  </span>
+  <!-- STORY TYPE -->
+  <div class="new-story-info__type d-flex f-column">
+    <span class="new-story-info__section-title mb-0625 input-description">{{ 'newStoryV2.steps.info.storyType' | translate }}</span>
+    <div class="new-story-info__type__value nomb">
+      <loop-story-type-boxgroup
+        [class.d-none]="isSensitiveStory"
+        [ngModel]="step1Form.get('categories').value"
+        [clearWhen]="isSensitiveStory"
+        [storyInfoMode]="true"
+      ></loop-story-type-boxgroup>
+      <loop-story-tag
+        *ngIf="isSensitiveStory"
+        [category]="StoryCategory.SENSITIVE"
+        [tagSize]="TagSize.LARGE"
+        [fitContent]="true"
+      ></loop-story-tag>
+    </div>
+  </div>
+  <!-- LOCATION -->
+  <div class="new-story-info__location d-flex f-column">
+    <span class="new-story-info__section-title input-description">{{ 'newStoryV2.steps.info.location' | translate }}</span>
+    <span cy="new-story-info-location-text" class="new-story-info__text-value">{{
+      (regionId | placeOrCountry : countryCode | async) || '-'
+    }}</span>
+  </div>
+  <!-- ORGANISATION -->
+  <div class="new-story-info__organisation d-flex f-column">
+    <span class="new-story-info__section-title input-description">{{ 'newStoryV2.steps.info.organisation' | translate }}</span>
+    <ng-container *ngIf="organisaztions.length; else noOrganisation">
+      <span *ngFor="let organisation of organisaztions" cy="new-story-info-organisation-text" class="new-story-info__organisation-value">{{
+        getOrganisation(organisation)
+      }}</span>
+    </ng-container>
+    <ng-template #noOrganisation>
+      <span class="new-story-info__text-value">-</span>
+    </ng-template>
+  </div>
+  <!-- STORY BY -->
+  <div class="new-story-info__story-by d-flex f-column">
+    <span class="new-story-info__section-title input-description">{{ 'newStoryV2.steps.info.storyBy' | translate }}</span>
+    <span cy="new-story-info-story-by-text" class="new-story-info__text-value">{{ storyBy || '-' }}</span>
+  </div>
+  <div *ngIf="isReview" class="section-separator"></div>
+  <!-- SUBMIT SECTION -->
+  <div *ngIf="isReview">
+    <loop-checkbox
+      [formControl]="consentFormControl"
+      [requiredErrorText]="'newStoryV2.steps.info.consentInfoError' | translate"
+      cy="new-story-info-consent-chkbox"
+    >
+      <p
+        [innerHtml]="(isSensitiveStory ? 'newStoryV2.steps.info.sensitiveConsentInfo' : 'newStoryV2.steps.info.consentInfo') | translate"
+        class="new-story-info-consent-checkbox-text"
+      ></p>
+    </loop-checkbox>
+
+    <app-button
+      cy="new-story-info-submit-btn"
+      class="new-story-info__submit-button"
+      variant="primary"
+      [fullWidth]="true"
+      [loading]="submitting"
+      (clicked)="handleSubmitButtonClick()"
+    >
+      <div class="new-story-info__submit-button-content">
+        <span>{{ 'newStoryV2.steps.info.submit' | translate }}</span>
+        <app-arrow-next-icon class="ml-0625"></app-arrow-next-icon>
+      </div>
+    </app-button>
+  </div>
+</div>

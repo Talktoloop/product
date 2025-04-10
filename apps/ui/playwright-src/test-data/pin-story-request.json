@@ -1,0 +1,15 @@
+{
+  "authorNickname": "John Doe",
+  "age": 0,
+  "gender": 0,
+  "categories": [1],
+  "difficulties": [],
+  "maternityStatus": [],
+  "organisations": [],
+  "thematics": [37],
+  "countryId": 2,
+  "isSensitive": false,
+  "language": "en",
+  "translations": [],
+  "pinnedMessageIds": [5893, 2893]
+}

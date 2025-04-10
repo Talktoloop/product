@@ -1,0 +1,167 @@
+//// Brand colors
+// Primary
+$loop-purple-100: #eae6f0;
+$loop-purple-200: #d6d0df;
+$loop-purple-300: #baabd0;
+$loop-purple-400: #866ab0;
+$loop-purple-500: #6c4e99;
+$loop-purple-600: #4a2b7a;
+$loop-purple-700: #31135e;
+$loop-purple-800: #261047;
+
+
+// Greens
+$loop-green-100: #e6f0e9;
+$loop-green-200: #c0d9ce;
+$loop-green-300: #93b9b0;
+$loop-green-400: #538c80;
+$loop-green-500: #26695c;
+$loop-green-600: #00473d;
+$loop-green-700: #00322b;
+$loop-green-800: #00211c;
+
+// Example:
+// map.get($loop-purples, '600');
+
+// Action
+$action-teal-100: #d9eeed;
+$action-teal-200: #a1d4d2;
+$action-teal-300: #69bbb8;
+$action-teal-400: #00857d;
+$action-teal-500: #016965;
+$action-teal-600: #005754;
+$action-teal-700: #004542;
+$action-teal-800: #013230;
+
+// Example:
+// map.get($action-teals, '600');
+
+// Neutral
+$neutral-000: #ffffff;
+$neutral-050: #f1f2f2;
+$neutral-100: #dbdbdb;
+$neutral-300: #b6b6b6;
+$neutral-400: #929292;
+$neutral-500: #656565;
+$neutral-700: #494949;
+$neutral-800: #1a1a1a;
+
+// Example:
+// map.get($neutrals, '600');
+
+//// Semantic Colors
+// Danger
+$destructive-red-100: #f5d5db;
+$destructive-red-200: #eda1af;
+$destructive-red-300: #e36d83;
+$destructive-red-400: #c2304b;
+$destructive-red-500: #b21d39;
+$destructive-red-600: #8c1128;
+$destructive-red-700: #730015;
+$destructive-red-800: #450611;
+
+// Alert
+$alert-gold-100: #fff1d5;
+$alert-gold-200: #f7da9e;
+$alert-gold-300: #f8c45b;
+$alert-gold-400: #e8ab31;
+$alert-gold-500: #cc8f14;
+$alert-gold-600: #cc8f14;
+$alert-gold-700: #6b4700;
+$alert-gold-800: #422c00;
+
+// Emphasis
+$emphasis-blue-100: #d9e8ff;
+$emphasis-blue-200: #a8cbff;
+$emphasis-blue-300: #80b2ff;
+$emphasis-blue-400: #5397fc;
+$emphasis-blue-500: #2072ec;
+$emphasis-blue-600: #0456d1;
+$emphasis-blue-700: #003c96;
+$emphasis-blue-800: #001d47;
+
+$loop-purples: (
+  '100': $loop-purple-100,
+  '200': $loop-purple-200,
+  '300': $loop-purple-300,
+  '400': $loop-purple-400,
+  '500': $loop-purple-500,
+  '600': $loop-purple-600,
+  '700': $loop-purple-700,
+  '800': $loop-purple-800,
+);
+
+$loop-greens: (
+  '100': $loop-green-100,
+  '200': $loop-green-200,
+  '300': $loop-green-300,
+  '400': $loop-green-400,
+  '500': $loop-green-500,
+  '600': $loop-green-600,
+  '700': $loop-green-700,
+  '800': $loop-green-800,
+);
+
+$action-teals: (
+  '100': $action-teal-100,
+  '200': $action-teal-200,
+  '300': $action-teal-300,
+  '400': $action-teal-400,
+  '500': $action-teal-500,
+  '600': $action-teal-600,
+  '700': $action-teal-700,
+  '800': $action-teal-800,
+);
+
+$neutrals: (
+  '000': $neutral-000,
+  '050': $neutral-050,
+  '100': $neutral-100,
+  '300': $neutral-300,
+  '400': $neutral-400,
+  '500': $neutral-500,
+  '700': $neutral-700,
+  '800': $neutral-800,
+);
+
+$destructive-reds: (
+  '100': $destructive-red-100,
+  '200': $destructive-red-200,
+  '300': $destructive-red-300,
+  '400': $destructive-red-400,
+  '500': $destructive-red-500,
+  '600': $destructive-red-600,
+  '700': $destructive-red-700,
+  '800': $destructive-red-800,
+);
+
+$alert-golds: (
+  '100': $alert-gold-100,
+  '200': $alert-gold-200,
+  '300': $alert-gold-300,
+  '400': $alert-gold-400,
+  '500': $alert-gold-500,
+  '600': $alert-gold-600,
+  '700': $alert-gold-700,
+  '800': $alert-gold-800,
+);
+
+$emphasis-blues: (
+  '100': $emphasis-blue-100,
+  '200': $emphasis-blue-200,
+  '300': $emphasis-blue-300,
+  '400': $emphasis-blue-400,
+  '500': $emphasis-blue-500,
+  '600': $emphasis-blue-600,
+  '700': $emphasis-blue-700,
+  '800': $emphasis-blue-800,
+);
+
+$loop-themes: (
+  'primary': $loop-greens,
+  'action': $action-teals,
+  'neutral': $neutrals,
+  'danger': $destructive-reds,
+  'alert': $alert-golds,
+  'emphasis': $emphasis-blues,
+);

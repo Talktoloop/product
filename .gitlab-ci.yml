@@ -121,3 +121,14 @@ gateway-dev:
       changes:
         - apps/gateway/service/**
   stage: deploy
+
+ui-dev:
+  variables:
+    PIPELINE_NAME: ${UI_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/ui/**
+  stage: deploy

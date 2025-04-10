@@ -1,0 +1,88 @@
+<div *ngIf="title" class="filter-v2-container__section-title" [class.mobile-title]="(ui.mobileView$ | async) && nestedModalMode">
+  <div class="d-flex-space-between align-items-center">
+    <span class="filter-v2-container__section-title-name">{{ title }}</span>
+    <app-button
+      mode="v2"
+      variant="link-3"
+      class="filtersV2-link-button modal-see-all__button"
+      *ngIf="isModal && !nestedModalMode && isAllFiltersModal"
+      (clicked)="onSeeAllClicked($event)"
+    >
+      {{ 'filtersV2.seeAll' | translate }}
+      <app-expand-more-icon class="modal-see-all__icon"></app-expand-more-icon>
+    </app-button>
+  </div>
+  <div class="separator" [class.no-bottom-margin]="isModal"></div>
+</div>
+
+<ng-container *ngIf="!isModal; else modalView">
+  <mat-tab-group mat-align-tabs="start" animationDuration="0ms" [disableRipple]="true" (selectedTabChange)="refreshCalendars$.next(true)">
+    <mat-tab [label]="'filtersV2.calendar' | translate">
+      <ng-container *ngTemplateOutlet="calendarView"></ng-container>
+    </mat-tab>
+    <mat-tab [label]="'filtersV2.enterManually' | translate">
+      <ng-container *ngTemplateOutlet="manualView"></ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
+
+<ng-template #modalView>
+  <div *ngIf="nestedModalMode || !isAllFiltersModal">
+    <ng-container *ngTemplateOutlet="calendarView"></ng-container>
+
+    <ng-container *ngTemplateOutlet="manualView"></ng-container>
+
+    <button class="select-all filtersV2-link-button" (click)="onClearClicked()">
+      {{ 'filtersV2.clear' | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #calendarView>
+  <div class="filter-v2-container__section-title mt-125 mb-125" *ngIf="isModal">
+    <span class="filter-v2-container__section-title-name">{{ 'filtersV2.date.calendar' | translate }}</span>
+  </div>
+  <app-dual-calendar
+    [form]="form"
+    [controlName]="controlName"
+    [refreshCalendars]="refreshCalendars$"
+    [isModal]="isModal"
+  ></app-dual-calendar>
+</ng-template>
+
+<ng-template #manualView>
+  <div *ngIf="isModal" class="filter-v2-container__section-title mb-125" [class.mt-0]="isModal">
+    <div class="separator no-transform mt-125"></div>
+    <span class="filter-v2-container__section-title-name">{{ 'filtersV2.date.orEnterManually' | translate }}</span>
+  </div>
+  <form [formGroup]="manualDateForm" class="date-manual-filter__container" [class.p-0]="isModal">
+    <div>
+      <span class="date-manual-filter__label">{{ 'filtersV2.date.from' | translate }}</span>
+      <loop-input
+        class="flex-grow-1"
+        formControlName="from"
+        [showCloseIcon]="true"
+        [solidPlaceholder]="true"
+        autocomplete="off"
+        [placeholder]="'DD/MM/YYYY'"
+      >
+      </loop-input>
+    </div>
+    <div>
+      <span class="date-manual-filter__label">{{ 'filtersV2.date.to' | translate }}</span>
+      <loop-input
+        class="flex-grow-1"
+        formControlName="to"
+        [showCloseIcon]="true"
+        [solidPlaceholder]="true"
+        autocomplete="off"
+        [placeholder]="'DD/MM/YYYY'"
+      >
+      </loop-input>
+    </div>
+  </form>
+</ng-template>
+
+<button *ngIf="!isModal" class="select-all filtersV2-link-button" [class.modal-view]="isModal" (click)="onClearClicked()">
+  {{ 'filtersV2.clear' | translate }}
+</button>

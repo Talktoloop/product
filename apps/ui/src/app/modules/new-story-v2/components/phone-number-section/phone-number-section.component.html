@@ -1,0 +1,15 @@
+<section>
+  <h4 class="font-big semi-bold mb-0625">{{ 'newStoryV2.form.phone.title' | translate }}</h4>
+  <p class="new-story-v2__info-link">
+    <app-lock-icon class="mr-0625"></app-lock-icon>
+    <span class="input-description">{{ phoneInfoTextCode | translate }}</span>
+  </p>
+  <loop-phone-picker cy="phone-number-section-loop-phone" [formControl]="control"></loop-phone-picker>
+  <div *ngIf="!isSensitive">
+    <loop-info-link
+      (clicked)="onModalOpen()"
+      class="new-story-v2__explanation-link"
+      [text]="'newStoryV2.form.phoneNumber.explanation' | translate"
+    ></loop-info-link>
+  </div>
+</section>

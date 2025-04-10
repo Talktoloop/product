@@ -1,0 +1,93 @@
+<loop-filter-section-v2
+  class="pending-recording-list__filters outbox__filters"
+  [config]="filtersConfig$ | async"
+  [showAllStoriesButton]="false"
+>
+</loop-filter-section-v2>
+
+<div class="outbox-list-container">
+  <ng-container>
+    <div class="outbox-list-container__nav">
+      <loop-sort (sortChange$)="sortChange($event)" [sortElements]="sortElements" [activeSort]="activeSort"></loop-sort>
+    </div>
+
+    <div *ngIf="!ui.mobileView" class="outbox-separator"></div>
+  </ng-container>
+
+  <!--MOBILE-->
+  <ng-container *ngIf="ui.mobileView; else desktopTable">
+    <app-mobile-table
+      (actionClick)="onActionClick($event)"
+      [itemsInRow]="1"
+      [actions]="listActions"
+      [list]="listElements"
+      [columns]="columns"
+    >
+      <ng-container *loopMobileCell="let element">
+        {{ element.createdAt | date : DATE_FORMAT }}
+      </ng-container>
+
+      <ng-container *loopMobileCell="let element">
+        {{ element.content }}
+      </ng-container>
+
+      <ng-container *loopMobileCell="let element">
+        {{ element.storyPublishedBy }}
+      </ng-container>
+
+      <ng-container *loopMobileCell="let element">
+        {{ element.storyLanguage ? ('languages.' + element.storyLanguage | translate) : '-' }}
+      </ng-container>
+
+      <ng-container *loopMobileCell="let element">
+        <app-divider></app-divider>
+      </ng-container>
+    </app-mobile-table>
+  </ng-container>
+
+  <!--DESKTOP-->
+  <ng-template #desktopTable>
+    <table mat-table [dataSource]="dataSource" class="outbox-table pending-recording-table">
+      <!-- DateTime Column -->
+      <ng-container matColumnDef="datetime">
+        <th mat-header-cell *matHeaderCellDef>{{ getColumnHeader('datetime') }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.createdAt | date : DATE_FORMAT }}</td>
+      </ng-container>
+
+      <!-- Reply Column -->
+      <ng-container matColumnDef="content">
+        <th mat-header-cell *matHeaderCellDef>{{ getColumnHeader('content') }}</th>
+        <td mat-cell *matCellDef="let element" class="no-wrap">{{ element.content }}</td>
+      </ng-container>
+
+      <!-- Moderator Column -->
+      <ng-container matColumnDef="authorNickname">
+        <th mat-header-cell *matHeaderCellDef>{{ getColumnHeader('authorNickname') }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.storyPublishedBy }}</td>
+      </ng-container>
+
+      <!-- Target Language Column -->
+      <ng-container matColumnDef="targetLanguage">
+        <th mat-header-cell *matHeaderCellDef>{{ getColumnHeader('targetLanguage') }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.storyLanguage ? ('languages.' + element.storyLanguage | translate) : '-' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="rowClicked(row)"></tr>
+    </table>
+  </ng-template>
+
+  <div infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500" [fromRoot]="true" (scrolled)="onScroll()"></div>
+
+  <div *ngIf="loading" class="outbox-list-container__loading">
+    <span>
+      {{ 'outbox.table.loading' | translate }}
+    </span>
+  </div>
+
+  <div *ngIf="noMoreItems" class="outbox-list-container__no-more-results">
+    <span>
+      {{ 'admin.comment.noMoreComments' | translate }}
+    </span>
+  </div>
+</div>

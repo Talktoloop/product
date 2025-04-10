@@ -1,0 +1,22 @@
+<div #storyDetails class="short-story-details" *ngIf="storyCategories">
+  <app-divider *ngIf="ui.mobileView"></app-divider>
+  <div class="short-story-details__title">
+    {{ 'story.details.review.info.storyInformation' | translate }}
+  </div>
+  <div>
+    <div class="short-story-details__detail">
+      <div class="short-story-details__detail--name">{{ storyCategories.key | translate }}</div>
+      <div class="short-story-details__detail--value">
+        <ng-container *ngFor="let category of storyCategories.value">
+          <loop-story-tag [category]="category.code"></loop-story-tag>
+        </ng-container>
+      </div>
+    </div>
+    <ng-container *ngFor="let detail of storyDetailsToShow">
+      <div class="short-story-details__detail" *ngIf="detail.value">
+        <div class="short-story-details__detail--name">{{ detail.key | translate }}</div>
+        <div class="short-story-details__detail--value">{{ detail.value }}</div>
+      </div>
+    </ng-container>
+  </div>
+</div>

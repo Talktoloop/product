@@ -1,0 +1,12 @@
+<ng-container [ngSwitch]="storyDetailsService?.story?.channel">
+  <!-- Web story -->
+  <app-story-review-web-wrapper *ngSwitchCase="CHANNEL_CONSTANTS.WEB"></app-story-review-web-wrapper>
+
+  <!-- IVRR story -->
+  <app-story-review-voice-wrapper *ngSwitchCase="CHANNEL_CONSTANTS.IVRR"></app-story-review-voice-wrapper>
+
+  <!-- SMS / Facebook / WhatsApp stories -->
+  <app-story-review-messenger-whatsapp-wrapper *ngSwitchDefault></app-story-review-messenger-whatsapp-wrapper>
+
+  <app-story-translate></app-story-translate>
+</ng-container>

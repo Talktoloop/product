@@ -1,0 +1,38 @@
+<app-main-template
+  (actionClick$)="passwordSubmit($event)"
+  [actionText]="'auth.confirmUser.form.submitText' | translate"
+  [headerText]="'auth.confirmUser.form.headerText' | translate"
+  [submitting]="submitting"
+>
+  <form form [formGroup]="setPasswordForm" class="set-password-form">
+    <label class="label-container">
+      <span class="label-content">
+        {{ 'auth.confirmUser.form.newPassword.label' | translate }}
+      </span>
+
+      <loop-input
+        [showClearBtn]="true"
+        [showCloseIcon]="true"
+        formControlName="password"
+        id="password"
+        inputmode="password"
+        type="password"
+      ></loop-input>
+    </label>
+
+    <label class="label-container">
+      <span class="label-content">
+        {{ 'auth.confirmUser.form.confirmPassword.label' | translate }}
+      </span>
+
+      <loop-input
+        [showClearBtn]="true"
+        [showCloseIcon]="true"
+        formControlName="confirmPassword"
+        id="confirmPassword"
+        inputmode="password"
+        type="password"
+      ></loop-input>
+    </label>
+  </form>
+</app-main-template>

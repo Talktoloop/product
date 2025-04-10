@@ -1,0 +1,3222 @@
+{
+  "global": {
+    "Stories": "Historias",
+    "Replies": "Respuestas",
+    "Annonymous": "Anónimo",
+    "replied": "respondió",
+    "ago": "hace",
+    "units": {
+      "minutes": "m",
+      "hours": "h",
+      "days": "d",
+      "months": "M"
+    },
+    "loading": "Cargando",
+    "required": "Obligatorio",
+    "optional": "Opcional",
+    "gender": "Género",
+    "age": "Edad",
+    "isMinority": "¿Este autor pertenece a un grupo minoritario?",
+    "disability": "Discapacidad",
+    "errorMessage": "Ha ocurrido un error",
+    "noMoreData": "No se proporcionaron más datos",
+    "difficulty": "Dificultad",
+    "problems": "Problemas",
+    "previousStep": "Paso previo",
+    "nextStep": "Siguiente paso",
+    "language": "Idioma",
+    "reload": "Volver a cargar",
+    "selectOption": "Seleccionar opción(es)",
+    "to": "Para:",
+    "you": "Tú",
+    "today": "Hoy",
+    "readMore": "Leer más",
+    "views": "vistas",
+    "comments": "comentarios",
+    "upvote": "Voto a favor",
+    "replies": "respuestas",
+    "upvoted": "Votado a favor",
+    "cancel": "Cancelar",
+    "unitsLong": {
+      "hours": "horas",
+      "days": "días",
+      "weeks": "semanas",
+      "months": "meses",
+      "years": "años",
+      "year": "año",
+      "month": "mes",
+      "week": "semana",
+      "day": "día",
+      "hour": "hora",
+      "stories": "comentario",
+      "cases": "casos",
+      "investigations": "Investigaciones"
+    },
+    "next": "Siguiente",
+    "here": "Aquí",
+    "sort": {
+      "newest_first": "Más recientes",
+      "oldest_first": "Más antiguas",
+      "not_started": "No iniciadas primero",
+      "pending_publication": "Ready to publish first",
+      "desc": "Más recientes",
+      "asc": "Más antiguas",
+      "upvoted": "Votado a favor"
+    },
+    "sortBy": "Organizar por",
+    "order": "Orden",
+    "dummyDataBanner": "Los datos expuestos actualmente son de muestra",
+    "show": "Mostrar",
+    "hide": "Ocultar",
+    "hideText": "Ocultar texto",
+    "showText": "Mostrar texto",
+    "hideReply": "Ocultar respuesta",
+    "showReply": "Mostrar respuesta",
+    "recordReply": "Registrar respuesta",
+    "authorName": "Nombre del autor",
+    "transcribeReply": "Transcribir respuesta"
+  },
+  "error": {
+    "generic": {
+      "title": "Algo salió mal",
+      "subtitle": "Algo salió mal. Revisa tu solicitud o ponte en contacto con alex@TalkToLoop.org"
+    }
+  },
+  "header": {
+    "navLabel": "Encabezado del sitio web de Loop",
+    "link": {
+      "home": "Inicio",
+      "feedback": "Comentarios",
+      "newStory": "Añadir comentario",
+      "profile": "Cuenta de usuario",
+      "pending": "Pendiente",
+      "rejected": "Rechazado",
+      "statistics": "Estadísticas",
+      "inbox": "Bandeja de entrada",
+      "cases": "Casos",
+      "about": "Acerca de",
+      "outbox": "Bandeja de salida"
+    },
+    "search": {
+      "aria": {
+        "back": "Cerrar la entrada de búsqueda",
+        "title": "Buscar",
+        "label": "Buscar comentarios"
+      },
+      "placeholder": "Buscar comentarios en Loop"
+    },
+    "filters": {
+      "aria": {
+        "title": "Filtrar",
+        "label": "Filtrar comentarios"
+      }
+    },
+    "topBar": {
+      "backToInbox": "Volver a bandeja de entrada"
+    },
+    "topNotificationShort": "Solicita una cuenta de acceso anticipado",
+    "topNotificationLong": "Regístrate para recibir notificaciones sobre comentarios relevantes para tu organización",
+    "hybernationInfo": {
+      "text": "Talk to Loop is in hibernation due to lack of funds."
+    }
+  },
+  "storiesList": {
+    "text": {
+      "noMoreStories": "No hay más comentarios",
+      "loading": "Cargando {{value}} comentarios más"
+    },
+    "aria": {
+      "expandOrganisations": "Expandir organizaciones",
+      "clickToVote": "Haz clic aquí para votar por este comentario",
+      "clickToUnvote": "Haz clic aquí para anular el voto para este comentario"
+    }
+  },
+  "story": {
+    "replyForm": {
+      "text": {
+        "content": {
+          "label": "Responder al comentario",
+          "placeholder": "Escribe aquí tu respuesta",
+          "invalid": "Por favor, escribe tu respuesta (mínimo {{value}} caracteres)."
+        },
+        "name": {
+          "label": "Nombre o seudónimo",
+          "placeholder": "Opcional",
+          "info": "Deja en blanco para permanecer en el anonimato"
+        },
+        "organisation": {
+          "label": "Tu organización",
+          "placeholder": "Opcional"
+        },
+        "email": {
+          "label": "Correo electrónico",
+          "placeholder": "alguien@ejemplo.com",
+          "invalid": "Tu dirección de correo electrónico no es válida.",
+          "info": "Obtén una notificación cuando recibas comentarios. No compartiremos tu correo con terceros."
+        },
+        "checkbox": "Doy mi consentimiento para que mi respuesta sea publicada en TalkToLoop.org y compartida en línea para ayudar a las organizaciones a mejorar sus servicios.",
+        "submit": "Enviar respuesta",
+        "submitting": "Enviando respuesta",
+        "smsTooltip": "La extensión límite de la respuesta es de 320 caracteres para que podamos reenviar tu respuesta al autor por medio de SMS."
+      },
+      "toast": {
+        "success": {
+          "title": "Respuesta enviada",
+          "subtitle": "La respuesta ya está disponible en la plataforma. "
+        },
+        "error": {
+          "title": "Error al enviar respuesta",
+          "subtitle": "Hubo un error, por favor inténtalo de nuevo."
+        }
+      },
+      "success": {
+        "text": {
+          "line1": "Gracias por dejar tu respuesta.",
+          "line2": "Tu respuesta será visible en 1 a 2 días hábiles."
+        },
+        "action": "Dejar otra respuesta"
+      },
+      "header": {
+        "text": "Tu respuesta"
+      },
+      "signOut": "Cerrar sesión",
+      "replyingAs": "Respondiendo como:"
+    },
+    "status": {
+      "not_started": "No comenzada",
+      "pending_translation": "Traducción pendiente",
+      "awaiting_replay": "En espera de respuesta",
+      "published": "Publicada",
+      "rejected": "Rechazada",
+      "issuer_replied": "El autor respondió",
+      "issuer_did_not_replied": "El autor no respondió",
+      "pending_publication": "Ready to publish",
+      "sent_from_case_manager_to_loop": "Devuelto por el Gestor del Caso",
+      "pending_transcription": "Transcripción pendiente",
+      "transcription_in_progress": "Transcripción pendiente",
+      "transcription_failed": "Transcription failed",
+      "sent_to_case_manager": "Sent to Case Manager",
+      "pending_edit": "Returned for editing",
+      "pending_rejection_not_sensitive": "Rechazo pendiente no sensible"
+    },
+    "details": {
+      "viewStory": "Ver comentario",
+      "storyInformation": {
+        "type": {
+          "label": "Tipo de comentario"
+        },
+        "age": {
+          "label": "Edad"
+        },
+        "gender": {
+          "label": "Género"
+        },
+        "disability": {
+          "label": "Discapacidad"
+        },
+        "sentBy": {
+          "label": "Enviada por"
+        },
+        "thematic": {
+          "label": "Área temática"
+        },
+        "heading": "Información sobre el comentario"
+      },
+      "translations": {
+        "suggestTranslation": "Sugerir traducción",
+        "requestTranslation": "Solicitar traducción",
+        "heading": "Ver comentario en:"
+      },
+      "jumpToReplies": "Saltar a respuestas ({{value}})",
+      "step": {
+        "review": "Revisar",
+        "translate": "Traducir",
+        "transcribe": "Transcribir"
+      },
+      "transcribe": {
+        "header": {
+          "subtitle": "Escucha la grabación y transcribe lo que oigas. Cuando termines, revisa la información. "
+        },
+        "content": {
+          "placeholder": "Empieza a escribir tu comentario"
+        },
+        "footer": {
+          "reviewStory": "Revisar comentario",
+          "poorAudioQuality": "Mala calidad de audio",
+          "rejectStory": "Rechazar comentario",
+          "cancel": "Cancelar"
+        },
+        "toast": {
+          "storyRejected": {
+            "success": {
+              "title": "El comentario ha sido rechazado",
+              "subtitle": "El comentario ha sido rechazado y se informará al autor."
+            },
+            "error": {
+              "title": "Algo salió mal",
+              "subtitle": "Por ahora no podemos rechazar este comentario. Vuelve a intentarlo después."
+            }
+          },
+          "reviewStory": {
+            "error": {
+              "title": "Algo salió mal",
+              "subtitle": "Por ahora no podemos revisar este comentario. Inténtalo después."
+            }
+          }
+        },
+        "storyRejectModal": {
+          "subtitle": "Se informará al autor que su comentario no se publicó porque el audio no se podía escuchar.",
+          "title": "Estás a punto de rechazar este comentario",
+          "confirm": "¿Quieres continuar?"
+        }
+      },
+      "review": {
+        "other": {
+          "header": {
+            "subTitle": "Revisa el comentario y las etiquetas provistas por el usuario, añade las etiqueta faltantes y traduce el comentario al terminar. ",
+            "title": "Revisar y traducir comentario"
+          },
+          "noHistory": "No hay historial previo para este autor"
+        },
+        "content": {
+          "readStory": "Leer comentario"
+        },
+        "info": {
+          "organisations": "Organizaciones",
+          "thematicArea": "Área temática",
+          "disabilities": "Discapacidades",
+          "location": "Ubicación",
+          "originalLanguage": "Idioma original",
+          "channel": "Canal",
+          "gender": "Género",
+          "age": "Edad",
+          "minority": "Grupo minoritario",
+          "storyType": "Tipo de comentario",
+          "storyInformation": "Información del comentario",
+          "country": "País"
+        },
+        "buttons": {
+          "back": "Atrás",
+          "rejectStory": "Rechazar comentario",
+          "translate": "Traducir",
+          "publishStory": "Publicar comentario",
+          "storyAlreadyPublished": "Feedback is already published",
+          "storyAlreadyRejected": "Feedback is already rejected",
+          "storyAlreadySentToCaseManager": "Feedback is already sent to case manager"
+        },
+        "form": {
+          "sensitiveLabel": "Nunca publicamos información delicada en la página web de Loop.",
+          "demographicalInfo": "Información demográfica",
+          "geographicalInfo": "Información geográfica",
+          "otherInfo": "Otra información ",
+          "toast": {
+            "error": {
+              "reviewError": "Por favor llena todos los elementos señalados como \"necesarios\" para continuar."
+            }
+          }
+        },
+        "header": {
+          "toRecipient": "para:"
+        },
+        "tabs": {
+          "smsConversation": "Conversación SMS",
+          "storyPreview": "Vista previa del comentario",
+          "whatsAppConversation": "Conversación de WhatsApp",
+          "messengerConversation": "Conversación de Messenger",
+          "review": "Revisar",
+          "storyInformation": "Información del comentario ",
+          "telegramConversation": "Telegram conversation",
+          "authorHistory": "Historial del autor"
+        },
+        "guard": {
+          "toast": {
+            "warning": {
+              "title": "El paso Revisar todavía no está disponible.",
+              "subtitle": "Por favor, concluye el paso Transcribir comentario antes de revisarlo."
+            }
+          }
+        },
+        "editStory": {
+          "minLengthErrorMessage": "El comentario debe tener al menos 5 caracteres para ser publicado. Si no tienes que editarlo, por favor desactiva el recuadro que está arriba de este cuadro de texto.",
+          "editButton": "La retroalimentación debe ser editada antes de ser publicada."
+        }
+      },
+      "translate": {
+        "guard": {
+          "toast": {
+            "warning": {
+              "title": "El paso Traducir todavía no está disponible. ",
+              "subtitle": "Por favor, concluye el paso Revisar comentario antes de traducirlo."
+            }
+          }
+        },
+        "tabs": {
+          "translation": "Traducción"
+        },
+        "ivrr": {
+          "header": {
+            "title": "Traducir comentario",
+            "subTitle": "Escucha la grabación y transcribe lo que oigas. Cuando termines, revisa la información."
+          }
+        }
+      }
+    },
+    "comments": {
+      "viewReplies": "Ver respuestas ({{count}})",
+      "hideReplies": "Esconder respuestas ({{count}})"
+    },
+    "originalStoryIn": "Comentario original enviado en {{language}}",
+    "translatedTo": "Traducido al {{language}}",
+    "notTranslatedTo": "No traducido al {{language}}",
+    "changeTranslation": "Cambiar traducción",
+    "toast": {
+      "errors": {
+        "failedToLoad": "Algo salió mal",
+        "failedToLoadSubtitle": "Por ahora no podemos descargar los detalles del comentario. Vuelve a intentarlo después. "
+      }
+    },
+    "review": {
+      "authorName": {
+        "placeholder": "Mantener al autor anónimo"
+      },
+      "player": {
+        "escape": {
+          "key": {
+            "info": "⌨️ Presiona [esc] en tu teclado para iniciar o detener el audio mientras escribes en este recuadro. "
+          }
+        }
+      }
+    }
+  },
+  "newStory": {
+    "title": "Enviar comentario",
+    "steps": {
+      "first": "Tu comentario",
+      "second": "Detalles",
+      "third": "Acerca de ti",
+      "fourth": "Consentimiento",
+      "confirmation": "Confirmación"
+    },
+    "navigation": {
+      "next": "Continuar",
+      "back": "Volver",
+      "submit": "Enviar"
+    },
+    "form": {
+      "content": {
+        "label": "¿Qué quieres compartir hoy?",
+        "placeholder": "",
+        "helperText": "¿Has tenido alguna experiencia memorable con algún servicio de tu área? ¿Fue buena o mala? ¿Qué te gustaría decirle a la organización?",
+        "publishInfo": "Una vez publicada, tu historia será pública.",
+        "invalid": "Favor de escribir al menos 10 caracteres"
+      },
+      "nickname": {
+        "label": "Nombre o seudónimo",
+        "placeholder": "Opcional",
+        "additional": "Esto aparecerá junto a tu comentario. Dejar en blanco para permanecer en el anonimato."
+      },
+      "place": {
+        "label": "¿En dónde tuvo lugar el tema de tu comentario?",
+        "helperText": "Ciudad / Pueblo / Aldea / Campamento"
+      },
+      "country": {
+        "label": "¿En qué país tuvo lugar el tema de tu comentario?"
+      },
+      "organisations": {
+        "label": "¿A qué organización(es) se refiere tu comentario?",
+        "placeholder": "Buscar una organización",
+        "new": {
+          "header": "Nueva organización",
+          "text": "No pudimos encontrar ninguna coincidencia para \"{{value}}\". Utiliza la etiqueta de abajo para etiquetarlos de todas formas."
+        },
+        "invitations": "On publication of this feedback, invitations will be sent to:"
+      },
+      "genderManual": {
+        "label": "Especificar género",
+        "placeholder": "Opcional"
+      },
+      "maternityStatus": {
+        "label": "¿Estás embarazada o en periodo de lactancia?"
+      },
+      "difficulties": {
+        "label": "Discapacidad"
+      },
+      "categories": {
+        "label": "Categoría"
+      },
+      "consent": {
+        "text": "Doy mi consentimiento para que mi comentario sea publicado en TalkToLoop.org y compartido en línea para ayudar a las organizaciones a mejorar sus servicios."
+      },
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "Opcional",
+        "helperText": "Escribe tu correo electrónico para recibir notificaciones de las respuestas. Puedes desactivar las notificaciones cuando desees.",
+        "invalid": "Tu dirección de correo electrónico no es válida."
+      },
+      "preview": {
+        "tagsLabel": "Estas etiquetas son visibles para todos",
+        "emailInfo": "Tu correo electrónico no aparecerá en la plataforma",
+        "notifications": "Notificaciones",
+        "previewText": "Vista preliminar de tu comentario",
+        "edit": "Editar"
+      },
+      "toast": {
+        "success": {
+          "title": "Historia enviada",
+          "subtitle": "Un administrador está revisando tu comentario. Pronto podrá ser visto aquí. ",
+          "sensitive": {
+            "withContact": {
+              "subtitle": "Lo manejaremos con cuidado y discreción. Te mantendremos al tanto de lo que suceda."
+            },
+            "withoutContact": {
+              "subtitle": "Lo manejaremos con cuidado y discreción."
+            },
+            "title": "Un moderador está revisando tu comentario delicado"
+          }
+        },
+        "error": {
+          "title": "Error al enviar comentario",
+          "subtitle": "Ha habido un error al enviar tu comentario. Por favor, inténtalo de nuevo."
+        }
+      },
+      "submitting": "Envío de comentarios"
+    }
+  },
+  "comments": {
+    "replies": "Respuestas ({{count}})",
+    "reply": {
+      "solutionProposedTag": "Solución Propuesta",
+      "reply": "Responder",
+      "hideReplyForm": "Ocultar formulario de respuesta"
+    }
+  },
+  "auth": {
+    "login": {
+      "header": "Iniciar sesión",
+      "applyLink": "Crear una cuenta",
+      "form": {
+        "username": {
+          "label": "Correo electrónico",
+          "invalid": "Por favor, escribe tu correo electrónico."
+        },
+        "password": {
+          "label": "Contraseña",
+          "invalid": "Por favor, escribe tu contraseña."
+        },
+        "button": {
+          "text": "Iniciar sesión"
+        },
+        "submitting": "Iniciando sesión...",
+        "email": {
+          "invalid": "Ingresa tu correo electrónico"
+        },
+        "headerText": "¡Bienvenido de vuelta!",
+        "submitText": "Ingresar",
+        "forgotPassword": "¿Olvidaste tu contraseña?"
+      },
+      "toast": {
+        "success": {
+          "title": "¡Inicio de sesión exitoso!",
+          "subtitle": "Bienvenid@."
+        },
+        "error": {
+          "title": "Error de inicio de sesión",
+          "subtitle": "Ocurrió un error, por favor inténtalo de nuevo."
+        }
+      },
+      "createAccount": "¿Todavía no tienes una cuenta?"
+    },
+    "logout": {
+      "toast": {
+        "success": {
+          "title": "Cerrar sesión",
+          "subtitle": "Has cerrado la sesión."
+        },
+        "expired": {
+          "title": "La sesión expiró",
+          "subtitle": "Por favor, inicia sesión de nuevo."
+        }
+      }
+    },
+    "confirmUser": {
+      "form": {
+        "headerText": "Establecer nueva contraseña",
+        "newPassword": {
+          "label": "Nueva contraseña"
+        },
+        "confirmPassword": {
+          "label": "Confirmar nueva contraseña"
+        },
+        "submitText": "Establecer contraseña"
+      },
+      "toast": {
+        "success": {
+          "title": "Confirmación exitosa",
+          "subtitle": "Tu cuenta ha sido activada y se ha establecido tu contraseña"
+        },
+        "error": {
+          "title": "Error de confirmación",
+          "subtitle": "Ocurrió un error. Ponte en contacto con alex@talktoloop.org"
+        },
+        "confirmedAlready": {
+          "title": "Cuenta confirmada",
+          "subtitle": "Tu cuenta ha sido confirmada. Por favor, inicia sesión"
+        }
+      }
+    },
+    "back": "Retroceder",
+    "reset": {
+      "form": {
+        "headerText": "Reestablece tu contraseña",
+        "subHeaderText": "Ingresa la dirección de correo que usaste para abrir la cuenta y te enviaremos un link para reestablecer la contraseña.",
+        "email": {
+          "label": "Tu dirección de correo"
+        },
+        "submitText": "Reestablecer contraseña"
+      },
+      "toast": {
+        "success": {
+          "title": "Éxito de confirmación",
+          "subtitle": "Se envió un correo para reestablecer tu contraseña"
+        },
+        "error": {
+          "title": "Error de confirmación",
+          "subtitle": "Ocurrió un error. Favor de contactar a alex@talktoloop.org"
+        }
+      }
+    },
+    "create": {
+      "form": {
+        "submitText": "Guardar",
+        "headerText": "Crea una nueva contraseña",
+        "password": {
+          "label": "Nueva contraseña"
+        },
+        "confirmPassword": {
+          "label": "Confirma tu contraseña"
+        }
+      }
+    },
+    "resetPassword": {
+      "toast": {
+        "error": {
+          "title": "Error de cambio de contraseña",
+          "subtitle": "Ocurrió un error. Favor de contactar a alex@talktoloop.org"
+        },
+        "success": {
+          "subtitle": "Tu contraseña ha sido modificada",
+          "title": "Éxito de confirmación"
+        }
+      }
+    },
+    "magicLinkLogin": {
+      "popup": {
+        "result": "Resultado",
+        "success": "Se ha enviado un correo electrónico",
+        "error": "No se ha enviado un correo electrónico"
+      },
+      "form": {
+        "username": {
+          "label": "Dirección de correo electrónico",
+          "invalid": "Por favor escriba su correo electrónico."
+        },
+        "button": {
+          "text": "Envíame un enlace mágico por correo electrónico"
+        },
+        "description": "Te registraremos o crearemos una cuenta para ti, si aún no tienes una",
+        "title": "¡Necesitas una cuenta para eso!"
+      },
+      "footer": {
+        "separator": "o",
+        "button": {
+          "text": "Continuar sin una cuenta"
+        }
+      },
+      "image": {
+        "description": "Responda a las comunidades en cualquier idioma y en cualquier dispositivo"
+      }
+    },
+    "registerSelect": {
+      "button": {
+        "text": "Continuar"
+      }
+    },
+    "registerIndividual": {
+      "back": "Atrás",
+      "header": "¿Cómo deberíamos llamarte?",
+      "form": {
+        "firstName": "Nombre de pila",
+        "secondName": "Apellido(s)",
+        "errors": {
+          "minLength": "Su nombre para mostrar debe tener al menos {{requiredLength}} caracteres",
+          "pattern": "Su nombre no puede incluir números, espacios o caracteres especiales como ! * o $",
+          "required": "Este campo es obligatorio"
+        },
+        "toggle": {
+          "text": "Ocultar mi apellido de la vista pública. (Puede cambiar esta configuración en cualquier momento)."
+        }
+      },
+      "button": {
+        "text": "Continuar"
+      },
+      "description": "Tu nombre aparece junto a cualquier cosa que publiques en la plataforma."
+    },
+    "magicLinkSent": {
+      "header": "¡Gracias!",
+      "description": "Se ha enviado un correo electrónico a {{emailAddress}}",
+      "resendActionTimer": "Reenviar correo ({{timeLeft}})",
+      "resendAction": "Reenviar correo",
+      "loginAction": "Continuar sin una cuenta"
+    },
+    "registerOrganization": {
+      "back": "Atrás",
+      "header": "Encuentra tu organización",
+      "form": {
+        "label": "Organización",
+        "placeholder": "No se ha seleccionado ninguna organización",
+        "error": "Este es un campo obligatorio"
+      },
+      "button": {
+        "text": "Continuar"
+      },
+      "list": {
+        "notify": "Reciba una notificación cada vez que su organización sea mencionada en los comentarios.",
+        "display": "Se muestra cada vez que publicas en Loop.",
+        "changeSetting": "Cambie esta configuración en cualquier momento."
+      },
+      "skipButton": {
+        "text": "Saltar por ahora"
+      },
+      "fullNameForm": {
+        "description": "Esto nos ayuda a verificar que usted trabaja en la organización a continuación."
+      }
+    },
+    "createNewOrganizationPage": {
+      "button": {
+        "text": "Atrás"
+      }
+    },
+    "processing": {
+      "title": "Un momento mientras verificamos tu cuenta",
+      "description": "Esto puede tardar uno o dos minutos, dependiendo de su conexión a Internet."
+    },
+    "wrapper": {
+      "steps": "Paso {{currentStep}} de {{numberOfSteps}}",
+      "back": "Atrás"
+    },
+    "acceptTerms": {
+      "header": "Nos preocupamos por la privacidad de tus datos",
+      "list": {
+        "title": "Loop nunca:",
+        "firstItem": "Compartir sus datos de contacto con un tercero, sin su consentimiento explícito (por ejemplo, para derivarlo a un servicio de asistencia adicional)",
+        "secondItem": "Te pregunto por tu ubicación exacta"
+      },
+      "learnMore": "Obtenga más información en nuestro",
+      "privacyPolicy": "política de privacidad",
+      "communityGuidelines": "Pautas de la comunidad",
+      "and": "y",
+      "termsOfService": "Condiciones del servicio",
+      "checkbox": {
+        "optinMarketing": {
+          "text": "Suscríbeme al boletín de Loop"
+        },
+        "acceptTermsOfService": {
+          "text": "Acepto los términos del servicio",
+          "error": "Por favor, acepte la política de privacidad a continuación"
+        }
+      },
+      "button": {
+        "text": "Continuar"
+      },
+      "userCreatedToast": {
+        "success": "Su cuenta ha sido creada"
+      },
+      "userEditedToast": {
+        "success": "Tu cuenta ha sido editada"
+      }
+    },
+    "confirmName": {
+      "header": "Confirme su nombre completo",
+      "description": "Esto nos ayuda a verificarlo a usted y a su organización.",
+      "fullName": {
+        "title": "Nombre completo",
+        "descriptionFirstPart": "Este nombre solo se utilizará para verificar que trabajas en la organización mencionada anteriormente.",
+        "descriptionSecondPart": "No se publicará",
+        "descriptionThirdPart": "en la plataforma."
+      },
+      "button": {
+        "text": "Continuar"
+      },
+      "form": {
+        "errors": {
+          "required": "Este es un campo obligatorio"
+        }
+      }
+    }
+  },
+  "profile": {
+    "header": "Perfil",
+    "usernameLabel": "Nombre",
+    "organisationLabel": "Nombre de la organización",
+    "notificationSwitch": {
+      "label": "Notificaciones por correo electrónico: Recibe un resumen diario cuando haya comentarios relevantes para tu organización",
+      "onText": "Activado",
+      "offText": "Desactivado"
+    },
+    "notifications": {
+      "toast": {
+        "error": {
+          "title": "Error durante la actualización",
+          "subtitle": "Por favor, inténtalo de nuevo."
+        },
+        "success": {
+          "title": "Perfil actualizado",
+          "subtitle": "Las preferencias de notificaciones cambiaron."
+        }
+      }
+    },
+    "hideLastNameButton": {
+      "toast": {
+        "error": {
+          "title": "Error durante la actualización",
+          "subtitle": "Por favor, inténtelo de nuevo."
+        },
+        "success": {
+          "title": "Ocultar apellido actualizado",
+          "subtitle": "Las preferencias de apellido han cambiado."
+        }
+      }
+    },
+    "notification": {
+      "on": "Envíenme un correo electrónico cuando {{organisationName}} sea etiquetad@ en un comentario."
+    },
+    "logout": "Cerrar sesión",
+    "reminders": {
+      "on": "Notify me by email about remaining feedback where {{organisationName}} didn't replay yet"
+    },
+    "plan": {
+      "label": "Plan",
+      "premium": "Loop Advocate",
+      "free": "Loop Free",
+      "remainingDays": "({{validityTimeInDays}} days remaining)"
+    },
+    "edit": "Edit these details",
+    "hideLastName": "Hide my last name from public view"
+  },
+  "filters": {
+    "header": "Filtrar comentarios",
+    "reset": "Restablecer",
+    "search": "Buscar",
+    "category": "Área temática",
+    "type": "Categoría",
+    "location&organisation": "Ubicación y Organización",
+    "demographic": "Perfil demográfico",
+    "disability": "Discapacidad",
+    "thematic": "Área temática",
+    "place": "Ubicación",
+    "placePlaceholder": "Ciudad / Pueblo / Aldea / Campamento",
+    "age": "Edad",
+    "minority": "Minoría",
+    "gender": "Género",
+    "chooseCountry": "Elegir un país",
+    "chooseOrganisation": "Elegir una organización",
+    "country": "País",
+    "taggedOrganisation": "Organización etiquetada",
+    "selectAll": "Seleccionar todo",
+    "clearAll": "Borrar todo",
+    "showAll": "Mostrar todo",
+    "showStories": "Mostrar {{value}} comentario(s)",
+    "chooseAreas": "Elegir área(s)"
+  },
+  "gender": {
+    "female": "Femenino",
+    "male": "Masculino",
+    "nonBinary": "No binario",
+    "noAnswer": "Prefiero no responder"
+  },
+  "age": {
+    "under14": "Menores de 14",
+    "between14_17": "Entre 14 y 17",
+    "between18_29": "Entre 18 y 29",
+    "between30_59": "Entre 30 y 59",
+    "60Plus": "Mayor de 60",
+    "noAnswer": "Prefiero no responder",
+    "between0_5": "Entre 0 y 5",
+    "between6_13": "Entre 6 y 13"
+  },
+  "minority": {
+    "group": "Grupo minoritario"
+  },
+  "admin": {
+    "publish": "Publicar",
+    "reject": "Rechazar",
+    "delete": "Eliminar permanentemente",
+    "deleteLabel": "Eliminar",
+    "pendingPosts": "Bandeja de Entrada",
+    "rejectedPosts": "Publicaciones rechazadas",
+    "category": "Tipo",
+    "tagsHeading": "Etiquetas adicionales",
+    "organisationsLabel": "Organizaciones etiquetadas",
+    "thematicLabel": "Área temática",
+    "noMoreStories": {
+      "new": {
+        "title": "No hay más comentario pendientes",
+        "subtitle": "¡Tu trabajo ha concluido! Cuando haya más comentarios, aparecerán aquí para que puedas revisarlos."
+      },
+      "rejected": {
+        "title": "No hay más comentarios rechazados",
+        "subtitle": "¡Tu trabajo ha concluido! Cuando haya más comentarios rechazados, aparecerán aquí para que puedas revisarlos."
+      }
+    },
+    "noMoreComments": {
+      "new": {
+        "title": "No hay más respuestas pendientes",
+        "subtitle": "¡Tu trabajo ha concluido! Cuando haya más respuestas, aparecerán aquí para que puedas revisarlas."
+      },
+      "rejected": {
+        "title": "No hay más respuestas rechazadas",
+        "subtitle": "¡Tu trabajo ha concluido! Cuando haya más respuestas rechazadas, aparecerán aquí para que puedas revisarlas."
+      }
+    },
+    "story": {
+      "rejectingLoading": "Rechazando ...",
+      "publishingLoading": "Publicando...",
+      "deletingLoading": "Eliminando ...",
+      "loadingMore": "Cargando {{value}} comentarios más",
+      "noMoreStories": "No hay más comentarios",
+      "modal": {
+        "title": "Estás a punto de rechazar este comentario",
+        "contentVerified": "¿Estás seguro de que quieres rechazar este comentario?",
+        "rejectButton": "Rechazar comentario",
+        "cancelButton": "Cancelar",
+        "reason": {
+          "label": "¿Por qué se está rechazando este comentario?"
+        },
+        "rationale": {
+          "label": "¿Puedes ofrecer alguna otra razón?",
+          "helperText": "Ofrecer el mayor número de detalles ayudará a que el autor entienda por qué no se publicó su comentario."
+        },
+        "sendStoryToCaseManagerTitle": "Enviar el comentario al gestor de casos"
+      },
+      "toast": {
+        "published": {
+          "success": {
+            "title": "Comentario publicado",
+            "subtitle": "El comentario ha sido publicado."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error al publicar el comentario. Por favor, inténtalo de nuevo."
+          }
+        },
+        "rejected": {
+          "success": {
+            "title": "Comentario rechazado",
+            "subtitle": "El comentario ha sido rechazado."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error al rechazar comentario. Por favor, inténtalo de nuevo."
+          }
+        },
+        "deleted": {
+          "success": {
+            "title": "Comentario eliminado",
+            "subtitle": "El comentario ha sido eliminado de forma permanente."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error al eliminar el comentario. Por favor, inténtalo de nuevo."
+          }
+        },
+        "saved": {
+          "success": {
+            "title": "Comentario guardado",
+            "subtitle": "El comentario se guardó exitosamente"
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "El comentario no se guardó exitosamente. Los cambios no se guardaron."
+          }
+        },
+        "sendStoryToCaseManager": {
+          "error": {
+            "subtitle": "Error al enviar comentario al Gestor de Casos. Favor de volver a intentar.",
+            "title": "Error"
+          },
+          "success": {
+            "title": "Comentario enviado a Gestor de Casos",
+            "subtitle": "Se envió el comentario a un gestor de casos"
+          }
+        },
+        "assignedToModerator": {
+          "success": {
+            "title": "{{storyCount}} Asignado al Moderador",
+            "subtitle": "{{storyCount}} ha sido asignado a {{nickname}}"
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "No se pudo asignar las historias. Los cambios no se guardaron"
+          }
+        }
+      },
+      "rejectReasons": {
+        "story_replyHasOffensiveOrDiscriminatoryLanguageInIt": "El comentario contiene lenguaje ofensivo o discriminatorio",
+        "story_replyDoesNotFollowTheCommunityStandards": "Este comentario no cumple con los estándares de la comunidad diseñados para garantizar un espacio seguro para intercambiar retroalimentación.",
+        "thereIsConcernAboutTheAuthenticityOfTheStory_reply": "Hay dudas sobre la autenticidad del comentario.",
+        "thereWasConcernThatTheStory_replyCouldCauseHarmIfPostedPublicly": "Se teme que el comentario pueda ser perjudicial si se publica. Está siendo remitido a los especialistas.",
+        "story_replyDoesNotRespectTheRightToPrivacyOfOthers": "El comentario no respeta el derecho a la privacidad de otros.",
+        "other": "Otro",
+        "poorAudioQuality": "Mala calidad de audio",
+        "duplicate": "Duplicado",
+        "communityStandards": "Viola los estándares de la comunidad"
+      }
+    },
+    "comment": {
+      "solutionProposedButton": "Solución Propuesta",
+      "clickToPreview": "Haz clic en las respuestas para obtener una vista previa del hilo",
+      "noMoreComments": "No hay más comentarios.",
+      "loadingMore": "Cargando {{value}} respuestas más...",
+      "preview": {
+        "title": "Vista previa del hilo",
+        "hide": "Ocultar"
+      },
+      "modal": {
+        "title": "Estás a punto de rechazar esta respuesta",
+        "contentVerified": "¿Estás seguro de que quieres rechazar esta respuesta?",
+        "rejectButton": "Rechazar respuesta",
+        "cancelButton": "Cancelar",
+        "reason": {
+          "label": "¿Por qué se ha rechazado esta respuesta?"
+        },
+        "rationale": {
+          "label": "¿Puedes ofrecer alguna otra razón?",
+          "helperText": "Ofrecer el mayor número de detalles ayudará a que el autor entienda por qué no se publicó su respuesta."
+        }
+      },
+      "toast": {
+        "published": {
+          "success": {
+            "title": "Publicación exitosa",
+            "subtitle": "Has publicado una respuesta."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error al publicar {{ valor }} respuesta . Por favor, inténtalo de nuevo."
+          }
+        },
+        "rejected": {
+          "success": {
+            "title": "Rechazo exitoso",
+            "subtitle": "La respuesta ha sido rechazada."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error al rechazar respuesta. Por favor, inténtalo de nuevo."
+          }
+        },
+        "deleted": {
+          "success": {
+            "title": "Eliminación exitosa",
+            "subtitle": "La respuesta se eliminó de forma permanente."
+          },
+          "error": {
+            "title": "Error",
+            "subtitle": "Error al eliminar la respuesta. Por favor, inténtalo de nuevo."
+          }
+        },
+        "preview": {
+          "error": {
+            "title": "Error",
+            "subtitle": "Error durante la carga de la vista previa. Por favor, inténtalo de nuevo."
+          }
+        },
+        "sentToPendingRecording": {
+          "success": {
+            "title": "La respuesta ha sido publicada",
+            "subtitle": "La respuesta ya está disponible en la página de Comentarios y se envió una copia de la misma a la bandeja de salida para el registro del autor."
+          },
+          "error": {
+            "title": "La respuesta no ha sido reenviada",
+            "subtitle": "La respuesta no ha sido reenviada al registro de voz"
+          }
+        }
+      },
+      "rejectReasons": {
+        "story_replyHasOffensiveOrDiscriminatoryLanguageInIt": "La respuesta contiene lenguaje ofensivo o discriminatorio.",
+        "story_replyDoesNotFollowTheCommunityStandards": "La respuesta no sigue los estándares de esta comunidad, diseñados para garantizar un espacio seguro para compartir retroalimentación.",
+        "thereIsConcernAboutTheAuthenticityOfTheStory_reply": "Hay dudas sobre la autenticidad de la respuesta.",
+        "thereWasConcernThatTheStory_replyCouldCauseHarmIfPostedPublicly": "Se teme que la respuesta pueda ser perjudicial si se publica. Está siendo remitida a los especialistas.",
+        "story_replyDoesNotRespectTheRightToPrivacyOfOthers": "La respuesta no respeta el derecho a la privacidad de otros.",
+        "other": "Otro",
+        "poorAudioQuality": "Mala calidad de audio",
+        "duplicate": "Duplicado",
+        "communityStandards": "Viola los estándares de la comunidad"
+      }
+    },
+    "rejectModal": {
+      "contentAnnonymous": "No contamos con los datos de contacto de este autor, por lo que no recibirá notificaciones.",
+      "reasonsHeading": "Selecciona un motivo:",
+      "otherReasonTextfieldPlaceholder": "Escribe un motivo",
+      "feedbackHeading": "Retroalimentación:",
+      "feedbackToggleLabel": "Enviar retroalimentación al autor",
+      "feedbackPlaceholder": "Escribir retroalimentación",
+      "writeYourFeedback": "Escribe tu retroalimentación"
+    },
+    "assignModeratorModal": {
+      "title": "Asignar Moderador",
+      "assignButton": "Asignar",
+      "cancelButton": "Cancelar",
+      "searchPlaceholder": "Buscar usuarios"
+    },
+    "pendingStoryReview": {
+      "heading": "Revisar comentario",
+      "subheading": "Revisa el comentario y las etiquetas provistas por el usuario, añade las etiquetas faltantes, si las hay, y traduce el comentario en el paso 2.",
+      "location": "Ubicación",
+      "storyType": "Tipo de comentario",
+      "originalLanguage": "Idioma original",
+      "originalLanguagePlaceholder": "Seleccionar idioma original del comentario",
+      "iAmGoingToTranslateTheTextTo": "Voy a traducir el texto al",
+      "targetLanguagePlaceholder": "Elegir lengua",
+      "writeTranslation": "Escribir traducción",
+      "toRecipient": "Para",
+      "review": "Revisar",
+      "translation": "Traducción",
+      "publishStory": "Publicar comentario",
+      "missingStoryType": "Debes seleccionar el tipo de comentario para que pueda ser publicado",
+      "missingOriginalLanguage": "Debes seleccionar el idioma del comentario original",
+      "storyPreview": "Vista previa del comentario",
+      "conversationTab": {
+        "sms": "Conversación SMS",
+        "messenger": "Conversación de Messenger",
+        "whatsapp": "Conversación de Whatsapp"
+      },
+      "story": "Comentario",
+      "reply": "Enviar",
+      "sendToCaseManager": "Enviar a gestor de casos",
+      "caseManagerNotice": "El comentario puede enviarse a un gestor de casos para su revisión tras haber sido traducido durante el paso 2.",
+      "missingThematicArea": "Puedes seleccionar al menos un área temática.",
+      "yourNewTranslation": "Tu nueva traducción",
+      "saveTranslation": "Guardar traducción",
+      "translate": "Traducir",
+      "addAnotherTranslation": "Añadir otra traducción",
+      "storyMarkedAsSensitiveReturnedByCaseManager": "El autor etiquetó esta comentario como delicado, pero el gestor de casos te lo devolvió, lo cual significa que no es delicado. Ya es posible cambiar la etiqueta para el tipo de comentario.",
+      "storyMarkedAsSensitiveReturnedByCaseManagerCannotPublish": "Este comentario no se puede publicar porque el autor lo etiquetó como delicado. Un gestor de casos lo devolvió porque no cumple con los criterios para los comentarios delicados. Por favor rechaza el comentario e invita al autor a enviar su comentario usando otra etiqueta.",
+      "addATranslation": "Añadir traducción",
+      "translationLanguage": "Idioma de traducción",
+      "manualTranslation": "Traducción manual",
+      "authorWillBeNotInformed": "El autor de este comentario no compartió sus datos. No recibirá ningún aviso sobre el rechazo de este comentario."
+    },
+    "table": {
+      "dateTime": "Fecha / Hora",
+      "storyType": "Tipo de comentario",
+      "language": "Idioma",
+      "country": "País",
+      "channel": "Canal",
+      "status": "Estatus",
+      "reviewButton": "Revisar"
+    },
+    "pendingReplyReview": {
+      "heading": "Revisar respuesta",
+      "subheading": "Revisar y traducir la respuesta",
+      "reply": "Respuesta",
+      "originalStoryWrittenIn": "Comentario original escrito en",
+      "reviewStep": "Revisar y Traducir",
+      "publishReply": "Publicar respuesta",
+      "rejectReply": "Rechazar respuesta",
+      "reviewAndTranslate": "Revisa y traduce",
+      "publishAndForwardToVoiceRecord": "Publicar y reenviar para grabar"
+    },
+    "translationStatus": {
+      "manual_0": "En espera para traducir al {{lang}}",
+      "machine_0": "En espera para traducir al {{lang}}",
+      "manual_1": "Traduciendo al {{lang}}",
+      "machine_1": "Traduciendo al {{lang}}",
+      "manual_2": "Texto traducido al {{lang}}",
+      "machine_2": "Texto traducido al {{lang}}",
+      "machine_3": "No disponible en {{lang}} por el momento"
+    },
+    "translationProcess": {
+      "close": "Cerrar",
+      "cancel": "Cancelar",
+      "retry": "Re intentar",
+      "automaticTranslation": "Traducción automática",
+      "manualTranslation": "Traducción del moderador",
+      "addTranslation": "Añadir nueva traducción",
+      "verifyTranslation": "Verificar traducción",
+      "editTranslation": "Editar traducción",
+      "deleteTranslation": "Borrar traducción",
+      "noTranslations": "No hay traducciones todavía",
+      "notAvailable": "No disponible",
+      "unavailableTitle": "Temporalmente no disponible, los motivos pueden ser:",
+      "unavailableReason1": "Vacío",
+      "unavailableReason2": "Vacío",
+      "translating": "Traduciendo"
+    },
+    "conversationReply": {
+      "unavailable": {
+        "userDenied": "No puedes enviarle un mensaje al autor, ya que no consintió que Loop lo contactara.",
+        "threadOpen": {
+          "content": "No puedes enviarle un mensaje al autor en este momento, ya que tiene otro hilo",
+          "link": "actualmente abierto aquí"
+        },
+        "cannotSend": "No puedes enviarle un mensaje al autor en este momento."
+      },
+      "author": {
+        "loop": "Loop",
+        "anonymous": "Anónimo"
+      },
+      "toast": {
+        "send": {
+          "error": {
+            "title": "Mensaje no enviado",
+            "subtitle": "Error en el envío del mensaje"
+          }
+        }
+      },
+      "intro": {
+        "sms": "Introducción de SMS",
+        "messenger": "Intro de Messenger",
+        "whatsapp": "Intro de WhatsApp",
+        "telegram": "Telegram intro"
+      }
+    },
+    "contextMenu": {
+      "edit": "Editar",
+      "unpublish": "Revertir publicación",
+      "success": {
+        "story": {
+          "title": "Comentario no publicado"
+        },
+        "reply": {
+          "title": "Respuesta no publicada"
+        },
+        "redirecting": "Redirigir a la bandeja de entrada",
+        "link": "Haz click aquí para revisar ahora"
+      }
+    },
+    "sendStoryToCaseManagerModal": {
+      "immediateAssistance": {
+        "label": "Anotar el comentario como:",
+        "urgent": "Urgente",
+        "notUrgent": "No urgente"
+      },
+      "reason": "Escribir motivo:"
+    },
+    "storySelection": {
+      "modal": {
+        "title": "You are about to reject {{count}} piece of feedback"
+      }
+    },
+    "storiesSelection": {
+      "modal": {
+        "title": "You are about to reject {{count}} pieces of feedback"
+      }
+    }
+  },
+  "category": {
+    "thanks": "Agradecimiento",
+    "question": "Solicitud de información",
+    "opinion": "Opinión",
+    "concern": "Inquietud",
+    "request": "Solicitud de asistencia",
+    "sensitive": "Sensible",
+    "comments": "Respuestas"
+  },
+  "repliedTo": {
+    "repliedToByOrganisation": "Respondido por la organización",
+    "repliedToByCommunity": "Respondido por la comunidad",
+    "notRepliedTo": "No respondido"
+  },
+  "country": {
+    "philipinnes": "Filipinas",
+    "zambia": "Zambia",
+    "other": "Estoy en otro país"
+  },
+  "thematic": {
+    "emergencyResponse": "Respuesta ante emergencias",
+    "idCards": "Tarjetas de identidad",
+    "campManagement": "Administración de campamento",
+    "distribution": "Distribución",
+    "cash": "Efectivo",
+    "foodItems": "Artículos alimentarios",
+    "non-foodItems": "Artículos no alimentarios",
+    "health": "Salud",
+    "medicalCentres": "Centros médicos",
+    "quarantineFacilities": "Instalaciones de cuarentena",
+    "vaccines": "Vacunas",
+    "insurance": "Seguro",
+    "hygienicPracticesCommunityDisinfection": "Prácticas higiénicas y desinfección comunitaria",
+    "informationEducationAndCommunicationActivities": "Actividades de información, educación y comunicación",
+    "landRights": "Derechos de la tierra",
+    "landmines/UnexplodedOrdnance": "Minas terrestres / municiones sin detonar",
+    "transportation": "Transporte",
+    "droughts": "Sequías",
+    "laborAndJobs": "Trabajo y empleos",
+    "nutrition": "Nutrición",
+    "communitySensitisation": "Sensibilización comunitaria",
+    "gender-basedViolence": "Violencia basada en género",
+    "mentalHealth": "Salud mental",
+    "sexualAndReproductiveRights": "Derechos sexuales y reproductivos",
+    "epidemics/Pandemics": "Epidemias / Pandemias",
+    "covid": "COVID",
+    "ebola": "Ébola",
+    "foodSecurity": "Seguridad alimentaria",
+    "livelihoods": "Medios de subsistencia",
+    "training": "Capacitación",
+    "wash": "WASH",
+    "waterPoints": "Puntos de agua",
+    "latrines": "Letrinas",
+    "shelter": "Albergue",
+    "housing": "Alojamiento",
+    "lightingAndElectricity": "Iluminación y electricidad",
+    "logistic": "Logística",
+    "construction": "Construcción",
+    "education": "Educación",
+    "primary": "Primaria",
+    "secondary": "Secundaria",
+    "university/Colleges/Trades": "Universidad / Colegios / Oficios",
+    "crossCutting": "Multisectorial",
+    "safetyAndSecurity": "Seguridad",
+    "campCoordination/Management": "Coordinación / Gestión de campamentos",
+    "capacityBuilding": "Desarrollo de capacidades",
+    "aidWorkers": "Trabajadores humanitarios",
+    "other": "Otra",
+    "financeManagement": "Gestión de finanzas",
+    "government": "Gobierno",
+    "foodAssistance": "Ayuda alimentaria",
+    "cross-cutting": "Transversal",
+    "medications/MedicinesFacilitiesAndServices": "Medicamentos / Medicinas, Instalaciones y servicios",
+    "hiv/Aids": "VIH / SIDA",
+    "feeding/Malnutrition": "Alimentación / Malnutrición",
+    "handwashingStations": "Estaciones de lavado de manos",
+    "waterTrucking": "Transporte de agua",
+    "solidWaste/GarbageManagement": "Residuos sólidos / gestión de residuos",
+    "waterFacilitiesAndSupplies": "Instalaciones y suministro de agua",
+    "temporaryShelters": "Alojamientos temporales",
+    "campCoordinationManagement": "Gestión y coordinación de campamentos",
+    "technicalSupport": "Apoyo técnico",
+    "scholarships": "Becas",
+    "children": "Niños",
+    "youngPeople": "Jóvenes",
+    "women": "Mujeres",
+    "personWithDisabilities": "Personas con discapacidad",
+    "elderlies": "Ancianos",
+    "lgtbq+": "LGBTQ+",
+    "chronicallyIllPeople": "Personas con enfermedades crónicas",
+    "legalStatus(refugees)": "Estado legal (refugiados)",
+    "indigenousCommunity": "Comunidad indígena",
+    "lowIncomeFamilies": "Familias de bajos ingresos",
+    "clan-conflict": "Conflictos de clan",
+    "civicSpace": "Espacio cívico",
+    "telecommunications": "Telecomunicaciones",
+    "climateChange": "Cambio climático",
+    "environment": "Medio Ambiente",
+    "drrAndPreparedness": "RRD y preparación",
+    "earlyChildhood": "Primera infancia",
+    "elections": "Elecciones",
+    "finance": "Financiamiento",
+    "protection": "Protección",
+    "governance": "Gobernanza",
+    "loopOnboarding": "Loop Onboarding",
+    "minorityGroup": "Minority Group",
+    "livestock": "Livestock",
+    "agriculture": "Agriculture",
+    "locust": "Locust",
+    "flooding/HeavyRains": "Flooding / Heavy rains",
+    "idp": "Internally Displaced People (IDP)",
+    "general-assistance": "Asistencia general"
+  },
+  "maternity": {
+    "notPregnantOrBreastfeeding": "Ni embarazada ni en periodo de lactancia",
+    "pregnant": "Embarazada",
+    "breastfeeding": "En periodo de lactancia",
+    "bothPregnantAndBreastfeeding": "Embarazada y en periodo de lactancia",
+    "notDisclosed": "No revelado"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "ny": "Chichewa",
+    "ar": "عربي",
+    "so": "Somali (Maxatiri)",
+    "tl": "Tagalog",
+    "ai": "Anguilla",
+    "bem": "Bemba",
+    "ceb": "Cebuano",
+    "id": "Bahasa Indonesia",
+    "maa": "Somali (af Maay)",
+    "tog": "Tonga",
+    "loz": "Lozi",
+    "pl": "Polski",
+    "uk": "Український",
+    "ru": "Русский",
+    "bju": "Somali (Baajuuni)",
+    "bnd": "Somali (Banadiri-Marka)"
+  },
+  "newStoryV2": {
+    "form": {
+      "content": {
+        "label": "¿Qué te gustaría compartir?",
+        "info": "¿Hay alguna experiencia que hayas tenido y que quieras compartir? Cuanto más puedas compartirnos de forma segura, más posibilidades habrá de encontrar soluciones para ayudar.",
+        "publishInfo": "Una vez que sea publicado, todos podrán ver este comentario en línea",
+        "placeholder": "Empieza a escribir tu comentario (mínimo 8 caracteres)",
+        "stateInfoGreat": "🎉 ¡Bien! Entre más detalles, mejor sabremos a quién enviar tu comentario.",
+        "state": {
+          "great": "Genial",
+          "good": "Bien",
+          "superb": "Excelente"
+        },
+        "stateInfoGood": "👍️ Lo estás haciendo bien, ¡continúa!",
+        "sensitive": {
+          "yes": "Sí",
+          "no": "No",
+          "label": "Este es un comentario delicado",
+          "info": "Los comentarios sensibles (es decir, corrupción, abuso, violencia) nunca se comparten en la plataforma.",
+          "explanation": "¿Qué es un comentario delicado?"
+        },
+        "stateInfoDefault": "8 caracteres como mínimo",
+        "stateInfoSuperb": "💯 Lo estás haciendo bien, ¡continúa!"
+      },
+      "type": {
+        "title": "Tipo de comentario",
+        "subtitle": "Puedes elegir varias opciones",
+        "helperText": "Ayudarme a elegir",
+        "none": "Ninguna"
+      },
+      "name": {
+        "title": "¿Cuál es tu nombre?",
+        "info": "Usa tu nombre completo, un seudónimo, o deja la casilla en blanco para permanecer anónimo",
+        "explanation": "¿Por qué te pedimos esto?"
+      },
+      "email": {
+        "explanation": "¿Por qué te pedimos esto?",
+        "sensitive": {
+          "info": "Si dejas tu dirección de correo electrónico, Loop podría contactarte para pedir más detalles sobre tus comentarios o derivarte a una organización que pueda asistirte. No compartiremos tu correo electrónico con ninguna otra organización sin consultarte primero."
+        },
+        "nonSensitive": {
+          "info": "Proporciona tu correo electrónico para recibir notificaciones de respuestas. Puedes cancelar estas notificaciones en cualquier momento. Tu dirección de correo electrónico no será visible para nadie."
+        },
+        "title": "Dirección de correo electrónico"
+      },
+      "additionContactDetails": {
+        "title": "Detalles de contacto adicionales",
+        "info": "Por favor, proporciónanos aquí cualquier detalle relevante sobre cómo contactarte, incluyendo si compartes un teléfono y cuál es el mejor momento/día para contactarte de forma segura."
+      },
+      "sensitiveStoryContactConsent": {
+        "title": "Consentimiento de contacto",
+        "info": "Doy mi consentimiento para que Loop me contacte y hable conmigo en más detalle sobre mi informe para poder recibir una referencia a una organización que pueda ayudarme."
+      },
+      "gender": {
+        "title": "Género",
+        "info": "¿Cómo te identificas?",
+        "radio": {
+          "female": "Mujer"
+        }
+      },
+      "age": {
+        "title": "Edad",
+        "info": "¿Cuántos años tienes?",
+        "explanation": "¿Qué pasa si soy menor de 14 años?"
+      },
+      "condition": {
+        "title": "¿Tienes algún padecimiento físico o mental?",
+        "radio": {
+          "yes": "Sí",
+          "no": "No",
+          "preferNotToAnswer": "Prefiero no responder"
+        },
+        "type": {
+          "title": "¿Tu condición afecta alguna de las siguientes áreas?",
+          "info": "Puedes elegir varias opciones",
+          "seeing": {
+            "title": "Vista"
+          },
+          "hearing": {
+            "title": "Audición"
+          },
+          "speaking": {
+            "title": "Habla"
+          },
+          "mobility": {
+            "title": "Movilidad / Destreza"
+          },
+          "learning": {
+            "title": "Aprendizaje / Comprensión"
+          },
+          "selfCare": {
+            "title": "Cuidado personal"
+          },
+          "other": {
+            "title": "Otro"
+          }
+        }
+      },
+      "phoneNumber": {
+        "title": "Número de teléfono",
+        "info": "No compartiremos tu teléfono con nadie",
+        "sensitiveInfo": "Si dejas tu número de teléfono, Loop podría contactarte para pedir más detalles sobre tu comentario o remitirte a alguna organización que podría ayudarte. No compartiremos tu teléfono con ninguna otra organización sin tu consentimiento previo.",
+        "explanation": "¿Por qué te preguntamos esto?"
+      },
+      "phone": {
+        "title": "Número de teléfono"
+      },
+      "country": {
+        "title": "País",
+        "subtitle": "¿En qué país ocurrió tu comentario?",
+        "helperText": "¿Por qué queremos saber en qué país te encuentras?",
+        "changeCountry": "Cambiar país",
+        "selectCountry": "Seleccionar país",
+        "yourLocation": "Tu ubicación:"
+      },
+      "location": {
+        "title": "Ubicación del comentario",
+        "subtitle": "¿Dónde tuvo lugar tu comentario? Puede ser una ciudad, pueblo, aldea o campamento. No revelaremos tu ubicación exacta ni compartiremos tu ubicación con nadie.",
+        "helperText": "¿Por qué queremos conocer la ubicación de tu comentario?",
+        "useMyLocation": "Usar mi ubicación actual",
+        "useLocation": "Usar ubicación aproximada",
+        "or": "o",
+        "hint": "Buscar población o ciudad cerca de ti",
+        "cancel": "Cancelar",
+        "addNew": "Usar el nombre de este lugar",
+        "unavailable": "Ubicación no disponible"
+      },
+      "help": {
+        "explanation": "Ayúdame a elegir"
+      }
+    },
+    "steps": {
+      "step1": {
+        "label": "Escribe tu comentario"
+      },
+      "step2": {
+        "label": "Detalles del comentario"
+      },
+      "step3": {
+        "label": "Tus datos"
+      },
+      "info": {
+        "title": "Información del comentario",
+        "visibility": "Visible en línea para cualquiera",
+        "editStory": "Editar comentario",
+        "storyType": "Tipo de comentario",
+        "thanks": "Agradecimiento",
+        "organisation": "Organización",
+        "location": "Ubicación",
+        "storyBy": "Comentario por",
+        "consentInfo": "Doy mi consentimiento para que mi comentario sea publicado en TalkToLoop.org para ayudar a mejorar los servicios",
+        "submit": "Enviar comentario",
+        "visibilityHidden": "No visible en línea",
+        "sensitiveConsentInfo": "Doy mi consentimiento para que Loop use los datos de mis comentarios <strong>de forma anónima</strong> para estadísticas e informes. Esto significa que no se utilizará mi nombre, información de contacto ni ubicación exacta.",
+        "consentInfoError": "Por favor da tu consentimiento antes de publicar tu comentario"
+      }
+    },
+    "heading": {
+      "text": "Nuevo comentario",
+      "allStories": "Todos los comentarios",
+      "submitText": "Revisa y envía tu comentario"
+    },
+    "ourloopPromise": {
+      "nonSensitive": {
+        "heading": "Promesa de Loop",
+        "content": "Loop hará todo lo posible para dirigir tu comentario a las organizaciones pertinentes y animarlas a responder. Trataremos tu comentario con la mayor sensibilidad y con las más altas mejores medidas de seguridad de datos. Si compartes tus datos de contacto con Loop, te informaremos cuando alguien responda a tu comentario. No compartiremos tus datos de contacto con nadie."
+      },
+      "sensitive": {
+        "heading": "Tu comentario está a salvo con nosotros",
+        "content": "Si tus comentarios son sensibles, no se compartirán en línea, en su lugar, tus datos se gestionarán de forma confidencial. Un gestor de casos de Loop se pondrá en contacto contigo para obtener tu consentimiento informado y discutir opciones para tratar de encontrar la organización adecuada que pueda asistirte con servicios o investigar tu queja. Solo podemos hacer esto si compartes tu información de contacto. No compartiremos tus datos personales ni tus contactos con nadie sin tu permiso."
+      }
+    },
+    "caseManagerMessage": {
+      "role": "Gestor de Caso, Loop"
+    },
+    "footerText": "© 2021 Our Loop Stichting. Todos los Derechos Reservados.",
+    "modals": {
+      "shareExperience": {
+        "title": "Comparte tu experiencia con las organizaciones que trabajan en tu área",
+        "topParagraph": "¿Has tenido alguna experiencia memorable con alguna organización en tu área? ¿Ha sido buena o mala? ¿Qué te gustaría compartir?",
+        "list": {
+          "one": "Loop se esforzará por dirigir tu comentario a la gente indicada, la cual podría tomar medidas y responder",
+          "two": "Tu comentario se publica en línea para garantizar que tu voz sea escuchada",
+          "three": "Si tu comentario contiene información delicada, ésta será tratada de manera confidencial y no se publicarán detalles de identificación."
+        },
+        "submitButton": "Empieza a escribir tu comentario"
+      },
+      "cancel": "Cancelar",
+      "ok": "Ok",
+      "sensitiveStory": {
+        "title": "¿Qué es un comentario delicado?",
+        "topParagraph": "Los comentarios relacionados con alguno de los siguientes temas se considerarán delicados:",
+        "bottomParagraph": "Si compartes un comentario delicado, nuestros moderadores se asegurarán de que sea tratado de forma confidencial. No se publicarán los datos personales de identificación de los comentarios delicados.",
+        "list": {
+          "one": "Explotación sexual, abuso y acoso",
+          "two": "Protección de menores",
+          "three": "Corrupción",
+          "four": "Fraude",
+          "five": "Alguna otra violación del código de conducta",
+          "six": "Cualquier otra mala conducta",
+          "seven": "Violencia de género",
+          "eight": "Protección",
+          "nine": "Desvío de ayuda"
+        }
+      },
+      "storyType": {
+        "title": "Tipo de comentario: tus opciones",
+        "paragraph": "Puedes categorizar tu comentario según uno o más de los siguientes tipos de comentario. También puedes dejar el espacio en blanco y uno de los moderadores de Loop lo etiquetará por ti. Esto nos ayudará a encontrar a la gente adecuada para leerte y responderte.",
+        "sections": {
+          "thanks": {
+            "title": "Gracias",
+            "content": "Muestra tu gratitud hacia alguna organización, servicio, o alguien en tu comunidad mediante un comentario de agradecimiento"
+          },
+          "question": {
+            "title": "Solicitud de información",
+            "content": "Si quieres preguntarle algo a alguna organización, puedes escribir un comentario que contenga una pregunta. No te lo podemos garantizar, pero haremos todo lo posible porque alguien te responda."
+          },
+          "opinion": {
+            "content": "¿Tienes alguna opinión fuerte o quieres compartir algo que hayas escuchado y quieras comprobar? Escribe una historia y etiquétala como opinión. Loop intentará encontrar gente que pueda responderte",
+            "title": "Opinión"
+          },
+          "request": {
+            "content": "¿Tienes ideas para mejorar un servicio o el trabajo de alguna organización? Escribe un comentario y etiquétalo como solicitud.",
+            "title": "Solicitud de asistencia"
+          },
+          "concern": {
+            "title": "Preocupación",
+            "content": "¿Hay algo que te preocupe en tu comunidad? Etiqueta tu comentario como una preocupación y Loop exhortará a las organizaciones de tu área a responder."
+          }
+        }
+      },
+      "country": {
+        "title": "¿Por qué queremos saber en qué país estás?",
+        "topParagraph": "Saber en qué país te encuentras nos ayuda a entender el contexto de tu comentario así como las tendencias en cada contexto, lo cual contribuye a la búsqueda de apoyos.",
+        "bottomParagraph": "Identificamos tu país de manera automática por medio de tu IP. Puedes cambiar o quitar dicho país de tu comentario cuando así lo desees. Solo presiona 'Cambiar país'"
+      },
+      "organisation": {
+        "title": "¿Por qué es importante agregar una organización a tus comentarios?",
+        "sensitive": {
+          "paragraph": "Agregar una organización a tus comentarios nos ayuda a saber quién puede investigar tu queja. Si no conoces el nombre de la organización involucrada, no hay problema. Aún puedes enviar tus comentarios sin nombrar una organización. Sin embargo, es posible que no podamos ayudarte directamente. En su lugar, tus comentarios pueden usarse para informes y estadísticas, con tu consentimiento."
+        },
+        "nonSensitive": {
+          "topParagraph": "Agregar una organización a tus comentarios nos ayuda a motivar a esa organización a responderte. También nos ayuda a mostrar qué organizaciones están escuchando y respondiendo a los comentarios a través de Loop.",
+          "bottomParagraph": "Si no conoces el nombre de la organización involucrada en tus comentarios, no hay problema. Aún puedes enviar tus comentarios sin nombrar una organización, y nuestros moderadores de Loop harán su mejor esfuerzo para encontrar una organización a la que referenciar. Compartir más detalles ayuda a los moderadores de Loop a encontrar la audiencia adecuada para tus comentarios."
+        }
+      },
+      "name": {
+        "title": "¿Por qué pedimos tu nombre?",
+        "sensitive": {
+          "paragraph": "Puedes elegir si deseas proporcionar tu nombre o no. Si prefieres permanecer completamente anónimo, también está bien. Simplemente deja el campo de nombre en blanco."
+        },
+        "nonSensitive": {
+          "topParagraph": "Tu nombre se muestra junto a tus comentarios si se publican en Loop. Esto ayuda a personalizar tus comentarios y permite que cualquiera que responda a ellos te mencione por tu nombre. Puedes dar tu nombre completo, parte de él o incluso un apodo.",
+          "bottomParagraph": "Si prefieres permanecer completamente anónimo, también está bien. Simplemente deja el campo de nombre en blanco y tus comentarios serán etiquetados como anónimos."
+        }
+      },
+      "phoneNumber": {
+        "paragraph": "Tu número nunca se publicará en línea y nunca lo compartiremos con nadie.",
+        "title": "¿Por qué pedimos tu número de teléfono?"
+      },
+      "email": {
+        "bottomParagraph": "Tu correo electrónico no se publicará en línea y nunca lo compartiremos con nadie.",
+        "topParagraph": "Si nos dejas tu correo electrónico, podremos notificarte cuando tu comentario haya sido publicado. También podremos avisarte cuando alguien responda a tu comentario.",
+        "title": "¿Por qué te pedimos tu dirección de correo electrónico?"
+      },
+      "age": {
+        "paragraph": "Si tienes menos de 14 años, debes pedirle a un adulto en quien confíes que te ayude a llenar esta forma.",
+        "title": "¿Qué pasa si soy menor de 14 años?"
+      },
+      "condition": {
+        "title": "¿Por qué te preguntamos si tienes algún padecimiento médico o físico?",
+        "topParagraph": "La gente con padecimientos físicos o mentales suele ser tratada de manera distinta. En vista de esto, podemos intentar buscar una organización que sepa más sobre cómo ayudarte y satisfacer tus necesidades.",
+        "bottomParagraph": "Esto también nos ayudará para abogar por la financiación y servicios que satisfagan las carencias identificadas."
+      },
+      "whatNext": {
+        "title": "¿Qué pasará después?",
+        "topParagraph": "Los moderadores de Loop revisarán tu comentario y lo traducirán para que más personas puedan entenderlo.",
+        "bottomParagraph": "Si dejaste tu dirección de correo o teléfono, te informaremos tan pronto como tu comentario sea publicado en línea.",
+        "centerParagraph": {
+          "part1": "Siempre y cuando tu comentario no viole la",
+          "part3": "Se publicará dentro de 48 horas.",
+          "part2": "Lineamientos de la comunidad"
+        }
+      },
+      "whatHappenStory": {
+        "title": "¿Qué pasará con tus comentarios?",
+        "list": {
+          "one": {
+            "title": "Un moderador revisará tus comentarios",
+            "content": "Los moderadores leen y traducen todos los comentarios recibidos en Loop. Si el moderador considera que tu comentario es sensible, lo enviará a un administrador de casos de Loop. Si el moderador no considera que tu comentario sea sensible, no se publicará. Loop te informará sobre la razón y los pasos a seguir si dejas tu correo electrónico o número de teléfono. Si solo puedes ser contactado de manera segura en ciertos horarios, por favor indícalo en tu mensaje."
+          },
+          "two": {
+            "title": "Se asignará un administrador de casos a tus comentarios",
+            "content": "Si proporcionas tu información de contacto, el administrador de casos se comunicará contigo para obtener tu consentimiento informado y discutir opciones para intentar conectarte con la organización adecuada para que te ayude o investigue tu queja. También pediremos tu consentimiento para compartir información personal como tu nombre, datos de contacto y ubicación. En ese momento, podrás decidir qué hacer."
+          },
+          "three": {
+            "title": "Intentaremos que las organizaciones tomen medidas",
+            "content": "Los administradores de casos de Loop harán seguimiento con cualquier organización involucrada en tus comentarios y la animarán a tomar acción."
+          },
+          "four": {
+            "title": "Si podemos contactarte, te mantendremos informado",
+            "content": "Si dejas tu número de teléfono o correo electrónico, te informaremos cuando haya actualizaciones sobre tu caso."
+          }
+        }
+      },
+      "location": {
+        "title": "¿Por qué queremos saber la ubicación de tus comentarios?",
+        "sensitive": {
+          "paragraph": "Con tu consentimiento, Loop utilizará tu ubicación para identificar servicios cercanos que puedan ayudarte o para proporcionar esta información a organizaciones que puedan investigar tu queja. Loop no recopila tu ubicación exacta."
+        },
+        "nonSensitive": {
+          "topParagraph": "Loop usa tu ubicación aproximada (por ejemplo, el distrito o la provincia en la que te encuentras) para animar a las organizaciones cercanas a responder a tus comentarios.",
+          "bottomParagraph": "Loop no recopila tu ubicación exacta. Sin embargo, tu ubicación aproximada se mostrará junto con tus comentarios. Esto nos ayuda a encontrar la audiencia adecuada para tu comentario."
+        }
+      },
+      "conditionHelpMe": {
+        "topParagraph": "¿Qué tipo de padecimiento físico o mental padeces?",
+        "middleParagraphPart1": "Éstas preguntas son preguntas estandarizadas (de acuerdo con",
+        "middleParagraphPart2": ") para definir tipos de discapacidad. Por favor haz click en la casilla correspondiente si respondiste que sí a una o más de las siguientes preguntas:",
+        "seeing": {
+          "explanation": "¿Tienes dificultades para ver incluso con lentes?",
+          "label": "Veer"
+        },
+        "hearing": {
+          "label": "Para escuchar",
+          "explanation": "¿Tienes alguna dificultad para escuchar, incluso con la ayuda de aparatos?"
+        },
+        "speaking": {
+          "label": "Para hablar",
+          "explanation": "¿Tienes problemas para comunicarte en tu lengua habitual? Por ejemplo, para entender o ser entendido"
+        },
+        "selfCare": {
+          "label": "Cuidado personal",
+          "explanation": "¿Tienes dificultades con el cuidado personal, por ejemplo, para asearte o vestirte?"
+        },
+        "learningUnderstanding": {
+          "label": "Aprendizaje / Comprensión",
+          "explanation": "¿Te cuesta recordar o concentrate?"
+        },
+        "mobilityDexterity": {
+          "label": "Movilidad / Destreza",
+          "explanation": "¿Tienes dificultades al caminar o subier escaleras?"
+        }
+      }
+    },
+    "organisations": {
+      "addNewLabel": "Añadir nueva organización llamada",
+      "heading": "Organización",
+      "description": "¿Sobre qué organización trata tu comentario?",
+      "explanation": "¿Por qué es importante?",
+      "inputPlaceholder": "Elegir organización",
+      "addNewLabel2": "Añadir otra organización"
+    },
+    "navigation": {
+      "back": "Retroceder",
+      "submit": "Enviar",
+      "next": "Siguiente"
+    },
+    "locationPromptText": "Por favor permite que tu navegador identifique tu ubicación para que podamos determinar tu ubicación aproximada.",
+    "safeMode": "Modo seguro — este comentario no será público"
+  },
+  "country_name": {
+    "gg": "Guernsey",
+    "ne": "Niger",
+    "af": "Afganistán",
+    "sv": "El Salvador",
+    "hu": "Hungría",
+    "lb": "Líbano",
+    "la": "Laos",
+    "al": "Albania",
+    "sy": "Siria",
+    "gn": "República Guinea",
+    "gh": "Ghana",
+    "gb": "Reino Unido",
+    "uy": "Uruguay",
+    "tn": "Túnez",
+    "kw": "Kuwait",
+    "ae": "Emiratos Árabes Unidos",
+    "dj": "Yibuti",
+    "aq": "Antártida",
+    "cf": "República Centroafricana",
+    "ng": "Nigeria",
+    "bt": "Bután",
+    "kr": "Corea del Sur",
+    "vg": "Islas Vírgenes Británicas",
+    "ag": "Antigua y Barbuda",
+    "bn": "Brunei Darussalam",
+    "mn": "Mongolia",
+    "er": "Eritrea",
+    "mt": "Malta",
+    "bw": "Botsuana",
+    "yt": "Mayotte",
+    "ph": "Filipinas",
+    "ve": "Venezuela",
+    "ni": "Nicaragua",
+    "pk": "Pakistán",
+    "ie": "Irlanda",
+    "ss": "Sudán del Sur",
+    "cc": "Islas Cocos (Keeling)",
+    "lu": "Luxemburgo",
+    "jo": "Jordania",
+    "cy": "Chipre",
+    "mp": "Marianas del Norte",
+    "fm": "Micronesia",
+    "im": "Isla de Man",
+    "tk": "Tokelau",
+    "ai": "Anguilla",
+    "de": "Alemania",
+    "ml": "Mali",
+    "id": "Indonesia",
+    "me": "Montenegro",
+    "eg": "Egipto",
+    "ax": "Islas Aland",
+    "sd": "Sudán",
+    "jm": "Jamaica",
+    "vn": "Vietnam",
+    "st": "Santo Tomé y Príncipe",
+    "mo": "Macao",
+    "td": "Chad",
+    "nu": "Niue",
+    "ir": "Irán",
+    "ba": "Bosnia-Herzegovina",
+    "ad": "Andorra",
+    "il": "Israel",
+    "cm": "Camerún",
+    "lc": "Santa Lucía",
+    "nc": "Nueva Caledonia",
+    "ps": "Palestina",
+    "na": "Namibia",
+    "bb": "Barbados",
+    "pw": "Palau",
+    "gw": "Guinea Bissau",
+    "ki": "Kiribati",
+    "as": "Samoa Americana",
+    "wf": "Wallis y Futuna",
+    "bv": "Isla Bouvet",
+    "sa": "Arabia Saudita",
+    "se": "Suecia",
+    "kg": "Kirguistán",
+    "zm": "Zambia",
+    "pt": "Portugal",
+    "cg": "Congo",
+    "vi": "Islas Vírgenes, EE.UU.",
+    "uz": "Uzbekistán",
+    "za": "Sudáfrica",
+    "si": "Eslovenia",
+    "mv": "Maldivas",
+    "do": "República Dominicana",
+    "kn": "Saint Kitts y Nevis",
+    "ee": "Estonia",
+    "vc": "San Vicente y las Granadinas",
+    "pr": "Puerto Rico",
+    "sh": "Santa Helena",
+    "cx": "Isla de Navidad",
+    "gs": "Georgia del Sur e Islas Sandwich del Sur",
+    "pa": "Panamá",
+    "mf": "San Martín",
+    "bq": "Bonaire, San Eustaquio y Saba",
+    "gq": "Guinea Ecuatorial",
+    "ws": "Samoa",
+    "pl": "Polonia",
+    "ug": "Uganda",
+    "kz": "Kazajistán",
+    "gd": "Granada",
+    "nl": "Países Bajos",
+    "hr": "Croacia",
+    "gm": "Gambia",
+    "lt": "Lituania",
+    "ro": "Rumania",
+    "mr": "Mauritania",
+    "bg": "Bulgaria",
+    "io": "Territorio Británico del Océano Índico",
+    "fk": "Islas Malvinas",
+    "mg": "Madagascar",
+    "aw": "Aruba",
+    "mw": "Malaui",
+    "rs": "Serbia",
+    "jp": "Japón",
+    "bj": "Benín",
+    "pm": "San Pedro y Miquelón",
+    "my": "Malasia",
+    "mh": "Islas Marshall",
+    "lk": "Sri Lanka",
+    "tj": "Tayikistán",
+    "gp": "Guadalupe",
+    "bs": "Bahamas",
+    "nz": "Nueva Zelanda",
+    "mm": "Myanmar",
+    "bz": "Belice",
+    "py": "Paraguay",
+    "to": "Tonga",
+    "tl": "Timor-Leste",
+    "hn": "Honduras",
+    "bd": "Bangladesh",
+    "fo": "Islas Feroe",
+    "dz": "Algeria",
+    "cv": "Cabo Verde",
+    "dk": "Dinamarca",
+    "sx": "San Martín (Países Bajos)",
+    "gi": "Gibraltar",
+    "ca": "Canadá",
+    "az": "Azerbaiyán",
+    "ge": "Georgia",
+    "je": "Jersey",
+    "cw": "Curazao",
+    "am": "Armenia",
+    "ms": "Montserrat",
+    "th": "Tailandia",
+    "tw": "Taiwán",
+    "tr": "Turquía",
+    "hk": "Hong Kong",
+    "gr": "Grecia",
+    "es": "España",
+    "lr": "Liberia",
+    "us": "Estados Unidos",
+    "bl": "San Bartolomé",
+    "sn": "Senegal",
+    "zw": "Zimbabue",
+    "by": "Bielorrusia",
+    "in": "India",
+    "it": "Italia",
+    "ec": "Ecuador",
+    "is": "Islandia",
+    "re": "Reunión",
+    "nf": "Isla de Norfolk",
+    "cu": "Cuba",
+    "cn": "China",
+    "bi": "Burundi",
+    "fi": "Finlandia",
+    "mk": "Macedonia",
+    "gl": "Groenlandia",
+    "gf": "Guyana Francesa",
+    "ly": "Libia",
+    "tc": "Islas Turcas y Caicos",
+    "tm": "Turkmenistán",
+    "ua": "Ucrania",
+    "bm": "Bermudas",
+    "kh": "Camboya",
+    "kp": "Corea del Norte",
+    "co": "Colombia",
+    "rw": "Ruanda",
+    "ck": "Islas Cook",
+    "no": "Noruega",
+    "mc": "Mónaco",
+    "ci": "Costa de marfil",
+    "br": "Brasil",
+    "hm": "Isla Heard e Islas McDonald",
+    "ht": "Haití",
+    "tg": "Togo",
+    "sg": "Singapur",
+    "so": "Somalia",
+    "ma": "Marruecos",
+    "tf": "Tierras australes y antárticas francesas",
+    "ar": "Argentina",
+    "gu": "Guam",
+    "sr": "Surinam",
+    "lv": "Letonia",
+    "bh": "Baréin",
+    "au": "Australia",
+    "sc": "Seychelles",
+    "qa": "Qatar",
+    "li": "Liechtenstein",
+    "pf": "Polinesia Francesa",
+    "sk": "Eslovaquia",
+    "va": "Ciudad del Vaticano",
+    "fj": "Fiyi",
+    "ye": "Yemen",
+    "an": "Antillas neerlandesas",
+    "sm": "San Marino",
+    "iq": "Irak",
+    "sj": "Svalbard y Jan Mayen",
+    "mz": "Mozambique",
+    "at": "Austria",
+    "om": "Omán",
+    "bo": "Bolivia",
+    "cr": "Costa Rica",
+    "et": "Etiopía",
+    "ke": "Kenia",
+    "tz": "Tanzania",
+    "km": "Comoras",
+    "tv": "Tuvalu",
+    "ch": "Suiza",
+    "pn": "Islas Pitcairn",
+    "mx": "México",
+    "vu": "Vanuatu",
+    "nr": "Nauru",
+    "sl": "Sierra Leona",
+    "mq": "Martinica",
+    "cz": "República Checa",
+    "be": "Bélgica",
+    "gt": "Guatemala",
+    "sb": "Islas Salomón",
+    "md": "Moldavia",
+    "sz": "Suazilandia",
+    "ru": "Rusia",
+    "ls": "Lesoto",
+    "ao": "Angola",
+    "um": "Islas Ultramarinas Menores de los Estados Unidos",
+    "pe": "Perú",
+    "ga": "Gabón",
+    "gy": "Guyana",
+    "fr": "Francia",
+    "ky": "Islas Caimán",
+    "pg": "Papúa Nueva Guinea",
+    "mu": "Mauricio",
+    "tt": "Trinidad y Tobago",
+    "dm": "Dominica",
+    "cl": "Chile",
+    "np": "Nepal",
+    "bf": "Burkina Faso",
+    "eh": "Sáhara Occidental",
+    "cd": "República Democrática del Congo",
+    "un": "Desconocido"
+  },
+  "errors": {
+    "required": "Se requiere esta entrada",
+    "maxLength": "La extensión máxima es {{requiredLength}}, actualmente es {{actualLength}}",
+    "email": "Esta no es una dirección de correo válida",
+    "generic": "Esta entrada no es válida",
+    "minLength": "Extensión máxima: {{requiredLength}}, extensión actual:{{actualLength}}",
+    "missingPrefix": "Falta prefijo",
+    "countryNotEntered": "Selecciona un país",
+    "locationNotEntered": "Selecciona una ubicación",
+    "languageNotEntered": "Selecciona un idioma",
+    "thematicsNotEntered": "Por favor, selecciona una etiqueta temática",
+    "passwordMatching": "Confirmar Contraseña no coincide"
+  },
+  "filtersV2": {
+    "mobileLink": "Filtros",
+    "seeAllStories": "Ver todos los comentarios",
+    "country": {
+      "label": "País",
+      "placeholder": "Elegir país"
+    },
+    "location": {
+      "label": "Ubicación",
+      "searchForPlace": "Search for a place",
+      "searchForCountry": "Search for a country",
+      "setLocation": "Set location",
+      "clearSearch": "Clear search",
+      "noLocationFound": "No locations matching your search were found",
+      "tooltip": "Filter for locations inside each country by clicking the arrow"
+    },
+    "searchText": {
+      "label": "Texto de búsqueda"
+    },
+    "storyType": {
+      "label": "Tipo de comentario"
+    },
+    "loaction": {
+      "label": "Ubicación"
+    },
+    "demographic": {
+      "label": "Demografía"
+    },
+    "thematicArea": {
+      "label": "Área temática"
+    },
+    "organisation": {
+      "label": "Organización",
+      "placeholder": "Elegir organización"
+    },
+    "repliedTo": {
+      "label": "Respondido",
+      "placeholder": "Mostrar comentarios que tienen al menos una respuesta o ninguna"
+    },
+    "date": {
+      "label": "Fecha",
+      "from": "From",
+      "to": "To",
+      "noRangeSelected": "Rango de fecha no seleccionado",
+      "calendar": "Calendario",
+      "orEnterManually": "O teclear manualmente"
+    },
+    "request": {
+      "label": "Solicitud de asistencia"
+    },
+    "moreFilters": {
+      "label": "Más filtros"
+    },
+    "clearAll": "Borrar todo",
+    "calendar": "Calendario",
+    "enterManually": "Teclear manualmente",
+    "monthFull": {
+      "January": "Ene",
+      "February": "Feb",
+      "March": "Mar",
+      "April": "Abr",
+      "May": "May",
+      "July": "Jul",
+      "August": "Ago",
+      "September": "Sep",
+      "October": "Oct",
+      "November": "Nov",
+      "December": "Dic",
+      "June": "Junio"
+    },
+    "weekdayShort": {
+      "Sunday": "Dom",
+      "Monday": "Lun",
+      "Tuesday": "Mar",
+      "Wednesday": "Miér",
+      "Thursday": "Jue",
+      "Friday": "Vier",
+      "Saturday": "Sáb"
+    },
+    "apply": "Aplicar",
+    "selectAll": "Seleccionar todo",
+    "deselectAll": "Deseleccionar todo",
+    "category": {
+      "thanks": "Gracias",
+      "question": "Solicitud de información",
+      "opinion": "Opinión",
+      "concern": "Preocupación",
+      "request": "Solicitud de asistencia",
+      "sensitive": "Delicado"
+    },
+    "modal": {
+      "moreFilters": "Más filtros",
+      "allFilters": "Todos los filtros"
+    },
+    "filters": {
+      "title": "Filtros"
+    },
+    "outcomesOfInvestigation": {
+      "label": "Resultados de la investigación"
+    },
+    "assistanceReferred": "Asistencia referida",
+    "typeOfCase": "Tipo de caso",
+    "age": {
+      "label": "Edad"
+    },
+    "gender": {
+      "label": "Género"
+    },
+    "disability": {
+      "label": "Discapacidad"
+    },
+    "minority": {
+      "label": "Minoría"
+    },
+    "seeAll": "Ver todo",
+    "backBtn": "Retroceder",
+    "clear": "Vaciar",
+    "channel": {
+      "web": "Web",
+      "sms": "SMS",
+      "messenger": "Facebook Messenger",
+      "whatsapp": "WhatsApp",
+      "ivrr": "Voz",
+      "telegram": "Telegram",
+      "text": "Text"
+    },
+    "voiceDuration": {
+      "label": "Length"
+    },
+    "preset": {
+      "header": {
+        "label": "Editar filtros",
+        "placeholder": "Buscar por palabra clave como educación, nutrición ...",
+        "button": "Buscar"
+      },
+      "label": "Filtros predefinidos",
+      "placeholder": "Ingresa el nombre del filtro predefinido",
+      "savePreset": "Guardar los filtros actuales como un nuevo filtro predefinido",
+      "removePreset": "Eliminar",
+      "modalLabel": "Elige un nombre para tu nuevo filtro predefinido",
+      "shareConfirmation": "Confirmar compartición",
+      "editConfirmation": "Confirmar actualización",
+      "deleteConfirmation": "Confirmar eliminación",
+      "shareExplanation": "Compartir este filtro lo hará disponible para todos en tu organización.",
+      "editExplanation": "¿Estás seguro de que quieres actualizar este filtro con los filtros actualmente seleccionados?",
+      "deleteExplanation": "¿Estás seguro de que quieres eliminar este filtro?",
+      "buttons": {
+        "confirm": "Confirmar",
+        "cancel": "Cancelar"
+      },
+      "tooltip": {
+        "share": "Compartir con la organización",
+        "update": "Actualizar",
+        "delete": "Eliminar"
+      }
+    }
+  },
+  "statistics": {
+    "comingSoon": {
+      "pill": "¡Manténte en sintonía!",
+      "heading": "Próximamente",
+      "subheading": "Estadísticas",
+      "text": "Se está construyendo un tablero que te permitirá analizar las tendencias y datos de los comentarios. Pronto estará disponible en el sitio.",
+      "linkDescription": "Mientras tanto",
+      "linkText": "Ver comentarios"
+    },
+    "navigation": {
+      "stories": "Abrir comentarios",
+      "cases": "Casos delicados"
+    },
+    "replies": {
+      "title": "Respuestas",
+      "summary": {
+        "text1": "de comentarios han sido respondidos",
+        "text2": "de comentarios han sido respondidos por organizaciones"
+      },
+      "table": {
+        "header1": "Tiempo prom. de respuesta:",
+        "header2": "Total de retroalimentación:",
+        "header3": "Total de respuestas:",
+        "header4": "Número de autores:",
+        "header5": "Número de organizaciones:"
+      },
+      "units": {
+        "stories": "Comentarios",
+        "replies": "Respuestas",
+        "authors": "Autores",
+        "organizations": "Organizaciones etiquetadas"
+      },
+      "moreLink": {
+        "content": "Esta sección muestra las tendencias del tipo de comentarios que la gente ha compartido en Loop. También ofrece datos sobre el cierre del ciclo de retroalimentación: quién responde a qué y qué tan pronto. Los filtros sirven para refinar este análisis."
+      },
+      "infoIcon": {
+        "content": "El tiempo de respuesta a los comentarios nos indica qué tan enterados estamos, como sector, sobre la retroalimentación de la comunidad."
+      }
+    },
+    "moreLink": "Más sobre esta sección",
+    "section1": "Tipo de comentario y respuestas",
+    "timeline": {
+      "title": "Comentarios recibidos en el tiempo"
+    },
+    "storiesAndReplies": {
+      "title": "Comentarios y respuestas",
+      "storyType": "Tipo de comentario",
+      "repliesCommunity": "Respuestas por comunidad",
+      "repliesOrganization": "Respuestas por organizaciones",
+      "totalStories": "Número total de comentarios",
+      "infoIcon": {
+        "content": "Ver quién responde a los comentarios nos ayuda a entender quién usa Loop e interactúa con la retroalimentación compartida en la plataforma."
+      }
+    },
+    "averageTime": {
+      "title": "Tiempo promedio de respuesta por tipo de comentario",
+      "infoIcon": {
+        "content": "Algunos comentarios reciben respuestas en cuestión de minutos, mientras que otros, en algunos días. Esta gráfica nos ayuda a entender cómo respondemos como sector a los problemas que se están reportando en Loop."
+      }
+    },
+    "section2": "Áreas temáticas",
+    "section3": "Desglose demográfico",
+    "thematicArea": {
+      "title": "Comentarios por área temática"
+    },
+    "difficulty": {
+      "title": "Tipo de comentario × capacidades del autor",
+      "units": {
+        "stories": "comentario"
+      },
+      "seeing": "Dificultad para ver:",
+      "hearing": "Dificultad para escuchar:",
+      "walkingOrClimbingSteps": "Dificultad para subir o bajar escaleras:",
+      "remembering": "Dificultad para recordar:",
+      "selfCareForExampleWashing": "Dificultad para caminar o subir escaleras:",
+      "communicating": "Dificultad para comunicarse:"
+    },
+    "ageGender": {
+      "title": "Tipo de comentario × edad y género del autor",
+      "1417": "14-17",
+      "1829": "18-29",
+      "3059": "30-59",
+      "60": "60+",
+      "na": "N/A",
+      "male": "Hombre",
+      "female": "Mujer",
+      "nonBinary": "No binario"
+    },
+    "thematic": {
+      "moreLink": {
+        "content": "Un área temática es el tipo de servicio provisto. En esta sección podemos ver qué tipos de comentarios (agradecimientos, preocupación, etc.) se están compartiendo acerca de los distintos tipos de servicio. Los filtros nos ayudan a refinar este análisis aún más."
+      }
+    },
+    "demographic": {
+      "moreLink": {
+        "content": "Si la gente nos comparte su información demográfica la agregamos aquí. Esto nos ayuda a entender quién usa Loop y quién no (todavía). Podemos ver el tipo de comentarios que comparten y los filtros nos ayudan a refinar el análisis aún más."
+      },
+      "infoIcon": {
+        "content": "Si alguien nos informa que tiene padecimientos físicos o mentales, usamos esa información para mostrar cuáles grupos nos están contactando y cuáles no."
+      }
+    },
+    "storiesOverTime": {
+      "infoIcon": {
+        "content": "Todos los comentarios se etiquetan en Loop como Agradecimiento, Pregunta, Opinión, Solicitud, Preocupación o Delicado. La visualización de las etiquetas nos permite entender el tono de la conversación a través del tiempo. Los filtros ayudan a refinar el análisis."
+      }
+    },
+    "ageAndGender": {
+      "infoIcon": {
+        "content": "Esta gráfica explica quiénes están detrás de los comentarios de Loop."
+      }
+    }
+  },
+  "navbar": {
+    "social": {
+      "twitterLabel": "El twitter de Loop",
+      "facebookLabel": "Habla con el Facebook de Loop",
+      "linkedinLabel": "Habla con el linkedin de Loop"
+    },
+    "static": {
+      "loopWebsiteLabel": "Sitio web de Loop",
+      "contactLabel": "Contacto",
+      "communityGuidelinesLabel": "Directrices comunitarias",
+      "privacyPolicyLabel": "Política de privacidad",
+      "cookiePolicyLabel": "Política de cookies",
+      "termsOfUseLabel": "Términos de uso"
+    },
+    "languageChange": {
+      "changeLabel": "Cambiar idioma"
+    },
+    "register": {
+      "createAccount": "Crear cuenta"
+    },
+    "header": {
+      "closeIconAlt": "Cerrar"
+    },
+    "authStatus": {
+      "logIn": "Entrar en el sistema",
+      "hi": "Hola, {{nickname}}",
+      "logInViaMagicLink": "Log in with magic link"
+    }
+  },
+  "organisationType": {
+    "label": "Tipo de organización",
+    "governmentAuthorities": "Autoridad gubernamental",
+    "nationalArmedForces": "Fuerzas Armadas Nacionales",
+    "privateSector": "Sector privado",
+    "nationalCommunityBasedOrganisation": "Organizaciones Nacionales / Basadas en comunidades",
+    "communityMember": "Miembro de la comunidad",
+    "internationalOrganisation": "Organización internacional",
+    "other": "Otro"
+  },
+  "difficulty": {
+    "seeing": "Vista",
+    "hearing": "Audición",
+    "walkingOrClimbingSteps": "Movilidad / Destreza",
+    "remembering": "Aprendizaje / Comprensión",
+    "communicating": "Habla",
+    "selfCareForExampleWashing": "Cuidado personal",
+    "learning": "Aprendizaje / Comprensión",
+    "other": "Otro",
+    "notAnswered": "Sin respuesta"
+  },
+  "storyHasNotBeenPublishedOnTalkToLoop": "Tu comentario no se publicó en TalkToLoop.org",
+  "organisationHaveBeenTaggedInStoryOnTalkToLoop": "Tu organización ha sido etiquetada en un comentario en TalkToLoop.org",
+  "replyHasNotBeenPublishedOnTalkToLoop": "Tu respuesta no se ha publicado en TalkToLoop.org",
+  "storyHasBeenPublishedOnTalkToLoop": "Tu comentario se ha publicado en TalkToLoop.org",
+  "statisticsCases": {
+    "section1": "¿Qué tan responsables somos?",
+    "moreLink": "Más acerca de esta sección.",
+    "accountability": {
+      "moreLink": {
+        "content": "Cuando Loop recibe una historia delicada que podría hacer daño si se publicara en la plataforma abierta, la remitimos a nuestro gestor de casos. Las mejores prácticas exigen que todas las denuncias se reconozcan, se evalúen, se investiguen, si procede, y se informe al alegante del resultado. Cada paso de este proceso se refleja en este Proceso de Rendición de Cuentas. Para garantizar un enfoque centrado en el sobreviviente, las normas del sector establecen el plazo en el que debe completarse cada uno de estos pasos (véase aquí). La página de estadísticas de Loop muestra los datos que las organizaciones deciden compartir con Loop después de recibir una remisión. Los datos identificables de la organización y de la víctima/sobreviviente no se revelan aquí."
+      }
+    },
+    "timeline": {
+      "title": "¿Cuándo se reportan casos delicados en Loop?",
+      "infoIcon": {
+        "content": "Los casos delicados que se reportan en Loop se etiquetan según una de las siguientes cuatro categorías. Esta gráfica muestra las tendencias sobre los distintos problemas reportados en Loop."
+      }
+    },
+    "accountabilityProcess": {
+      "title": "Proceso de rendición de cuentas.",
+      "seeMore": "Ver más",
+      "description": "Desde el momento en que una persona envía un comentario delicado que resulta ser una denuncia, un gestor de casos de Loop evalúa la denuncia y procesa el caso. Se da seguimiento sobre las distintas instancias responsables de actuar,  se informa al autor original de la historia y se puede cerrar el caso. A esto lo llamamos \"Proceso de rendición de cuentas\". Está diseñado para dar cuenta de cada denuncia que recibe Loop, para crear transparencia sobre lo que ocurre con cada caso resultante, dónde se está reteniendo y quién es responsable de actuar.",
+      "stepByStepBtn": "Ver el proceso y sus pasos",
+      "slider": {
+        "submitStory": {
+          "title": "Enviar comentario",
+          "description": "Los comentarios se envían a Loop mediante un canal seguro."
+        },
+        "moderatorReview": {
+          "title": "Evaluación del moderador",
+          "description": "El comentario es evaluado por un moderador y, de ser necesario, se traduce. En caso de ser delicado, el moderador lo remitirá a un gestor de casos."
+        },
+        "caseManagerReview": {
+          "title": "Evaluación del gestor de casos.",
+          "description": "El gestor de casos evalúa el comentario y, de ser necesario, lo remite para obtener ayuda inmediata."
+        },
+        "storyCase": {
+          "description": "Se ha iniciado un proceso para este comentario. Todos los pasos habrán de realizarse a tiempo para poder concluir el proceso.",
+          "title": "Comentario – Caso"
+        },
+        "processAndRefer": {
+          "title": "Procesar y remitir",
+          "description": "Loop es responsable de procesar y remitir el caso dentro de un lapso de 48 horas."
+        },
+        "responseToReferral": {
+          "description": "Cuando se remite un caso, la organización que recibe el caso se hace responsable de acusar de recibido dentro de un lapso de 48 horas."
+        },
+        "decisionToInvestigate": {
+          "description": "Para mitigar futuros riesgos y proteger a la gente, se encargará a una organización evaluar la información y establecer si y cómo investigará el caso."
+        },
+        "investigation": {
+          "description": "Para garantizar un proceso responsable y oportuno, Loop rastrea todos estos pasos, incluyendo el tiempo que lleva cerrar una investigación y llegar a un resultado."
+        },
+        "authorInformed": {
+          "title": "Autor informado.",
+          "description": "Para garantizar un enfoque centrado en el sobreviviente, Loop rastrea si y cuándo se ha comunicado el resultado al sobreviviente."
+        }
+      },
+      "seeProcess": {
+        "title": "El proceso de rendición de cuentas paso a paso.",
+        "firstParagraph": "Loop es una organización benéfica independiente, cuyo único propósito es ofrecer un mecanismo seguro para que la gente alce la voz para mejorar servicios a escala. Como parte de nuestra labor de cuidado hemos desarrollado una manera segura de recibir y remitir historias delicadas que podrían conllevar riesgos si se publicaran en la plataforma abierta. Esto incluye reportes de Explotación, Abuso y Acoso Sexual (EAAS), fraude, corrupción, problemas de protección u otras conductas inapropiadas. ",
+        "secondParagraph": "Recolectamos datos (cualitativos y cuantitativos) que la gente nos comparte, de manera segura. Los remitimos a los actores adecuados para que gestionen y ofrezcan ayuda en caso necesario. Después, mostramos los datos a nivel agregado para que todos puedan analizarlos e identificar tendencias, áreas focales, puntos débiles y áreas para mejorar.",
+        "thirdParagraph": "Loop no responde a los comentarios delicados, no investiga casos, ni informa sobre los hallazgos. Establecemos vínculos con poblaciones de difícil acceso y  mostramos tendencias sobre la respuesta de distintas organizaciones. Con ello, intentamos que las voces y experiencias de la población local se tomen en cuenta en la toma de decisiones.",
+        "fourthParagraph": "Adaptaremos las etiquetas y el Proceso de Rendición de cuentas para estar al día con la evolución de las mejores prácticas. Nuestro alcance depende de la información que nos comparten.",
+        "list": {
+          "1": {
+            "title": "Una persona envía un comentario delicado a Loop.",
+            "firstParagraph": "Cualquiera puede enviar un comentario delicado a Loop (sobrevivientes, testigos u organizaciones) ya sea publicándolo en {{homeLink}} o escribiendo al número SMS local y etiquetándolo como delicado.",
+            "secondParagraph": "El comentario delicado no se publicará en la plataforma abierta. Nadie recibirá información identificable o de contacto del autor. Se siguen los estándares más altos de seguridad de datos."
+          },
+          "2": {
+            "title": "El comentario es evaluado por un Moderador de Loop, es identificado como delicado y remitido al Gestor de Casos de Loop.",
+            "secondParagraph": "Las mejores prácticas requieren que todas las alegaciones se reconozcan, evalúen, investiguen y que se informe el resultado al autor de la alegación. Cada paso del proceso se refleja en el Proceso de Rendición de Cuentas.",
+            "firstParagraph": "El moderador enviará los comentarios etiquetados como delicados al Gestor de Casos. También enviará el comentario al Gestor de Casos si cree que publicarlo en la plataforma supone un riesgo. Seguimos los Protocolos de Loop para definir lo que se publica en la plataforma abierta y lo que se maneja mediante el sistema confidencial y seguro de gestión de casos. Puedes leer y ayudarnos a mejorar estos protocolos {{hereLink}}."
+          },
+          "3": {
+            "title": "El Gestor del Caso revisa el comentario delicado y lo remite para solicitar ayuda inmediata, en caso necesario.",
+            "firstParagraph": "El Gestor de Casos de Loop es un especialista que maneja quejas y denuncias, y remite a los autores de comentarios delicados a los procedimientos de rererencia existentes. Loop no ofrece ayuda directa. Lo que sí ofrecemos es una vía segura para reportar e intentamos que la información llegue al actor más apropiado para tomar acción. Podemos rastrear la ayuda ofrecida cuando las organizaciones actualizan al Gestor de Casos de Loop."
+          },
+          "4": {
+            "title": "Este Comentario Delicado ahora se considera un 'caso'. Se ha iniciado un proceso cuyos pasos se seguirán de manera puntual antes de poder cerrarlo.",
+            "firstParagraph": "Los casos se mantienen abiertos hasta que se hayan contabilizado por completo. Los casos se cierran cuando no se requieran más acciones y, de ser posible, se haya comunicado el resultado al autor. Para garantizar un enfoque centrado en los sobrevivientes, los estándares del sector establecen el tiempo en que han de completarse estos pasos. ",
+            "secondParagraph": "La página de estadísticas de Loop muestra los datos que las organizaciones comparten con Loop durante la gestión de un caso. Nunca mostraremos información que identifique a organizaciones, autores ni sobrevivientes."
+          },
+          "5": {
+            "title": "Procesar y remitir caso.",
+            "firstParagraph": "Cuando Loop recibe un caso delicado, Loop lo procesa y lo remite a la organización adecuada para 1) Rendición de cuentas y 2) Ofrecer ayuda de ser necesario. Según los estándares del sector, la responsabilidad de Loop es procesar y remitir las alegaciones dentro de las 48 horas posteriores a su recepción. Rastreamos esta información y vemos si Loop puede comprometerse al estándar esperado y responsabilizarnos públicamente."
+          },
+          "6": {
+            "title": "Respuesta a un caso remitido.",
+            "firstParagraph": "Cuando una organización recibe un caso remitido, se espera, según los estándares del sector, acusar recibo dentro de 48 horas. Cuando en Loop recibimos este acuse de recibo, actualizamos los datos. Rastreamos esta información para ver si las organizaciones pueden cumplir con el estándar esperado."
+          },
+          "7": {
+            "title": "Decisión para investigar.",
+            "secondParagraph": "Cuando una organización recibe un caso remitido, se espera, según los estándares del sector, que se evalúe y se decida si se va a investigar o no, dentro de un lapso de 6 semanas. Si las organizaciones comunican a Loop esta decisión, podemos actualizar los datos. En Loop rastreamos esta información para saber cuánto tiempo lleva evaluar y decidir si hacer una investigación, con base en distintos filtros/parámetros.",
+            "firstParagraph": "Para mitigar riesgos futuros y proteger a la gente, una organización es responsable de evaluar la información y establecer si y cómo se va a investigar el caso."
+          },
+          "8": {
+            "title": "Investigación cerrada.",
+            "firstParagraph": "Para promover un proceso oportuno y responsable, Loop toma nota de todos los pasos en el proceso, incluyendo el tiempo que lleva cerrar una investigación y llegar a un resultado.",
+            "secondParagraph": "Cuando una organización abre una investigación hay muchas razones por las cuales ésta puede llevar mucho tiempo en completarse. Loop registra esta información para aprender cuánto lleva, en promedio, con base en diferentes filtros/parámetros, completar una investigación."
+          },
+          "9": {
+            "title": "Autor informado.",
+            "firstParagraph": "Un enfoque centrado en el sobreviviente, requiere que, de ser posible, se comunique el resultado de la investigación a la persona que envió la alegación. En Loop solo podemos acualizar estos datos si las organizaciones nos informan al respecto. Loop rastrea esta información para saber si se mantiene o no al tanto a los sobrevivientes/víctimas. Este es el último paso del Proceso de Rendición de Cuentas. El caso se Cierra y la información se sigue reflejando en los datos y filtros generales."
+          }
+        }
+      }
+    },
+    "decisionToInvestigate": "Tomar decisión para investigar",
+    "investigation": "Investigación",
+    "whatTypeOfCasesInAccountabilityProcess": {
+      "title": "¿Qué tipo de casos se encuentran en proceso de rendición de cuentas?",
+      "category": {
+        "SEAH": "Explotación, abuso y acoso sexual",
+        "protection": "Protección",
+        "fraudOrCorruption": "Fraude y corrupción",
+        "otherMisconduct": "Otra conducta inapropiada"
+      },
+      "stack": {
+        "processAndRefer": "Procesamiento y remisión en curso",
+        "respondToAReferal": "Respuesta a remisión en curso",
+        "assessWhetherToInvestigate": "Evluación de necesidad de investigación en curso",
+        "ongoingInvestigation": "Investigación en curso",
+        "informingAuthorOfOutcome": "Comunicación al autor sobre el resultado en curso"
+      },
+      "tooltip": "Desgloce de los distintos tipos de casos que se encuentran en varias etapas del proceso de rendición de cuentas"
+    },
+    "casesReceived": {
+      "title": "¿Cuántos casos se han recibido?",
+      "summary": {
+        "header": "Loop ha recibido {{value}} casos delicados"
+      },
+      "table": {
+        "header1": "Casos cerrados",
+        "header2": "Casos abiertos",
+        "header3": "Total de casos urgentes",
+        "header4": "Ayuda provista"
+      },
+      "infoIcon": {
+        "content": "Los casos se mantienen abiertos hasta que se hayan contabilizado por completo según los estándares del sector. Los casos se cierran cuando no se requieran más acciones y, de ser posible, se haya comunicado al autor del resultado. Cuando se piensa que el autor corre riesgo inminente y necesita ayuda inmediata, el caso se considera urgente."
+      }
+    },
+    "averageTimeByCase": {
+      "title": "¿En qué tiempo promedio se procesan los distintos tipos de casos?",
+      "types": {
+        "SEAH": "Explotación, abuso y acoso sexual",
+        "protection": "Protección",
+        "fraudOrCorruption": "Fraude y corrupción",
+        "otherMisconduct": "Otro"
+      },
+      "onAverageToClose": "en promedio para cerrar",
+      "infoIcon": {
+        "content": "Si las organizaciones comparten con Loop las actualizaciones de cada remisión recibida, Loop podrá mostrar tendencias de lo que pasa cuando se reportan comentarios delicados. Esto nos ayuda a entender el impacto de los mecanismos de quejas y a saber en qué enfocarnos para mejorar los resultados."
+      }
+    },
+    "averageTimeToCompleteStep": {
+      "title": "¿Qué tiempo promedio toma cada paso del proceso de rendición de cuentas?",
+      "infoTooltip": "Para garantizar un enfoque centrado en el sobreviviente, las mejores prácticas establecen el tiempo en que se deben completar estos pasos. Esta sección muestra el tiempo promedio que suele tomar cada paso. Verde es 'a tiempo', amarillo es 'vencido' y rojo es 'sin respuesta'.",
+      "timelinesLink": "Líneas de tiempo recomendadas por sector",
+      "respondToReferral": "Responder una remisión de ayuda",
+      "assessWhetherToInvestigate": "Evaluar si hay que investigar",
+      "completeInvestigation": "Completar investigación",
+      "informTheAuthorOfOutcome": "Comunicar resultado al autor",
+      "closeCase": "Cerrar un caso",
+      "daysTo": "Días para",
+      "dayTo": "Día para",
+      "tooltip": {
+        "content": {
+          "hours": "{{casesCount}} casos completados en esta etapa del proceso en un tiempo promedio de {{value}} horas",
+          "years": "{{casesCount}} casos. Se completó  esta etapa del proceso en un tiempo promedio de {{value}} años",
+          "days": "{{casesCount}}casos completados en esta etapa del proceso en un tiempo promedio de {{value}} días",
+          "months": "{{casesCount}} casos, completaron esta etapa del proceso en un tiempo promedio de {{value}} meses"
+        },
+        "footer": {
+          "hours": "Plazo recomendado por el sector: no más de 48 horas",
+          "weeks": "Plazo recomendado por el sector: no más de 6 semanas",
+          "years": "Plazo recomendado por el sector: no más de 2 años"
+        }
+      },
+      "processAndRefer": "Procesar y remitir"
+    },
+    "processAndRefer": "Procesar y remitir",
+    "responseToReferral": "Respuesta a remisión de ayuda",
+    "whatTypeOfPeopleReferredToAssistanceReceivedIt": {
+      "category": {
+        "SEAH": "Explotación, abuso y acoso sexual",
+        "protection": "Protección",
+        "fraudOrCorruption": "Fraude o corrupción",
+        "otherMisconduct": "Otra conducta inapropiada"
+      },
+      "stack": {
+        "yes": "Sí",
+        "yesServiceWereAllreadyInPlace": "Sí, los servicios ya estaban en funcionamiento",
+        "noAssistanceOfferedButNotReceived": "Se ofreció ayuda pero ésta no fue recibida",
+        "noAssistanceNotRendered": "No se ofreció ayuda",
+        "yesLongerTerm": "Sí, se ofreció apoyo a un plazo más largo"
+      },
+      "title": "¿<span class=\"highlight\">{{value}}</span>personas que necesitaban ayuda la recibieron?",
+      "tooltip": "Cuando las organizaciones comparten datos con Loop podemos mostrar cuántos sobrevivientes han sido ayudados. Esto nos ayuda a entender mejor si los sobrevivientes están recibiendo la ayuda necesaria. Esta gráfica muestra el número de remisiones que han dado lugar a la prestación de ayuda."
+    },
+    "whatTypeOfOrganizationReceivingAllegation": {
+      "tooltip": "Loop no comparte información que pueda identificar a individuos u organizaciones. Aquí mostramos el tipo de organizaciones y dónde se encuentran las historias delicadas dentro del Proceso de Rendición de Cuentas. Esto nos ayuda a entender mejor las tendencias y el contexto con base en los filtros.",
+      "stack": {
+        "governmentAuthorities": "Autoridades gubernamentales",
+        "nationalArmedForces": "Fuerzas Armadas Nacionales",
+        "privateSector": "Sector privado",
+        "nationalCommunityBasedOrganisation": "Organización nacional / basada en la comunidad",
+        "communityMember": "Miembro de la comunidad",
+        "internationalOrganisation": "Organización Internacional",
+        "other": "Otro"
+      },
+      "category": {
+        "SEAH": "Explotación, Abuso y Acoso Sexual",
+        "protection": "Protección",
+        "fraudOrCorruption": "Fraude o corrupción",
+        "otherMisconduct": "Otro tipo de conducta inapropiada"
+      },
+      "title": "¿Contra qué tipo de organizaciones se están haciendo alegaciones?"
+    },
+    "howAreOrganisationsHandlingAllegationsMadeAgainstThem": {
+      "title": "¿Cómo están manejando las organizaciones las alegaciones hechas en su contra?",
+      "tooltip": "Loop no comparte información que pueda identificar a individuos u organizaciones. Sólo mostramos el tipo de organizaciones y dónde se encuentran los comentarios delicados en el Proceso de Rendición de Cuentas. Esto nos ayuda a entender mejor las tendencias y el contexto con base en filtros.",
+      "stack": {
+        "governmentAuthorities": "Autoridades gubernamentales",
+        "nationalArmedForces": "Fuerzas Armadas Nacionales",
+        "privateSector": "Sector privado",
+        "nationalCommunityBasedOrganisation": "Organización nacional/ basada en la comunidad",
+        "communityMember": "Miembro de la comunidad",
+        "internationalOrganisation": "Organización internacional",
+        "other": "Otro"
+      },
+      "category": {
+        "processAndRefer": "Se está procesando y remitiendo",
+        "respondToReferral": "En proceso de responder a una remisión",
+        "decideToInvestigate": "En proceso de evaluar necesidad de investigar",
+        "completeInvestigation": "Investigación en proceso",
+        "informAuthorOfOutcome": "En proceso de informar al autor del resultado",
+        "closeACase": "Caso cerrado"
+      }
+    },
+    "survivorAge": {
+      "title": "Edad del sobreviviente",
+      "tooltip": "Cuando Loop dispone de suficiente información para garantizar el anonimato, mostramos la edad de los sobrevivientes según el tipo de alegación. Esto nos ayuda a todos a entender mejor las tendencias y el contexto, y ofrece ayuda sobre para quién debemos adaptar las medidas de apoyo y protección.",
+      "category": {
+        "SEAH": "Explotación, abuso y acoso sexual",
+        "protection": "Protección",
+        "fraudOrCorruption": "Fraude y corrupción",
+        "otherMisconduct": "Otra conducta inapropiada"
+      },
+      "stack": [
+        "0-5",
+        "6-13",
+        "14-17",
+        "18-29",
+        "30-59",
+        "60+",
+        "N/D"
+      ]
+    },
+    "whoIsSharingSensitiveStories": {
+      "title": "¿Quién está compartiendo comentarios delicados?",
+      "tooltip": "Cuando Loop dispone de suficiente información para garantizar el anonimato, mostramos los tipos de personas que comparten diferentes tipos de comentarios delicados. Esto nos ayuda a entender mejor de dónde procede la información y a quién más podemos animar a compartir comentarios delicados para  mejorar la toma de responsabilidad, detener el fraude y el abuso, y proteger mejor a las personas.",
+      "category": {
+        "SEAH": "Explotación, Abuso y Acoso Sexual",
+        "protection": "Protección",
+        "fraudOrCorruption": "Fraude o corrupción",
+        "otherMisconduct": "Otra conducta inapropiada"
+      },
+      "stack": {
+        "survivor": "Sobreviviente",
+        "witness": "Testigo",
+        "orgPersonnel": "Personal de la org.",
+        "friendOrRelativeOfSurvivor": "Amigo o pariente del sobreviviente",
+        "other": "Otro"
+      }
+    },
+    "subtitle2": "¿Qué tendencias hay en las alegacioens y cómo están respondiendo las organizaciones?",
+    "subtitle3": "¿Cuáles son los perfiles de los autores y sobrevivientes de los casos delicados compartidos con Loop?",
+    "howResponsiveWeAreByStep": {
+      "title": "How responsive are organisations to allegation referrals?",
+      "stack": {
+        "processAndRefer": "Se está procesando y remitiendo",
+        "respondToAReferral": "Se está respondiendo a una remisión",
+        "assessWhetherToInvestigate": "Evaluando si se debe investigar",
+        "ongoingInvestigation": "Investigación en curso",
+        "informingAuthorOfOutcome": "Se está informando el resultado al autor"
+      },
+      "category": {
+        "actionTakenOnTime": "Medidas tomadas a tiempo",
+        "overdue": "Con retraso",
+        "unresponsive": "Sin respuesta",
+        "closedCases": "Casos cerrados"
+      },
+      "tooltip": {
+        "overdueAfter": "Retrasado después de",
+        "unresponsiveAfter": "Sin respuesta después de",
+        "processAndRefer": {
+          "title": "Proceso y remisión",
+          "content": "Cuando Loop recibe un caso delicado se espera de Loop, según estándares del sector, lo procese y remita a una organización adecuada para 1) rendición de cuentas y 2) proveer ayuda de ser necesario. Se requiere que hagamos esto en un lapso de 48 horas. Rastreamos esta información para ver si en Loop podemos cumplir con este estándar y hacernos públicamente responsables.",
+          "overdueAfter": "48 horas",
+          "unresponsiveAfter": "1 semana"
+        },
+        "respondToAReferral": {
+          "title": "Respuesta a una remisión",
+          "content": "Cuando una organización recibe una remisión se espera, según estándares del sector, que acuse de reciboen un lapso de 48 horas. Loop actualizará la información cuando le llegue el acuse de recibo. Rastrearemos esta información para ver si las organizaciones pueden cumplir con este estándar.",
+          "overdueAfter": "48 horas",
+          "unresponsiveAfter": "1 semana"
+        },
+        "assessWhetherToInvestigate": {
+          "title": "Decisión para investigar",
+          "content": "Cuando una organización recibe una remisión se espera, según estándares del sector, que la evalúe y decida si investigarla o no en un lapso de 6 semanas. Si las organizaciones informan a Loop de su decisión, podemos actualizar los datos. Loop da seguimiento a esta información para entender cuánto lleva evaluar y decidir hacer una investigación con base en distintos filtros/parámetros.",
+          "overdueAfter": "6 semanas",
+          "unresponsiveAfter": "3 meses"
+        },
+        "ongoingInvestigation": {
+          "title": "Tiempo de la investigación",
+          "content": "Cuando una organización abre una investigación hay muchas razones por las que esta puede tardar mucho tiempo en completarse. Loop hace un seguimiento de esta información para entender mejor cuánto lleva, en promedio completar una investigación según los distintos filtros/parámetros.",
+          "overdueAfter": "2 años",
+          "unresponsiveAfter": "3 meses"
+        },
+        "informingAuthorOfOutcome": {
+          "title": "El autor está siendo informado",
+          "content": "Un enfoque centrado en el sobreviviente requiere que, en la medida de lo posible, se mantenga informada del resultado a la persona que presentó la denuncia. Si las organizaciones informan a Loop cuando han hecho esto, podemos actualizar los datos. Loop hace un seguimiento de esta información para que todos podamos saber si los sobrevivientes/víctimas están siendo informados o no.",
+          "overdueAfter": "48 horas",
+          "unresponsiveAfter": "48 horas"
+        }
+      },
+      "infoIcon": {
+        "content": "Las mejores prácticas requieren que todas las alegaciones sean reconocidas, evaluadas,  en caso necesario, investigadas, y que se informe al alegante sobre el resultado. Cada paso de este proceso se refleja en este Proceso de Rendición de Cuentas. Para garantizar un enfoque centrado en los sobrevivientes, los estándares del sector establecen los plazos para completar estos pasos ({{infoLink}}). Este diagrama muestra el tiempo promedio que conlleva cada paso del proceso en todos los casos. El verde indica que está 'a tiempo'; el amarillo, que está 'retrasado' y el rojo, que 'no responde'. Un caso cerrado indica que no se requieren más acciones en el Proceso de Rendición de Cuentas.",
+        "seeHere": "ver aquí",
+        "link": "/"
+      }
+    },
+    "outcomesOfInvestigation": {
+      "infoIcon": {
+        "content": "Según las prácticas estandarizadas para emitir informes en este sector, si las organizaciones nos comparten los resultados de las remisiones e investigaciones, Loop puede mostrar las tendencias sobre lo que ocurrió como resultado de éstas. Esto nos ayuda a todos a comprender mejor el impacto de las personas que denuncian comentarios delicados y de las organizaciones que siguen un Proceso de Rendición de Cuentas."
+      },
+      "title": "¿Cuáles son los resultados de <span class=\"highlight\">{{value}}</span> investigaciones terminadas?",
+      "types": {
+        "notEnoughInformation": "No hay información suficiente para evaluar la alegación",
+        "offenceSubstantiatedAndOffender": "Se comprobó la infracción y como resultado, se separó al infractor de la organización y del sobreviviente. ",
+        "offenderFacedDisciplinary": "El infractor se sometió a medidas disciplinarias",
+        "offenderResignedFromOrganisation": "El infractor renunció a la organización antes/durante la investigación",
+        "other": "Otro resultado",
+        "referralToClearCheckMade": "Remitido  para Visto Bueno",
+        "referralToMisconductDisclosureScheme": "Remisión al sistema de Divulgación de Conductas Inapropiadas",
+        "notSubstantiated": "Not substantiated"
+      }
+    },
+    "survivorGender": {
+      "title": "Género del sobreviviente",
+      "info": "Cuando Loop dispone de suficiente información para garantizar el anonimato, mostramos el género de los sobrevivientes según el tipo de denuncia. Esto nos ayuda a comprender mejor las tendencias y el contexto, y nos permite ver para quién debemos adaptar las actividades de apoyo y protección."
+    },
+    "noAnonymousData": "No hay suficientes casos para mostrar estos datos de manera segura y asegurar el anonimato"
+  },
+  "caseTypes": {
+    "SEAH": "Explotación y abuso sexual",
+    "protection": "Protección",
+    "fraudOrCorruption": "Fraude y corrupción",
+    "otherMisconduct": "Otra conducta inapropiada",
+    "urgentCases": "Casos urgentes",
+    "label": "Tipo de caso"
+  },
+  "smsOpenWelcome": "Este es un servicio automatizado para compartir retroalimentación sobre tu experiencia con organizaciones en tu área.",
+  "smsOpenReplayOnSubmit": "Gracias. Nos importa tu privacidad. Cualquier dato adicional nos puede ayudar a dirigir tu comentario a la organización más adecuada.",
+  "smsOpenEndReplay": "Gracias por usar Loop. Por favor dile a tu familia y amigos que también pueden usar Loop. ",
+  "smsOpenOrganisationHasReplied": "Hace poco compartiste un comentario en Loop. Alguien {organisation} ha respondido. Aquí está lo que dijeron: ",
+  "smsOpenOrganisationHasRepliedEnd": "Si quieres responder, solo envíanos un mensaje con lo que quieras decir. No  es obligatorio responder. ",
+  "smsOpenNotificationPublishedStory": "Hace poco enviaste un comentario a TalkToLoop.org. Un moderador publicó este comentario.",
+  "smsOpenNotificationRejectedStory": "Hace poco enviaste un comentario a TalkToLoop.org. Un moderador decidió no publicar tu comentario.",
+  "smsOpenNotificationPublishedReplay": "Hace poco respondiste a un comentario en TalkToLoop.org. Un moderador publicó tu respuesta.",
+  "smsOpenNotificationRejectedReplay": "Hace poco respondiste a un comentario en TalkToLoop.org. Un moderador decidió no publicar tu respuesta.",
+  "smsCloseWelcome": "Este es un servicio automatizado para compartir cualquier tipo de experiencia o queja que pueda ser delicada. Nos importa tu privacidad.",
+  "smsCloseReplayOnSubmit": "Gracias. Al proveer más información nos ayudas a procesar tu comentario.",
+  "smsCloseReplayForConsent": "Gracias. De ser necesario, podemos contactarte por motivo de tu comentario? Si sí, responde 'Sí\". Si no, responde \"No\".",
+  "smsCloseReplayOnConsentAccept": "Gracias por confiar en Loop. Procesaremos tu comentario ahora.",
+  "smsCloseReplayOnConsentDecline": "Gracias. No te volveremos a contactar para discutir este tema, pero haremos lo posible por investigar con la información que tenemos.",
+  "smsOpenWelcome2": "Tu comentario será visible en línea. Se enviarán las respuestas a tu teléfono. Nadie podrá ver tu número. Ya puedes compartir tu comentario.",
+  "smsOpenReplayOnSubmit2": "Responde con tu nombre, edad, ubicación y la organización relacionada con tu comentario. Solo responde \\\"No\\\"  para omitir esta información.",
+  "smsOpenEndReplay2": "Puedes volver a compartir otra experiencia con nosotros respondiendo \\\"Loop\\\" o \\\"X\\\" (para cuestiones delicadas) a este  número. Gracias. Hasta pronto.",
+  "smsOpenOrganisationHasRepliedEnd2": "Puedes volver a compartir otra experiencia con nosotros enviando \\\"Loop\\\" o \\\"X\\\" (para cuestiones delicadas) a este  número. Gracias. Hasta pronto.",
+  "smsOpenNotificationRejectedStory2": "La razón es {{var:reject_reason:\"\"}}.",
+  "smsOpenNotificationRejectedReplay2": "La razón es {{var:reject_reason:\"\"}}}{{var:reject_rationale:\"\"}}.",
+  "smsOpenNotificationRejectedStory3": "El administrador también escribió {{var:reject_rationale:\"\"}}.\n",
+  "smsCloseWelcome2": "Loop no compartirá ninguna información de identificación personal sin tu consentimiento. Ya puedes compartir tu comentario.",
+  "smsCloseReplayOnConsentAccept2": "Puedes volver a compartir una experiencia con nosotros , respondiendo \"Loop\" (p/ casos no delicados) o \"X (p/ casos delicados) a este número. Gracias y adiós.",
+  "smsCloseReplayOnConsentDecline2": "Puedes volver a compartir una experiencia con nosotros , respondiendo \"Loop\" o \"X (para casos delicados) a este número. Gracias y hasta luego.",
+  "smsCloseReplayOnSubmit2": "Favor de responder a este texto con tu nombre/alias, edad, género, ubicación, nombre de la organización en tu comentario. Responde \"No\" para saltarte este paso.",
+  "inbox": {
+    "navigation": {
+      "stories": "Comentarios",
+      "replies": "Respuestas",
+      "requests": "Solicitudes",
+      "suggestions": "Solicitudes",
+      "rejections": "Rechazos"
+    },
+    "filters": {
+      "labels": {
+        "language": "Idioma",
+        "country": "País",
+        "channel": "Canal",
+        "targetLanguage": "Lengua meta",
+        "sensitivity": "Estado de sensibilidad"
+      },
+      "channel": {
+        "1": "Web",
+        "2": "SMS",
+        "3": "Facebook Messenger",
+        "4": "Whats_App",
+        "5": "Voz"
+      }
+    },
+    "table": {
+      "dateTime": "Fecha & Hora",
+      "assignedTo": "Asignado a",
+      "channel": "Canal",
+      "status": "Estatus",
+      "country": "País",
+      "language": "Idioma",
+      "type": "Tipo de comentario",
+      "stories": {
+        "label": "Bandeja de entrada de comentarios"
+      },
+      "loading": "Cargando comentarios",
+      "actions": {
+        "review": "Revisar"
+      },
+      "replies": {
+        "label": "Bandeja de entrada de respuestas"
+      },
+      "languageAndCountry": "Idioma y País",
+      "actionsColumn": "Actions"
+    },
+    "storiesList": {
+      "sensitive": "Sensitive"
+    },
+    "moderator": {
+      "tags": {
+        "sensitive": "Este comentario se marcó automáticamente como sensible porque la edad es menor de 14 años"
+      }
+    }
+  },
+  "language": {
+    "relativeTime": {
+      "s": "hace unos segundos",
+      "ss": "Hace {{value}} segundos",
+      "m": "hace un minuto",
+      "mm": "hace {{value}} minutos",
+      "h": "hace una hora",
+      "hh": "hace {{value}} horas",
+      "d": "hace un día",
+      "dd": "hace {{value}} días",
+      "M": "hace un mes",
+      "MM": "hace {{value}} meses",
+      "y": "hace un año",
+      "yy": "hace {{value}} años"
+    },
+    "monthsShort": {
+      "January": "Ene",
+      "February": "Feb",
+      "March": "Mar",
+      "April": "Abr",
+      "May": "May",
+      "June": "Jun",
+      "July": "Jul",
+      "August": "Ago",
+      "September": "Sep",
+      "October": "Oct",
+      "November": "Nov",
+      "December": "Dic"
+    }
+  },
+  "assistanceReferred": {
+    "yes": "Sí",
+    "no": "No",
+    "notApplicable": "No aplica",
+    "label": "Ayuda referida"
+  },
+  "outcomesOfInvestigation": {
+    "offenceSubstantiatedAndOffender": "La infracción fue comprobada y el infractor ya no está en contacto con la organización y, por lo tanto, con la víctima ",
+    "offenderResignedFromOrganisation": "El infractor renunció a la organización antes/durante la investigación",
+    "offenderFacedDisciplinary": "Se aplicaron medidas disciplinarias al infractor ",
+    "notEnoughInformation": "La información no bastaa para evaluar la alegación",
+    "referralToMisconductDisclosureScheme": "Remisión al Sistema de Divulgación de Conductas Inapropiadas y/o revisión realizada",
+    "label": "Resultados de la investigación",
+    "other": "Otro resultado"
+  },
+  "social-bot": {
+    "messenger": {
+      "HELLO": "¡Hola! Detectamos que tu idioma es el español. ¿Quieres cambiarlo?",
+      "YES": "✅ Sí",
+      "NO": "❌ No",
+      "CHANGED": "Cambiar",
+      "NOTCHANGED": "No cambiar",
+      "CHOOSE_LANG": "Por favor elige tu idioma preferido mediante los botones de abajo",
+      "EN": "Inglés",
+      "TL": "Wikang Tagalog",
+      "thanks": "🙏 Gracias",
+      "question": "❓ Solicitud de información",
+      "opinion": "💭 Opinión",
+      "request": "💡 Solicitud de asistencia",
+      "concern": "☹️ Preocupación",
+      "STORY_TYPE_SENSITIVE_ISSUE": "⭕ Asunto delicado",
+      "LANG_CHANGED": "El idioma se ha cambiado ES",
+      "SHOW_MORE": "Mostrar más",
+      "SEND_MESSAGE": "Ok, ¿qué agradecimiento quieres compartir?",
+      "GET_STARTED_LOOP": "Para empezar, ¿qué tipo de comentario quieres compartir con nosotros?",
+      "WELCOME": "👋 Hola , bienvenido a Loop! Este es un servicio automatizado.",
+      "TALK_TO_LOOP": "Puedes hablar con Loop sobre las organizaciones en tu área. Traduciremos el comentario y trataremos que las organizaciones adecuadas respondan.",
+      "GET_STARTED": "Inicia",
+      "GREETINGS": "👋 ¡Hola! Este es un servicio automatizado para compartir retroalimentación sobre tu experiencia con las organizaciones de tu área.",
+      "PROMOTE_LOOP": "Si quieres discutir algo delicado como: \n\n❌ Explotación sexual, abuso y acoso \n❌ Protección infantil \n❌ Corrupción \n❌ Fraude \n❌ Cualquier otra violación del código de conducta \n❌ Otra conducta inapropiada \n\nHazlo de manera directa en nuestro sitio web: https://app.talktoloop.org/new-story \n\nEsto garantizará que tus datos e historia permanezcan sólo en nuestros servidores. \n\nn¿Es lo que buscabas?",
+      "ALTERNATIVE_STORY": "Ok. ¿Quieres compartir una historia o experiencia que no sea delicada acerca de una organización en tu área?",
+      "SENSITIVE_STORY_FLOW_CONFIRMATION": "Ok. Esperamos pronto recibir tu comentario delicado en nuestro sitio web. En cualquier momento puedes reiniciar este servicio presionando el botón de abajo:",
+      "RESTART": "🔄 Reiniciar",
+      "SHARE_NEW_STORY": "✏ Comparte un comentario nuevo",
+      "PROMOTE_DESCRIPTION": "Ok. La plataforma de Loop te ayuda a compartir y obtener retroalimentación sobre los asuntos que te interesan. Para más información sobre Loop consulta www.talktoloop.org",
+      "END_OF_SERVICE": "Aquí termina este servicio automatizado. Puedes compartir más mensajes con nosotros presionando el botón de abajo.",
+      "THANKS": "🙏 Muchas gracias por usar Loop para alzar la voz y crear un cambio positivo. ",
+      "ADDITIONAL_INFO": "¿Querrías compartir algo más para que podamos compartir la historia con la gente adecuada? \nEn caso de que sí, responde este mensaje con el nombre de la 🏛️ organización y su 🌏️ ubicación, o cualquier cosa que quieras añadir.  \nSi terminaste, presiona el botón de abajo. ",
+      "FINISH": "Terminé 🏁",
+      "THANKS_FOR_SHARING": "🙏 Gracias por compartir tu comentario con Loop.",
+      "SHARE_DETAILS": "¿Está bien si publicamos estos detalles de tu perfil de Facebook junto a tu comentario? Esto nos ayudará a encontrar la organización más relevante para responder a tu comentario. \n\n📛 Tu nombre: {{first_name}}\n⚤ Género: {{gender}}",
+      "STORY_REVIEW": "Revisaremos tu comentario y en un lapso de 48 horas te notificaremos sobre su publicación.",
+      "SHARING_THANKS": "💪 ¡Gracias!",
+      "INVALID_OPTION": "Lo seinto, no entiendo. Elige una de las opciones rápidas a continuación.",
+      "SEND_QUESTION": "Ok, ¿qué pregunta quieres hacer en TalkToLoop.org?",
+      "SEND_OPINION": "Ok, ¿qué opinión quieres compartir en TalkToLoop.org?",
+      "SEND_SUGGESTION": "Ok, ¿qué solicitud quieres compartir en TalkToLoop.org?",
+      "SEND_CONCERN": "Ok, ¿qué preocupación quieres compartir en TalkToLoop.org?",
+      "STORY_STATUS_PUBLISHED": "Recientemente enviaste un comentario a TalkToLoop.org. Un moderador ha publicado tu comentario.",
+      "STORY_STATUS_REJECTED": "Recientemente enviaste una respuesta a un comentario en TalkToLoop.org. Un moderador decidió no publicar tu respuesta. La razón es {{reasonText}}",
+      "ORGANIZATION_COMMENT": "Hace poco compartiste un comentario con Loop. Alguien (de{{organization}}) respondió. \n\nPuedes ver la respuesta y responder mediante este vínculo {{reply}}\n\nPuedes compartir más comentarios escribiendo 'Loop' en cuanquier momento. ",
+      "END_OF_SERVICE_MODERATOR_FLOW": "Gracias por tu respuesta. Un moderador evaluará tu comentario en las próximas 48 horas. Cuando quieras puedes compartir otro mensaje presionando el botón de abajo.",
+      "ADD_STORY_NOTIFICATION": "Tu comentario se añadió de manera automática. Gracias. ",
+      "ADD_STORY_NOTIFICATION_FAILED": "No se puede añadir tu comentario. Por favor comunícate con nosotros.",
+      "FR": "Presiona {index} para ver en francés",
+      "AR": "Arábica",
+      "ES": "Español",
+      "KEEP_ANONYMOUS": "No hay problema. Te mantendremos en el anonimato."
+    },
+    "KEEP_ANONYMOUS": "No hay problema. Te mantendremos en el anonimato.",
+    "SKIP": "Saltar",
+    "REUSE_DETAILS": "¿Está bien si publicamos los detalles que nos compartiste junto con tu comentario? Nombre: {{firstName}} Edad: {{age}} Género: {{gender}}, Discapacidad: {{disability}}",
+    "REUSE_DETAILS_BUTTONS": "Por favor usa los botones de abajo, o escribe 'Sí, o 'No' para responder.",
+    "PERSONAL_DETAILS": "Bien, ya casi terminas. Nos gustaría hacerte 4 pequeñas preguntas sobre ti. Así podremos enviar tu comentario a la gente indicada. ",
+    "DONT_REUSE_DETAILS": "Ok, ¿quieres responder estas preguntas nuevamente?",
+    "USER_NAME": "(1/4) ¿Cómo te llamas?",
+    "USER_AGE": "(2/4) ¿Cuántos años tienes?",
+    "USER_GENDER": "(3/4) ¿Cuál es tu género?",
+    "USER_DISABILITY": "(4/4) Finalmente, ¿tienes alguna discapacidad?",
+    "SHARE_ADDITIONAL_INFO": "Ok, entre más información compartas, más gente te responderá. POr ejemplo: 🏛️  Nombre(s) de la Organización 🌏️  País y ubicación del comentario",
+    "CHOOSE_LANG": "¿Qué idioma hablas?",
+    "INVALID_OPTION": "Lo seinto, no entiendo. Elige una de las opciones rápidas a continuación.",
+    "IF_SENSITIVE_STORY": "Si tu comentario es delicado, por favor ve a: https://app.talktoloop.org/new-story",
+    "TALK_TO_LOOP": "De lo contrario, por favor comparte tu comentario ahora.",
+    "THANKS": "Gracias por usar Loop para alzar la voz y efectuar un cambio positivo. Revisaremos y publicaremos tu comentario en las próximas 24-48 horas, o incluso antes. Te haremos llegar las respuestas en cuanto las recibamos. Adiós. Para volver a empezar escribe 'Loop' o haz click en el botón de abajo. ",
+    "ADDITIONAL_INFO": "¿Podrías darnos más datos para ayudarnos a compartir la historia con la gente adecuada? \nEn caso de que sí, responde este mensaje con el nombre de la 🏛️ organización y su 🌏️ ubicación, o cualquier otra cosa que quieras añadir.  \nSi terminaste, haz click en el botón de abajo.",
+    "RESTART": "🔄 Reiniciar",
+    "ORGANIZATION_COMMENT_WRITE": "Hace poco compartiste un comentario con Loop. Alguien (de{{organisation}}) respondió. \n\nPuedes ver la respuesta y responder mediante este vínculo: {{URL}}\n\nCuando quieras compartir más comentarios, escribe 'Loop'.",
+    "ANY_COMMENT_BUTTON": "You recently shared feedback with Loop. Somebody replied to your feedback.\n\nYou can view the reply and respond to it using this link: {{URL}}\n\nTo share more feedback, type 'Loop' or tap the button below at any time 😃",
+    "YES": "✅ Sí",
+    "NO": "❌ No",
+    "EN": "Press {index} for English",
+    "TL": "Pindutin ang {index} para sa Tagalog",
+    "WELCOME": "👋 Hola, ¡bienvenido a Loop! Este es un servicio automatizado.",
+    "GET_STARTED": "Inicia",
+    "GREETINGS": "👋 ¡Hola! Este es un servicio automatizado para compartir retroalimentación sobre tu experiencia con las organizaciones de tu área.",
+    "SHARE_NEW_STORY": "✏ Comparte una historia nueva",
+    "PROMOTE_DESCRIPTION": "Ok. La plataforma de Loop te ayuda a compartir y obtener retroalimentación sobre los asuntos que te interesan. Para más información sobre Loop consulta www.talktoloop.org",
+    "END_OF_SERVICE": "Aquí termina este servicio automatizado. Puedes compartir más mensajes con nosotros presionando el botón de abajo.",
+    "STORY_STATUS_PUBLISHED": "Recientemente enviaste retroalimentación a TalkToLoop.org. Un moderador ha publicado tu historia.",
+    "STORY_STATUS_REJECTED": "Recientemente respondiste a una retroalimentación en TalkToLoop.org. Un moderador decidió no publicar tu respuesta. La razón es: {{reasonText}}",
+    "END_OF_SERVICE_MODERATOR_FLOW_BUTTON": "Gracias por tu respuesta. En las próximas 48 horas, un moderador evaluará tu retroalimentación. Si quieres compartir más retroalimentación, sólo presiona el botón de abajo.",
+    "ADD_STORY_NOTIFICATION": "Tu comentario ha sido enviado. Gracias.",
+    "ADD_STORY_NOTIFICATION_FAILED": "Tu comentario no puede ser enviado. Por favor contáctanos.",
+    "FR": "Presiona {index} para francés",
+    "AR": "اضغط على {index} للغة العربية",
+    "ES": "Presione {index} para español",
+    "UK": "Натисніть {index} для український",
+    "PL": "Kliknij {index} aby zmienić język na Polski",
+    "LOZ": "Musine {index} Mwa silozi",
+    "NY": "Dinizani {index} Muci nyanja",
+    "BEM": "Tinikeni {index} Muci Bemba",
+    "TOG": "Amutyanke {index} Muci Tonga",
+    "ID": "Pers untuk {index} Bahasa",
+    "REUSE_DETAILS_WRITE": "Por favor, escribe 'Sí', o 'No' para responder",
+    "ORGANIZATION_COMMENT_BUTTON": "Hace poco compartiste un comentario con Loop. Alguien (de {{organisation}}) te respondió. \n\nPodrás ver la respuesta y responder mediante este vínculo:{{URL}}\n\nCuando quieras compartir más comentarios, escribe 'Loop' o haz click en el botón de abajo. ",
+    "ANY_COMMENT_WRITE": "Hace poco compartiste un comentario con Loop. Alguien te respondió. \n\nPodrás ver la respuesta y responder mediante este vínculo: {{URL}}\n\nCuando quieras compartir más comentarios, escribe 'Loop'.",
+    "END_OF_SERVICE_MODERATOR_FLOW_WRITE": "Gracias por tu respuesta. En las próximas 24 horas, un moderador revisará tu comentario. Si quieres compartir más comentarios con nosotros sólo escribe 'Loop'."
+  },
+  "whatsapp-bot": {
+    "twilio": {
+      "CHOOSE_LANG": "Selecciona tu idioma:",
+      "EN": "Oprime {index} para inglés",
+      "TL": "Amutyankke {index} Tagalog",
+      "WELCOME": "👋 Hola, ¡bienvenid@! Este es un servicio automatizado.",
+      "TALK_TO_LOOP": "Puedes hablar con Loop sobre las organizaciones en tu área. Traduciremos tu comentario e intentaremos que las organizaciones relevantes respondan.",
+      "CHOOSE_LANG_DIDNT_UNDERSTAND": "Perdón, no entendí bien.\n\nPor favor selecciona tu idioma:",
+      "SEND_OPINION": "¿Qué quisieras compartir hoy?",
+      "THANKS": "Loop está siendo usado a lo largo del mundo para alzar la voz e introducir cambios positivos. Estás ayudando a hacer una gran diferencia en tu comunidad. 💪",
+      "ADDITIONAL_INFO_STORY": "¿Podrías compartir más detalles para ayudarnos a distribuir tu comentario entre el público más adecuado? \n\nPor ejemplo, el nombre de la 🏛️ organización(es)  y/o su 🌏️ ubicación.\n\nResponde 'No' para omitir esta información.",
+      "THANK_YOU_FOR_SHARING": "🙏 Gracias por compartir tu comentario con Loop.",
+      "SHARE_YOUR_NAME": "¿Aceptas que publiquemos el nombre {{first_name}} junto a tu comentario?",
+      "SHARE_NAME_YES": "✅ Teclea \\\"1\\\" si aceptas que publiquemos el nombre {{first_name}} junto a tu comentario.",
+      "SHARE_NAME_NO": "❌ Teclea \\\"2\\\" si prefieres permanecer anónimo",
+      "SHARE_YOUR_NAME_FALLBACK": "Perdón, no entendí bien. \n\n✅ Teclea \\\"1\\\" si aceptas que publiquemos el nombre {{first_name}} junto a tu comentario.\n\n❌ Teclea \\\"2\\\" si prefieres permanecer anónimo.",
+      "FINISH": "Muy bien. Revisaremos tu comentario y te avisaremos tan pronto se publique dentro de las próximas 48 horas.",
+      "FINISH_RESTART": "Fin del servicio automatizado. \n\nAl teclear 'Loop' podrás compartirnos cualquier otro mensaje.",
+      "PUBLISH_NAME_THANKS": "👍️ ¡Gracias!",
+      "STAY_ANONYMOUS": "No hay problema, permanecerás anónimo.",
+      "ABOUT_YOURSELF": "¿Puedes compartir algo más acerca de ti? Por ejemplo: tu edad, género o el lugar donde te encuentras. Así podremos hallar las organizaciones más relevantes para responder a tu comentario.  \n\nResponde 'No' para omitir esta información.",
+      "END_OF_SERVICE_MODERATOR_FLOW": "Gracias por tu respuesta. Un moderador evaluará tu comentario en las próximas 48 horas. Cuando quieras puedes compartir otro mensaje teclea 'Loop'.",
+      "YES": "Sí",
+      "NO": "No",
+      "SHARE_YOUR_NAME_ANSWERS": "✅ Escribe Sí: Si aceptas que publiquemos el nombre {{first_name}} junto a tu comentario.\n\n❌ Escribe No: Si prefieres permanecer anónimo.",
+      "STORY_STATUS_PUBLISHED": "Hace poco enviaste un comentario a TalkToLoop.org. Este comentario ya ha sido publicado por un moderador. ",
+      "STORY_STATUS_REJECTED": "Hace poco enviaste una respuesta a un comentario en TalkToLoop.org. Un moderador decidió no publicar tu respuesta. La razón es: {{reasonText}}.",
+      "ORGANIZATION_COMMENT": "Hace poco compartiste un comentario con Loop. Alguie (de {{organization}}) te respondió. \n\nPuedes ver la respuesta y resonder mediante este vínculo {{reply}}\n\nPuedes compartir más comentarios con nosotros tecleando 'Loop' en cualquier momento.",
+      "ANY_COMMENT": "Hace poco compartiste un comentario con Loop. Alguien te respondió. Esto es lo que dijeron: {{reply}}\n\nSi quieres responder, sólo haz click en este vínculo:\n{{URL}}\n\nCuando sea, podrás compartir más comentarios tecleando 'Loop' aquí.",
+      "ADD_STORY_NOTIFICATION": "Tu comentario se ha enviado de manera automática. Gracias.",
+      "ADD_STORY_NOTIFICATION_FAILED": "Tu comentario no puede ser añadido. Por favor, contáctanos.",
+      "LOZ": "Presiona {index} para Lozi",
+      "NY": "Oprime {index} para ver en Cinyanja",
+      "BEM": "Presiona {index} para ver en Bemba",
+      "TOG": "Piliin ang {index} para sa Tonga",
+      "ID": "Pers untuk {{value}} Bahasa Indonesia",
+      "PRESS_FOR_LANG": "Prensa para {{value}} Español",
+      "PL": "Kliknij {index} aby zmienić język na Polski",
+      "UK": "Натисніть {index} для український"
+    }
+  },
+  "communityGuidelines": {
+    "header": {
+      "title": "Directrices comunitarias",
+      "paragraph": {
+        "main": "Creemos en el valor de escuchar una amplia gama de opiniones y en su potencial para generar un mayor impacto. Por ello, animamos a expresar opiniones de una manera segura, solidaria e inquisitiva y a  respetar  las ideas, experiencias y puntos de vista de los demás. Puede que no siempre estemos de acuerdo, pero el desacuerdo no es excusa para la mala educación. Sé directo, constructivo y positivo.",
+        "1": "Además, siempre hay que asumir lo mejor y entender que las personas participan por distintos medios y se enfrentan a ciertas barreras: no usan su lengua materna; proceden de culturas distintas; utilizan pronombres que no son \"él\" o \"ella\"; viven en una zona horaria distinta; se enfrentan a otros retos para participar; no están familiarizados con otros enfoques de las redes sociales",
+        "2": "Las conversaciones que se encuentran aquí establecen el tono para quienes recién se incorporan. Ayúdanos a influir en el futuro de esta comunidad al promover discusioens que hagan de éste un lugar interesante — y evitando las que tengan el efecto contrario. Discourse ofrece herramientas que permiten a la comunidad identificar las mejores (y peores) contribuciones: etiquetar a otros, votar a favor, responder y señalar a Loop problemas de manera directa. Todo esto contribuye a que la comunidad aproveche la plataforma al máximo.",
+        "3": "Para crear un entorno de participación seguro, un moderador revisará todos los comentarios o respuestas antes de que se publiquen en la plataforma abierta. Cuando incluyan información de contacto, el moderador notificará al autor sobre la publicación o denegación de la publicación, y, en ese caso, qué pasos seguir para que pueda publicarse.",
+        "4": "No publicaremos comentarios o respuestas por las siguientes razones:"
+      }
+    },
+    "section": {
+      "1": {
+        "paragraph": {
+          "1": "El objetivo de Loop es incentivar a la gente a participar y escuchar otras voces de manera segura e inclusiva. Por lo tanto, no publicaremos comentarios o respuestas que contengan:",
+          "2": "<strong>Abuso o acoso:</strong> No puedes acosar a nadie de manera directa ni incitar a que otros lo hagan. Esto incluye desearle daño físico a alguien, insultarlo o denigrarlo. También incluye hacer comentarios o bromas sexualizadas."
+        },
+        "title": "Retroalimentación/Respuesta contiene o contenía lenguaje offensivo y discriminatorio."
+      },
+      "2": {
+        "title": "Tu comentario / respuesta no sigue los estándares comunitarios diseñados para garantizar un espacio seguro para compartir retroalimentación.",
+        "paragraph": {
+          "1": "Entre más gente de orígenes diversos participe compartiendo, aprendiendo e involucrándose, Loop contará con más datos que podrán contribuir a mejorar la prestación de servicios. Animamos a escuchar nuevas perspectivas de manera activa. Predica con el ejemplo.",
+          "2": "<strong>Incitación de odio: </strong> No puedes acosar, amenazar o promover violencia contra otras personas por ningún motivo, incluyendo: raza, etnicidad, origen, casta, orientación sexual, género, identidad de género, afiliación religiosa, edad, discapacidad, enfermedad severa, lengua indígena, estatus socioeconómico, ubicación geográfica, etc. Es inaceptable atacar a alguien por sus opiniones, creencias e ideas. Tampoco es aceptable usar lenguaje despectivo o soez.",
+          "3": "<strong>Violencia:</strong> No puedes amenazar con violencia a otro individuo ni grupo de personas. Asímismo, prohibimos la glorificación de la violencia.",
+          "4": "<strong>Terrorismo/extremismo violento:</strong> No puedes amenazar ni promover el terrorismo ni el extremismo violento.",
+          "5": "<strong>Explotación:</strong> No toleramos ninguna forma de explotación, incluyendo explotación sexual infantil.",
+          "6": "<strong>Suicido o autolesión:</strong> No puedes promover o alentar el suicidio o la autolesión.",
+          "7": "<strong>Ilegalidad o bienes o servicios regulados: </strong> No puedes usar nuestro servicio para fines ilícitos o actividades ilegales."
+        }
+      },
+      "3": {
+        "paragraph": {
+          "1": "Loop exhorta al uso de la primera persona para compartir opiniones y experiencias propias o referidas por alguien. Esto garantizará que el comentario represente la experiencia y punto de vista de una persona, lo cual ayudará a la representación justa de opiniones y experiencias.",
+          "2": "<strong>Suplantación de identidad o falsa denuncia:</strong> No puedes suplantar la identidad de individuos, grupos u organizaciones. Esto puede engañar o confundir a otros.",
+          "3": "<strong>Manipulación de la plataforma y spam:</strong> Loop no puede ser usado para manipular o influir en la participación ciudadana mediante publicaciones o distribución de contenido que pueda menguar la participación o dar información engañosa sobre dónde, cuánd, o cómo participar en procesos ciudadanos.",
+          "4": "<strong>Publicaciones generadas por computadora:</strong> No puedes manipular publicaciones para reforzar un punto de vista o influir en la opinión. Los comentarios y respuestas deben ser experiencias reales de los individuos que los publican y no pueden hablar en nombre de otro sin su consentimiento.",
+          "5": "<strong>Derechos de autor y marca registrada:</strong> No puedes representar a una organización o persona sin su consentimiento expreso. "
+        },
+        "title": "Hay dudas sobre la autenticidad del comentario / respuesta."
+      },
+      "4": {
+        "title": "Nos preocupa que el comentario / respuesta pueda ser dañino si se publica, por lo que se envió a un especialista.",
+        "paragraph": {
+          "1": "Loop no tiene la intención de causar daño a ningún individuo u organización mediante los Comentarios o Respuestas.",
+          "2": "<strong>Protección:</strong> Si, según el comentario y otra información compartida voluntariamente,  publicar el comentario en un sitio abierto y transparente pudiera poner en riesgo la seguridad de alguna persona o revelar su identidad, el comentario / respuesta se devolverá para que se retiren los datos de identificación o se enviará al sistema cerrado de Loop. El moderador de Loop podría decidir quitar algunas etiquetas si cree que éstas podrían conducir a la identificación de alguien y ponerlo en riesgo.",
+          "3": "<strong>Acusación no confirmada:</strong> Una publicación que contenga alguna aseveración inflamatoria que pudiera poner en riesgo a un individuo u organización no se publicará en el sitio abierto y se enviará al servicio cerrado de Loop para que el actor más adecuado maneje la información de manera segura y responsable."
+        }
+      },
+      "5": {
+        "paragraph": {
+          "1": "Todas las publicaciones deben respetar el derecho a la privacidad y confidencialidad de la gente.",
+          "2": "<strong>Información privada:</strong> No puedes publicar información privada de otros (p.ej., teléfono y dirección) sin contar cons u permiso o autorización expresa. "
+        },
+        "title": "El comentario no respeta el derecho a la privacidad de otros."
+      },
+      "6": {
+        "title": "¿Cómo reportar si crees que los Lineamientos de la Comunidad no se han respetado?:",
+        "paragraph": {
+          "1": "Pero si crees que algún comentario o respuesta no cumple con los estándares y códigos antes mencionados, envía el link al comentario / respuesta en cuestión a <a href=\"mailto: hello@talktoloop.org\">helloTalkToLoop.org</a> junto con tu opinión. Te responderemos en un lapso de 48 horas.",
+          "2": "Por el bien de nuestra comunidad, los moderadores tienen el derecho de quitar contenido y cuentas en cualquier momento y por cualquier motivo. Los moderadores y operadores del sitio revisan todas las publicaciones y hacen lo posible porque este sea un espacio seguro, pero no pueden asumir responsabilidad por el contenido publicado por la comunidad. ",
+          "3": "Usamos las Reglas y Códigos de Conducta de Twitter y Mozilla para crear este documento. Mejorará y se actualizará conforme crezcamos y aprendamos. Comparte <a href=\"https://community.ready-initiative.org/login\">sugerencias de cambios y mejoras</a>"
+        }
+      }
+    }
+  },
+  "routes": {
+    "login": "Iniciar sesión",
+    "resetPassword": "Reestablecer contraseña",
+    "changePassword": "Cambiar contraseña",
+    "communityGuidelines": "Directrices comunitarias",
+    "stories": "Comentario",
+    "inbox": "Bandeja de entrada",
+    "replies": "Respuestas",
+    "reviewReply": "Revisar respuesta",
+    "inboxStories": "Comentario",
+    "reviewStory": "Revisar comentario",
+    "newStory": "Enviar comentario",
+    "profile": "Perfil",
+    "statistics": "Estadísticas",
+    "openStories": "Comentario abierto",
+    "sensitiveCases": "Casos delicados",
+    "storyDetails": "Detalles de la historia",
+    "inboxReplies": "Respuestas",
+    "confirmUser": "Establecer contraseña",
+    "translateStory": "Traducir comentario",
+    "outbox": "Bandeja de salida",
+    "outboxInProgress": "En proceso",
+    "outboxRejected": "Rechazado",
+    "outboxPendingRecording": "Grabacion pendiente",
+    "transcribeReply": "Transcribir respuesta",
+    "reviewAndTranslate": "Revisar y traducir",
+    "magicLinkLogin": "Login with magic link",
+    "register": "Welcome to Loop",
+    "registerIndividual": "How should we call you?",
+    "magicLinkSent": "Thank you!",
+    "registerOrganization": "Find your organisation",
+    "createOrganization": "Create new organization",
+    "processing": "One moment while we verify your account",
+    "acceptTerms": "We care about your data privacy",
+    "confirmName": "Confirm your full name"
+  },
+  "outbox": {
+    "navigation": {
+      "pending-recording": "Grabación pendiente",
+      "archive": "Archivar",
+      "in-progress": "En proceso"
+    },
+    "table": {
+      "targetLanguage": "Idioma de llegada",
+      "dateTime": "Fecha y hora",
+      "moderator": "Moderador",
+      "reply": "Responder",
+      "actions": {
+        "review": "Revisar"
+      },
+      "pendingRecording": {
+        "label": "Bandeja de salida de grabaciones"
+      }
+    },
+    "details": {
+      "title": "Grabar el mensaje de salida",
+      "subtitle": "Graba el guion en el recuadro morado",
+      "introAudio": "Audio de introducción",
+      "preRecorder": "Pre-grabado",
+      "audioToRecord": "Audio para grabar",
+      "outroAudio": "Audio de despedida",
+      "sendThreeMessages": "Enviar 3 mensajes",
+      "hideStory": "Ocultar comentario",
+      "showStory": "Mostrar comentario",
+      "backToOutbox": "Volver a la bandeja de salida",
+      "startHere": "Comienza aquí",
+      "noContentForSelectedLanguageToast": {
+        "title": "Idioma aún no admitido",
+        "subtitle": "Tu idioma no es compatible con IVRR"
+      },
+      "originalStoryInformation": "Información sobre comentario original"
+    }
+  },
+  "pin-to-story": {
+    "story": "Comentario",
+    "pinned": "Vinculado al comentario",
+    "pin": "Vincular al comentario",
+    "unpin": "Desvincular"
+  },
+  "smsOpenLanguageSentence": "\\nPresiona {index} para Inglés",
+  "smsOpenTrigger": "Gracias por contactar a Loop. Por favor, selecciona tu idioma:",
+  "smsCloseTrigger": "Bienvenido a Loop cerrado. Por favor, selecciona tu idioma:",
+  "got": {
+    "it": "¡Entendido!"
+  },
+  "Registration": {
+    "Early_Access": "TalkToLoop.org – Acceso anticipado",
+    "Header_1": "¡Nos parece genial que te interese ser parte de Loop!",
+    "Header_2": "Abrir una cuenta tiene sus beneficios; sólo tendrás que registrar  tus datos la primera vez, y así podrás mantenerte al tanto de manera rápida y sencilla en el futuro.",
+    "Header_3": "Si eres una organización, esto se traduce en recibir avisos sobre las conversaciones en que participes o se te mencione.",
+    "Header_4": "¿Trabajas para una organización que ofrezca apoyo a gente necesitada?",
+    "Header_5": "Por ejemplo, ¿una organización humanitaria, de desarrollo, no gubernamental, sin fines de lucro, benéfica o de sociedad civil? Si no, deja este recuadro vacío. ",
+    "Name": "Nombre o seudónimo",
+    "Name_1": "Por favor añade tu nombre o seudónimo abajo. Este aparecerá junto con los comentarios o respuestas que compartas en TalkToLoop.org.",
+    "Email": "Correo electrónico",
+    "Email_1": "Añade tu correo electrónico abajo. Aquí te notificaremos sobre las respuestas a tus publicaciones.",
+    "Phone": "Número telefónico",
+    "Phone_1": "Si quieres recibir una notificación cuando TalkToLoop.org esté disponible en WhatsApp y/o SMS, añade tu número telefónico abajo. ",
+    "Phone_2": "Favor de incluir el código internacional del país tal como se indica abajo. No compartiremos este número con nadie más.",
+    "Phonenumber": "Philipinas: +63 (0)12-345-6789",
+    "Phonenumber_1": "Zambia: +260 (0)123-456789",
+    "Consent": "Consentir",
+    "Consent_1": "Doy mi consentimiento para que mi nombre se publique, tal como aparece arriba, junto con los comentarios y respuestas que comparta en TalkToLoop.org",
+    "Submit": "Enviar",
+    "Submit_1": "Nunca envíes contraseñas en un formulario de Airtable. Informa sobre cualquier formulario mailicioso. "
+  },
+  "comment": {
+    "status": {
+      "published_and_pending_call": "Llamada pendiente"
+    },
+    "previewReply": "Previsualizar respuesta",
+    "reRecordReply": "Volver a grabar respuesta"
+  },
+  "createNewOrganization": {
+    "title": "Create new organisation",
+    "description": {
+      "text": "Only include a country in the name field, if it is part of the organisation’s official name. Only capitalise proper nouns (e.g. ‘Alliance for Community Action’ not ‘ALLIANCE For Community Action’).",
+      "title": "Full organisation name"
+    },
+    "acronym": {
+      "text": "This organisation is better-known by an acronym (e.g. CARE, ADRA, UNICEF)",
+      "title": "Acronym",
+      "description": "This acronym will be the primary display-name for this organisation. The full organisation name will only be visible secondarily."
+    },
+    "country": {
+      "title": "Country branch",
+      "description": "Countries are used to distinguish between different branches of the same organisation. Select a country branch for this organisation."
+    },
+    "cancel": "Cancel",
+    "create": "Create new organisation"
+  },
+  "organisation": {
+    "invitation": {
+      "title": "Invite someone to an organisation",
+      "invite": "Invite",
+      "errorMessage": "Please select an organisation to invite the email address above to join.",
+      "linkEmail": "Link email with organisation",
+      "email": "Organisation email",
+      "language": "Invitation language",
+      "userExistsPart1": "The person with the email address",
+      "userExistsPart2": "is already a member of the organisation named",
+      "userExistsPart3": "It is not possible to invite this person to another organisation.",
+      "noResult": "No organisation matching your search were found",
+      "emailInvitedPart2": "is already on the invitation list for this feedback."
+    }
+  },
+  "yourMagicLinkNotification": "Hello,\n\nTo log into your TalkToLoop.org account, click the link below\n\nMagic Link\n\nYour magic link will expire in\n\nminutes.\n\n\u2028If your link expires please\n\n log in again,\n\nto receive another link.\n\nKind regards, The TalkToLoop.org Team",
+  "youHaveBeenConnectedToOrganizationNotification": "Hello,\n\nTalkToLoop.org is a free platform that connects you with the communities you work with. Loop is spreading fast with both organisations like yours, and communities in {{var:organisation}} and further afield too.\n\n\n\nWe’ve just published feedback from the community that we think would be relevant to your organisation. \n\n\n\nView and respond to the feedback using the button below.\n\nVIEW FEEDBACK\n\nIf the button doesn’t work, copy and paste the URL below into the address bar of your browser:\n\nKind regards, The TalkToLoop.org Team",
+  "youHaveBeenInvitedToOrganizationNotification": "Hello,\n\nTalkToLoop.org is a free platform that connects you with the communities you work with. Loop is spreading fast with both organisations like yours and communities around the world.\n\nYou've been invited to join {{var:organisation.name}} on TalkToLoop.org. To accept this invitation click the button below. \n\nACCEPT INVITATION\n\nIf the button doesn't work you can copy and paste the following URL into your browser\n\nKind regards, The TalkToLoop.org Team",
+  "downloadButton": {
+    "text": "Download"
+  },
+  "requestPremium": {
+    "modal": {
+      "header": {
+        "text": "Become a Loop Advocate to download data"
+      },
+      "table": {
+        "free": {
+          "title": "Free",
+          "subtitle": "forever"
+        },
+        "premium": {
+          "title": "Advocate",
+          "subtitle": {
+            "part1": "€1000*",
+            "part2": "/year"
+          }
+        },
+        "rows": {
+          "first": "Download data as a CSV file",
+          "second": "Extract data automatically via API",
+          "third": "Filter data on our statistics page",
+          "fourth": "Reply to feedback across languages",
+          "fifth": "Get notified when your organisation is tagged in feedback"
+        },
+        "additionalInfo": {
+          "text": "* Advocate level is available free-of-charge for local civil society organisations.",
+          "button": {
+            "text": "Apply now"
+          }
+        }
+      },
+      "footer": {
+        "cancelButton": {
+          "text": "Cancel"
+        },
+        "requestButton": {
+          "text": "Become a Loop Advocate"
+        }
+      }
+    },
+    "description": "A member of our team will be in contact with you very soon.",
+    "title": "Your request has been submitted"
+  },
+  "min": "Min",
+  "max": "Max",
+  "seconds": "Seconds",
+  "wordCount": {
+    "singleWord": "word",
+    "multipleWords": "words"
+  },
+  "duration": {
+    "minutes": "min",
+    "seconds": "sec"
+  },
+  "simplePlayer": {
+    "playing": "Playing...",
+    "play": "Play",
+    "loading": "Loading..."
+  },
+  "pagination": {
+    "info": "{{firstVisibleItemNumber}} - {{lastVisibleItemNumber}} of {{totalItems}}",
+    "itemsPerPage": "Items per page",
+    "selectAll": "Select all",
+    "reject": "Reject ({{count}})",
+    "assignModerators": "Asignar Moderadores ({{count}})",
+    "deselectAll": "Deselect all"
+  }
+}

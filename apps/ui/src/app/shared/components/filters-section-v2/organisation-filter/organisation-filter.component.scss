@@ -1,0 +1,84 @@
+@import 'mixins';
+@import 'variables';
+@import 'loop-design-system/helpers';
+@import 'loop-design-system-v2/colors';
+@import 'loop-design-system-v2/animations';
+
+.organization-item {
+  margin: 0.6px 0;
+}
+.form-group-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: #f6f6f9;
+    border-color: $loop-interactive-01;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  &.checked {
+    background: #d9eeed;
+
+    &:hover {
+      background: #d9eeed;
+    }
+  }
+
+  .form-check {
+    display: flex;
+    align-items: center;
+
+    .checkbox__label {
+      margin-left: 8px;
+      color: $neutral-800;
+    }
+  }
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    .pills-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2px 8px;
+      height: 24px;
+      min-width: 32px;
+      background: $loop-green-100;
+      border-radius: 24px;
+
+      .pills-number {
+        font-weight: 700;
+        font-size: 14px;
+        color: $loop-purple-700;
+      }
+    }
+  }
+}
+
+.scrollable-organization-list {
+  max-height: 350px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e5;
+  border-radius: 4px;
+  margin: -0.2px;
+
+  @include mobile-only {
+    max-height: 200px;
+  }
+}
+
+.organisation-filter {
+  .form-group-wrap {
+    @extend .organization-item;
+  }
+}
