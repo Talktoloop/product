@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:18-alpine3.17
+FROM public.ecr.aws/docker/library/node:20-alpine3.17
 
 # Install system dependencies
 RUN apk add --no-cache build-base libssl1.1 jq python3 py3-pip py3-setuptools groff less bash
@@ -7,7 +7,7 @@ RUN apk add --no-cache build-base libssl1.1 jq python3 py3-pip py3-setuptools gr
 RUN pip3 install --no-cache-dir --upgrade pip awscli \
     && rm -rf /var/cache/apk/*
 
-RUN mkdir -p /app
+RUN mkdir -p /var/www/backend
 
 # Copy app files
 WORKDIR /var/www/backend
@@ -37,4 +37,4 @@ EXPOSE 5000
 
 ENTRYPOINT ["/var/www/backend/entrypoint_local.sh"]
 
-# CMD ["yarn", "run", "start:dev"]
+CMD ["yarn", "run", "start:dev"]
