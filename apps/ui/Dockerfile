@@ -1,6 +1,6 @@
 FROM node:22-alpine as build-stage
 
-ARG env=staging
+ARG env=production
 
 # set working directory
 RUN mkdir -p /usr/src/ourloop-ui
@@ -23,7 +23,7 @@ COPY . /usr/src/ourloop-ui
 COPY nginx.conf /usr/src
 
 # generate build
-RUN yarn run build:prod -- --configuration=$env
+RUN yarn run build:prod --configuration=$env
 
 
 FROM nginx:alpine as final
