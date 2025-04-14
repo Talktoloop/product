@@ -7,12 +7,13 @@ RUN mkdir /usr/src/ourloop-ui
 WORKDIR /usr/src/ourloop-ui
 
 # add `/usr/src/app/node_modules/.bin` to $PATH
-ENV PATH /usr/src/ourloop-ui/node_modules/.bin:$PATH
+ENV PATH=/usr/src/ourloop-ui/node_modules/.bin:$PATH
 
 COPY package.json /usr/src/ourloop-ui/package.json
 COPY yarn.lock /usr/src/ourloop-ui/yarn.lock
 
 # install dependencies
+RUN corepack enable
 RUN yarn cache clean --all
 RUN yarn install --check-cache
 

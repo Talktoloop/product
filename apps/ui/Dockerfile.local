@@ -20,4 +20,4 @@ RUN yarn install
 COPY . /usr/src/ourloop-ui
 
 # nginx startup
-ENTRYPOINT ["yarn", "run", "start"]
+ENTRYPOINT ["yarn", "run", "start", "--host", "0.0.0.0"]
