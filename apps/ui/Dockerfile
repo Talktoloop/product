@@ -14,8 +14,7 @@ COPY yarn.lock /usr/src/ourloop-ui/yarn.lock
 
 # install dependencies
 RUN corepack enable
-RUN yarn cache clean --all
-RUN yarn install --check-cache
+RUN yarn install
 
 # add app
 COPY . /usr/src/ourloop-ui
