@@ -1,9 +1,9 @@
-FROM node as build-stage
+FROM node:22-alpine as build-stage
 
 ARG env=staging
 
 # set working directory
-RUN mkdir /usr/src/ourloop-ui
+RUN mkdir -p /usr/src/ourloop-ui
 WORKDIR /usr/src/ourloop-ui
 
 # add `/usr/src/app/node_modules/.bin` to $PATH
@@ -11,6 +11,8 @@ ENV PATH=/usr/src/ourloop-ui/node_modules/.bin:$PATH
 
 COPY package.json /usr/src/ourloop-ui/package.json
 COPY yarn.lock /usr/src/ourloop-ui/yarn.lock
+COPY .yarnrc.yml /usr/src/ourloop-ui/.yarnrc.yml
+COPY .yarn /usr/src/ourloop-ui/.yarn
 
 # install dependencies
 RUN corepack enable
