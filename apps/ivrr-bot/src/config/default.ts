@@ -82,6 +82,7 @@ export default async (): Promise<Record<string, any>> => {
       env.PROCESS_CALL_DELAY,
       env.REDIS_USER,
       env.REDIS_PORT,
+      env.REDIS_PASSWORD,
       env.REDIS_DB_PORT,
       env.REDIS_SCHEMA,
       env.REDIS_HOST,
@@ -130,6 +131,7 @@ export default async (): Promise<Record<string, any>> => {
     user: checkParameterValue(parameters, env.REDIS_USER) || 'redis',
     port:
       Number.parseInt(checkParameterValue(parameters, env.REDIS_PORT)) || 6379,
+    password: checkParameterValue(parameters, env.REDIS_PASSWORD) || '',
     db:
       Number.parseInt(checkParameterValue(parameters, env.REDIS_DB_PORT)) || 0,
   };

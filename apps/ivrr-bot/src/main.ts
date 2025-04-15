@@ -60,6 +60,7 @@ const bootstrap = async () => {
       'connectionName',
       'schema',
       'user',
+      'password'
     ]),
   });
 
