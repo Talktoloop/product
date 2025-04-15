@@ -122,6 +122,17 @@ gateway-dev:
         - apps/gateway/service/**
   stage: deploy
 
+ivr-dev:
+  variables:
+    PIPELINE_NAME: ${IVR_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/ivrr-bot/**
+  stage: deploy
+
 ui-dev:
   variables:
     PIPELINE_NAME: ${UI_PIPELINE_NAME}

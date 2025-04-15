@@ -1,23 +1,42 @@
-FROM node:14.1.0
+# First stage: builder
+FROM public.ecr.aws/docker/library/node:18-alpine3.17 as builder
 
-RUN apt-get update && apt-get install -y \
-       nano \
-       build-essential \
-       libssl-dev
+# Install system dependencies
+RUN apk add --no-cache build-base libssl1.1 jq python3 py3-pip py3-setuptools groff less bash
 
-RUN mkdir -p /app
+# Update pip and install awscli
+RUN pip3 install --no-cache-dir --upgrade pip awscli \
+    && rm -rf /var/cache/apk/*
 
-COPY . /var/www/backend
 WORKDIR /var/www/backend
+COPY . .
 
-RUN ls
-RUN pwd
+# Set environment variables
+ARG NPM_TOKEN
+ENV ENV_NPM_TOKEN=$NPM_TOKEN
+RUN npm config set @ourloop:registry https://gitlab.com/api/v4/packages/npm/
+RUN npm config set '//gitlab.com/api/v4/packages/npm/:_authToken' $ENV_NPM_TOKEN
+RUN npm config set '//gitlab.com/api/v4/projects/24487110/packages/npm/:_authToken' $ENV_NPM_TOKEN
 
-EXPOSE 5002
+# Install and build
+RUN yarn install --production=false --frozen-lockfile --non-interactive \
+    && yarn run build \
+    && yarn cache clean
 
-ENV DOCKERIZE_VERSION v0.6.0
-RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+# Final stage
+FROM public.ecr.aws/docker/library/node:18-alpine3.17 as final
 
-CMD rm -rf /node_modules && npm install && dockerize -wait tcp://db:3306 -timeout 60m npm run start:dev
+# Install runtime dependencies
+RUN apk add --no-cache bash
+
+WORKDIR /var/www/backend
+COPY --from=builder /var/www/backend .
+
+# Copy only production node_modules
+COPY --from=builder /var/www/backend/node_modules ./node_modules
+
+# Make entrypoint executable
+RUN chmod +x /var/www/backend/entrypoint.sh
+
+EXPOSE 5000
+ENTRYPOINT ["yarn", "run", "start:prod"]
