@@ -58,6 +58,35 @@ function createEmailHtmlMessage(timeoutInMinutes, magicLink, languageCode, login
     .replace(/{{login_url}}/g, loginUrl);
 }
 
+function generateCompliantPassword(length = 32) {
+  const categories = {
+    lower: 'abcdefghijklmnopqrstuvwxyz',
+    upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    digit: '0123456789',
+    symbol: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+  };
+
+  // 1. Pick one from each category
+  let pwdChars = Object.values(categories).map(set =>
+    set[Math.floor(Math.random() * set.length)]
+  );
+
+  // 2. Fill remaining length with all chars
+  const allChars = Object.values(categories).join('');
+  while (pwdChars.length < length) {
+    pwdChars.push(allChars[Math.floor(Math.random() * allChars.length)]);
+  }
+
+  // 3. Shuffle to avoid predictable ordering
+  for (let i = pwdChars.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pwdChars[i], pwdChars[j]] = [pwdChars[j], pwdChars[i]];
+  }
+
+  return pwdChars.join('');
+}
+
+
 exports.handler = async (event, context) => {
   try {
     const body = JSON.parse(event.body);
@@ -114,12 +143,7 @@ exports.handler = async (event, context) => {
     } catch (error) {
       if (error.code === 'UserNotFoundException') {
         const username = crypto.randomBytes(16).toString('base64url');
-        const allowedChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
-        let password = '';
-        for (let i = 0; i < 32; i++) {
-          const randomByte = crypto.randomBytes(1)[0];
-          password += allowedChars[randomByte % allowedChars.length];
-        }
+        const password = generateCompliantPassword()
 
         await createCognitoUser(email, username, password, envVars.COGNITO_USER_POOL_ID);
         await cognitoClient.adminUpdateUserAttributes({
