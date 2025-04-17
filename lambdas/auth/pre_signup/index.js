@@ -4,10 +4,7 @@
  * @param context - Lambda execution context
  * @returns Modified event object
  */
-export const handler = async (
-  event,
-  context
-) => {
+exports.handler = async (event, context) => {
   try {
     // Auto-confirm the user
     event.response = {
