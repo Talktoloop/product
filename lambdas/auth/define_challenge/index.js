@@ -13,7 +13,7 @@ exports.handler = async (event, context) => {
     }
 
     // Check if this is the first authentication attempt
-    if (event.request.session.length === 0) {
+    if (!event.request?.session) {
         // Initial challenge - request CUSTOM_CHALLENGE
         event.response.issueTokens = false;
         event.response.failAuthentication = false;
