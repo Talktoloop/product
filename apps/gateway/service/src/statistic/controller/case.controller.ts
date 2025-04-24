@@ -18,7 +18,6 @@ import { StoriesCodeDatesRO } from '../response/stories-code-dates.ro';
 import { timelineForCasesSchema } from '../request/schema/timeline-for-cases.schema';
 import { timelineForCasesMapper } from '../mapper/timeline-for-cases.mapper';
 import { ValidationPipe } from '@ourloop/shared';
-import { filterCasesSchema } from '../request/schema/filter.schema';
 import { FilterCasesDto } from '../request/dto/filter.dto';
 import { CountRO } from '../response/count.ro';
 import { AverageTakenTimeToCompleteStepRO } from '../response/average-taken-time-to-complete-step.ro';
@@ -29,7 +28,10 @@ import { DI_CONSTANTS } from '../../common/constant/di.constant';
 import { ConfigService } from '@nestjs/config';
 import { AuthGuard } from '@nestjs/passport';
 import { plainToClass } from 'class-transformer';
-import { MetabaseOpenFeedbackLinkRO } from '../response/metabase-link'
+import { MetabaseOpenFeedbackLinkRO } from '../response/metabase-link';
+import { mergedFilterSchema } from '../request/schema/filter.schema';
+import { FilterDto } from '../../common/dto/filter.dto';
+import { MetabaseFilterService } from '../service/metabase-filter.service';
 
 @UseGuards(AuthGuard(['anonymous']))
 @ApiTags('Statistic - Cases')
@@ -40,6 +42,7 @@ export class CaseController {
     private readonly caseService: CaseService,
     @Inject(DI_CONSTANTS.CONFIG)
     private readonly config: ConfigService,
+    private readonly metabaseFilterService: MetabaseFilterService,
   ) {}
 
   @Get('/signed-embedd-url')
@@ -47,10 +50,15 @@ export class CaseController {
     summary: 'Get the Metabase open feedback dashboard embedd url',
   })
   @ApiResponse({ status: 200, type: MetabaseOpenFeedbackLinkRO })
-  async getSignedMetabaseURL(): Promise<MetabaseOpenFeedbackLinkRO> {
+  async getSignedMetabaseURL(
+    @Query(new ValidationPipe(mergedFilterSchema))
+    filters: FilterCasesDto & FilterDto,
+  ): Promise<MetabaseOpenFeedbackLinkRO> {
+    const newFilters =
+      await this.metabaseFilterService.mapFiltersToMetabase(filters);
     return {
-      url: this.caseService.getSignedMetabaseURL()
-    }
+      url: this.caseService.getSignedMetabaseURL(newFilters),
+    };
   }
 
   @Get('/cases-received')
@@ -59,7 +67,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: HowManyCaseReceivedRO })
   async getInformationHowManyCasesReceived(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<HowManyCaseReceivedRO> {
     return this.caseService.getInformationHowManyCasesReceived(filters);
   }
@@ -74,7 +82,7 @@ export class CaseController {
     isArray: true,
   })
   async getCasesGroupedByAllegationAndAuthorPerspective(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<TypeValuesRO[]> {
     const data =
       await this.caseService.getCasesGroupedByAllegationAndAuthorPerspective(
@@ -98,7 +106,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: TypeValuesRO, isArray: true })
   async getSurvivorGender(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<TypeValuesRO[]> {
     let data = await this.caseService.getSurvivorsPerGender(filters);
 
@@ -117,7 +125,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: TypeValuesRO, isArray: true })
   async getSurvivorAge(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<TypeValuesRO[]> {
     let data = await this.caseService.getSurvivorsPerAge(filters);
 
@@ -136,7 +144,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: TypeValuesRO, isArray: true })
   async getDataForOrganisationType(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<TypeValuesRO[]> {
     return this.caseService.getDataForTypeOfOrganisationByAllogation(filters);
   }
@@ -147,7 +155,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: TypeValuesRO, isArray: true })
   async getInfoDidPeopleReceivedAssistance(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<TypeValuesRO[]> {
     return this.caseService.getInfoDidPeopleReceivedAssistance(filters);
   }
@@ -158,7 +166,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: WhatAreTheOutcomesRO })
   async whatAreTheOutcomes(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<WhatAreTheOutcomesRO> {
     const data = await this.caseService.whatAreTheOutcomes(filters);
 
@@ -172,7 +180,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: TypeValuesRO, isArray: true })
   async whatAreTheTypeOfCasesInTheAccountability(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<TypeValuesRO[]> {
     return this.caseService.whatAreTheTypeOfCasesInTheAccountability(filters);
   }
@@ -188,7 +196,7 @@ export class CaseController {
     isArray: true,
   })
   async getAverageTakenTimeToCompleteStep(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<AverageTakenTimeToCompleteStepRO> {
     return this.caseService.getAverageTakenTimeToCompleteStep(filters);
   }
@@ -200,7 +208,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: TypeAverageCountRO, isArray: true })
   async averageTakenTime(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<TypeAverageCountRO[]> {
     return this.caseService.averageTakenTime(filters);
   }
@@ -211,7 +219,7 @@ export class CaseController {
   })
   @ApiResponse({ status: 200, type: ResponsiveByStepRO })
   async getDataAboutResponsiveByStep(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<ResponsiveByStepRO> {
     return this.caseService.getDataAboutResponsiveByStep(filters);
   }
@@ -251,7 +259,7 @@ export class CaseController {
     type: CountRO,
   })
   async getCasesCount(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<CountRO> {
     return this.caseService.getCountOfCases(filters);
   }
@@ -266,7 +274,7 @@ export class CaseController {
     isArray: true,
   })
   async getInformationAboutCaseAccountability(
-    @Query(new ValidationPipe(filterCasesSchema)) filters: FilterCasesDto,
+    @Query(new ValidationPipe(mergedFilterSchema)) filters: FilterCasesDto,
   ): Promise<TypeValuesRO[]> {
     const data =
       await this.caseService.getCasesGroupedByCaseAccountabilityAndOrganisationType(

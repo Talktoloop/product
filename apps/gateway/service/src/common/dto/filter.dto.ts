@@ -47,4 +47,10 @@ export class FilterDto {
 
   @ApiProperty({ type: 'string', required: false })
   repliedTo?: StringOrNumber;
+
+  @ApiProperty({ type: 'string', required: false })
+  replies_by_specific_organisation?: StringOrNumber;
+
+  @ApiProperty({ type: 'string', required: false })
+  language?: StringOrNumber;
 }

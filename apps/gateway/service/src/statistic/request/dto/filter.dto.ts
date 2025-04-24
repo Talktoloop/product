@@ -7,10 +7,10 @@ export class FilterCasesDto {
   country?: StringOrNumber;
 
   @ApiProperty({ type: 'string', required: false })
-  age?: StringOrNumber;
+  casesAge?: StringOrNumber;
 
   @ApiProperty({ type: 'string', required: false })
-  gender?: StringOrNumber;
+  casesGender?: StringOrNumber;
 
   @ApiProperty({ type: 'string', required: false })
   organisationType?: StringOrNumber;
@@ -25,7 +25,7 @@ export class FilterCasesDto {
   caseType?: StringOrNumber;
 
   @ApiProperty({ type: 'string', required: false })
-  disability?: StringOrNumber;
+  casesDifficulty?: StringOrNumber;
 
   @ApiProperty({ type: 'string', required: false })
   thematic?: StringOrNumber;

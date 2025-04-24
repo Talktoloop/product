@@ -12,7 +12,7 @@ import { TimeToResponse } from '../interfaces/time-to-response.interface';
 import { AGE_VALUE, GENDER_VALUE } from '../../common/types';
 import { STORY_STATUS } from '@ourloop/shared';
 import { FilterDto } from '../../common/dto/filter.dto';
-import { updateThematicFilters, getAverageValue } from '../../common/helpers';
+import { updateThematicFilters, getAverageValue, extractModuleSpecificFilterParameters } from '../../common/helpers';
 import { StoriesCodeValuesRO } from '../response/stories-author-per-age-and-gender.ro';
 import { CodeAverage } from '../interfaces/code-average.interface';
 import { ThematicService } from '../../lexicon/service/thematic.service';
@@ -39,21 +39,42 @@ export class OpenStoryService {
     private readonly config: ConfigService,
   ) {}
 
-  getSignedMetabaseURL() {
-    var METABASE_SITE_URL = "https://meta.talktoloop.org";
-    var METABASE_SECRET_KEY = this.config.get('metabase_secret_key')
+  async getSignedMetabaseURL(filters: any) {
+    const METABASE_SITE_URL = "https://meta.talktoloop.org";
+    const METABASE_SECRET_KEY = this.config.get('metabase_secret_key')
 
-    var payload = {
+    const filteredParams = extractModuleSpecificFilterParameters(filters, [
+      'age_group',
+      'channel',
+      'country',
+      'disability',
+      'organization',
+      'feedback_type',
+      'gender_group',
+      'minority_group',
+      'thematic_area',
+      'gender_group',
+      'location',
+      'replied_to',
+      'submission_date',
+      'original_feedback_language',
+      'replies_by_specific_organisation'
+    ]);
+
+    const payload = {
       resource: { dashboard: 2 },
-      params: {},
-      exp: Math.round(Date.now() / 1000) + (60 * 60) // 10 minute expiration
+      params: filteredParams,
+      exp: Math.floor(Date.now() / 1000) + 10 * 60, // 10-minute expiration
     };
-    var token = jwt.sign(payload, METABASE_SECRET_KEY);
+    const token = jwt.sign(payload, METABASE_SECRET_KEY);
 
-    var iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token +
-      "#bordered=true&titled=true";
-    
-    return iframeUrl
+    const iframeUrl =
+      METABASE_SITE_URL +
+      '/embed/dashboard/' +
+      token +
+      '#bordered=false&titled=false';
+
+    return iframeUrl;
   }
 
   async getCountOfStories(filters: FilterDto): Promise<CountRO> {
@@ -283,9 +304,8 @@ export class OpenStoryService {
   ): Promise<StoriesTypeAndRepliesRO> {
     filters = await updateThematicFilters(filters, this.thematicService);
 
-    const total = await this.openStoryForStoryRepository.getStoriesTotal(
-      filters,
-    );
+    const total =
+      await this.openStoryForStoryRepository.getStoriesTotal(filters);
 
     let percentOfStoriesWithResponded = 0;
     let percentOfStoriesWithOrganisationResponded = 0;
@@ -355,9 +375,8 @@ export class OpenStoryService {
       await this.openStoryForStoryRepository.getStoriesDividedByDisabilities(
         filters,
       );
-    const total = await this.openStoryForStoryRepository.getStoriesTotal(
-      filters,
-    );
+    const total =
+      await this.openStoryForStoryRepository.getStoriesTotal(filters);
     const disabilities = await this.difficultyService.findAll();
     const result = [] as StoriesDividedByDisabilityRO[];
     disabilities.forEach((disability) => {
