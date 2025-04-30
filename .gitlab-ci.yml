@@ -143,3 +143,14 @@ ui-dev:
       changes:
         - apps/ui/**/*
   stage: deploy
+
+cerbos-dev:
+  variables:
+    PIPELINE_NAME: ${CERBOS_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/cerbos/**/*
+  stage: deploy
