@@ -1,16 +1,18 @@
-# Use the official Cerbos image as the base
-FROM ghcr.io/cerbos/cerbos:latest as final
+# Builder stage to set up directories
+FROM alpine:3.18 as builder
+RUN mkdir -p /cerbos/policies
 
-RUN mkdir /cerbos
-
+# Final stage using official Cerbos image
+FROM ghcr.io/cerbos/cerbos:latest
 WORKDIR /cerbos
 
-# Expose the necessary ports
-EXPOSE 3592
+# Copy directory structure from builder
+COPY --from=builder /cerbos .
 
-# Copy your configuration file and policies
-COPY ./config.yaml /config.yaml
-COPY ./policies /policies
+# Copy configuration and policies
+COPY ./config.yaml ./config.yaml
+COPY ./policies ./policies/
 
-# Set the command to run Cerbos server with your config
+# Use the same ports and command as original image
+EXPOSE 3592 3593
 CMD ["server", "--config=/config.yaml"]
