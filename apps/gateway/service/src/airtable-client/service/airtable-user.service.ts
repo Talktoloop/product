@@ -88,6 +88,7 @@ export class AirTableUserService {
           dBUserId: record.fields['ID'] as string,
         }));
     } catch (error) {
+      this.logger.debug('postUsersToAirTable', this.usersUrl)
       this.logger.error(error.message);
     }
   }
@@ -129,6 +130,7 @@ export class AirTableUserService {
         }
       }
     } catch (error) {
+      this.logger.debug('findAndUpdateAirTableOrganisation', airTableUsers)
       this.logger.error(error.message);
     }
   }
@@ -158,6 +160,7 @@ export class AirTableUserService {
         }
       }
     } catch (error) {
+      this.logger.debug('updateAirTableApplication', userId)
       this.logger.error(error.message);
     }
   }
@@ -185,6 +188,7 @@ export class AirTableUserService {
 
       return user[0];
     } catch (error) {
+      this.logger.debug('getAirTableUserData', this.usersUrl)
       this.logger.error(error.message);
     }
   }
@@ -206,6 +210,7 @@ export class AirTableUserService {
           },
         );
       } catch (error) {
+        this.logger.debug('updateAirTableUser', this.usersUrl)
         this.logger.error(error.message);
       }
     }
@@ -239,6 +244,7 @@ export class AirTableUserService {
         );
       }
     } catch (error) {
+      this.logger.debug('updateAirTableUsersOrganisationOrApplication', this.usersUrl, airTableUserId)
       this.logger.error(error.message);
     }
   }
@@ -268,6 +274,7 @@ export class AirTableUserService {
         );
       }
     } catch (error) {
+      this.logger.debug('findByEmailAndUpdateId', this.usersUrl)
       this.logger.error(error.message);
     }
   }
@@ -291,6 +298,7 @@ export class AirTableUserService {
         },
       );
     } catch (error) {
+      this.logger.debug('updateNumberOfUsers', this.organisationsUrl)
       this.logger.error(error.message);
     }
   }
@@ -330,6 +338,7 @@ export class AirTableUserService {
           },
         );
       } catch (error) {
+        this.logger.debug('updateLastActivity', this.usersUrl)
         this.logger.error(error.message);
       }
     }
