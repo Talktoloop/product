@@ -3,7 +3,7 @@ FROM alpine:3.18 as builder
 RUN mkdir -p /cerbos/policies
 
 # Final stage using official Cerbos image
-FROM ghcr.io/cerbos/cerbos:latest
+FROM ghcr.io/cerbos/cerbos:latest as final
 WORKDIR /cerbos
 
 # Copy directory structure from builder
