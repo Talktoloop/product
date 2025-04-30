@@ -7,7 +7,7 @@ export class CerbosService {
     private readonly cerbos: HTTP;
 
     constructor() {
-        this.cerbos = new HTTP(process.env.CERBOS_API || 'http://localhost:3592'); // Use the Cerbos HTTP API
+        this.cerbos = new HTTP(process.env.CERBOS_HOST || 'http://localhost:3592'); // Use the Cerbos HTTP API
     }
 
     async checkPermission(principal: { id: string, roles: string[] }, resource: { kind: string, id: string }, action: string,): Promise<boolean> {
