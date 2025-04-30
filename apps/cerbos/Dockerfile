@@ -1,6 +1,8 @@
 # Use the official Cerbos image as the base
 FROM ghcr.io/cerbos/cerbos:latest as final
 
+RUN mkdir /cerbos
+
 WORKDIR /cerbos
 
 # Expose the necessary ports
