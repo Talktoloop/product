@@ -22,6 +22,7 @@ import { OrganisationModule } from '../organisation/organisation.module';
 import { LanguageModule } from '../language/language.module';
 import { StoryModule } from '../story/story.module';
 import { CommentModule } from '../comment/comment.module';
+import { MetabaseFilterService } from './service/metabase-filter.service';
 
 @Module({
   imports: [
@@ -46,6 +47,6 @@ import { CommentModule } from '../comment/comment.module';
     CommentModule,
   ],
   controllers: [OpenStoryController, CaseController, CaseFilterController],
-  providers: [OpenStoryService, CaseService, ConfigProvider],
+  providers: [OpenStoryService, CaseService, ConfigProvider, MetabaseFilterService],
 })
 export class StatisticModule {}
