@@ -31,6 +31,33 @@ export const GENDER_VALUE = {
   NO_ANSWER: 0,
 };
 
+export enum GENDER_CONSTANTS {
+  FEMALE = 'Female',
+  MALE = 'Male',
+  NON_BINARY = 'Non-Binary',
+  NO_ANSWER = 'No Answer',
+}
+
+export const GENDER_NUMBER_TO_CONSTANT: { [key: number]: GENDER_CONSTANTS } = {
+  1: GENDER_CONSTANTS.FEMALE,
+  2: GENDER_CONSTANTS.MALE,
+  3: GENDER_CONSTANTS.NON_BINARY,
+  0: GENDER_CONSTANTS.NO_ANSWER,
+};
+
+export enum REPLIED_TO_CONSTANTS {
+  ORGANISATION = 'Replied By Organisation',
+  COMMUNITY = 'Replied By Community',
+  NOT_REPLIED = 'Not Replied To',
+}
+
+export const REPLIED_TO_NUMBER_TO_CONSTANT: { [key: number]: REPLIED_TO_CONSTANTS } = {
+  1: REPLIED_TO_CONSTANTS.ORGANISATION,
+  2: REPLIED_TO_CONSTANTS.COMMUNITY,
+  3: REPLIED_TO_CONSTANTS.NOT_REPLIED,
+};
+
+
 export const CATEGORY_VALUE = {
   THANKS: 'thanks',
   QuESTION: 'question',

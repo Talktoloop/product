@@ -1,4 +1,10 @@
-import { Controller, Get, UseInterceptors, Query,UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  UseInterceptors,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CacheInterceptor } from '@nestjs/cache-manager';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { OpenStoryService } from '../service/open-story.service';
@@ -22,13 +28,16 @@ import { CountRO } from '../response/count.ro';
 import { OrganisationService } from '../../organisation/organisation.service';
 import { summaryMapper } from '../mapper/summary.mapper';
 import { SummaryRO } from '../response/summary.ro';
-import { MetabaseOpenFeedbackLinkRO } from '../response/metabase-link'
+import { MetabaseOpenFeedbackLinkRO } from '../response/metabase-link';
 import { LanguageService } from '../../language/language.service';
 import { CountryService } from '../../country/service/country.service';
 import { StoryService } from '../../story/service/story.service';
 import { StoryFilterAndOrderDto } from '../../story/request/dto/story-filter-and-order.dto';
 import { CommentService } from '../../comment/service/comment.service';
 import { AuthGuard } from '@nestjs/passport';
+import { FilterCasesDto } from '../request/dto/filter.dto';
+import { mergedFilterSchema } from '../request/schema/filter.schema';
+import { MetabaseFilterService } from '../service/metabase-filter.service';
 
 @UseGuards(AuthGuard(['anonymous']))
 @ApiTags('Statistic - Open')
@@ -43,6 +52,7 @@ export class OpenStoryController {
     private readonly countryService: CountryService,
     private readonly storyService: StoryService,
     private readonly commentService: CommentService,
+    private readonly metabaseFilterService: MetabaseFilterService,
   ) {}
 
   @Get('/signed-embedd-url')
@@ -50,10 +60,15 @@ export class OpenStoryController {
     summary: 'Get the Metabase open feedback dashboard embedd url',
   })
   @ApiResponse({ status: 200, type: MetabaseOpenFeedbackLinkRO })
-  async getSignedMetabaseURL(): Promise<MetabaseOpenFeedbackLinkRO> {
+  async getSignedMetabaseURL(
+    @Query(new ValidationPipe(mergedFilterSchema))
+    filters: FilterCasesDto & FilterDto,
+  ): Promise<MetabaseOpenFeedbackLinkRO> {
+    const newFilters =
+      await this.metabaseFilterService.mapFiltersToMetabase(filters);
     return {
-      url: this.openStoryService.getSignedMetabaseURL()
-    }
+      url: await this.openStoryService.getSignedMetabaseURL(newFilters),
+    };
   }
 
   @Get('/summary')
@@ -137,9 +152,8 @@ export class OpenStoryController {
   ): Promise<StoriesAuthorPerAgeAndGenderRO> {
     const age = await this.openStoryService.getStoriesAuthorPerAge(filters);
 
-    const gender = await this.openStoryService.getStoriesAuthorPerGender(
-      filters,
-    );
+    const gender =
+      await this.openStoryService.getStoriesAuthorPerGender(filters);
 
     return { age, gender };
   }
@@ -204,9 +218,8 @@ export class OpenStoryController {
       );
     const sensitiveStoriesByPeriod =
       await this.openStoryService.getSensitiveStoriesByPeriod(filters);
-    const commentsByPeriod = await this.openStoryService.getCommentsByPeriod(
-      filters,
-    );
+    const commentsByPeriod =
+      await this.openStoryService.getCommentsByPeriod(filters);
     return timelineForStoriesAndRetriesMapper(
       filters,
       categories,

@@ -1010,3 +1010,33 @@ export const getCurrentDateInCustomFormat = (time?: Date) => {
 
   return mm + '/' + dd + '/' + yyyy;
 };
+
+export function extractModuleSpecificFilterParameters(filters, includedKeys) {
+  const includedSet = new Set(includedKeys);
+
+  return Object.fromEntries(
+    Object.entries(filters)
+      .filter(([key]) => includedSet.has(key))
+      .map(([key, value]) => [key, Array.isArray(value) ? value : []])
+  );
+}
+
+//extract specified organisations and replied to values
+export const separateRepliedToValues = (repliedTo) => {
+  if (!repliedTo) {
+    return { repliedToOptions: [], specifiedOrganisations: [] };
+  }
+  const values = repliedTo.split(',');
+  const repliedToOptions = [];
+  const specifiedOrganisations = [];
+
+  values.forEach((value) => {
+    if (!isNaN(value) && Number.isInteger(Number(value))) {
+      repliedToOptions.push(value);
+    } else if (value.includes('-')) {
+      specifiedOrganisations.push(value);
+    }
+  });
+
+  return { repliedToOptions, specifiedOrganisations };
+};

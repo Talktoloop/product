@@ -25,6 +25,7 @@ import {
   chartShouldBeAnonymous,
   flatArray,
   getAverageValue,
+  extractModuleSpecificFilterParameters,
 } from '../../common/helpers';
 import { TIME_UNIT } from '../../common/constant/time-unit.constant';
 import { In } from 'typeorm';
@@ -87,21 +88,36 @@ export class CaseService {
     },
   ];
 
-  getSignedMetabaseURL() {
-    var METABASE_SITE_URL = "https://meta.talktoloop.org";
-    var METABASE_SECRET_KEY = this.config.get('metabase_secret_key')
+  getSignedMetabaseURL(filters: any) {
+    const METABASE_SITE_URL = "https://meta.talktoloop.org";
+    const METABASE_SECRET_KEY = this.config.get('metabase_secret_key')
 
-    var payload = {
-      resource: { dashboard: 3 },
-      params: {},
-      exp: Math.round(Date.now() / 1000) + (60 * 60) // 10 minute expiration
-    };
-    var token = jwt.sign(payload, METABASE_SECRET_KEY);
 
-    var iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token +
-      "#bordered=true&titled=true";
+    const filteredParams = extractModuleSpecificFilterParameters(filters, [
+      'age_group',
+      'assistance_referred',
+      'case_open_date',
+      'case_type',
+      'country',
+      'gender_group',
+      'organization_type',
+    ]);
+
     
-    return iframeUrl
+    const payload = {
+      resource: { dashboard: 3 },
+      params: filteredParams,
+      exp: Math.round(Date.now() / 1000) + 10 * 60, // 10 minute expiration
+    };
+    const token = jwt.sign(payload, METABASE_SECRET_KEY);
+
+    const iframeUrl =
+      METABASE_SITE_URL +
+      '/embed/dashboard/' +
+      token +
+      '#bordered=false&titled=false';
+
+    return iframeUrl;
   }
 
   async getCountOfCases(filters: FilterCasesDto): Promise<CountRO> {
