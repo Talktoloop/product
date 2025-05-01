@@ -151,6 +151,7 @@ export class StoryModeratorController {
   @ApiOperation({ summary: 'Export sensitive story to AirTable' })
   @ApiResponse({ status: 200, type: SuccessRO })
   @Post(':id/export')
+  @PermissionsCerbos(CERBOS_ACTIONS.EXPORT, CERBOS_RESOURCES.STORY)
   async exportStoryToAirTable(
     @Auth() user: UserEntity,
     @Param('id', new UuidValidationPipe()) storyId: string,
