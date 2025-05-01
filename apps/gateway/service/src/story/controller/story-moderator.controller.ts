@@ -285,6 +285,7 @@ export class StoryModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Unpublish story' })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id/unpublish')
   async unPublishStory(
     @Auth() user: UserEntity,
@@ -307,6 +308,7 @@ export class StoryModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Publish story' })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id/publish')
   async publishStory(
     @Auth() user: UserEntity,
@@ -375,6 +377,7 @@ export class StoryModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Reject story' })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id/reject')
   async rejectStory(
     @Auth() user: UserEntity,
@@ -394,6 +397,7 @@ export class StoryModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Remove story' })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Delete(':id')
   async removeStory(
     @Param('id', new UuidValidationPipe())
@@ -414,6 +418,7 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/web/:id')
   async getWebStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -451,6 +456,7 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/sms/:id')
   async getSMSStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -495,6 +501,7 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/messenger/:id')
   async getMessengerStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -540,6 +547,7 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/whatsapp/:id')
   async getWhatsAppStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -585,6 +593,7 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/telegram/:id')
   async getTelegramStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -621,6 +630,7 @@ export class StoryModeratorController {
 
   @ApiOperation({ summary: 'Reject stories' })
   @ApiResponse({ status: 200, type: RejectedStoriesRO })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Post('reject-stories')
   async rejectStories(
     @Auth() user: UserEntity,
@@ -656,6 +666,7 @@ export class StoryModeratorController {
 
   @ApiOperation({ summary: 'Bulk assign stories to moderators' })
   @ApiResponse({ status: 200, type: Boolean })
+  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id/bulk_assign_stories')
   async bulkAssignStoriesToModerator(
     @Param('id', new UuidValidationPipe())
