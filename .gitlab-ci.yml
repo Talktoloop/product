@@ -144,6 +144,17 @@ ui-dev:
         - apps/ui/**/*
   stage: deploy
 
+whatsapp-dev:
+  variables:
+    PIPELINE_NAME: ${WHATSAPP_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/social-media-bot/service/**/*
+  stage: deploy
+
 cerbos-dev:
   variables:
     PIPELINE_NAME: ${CERBOS_PIPELINE_NAME}
