@@ -165,3 +165,14 @@ cerbos-dev:
       changes:
         - apps/cerbos/**/*
   stage: deploy
+
+metabase-dev:
+  variables:
+    PIPELINE_NAME: ${METABASE_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/metabase/**/*
+  stage: deploy
