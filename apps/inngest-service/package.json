@@ -1,0 +1,28 @@
+{
+  "name": "inngest-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ourloop/shared": "^1.1.7",
+    "bull": "^4.16.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "inngest": "^3.35.1",
+    "twilio": "^5.5.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
