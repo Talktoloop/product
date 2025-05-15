@@ -1,4 +1,4 @@
-FROM inngest/inngest
+FROM inngest/inngest as final
 
 ARG INNGEST_BASE_URL
 ARG INNGEST_ENV
