@@ -1,13 +1,42 @@
-FROM node:22-alpine
+# First stage: builder
+FROM public.ecr.aws/docker/library/node:18-alpine3.17 as builder
 
-WORKDIR /app
+# Install system dependencies
+RUN apk add --no-cache build-base libssl1.1 jq python3 py3-pip py3-setuptools groff less bash
 
-COPY package*.json ./
+# Update pip and install awscli
+RUN pip3 install --no-cache-dir --upgrade pip awscli \
+    && rm -rf /var/cache/apk/*
 
-RUN npm install
-
+WORKDIR /var/www/backend
 COPY . .
 
-EXPOSE 3000
+# Set environment variables
+ARG NPM_TOKEN
+ENV ENV_NPM_TOKEN=$NPM_TOKEN
+RUN npm config set @ourloop:registry https://gitlab.com/api/v4/packages/npm/
+RUN npm config set '//gitlab.com/api/v4/packages/npm/:_authToken' $ENV_NPM_TOKEN
+RUN npm config set '//gitlab.com/api/v4/projects/24487110/packages/npm/:_authToken' $ENV_NPM_TOKEN
 
-CMD ["npm", "run", "dev"]
+# Install and build
+RUN npm install --production=false --frozen-lockfile --non-interactive \
+    && npm run build \
+    && npm cache clean
+
+# Final stage
+FROM public.ecr.aws/docker/library/node:18-alpine3.17 as final
+
+# Install runtime dependencies
+RUN apk add --no-cache bash
+
+WORKDIR /var/www/backend
+COPY --from=builder /var/www/backend .
+
+# Copy only production node_modules
+COPY --from=builder /var/www/backend/node_modules ./node_modules
+
+# Make entrypoint executable
+RUN chmod +x /var/www/backend/entrypoint.sh
+
+EXPOSE 5000
+ENTRYPOINT ["/var/www/backend/entrypoint.sh"]
