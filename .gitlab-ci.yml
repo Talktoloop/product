@@ -176,3 +176,25 @@ metabase-dev:
       changes:
         - apps/metabase/**/*
   stage: deploy
+
+inngest-server-dev:
+  variables:
+    PIPELINE_NAME: ${INNGEST_SERVER_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/inngest-service/**/*
+  stage: deploy
+
+inngest-dashboard-dev:
+  variables:
+    PIPELINE_NAME: ${INNGEST_DASHBOARD_PIPELINE_NAME}
+  extends:
+    - .deploy-dev
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - apps/inngest-dashboard/**/*
+  stage: deploy

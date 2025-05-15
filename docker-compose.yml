@@ -233,7 +233,6 @@ services:
       - ROLLBAR_ACCESS_TOKEN=***REMOVED***
       - POSTHOG_KEY=***REMOVED***
       - POSTHOG_HOST=https://eu.i.posthog.com
-
   ui:
     build:
       context: ./apps/ui
