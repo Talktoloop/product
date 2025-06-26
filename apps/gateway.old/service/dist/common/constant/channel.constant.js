@@ -1,0 +1,21 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CHANNEL_NUMBER_TO_CONSTANT = exports.CHANNEL_CONSTANTS = void 0;
+var CHANNEL_CONSTANTS;
+(function (CHANNEL_CONSTANTS) {
+    CHANNEL_CONSTANTS["WEB"] = "web";
+    CHANNEL_CONSTANTS["SMS"] = "sms";
+    CHANNEL_CONSTANTS["MESSENGER"] = "messenger";
+    CHANNEL_CONSTANTS["WHATSAPP"] = "whatsapp";
+    CHANNEL_CONSTANTS["IVRR"] = "ivrr";
+    CHANNEL_CONSTANTS["TELEGRAM"] = "telegram";
+})(CHANNEL_CONSTANTS || (exports.CHANNEL_CONSTANTS = CHANNEL_CONSTANTS = {}));
+exports.CHANNEL_NUMBER_TO_CONSTANT = {
+    1: CHANNEL_CONSTANTS.SMS,
+    2: CHANNEL_CONSTANTS.WEB,
+    3: CHANNEL_CONSTANTS.WHATSAPP,
+    4: CHANNEL_CONSTANTS.MESSENGER,
+    5: CHANNEL_CONSTANTS.TELEGRAM,
+    6: CHANNEL_CONSTANTS.IVRR,
+};
+//# sourceMappingURL=channel.constant.js.map

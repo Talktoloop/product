@@ -1,0 +1,48 @@
+import { ClientProxy } from '@nestjs/microservices';
+import { SendMessageDto } from '../../sms/request/dto/send-message.dto';
+import { CommentEntity } from '../../comment/entity/comment.entity';
+import { CHANNEL_CONSTANTS } from '../../common/constant/channel.constant';
+import { SuccessRO } from '../../common/response/success.ro';
+import { CountryRepository } from '../../country/repository/country.repository';
+import { LanguageRepository } from '../../language/language.repository';
+import { StoryEntity } from '../../story/entity/story.entity';
+import { StoryService } from '../../story/service/story.service';
+import { StoryConversationEntity } from '../../story/entity/story-conversation.entity';
+import { StoryStatus } from '../enum/story-status.enum';
+import { MessengerMessageRepository } from '../repository/messenger-message.repository';
+import { FlowResponseRequestDto } from '../request/dto/flow-response.dto';
+import { MessengerFlowRequestDto } from '../request/dto/messenger-flow.dto';
+import { ConfigService } from '@nestjs/config';
+import { MessengerAvailabilityRO } from '../response/messenger-availability.ro';
+import { RejectContentDto } from '../../common/dto/reject-content.dto';
+import { SendMessageRO } from '../response/send-message.ro';
+import { StoryConversationService } from '../../story/service/story-conversation.service';
+import { StoryRecipientEntity } from '../../story/entity/story-recipient.entity';
+import { StoryRecipientService } from '../../story/service/story-recipient.service';
+import { MessengerMessageEntity } from '../../messenger/entity/messenger-message.entity';
+export declare class MessengerService {
+    private readonly languageEntityRepository;
+    private readonly countryEntityRepository;
+    private readonly storyConversationService;
+    private readonly storyRecipientService;
+    private readonly messengerMessageRepository;
+    private readonly storyService;
+    private readonly clientProxy;
+    private readonly config;
+    constructor(languageEntityRepository: LanguageRepository, countryEntityRepository: CountryRepository, storyConversationService: StoryConversationService, storyRecipientService: StoryRecipientService, messengerMessageRepository: MessengerMessageRepository, storyService: StoryService, clientProxy: ClientProxy, config: ConfigService);
+    testExternal(): Promise<boolean>;
+    saveMessengerFlow(data: MessengerFlowRequestDto, channel: CHANNEL_CONSTANTS): Promise<StoryConversationEntity>;
+    private fetchFlowLanguage;
+    private getNickname;
+    checkMessengerAvailability(storyId: string, commandName: string, channel: CHANNEL_CONSTANTS): Promise<MessengerAvailabilityRO>;
+    sendMessengerChatMessage(dto: SendMessageDto, commandName: string, channel: CHANNEL_CONSTANTS): Promise<SendMessageRO>;
+    saveMessengerResponse(data: {
+        messages: FlowResponseRequestDto[];
+        messengerConversationId: number;
+    }, channel: CHANNEL_CONSTANTS): Promise<SuccessRO>;
+    findLastConversationByCommunicatorId(communicatorId: string): Promise<StoryRecipientEntity>;
+    prepareNotificatonReasonText(data: RejectContentDto): string;
+    sendStoryStatus(story: StoryEntity, messageType: StoryStatus, reasonText?: string): Promise<SuccessRO | boolean>;
+    sendCommentNotificationToMessenger(comment: CommentEntity, commandName: string): Promise<any>;
+    getMessengerMessagesByConversationId(conversationId: number): Promise<MessengerMessageEntity[]>;
+}

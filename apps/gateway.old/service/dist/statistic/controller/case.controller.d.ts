@@ -1,0 +1,33 @@
+import { HowManyCaseReceivedRO } from '../response/how-many-case-received.ro';
+import { TypeValuesRO } from '../response/type-value.ro';
+import { CaseService } from '../service/case.service';
+import { WhatAreTheOutcomesRO } from '../response/what-are-the-outcomes.ro';
+import { TypeAverageCountRO } from '../response/type-average-count.ro';
+import { StoriesCodeDatesRO } from '../response/stories-code-dates.ro';
+import { FilterCasesDto } from '../request/dto/filter.dto';
+import { CountRO } from '../response/count.ro';
+import { AverageTakenTimeToCompleteStepRO } from '../response/average-taken-time-to-complete-step.ro';
+import { ResponsiveByStepRO } from '../response/responsive-by-step.ro';
+import { FilterCasesWithRequiredPeriodDto } from '../request/dto/filter-with-required-period.dto';
+import { ConfigService } from '@nestjs/config';
+import { MetabaseOpenFeedbackLinkRO } from '../response/metabase-link';
+export declare class CaseController {
+    private readonly caseService;
+    private readonly config;
+    constructor(caseService: CaseService, config: ConfigService);
+    getSignedMetabaseURL(): Promise<MetabaseOpenFeedbackLinkRO>;
+    getInformationHowManyCasesReceived(filters: FilterCasesDto): Promise<HowManyCaseReceivedRO>;
+    getCasesGroupedByAllegationAndAuthorPerspective(filters: FilterCasesDto): Promise<TypeValuesRO[]>;
+    getSurvivorGender(filters: FilterCasesDto): Promise<TypeValuesRO[]>;
+    getSurvivorAge(filters: FilterCasesDto): Promise<TypeValuesRO[]>;
+    getDataForOrganisationType(filters: FilterCasesDto): Promise<TypeValuesRO[]>;
+    getInfoDidPeopleReceivedAssistance(filters: FilterCasesDto): Promise<TypeValuesRO[]>;
+    whatAreTheOutcomes(filters: FilterCasesDto): Promise<WhatAreTheOutcomesRO>;
+    whatAreTheTypeOfCasesInTheAccountability(filters: FilterCasesDto): Promise<TypeValuesRO[]>;
+    getAverageTakenTimeToCompleteStep(filters: FilterCasesDto): Promise<AverageTakenTimeToCompleteStepRO>;
+    averageTakenTime(filters: FilterCasesDto): Promise<TypeAverageCountRO[]>;
+    getDataAboutResponsiveByStep(filters: FilterCasesDto): Promise<ResponsiveByStepRO>;
+    getTimelineForCases(filters: FilterCasesWithRequiredPeriodDto): Promise<StoriesCodeDatesRO[]>;
+    getCasesCount(filters: FilterCasesDto): Promise<CountRO>;
+    getInformationAboutCaseAccountability(filters: FilterCasesDto): Promise<TypeValuesRO[]>;
+}

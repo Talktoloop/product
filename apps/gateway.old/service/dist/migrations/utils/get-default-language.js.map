@@ -1,0 +1,1 @@
+{"version":3,"file":"get-default-language.js","sourceRoot":"","sources":["../../../src/migrations/utils/get-default-language.ts"],"names":[],"mappings":";;AAEA,MAAM,kBAAkB,GAAG,KAAK,EAC9B,WAAwB,EACe,EAAE;IACzC,OAAO,WAAW;SACf,KAAK,CAAC,0DAA0D,CAAC;SACjE,IAAI,CAAC,CAAC,MAAM,EAAE,EAAE,CAAC,MAAM,CAAC,GAAG,EAAE,CAAC,CAAC;AACpC,CAAC,CAAC;AAEF,kBAAe,kBAAkB,CAAC"}

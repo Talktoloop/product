@@ -1,0 +1,31 @@
+import { CHANNEL_CONSTANTS } from '../../../common/constant/channel.constant';
+import { STORY_STATUS } from '@ourloop/shared';
+export declare class AddStoryDto {
+    content: string;
+    place?: string;
+    gender?: number;
+    email?: string;
+    age?: number;
+    countryId?: number;
+    authorNickname?: string;
+    country: string;
+    difficulty?: string;
+    organisations?: string[];
+    categories?: number[];
+    difficulties?: number[];
+    maternityStatus?: number[];
+    phone?: string;
+    status?: STORY_STATUS;
+    ageDescriptiveForm?: string;
+    genderDescriptiveForm?: string;
+    difficultyDescriptiveForm?: string;
+    thematics?: null;
+    channel?: CHANNEL_CONSTANTS;
+    conversationId?: number;
+    messengerConversationId?: number;
+    ivrrConversationId?: number;
+    isSensitive?: boolean;
+    userWantContact?: boolean;
+    regionId?: number;
+    isUrgent?: boolean;
+}

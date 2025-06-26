@@ -1,6 +1,0 @@
-[
-    {
-        "name": "backend",
-        "imageUri": "528530069705.dkr.ecr.ap-southeast-1.amazonaws.com/beloop:ourloop-production"
-    }
-]

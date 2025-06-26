@@ -1,0 +1,47 @@
+import { CategoryEntity } from '../../category/entity/category.entity';
+import { CategoryService } from '../../category/category.service';
+import { DifficultyService } from '../../lexicon/service/difficulty.service';
+import { StoriesDividedByDisabilityRO } from '../response/stories-divided-by-disability.ro';
+import { StoriesTypeAndRepliesRO } from '../response/stories-type-and-replies.ro';
+import { OpenStoryForCommentRepository } from '../repository/open-story-for-comment.repository';
+import { OpenStoryForCategoryRepository } from '../repository/open-story-for-category.repository';
+import { OpenStoryForStoryRepository } from '../repository/open-story-for-story.repository';
+import { StoriesAndRepliesGroupedByCategoryRO } from '../response/stories-and-replies-grouped-by-category.ro';
+import { TimeToResponse } from '../interfaces/time-to-response.interface';
+import { FilterDto } from '../../common/dto/filter.dto';
+import { StoriesCodeValuesRO } from '../response/stories-author-per-age-and-gender.ro';
+import { CodeAverage } from '../interfaces/code-average.interface';
+import { ThematicService } from '../../lexicon/service/thematic.service';
+import { QuantityPerMonth } from '../interfaces/quantity-per-month.interface';
+import { CaseRepository } from '../repository/case.repository';
+import { CountRO } from '../response/count.ro';
+import { CategoryRepository } from '../../category/category.repository';
+import { ConfigService } from '@nestjs/config';
+export declare class OpenStoryService {
+    private readonly categoryRepository;
+    private readonly openStoryForStoryRepository;
+    private readonly openStoryForCommentRepository;
+    private readonly openStoryForCategoryRepository;
+    private readonly difficultyService;
+    private readonly categoryService;
+    private readonly thematicService;
+    private readonly caseRepository;
+    private readonly config;
+    constructor(categoryRepository: CategoryRepository, openStoryForStoryRepository: OpenStoryForStoryRepository, openStoryForCommentRepository: OpenStoryForCommentRepository, openStoryForCategoryRepository: OpenStoryForCategoryRepository, difficultyService: DifficultyService, categoryService: CategoryService, thematicService: ThematicService, caseRepository: CaseRepository, config: ConfigService);
+    getSignedMetabaseURL(): string;
+    getCountOfStories(filters: FilterDto): Promise<CountRO>;
+    getStoriesPerThematicArea(filters?: FilterDto): Promise<StoriesCodeValuesRO[]>;
+    getStoriesAuthorPerAge(filters?: FilterDto): Promise<StoriesCodeValuesRO[]>;
+    getStoriesAuthorPerGender(filters?: FilterDto): Promise<StoriesCodeValuesRO[]>;
+    calculateAvg(data: TimeToResponse[]): number;
+    getAvgResponseTimePerStoryType(filters?: FilterDto): Promise<CodeAverage[]>;
+    getDataForStoriesTypeAndReplies(filters?: FilterDto): Promise<StoriesTypeAndRepliesRO>;
+    getStoriesDividedByDisabilities(filters?: FilterDto): Promise<StoriesDividedByDisabilityRO[]>;
+    getStoriesAndRepliesGroupedByCategoryAndType(filters?: FilterDto): Promise<StoriesAndRepliesGroupedByCategoryRO[]>;
+    getFilteredCategories(params: FilterDto, order?: Record<string, string>): Promise<CategoryEntity[]>;
+    getNoSensitiveStoriesWithCategoryByPeriod(filters: FilterDto): Promise<(QuantityPerMonth & {
+        code: string;
+    })[]>;
+    getSensitiveStoriesByPeriod(filters: FilterDto): Promise<QuantityPerMonth[]>;
+    getCommentsByPeriod(filters: FilterDto): Promise<QuantityPerMonth[]>;
+}

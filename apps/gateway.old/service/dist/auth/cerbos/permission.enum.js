@@ -1,0 +1,40 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CERBOS_RESOURCES = exports.CERBOS_ACTIONS = void 0;
+var CERBOS_ACTIONS;
+(function (CERBOS_ACTIONS) {
+    CERBOS_ACTIONS["CREATE"] = "create";
+    CERBOS_ACTIONS["READ"] = "read";
+    CERBOS_ACTIONS["UPDATE"] = "update";
+    CERBOS_ACTIONS["DELETE"] = "delete";
+    CERBOS_ACTIONS["LIST"] = "list";
+    CERBOS_ACTIONS["SEARCH"] = "search";
+    CERBOS_ACTIONS["ASSIGN"] = "assign";
+    CERBOS_ACTIONS["UNASSIGN"] = "unassign";
+    CERBOS_ACTIONS["APPROVE"] = "approve";
+    CERBOS_ACTIONS["REJECT"] = "reject";
+    CERBOS_ACTIONS["PUBLISH"] = "publish";
+    CERBOS_ACTIONS["UNPUBLISH"] = "unpublish";
+    CERBOS_ACTIONS["EXPORT"] = "export";
+    CERBOS_ACTIONS["IMPORT"] = "import";
+    CERBOS_ACTIONS["SEND"] = "send";
+    CERBOS_ACTIONS["RECEIVE"] = "receive";
+    CERBOS_ACTIONS["NOTIFY"] = "notify";
+    CERBOS_ACTIONS["GENERATE"] = "generate";
+    CERBOS_ACTIONS["STOP"] = "stop";
+    CERBOS_ACTIONS["VERIFY"] = "verify";
+    CERBOS_ACTIONS["RETRY"] = "retry";
+})(CERBOS_ACTIONS || (exports.CERBOS_ACTIONS = CERBOS_ACTIONS = {}));
+var CERBOS_RESOURCES;
+(function (CERBOS_RESOURCES) {
+    CERBOS_RESOURCES["STORY"] = "story";
+    CERBOS_RESOURCES["COMMENT"] = "comment";
+    CERBOS_RESOURCES["TRANSLATION"] = "translation";
+    CERBOS_RESOURCES["IVRR_FILES"] = "ivrr-files";
+    CERBOS_RESOURCES["SOCIAL_MESSAGE"] = "social-message";
+    CERBOS_RESOURCES["USER"] = "user";
+    CERBOS_RESOURCES["REJECT_REASON"] = "reject-reason";
+    CERBOS_RESOURCES["MODERATOR"] = "moderator";
+    CERBOS_RESOURCES["ORGANISATION"] = "organisation";
+})(CERBOS_RESOURCES || (exports.CERBOS_RESOURCES = CERBOS_RESOURCES = {}));
+//# sourceMappingURL=permission.enum.js.map
