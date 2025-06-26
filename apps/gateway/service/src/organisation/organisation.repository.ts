@@ -70,6 +70,7 @@ export class OrganisationRepository extends Repository<OrganisationEntity> {
       .addSelect('organisation.acronym', 'acronym')
       .addSelect('organisation.country_id', 'countryId')
       .addSelect('c.code', 'countryCode')
+      .addSelect('c.name', 'countryName')
       .leftJoin('country', 'c', 'organisation.country_id = c.id')
       .addSelect((subQuery) => {
         return subQuery

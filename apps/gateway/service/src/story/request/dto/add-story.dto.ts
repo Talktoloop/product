@@ -78,4 +78,10 @@ export class AddStoryDto {
   @ApiProperty({ required: false }) regionId?: number;
 
   isUrgent?: boolean;
+
+  @ApiProperty({ type: 'boolean', required: false, example: true })
+  sensitiveStoryContactConsent?: boolean;
+
+  @ApiProperty({ type: 'string', required: false})
+  additionalContactDetails?: string;
 }

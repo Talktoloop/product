@@ -1,6 +1,6 @@
 import * as Joi from 'joi';
 
-const pattern = /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,()]{1,}$/;
+export const pattern = /^[^±!@£$%^&*_+§¡€#¢§¶•ªº«\\/<>?:;|=.,()]{1,}$/;
 
 export const editUserData: Joi.ObjectSchema = Joi.object({
   firstName: Joi.string().min(2).regex(pattern),

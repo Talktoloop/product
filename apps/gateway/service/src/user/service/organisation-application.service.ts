@@ -34,7 +34,6 @@ export class OrganisationApplicationService {
         organisationId,
       })
       .catch((error) => {
-        console.log(error);
         this.logger.error(error.response);
         throw new BadRequestException(SAVE_ORGANISATION_APPLICATION_ERROR);
       });

@@ -30,6 +30,7 @@ import { StoryRejectReasonEntity } from './story-reject-reason.entity';
 import { StoryRecipientEntity } from './story-recipient.entity';
 import { StoryAdministrativeDataEntity } from './story-administrative-data.entity';
 import { STORY_STATUS } from '@ourloop/shared';
+import { StoryOrganisationTagEntity } from './story-organisation-tag.entity';
 
 @Entity('story')
 export class StoryEntity {
@@ -235,4 +236,10 @@ export class StoryEntity {
     (user: UserEntity) => user.storiesStatusChangedBy,
   )
   statusChangedBy: UserEntity;
+
+  @Column({ name: 'on_behalf_of', type: 'varchar' })
+  onBehalfOf?: string;
+
+  @OneToMany(() => StoryOrganisationTagEntity, (tag) => tag.story)
+  organisationsTagged: StoryOrganisationTagEntity[];
 }

@@ -32,7 +32,7 @@
     "@aws-sdk/client-cognito-identity-provider": "^3.478.0",
     "@aws-sdk/client-comprehend": "^3.478.0",
     "@aws-sdk/client-lambda": "^3.478.0",
-    "@cerbos/http": "^0.21.1",
+    "@cerbos/http": "^0.22.0",
     "@getbrevo/brevo": "^2.2.0",
     "@google-cloud/translate": "^8.0.2",
     "@nestjs/axios": "^3.0.1",

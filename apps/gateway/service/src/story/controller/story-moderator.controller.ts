@@ -88,7 +88,12 @@ import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 import { CerbosService } from '../../common/cerbos/cerbos.service';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
-@UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.STORY)
+// @PermissionsCerbos(CERBOS_ACTIONS.EXPORT, CERBOS_RESOURCES.STORY)
+// @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
+
+@UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
 @ApiBearerAuth()
 @ApiTags('Story Moderator')
 @Controller('story/moderator')
@@ -109,7 +114,6 @@ export class StoryModeratorController {
     private readonly languageService: LanguageService,
     @Inject(COMMON_DI.CONFIG)
     private readonly config: ConfigService,
-    public cerbosService: CerbosService,
     private readonly messageService: MessageService,
     private readonly moderatorService: ModeratorService,
   ) { }
@@ -126,7 +130,6 @@ export class StoryModeratorController {
     enum: LANGUAGES_CONSTANTS,
   })
   @Get('/pending')
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.STORY) // This decorator is read inside PermissionGuard
   async getListOfPending(
     @Query(new ValidationPipe(storyPaginationWithOrderAndFilterSchema))
     params: StoryPaginationWithOrderAndFilterDto,
@@ -147,11 +150,9 @@ export class StoryModeratorController {
     };
   }
 
-
   @ApiOperation({ summary: 'Export sensitive story to AirTable' })
   @ApiResponse({ status: 200, type: SuccessRO })
   @Post(':id/export')
-  @PermissionsCerbos(CERBOS_ACTIONS.EXPORT, CERBOS_RESOURCES.STORY)
   async exportStoryToAirTable(
     @Auth() user: UserEntity,
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -183,7 +184,6 @@ export class StoryModeratorController {
   @ApiOperation({ summary: 'Stop completing story' })
   @ApiResponse({ status: 200, type: SuccessRO })
   @Post(':id/stop-completing')
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   async stopCompletingStory(
     @Param('id', new UuidValidationPipe()) storyId: string,
   ): Promise<SuccessRO> {
@@ -233,7 +233,6 @@ export class StoryModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Update story' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id')
   async updateStory(
     @Auth() user: UserEntity,
@@ -286,7 +285,6 @@ export class StoryModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Unpublish story' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id/unpublish')
   async unPublishStory(
     @Auth() user: UserEntity,
@@ -309,15 +307,12 @@ export class StoryModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Publish story' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id/publish')
   async publishStory(
     @Auth() user: UserEntity,
     @Param('id', new UuidValidationPipe())
     storyId: string,
   ): Promise<SuccessRO> {
-    console.log('💀'.repeat(10));
-    console.log(`checkThatStoryExist`);
     const story = await this.storyService.checkThatStoryExist(
       { id: storyId },
       'publishStory',
@@ -338,8 +333,6 @@ export class StoryModeratorController {
       ],
     );
 
-    console.log('💀'.repeat(10));
-    console.log(`publishStory`);
 
     const result = await this.storyModeratorService.publishStory(
       story,
@@ -348,37 +341,26 @@ export class StoryModeratorController {
     const success = result && !!result?.affected;
 
     if (success) {
-      console.log('💀'.repeat(10));
-      console.log(`sendNotificationsAfterStoryPublication`);
       this.storyNotificationService.sendNotificationsAfterStoryPublication(
         story,
       );
 
       if (story.channel === CHANNEL_CONSTANTS.IVRR) {
-        console.log('💀'.repeat(10));
-        console.log(`preparePublishedStoryCall`);
         await this.ivrrService.preparePublishedStoryCall(story);
-        console.log('💀'.repeat(10));
-        console.log(`removeStoryLogs`);
         await this.ivrrService.removeStoryLogs(story);
       }
 
       if (story.recipient?.communicatorId) {
-        console.log('💀'.repeat(10));
-        console.log(`sendStoryStatus`);
         this.messengerService.sendStoryStatus(story, StoryStatus.PUBLISHED);
       }
     }
 
-    console.log('💀'.repeat(10));
-    console.log(`Done`);
 
     return plainToClass(SuccessRO, { success });
   }
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Reject story' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id/reject')
   async rejectStory(
     @Auth() user: UserEntity,
@@ -398,7 +380,6 @@ export class StoryModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Remove story' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Delete(':id')
   async removeStory(
     @Param('id', new UuidValidationPipe())
@@ -419,7 +400,6 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/web/:id')
   async getWebStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -457,7 +437,6 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/sms/:id')
   async getSMSStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -502,7 +481,6 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/messenger/:id')
   async getMessengerStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -548,7 +526,6 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/whatsapp/:id')
   async getWhatsAppStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -594,7 +571,6 @@ export class StoryModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Get('/telegram/:id')
   async getTelegramStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -631,7 +607,6 @@ export class StoryModeratorController {
 
   @ApiOperation({ summary: 'Reject stories' })
   @ApiResponse({ status: 200, type: RejectedStoriesRO })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Post('reject-stories')
   async rejectStories(
     @Auth() user: UserEntity,
@@ -667,7 +642,6 @@ export class StoryModeratorController {
 
   @ApiOperation({ summary: 'Bulk assign stories to moderators' })
   @ApiResponse({ status: 200, type: Boolean })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.STORY)
   @Put(':id/bulk_assign_stories')
   async bulkAssignStoriesToModerator(
     @Param('id', new UuidValidationPipe())
@@ -691,7 +665,6 @@ export class StoryModeratorController {
         });
       }
     } catch (error) {
-      console.log('Error', error);
     }
   }
 }

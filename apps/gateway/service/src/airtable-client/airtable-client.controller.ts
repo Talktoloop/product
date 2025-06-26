@@ -18,7 +18,7 @@ import { AirTableDeleteStoryDTO } from './request/dto/air-table-delete-story.dto
 @UseGuards(BaseAuthGuard)
 @ApiHeader({ name: 'authorization' })
 export class AirTableClientController {
-  constructor(private readonly airTableClientService: AirTableClientService) {}
+  constructor(private readonly airTableClientService: AirTableClientService) { }
 
   @ApiResponse({ status: 201, type: SuccessRO })
   @ApiOperation({ summary: 'Add or update AirTableRow' })
@@ -38,7 +38,6 @@ export class AirTableClientController {
     @Body(new ValidationPipe(airTableDeleteNotSensitiveSchema))
     data: AirTableDeleteStoryDTO,
   ): Promise<SuccessRO> {
-    console.log(data);
     await this.airTableClientService.deleteNotSensitiveData(data);
     return { success: true };
   }
@@ -55,5 +54,12 @@ export class AirTableClientController {
     return plainToClass(SuccessRO, {
       success: result?.filter((item) => !!item?.affected).length > 0,
     });
+  }
+
+  @ApiResponse({ status: 200, type: SuccessRO })
+  @ApiOperation({ summary: 'Delete AirTableRow' })
+  @Delete('remove')
+  async removeRows(): Promise<SuccessRO> {
+    return await this.airTableClientService.deleteOldNonSensitiveStories();
   }
 }

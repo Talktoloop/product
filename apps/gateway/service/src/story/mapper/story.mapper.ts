@@ -16,8 +16,6 @@ export const storyToStoryRO = (
   defaultLanguage: LanguageEntity,
 ): StoryRO => {
   if (story) {
-    console.log('💀'.repeat(10));
-    console.log(`storyToStoryRO Entry`);
     const translation = getTranslationByLanguageId(
       story.translations,
       story.languageId,
@@ -53,7 +51,7 @@ export const storyToStoryRO = (
       thematics: story.thematics?.map(({ id }) => id),
       gender: story.recipient?.genderByModerator ?? null,
       age: story.recipient?.ageByModerator ?? null,
-      authorNickname: story.recipient?.nickname ?? null,
+      authorNickname: story.onBehalfOf ?? null,
       isUrgent: story.isUrgent,
       isMinority: story.recipient?.isMinority ?? null,
     });

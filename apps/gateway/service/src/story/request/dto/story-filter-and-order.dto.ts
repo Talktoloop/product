@@ -13,12 +13,11 @@ export class StoryFilterAndOrderDto extends FilterWithPaginationDto {
   @ApiProperty({ enum: StoryOrderEnum, required: false })
   order?: StoryOrderEnum;
 
-  @ApiProperty({ type: 'string', required: false })
-  repliedTo?: string;
-
   @ApiProperty({ enum: CHANNEL_CONSTANTS, required: false })
   channelFilter?: (CHANNEL_CONSTANTS | string);
 
+  organisationResponsiveness?: string;
+  communityResponsiveness?: string;
   countryIds?: number[];
   storyIds?: string[];
   withSensitiveStories?: boolean;

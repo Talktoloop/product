@@ -192,16 +192,18 @@ export class ExportController {
       user,
     );
 
-    const hasPermission = await this.cerbosService.checkPermissionWithToken(
-      { id: user.id, role: user.role },
-      { kind: CERBOS_RESOURCES.STORY, id: CERBOS_ACTIONS.EXPORT, attr: { token: tokenData.token } },
-      CERBOS_ACTIONS.EXPORT
-    );
+    // const hasPermission = await this.cerbosService.checkPermissionWithToken(
+    //   { id: user.id, role: user.role },
+    //   { kind: CERBOS_RESOURCES.STORY, id: CERBOS_ACTIONS.EXPORT, attr: { token: tokenData.token } },
+    //   CERBOS_ACTIONS.EXPORT
+    // );
 
-    if (!hasPermission) {
+    // if (!hasPermission) {
+    //   throw new ForbiddenException();
+    // }
+    if (!tokenData) {
       throw new ForbiddenException();
     }
-
     const userLanguage = userLanguageId
       ? await this.languageService.getLanguageById(userLanguageId)
       : await this.languageService.getDefaultLanguage();

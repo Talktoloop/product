@@ -23,7 +23,10 @@ import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
-@UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.STORY)
+
+@UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
 @ApiBearerAuth()
 @ApiTags('IVRR Story Moderator')
 @Controller('story/moderator/ivrr')
@@ -46,13 +49,11 @@ export class StoryIVRRModeratorController {
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.STORY)
   @Get(':id')
   async getIvrrStoryDetails(
     @Param('id', new UuidValidationPipe()) storyId: string,
     @LanguageId() userLanguageId: number,
   ): Promise<StoryIvrrModeratorRO> {
-    console.log('/story/moderator/ivrr/:id', storyId);
     const [story, defaultLanguage] = await Promise.all([
       this.storyModeratorService.getStoryDetailsByIdAndChannelOrFail(
         storyId,

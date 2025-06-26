@@ -29,8 +29,8 @@ import { UserEntity } from '../user/entity/user.entity';
 import { REGISTRATION_STATUS } from '../user/constant/registration-status.constant';
 import MD5 from 'crypto-js/md5';
 import { DataSource } from 'typeorm';
-import { StoryCommentEntity } from '../story/entity/story-comment.entity';
 import { CHANNEL_NUMBER_TO_CONSTANT } from './constant/channel.constant';
+import { COMMUNITY_RESP_NUMBER_TO_CONSTANT, ORG_RESP_NUMBER_TO_CONSTANT } from './types';
 
 const allowFilters = [
   'difficulty',
@@ -45,7 +45,8 @@ const allowFilters = [
   'from',
   'to',
   'regionId',
-  'repliedTo',
+  'organisationResponsiveness',
+  'communityResponsiveness',
   'channelFilter',
   'searchTerm'
 ];
@@ -265,10 +266,10 @@ export const calculateCustomNumberOfDays = (
       days > 365
         ? TIME_UNIT.YEAR
         : days > 30
-        ? TIME_UNIT.MONTH
-        : days > 1
-        ? TIME_UNIT.DAY
-        : TIME_UNIT.HOUR;
+          ? TIME_UNIT.MONTH
+          : days > 1
+            ? TIME_UNIT.DAY
+            : TIME_UNIT.HOUR;
   }
 
   if (timeUnit === TIME_UNIT.HOUR) {
@@ -369,9 +370,8 @@ export const getKeyByValue = (
 
 export const upperCaseFirst = (value: string, lowerCase = true): string =>
   typeof value === 'string'
-    ? `${value.charAt(0).toUpperCase()}${
-        lowerCase ? value.slice(1).toLowerCase() : value.slice(1)
-      }`
+    ? `${value.charAt(0).toUpperCase()}${lowerCase ? value.slice(1).toLowerCase() : value.slice(1)
+    }`
     : value;
 
 export const upperCaseString = (value: string): string =>
@@ -434,9 +434,6 @@ export const getTranslationByLanguageId = (
   | StoryTranslationEntity
   | CommentTranslationEntity
   | Record<string, undefined> => {
-  console.log('getTranslationByLanguageId:translations', translations);
-  console.log('getTranslationByLanguageId:originLanguageId', originLanguageId);
-  console.log('getTranslationByLanguageId:selectedLanguageId', selectedLanguageId);
   let translation = translations.filter(
     (entity) => entity.languageId === selectedLanguageId && !!entity.content,
   )[0];
@@ -709,13 +706,13 @@ export const addFilterCondition = (
       if (acceptSensitiveStories) {
         query.andWhere(
           new Brackets((qb) => {
-            qb.where(`DATE(story.publishedAt) >= :from`, {
+            qb.where(`DATE(story.createdAt) >= :from`, {
               from: parseISO(value),
-            }).orWhere('story.publishedAt IS NULL');
+            }).orWhere('story.createdAt IS NULL');
           }),
         );
       } else {
-        query.andWhere(`DATE(story.publishedAt) >= :from`, {
+        query.andWhere(`DATE(story.createdAt) >= :from`, {
           from: parseISO(value),
         });
       }
@@ -732,43 +729,15 @@ export const addFilterCondition = (
       if (acceptSensitiveStories) {
         query.andWhere(
           new Brackets((qb) => {
-            qb.where(`DATE(story.publishedAt) <= :to`, {
+            qb.where(`DATE(story.createdAt) <= :to`, {
               to: parseISO(value),
-            }).orWhere('story.publishedAt IS NULL');
+            }).orWhere('story.createdAt IS NULL');
           }),
         );
       } else {
-        query.andWhere(`DATE(story.publishedAt) <= :to`, {
+        query.andWhere(`DATE(story.createdAt) <= :to`, {
           to: parseISO(value),
         });
-      }
-    } else if (key === 'repliedTo' && value) {
-      query.leftJoin(
-        StoryCommentEntity,
-        'comments',
-        'comments.story = story.id AND comments.status IN (:...statuses)',
-        {
-          statuses: [
-            COMMENT_STATUS.PUBLISHED,
-            COMMENT_STATUS.PUBLISHED_AND_PENDING_CALL,
-          ],
-        },
-      );
-      const repliedToValues = value.toString().split(',').map(Number);
-      const repliedToByOrganisation = repliedToValues.includes(1);
-      const repliedToByCommunity = repliedToValues.includes(2);
-      const notRepliedTo = repliedToValues.includes(3);
-
-      if (repliedToByOrganisation) {
-        query.andHaving('COUNT(comments.id) > 0');
-      }
-
-      if (repliedToByCommunity) {
-        query.andHaving('COUNT(comments.id) > 0');
-      }
-
-      if (notRepliedTo) {
-        query.andHaving('COUNT(comments.id) = 0');
       }
     } else if (key === 'channelFilter' && value) {
       const channelStrings = value
@@ -870,9 +839,13 @@ export const prepareNotificationData = (
 export const includesTranslatableContent = (
   translations: (CommentTranslationEntity | StoryTranslationEntity)[],
 ): boolean => {
-  return translations.some(
-    ({ content, language: { provider } }) => provider && !!content,
-  );
+  return translations.some(({ content, language: { provider, dialect } }) => {
+    if (!provider) return false;
+    if (content) return true;
+    return translations.some(
+      (t) => t.language.code === dialect && !!t.content
+    );
+  });
 };
 
 export const checkRegistrationStatus = (
@@ -902,9 +875,8 @@ export const prepareUsername = (
     return null;
   }
 
-  return `${user?.firstName ?? ''} ${
-    !hideLastName ? user.lastName ?? '' : ''
-  }`.trim();
+  return `${user?.firstName ?? ''} ${!hideLastName ? user.lastName ?? '' : ''
+    }`.trim();
 };
 
 export const cloneArrayWithoutReference = (array: any[]): any[] =>
@@ -947,6 +919,176 @@ export const addFilterJoins = (
 };
 
 export const isEmpty = (obj: any) => Object.keys(obj).length === 0;
+
+//extract specified organisations and replied to values
+export const separateRepliedToValues = (repliedTo) => {
+  if (!repliedTo) {
+    return { repliedToOptions: [], specifiedOrganisations: [] };
+  }
+  const values = repliedTo.split(',');
+  const repliedToOptions = [];
+  const specifiedOrganisations = [];
+
+  values.forEach((value) => {
+    if (!isNaN(value) && Number.isInteger(Number(value))) {
+      repliedToOptions.push(value);
+    } else if (value.includes('-')) {
+      specifiedOrganisations.push(value);
+    }
+  });
+
+  return { repliedToOptions, specifiedOrganisations };
+};
+
+export const parseOrganisationResponsiveness = (value?: string) => {
+  if (!value) return { hasSpecificOrg: false, organisationIds: [] as string[], flags: [] as number[] };
+  const parts = value.split(',');
+  let hasSpecificOrg = false;
+  const organisationIds: string[] = [];
+  const flags: number[] = [];
+  for (const part of parts) {
+    if (part === '1') hasSpecificOrg = true;
+    else if (/^\d+$/.test(part)) flags.push(Number(part));
+    else if (part) organisationIds.push(part);
+  }
+  return { hasSpecificOrg, organisationIds, flags };
+};
+
+
+export const parseCommunityResponsiveness = (value?: string) => {
+  if (value === '1' || value === '2') return Number(value);
+  return null;
+};
+
+export function addResponsivenessConditions(
+  query: SelectQueryBuilder<any>,
+  params: { organisationResponsiveness?: string; communityResponsiveness?: string }
+): SelectQueryBuilder<any> {
+  const orgRespConditions: string[] = [];
+
+  // --- filtering the responsiveness of organizations ---
+  const orgResp = parseOrganisationResponsiveness(params.organisationResponsiveness);
+  const comResp = parseCommunityResponsiveness(params.communityResponsiveness);
+
+  const commentStatuses = [
+    COMMENT_STATUS.PUBLISHED,
+    COMMENT_STATUS.PUBLISHED_AND_PENDING_CALL,
+  ];
+
+  // 1 + UUID Organizations: only stories where there is a response from that organization
+  if (orgResp.hasSpecificOrg && orgResp.organisationIds.length > 0) {
+    query.andWhere(`
+    EXISTS (
+      SELECT 1 FROM story_comment sc
+      JOIN user u ON u.id = sc.user_id
+      WHERE sc.story_id = story.id
+        AND u.organisation_id IN (:...orgIds)
+        AND sc.status IN (:...commentStatuses)
+    )
+  `, {
+      orgIds: orgResp.organisationIds,
+      commentStatuses
+    });
+  }
+
+  // 2 — there is a response from any organization (not specific)
+  if (orgResp.flags.includes(2)) {
+    orgRespConditions.push(`
+      EXISTS (
+        SELECT 1 FROM story_comment sc
+        JOIN user u ON u.id = sc.user_id
+        WHERE sc.story_id = story.id
+          AND u.organisation_id IS NOT NULL
+          AND sc.status IN (:...commentStatuses)
+      )
+    `);
+  }
+
+  // 3 — there is a response from solution proposed
+  if (orgResp.flags.includes(3)) {
+    orgRespConditions.push(`
+    EXISTS (
+      SELECT 1 FROM story_comment sc
+      WHERE sc.story_id = story.id
+        AND sc.solution_proposed = 1
+        AND sc.status IN (:...commentStatuses)
+    )
+  `);
+  }
+
+  // 4 — no answers at all
+  if (orgResp.flags.includes(4)) {
+    orgRespConditions.push(`
+      NOT EXISTS (
+        SELECT 1 FROM story_comment sc
+        WHERE sc.story_id = story.id
+          AND sc.status IN (:...commentStatuses)
+      )
+    `);
+  }
+
+  if (orgRespConditions.length > 0) {
+    query.andWhere('(' + orgRespConditions.join(' OR ') + ')', { commentStatuses });
+  }
+
+  // filtering by community responsiveness
+  if (comResp) {
+    if (comResp === 1) {
+      query.andWhere(`
+        EXISTS (
+          SELECT 1 FROM story_comment sc
+          LEFT JOIN user u ON u.id = sc.user_id
+          WHERE sc.story_id = story.id
+            AND (sc.user_id IS NULL OR u.organisation_id IS NULL)
+            AND sc.status IN (:...commentStatuses)
+        )
+      `, { commentStatuses });
+    }
+
+    else if (comResp === 2) {
+      query.andWhere(`
+        NOT EXISTS (
+          SELECT 1 FROM story_comment sc
+          LEFT JOIN user u ON u.id = sc.user_id
+          WHERE sc.story_id = story.id
+            AND (sc.user_id IS NULL OR u.organisation_id IS NULL)
+            AND sc.status IN (:...commentStatuses)
+        )
+      `, { commentStatuses });
+    }
+  }
+
+  return query;
+}
+
+//new logic for metabase
+export const mapResponsivenessToRepliedTo = (
+  organisationResponsiveness?: string,
+  communityResponsiveness?: string,
+): string[] => {
+  const orgResp = organisationResponsiveness
+    ? parseOrganisationResponsiveness(organisationResponsiveness)
+    : { flags: [], hasSpecificOrg: false, organisationIds: [] };
+
+  const orgMap = [
+    orgResp.flags.includes(1) ? ORG_RESP_NUMBER_TO_CONSTANT[1] : null,
+    orgResp.flags.includes(2) ? ORG_RESP_NUMBER_TO_CONSTANT[2] : null,
+    orgResp.flags.includes(3) ? ORG_RESP_NUMBER_TO_CONSTANT[3] : null,
+    (orgResp.hasSpecificOrg && orgResp.organisationIds.length > 0)
+      ? ORG_RESP_NUMBER_TO_CONSTANT[4]
+      : null,
+  ].filter(Boolean);
+
+  const comFlags = communityResponsiveness
+    ? communityResponsiveness.split(',').map(Number)
+    : [];
+
+  const comMap = comFlags
+    .map(flag => COMMUNITY_RESP_NUMBER_TO_CONSTANT[flag] ?? null)
+    .filter(Boolean);
+
+  return [...orgMap, ...comMap];
+};
 
 export const countUnique = (iterable: string[]) => {
   return new Set(iterable).size;
@@ -1020,23 +1162,3 @@ export function extractModuleSpecificFilterParameters(filters, includedKeys) {
       .map(([key, value]) => [key, Array.isArray(value) ? value : []])
   );
 }
-
-//extract specified organisations and replied to values
-export const separateRepliedToValues = (repliedTo) => {
-  if (!repliedTo) {
-    return { repliedToOptions: [], specifiedOrganisations: [] };
-  }
-  const values = repliedTo.split(',');
-  const repliedToOptions = [];
-  const specifiedOrganisations = [];
-
-  values.forEach((value) => {
-    if (!isNaN(value) && Number.isInteger(Number(value))) {
-      repliedToOptions.push(value);
-    } else if (value.includes('-')) {
-      specifiedOrganisations.push(value);
-    }
-  });
-
-  return { repliedToOptions, specifiedOrganisations };
-};

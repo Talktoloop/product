@@ -52,6 +52,7 @@ import { CommentRepository } from '../comment/repository/comment.repository';
 import { IvrrCallRepository } from '../ivrr/repository/ivrr-call.repository';
 import { PosthogService } from './service/posthog.service';
 import { UNDataExportService } from './service/un-data-export.service';
+import { StoryOrganisationTagRepository } from './repository/story-organisation-tag.repository';
 import { CerbosService } from '../common/cerbos/cerbos.service';
 import { PermissionGuard } from '../auth/cerbos/permission.guard';
 
@@ -79,6 +80,7 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
       OrganisationRepository,
       CommentRepository,
       IvrrCallRepository,
+      StoryOrganisationTagRepository
     ]),
     forwardRef(() => LexiconModule),
     forwardRef(() => OrganisationModule),

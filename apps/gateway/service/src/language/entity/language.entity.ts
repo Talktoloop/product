@@ -26,13 +26,13 @@ export class LanguageEntity {
   @Column({ name: 'alternative_provider', type: 'varchar' })
   alternativeProvider?: PROVIDER_TYPE;
 
-  @Column({ name: 'code', type: 'varchar', length: 2 })
+  @Column({ name: 'code', type: 'varchar', length: 4 })
   code: string;
 
   @Column({ name: 'transcribe_lang', type: 'varchar', length: 2 })
   transcribeLang: string;
 
-  @Column({ name: 'dialect', type: 'varchar', length: 2, nullable: true })
+  @Column({ name: 'dialect', type: 'varchar', length: 4, nullable: true })
   dialect?: string;
 
   @OneToMany(

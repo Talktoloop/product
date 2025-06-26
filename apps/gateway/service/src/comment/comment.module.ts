@@ -25,7 +25,6 @@ import { DatabaseModule } from '../database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { dynamicConfiguration } from '../config/default';
 import { ConfigProvider } from '../common/provider/config.provider';
-import { PermissionGuard } from '../auth/cerbos/permission.guard';
 import { CerbosService } from '../common/cerbos/cerbos.service';
 
 @Module({
@@ -57,7 +56,7 @@ import { CerbosService } from '../common/cerbos/cerbos.service';
     CommentModeratorService,
     CommentTranslationModeratorService,
     ConfigProvider,
-    PermissionGuard, CerbosService
+    CerbosService
   ],
   controllers: [
     CommentModeratorController,
@@ -71,4 +70,4 @@ import { CerbosService } from '../common/cerbos/cerbos.service';
     CommentModeratorService,
   ],
 })
-export class CommentModule { }
+export class CommentModule {}

@@ -50,7 +50,7 @@ export class UNDataExportService {
       }
 
       const mappedData = await this.packageStories(rawDataCollection);
-      const preparedContent = await this.prepareContent(mappedData, filters.repliedTo);
+      const preparedContent = await this.prepareContent(mappedData, filters.communityResponsiveness);
 
       csvContent = this.exportService.prepareCSVContent(preparedContent, isFirstBatch);
       this.exportService.saveCacheFile(this.exportService.generateFileName(filename, 'csv'), csvContent);
@@ -120,12 +120,16 @@ export class UNDataExportService {
         originalContent,
         mappedSector,
         responsibilityCategory,
+        dateOfReceipt,
+        dateOfReferral
       ] = await Promise.all([
         this.mapGender(story),
         this.getMappedThematicTypes(story.thematic_id, populationTypeMapping),
         this.getOriginalContent(story),
         this.getSectors(story.thematic_id, sectorMapping),
         this.getResponsibilityCategory(story),
+        this.formatDateToYMD(story.story_created_at),
+        this.formatDateToYMD(story.story_published_at),
       ]);
 
       const referredTo = Array.isArray(story.organisations_name)
@@ -135,7 +139,7 @@ export class UNDataExportService {
       return new UNDataExportDto({
         uniqueId,
         scopeCardNumber: 'N/A',
-        dateOfReceipt: story.story_created_at.toDateString(),
+        dateOfReceipt: dateOfReceipt,
         nameOfDataCollector: 'N/A',
         country: story.country_name ?? 'N/A',
         region: administrativeData.region,
@@ -171,18 +175,26 @@ export class UNDataExportService {
           ? statusMapping[1]
           : statusMapping[2],
         actionTaken: 'Relevant org tagged',
-        dateOfReferral: story.story_published_at.toDateString(),
+        dateOfReferral: dateOfReferral,
         referredTo: referredTo,
         nameOfFocalPoint: story.story_place ?? 'N/A',
         contactDetailsOfFocalPoint: 'N/A',
         dateOfCaseResolution: 'N/A',
         reasonForActionNotPossible: 'N/A',
-        dateOfClosingTheLoop: story.story_published_at.toDateString(),
+        dateOfClosingTheLoop: dateOfReferral,
         comments: 'N/A',
         keyQuote: 'N/A',
         rumour: 'N/A',
       });
     }));
+  }
+
+  private formatDateToYMD(dateInput: string | Date): string {
+    const date = new Date(dateInput);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   private getMappedThematicTypes(data: number | number[], mapping: Record<string, number[]>): string {
@@ -257,8 +269,8 @@ export class UNDataExportService {
       }))
       .sort((a, b) => a.level - b.level);
 
-    const region = sortedData.find(item => item.level === 1)?.name ?? 'N/A';
-    const district = sortedData.find(item => item.level === 2)?.name ?? 'N/A';
+    const region = sortedData.find(item => item.level === 2)?.name ?? 'N/A';
+    const district = sortedData.find(item => item.level === 1)?.name ?? 'N/A';
 
     return { region, district };
   }

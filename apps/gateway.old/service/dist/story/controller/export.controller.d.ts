@@ -1,0 +1,35 @@
+import { StoryService } from '../service/story.service';
+import { SuccessRO } from '../../common/response/success.ro';
+import { StoryFilterAndOrderDto } from '../request/dto/story-filter-and-order.dto';
+import { ExportStoriesDTO } from '../request/dto/export-stories.dto';
+import { CountryService } from '../../country/service/country.service';
+import { ExportService } from '../service/export.service';
+import { OrganisationService } from '../../organisation/organisation.service';
+import { LanguageService } from '../../language/language.service';
+import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
+import { UserEntity } from '../../user/entity/user.entity';
+import { SubscriptionService } from '../../subscription/service/subscription.service';
+import { ExportedStoriesWithPaginationRO } from '../response/exported-stories-pagination.ro';
+import { ExportToJsonDTO } from '../request/dto/export-to-json.dto';
+import { PosthogService } from '../service/posthog.service';
+import { UNDataExportService } from '../service/un-data-export.service';
+import { CerbosService } from '../../common/cerbos/cerbos.service';
+export declare class ExportController {
+    private readonly storyService;
+    private readonly subscriptionService;
+    private readonly exportService;
+    private readonly countryService;
+    private readonly organisationService;
+    private readonly languageService;
+    private readonly posthogService;
+    private readonly UNExportService;
+    private readonly cerbosService;
+    private readonly config;
+    constructor(storyService: StoryService, subscriptionService: SubscriptionService, exportService: ExportService, countryService: CountryService, organisationService: OrganisationService, languageService: LanguageService, posthogService: PosthogService, UNExportService: UNDataExportService, cerbosService: CerbosService, config: ConfigService);
+    exportToCsvByModerator(params: ExportStoriesDTO): Promise<SuccessRO>;
+    exportToJson(params: ExportToJsonDTO, userLanguageId: number): Promise<ExportedStoriesWithPaginationRO>;
+    exportToCsv(user: UserEntity, filters: StoryFilterAndOrderDto, userLanguageId: number, response: Response): Promise<Response<any, Record<string, any>> | SuccessRO>;
+    saveUserCsvActivity(user: UserEntity): Promise<SuccessRO>;
+    exportUNFeedbackToCsv(filters: StoryFilterAndOrderDto, response: Response): Promise<Response<any, Record<string, any>> | SuccessRO>;
+}

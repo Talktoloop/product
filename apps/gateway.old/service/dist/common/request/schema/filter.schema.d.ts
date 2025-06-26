@@ -1,0 +1,23 @@
+import * as Joi from 'joi';
+export declare const stringOrNumberValidation: Joi.AlternativesSchema<any>;
+export declare const countryValidation: Joi.AlternativesSchema<any>;
+export declare const channelValidation: Joi.AlternativesSchema<any>;
+export declare const filterConditions: {
+    country: Joi.AlternativesSchema<any>;
+    type: Joi.AlternativesSchema<any>;
+    regionId: Joi.StringSchema<string>;
+    age: Joi.AlternativesSchema<any>;
+    gender: Joi.AlternativesSchema<any>;
+    difficulty: Joi.AlternativesSchema<any>;
+    minority: Joi.AlternativesSchema<any>;
+    organisation: Joi.StringSchema<string>;
+    thematic: Joi.AlternativesSchema<any>;
+    channel: Joi.AlternativesSchema<any>;
+    channelFilter: Joi.AlternativesSchema<any>;
+    from: Joi.StringSchema<string>;
+    to: Joi.StringSchema<string>;
+    repliedTo: Joi.AlternativesSchema<any>;
+    storySearchText: Joi.AlternativesSchema<any>;
+    searchTerm: Joi.AlternativesSchema<any>;
+};
+export declare const filterSchema: Joi.ObjectSchema;

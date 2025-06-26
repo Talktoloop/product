@@ -56,6 +56,9 @@ export class StoryRecipientEntity {
   @Column({ name: 'user_want_contact', type: 'boolean' })
   userWantContact: boolean;
 
+  @Column({name: "additional_contact_details", type: 'text'})
+  additionalContactDetails: string
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 

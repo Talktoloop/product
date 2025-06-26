@@ -47,7 +47,6 @@ export const staticConfig: Record<string, any> = {
       mentalHealth: 'mental health',
       sexualAndReproductiveRights: 'sexual and reproductive rights',
       'epidemics/Pandemics': 'epidemics / pandemics',
-      covid: 'COVID',
       foodSecurity: 'food security',
       idp: 'IDP',
       waterPoints: 'water points',
@@ -58,7 +57,6 @@ export const staticConfig: Record<string, any> = {
       communitySensitisation: 'community sensitisation',
       aidWorkers: 'aid workers',
       civicSpace: 'civic Space',
-      'feeding/Malnutrition': 'feeding / malnutrition',
       safetyAndSecurity: 'safety and security',
       'medications/MedicinesFacilitiesAndServices':
         'medications / medicines, facilities and services',
@@ -90,7 +88,7 @@ export const staticConfig: Record<string, any> = {
       originalContentLanguage: 'Original content language',
       isMinority: 'Is Minority'
     },
-    cacheTtlInMinutes: 10,
+    cacheTtlInMinutes: 1,
   },
   cacheTtl: 900,
 };

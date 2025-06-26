@@ -32,6 +32,10 @@ export const filterConditions = {
   from: Joi.string(),
   to: Joi.string(),
   repliedTo: stringOrNumberValidation,
+  // new logic for metabase
+  organisationResponsiveness: stringOrNumberValidation,
+  communityResponsiveness: stringOrNumberValidation,
+  language: stringOrNumberValidation,
   storySearchText: stringOrNumberValidation,
   searchTerm: stringOrNumberValidation,
 };

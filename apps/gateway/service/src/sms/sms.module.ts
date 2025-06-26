@@ -50,4 +50,4 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
   ],
   exports: [MessageService],
 })
-export class SmsModule { }
+export class SmsModule {}

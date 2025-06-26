@@ -17,4 +17,5 @@ export enum SENSITIVE_STORY_COLUMNS {
   LOCATION = 'Location',
   MARKED_AS_SENSITIVE_BY = 'Tagged sensitive by 🔒',
   AUTHOR_ALLOWED_FOR_CONTACT = 'Author allowed for contact',
+  ADDITIONAL_CONTACT_DETAILS = 'Additional contact details'
 }

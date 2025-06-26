@@ -59,4 +59,4 @@ import { CerbosService } from '../common/cerbos/cerbos.service';
   ],
   exports: [IvrrService],
 })
-export class IvrrModule { }
+export class IvrrModule {}

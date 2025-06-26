@@ -15,14 +15,16 @@ import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.REJECT_REASON)
+
 @ApiTags('Reject reason')
 @Controller('reject_reason')
 export class RejectReasonController {
-  constructor(private readonly rejectReasonService: RejectReasonService) { }
+  constructor(private readonly rejectReasonService: RejectReasonService) {}
 
   @ApiBearerAuth()
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.REJECT_REASON)
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   @ApiOperation({ summary: 'Get list of reject reasons' })
   @ApiResponse({ status: 200, type: LexiconRO, isArray: true })
   @Get()

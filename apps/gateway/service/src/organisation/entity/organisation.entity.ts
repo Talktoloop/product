@@ -15,6 +15,7 @@ import { OrganisationApplicationEntity } from '../../user/entity/organisation-ap
 import { CountryEntity } from '../../country/entity/country.entity';
 import { StoryEntity } from '../../story/entity/story.entity';
 import { OrganisationTokenEntity } from '../../subscription/entity/organisation-token.entity';
+import { StoryOrganisationTagEntity } from '../../story/entity/story-organisation-tag.entity';
 
 @Entity('organisation')
 export class OrganisationEntity {
@@ -77,4 +78,7 @@ export class OrganisationEntity {
     (organisationToken) => organisationToken.organisation,
   )
   subscriptionToken: OrganisationTokenEntity;
+
+  @OneToMany(() => StoryOrganisationTagEntity, (tag) => tag.organisation)
+  storyTagged: StoryOrganisationTagEntity[];
 }

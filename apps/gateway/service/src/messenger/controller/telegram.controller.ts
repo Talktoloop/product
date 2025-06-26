@@ -25,9 +25,11 @@ import { UserResponseDto } from '../request/dto/user-response.dto';
 import { userResponseDtoSchema } from '../request/schema/user-response.schema';
 import { SendMessageRO } from '../response/send-message.ro';
 import { StoryService } from '../../story/service/story.service';
+import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 import { PermissionGuard } from '../../auth/cerbos/permission.guard';
-import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
+
+// @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.SOCIAL_MESSAGE)
 
 @ApiTags('Telegram')
 @Controller('messenger/telegram')
@@ -35,7 +37,7 @@ export class TelegramMessengerController {
   constructor(
     private readonly messengerService: MessengerService,
     private readonly storyService: StoryService,
-  ) { }
+  ) {}
 
   @MessagePattern({ cmd: 'saveTelegramStory' })
   async saveTelegramFlowRecord(
@@ -54,8 +56,7 @@ export class TelegramMessengerController {
   @ApiResponse({ status: 200, type: SendMessageRO })
   @ApiOperation({ summary: 'Send Telegram Messenger Message' })
   @Post('message')
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.SOCIAL_MESSAGE)
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   async sendTelegramMessage(
     @Body(new ValidationPipe(sendMessageSchema)) data: SendMessageDto,
   ): Promise<SuccessRO> {

@@ -339,7 +339,6 @@ export class LanguageService {
     provider: PROVIDER_TYPE,
     alternativeProvider: PROVIDER_TYPE,
   ): Promise<InvocationResponse> {
-    console.log('💀 \n'.repeat(10));
     const payload = {
       sourceId,
       sourceType,

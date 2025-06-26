@@ -71,6 +71,8 @@ import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
+//  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.IVRR_FILES)
+
 @ApiTags('IVRR')
 @Controller('ivrr')
 export class IvrrController {
@@ -106,7 +108,6 @@ export class IvrrController {
 
   @MessagePattern({ cmd: 'testInternal' })
   async testInternalMessage(): Promise<any> {
-    console.log('message testInternal');
     return { success: true };
   }
 
@@ -144,7 +145,6 @@ export class IvrrController {
 
   @MessagePattern({ cmd: 'testToGateway' })
   async test(): Promise<SuccessRO> {
-    console.log('message testToGateway');
     return plainToClass(SuccessRO, { success: true });
   }
 
@@ -207,8 +207,7 @@ export class IvrrController {
   @ApiResponse({ status: 200, type: String })
   @ApiOperation({ summary: 'Get signed url for s3 audio file' })
   @ApiBearerAuth()
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.IVRR_FILES)
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   @Get('file/:s3FileId')
   async getIVRRFileSignedUrl(
     @Param('s3FileId') s3FileId: string,
@@ -219,8 +218,7 @@ export class IvrrController {
   @ApiResponse({ status: 200, type: RecordingsRO })
   @ApiOperation({ summary: 'Get intro and outro recordings' })
   @ApiBearerAuth()
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.IVRR_FILES)
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   @Get('recordings/:language')
   async getRecordings(
     @Param('language') language: string,
@@ -231,7 +229,7 @@ export class IvrrController {
     // we were asked to add two more dialects, Baajuuni and Banadiri-Marka, bjn and bnd respectively
     // This caused a bug where moderators could not open the replies in the outbox because of this endpoint saying the language is not supported
     // The change we're trying to make is so that only the main dialect of the country is used internally and for display, while allowing users to submit feedback in their dialects
-    const sanitizedLanguage = ['bjn', 'bnd'].includes(language) ? 'so' : language
+    const sanitizedLanguage = ['bjn', 'bnd', 'bara'].includes(language) ? 'so' : language;
     const recordings = await this.ivrrService.getRecordingFiles(sanitizedLanguage);
 
     return recordingsMapper(recordings, sanitizedLanguage);
@@ -244,8 +242,7 @@ export class IvrrController {
   @ApiMultiFile()
   @UseInterceptors(FilesInterceptor('files'))
   @ApiBearerAuth()
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.IVRR_FILES)
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   async uploadMultipleFiles(
     @Body(new ValidationPipe(uploadFileSchema)) data: { commentId: string },
     @UploadedFiles() files: Express.Multer.File[],

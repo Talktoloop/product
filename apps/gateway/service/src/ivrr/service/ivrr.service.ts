@@ -427,7 +427,6 @@ export class IvrrService {
   }
 
   async test(): Promise<boolean> {
-    console.log('send message testToIvrr');
     return lastValueFrom(
       this.clientProxy
         .send({ cmd: 'testToIvrr' }, {})
@@ -440,7 +439,6 @@ export class IvrrService {
   }
 
   async testInternal(): Promise<boolean> {
-    console.log('send message testInternal');
     return lastValueFrom(
       this.clientProxy
         .send({ cmd: 'testInternal' }, {})
@@ -505,9 +503,6 @@ export class IvrrService {
       Payload: JSON.stringify(payload),
     };
 
-    console.log('💀'.repeat(10));
-    console.log(`runTranscriptionLambdaAsync`, params);
-
     this.logger.log(`run transcribe for ${callId} and  ${language}`);
 
     return new Promise((resolve, reject) => {
@@ -568,7 +563,6 @@ export class IvrrService {
       const recordingDuration = await this.getS3FileAudioDuration(
         call.s3FileId,
       );
-      console.log('ID-', call.s3FileId, 'REC-', recordingDuration);
       if (recordingDuration) {
         await this.ivrrCallRepository.update(call.id, {
           recordingDuration: Math.ceil(recordingDuration),

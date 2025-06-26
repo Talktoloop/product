@@ -42,7 +42,13 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     WhatsAppMessengerController,
     TelegramMessengerController,
   ],
-  providers: [MessengerService, ClientProxyProvider, ConfigProvider, CerbosService, PermissionGuard],
+  providers: [
+    MessengerService,
+    ClientProxyProvider,
+    ConfigProvider,
+    CerbosService,
+    PermissionGuard
+  ],
   exports: [MessengerService],
 })
-export class MessengerModule { }
+export class MessengerModule {}

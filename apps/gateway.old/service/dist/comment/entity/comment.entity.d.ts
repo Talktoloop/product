@@ -1,0 +1,35 @@
+import { StoryEntity } from '../../story/entity/story.entity';
+import { UserEntity } from '../../user/entity/user.entity';
+import { CommentVoteEntity } from './comment-vote.entity';
+import { CommentTranslationEntity } from './comment-translation.entity';
+import { CHANNEL_CONSTANTS } from '../../common/constant/channel.constant';
+import { LanguageEntity } from '../../language/entity/language.entity';
+import { CommentRejectReasonEntity } from './comment-reject-reason.entity';
+import { CommentRecipientEntity } from './comment-recipient.entity';
+import { ThematicEntity } from '../../lexicon/entity/thematic.entity';
+export declare class CommentEntity {
+    id: string;
+    languageId: number;
+    storyId: string;
+    story: StoryEntity;
+    createdAt: Date;
+    publishedAt?: Date;
+    status: string;
+    solution_proposed: boolean;
+    s3FileId: string;
+    parentCommentId?: string;
+    channel: CHANNEL_CONSTANTS;
+    rejectReasonLanguageId: number;
+    language: LanguageEntity;
+    translations: CommentTranslationEntity[];
+    parent?: CommentEntity;
+    children?: CommentEntity[];
+    userId?: string;
+    user?: UserEntity;
+    votes: CommentVoteEntity[];
+    rejectReasons: CommentRejectReasonEntity[];
+    rejectRationale?: string;
+    recipientId: number;
+    recipient: CommentRecipientEntity;
+    thematics: ThematicEntity[];
+}

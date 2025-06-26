@@ -43,20 +43,24 @@ import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.TRANSLATION)
+// @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.TRANSLATION)
+// @PermissionsCerbos(CERBOS_ACTIONS.DELETE, CERBOS_RESOURCES.TRANSLATION)
+
 @ApiBearerAuth()
 @ApiTags('Story Translation Moderator')
-@UseGuards(AuthGuard('cognito'), PermissionGuard)
+@UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
 @Controller('story/moderator')
 export class StoryTranslationModeratorController {
   constructor(
     private readonly storyService: StoryService,
     private readonly storyTranslationModeratorService: StoryTranslationModeratorService,
-  ) { }
+  ) {}
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Remove story translation' })
   @Delete(':id/translation')
-  @PermissionsCerbos(CERBOS_ACTIONS.DELETE, CERBOS_RESOURCES.TRANSLATION)
   async removeStoryTranslation(
     @Param('id', new UuidValidationPipe()) storyId: string,
     @Body(new ValidationPipe(removeStoryTranslationSchema))
@@ -74,7 +78,6 @@ export class StoryTranslationModeratorController {
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Verify story translation' })
   @Put(':id/translation/verify')
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.TRANSLATION)
   async verifyStoryTranslation(
     @Param('id', new UuidValidationPipe()) storyId: string,
     @Body(new ValidationPipe(verifyStoryTranslationSchema))
@@ -92,7 +95,6 @@ export class StoryTranslationModeratorController {
   @ApiResponse({ status: 200, type: TranslationRO, isArray: true })
   @ApiOperation({ summary: 'Get list of story translation statuses' })
   @Get(':id/translation')
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.TRANSLATION)
   async getTranslationStatus(
     @Param('id', new UuidValidationPipe()) storyId: string,
   ): Promise<TranslationRO[]> {
@@ -110,7 +112,6 @@ export class StoryTranslationModeratorController {
   @ApiOperation({ summary: 'Restore original story content' })
   @ApiResponse({ status: 200, type: SuccessRO })
   @Put(':id/translation/restore')
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.TRANSLATION)
   async restoreOriginalContent(
     @Auth() user: UserEntity,
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -133,7 +134,6 @@ export class StoryTranslationModeratorController {
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Set translation to particular story' })
   @Put(':id/translation')
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.TRANSLATION)
   async saveTranslation(
     @Auth() user: UserEntity,
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -162,7 +162,6 @@ export class StoryTranslationModeratorController {
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Retry story translation' })
   @Put(':id/translation/retry')
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.TRANSLATION)
   async retryStoryTranslation(
     @Param('id', new UuidValidationPipe()) storyId: string,
     @Body(new ValidationPipe(retryTranslationSchema))

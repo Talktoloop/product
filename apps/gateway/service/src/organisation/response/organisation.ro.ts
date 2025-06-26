@@ -25,6 +25,10 @@ export class OrganisationRO {
 
   @Expose()
   @ApiProperty()
+  countryName: string;
+
+  @Expose()
+  @ApiProperty()
   storiesCount: number;
 
   @Expose()

@@ -35,7 +35,6 @@ export class AuthService {
         this.pem = jwkToPem(jwks);
       })
       .catch((error) => {
-        console.log('====here====', error);
         this.logger.error(error.response);
         this.logger.error('AWS credentials are wrong');
       });
@@ -65,7 +64,6 @@ export class AuthService {
         },
         (error, result) => {
           if (!error) {
-            console.log('====HERE====', error);
             resolve(result);
           }
 

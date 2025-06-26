@@ -42,7 +42,6 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
       ModeratorEntity,
       ModeratorRepository,
     ]),
-
   ],
   providers: [
     ThematicService,
@@ -73,4 +72,4 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     ModeratorService,
   ],
 })
-export class LexiconModule { }
+export class LexiconModule {}

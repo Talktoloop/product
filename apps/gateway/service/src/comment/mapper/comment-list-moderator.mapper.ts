@@ -8,12 +8,10 @@ import { STORY_STATUS } from '@ourloop/shared';
 export const commentListModeratorMapper = (
   comments: CommentEntity[],
 ): CommentListModeratorRO[] => {
-  console.log('commentListModeratorMapper:comments', comments);
   let translation: CommentTranslationEntity;
 
   return comments.map((comment: CommentEntity) => {
     if (comment.translations) {
-      console.log('commentListModeratorMapper:comment.languageId', comment.languageId);
       translation = getTranslationByLanguageId(
         comment.translations,
         comment.languageId,

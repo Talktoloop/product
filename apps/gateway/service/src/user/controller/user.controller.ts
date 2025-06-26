@@ -49,20 +49,26 @@ import { MessagePattern } from '@nestjs/microservices';
 import { sendInvitationToUserSchema } from '../request/schema/send-invitation-to-user.schema';
 import { sendInvitationToUserDTO } from '../request/dto/send-invitation-to-user.dto';
 import { OrganisationService } from '../../organisation/organisation.service';
+import { editUserHideLastName } from '../request/schema/edit-user-hide-last-name.schema';
+import { EditUserHideLastName } from '../request/dto/edit-user-hide-last-name.dto';
+import { UserHideLastNameRO } from '../response/user-hide-last-name.ro';
 import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.USER)
+
 @ApiTags('User')
 @Controller('user')
 export class UserController {
-  private readonly logger = new Logger('UserController')
+  private readonly logger = new Logger('UserController');
   constructor(
     private readonly userService: UserService,
     private readonly subscriptionService: SubscriptionService,
     private readonly airTableUserService: AirTableUserService,
     private readonly organisationService: OrganisationService,
-  ) { }
+  ) {}
 
   @ApiBearerAuth()
   @UseGuards(AuthGuard('cognito'))
@@ -103,7 +109,7 @@ export class UserController {
       optin_marketing,
       consents,
       organisationApplicationId,
-      user.email
+      user.email,
     );
 
     return plainToClass(SuccessRO, { success: !!result.affected });
@@ -122,6 +128,22 @@ export class UserController {
     const res = await this.userService.updateUserNotification(data, user.id);
 
     return plainToClass(SuccessRO, { success: !!res.affected });
+  }
+
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('cognito'))
+  @ApiResponse({ status: 200, type: SuccessRO })
+  @ApiOperation({ summary: 'Update user hide last name' })
+  @Put('/hide-last-name')
+  async updateHideLastName(
+    @Auth() user: UserEntity,
+    @Body(new ValidationPipe(editUserHideLastName))
+    data: EditUserHideLastName,
+  ): Promise<UserHideLastNameRO> {
+    return plainToClass(
+      UserHideLastNameRO,
+      await this.userService.updateUserHideLastName(data, user.id),
+    );
   }
 
   @UseGuards(AuthGuard(['anonymous']))
@@ -190,8 +212,7 @@ export class UserController {
   }
 
   @ApiBearerAuth()
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.USER)
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   @ApiResponse({ status: 200, type: UserOrganisationRO })
   @ApiOperation({ summary: 'Get user organisation' })
   @Get('/:email/organisation')
@@ -220,7 +241,6 @@ export class UserController {
     )
     data: sendInvitationToUserDTO,
   ): Promise<SuccessRO> {
-    console.log('sendInvitationToUser');
     const user = await this.userService.findById(data.userId, [
       'organisation',
       'language',

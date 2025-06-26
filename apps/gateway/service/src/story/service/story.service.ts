@@ -42,6 +42,7 @@ import { narrowDownIds, generateMD5 } from '../../common/helpers';
 import { CountryAdministrativeDataRepository } from './../../country/repository/country-administrative-data.repository';
 import { AirTableOrganisationService } from '../../airtable-client/service/airtable-organisation.service';
 import { ExportService } from './export.service';
+import { StoryOrganisationTagRepository } from '../repository/story-organisation-tag.repository';
 
 interface IOperations {
   isUrgent: boolean;
@@ -63,6 +64,7 @@ export class StoryService {
     private readonly difficultyService: DifficultyService,
     private readonly maternityStatusService: MaternityStatusService,
     private readonly storyVoteRepository: StoryVoteRepository,
+    private readonly storyOrganisationTagRepository: StoryOrganisationTagRepository,
     private readonly storyViewRepository: StoryViewRepository,
     private readonly storyTranslationRepository: StoryTranslationRepository,
     private readonly storyRecipientRepository: StoryRecipientRepository,
@@ -159,9 +161,6 @@ export class StoryService {
         error: `story doesn\'t exist - function ${nameOfFunction}`,
       });
     }
-
-    console.log('💀'.repeat(10));
-    console.log(`story does indeed exist`);
     return story;
   }
 
@@ -326,6 +325,20 @@ export class StoryService {
       delete params.searchTerm;
     }
 
+    if (params.language) {
+      const storyIdsByLanguage = await this.findStoryIdsByLanguageOrGetFromCache(
+        params.language.toString(),
+        isExport,
+      );
+
+      params.storyIds = this.getCommonStoryIds(
+        params.storyIds,
+        storyIdsByLanguage
+      );
+
+      delete params.searchTerm;
+    }
+
     if (params.storyIds?.length === 0) {
       return [];
     }
@@ -442,6 +455,41 @@ export class StoryService {
       storyIds = await this.storyRecipientRepository
         .findStoryIdsByMinority(minority === '1')
         .then((result) => result.map((item) => item.storyId));
+
+      if (isExport) {
+        this.exportService.saveCacheFile(
+          this.exportService.generateFileName(prefix, 'txt'),
+          JSON.stringify(storyIds),
+        );
+      }
+    }
+
+    return storyIds;
+  }
+
+  async findStoryIdsByLanguageOrGetFromCache(
+    languages: string,
+    isExport: boolean,
+  ): Promise<string[]> {
+    const md5 = generateMD5(languages);
+    const prefix = `story-ids-by-language-${md5}`;
+    let fileName: string;
+    let storyIds = [];
+
+    if (isExport) {
+      fileName = this.exportService.findCacheFile(prefix);
+    }
+
+    if (fileName) {
+
+      storyIds = JSON.parse(this.exportService.readFile(fileName, 'utf-8'));
+    } else {
+
+      storyIds = await this.storyRepository
+        .findStoryIdsByLanguageIds(
+          languages.split(',').map((value) => value),
+        )
+        .then((result) => result.map((item) => item.id));
 
       if (isExport) {
         this.exportService.saveCacheFile(
@@ -738,6 +786,7 @@ export class StoryService {
           );
           operations.organisations.push(org);
         }
+
       }
     } else {
       operations.organisations = null;
@@ -825,7 +874,8 @@ export class StoryService {
           ? DIFFICULTY_VALUE[data.difficulty.toUpperCase()]
           : null,
         communicatorId: data.communicatorId,
-        userWantContact: data.userWantContact,
+        userWantContact: typeof data.sensitiveStoryContactConsent === 'boolean' ? data.sensitiveStoryContactConsent : data.userWantContact,
+        additionalContactDetails: data.additionalContactDetails
       }
       const where = {};
       if (data.phone && data.phone.length > 0) where['phone'] = data.phone;
@@ -889,6 +939,13 @@ export class StoryService {
         await this.airTableOrganisationService.syncNumberOfStoriesToAirtable(
           operations?.organisations,
         );
+      }
+
+      if (data.organisations?.length > 0 && operations?.organisations?.length > 0) {
+        for (let i = 0; i < data.organisations.length; i++) {
+          const element = data.organisations[i];
+          await this.storyOrganisationTagRepository.save({ organisation: { id: element }, story: { id: story.id } })
+        }
       }
 
       return story;

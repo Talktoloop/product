@@ -1,5 +1,5 @@
 # First stage: builder
-FROM public.ecr.aws/docker/library/node:18-alpine3.17 as builder
+FROM public.ecr.aws/docker/library/node:20-alpine3.17 as builder
 
 # Install system dependencies
 RUN apk add --no-cache build-base libssl1.1 jq python3 py3-pip py3-setuptools groff less bash
@@ -24,7 +24,7 @@ RUN yarn install --production=false --frozen-lockfile --non-interactive \
     && yarn cache clean
 
 # Final stage
-FROM public.ecr.aws/docker/library/node:18-alpine3.17 as final
+FROM public.ecr.aws/docker/library/node:20-alpine3.17 as final
 
 # Install runtime dependencies
 RUN apk add --no-cache bash

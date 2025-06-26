@@ -69,7 +69,8 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     FiltersPresetService,
     BrevoService,
     BrevoProvider,
-    PermissionGuard, CerbosService
+    CerbosService,
+    PermissionGuard
   ],
   controllers: [
     UserController,
@@ -82,4 +83,4 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     FiltersPresetService,
   ],
 })
-export class UserModule { }
+export class UserModule {}

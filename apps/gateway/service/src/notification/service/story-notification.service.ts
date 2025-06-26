@@ -83,22 +83,21 @@ export class StoryNotificationService {
     }
 
     if (users) {
-      let languageCode: string;
-      let selectedTranslation: StoryTranslationEntity;
       const confirmationLink = await prepareURL(
         this.config.get('frontend.url'),
         'story/details',
         story.id,
       );
+      const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
-      Promise.all(
-        users.map((user) => {
-          languageCode = user.language?.code ?? LANGUAGES_CONSTANTS.ENGLISH;
-          selectedTranslation = story.translations.filter(
-            (translation) => translation.language.code === languageCode,
-          )[0];
+      for (const user of users) {
+        const languageCode = user.language?.code ?? LANGUAGES_CONSTANTS.ENGLISH;
+        const selectedTranslation = story.translations.find(
+          (t) => t.language.code === languageCode,
+        );
 
-          return this.notificationService.sendEmail(
+        try {
+          await this.notificationService.sendEmail(
             getMailTemplateId(
               languageCode,
               USER_TEMPLATES.YOUR_ORGANISATION_HAS_BEEN_TAGGED,
@@ -106,9 +105,7 @@ export class StoryNotificationService {
             {
               name: user.nickname ?? '',
               organisation_name: user.organisation.name,
-              story_preview: selectedTranslation
-                ? selectedTranslation.content
-                : origin.content,
+              story_preview: selectedTranslation?.content ?? origin.content,
               confirmation_link: confirmationLink,
             },
             {},
@@ -117,11 +114,15 @@ export class StoryNotificationService {
             undefined,
             {
               Email: 'orgs@talktoloop.org',
-              Name: "Talk to Loop Support",
+              Name: 'Talk to Loop Support',
             },
           );
-        }),
-      );
+        } catch (err) {
+          console.error(`Failed to send to ${user.email}:`, err);
+        }
+
+        await delay(1000); // wait 1 second between sends
+      }
     }
   }
 

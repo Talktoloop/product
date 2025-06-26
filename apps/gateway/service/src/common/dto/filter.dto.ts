@@ -53,4 +53,8 @@ export class FilterDto {
 
   @ApiProperty({ type: 'string', required: false })
   language?: StringOrNumber;
+
+  // new logic for metabase
+  organisationResponsiveness?: string;
+  communityResponsiveness?: string;
 }

@@ -31,6 +31,7 @@ import { StoryModeratorService } from '../story/service/story-moderator.service'
 import { StoryService } from '../story/service/story.service';
 import { RejectReasonService } from '../lexicon/service/reject-reason.service';
 import { AirTableDeleteStoryDTO } from './request/dto/air-table-delete-story.dto';
+import { SuccessRO } from '../common/response/success.ro';
 
 @Injectable()
 export class AirTableClientService {
@@ -182,8 +183,7 @@ export class AirTableClientService {
             caseId,
             investigationOpened: item.investigationOpened,
             investigationClosed: item.investigationClosed,
-            whichOrganisationDoingInvestigation:
-              item.whichOrganisationDoingInvestigation,
+            whichOrganisationDoingInvestigation: item.whichOrganisationDoingInvestigation,
             investigationOutcome: item.investigationOutcome,
             referralToClearCheckMade: item.referralToClearCheckMade,
           }),
@@ -393,4 +393,28 @@ export class AirTableClientService {
     }
     return this.airTableClientRepository.save(data);
   }
+
+  async deleteOldNonSensitiveStories(): Promise<SuccessRO> {
+    const rejectionReason = await this.rejectionReasonService.findOneByParamsOrFail({ code: 'notSensitive' });
+    const stories = await this.storyModeratorService.getOlderStories();
+    for (const story of stories) {
+      const sensitiveCase = await this.airTable.table('Sensitive Stories').list({
+        filterByFormula: `{Loop ID} = "${story.id}"`,
+      });
+      if (sensitiveCase && sensitiveCase.records.length > 0 && !sensitiveCase.records[0]?.fields['Case the story is submitted to']) {
+        try {
+          await this.airTable.delete(sensitiveCase.records[0].id);
+        } catch (error) {
+          console.error('Error while deleting sensitive case', error);
+        }
+        try {
+          await this.storyModeratorService.checkStoryAndReject(story.id, { reasonIds: [rejectionReason.id], rationale: '', reasonTexts: ['Not sensitive'] }, undefined, false);
+        } catch (error) {
+          console.error('Error while rejecting story', error);
+        }
+      }
+    }
+    return { success: true };
+  }
+
 }

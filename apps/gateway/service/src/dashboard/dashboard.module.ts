@@ -6,8 +6,6 @@ import { StoryEntity } from '../story/entity/story.entity';
 import { StoryRepository } from '../story/repository/story.repository';
 import { CommentRepository } from '../comment/repository/comment.repository';
 import { CommentEntity } from '../comment/entity/comment.entity';
-import { CerbosService } from '../common/cerbos/cerbos.service';
-import { PermissionGuard } from '../auth/cerbos/permission.guard';
 
 @Module({
   imports: [
@@ -19,7 +17,7 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     ]),
   ],
   controllers: [DashboardController],
-  providers: [DashboardService, PermissionGuard, CerbosService],
+  providers: [DashboardService],
   exports: [DashboardService],
 })
-export class DashboardModule { }
+export class DashboardModule {}

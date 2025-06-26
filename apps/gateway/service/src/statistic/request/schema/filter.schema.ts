@@ -43,6 +43,9 @@ export const filterConditions = {
   language: stringOrNumberValidation,
   storySearchText: stringOrNumberValidation,
   searchTerm: stringOrNumberValidation,
+  //new logic for metabase
+  organisationResponsiveness: stringOrNumberValidation,
+  communityResponsiveness: stringOrNumberValidation,
 };
 
 export const mergedFilterSchema: Joi.ObjectSchema = Joi.object(

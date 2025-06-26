@@ -60,6 +60,9 @@ import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.SOCIAL_MESSAGE)
+
 @ApiTags('SMS')
 @Controller('sms')
 export class MessageController {
@@ -74,14 +77,13 @@ export class MessageController {
     private readonly config: ConfigService,
     @Inject(DI_CONSTANTS.TEXTIT)
     private readonly textItProvider: TextIt,
-  ) { }
+  ) {}
 
   @ApiBearerAuth()
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Send SMS Message' })
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.SOCIAL_MESSAGE)
   @Post('message')
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   async sendSMSMessage(
     @Auth() user: UserEntity,
     @Body(new ValidationPipe(sendMessageSchema))

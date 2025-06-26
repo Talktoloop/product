@@ -36,18 +36,22 @@ import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
+// @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.COMMENT)
+// @PermissionsCerbos(CERBOS_ACTIONS.DELETE, CERBOS_RESOURCES.COMMENT)
+
 @ApiBearerAuth()
 @ApiTags('Comment Translation Moderator')
-@UseGuards(AuthGuard('cognito'), PermissionGuard)
+@UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
 @Controller('comment/moderator')
 export class CommentTranslationModeratorController {
   constructor(
     private readonly commentTranslationModeratorService: CommentTranslationModeratorService,
-  ) { }
+  ) {}
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Remove story translation' })
-  @PermissionsCerbos(CERBOS_ACTIONS.DELETE, CERBOS_RESOURCES.COMMENT)
   @Delete(':id/translation')
   async removeStoryTranslation(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -65,7 +69,6 @@ export class CommentTranslationModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Verify story translation' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
   @Put(':id/translation/verify')
   async verifyStoryTranslation(
     @Param('id', new UuidValidationPipe()) storyId: string,
@@ -82,8 +85,6 @@ export class CommentTranslationModeratorController {
   }
   @ApiResponse({ status: 200, type: TranslationRO, isArray: true })
   @ApiOperation({ summary: 'Get list of comment translations statuses' })
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.COMMENT)
-
   @Get(':id/translation')
   async getTranslationStatus(
     @Param('id', new UuidValidationPipe()) commentId: string,
@@ -100,7 +101,6 @@ export class CommentTranslationModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Add translation to particular comment' })
-  @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.COMMENT)
   @Post(':id/translation')
   async saveTranslation(
     @Param('id', new UuidValidationPipe()) commentId: string,
@@ -117,7 +117,6 @@ export class CommentTranslationModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Retry story translation' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
   @Put(':id/translation/retry')
   async retryStoryTranslation(
     @Param('id', new UuidValidationPipe()) storyId: string,

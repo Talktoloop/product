@@ -16,6 +16,8 @@ import { AirTableOrganisationService } from '../airtable-client/service/airtable
 import { CerbosService } from '../common/cerbos/cerbos.service';
 import { PermissionGuard } from '../auth/cerbos/permission.guard';
 
+
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,8 +30,14 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     forwardRef(() => StoryModule),
     forwardRef(() => CountryModule),
   ],
-  providers: [OrganisationService, ConfigProvider, AirTableOrganisationService, PermissionGuard, CerbosService],
+  providers: [
+    OrganisationService,
+    ConfigProvider,
+    AirTableOrganisationService,
+    CerbosService,
+    PermissionGuard
+  ],
   controllers: [OrganisationController],
   exports: [OrganisationService],
 })
-export class OrganisationModule { }
+export class OrganisationModule {}

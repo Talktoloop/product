@@ -19,7 +19,7 @@ export const rejectContentSchema: Joi.ObjectSchema = Joi.object({
         },
       }),
     ),
-  notificationLanguage: Joi.string().min(2).max(3),
+  notificationLanguage: Joi.string().min(2).max(4),
   rationale: Joi.string()
     .trim()
     .max(65535)

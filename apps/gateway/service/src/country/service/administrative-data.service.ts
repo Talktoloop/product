@@ -79,8 +79,6 @@ export class AdministrativeDataService {
     defaultLanguageCode: string,
     languageCodes: string[],
   ): Promise<[any]> {
-    console.log('fetchOneLevel', name, level);
-
     const overpassQuery = `
     [out:json][timeout:10];
     ${
@@ -535,7 +533,6 @@ export class AdministrativeDataService {
 
   async prepareLocationName(story: StoryEntity): Promise<string> {
     let locationName = story.place;
-    console.log('place', story.place);
 
     const places = await this.findPlaces(story.place).then((result) =>
       result.filter((item) => item.display_name.split(', ').length < 6),

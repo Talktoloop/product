@@ -24,13 +24,15 @@ import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 
+// @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.SOCIAL_MESSAGE)
+
 @ApiTags('Messenger')
 @Controller('messenger/facebook')
 export class FacebookMessengerController {
   constructor(
     private readonly messengerService: MessengerService,
     private readonly storyService: StoryService,
-  ) { }
+  ) {}
 
   @MessagePattern({ cmd: 'saveFacebookStory' })
   async saveMessengerFlowRecord(
@@ -54,8 +56,7 @@ export class FacebookMessengerController {
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Send Facebook Messenger Message' })
   @Post('message')
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.SOCIAL_MESSAGE)
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   async sendMessengerMessage(
     @Body(new ValidationPipe(sendMessageSchema)) data: SendMessageDto,
   ): Promise<SuccessRO> {

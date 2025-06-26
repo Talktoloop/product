@@ -8,6 +8,7 @@ import { CommentEntity } from '../../comment/entity/comment.entity';
 import {
   addFilterCondition,
   addFilterJoins,
+  addResponsivenessConditions,
   getConnection,
   isEmpty,
   thematicConditionAdd,
@@ -125,6 +126,17 @@ export class StoryRepository extends Repository<StoryEntity> {
     );
   }
 
+  async findStoryIdsByLanguageIds(
+    ids: (number | string)[],
+  ): Promise<Record<string, string>[]> {
+    const connection = await getConnection(config);
+
+    return connection.query(
+      `select id from story where language_id IN (?)`,
+      [ids],
+    );
+  }
+
   async findSensitiveStories(): Promise<StoryEntity[]> {
     return this.find({ where: { isSensitive: true } });
   }
@@ -139,50 +151,9 @@ export class StoryRepository extends Repository<StoryEntity> {
       .leftJoin(StoryVoteEntity, 'vote', 'vote.story_id = story.id')
       .addSelect('COUNT(vote.id)', 'vote_count')
       .groupBy('story.id')
-      .where('story.status IN (:statuses)', { statuses });
+      .where('story.status IN (:...statuses)', { statuses });
 
-    if (params.repliedTo) {
-      const repliedToValues = params.repliedTo.split(',').map(Number);
-
-      const repliedToByOrganisation = repliedToValues.includes(1);
-      const repliedToByCommunity = repliedToValues.includes(2);
-      const notRepliedTo = repliedToValues.includes(3);
-
-      const conditions: string[] = [];
-
-      if (repliedToByOrganisation) {
-        conditions.push(
-          `EXISTS (
-              SELECT 1 FROM story_comment sc
-              JOIN user u ON u.id = sc.user_id
-              WHERE sc.story_id = story.id AND u.organisation_id IS NOT NULL
-            )`,
-        );
-      }
-
-      if (repliedToByCommunity) {
-        conditions.push(
-          `EXISTS (
-              SELECT 1 FROM story_comment sc
-              LEFT JOIN user u ON u.id = sc.user_id
-              WHERE sc.story_id = story.id
-              AND (sc.user_id IS NULL OR u.organisation_id IS NULL)
-            )`,
-        );
-      }
-
-      if (notRepliedTo) {
-        conditions.push(
-          `NOT EXISTS (
-              SELECT 1 FROM story_comment sc WHERE sc.story_id = story.id
-            )`,
-        );
-      }
-
-      if (conditions.length > 0) {
-        query.andWhere(`(${conditions.join(' OR ')})`);
-      }
-    }
+    query = addResponsivenessConditions(query, params);
 
     if (params.storyIds) {
       query.andWhere('story.id IN (:...storyIds)', {
@@ -200,6 +171,8 @@ export class StoryRepository extends Repository<StoryEntity> {
       'page',
       'limit',
       'order',
+      'organisationResponsiveness',
+      'communityResponsiveness',
     ]);
 
     if (!isEmpty(filter)) {

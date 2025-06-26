@@ -14,6 +14,7 @@ import {
   isEmpty,
   addSensitiveStoryFilter,
   getConnection,
+  addResponsivenessConditions,
 } from '../../common/helpers';
 import { Author } from '../interfaces/author.interface';
 import { TimeToResponse } from '../interfaces/time-to-response.interface';
@@ -33,8 +34,18 @@ export class OpenStoryForStoryRepository extends StoryRepository {
         status: STORY_STATUS.PUBLISHED,
       });
 
-    if (!isEmpty(filters)) {
-      query = addFilterCondition(filters, addFilterJoins(query));
+    query = addResponsivenessConditions(query, filters);
+
+    const filter = _omit(filters as Record<string, any>, [
+      'page',
+      'limit',
+      'order',
+      'organisationResponsiveness',
+      'communityResponsiveness',
+    ]);
+
+    if (!isEmpty(filter)) {
+      query = addFilterCondition(filter, addFilterJoins(query));
     }
 
     return query.execute();

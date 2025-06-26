@@ -46,6 +46,7 @@ import { AirTableUserService } from '../../airtable-client/service/airtable-user
 import { REGISTRATION_STATUS } from '../../user/constant/registration-status.constant';
 import { NotificationService } from '../../notification/service/notification.service';
 import { BrevoService } from './brevo.service';
+import { EditUserHideLastName } from '../request/dto/edit-user-hide-last-name.dto';
 
 @Injectable()
 export class UserService {
@@ -142,13 +143,16 @@ export class UserService {
     optin_marketing?: boolean,
     consents?: ConsentsDto,
     organisationApplicationId?: string,
-    email?: string
+    email?: string,
   ): Promise<UpdateResult> {
     const userBeforeUpdate = await this.userRepository.findOne({
       where: { id: userId },
     });
 
-    if ((typeof optin_marketing === 'boolean') && userBeforeUpdate?.optin_marketing !== optin_marketing) {
+    if (
+      typeof optin_marketing === 'boolean' &&
+      userBeforeUpdate?.optin_marketing !== optin_marketing
+    ) {
       if (optin_marketing === true) {
         this.brevoService.createContact(email);
       } else {
@@ -168,7 +172,7 @@ export class UserService {
       .update(userId, {
         ...data,
         nickname: nickname,
-        optin_marketing: optin_marketing || false
+        optin_marketing: optin_marketing || false,
       })
       .catch((error) => {
         this.logger.error(error.response);
@@ -211,6 +215,7 @@ export class UserService {
             { dBUserId: userId },
           ]);
         });
+      1;
     }
     return updatedUser;
   }
@@ -223,6 +228,20 @@ export class UserService {
       notifications: data.notifications,
       reminders: data.reminders,
     });
+  }
+
+  async updateUserHideLastName(
+    data: EditUserHideLastName,
+    userId: string,
+  ): Promise<{ nickname: string; result: UpdateResult }> {
+    const nickname = prepareUsername(data, data.hideLastName);
+
+    const result = await this.userRepository.update(userId, {
+      hideLastName: data.hideLastName,
+      nickname: nickname,
+    });
+
+    return { nickname, result };
   }
 
   async migrateUser(oldUser: UserEntity, newUserId: string) {

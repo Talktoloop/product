@@ -64,6 +64,7 @@ import { AdministrativeDataToExport } from '../type/administrative-data-to-expor
 import { StoryRecipientEntity } from '../entity/story-recipient.entity';
 import { csvHeaders } from '../type/export-united.type';
 import { DISABILITY } from '../enum/disability.enum';
+import { LANGUAGES_CONSTANTS } from '../../common/constant/languages.constants';
 
 @Injectable()
 export class ExportService {
@@ -87,7 +88,7 @@ export class ExportService {
     private readonly userExportCsvActivityRepository: UserExportCsvActivityRepository,
     private readonly connection: Connection,
     private readonly commentRepository: CommentRepository,
-  ) {}
+  ) { }
 
   makeDateReadable(date: Date, dateFormat?: string): unknown {
     return date
@@ -102,10 +103,10 @@ export class ExportService {
   clearCSVData(value: string): string {
     return value
       ? value
-          .replace(/,/g, ' ')
-          .replace(/\n/g, ' ')
-          .replace(/\t/g, ' ')
-          .replace(/\//g, '-')
+        .replace(/,/g, ' ')
+        .replace(/\n/g, ' ')
+        .replace(/\t/g, ' ')
+        .replace(/\//g, '-')
       : value;
   }
 
@@ -219,7 +220,7 @@ export class ExportService {
         content: null,
         originalContent: null,
         originalContentLanguage: getKeyByValue(
-          LANGUAGE,
+          LANGUAGES_CONSTANTS,
           languages.find((language) => language.id === story.languageId)?.code,
           true,
         ),
@@ -252,8 +253,7 @@ export class ExportService {
     }
 
     let item;
-    // add here
-    // district and other stuff
+
     for (const administrativeArea of data.administrativeData) {
       item = items[administrativeArea.storyId].administrativeData.find(
         (item) => item.id === administrativeArea.id,
@@ -293,9 +293,9 @@ export class ExportService {
       items[item.storyId].gender =
         item.genderByModerator !== null
           ? getKeyByValue(GENDER_VALUE, item.genderByModerator)?.replace(
-              '_',
-              ' ',
-            )
+            '_',
+            ' ',
+          )
           : null;
     }
 
@@ -601,27 +601,27 @@ export class ExportService {
     [
       extended
         ? [
-            'All stories',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            '',
-            'Sensitive Stories only',
-          ]
+          'All stories',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          'Sensitive Stories only',
+        ]
         : undefined,
       itemKeys,
     ].forEach((values) => {
@@ -634,11 +634,9 @@ export class ExportService {
         );
       }
     });
-    // console.log('items', items);
     let row = [];
     let obj: Record<string, unknown>;
     const separator = ' | ';
-
     for (const key in items) {
       // manually transform story categories to segregate request and questions as follow
       const transformCategory = (category) => {
@@ -661,16 +659,16 @@ export class ExportService {
         .join(separator);
 
       const district = items[key].administrativeData
-        ?.find((administrativeData) => administrativeData.level == 1)
-        ?.names
-        ?.filter((nameObj) => nameObj.languageId === 1)
-        ?.map((nameObj) => nameObj.name).toString()
+        ?.find((administrativeData) => administrativeData.level == 2)
+        ?.names?.filter((nameObj) => nameObj.languageId === 1)
+        ?.map((nameObj) => nameObj.name)
+        .toString();
 
       const place = items[key].administrativeData
-        ?.find((administrativeData) => administrativeData.level == 2)
-        ?.names
-        ?.filter((nameObj) => nameObj.languageId === 1)
-        ?.map((nameObj) => nameObj.name).toString()
+        ?.find((administrativeData) => administrativeData.level == 1)
+        ?.names?.filter((nameObj) => nameObj.languageId === 1)
+        ?.map((nameObj) => nameObj.name)
+        .toString();
 
       obj = {
         isSensitive: `${items[key].isSensitive ? 'Sensitive ' : ''}Story`,
@@ -1052,14 +1050,14 @@ export class ExportService {
     let data = [];
 
     data = await queryRunner.manager
-        .createQueryBuilder()
-        .select('story.id', 'storyId')
-        .addSelect('recipient.id', 'storyRecipientId')
-        .addSelect('recipient.is_minority_by_moderator', 'isMinority')
-        .from('story_recipient', 'recipient')
-        .innerJoin('story', 'story', 'story.recipient_id = recipient.id')
-        .where('story.id IN (:...storyIds)', { storyIds })
-        .getRawMany();
+      .createQueryBuilder()
+      .select('story.id', 'storyId')
+      .addSelect('recipient.id', 'storyRecipientId')
+      .addSelect('recipient.is_minority_by_moderator', 'isMinority')
+      .from('story_recipient', 'recipient')
+      .innerJoin('story', 'story', 'story.recipient_id = recipient.id')
+      .where('story.id IN (:...storyIds)', { storyIds })
+      .getRawMany();
 
     return data.filter((item) => storyIds.includes(item.storyId));
   }

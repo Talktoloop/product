@@ -58,7 +58,6 @@ export class MessengerService {
   ) {}
 
   async testExternal(): Promise<boolean> {
-    console.log('send message testInternal');
     return lastValueFrom(
       this.clientProxy
         .send({ cmd: 'testFacebookInternal' }, {})
@@ -201,22 +200,6 @@ export class MessengerService {
       throw new BadRequestException(NO_STORY);
     }
 
-    console.log('--- commandName ---', commandName);
-    console.log(
-      '--- data ---',
-      JSON.stringify({
-        senderId: story.recipient.communicatorId,
-        message: dto.content,
-        introduction: dto?.introduction,
-        storyId: story.id,
-        story: story.conversation?.messengerMessages?.find(
-          (message) => message.isStory,
-        ).content,
-        messengerConversationId: story.conversationId,
-        language: story.conversation.language?.code,
-        pageId: story.conversation.serviceNumber,
-      }),
-    );
     const response: Array<FlowResponseRequestDto> | { status: string } =
       await lastValueFrom(
         this.clientProxy
@@ -237,15 +220,12 @@ export class MessengerService {
           )
           .pipe(timeout(60000)),
       ).catch((error) => {
-        console.log('sendMessengerMessage', error);
-
         if (error.error) {
           throw new CustomError(error?.message, error.error);
         }
       });
 
     if (Array.isArray(response)) {
-      console.log('sendMessengerChatMessage - response', response);
       await Promise.all(
         response.map((item) =>
           this.messengerMessageRepository.save({
@@ -335,7 +315,6 @@ export class MessengerService {
       story.channel === CHANNEL_CONSTANTS.MESSENGER
         ? 'Facebook'
         : upperCaseFirst(story.channel);
-    console.log('cmd', `sendStoryStatus${messengerType}Notification`);
 
     await lastValueFrom(
       this.clientProxy
@@ -358,8 +337,6 @@ export class MessengerService {
         .pipe(timeout(this.config.get('application.communicationTimeout'))),
     )
       .then(async (result) => {
-        console.log(`result sendStoryStatus${messengerType}Notification`);
-
         await Promise.all(
           result?.messages?.map((message) =>
             this.messengerMessageRepository.save({

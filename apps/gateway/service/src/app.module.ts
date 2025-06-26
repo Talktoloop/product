@@ -84,4 +84,4 @@ import { CerbosService } from './common/cerbos/cerbos.service';
   providers: [ClientProxyProvider, ConfigProvider, AppHooksService, BrevoProvider, CerbosService],
   exports: [ConfigModule, CerbosService],
 })
-export class AppModule { }
+export class AppModule {}

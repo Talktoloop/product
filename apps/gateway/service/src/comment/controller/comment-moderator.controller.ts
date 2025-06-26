@@ -49,9 +49,14 @@ import { PermissionGuard } from '../../auth/cerbos/permission.guard';
 import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
+// @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.COMMENT)
+// @PermissionsCerbos(CERBOS_ACTIONS.DELETE, CERBOS_RESOURCES.COMMENT)
+
 @ApiBearerAuth()
 @ApiTags('Comment Moderator')
-@UseGuards(AuthGuard('cognito'), PermissionGuard)
+@UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
 @Controller('comment/moderator')
 export class CommentModeratorController {
   constructor(
@@ -62,11 +67,10 @@ export class CommentModeratorController {
     private readonly messengerService: MessengerService,
     private readonly ivrrService: IvrrService,
     private readonly storyService: StoryService
-  ) { }
+  ) {}
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Update comment' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
   @Put(':id')
   async updateComment(
     @Param('id', new UuidValidationPipe())
@@ -90,7 +94,6 @@ export class CommentModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Unpublish comment' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
   @Put(':id/unpublish')
   async unPublishComment(
     @Param('id', new UuidValidationPipe())
@@ -106,7 +109,6 @@ export class CommentModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Set pending recording status' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
   @Put(':id/pending-recording')
   async setPendingRecordingStatus(
     @Param('id', new UuidValidationPipe())
@@ -139,7 +141,6 @@ export class CommentModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Publish comment' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
   @Put(':id/publish')
   async publishComment(
     @Param('id', new UuidValidationPipe())
@@ -246,7 +247,6 @@ export class CommentModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Reject comment' })
-  @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
   @Put(':id/reject')
   async rejectComment(
     @Param('id', new UuidValidationPipe())
@@ -299,8 +299,6 @@ export class CommentModeratorController {
     status: 200,
     type: CommentListModeratorPaginationRO,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.COMMENT)
-
   async getPendingComments(
     @Query(new ValidationPipe(paginationWithExtendedFilterSchema))
     params: PaginationWithExtendedFilterDto,
@@ -308,8 +306,6 @@ export class CommentModeratorController {
     if (!params.page || params.page < 1) {
       params.page = 1;
     }
-
-    console.log('getPendingComments:params', params);
 
     const comments =
       await this.commentModeratorService.getPendingComments(params);
@@ -326,8 +322,6 @@ export class CommentModeratorController {
     status: 200,
     type: CommentListModeratorPaginationRO,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.COMMENT)
-
   async getRejectedComments(
     @Query(new ValidationPipe(paginationWithExtendedFilterSchema))
     params: PaginationWithExtendedFilterDto,
@@ -347,7 +341,6 @@ export class CommentModeratorController {
   }
 
   @Get('pending-recording')
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.COMMENT)
   @ApiOperation({ summary: 'Get list of pending recording comments' })
   @ApiResponse({
     status: 200,
@@ -383,7 +376,6 @@ export class CommentModeratorController {
     status: 200,
     type: CommentListModeratorPaginationRO,
   })
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.COMMENT)
   async getScheduledComments(
     @Query(new ValidationPipe(paginationWithExtendedFilterSchema))
     params: PaginationWithExtendedFilterDto,
@@ -405,7 +397,6 @@ export class CommentModeratorController {
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Remove comment' })
-  @PermissionsCerbos(CERBOS_ACTIONS.DELETE, CERBOS_RESOURCES.COMMENT)
   @Delete(':id')
   async removeComment(
     @Param('id', new UuidValidationPipe())
@@ -424,8 +415,6 @@ export class CommentModeratorController {
     type: CommentModeratorRO,
   })
   @Get(':id')
-  @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.COMMENT)
-
   async getCommentDetails(
     @Param('id', new UuidValidationPipe()) commentId: string,
   ): Promise<CommentModeratorRO> {

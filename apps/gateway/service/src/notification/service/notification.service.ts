@@ -58,7 +58,7 @@ export class NotificationService extends MailJetService {
         to,
         attachments,
         from,
-        // replyTo,
+        replyTo,
       );
     }
   }

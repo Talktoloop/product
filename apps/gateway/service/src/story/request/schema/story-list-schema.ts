@@ -25,8 +25,13 @@ export const storyListSchema: Joi.ObjectSchema = Joi.object({
   ),
   from: filterConditions.from,
   to: filterConditions.to,
-  repliedTo: Joi.string().max(5),
+  organisationResponsiveness: Joi.string().max(1000),
+  communityResponsiveness: Joi.string().max(1),
   channelFilter: Joi.string().max(11),
   minority: Joi.number().max(2),
   searchTerm: Joi.string().min(0).max(255).custom(stripHtmlTags),
+  language: Joi.alternatives().try(
+    Joi.array().items(Joi.string().max(255)),
+    Joi.string().max(255),
+  ),
 }).options({ presence: 'optional' });

@@ -45,6 +45,9 @@ import { PermissionsCerbos } from '../auth/cerbos/permission.decorator';
 import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../auth/cerbos/permission.enum';
 import { PermissionGuard } from '../auth/cerbos/permission.guard';
 
+// @UseGuards(AuthGuard('cognito'), PermissionGuard)
+// @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.ORGANISATION)
+
 @ApiTags('Organisation')
 @Controller('organisation')
 export class OrganisationController {
@@ -54,7 +57,7 @@ export class OrganisationController {
     private readonly countryService: CountryService,
     private readonly storyService: StoryService,
     private readonly airTableOrganisationService: AirTableOrganisationService,
-  ) { }
+  ) {}
 
   @ApiBearerAuth()
   @UseGuards(AuthGuard(['cognito', 'anonymous']))
@@ -72,8 +75,7 @@ export class OrganisationController {
   }
 
   @ApiBearerAuth()
-  @UseGuards(AuthGuard('cognito'), PermissionGuard)
-  @PermissionsCerbos(CERBOS_ACTIONS.CREATE, CERBOS_RESOURCES.ORGANISATION)
+  @UseGuards(AuthGuard('cognito'), new ModeratorGuard(new Reflector()))
   @ApiOperation({ summary: 'Link users to organisations' })
   @ApiResponse({ status: 200, type: LinkedUsersToOrganisationsRO })
   @Post('link-user')

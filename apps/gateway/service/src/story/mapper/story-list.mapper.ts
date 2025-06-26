@@ -33,8 +33,6 @@ export const mapStoryDetails = (
   userLanguageId: number,
   defaultLanguage: LanguageEntity,
 ): StoryListRO => {
-  console.log('💀'.repeat(10));
-  console.log(`mapStoryDetails Entry`);
   const translation = getTranslationByLanguageId(
     translations,
     story.languageId as number,
@@ -117,7 +115,7 @@ export const storiesToStoriesPaginationRO = (
         channel: item.story_channel,
         country: item.country_code,
         place: item.story_place,
-        authorNickname: item.recipient_nickname,
+        authorNickname: item.story_on_behalf_of,
         defaultLanguageIdForAdministrativeData:
           item.country_default_language_id_for_administrative_data,
         user: item.user_id
@@ -129,6 +127,7 @@ export const storiesToStoriesPaginationRO = (
           : null,
         comments: item.story_comments,
         publishedAt: item.story_published_at,
+        createdAt: item.story_created_at,
         languageId: item.story_language_id,
       };
     }
@@ -166,9 +165,9 @@ export const storiesToStoriesPaginationRO = (
 
     }
 
-    if(item.categories_id &&
+    if (item.categories_id &&
       !categoryIds.includes(item.categories_id)
-    ){
+    ) {
       categoryIds.push(item.categories_id)
       categories.push({
         id: item.categories_id,
@@ -177,7 +176,7 @@ export const storiesToStoriesPaginationRO = (
       })
     }
 
-    if(!thematicIds.includes(item.thematic_id)){
+    if (!thematicIds.includes(item.thematic_id)) {
       thematicIds.push(item.thematic_id)
     }
 

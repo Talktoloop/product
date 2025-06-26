@@ -21,8 +21,6 @@ export const storyWebDetailsMapper = (
   userLanguageId: number,
   defaultLanguage: LanguageEntity,
 ): StoryWebModeratorRO => {
-  console.log('💀'.repeat(10));
-  console.log(`storyWebDetailsMapper Entry`);
   const translation = getTranslationByLanguageId(
     story.translations,
     story.languageId,

@@ -51,10 +51,10 @@ export class StoryController {
   ) { }
 
 
-  @Get('remove-duplicate-authors')
-  testStuff() {
-    return this.storyService.removeDuplicateAuthorsScript();
-  }
+  // @Get('remove-duplicate-authors')
+  // testStuff() {
+  //   return this.storyService.removeDuplicateAuthorsScript();
+  // }
 
   @UseGuards(AuthGuard(['anonymous']))
   @ApiHeader({

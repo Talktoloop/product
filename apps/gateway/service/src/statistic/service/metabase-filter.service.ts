@@ -8,8 +8,9 @@ import { ThematicService } from '../../lexicon/service/thematic.service';
 import { CHANNEL_NUMBER_TO_CONSTANT } from '../../common/constant/channel.constant';
 import {
   GENDER_NUMBER_TO_CONSTANT,
-  REPLIED_TO_CONSTANTS,
-  REPLIED_TO_NUMBER_TO_CONSTANT,
+  ORG_RESP_NUMBER_TO_CONSTANT,
+  // REPLIED_TO_CONSTANTS,
+  // REPLIED_TO_NUMBER_TO_CONSTANT,
 } from '../../common/types';
 import { FilterCasesDto } from '../request/dto/filter.dto';
 import { REFERRED_FOR_ASSISTANCE } from '../../airtable-client/constant/referred-for-assistance.constant';
@@ -66,7 +67,7 @@ export class MetabaseFilterService {
     );
 
     //extract specified organisations and replied to values
-    const result = separateRepliedToValues(filters.repliedTo);
+    const result = separateRepliedToValues(filters.organisationResponsiveness);
 
     const specifiedOrganisations = result.specifiedOrganisations
     const repliedToOptions = result.repliedToOptions
@@ -122,7 +123,7 @@ export class MetabaseFilterService {
     return repliedTo
       .toString()
       .split(',')
-      .map((id) => REPLIED_TO_NUMBER_TO_CONSTANT[Number(id)] || '')
+      .map((id) => ORG_RESP_NUMBER_TO_CONSTANT[Number(id)] || '')
       .filter(Boolean)
       .join(',');
   }
@@ -199,7 +200,7 @@ export class MetabaseFilterService {
       original_feedback_language: filters.language
         ? filters.language.toString().split(',')
         : [],
-      replied_to: [...mapEnumValues(filters.repliedTo, REPLIED_TO_CONSTANTS)],
+      replied_to: [...mapEnumValues(filters.repliedTo, ORG_RESP_NUMBER_TO_CONSTANT)],
       submission_date:
         filters.from && filters.to
           ? [`${formatDate(filters.from)}~${formatDate(filters.to)}`]

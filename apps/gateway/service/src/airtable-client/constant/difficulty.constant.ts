@@ -7,5 +7,6 @@ export enum DIFFICULTY {
   'Communicating' = 'communicating',
   'Other' = 'other',
   'Unspecified' = 'unspecified',
+  'Prefer not to answer' = 'preferNotToAnswer',
   'None' = 'none',
 }

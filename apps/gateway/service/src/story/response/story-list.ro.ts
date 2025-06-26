@@ -28,6 +28,10 @@ export class StoryListRO {
 
   @Expose()
   @ApiProperty()
+  createdAt: string;
+
+  @Expose()
+  @ApiProperty()
   place: string;
 
   @Expose()

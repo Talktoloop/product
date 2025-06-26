@@ -6,7 +6,7 @@ import {
   BadRequestException,
   forwardRef,
 } from '@nestjs/common';
-import { UpdateResult, In, Not } from 'typeorm';
+import { UpdateResult, In, Not, LessThan, IsNull, Between } from 'typeorm';
 import { StoryEntity } from '../entity/story.entity';
 import { StoryRepository } from '../repository/story.repository';
 import { StoryRecipientRepository } from '../repository/story-recipient.repository';
@@ -96,6 +96,7 @@ import { StoryNotificationService } from '../../notification/service/story-notif
 import { MessengerService } from '../../messenger/service/messenger.service';
 import { OtherStoriesBySameRecipientRO } from '../../ivrr/response/other-stories.ro';
 import { AssignStoriesDTO } from '../request/dto/assign-stories.dto';
+import { StoryOrganisationTagRepository } from '../repository/story-organisation-tag.repository';
 
 @Injectable()
 export class StoryModeratorService {
@@ -121,6 +122,7 @@ export class StoryModeratorService {
     private readonly administrativeDataService: AdministrativeDataService,
     private readonly airTableOrganisationService: AirTableOrganisationService,
     private readonly organisationRepository: OrganisationRepository,
+    private readonly storyOrganisationTagRepository: StoryOrganisationTagRepository,
     private readonly rejectReasonService: RejectReasonService,
     @Inject(SHARED_DI.CLIENT_PROXY)
     private readonly clientProxy: ClientProxy,
@@ -187,12 +189,6 @@ export class StoryModeratorService {
       throw new BadRequestException(SENSITIVE_STORY_NOT_FOUND);
     }
 
-    console.log('exportStoryToAirTable - story', JSON.stringify(story));
-    console.log(
-      'exportStoryToAirTable - boolean',
-      story.status === STORY_STATUS.SENT_TO_CASE_MANAGER,
-    );
-
     if (story.status === STORY_STATUS.SENT_TO_CASE_MANAGER) {
       throw new BadRequestException(SENSITIVE_STORY_ALREADY_EXPORTED);
     }
@@ -239,8 +235,10 @@ export class StoryModeratorService {
 
     fields[SENSITIVE_STORY_COLUMNS.MARKED_AS_SENSITIVE_BY] =
       markedAsSensitiveBy;
+    fields[SENSITIVE_STORY_COLUMNS.ADDITIONAL_CONTACT_DETAILS] = story.recipient?.additionalContactDetails
     fields[SENSITIVE_STORY_COLUMNS.AUTHOR_ALLOWED_FOR_CONTACT] =
-      story.recipient?.userWantContact !== false ? 'true' : 'false';
+      !!story.recipient?.userWantContact ? 'true' : 'false';
+
     fields[SENSITIVE_STORY_COLUMNS.CONTENT] = originalTranslation?.content;
     fields[SENSITIVE_STORY_COLUMNS.CONTENT_ENG] = englishTranslation?.content;
     fields[SENSITIVE_STORY_COLUMNS.ORGANIZATION] = story.organisations
@@ -289,7 +287,6 @@ export class StoryModeratorService {
     fields[SENSITIVE_STORY_COLUMNS.URGENCY] = upperCaseFirst(
       getKeyByValue(URGENT, +data.immediateAssistance),
     );
-
     await this.airTable
       .table('Sensitive Stories')
       .create({
@@ -356,6 +353,8 @@ export class StoryModeratorService {
       throw new CustomError(NO_STORY, {
         error: 'Story ID does not exist',
       });
+
+    data.recipient.nickname = data.onBehalfOf ?? null;
 
     return data;
   }
@@ -639,7 +638,6 @@ export class StoryModeratorService {
 
     if (story.recipient) {
       await this.storyRecipientRepository.update(story.recipientId, {
-        nickname: data.authorNickname ?? story.recipient.nickname,
         ageByModerator: data.age ?? story.recipient.ageByModerator,
         genderByModerator: data.gender ?? story.recipient.genderByModerator,
         isMinority: data.isMinority ?? story.recipient.isMinority,
@@ -683,6 +681,7 @@ export class StoryModeratorService {
         statusChangedByUserId: userId,
         markedAsSensitiveByRole,
         markedAsSensitiveByUserId: markedAsSensitiveByRole ? userId : null,
+        onBehalfOf: data.authorNickname ?? story.recipient?.nickname,
         ...(edited ? { edited } : {}),
       })
       .catch((error) => {
@@ -696,6 +695,15 @@ export class StoryModeratorService {
       const organisations = await this.organisationRepository.findBy({
         id: In(data.organisations),
       });
+      await this.storyOrganisationTagRepository.delete({ story: { id: story.id }, organisation: { id: Not(In(data.organisations)) } })
+
+      for (let i = 0; i < data.organisations.length; i++) {
+        const element = data.organisations[i];
+        const tagCheck = await this.storyOrganisationTagRepository.findOne({ where: { story: { id: story.id }, organisation: { id: element } } })
+        if (element && !tagCheck) {
+          await this.storyOrganisationTagRepository.save({ organisation: { id: element }, story: { id: story.id } })
+        }
+      }
       this.airTableOrganisationService.syncNumberOfStoriesToAirtable(
         organisations,
       );
@@ -771,7 +779,7 @@ export class StoryModeratorService {
 
     story.status = STORY_STATUS.REJECTED;
     story.rejectRationale = rejectContent?.rationale;
-    // if statement no id 
+    // if statement no id
     if (userId && userId.length > 0)
       story.statusChangedByUserId = userId;
 
@@ -802,8 +810,6 @@ export class StoryModeratorService {
     story: StoryEntity,
     moderatorId: string,
   ): Promise<UpdateResult | void> {
-    console.log('💀'.repeat(10));
-    console.log(`publishStory Entry`);
     if (
       ![STORY_STATUS.PENDING_PUBLICATION, STORY_STATUS.PENDING_EDIT].includes(
         story.status,
@@ -825,9 +831,6 @@ export class StoryModeratorService {
         error: 'machine-translated content id needed - function publishStory',
       });
     }
-
-    console.log('💀'.repeat(10));
-    console.log(`publishStory before update`);
 
     return this.storyRepository
       .update(story.id, {
@@ -936,6 +939,7 @@ export class StoryModeratorService {
     storyId: string,
     rejectContent: RejectContentDto,
     user?: UserEntity,
+    notify: boolean = true,
   ) {
     checkRejectReason(rejectContent);
 
@@ -970,7 +974,7 @@ export class StoryModeratorService {
     );
     const success = !!result?.id;
 
-    if (success) {
+    if (success && notify) {
       this.handleActionsAfterRejection(story, rejectContent, rejectReasons);
     }
 
@@ -1083,6 +1087,16 @@ export class StoryModeratorService {
       where: whereConditions,
       relations: ['translations'],
       select: ['id', 'status', 'createdAt']
+    });
+  }
+
+
+  getOlderStories() {
+    return this.storyRepository.find({
+      where: {
+        createdAt: Between(new Date('2023-03-12'), new Date('2025-05-01')),
+        status: STORY_STATUS.SENT_TO_CASE_MANAGER,
+      },
     });
   }
 }

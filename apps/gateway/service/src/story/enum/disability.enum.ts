@@ -7,5 +7,6 @@ export enum DISABILITY {
   communicating = 'Communicating',
   other = 'Other',
   unspecified = 'Unspecified',
+  preferNotToAnswer = 'Prefer not to answer',
   none = 'None',
 }
