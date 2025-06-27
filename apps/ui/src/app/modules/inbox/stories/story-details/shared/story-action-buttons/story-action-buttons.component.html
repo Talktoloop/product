@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <div *ngIf="!!warningTextTranslationKey" class="error-text">
+    {{ warningTextTranslationKey | translate }}
+  </div>
+  <div class="story-action-buttons-container">
+    <div class="back-button" *ngIf="backButtonDisplayCondition">
+      <app-button (clicked)="backClick.emit()" mode="v2" variant="link">
+        <app-arrow-previous-icon></app-arrow-previous-icon>{{ backTranslateKey | translate }}</app-button
+      >
+    </div>
+
+    <div class="reject-button flex-grow-1" *ngIf="rejectButtonDisplayCondition">
+      <app-button
+        (clicked)="rejectClick.emit()"
+        [bigPadding]="true"
+        [fullWidth]="false"
+        [disabled]="!!warningTextTranslationKey"
+        data-testid="reject-button"
+        mode="v2"
+        variant="reject"
+      >
+        {{ rejectTranslateKey | translate }}
+      </app-button>
+    </div>
+
+    <div class="submit-button flex-grow-1" *ngIf="submitButtonDisplayCondition">
+      <app-button
+        (clicked)="submitClick.emit()"
+        [bigPadding]="true"
+        [fullWidth]="ui.mobileView"
+        [loading]="loading"
+        [disabled]="!!warningTextTranslationKey"
+        data-testid="submit-button"
+        mode="v2"
+        variant="primary"
+      >
+        {{ submitTranslateKey | translate }}
+        <!-- TODO should we change it to loop-icon?? -->
+        <app-arrow-next-icon></app-arrow-next-icon>
+      </app-button>
+    </div>
+  </div>
+</div>

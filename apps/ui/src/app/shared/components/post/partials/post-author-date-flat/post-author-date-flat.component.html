@@ -1,0 +1,5 @@
+<h3 class="post__author">{{ username$ | async }}</h3>
+<p class="post__info">
+  <span class="post__date">{{ getDateFromNow() }}</span>
+  <span *ngIf="postPlace" class="post__place">{{ postPlace }}</span>
+</p>

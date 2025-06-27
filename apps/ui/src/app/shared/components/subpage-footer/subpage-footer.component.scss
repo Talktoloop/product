@@ -1,0 +1,26 @@
+@import 'variables';
+@import 'mixins';
+
+.loop-footer {
+  align-items: center;
+  background-color: white;
+  border-top: 1px solid $light-grey-5;
+  bottom: 0;
+  display: flex;
+  height: $header-height-v2;
+
+  p {
+    color: $grey;
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1.5;
+    text-align: left;
+    @include padding-left(3.125rem);
+
+    @include mobile-only {
+      font-size: 0.875rem;
+      @include padding-left(1rem);
+    }
+  }
+}

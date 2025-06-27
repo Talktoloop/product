@@ -1,0 +1,14 @@
+<div class="comments-action d-flex-space-between d-flex-space-between-center">
+  <div>
+    <app-button *ngIf="isReplyEnable" (clicked)="handleReplyClick()" [noPadding]="true" class="comments-action__reply" variant="link-2">
+      <app-reply-icon></app-reply-icon>
+      <span>{{ (isReplyFormShown ? 'comments.reply.hideReplyForm' : 'comments.reply.reply') | translate }}</span>
+    </app-button>
+  </div>
+  <div class="comments-action__upvote flex-center-right" >
+    <ng-container *ngIf="isUpVoteEnable">
+      <span class="mr-0938">{{ upvoteLabelKey | translate }}</span>
+    <app-upvote *ngIf="votes !== null" (upvoteClicked)="handleUpvoteClick()" [voted]="voted" [votes]="votes"></app-upvote>
+    </ng-container>
+  </div>
+</div>

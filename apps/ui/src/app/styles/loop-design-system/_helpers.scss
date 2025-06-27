@@ -1,0 +1,6 @@
+/// Used only for easier design replication.
+@use 'sass:math';
+
+@function pxToRem($px) {
+  @return #{math.div($px, 16)}rem;
+}

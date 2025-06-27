@@ -1,0 +1,161 @@
+<div class="inbox-list-container">
+  <!--MOBILE-->
+  <ng-container *ngIf="ui.mobileView; else desktopTable">
+    <div class="selection" #mobileSelection>
+      <app-pagination [storyServiceData]="true" [header]="true" [mobile]="true" (selectAllChanged)="onSelectAllChanged($event)"
+        (rejectSelectedStories)="onRejectSelectedStories()" (assignSelectedStories)="onAssignSelectedStories()"></app-pagination>
+    </div>
+    <app-mobile-table (actionClick)="onActionClick($event)" [columns]="columns" [itemsInRow]="1"
+      [list]="storiesService.listElements$ | async" [additionalRowClassCondition]="mobileRowAdditionalClassCondition"
+      [showCustomActions]="false" [noPadding]="true">
+      <ng-container *loopMobileCell="let element">
+        <div class="item">
+          <div class="header">
+            <div class="main">
+              <div class="content">
+                <app-checkbox [checked]="element.selected" [disabled]="disableChannel(element)" [v2]="true"
+                  (click)="onCheckboxClicked($event, element)" [alwaysRenderCheckmark]="true">
+                </app-checkbox>
+                <div class="audio-player" *ngIf="element.channel === CHANNEL_CONSTANTS.IVRR; else otherChannelTemplate">
+                  <app-audio-player [isSimplePlayer]="true" [s3FileId]="element.s3FileId"></app-audio-player>
+                </div>
+                <ng-template #otherChannelTemplate>
+                  <div class="story-content">{{ element.content }}</div>
+                </ng-template>
+              </div>
+            </div>
+            <img class="trash" (click)="handleRejectClick($event, element)" src="assets/icons/trash.svg" />
+          </div>
+          <div class="footer" (click)="rowClicked(element)">
+            <div class="status">
+              <img [src]="getStatusImage(element.status)" />
+              <span>
+                {{ getStoryStatus(element.status) | translate }}
+              </span>
+            </div>
+            <div class="date">
+              <img *ngIf="element.country" class="flag" [src]="element.country | countryFlagSrc" loading="lazy" />
+              {{ element.createdAt | date : DATE_FORMAT }}
+            </div>
+            <div class="description">
+              <div class="channel">
+                <img class="channel-icon" [src]="element.channel | channelImageSrc" loading="lazy" />
+                {{ element.channel | channel }}
+              </div>
+              ·
+              <span> {{ element.language ? ('languages.' + element.language | translate) : '-' }} </span>·
+              <div class="length">
+                {{
+                element.channel === CHANNEL_CONSTANTS.IVRR
+                ? (element.recordingDuration | duration : true)
+                : (element.numberOfWords ?? '' | wordCount)
+                }}
+              </div> |
+              <span class="assigned-to-tag" *ngIf="element.moderatorName"> {{'inbox.table.assignedTo' | translate}} {{element.moderatorName}} </span>
+              <ng-container [ngTemplateOutlet]="sensitiveTag" *ngIf="element.isSensitive"> </ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </app-mobile-table>
+  </ng-container>
+
+  <!--DESKTOP-->
+  <ng-template #desktopTable>
+    <div class="table-header" *ngIf="(storiesService.isLoading$ | async) === false">
+      <app-pagination [storyServiceData]="true" [header]="true" (selectAllChanged)="onSelectAllChanged($event)"
+        (rejectSelectedStories)="onRejectSelectedStories()" (assignSelectedStories)="onAssignSelectedStories()"></app-pagination>
+    </div>
+    <div *ngIf="storiesService.isLoading$ | async" class="inbox-list-container__loading">
+      <span>
+        {{ 'inbox.table.loading' | translate }}
+      </span>
+    </div>
+    <table *ngIf="(storiesService.isLoading$ | async) === false" mat-table
+      [dataSource]="storiesService.dataSource$ | async" class="inbox-table">
+      <!-- Recording Play Button Column -->
+      <ng-container matColumnDef="recording">
+        <th mat-header-cell *matHeaderCellDef>{{ '' }}</th>
+        <td mat-cell *matCellDef="let element" class="item" [class.selected]="element.selected">
+          <div class="header" [class.selected]="element.selected">
+            <div class="main">
+              <div class="content">
+                <app-checkbox [checked]="element.selected" [disabled]="disableChannel(element)" [v2]="true"
+                  (click)="onCheckboxClicked($event, element)" [alwaysRenderCheckmark]="true">
+                </app-checkbox>
+                <div class="audio-player" *ngIf="element.channel === CHANNEL_CONSTANTS.IVRR; else otherChannelTemplate">
+                  <app-audio-player [isSimplePlayer]="true" [s3FileId]="element.s3FileId"></app-audio-player>
+                </div>
+                <ng-template #otherChannelTemplate>
+                  <div class="story-content">{{ element.content }}</div>
+                </ng-template>
+              </div>
+
+              <div class="status">
+                <img [src]="getStatusImage(element.status)" />
+                <span>
+                  {{ getStoryStatus(element.status) | translate }}
+                </span>
+              </div>
+            </div>
+            <img class="trash" (click)="handleRejectClick($event, element)" src="assets/icons/trash.svg" />
+          </div>
+          <div class="footer">
+            <div class="description">
+              <div class="channel">
+                <img class="channel-icon" [class.selected]="element.selected" [src]="element.channel | channelImageSrc"
+                  loading="lazy" />
+                {{ element.channel | channel }}
+              </div>
+              ·
+              <span> {{ element.language ? ('languages.' + element.language | translate) : '-' }} </span>·
+              <div class="length">
+                {{
+                element.channel === CHANNEL_CONSTANTS.IVRR
+                ? (element.recordingDuration | duration : true)
+                : (element.numberOfWords ?? '' | wordCount)
+                }}
+              </div>
+              <ng-container [ngTemplateOutlet]="sensitiveTag" *ngIf="element.isSensitive"> </ng-container>
+            </div>
+            <div class="date">
+              <img *ngIf="element.country" class="flag" [src]="element.country | countryFlagSrc" loading="lazy" />
+              <span> {{ element.createdAt | date : DATE_FORMAT }}</span> |
+              <span class="assigned-to-tag" *ngIf="element.moderatorName"> {{'inbox.table.assignedTo' | translate}} {{element.moderatorName}} </span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr [class.rejected]="row.isRejected" [class.lastVisitedId]="(storiesService.lastVisitedId$ | async) === row.id"
+        mat-row *matRowDef="let row; columns: displayedColumns" (click)="rowClicked(row)"></tr>
+    </table>
+    <div class="table-footer">
+      <app-pagination *ngIf="(storiesService.isLoading$ | async) === false" [totalItems]="100"
+        [header]="false"></app-pagination>
+    </div>
+  </ng-template>
+
+  <div *ngIf="ui.mobileView" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="500"
+    [fromRoot]="true" (scrolled)="storiesService.onScroll()"></div>
+
+  <div *ngIf="ui.mobileView && storiesService.isLoading$ | async" class="inbox-list-container__loading">
+    <span>
+      {{ 'inbox.table.loading' | translate }}
+    </span>
+  </div>
+
+  <div *ngIf="storiesService.noMoreItems$ | async" class="inbox-list-container__no-more-results">
+    <span>
+      {{ 'storiesList.text.noMoreStories' | translate }}
+    </span>
+  </div>
+</div>
+
+<ng-template #sensitiveTag>·
+  <div class="sensitive-tag">
+    <img src="assets/icons/lock.svg" />
+    {{ 'inbox.storiesList.sensitive' | translate }}
+  </div>
+</ng-template>

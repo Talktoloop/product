@@ -1,0 +1,64 @@
+<ng-container>
+  <ng-container *ngIf="selfLinkClickable; else noLink">
+    <a [routerLink]="selfLink" class="preview-deeplink" (click)="selfLinkClicked($event)">
+      <ng-container *ngTemplateOutlet="postContent"></ng-container>
+    </a>
+  </ng-container>
+  <ng-template #noLink>
+    <ng-container *ngTemplateOutlet="postContent"></ng-container>
+  </ng-template>
+</ng-container>
+
+<ng-template #postContent>
+  <loop-card [interactive]="selfLinkClickable" *ngIf="postData" [pulsating]="highlightItem">
+    <div class="post-heading-container">
+      <app-post-author-date
+        [postData]="postData"
+        class="post-author-date"
+        [showFeedbackTags]="selfLinkClickable"
+      ></app-post-author-date>
+      <loop-share-icon
+        *ngIf="isWebShareSupported"
+        [id]="postData.id"
+        (click)="$event.stopPropagation(); $event.preventDefault()">
+      </loop-share-icon>
+      <loop-post-context-menu
+        *ngIf="profileService.isAdmin"
+        [id]="postData.id"
+        [channel]="postData.channel"
+        [postType]="'story'"
+        (postRemoved$)="storyRemoved$.next($event)"
+        data-testid="options"
+      ></loop-post-context-menu>
+    </div>
+    <app-story-organisations
+      *ngIf="postData.organisations?.length"
+      class="mb-125 d-block"
+      [organisations]="postData.organisations"
+      [limit]="visibleTagsLimit"
+    ></app-story-organisations>
+    <app-story-content
+      class="post__content"
+      [content]="content"
+      (readMoreClicked$)="selfLinkClicked($event)"
+      [limit]="postContentLimit"
+      [storyDetailsLink]="selfLink"
+    ></app-story-content>
+    <ng-container *ngIf="selfLinkClickable">
+      <div class="story-details" >Channel: {{ storyChannel }}</div>
+      <div class="story-details" >Thematic Tags: {{ thematicAreas | async }}</div>
+    </ng-container>
+    <app-story-translations
+      *ngIf="postData.translations && postData.translations.length"
+      class="post__translations"
+      [originalLanguage]="postData.language"
+      [selectedLanguage]="selectedContentLang"
+      [translations]="postData.translations"
+      [currentTranslationType]="postData.contentType"
+      (languageSelected)="handlePostLanguageChange($event)"
+    ></app-story-translations>
+    <div class="post__section-separator"></div>
+    <app-post-actions *ngIf="showActions" [postData]="postData"></app-post-actions>
+    <ng-content></ng-content>
+  </loop-card>
+</ng-template>

@@ -1,0 +1,24 @@
+<div class="post-actions">
+  <div class="d-flex-space-between post-action-list">
+    <div class="left-section flex-center-left">
+      <div class="views-count flex-center-left">
+        <app-visibility-icon class="post-actions__icon post-actions__icon--small mr-0h"></app-visibility-icon>
+        <span class="post-actions__text"
+          >{{ postData?.views | number }} <span class="post-actions__stat-label">{{ 'global.views' | translate }}</span></span
+        >
+      </div>
+      <div class="post-actions__replies-count flex-center-left">
+        <app-double-chat-icon class="post-actions__icon post-actions__icon--small mr-0h"></app-double-chat-icon>
+        <span class="post-actions__text"
+          >{{ postData?.comments || 0 | number }} <span class="post-actions__stat-label">{{ 'global.replies' | translate }}</span></span
+        >
+      </div>
+    </div>
+    <div class="right-section">
+      <div class="flex-center-right">
+        <span class="mr-0938">{{ upvoteLabelKey | translate }}</span
+        ><app-upvote [id]="postData?.id" [voted]="voted" [votes]="votes" (upvoteClicked)="upvote($event)"></app-upvote>
+      </div>
+    </div>
+  </div>
+</div>

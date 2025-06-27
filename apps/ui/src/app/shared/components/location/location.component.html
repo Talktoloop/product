@@ -1,0 +1,195 @@
+<ng-container *ngIf="selectedRegionsOrCountriesControl && this.countries?.length">
+  <div #locationElementRef></div>
+  <div *ngIf="!countryId && !isOnlyDropdown && !place && !applyLocation" class="set-location">
+    <button (click)="openLocation()" class="set-location__btn">{{ 'filtersV2.location.setLocation' | translate }}</button>
+  </div>
+  <ng-container *ngIf="(place || applyLocation || countryCode || selectedRegionsOrCountriesControl.value.length >= 1) && !isOnlyDropdown">
+    <div class="location-selected-wrap">
+      <div class="selected-location">
+        {{
+          selectedRegionsOrCountriesControl.value.length > 1
+            ? ('filtersV2.loaction.label' | translate) + ' (' + selectedRegionsOrCountriesControl.value.length + ')'
+            : place
+            ? location
+            : (regionId | placeOrCountry : countryCode | async)
+        }}
+      </div>
+      <div class="delete" (click)="removeSelectedLocation()">
+        <loop-icon
+          [name]="LoopIcon.Name.AudioPlayerDelete"
+          [theme]="LoopIcon.Theme.Danger"
+          [isThemeReverted]="true"
+          [isButton]="true"
+        ></loop-icon>
+      </div>
+    </div>
+  </ng-container>
+
+  <div
+    appDropdown
+    appClickOutside
+    *ngIf="openDropdown || isOnlyDropdown"
+    [isDisabled]="isOnlyDropdown"
+    [class.mounted]="isOnlyDropdown"
+    [isDisabledOnMobile]="true"
+    [isAxisNotReversed]="true"
+    [sourceEl]="locationElementRef"
+    [sourceWidth]="528"
+    class="filter-dropdown"
+    (appClickOutside)="openDropdown = !openDropdown"
+  >
+<!--    <app-tooltip *ngIf="isInfoActive && canChooseMoreThanOne" class="escape-info__tooltip">-->
+<!--      <p>{{ 'filtersV2.location.tooltip' | translate }}</p>-->
+<!--      <button (click)="onInfoSubmit()" class="button got-it__submit-btn">{{ 'got.it' | translate }}</button>-->
+<!--    </app-tooltip>-->
+
+    <loop-input
+      [formControl]="searchLocation"
+      [showCloseIcon]="true"
+      [showClearBtn]="true"
+      [solidPlaceholder]="true"
+      [autocomplete]="inputId"
+      [placeholder]="getPlaceholder()"
+    >
+      <app-search-icon prefix class="autocomplete__icon autocomplete__search-icon"></app-search-icon>
+    </loop-input>
+
+    <div class="mobile-scroll">
+      <ng-container *ngIf="list.length === 0">
+        <div class="no-results">
+          <p class="no-results__text">{{ 'filtersV2.location.noLocationFound' | translate }}</p>
+          <button (click)="clearSearch($event)" class="no-results__btn">{{ 'filtersV2.location.clearSearch' | translate }}</button>
+        </div>
+      </ng-container>
+
+      <app-button
+        *ngIf="history.length > 0"
+        (clicked)="backClicked($event)"
+        (blured)="handleBackButtonBlur()"
+        [mode]="'v2'"
+        variant="link-3"
+        class="thematic-back__btn"
+      >
+        <app-expand-more-icon rotate="90"></app-expand-more-icon>
+        <span class="ml-0">{{ history[history.length - 1]?.parent?.content | translate }}</span>
+      </app-button>
+
+      <div *ngIf="list.length !== 0" class="form-wrapper">
+        <div [ngClass]="{ slideInLeft: showAnimationLeft, slideInRight: showAnimationRight }" class="form-groups-wrapper">
+          <div class="form-label" *ngIf="!list?.[0].parentName">
+            <label *ngIf="!countryLabel">{{ 'filtersV2.country.label' | translate }}</label>
+            <label *ngIf="!!countryLabel">{{ countryLabel }}</label>
+            <label *ngIf="!!parentName"> / {{ parentName }}</label>
+          </div>
+          <ng-container *ngFor="let item of list; let i = index; trackBy">
+            <div>
+              <div class="form-label">
+                <label *ngIf="item.parentName"> {{ item.parentName }}</label>
+              </div>
+              <div
+                class="form-group-wrap"
+                [ngClass]="{ 'background-disabled': item.numberOfStories === 0 && canChooseMoreThanOne }"
+                [class.checkboxes]="canChooseMoreThanOne"
+                [class.selected]="isItemSelected(item) || idChildItemSelected(item)"
+                (click)="handleRadioClick(item, $event)"
+              >
+                <div class="form-group">
+                  <div class="form-check" [ngClass]="{ 'cursor-disabled': item.numberOfStories === 0 && canChooseMoreThanOne }">
+                    <label
+                      class="radio"
+                      [ngClass]="{ 'cursor-disabled': item.numberOfStories === 0 && canChooseMoreThanOne }"
+                      [class.checkbox]="canChooseMoreThanOne"
+                    >
+                      <input
+                        [checked]="isItemSelected(item)"
+                        name="locationId"
+                        id="locationId{{ i }}"
+                        [value]="item.id"
+                        [type]="canChooseMoreThanOne ? 'checkbox' : 'radio'"
+                      />
+                      <app-check-square
+                        [tabIndex]="0"
+                        class="new"
+                        [class.checked]="isItemSelected(item)"
+                        [class.disabled]="item.numberOfStories === 0"
+                        [class.semi-checked]="idChildItemSelected(item)"
+                        [compact]="false"
+                        *ngIf="canChooseMoreThanOne"
+                        [checked]="isItemSelected(item)"
+                        [semiChecked]="idChildItemSelected(item)"
+                        [attr.aria-checked]="isItemSelected(item)"
+                        (clicked)="handleRadioClick(item, $event)"
+                      ></app-check-square>
+                      <span
+                        *ngIf="!canChooseMoreThanOne"
+                        [class.checked]="isItemSelected(item)"
+                        tabindex="0"
+                        class="radio__icon d-inline-block"
+                        role="radio"
+                        [attr.aria-checked]="isItemSelected(item)"
+                        (keydown.enter)="handleRadioClick(item, $event)"
+                      >
+                      </span>
+                      <span
+                        [ngClass]="{ disabled: item.numberOfStories === 0 && canChooseMoreThanOne }"
+                        class="radio__label"
+                        for="locationId{{ i }}"
+                        [innerHtml]="item.content | highlight : searchLocation.value"
+                      ></span>
+                    </label>
+                  </div>
+                  <div class="wrap">
+                    <ng-container *ngIf="storiesAvailable">
+                      <div
+                        [ngClass]="{ 'pills-disabled': item.numberOfStories === 0 && canChooseMoreThanOne }"
+                        class="pills-wrap"
+                        [class.selected]="item.id === regionId"
+                      >
+                        <span [ngClass]="{ disabled: item.numberOfStories === 0 && canChooseMoreThanOne }" class="pills-number">{{
+                          item.numberOfStories
+                        }}</span>
+                      </div>
+                    </ng-container>
+                    <div *ngIf="!noChild">
+                      <ng-container *ngIf="canChooseMoreThanOne; else radio">
+                        <div
+                          [ngClass]="{ 'arrow-disabled': item.numberOfStories === 0 }"
+                          [style.visibility]="item.numberOfStories > 0 && item.hasChild === true ? 'visible' : 'hidden'"
+                          (click)="setAdministrativeData($event, item.id, item.value, !!item.value, item, true)"
+                          [class.selected]="item.id === regionId"
+                          class="arrow"
+                        >
+                          <app-expand-more-icon [rotate]="270"></app-expand-more-icon>
+                        </div>
+                      </ng-container>
+                      <ng-template #radio>
+                        <div
+                          [style.visibility]="item.hasChild === true ? 'visible' : 'hidden'"
+                          (click)="setAdministrativeData($event, item.id, item.value, !!item.value, item, true)"
+                          [class.selected]="item.id === regionId"
+                          class="arrow"
+                        >
+                          <app-expand-more-icon [rotate]="270"></app-expand-more-icon>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <app-button [mode]="'v2'" [variant]="'secondary'" class="select-all" (click)="toggleSelectAll()">
+        {{ (selectedRegionsOrCountriesControl.value.length > 0 ? 'filtersV2.deselectAll' : 'filtersV2.selectAll') | translate }}
+      </app-button>
+    </div>
+    <div *ngIf="list.length !== 0" class="apply-btn">
+      <div class="mobile-btns">
+        <app-button class="apply-btn" [mode]="'v2'" [disabled]="!selectedRegionsOrCountriesControl.value" (click)="submitForm(true)">
+          <span>{{ 'filtersV2.apply' | translate }}{{ currentFiltersCount() > 0 ? ' (' + currentFiltersCount() + ')' : '' }}</span>
+        </app-button>
+      </div>
+    </div>
+  </div>
+</ng-container>

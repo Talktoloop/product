@@ -1,0 +1,20 @@
+<loop-modal>
+  <span class="title bold">{{ 'statisticsCases.accountabilityProcess.seeProcess.title' | translate }}</span>
+  <p class="no-padding">{{ 'statisticsCases.accountabilityProcess.seeProcess.firstParagraph' | translate }}</p>
+  <br />
+  <p class="no-padding">{{ 'statisticsCases.accountabilityProcess.seeProcess.secondParagraph' | translate }}</p>
+  <br />
+  <p class="no-padding">{{ 'statisticsCases.accountabilityProcess.seeProcess.thirdParagraph' | translate }}</p>
+  <br />
+  <p>{{ 'statisticsCases.accountabilityProcess.seeProcess.fourthParagraph' | translate }}</p>
+  <div *ngFor="let _ of translationsSectionsParagraphs; let i = index">
+    <span class="bold">{{ i + 1 }}. {{ 'statisticsCases.accountabilityProcess.seeProcess.list.' + (i + 1) + '.title' | translate }}</span>
+    <ng-container *ngFor="let paragraph of _; let j = index">
+      <p [class.no-padding]="paragraph[j + 1]" [innerHTML]="getParagraphTranslation(i, j, paragraph)"></p>
+      <ng-container *ngIf="paragraph[j + 1]"><br /></ng-container>
+    </ng-container>
+  </div>
+  <div action-buttons>
+    <app-button (clicked)="onModalClose()" mode="v2">{{ 'newStoryV2.modals.ok' | translate }}</app-button>
+  </div>
+</loop-modal>

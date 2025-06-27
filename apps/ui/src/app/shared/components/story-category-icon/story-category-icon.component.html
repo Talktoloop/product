@@ -1,0 +1,21 @@
+<ng-container [ngSwitch]="category">
+  <app-sensitive-story-type-icon class="story-type-icon" *ngSwitchCase="categories.SENSITIVE"></app-sensitive-story-type-icon>
+  <app-thanks-story-type-icon class="story-type-icon" *ngSwitchCase="categories.THANKS"></app-thanks-story-type-icon>
+  <app-question-story-type-icon class="story-type-icon" *ngSwitchCase="categories.QUESTION"></app-question-story-type-icon>
+  <app-opinion-story-type-icon class="story-type-icon" *ngSwitchCase="categories.SUGGESTION_OPINION"></app-opinion-story-type-icon>
+  <app-request-story-type-icon class="story-type-icon" *ngSwitchCase="categories.REQUEST"></app-request-story-type-icon>
+  <app-concern-story-type-icon class="story-type-icon" *ngSwitchCase="categories.CONCERN"></app-concern-story-type-icon>
+  <!-- DIFFICULTIES -->
+  <app-seeing-difficulty-icon class="story-type-icon" *ngSwitchCase="difficulties.SEEING"></app-seeing-difficulty-icon>
+  <app-hearing-difficulty-icon class="story-type-icon" *ngSwitchCase="difficulties.HEARING"></app-hearing-difficulty-icon>
+  <app-speaking-difficulty-icon class="story-type-icon" *ngSwitchCase="difficulties.COMMUNICATING"></app-speaking-difficulty-icon>
+  <app-mobility-difficulty-icon
+    class="story-type-icon"
+    *ngSwitchCase="difficulties.WALKING_OR_CLIMBING_STEPS"
+  ></app-mobility-difficulty-icon>
+  <app-learning-difficulty-icon class="story-type-icon" *ngSwitchCase="difficulties.REMEMBERING"></app-learning-difficulty-icon>
+  <app-self-care-difficulty-icon
+    class="story-type-icon"
+    *ngSwitchCase="difficulties.SELF_CARE_FOR_EXAMPLE_WASHING"
+  ></app-self-care-difficulty-icon>
+</ng-container>

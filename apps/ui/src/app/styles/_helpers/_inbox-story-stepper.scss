@@ -1,0 +1,116 @@
+@use 'sass:map';
+@import 'loop-design-system-v2/colors';
+@import 'loop-design-system/helpers';
+@import 'mixins';
+
+// Story stepper layout
+.story-review,
+.story-translate {
+  $paddingMobile: 1rem;
+  $paddingDesktop: 2rem;
+
+  &__details-container {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+
+    @include mobile-and-tablet-only {
+      flex-direction: column;
+    }
+  }
+
+  &__left-container,
+  &__right-container {
+    flex: 0 0 calc(50% - 16px);
+    position: relative;
+    width: 0;
+    .background {
+      padding: $paddingMobile;
+      border-radius: 8px;
+      background: white;
+
+      @include mobile-up {
+        padding: $paddingDesktop;
+      }
+    }
+
+    app-case-manager-note {
+      margin: 1rem 0;
+    }
+
+    @include mobile-and-tablet-only {
+      border-radius: 0;
+      flex: 100%;
+      width: 100%;
+    }
+
+    @include mobile-only {
+      app-case-manager-note {
+        margin: 1rem;
+      }
+    }
+
+    .full-width__divider {
+      &,
+      &--mobile {
+        display: flex;
+        margin: 0 -#{$paddingMobile};
+      }
+
+      @include mobile-up {
+        &,
+        &--desktop {
+          display: flex;
+          margin: 0 -#{$paddingDesktop};
+        }
+      }
+    }
+
+    .story-details-tabs__header .tabs-menu {
+      display: block;
+      margin: 0 -#{$paddingMobile};
+      padding: 0 $paddingMobile;
+
+      &__divider {
+        margin: 0 -#{$paddingMobile} 1rem -#{$paddingMobile};
+      }
+
+      @include mobile-up {
+        margin: 0 -#{$paddingDesktop};
+        padding: 0 $paddingDesktop;
+
+        &__divider {
+          margin: 0 -#{$paddingDesktop} 1rem -#{$paddingDesktop};
+        }
+      }
+    }
+  }
+
+  &__left-container {
+    @include mobile-and-tablet-only {
+      margin-bottom: 1rem;
+    }
+
+    .ivrr-step__top-player {
+      margin: 2rem 0 0;
+    }
+
+    .story-review__tabs {
+      margin: 2rem 0 0;
+    }
+  }
+
+  &__validation-banner {
+    display: flex;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+
+    loop-banner {
+      @include margin-left(auto, true);
+    }
+  }
+}
+
+.story-review-expanded {
+  padding: 1.875rem 1.25rem 4rem;
+}

@@ -1,0 +1,16 @@
+<app-player
+  *ngIf="!isSimplePlayer"
+  [state]="state"
+  [duration]="duration"
+  [currentTime]="currentTime"
+  (click$)="onClick()"
+  (currentTime$)="setCurrentTime($event)"
+>
+</app-player
+><app-simple-player  [attr.id]="s3FileId" *ngIf="isSimplePlayer" [state]="state" (click$)="onClick()"> </app-simple-player>
+
+<audio *ngIf="!isSimplePlayer" #audio [src]="audioSrc"></audio>
+<app-tooltip *ngIf="!isSimplePlayer && isEscapeInfoActive && isEscapeButtonEnable" class="escape-info__tooltip">
+  <p>{{ 'story.review.player.escape.key.info' | translate }}</p>
+  <button (click)="onEscapeInfoSubmit()" class="button got-it__submit-btn">{{ 'got.it' | translate }}</button>
+</app-tooltip>

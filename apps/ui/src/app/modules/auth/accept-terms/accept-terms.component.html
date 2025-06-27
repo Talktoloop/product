@@ -1,0 +1,47 @@
+<app-auth-page-wrapper [currentStep]="3" (back)="onBack()">
+  <div class="wrapper">
+    <div class="form-container">
+      <h2>{{ 'auth.acceptTerms.header' | translate }}</h2>
+      <h5>{{ 'auth.acceptTerms.list.title' | translate }}</h5>
+      <ul>
+        <li>{{ 'auth.acceptTerms.list.firstItem' | translate }}</li>
+        <li>{{ 'auth.acceptTerms.list.secondItem' | translate }}</li>
+      </ul>
+      <div class="learn-more">
+        {{ 'auth.acceptTerms.learnMore' | translate }}&nbsp;<a [href]="privacyPolicyUrl" target="_blank">{{
+          'auth.acceptTerms.privacyPolicy' | translate
+        }}</a
+        >,&nbsp;<a [routerLink]="'/' + MAIN_ROUTES.COMMUNITY_GUIDELINES">{{ 'auth.acceptTerms.communityGuidelines' | translate }}</a
+        >,&nbsp;{{ 'auth.acceptTerms.and' | translate }}&nbsp;<a [href]="termsOfServiceUrl" target="_blank">{{
+          'auth.acceptTerms.termsOfService' | translate
+        }}</a
+        >.
+      </div>
+    </div>
+    <div>
+      <div *ngIf="showError" class="error">
+        {{ 'auth.acceptTerms.checkbox.acceptTermsOfService.error' | translate }}
+      </div>
+
+      <div class="optin-marketing">
+        <app-checkbox [checked]="optInMarketinChecked" (changed)="onOptInMarketinCheckboxChanged($event)" [alwaysRenderCheckmark]="true">
+          <span class="text">{{ 'auth.acceptTerms.checkbox.optinMarketing.text' | translate }}</span>
+        </app-checkbox>
+      </div>
+      <div>
+        <app-checkbox
+          [class.error]="showError"
+          [checked]="termsOfServiceChecked"
+          (changed)="onTermsOfServiceCheckboxChanged($event)"
+          [alwaysRenderCheckmark]="true"
+        >
+          <span class="text">{{ 'auth.acceptTerms.checkbox.acceptTermsOfService.text' | translate }}</span>
+        </app-checkbox>
+      </div>
+
+      <div class="continue-button">
+        <app-button mode="v3" variant="primary" (click)="continue()">{{ 'auth.acceptTerms.button.text' | translate }}</app-button>
+      </div>
+    </div>
+  </div>
+</app-auth-page-wrapper>

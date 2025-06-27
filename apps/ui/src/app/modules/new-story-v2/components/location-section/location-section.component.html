@@ -1,0 +1,9 @@
+<h3 class="font-big mb-0625 bold">{{ 'newStoryV2.form.location.title' | translate }}</h3>
+<p class="subsection d-flex">
+  <app-lock-icon class="mr-0625"></app-lock-icon
+  ><span class="input-description">{{ 'newStoryV2.form.location.subtitle' | translate }}</span>
+</p>
+<div class="input-section mb-125">
+  <app-location [storiesAvailable]="false" (data$)="onRegionDataChange($event)"></app-location>
+</div>
+<loop-info-link (clicked)="onModalOpen()" class="mt-125" [text]="'newStoryV2.form.location.helperText' | translate"></loop-info-link>

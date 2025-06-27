@@ -1,0 +1,75 @@
+@import 'loop-design-system-v2/colors';
+@import 'variables';
+@import 'mixins';
+
+:host {
+  height: 100%;
+}
+
+.logo {
+  @include left(41px);
+  position: absolute;
+  top: 24px;
+  cursor: pointer;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 480px;
+  height: 100%;
+  padding: 40px;
+  background: $neutral-000;
+  color: $neutral-800;
+
+  &--auto-height {
+    height: auto;
+  }
+
+  @include mobile-only {
+    justify-content: flex-start;
+    width: 100%;
+    padding: 16px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 32px;
+    margin-bottom: 32px;
+  }
+
+  &__current-step {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $neutral-500;
+    margin-bottom: 16px;
+
+    @include mobile-only {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &__back-button {
+    width: 50%;
+
+    @include mobile-only {
+      margin-bottom: 8px;
+    }
+
+    &.no-margin {
+      margin: 0;
+    }
+
+    &-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 24px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<app-inline-loading *ngIf="!commentsLoaded" class="flex-center inline-loader"></app-inline-loading>
+<div *ngIf="comments$ | async as comments" class="comments-wrapper">
+  <app-single-comment
+    [forceExpanded]="forceExpanded"
+    [showReplyForm]="showReplyForm"
+    *ngFor="let comment of comments; let i = index; trackBy: trackByFunction"
+    [comment]="comment"
+    [storyId]="id"
+  ></app-single-comment>
+</div>

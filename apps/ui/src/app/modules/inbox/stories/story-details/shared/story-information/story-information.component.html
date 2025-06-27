@@ -1,0 +1,112 @@
+<div class="story-information-container">
+  <p class="story-information-header">
+    {{ 'story.details.review.info.storyInformation' | translate }}
+  </p>
+
+  <!-- Type -->
+  <div *ngIf="storyDetailsService.story.categories.length || storyDetailsService.story.isSensitive" class="story-information-section">
+    <p class="section-header">{{ 'story.details.review.info.storyType' | translate }}</p>
+    <div class="section-value">
+      <ng-container *ngIf="storyDetailsService.story.categories.length; else sensitiveTag">
+        <loop-story-tag
+          *ngFor="let category of storyDetailsService.story.categories"
+          [category]="category.code"
+          [tagSize]="TagSize.MEDIUM"
+        ></loop-story-tag>
+      </ng-container>
+      <ng-template #sensitiveTag>
+        <loop-story-tag [category]="StoryCategory.SENSITIVE" [tagSize]="TagSize.MEDIUM"></loop-story-tag>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="story-information-sections-container">
+    <!-- Channel -->
+    <div *ngIf="storyDetailsService.story.channel" class="story-information-section">
+      <p class="section-header" data-testid="channelName">{{ 'story.details.review.info.channel' | translate }}</p>
+      <div class="section-value">
+        {{ storyChannel }}
+      </div>
+    </div>
+
+    <!-- Age -->
+    <div *ngIf="storyDetailsService.story.age >= 0" class="story-information-section">
+      <p class="section-header">{{ 'story.details.review.info.age' | translate }}</p>
+      <div class="section-value">
+        {{ storyAge | translate }}
+      </div>
+    </div>
+
+    <!-- Gender -->
+    <div *ngIf="storyDetailsService.story.gender >= 0" class="story-information-section">
+      <p class="section-header">{{ 'story.details.review.info.gender' | translate }}</p>
+      <div class="section-value">
+        {{ storyGender | translate }}
+      </div>
+    </div>
+
+    <!-- Disabilities -->
+    <div *ngIf="storyDetailsService.story.difficulties?.length" class="story-information-section">
+      <p class="section-header">{{ 'story.details.review.info.disabilities' | translate }}</p>
+      <div class="section-value">
+        {{ disabilities }}
+      </div>
+    </div>
+
+    <!-- Minority Group-->
+    <div *ngIf="storyDetailsService.story.isMinority" class="story-information-section">
+      <p class="section-header">{{ 'story.details.review.info.minority' | translate }}</p>
+      <div class="section-value">
+        {{ isMinorityGroup | translate }}
+      </div>
+    </div>
+
+    <!-- Country -->
+    <div *ngIf="storyDetailsService.story.country" class="story-information-section">
+      <p class="section-header">{{ 'admin.pendingStoryReview.location' | translate }}</p>
+      <div class="section-value">
+        {{
+          storyDetailsService.story.place
+            ? place
+            : (storyDetailsService.story.regionId | placeOrCountry : storyDetailsService.story.country | async)
+        }}
+      </div>
+    </div>
+
+    <!-- Original language -->
+    <div *ngIf="storyDetailsService.story.language" class="story-information-section">
+      <p class="section-header">{{ 'story.details.review.info.originalLanguage' | translate }}</p>
+      <div class="section-value">
+        {{ 'languages.' + storyDetailsService.story.language | translate }}
+      </div>
+    </div>
+
+    <!-- Thematic area -->
+    <div *ngIf="storyDetailsService.story.thematics?.length" class="story-information-section">
+      <p class="section-header">{{ 'story.details.review.info.thematicArea' | translate }}</p>
+      <div class="section-value">
+        {{ thematicAreas | async }}
+      </div>
+    </div>
+    <!-- Urgent -->
+    <div *ngIf="storyDetailsService.story.isUrgent" class="story-information-section">
+      <p class="section-header">{{ 'story.details.review.info.urgent' | translate }}</p>
+      <div class="section-value">
+        {{ storyUrgent | translate }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Organization -->
+  <div *ngIf="storyDetailsService.story.organisations?.length" class="story-information-section">
+    <p class="section-header">{{ 'story.details.review.info.organisations' | translate }}</p>
+    <div class="section-value">
+      <loop-simple-tag
+        *ngFor="let organization of storyDetailsService.story.organisations"
+        [closeButton]="true"
+        (close$)="onOrganisationRemove(organization)"
+        [text]="!!organization.acronym ? organization.name + ' • ' + organization.acronym : organization.name"
+      ></loop-simple-tag>
+    </div>
+  </div>
+</div>

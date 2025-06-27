@@ -1,0 +1,15 @@
+<div class="d-inline-flex align-items-center height-100" [class.wide]="select">
+  <button #selectedLanguageContainer class="language-picker d-flex align-items-center" [class.language-picker--v2]="v2"
+    [class.language-picker--select]="select" (click)="handleDropdownButtonClick()">
+    <span>{{ selectedOption?.label | translate }}</span>
+    <app-expand-more-icon class="language-picker__chevron"></app-expand-more-icon>
+  </button>
+  <loop-select *ngIf="dropdownOpen" appDropdown (appClickOutside)="handleClickOutside()"
+    [sourceEl]="selectedLanguageContainer" [sourceWidth]="select ? 398 : 212" [dropDownPlacement]="'bottom'"
+    [fullWidth]="select" [offset]="[0, 10]">
+    <loop-select-option *ngFor="let option of availableOptions; trackBy: trackFn"
+      (clicked)="handleOptionSelect(option.value)">
+      <span class="language-label">{{ option.label | translate }}</span>
+    </loop-select-option>
+  </loop-select>
+</div>

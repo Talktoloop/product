@@ -1,0 +1,43 @@
+<div class="main-panel">
+  <div id="home-top-wrapper" *ngIf="storiesHeaderVisible">
+    <div class="list-heading-container">
+      <div class="list-heading">
+        <h1 class="list-heading-stories">
+          {{ 'global.Stories' | translate }}
+          <div class="list-count__badge" [type]="(homeService.isError$ | async) ? 'red' : 'green'">
+            {{ homeService.totalCount$ | async }}
+          </div>
+        </h1>
+        <ng-container *ngIf="!isMobile">
+          <h5>·</h5>
+          <app-download-button></app-download-button>
+        </ng-container>
+      </div>
+      <ng-container *ngIf="!isMobile">
+        <app-un-feedback-export-button></app-un-feedback-export-button>
+      </ng-container>
+      <loop-sort (sortChange$)="homeService.sortChange($event)" [sortElements]="homeService.sortElements$ | async"
+        [activeSort]="homeService.activeSort$ | async"></loop-sort>
+    </div>
+  </div>
+  <div *ngIf="homeService.dataStream$ | async">
+    <ul class="entity-bt-mobile">
+      <li *ngFor="let item of homeService.dataStream$ | async; let i = index; trackBy: trackByFunction"
+        class="main-panel__list-item">
+        <app-post-preview (storyRemoved$)="homeService.removedObject$.next($event)" [index]="i"
+          (postPreviewClicked$)="homeService.onPostPreviewClicked($event)" class="post-section" [id]="item.id"
+          [highlightItem]="item.id === storyId" [postData]="item"></app-post-preview>
+      </li>
+    </ul>
+  </div>
+  <div infiniteScroll [infiniteScrollContainer]="infiniteScrollContainer" [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="500" [fromRoot]="true" (scrolled)="homeService.onScroll()"></div>
+  <app-inline-loading *ngIf="homeService.loading$ | async" class="flex-center inline-loader"></app-inline-loading>
+  <p *ngIf="homeService.noMoreStories$ | async" id="no-more-stories" class="text--grayed text-center p-box">
+    {{ 'storiesList.text.noMoreStories' | translate }}
+  </p>
+  <p *ngIf="homeService.isError$ | async" id="loading-error" class="text-center p-box">
+    <button [disabled]="homeService.loading$ | async" (click)="homeService.loadItems()">{{ 'global.reload' | translate
+      }}</button>
+  </p>
+</div>

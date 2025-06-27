@@ -1,0 +1,26 @@
+@import 'loop-design-system/colors';
+
+.textarea {
+  min-height: 5.188rem;
+  padding: 0.938rem 1.438rem;
+  border-radius: 8px;
+  background-color: $loop-green-5;
+  color: $grey-100;
+  font-size: 1rem;
+  border: none;
+  width: 100%;
+  resize: vertical;
+
+  &::placeholder {
+    color: $grey-50;
+    font-style: italic;
+  }
+
+  &:focus {
+    outline: $loop-purple-100 1px auto;
+  }
+
+  &.no-resize {
+    resize: none;
+  }
+}

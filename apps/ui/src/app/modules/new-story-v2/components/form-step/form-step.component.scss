@@ -1,0 +1,16 @@
+@import 'variables';
+@import 'mixins';
+
+.form-step {
+  width: 100%;
+
+  @media screen and (min-width: $breakpoint-md) {
+    border-radius: 8px;
+    border: 1px solid $light-grey-4;
+    padding: 3.125rem 1.5rem 3.75rem 1.5rem;
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    padding: 3.125rem 3.125rem 3.75rem 3.125rem;
+  }
+}

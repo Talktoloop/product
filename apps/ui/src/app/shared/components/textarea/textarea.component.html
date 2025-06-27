@@ -1,0 +1,10 @@
+<textarea
+  class="textarea"
+  [class.no-resize]="noResize"
+  [ngModel]="value"
+  [disabled]="disabled"
+  [placeholder]="placeholder"
+  (focus)="handleFocus()"
+  (ngModelChange)="writeValue($event)"
+  [maxlength]="maxlength"
+></textarea>

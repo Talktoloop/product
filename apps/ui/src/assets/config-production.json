@@ -1,0 +1,14 @@
+{
+  "cognitoConfig": {
+    "Region": "eu-central-1",
+    "UserPoolId": "eu-central-1_jBCJjWLiS",
+    "ClientId": "4itvr6pd2fp7stj5f5l9soaf9d",
+    "LoginUrl": "https://auth.talktoloop.org/log_in"
+  },
+  "frontendSessionTime": 3600,
+  "rollbarConfig": {
+    "accessToken": "da35c36196904867bb63bf574c830742",
+    "environment": "production-ol"
+  },
+  "apiUrl": "https://api.talktoloop.org/api/v1"
+}

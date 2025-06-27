@@ -1,0 +1,327 @@
+@import 'mixins';
+@import 'variables';
+@import 'loop-design-system/helpers';
+
+:host {
+  ::ng-deep {
+    .mat-tab {
+      &-header {
+        position: relative;
+
+        &:after {
+          content: '';
+          display: block;
+          height: 1px;
+          width: calc(100% + 2 * 1.25rem);
+          position: absolute;
+          @include left(0, true);
+          bottom: 0;
+          background-color: $light-grey-8;
+        }
+      }
+
+      &-labels {
+        display: flex;
+        justify-content: center;
+        border: 1px solid #e0e0e5;
+        border-radius: 4px;
+      }
+
+      &-label {
+        opacity: 1 !important;
+        min-width: auto !important;
+        padding: 0 !important;
+        border-bottom: solid 3px transparent;
+        @include margin-right(1.25rem, true);
+
+        &-content {
+          color: $loop-interactive-01;
+          font-family: Noto Sans;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 1.125rem;
+          line-height: 1.438rem;
+        }
+        &-active {
+          border-bottom-color: $loop-interactive-01;
+        }
+      }
+
+      &-body {
+        overflow: visible !important;
+
+        &-wrapper {
+          overflow: visible;
+        }
+
+        &-content {
+          transform: none !important;
+          overflow: visible;
+        }
+      }
+    }
+
+    .loop-input {
+      padding: pxToRem(16) pxToRem(17) !important;
+
+      input {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .filters-v2-modal {
+    .modal {
+      padding: 1.75rem 1.25rem !important;
+
+      &:after,
+      &:before {
+        display: none !important;
+      }
+
+      @include mobile-only {
+        height: calc(100% - 3.75rem) !important;
+        border-top-left-radius: unset !important;
+        border-top-right-radius: unset !important;
+        margin-top: 3.75rem !important;
+      }
+
+      @include mobile-up {
+        padding: 4.375rem 4.688rem 1.75rem !important;
+      }
+    }
+  }
+
+  .filter-v2-container {
+    &__section-title {
+      display: flex;
+      flex-direction: column;
+
+      @include mobile-only {
+        margin-top: 0.1rem;
+        padding-top: 12px;
+        padding-bottom: 5px;
+      }
+
+      &.mobile-title {
+        font-size: 1.5rem;
+        margin-top: 0;
+      }
+
+      &-name {
+        display: flex;
+        align-items: center;
+        font-size: 1.125rem;
+        font-weight: bold;
+        padding: 3px;
+
+        @include mobile-up {
+          font-size: 1.5rem;
+        }
+      }
+
+      .separator {
+        display: block;
+        width: 100%;
+        height: 1px;
+        margin: 0.25rem 0 0.3rem;
+        background-color: $light-grey-8;
+      }
+
+      @include mobile-up {
+        &-name {
+          font-size: 1.5rem;
+        }
+
+        .separator {
+          margin-top: 0.2rem;
+          margin-bottom: 0.3rem;
+
+          &.no-bottom-margin {
+            margin: 0.375rem 0 0;
+          }
+        }
+      }
+    }
+
+    &__label {
+      display: flex;
+      padding-bottom: 0.313rem;
+      font-weight: 600;
+    }
+
+    &.modal-filter {
+      .filter-container__label {
+        padding-bottom: 0.625rem;
+
+        @include mobile-up {
+          padding-bottom: 0.938rem;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .filtersV2-link-button {
+    background: transparent;
+    outline: 0;
+    color: $loop-interactive-01;
+    font-size: 0.875rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid #e0e0e5;
+    border-radius: 4px;
+    width: 100%;
+    text-align: justify;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+
+    @include mobile-up {
+      font-size: 1.125rem;
+    }
+  }
+}
+
+.filters-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #d8d8d8;
+  max-width: 850px;
+
+  @include mobile-up {
+    padding: 1.563rem 0;
+    margin: 0 auto 3.156rem;
+  }
+
+  button {
+    background-color: transparent;
+    font-size: 1.125rem;
+  }
+
+  &__left-panel {
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+    &__mobile-button {
+      text-decoration: none !important;
+      font-size: 0.875rem;
+
+      &__icon {
+        margin-bottom: -2px;
+      }
+    }
+
+    &__clear-all {
+      &__icon {
+        @include margin-right(0.5rem);
+      }
+    }
+  }
+
+  &__right-panel {
+    display: flex;
+    align-items: baseline;
+
+    &__all-stories {
+      padding: 1.031rem 1.25rem;
+      color: $loop-interactive-01;
+    }
+  }
+}
+
+.filter-pills__wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+:host {
+  ::ng-deep .blur-background {
+    position: fixed;
+    top: var(--header-height, 150px);
+    left: 0;
+    width: 100%;
+    height: calc(100% - var(--header-height, 60px));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9;
+    pointer-events: none;
+  }
+  ::ng-deep .scroll-blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 8;
+    pointer-events: none;
+  }
+  ::ng-deep .blur-offset {
+    position: fixed;
+    top: var(--header-height, 220px);
+    left: 0;
+    width: 100%;
+    height: calc(100% - var(--header-height, 60px));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9;
+    pointer-events: none;  }
+}
+
+.rounded-square-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $light-grey-2;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+
+  &:focus,
+  &:hover {
+    border-color: $loop-interactive-01;
+  }
+}
+
+app-pills {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  & > div {
+    display: flex;
+    flex: 1;
+  }
+}
+
+.all-stories__header {
+  position: relative;
+
+  &-title {
+    padding: 3.438rem 0 1.563rem;
+    font-weight: bold;
+    font-size: 2.188rem;
+  }
+
+  &-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include margin-left(auto);
+    height: 3.438rem;
+    width: 3.438rem;
+    background-color: white;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+  }
+}
