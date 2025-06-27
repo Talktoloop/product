@@ -1,0 +1,41 @@
+<div class="form">
+  <form [formGroup]="form">
+    <label class="label-container">
+      {{ 'auth.registerIndividual.form.firstName' | translate }}
+      <loop-input
+        [showClearBtn]="false"
+        [showCloseIcon]="false"
+        mode="v2"
+        autocomplete="given-name"
+        formControlName="firstName"
+        id="firstName"
+        inputmode="text"
+        [customErrorKeys]="getCustomErrorKeys()"
+        type="text"
+      ></loop-input>
+    </label>
+    <label class="label-container">
+      {{ 'auth.registerIndividual.form.secondName' | translate }}
+      <loop-input
+        [showClearBtn]="false"
+        [showCloseIcon]="false"
+        [customErrorKeys]="getCustomErrorKeys()"
+        mode="v2"
+        autocomplete="family-name"
+        formControlName="lastName"
+        id="secondName"
+        inputmode="text"
+        type="text"
+      ></loop-input>
+    </label>
+  </form>
+</div>
+<div class="slide">
+  <app-slide-toggle
+    [inverted]="true"
+    [checked]="hideLastName"
+    (changed$)="onHideLastNameChanged($event)"
+    [text]="'auth.registerIndividual.form.toggle.text' | translate"
+  >
+  </app-slide-toggle>
+</div>

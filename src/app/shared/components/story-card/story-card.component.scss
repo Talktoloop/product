@@ -1,0 +1,57 @@
+@import 'loop-design-system/colors';
+@import 'loop-design-system/helpers';
+@import 'mixins';
+
+.card {
+  background: #ffffff;
+  border-radius: 0.5rem;
+
+  &__heading {
+    margin-bottom: 1rem;
+    @include margin-right(0.5rem);
+    @include margin-left(0.5rem);
+  }
+
+  &__subheading {
+    margin-bottom: 0.844rem;
+    @include margin-right(0.5rem);
+    @include margin-left(0.5rem);
+  }
+
+  &__content {
+    font-size: pxToRem(14);
+    margin-bottom: pxToRem(20);
+    @include margin-right(0.5rem);
+    @include margin-left(0.5rem);
+  }
+
+  &__translation-status {
+    display: block;
+    margin-bottom: pxToRem(12);
+    @include margin-right(0.5rem);
+    @include margin-left(0.5rem);
+  }
+
+  &__line {
+    height: 1px;
+    width: 100%;
+    background: $loop-green-25;
+    margin-bottom: pxToRem(11);
+  }
+
+  &__actions {
+    @include margin-left(0.5rem);
+  }
+
+  &__after {
+    @include margin-right(0.5rem);
+    @include margin-left(0.5rem);
+  }
+
+  ::ng-deep {
+    .post-author__date {
+      font-size: 0.75rem;
+      color: rgba(0, 0, 0, 0.25);
+    }
+  }
+}

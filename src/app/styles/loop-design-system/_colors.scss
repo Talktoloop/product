@@ -1,0 +1,54 @@
+/// https://www.figma.com/file/Gnm02qT8lL1XEvtMFOR6RL/Loop-2021-Feature-Development?node-id=4%3A300
+
+/// This is the main colour for all the elements. It is used to create all of the input fields, for icons etc
+$loop-green-125: #056763;
+$loop-green-100: #107d79;
+$loop-green-50: #87bebc;
+$loop-green-25: #c3dfdd;
+$loop-green-5: #f3f8f8;
+
+/// Used in navigation and as secondary element colours on buttons and links
+$loop-purple-125: #261047;
+$loop-purple-100: #31135e;
+$loop-purple-75: #462478;
+$loop-purple-60: #866ab0;
+$loop-purple-50: #8a7ba1;
+$loop-purple-40: #eae6f0;
+$loop-purple-25: #cbc4d7;
+$loop-purple-5: #f5f3f7;
+
+/// Used as background for disabled labels and fields as well as for tags
+$light-grey: #eeeeee;
+
+/// Greyscale
+$grey-100: #000000;
+$grey-50: transparentize($grey-100, 1 - 0.5);
+$grey-25: transparentize($grey-100, 1 - 0.25);
+$grey-5: transparentize($grey-100, 1 - 0.05);
+
+/// notifications, status, categories
+/// warning, alert
+$danger-red: #ee232f;
+/// ok, accepted, finished
+$yes-green: #1db046;
+/// pending
+$loop-yellow: #ecb320;
+
+/// highlight colours
+$purple-highlight: #6f01e5;
+$purple-highlight-025: rgba(111, 1, 229, 0.25);
+$loop-pink: #ef47a2;
+$loop-pink-025: rgba(239, 71, 162, 0.25);
+$light-blue: #20d3ec;
+$light-blue-025: rgba(32, 211, 236, 0.25);
+$loop-blue: #2072ec;
+$loop-blue-025: rgba(32, 114, 236, 0.25);
+$green-2: #c3ec20;
+$green-2-025: rgba(195, 236, 32, 0.25);
+$loop-orange: #e98020;
+$loop-orange-025: rgba(233, 128, 32, 0.25);
+
+/// Spacers
+$gray-line-color: #d6d0df;
+
+$loop-red-dark: #c9304d;

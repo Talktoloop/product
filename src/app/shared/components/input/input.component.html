@@ -1,0 +1,59 @@
+<div
+  class="loop-input"
+  [class.invalid]="isInvalid"
+  [class.readonly]="readonly"
+  [class.disabled]="disabled"
+  [class.small]="small"
+  [class.solid-placeholder]="solidPlaceholder"
+  [class.v2]="mode === 'v2'"
+  (click)="inputRef.focus(); handleClick($event)"
+>
+  <ng-content select="[prefix]"></ng-content>
+  <input
+    #inputRef
+    [appInvalidFocusable]="isInvalid"
+    [id]="id"
+    [(ngModel)]="value"
+    (ngModelChange)="onValueChange($event)"
+    [type]="type"
+    [disabled]="disabled"
+    [placeholder]="isInputFocused ? '' : placeholder"
+    [attr.inputmode]="inputmode"
+    [autocomplete]="autocomplete"
+    [readOnly]="readonly"
+    [maxlength]="maxLength"
+    [minlength]="minlength"
+    [min]="min"
+    [max]="max"
+    (focus)="handleFocus($event)"
+    (blur)="handleBlur()"
+    (focusout)="onFocusOut($event)"
+    (keypress)="onKeyPress($event)"
+  />
+
+  <button
+    *ngIf="showClearBtn && !disabled"
+    class="loop-input__clear-btn"
+    (click)="onClearClick($event)"
+    [class.visibility-hidden]="!value?.length"
+    [disabled]="disabled"
+  >
+    <loop-icon
+      [isButton]="true"
+      [isThemeReverted]="true"
+      [name]="LoopIcon.Name.CloseCircle"
+      [size]="20"
+      [theme]="LoopIcon.Theme.Primary"
+    ></loop-icon>
+  </button>
+
+  <ng-content select="[suffix]"></ng-content>
+
+  <ng-container *ngIf="isPassword()">
+    <app-password-visibility (toogle$)="passwordVisibilityToogle()" [visible]="passwordVisibility"></app-password-visibility>
+  </ng-container>
+</div>
+
+<p class="loop-input__error" [class.loop-input__error--visible]="isInvalid" [class.v2]="mode === 'v2'">
+  {{ errorMessage$ | async }}
+</p>

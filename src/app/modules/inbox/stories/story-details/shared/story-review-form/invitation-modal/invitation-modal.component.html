@@ -1,0 +1,148 @@
+<loop-modal [title]="'organisation.invitation.title' | translate">
+  <form [formGroup]="inviteForm">
+    <div class="form-wrap">
+      <app-form-section [heading]="'organisation.invitation.email' | translate" [onlyContent]="true" class="form__section">
+        <loop-input
+          (keydown.enter)="invite($event)"
+          [showClearBtn]="true"
+          [showCloseIcon]="true"
+          autocomplete="email"
+          formControlName="email"
+          id="email"
+          inputmode="email"
+          type="email"
+        ></loop-input>
+      </app-form-section>
+
+      <app-form-section [heading]="'organisation.invitation.language' | translate" [onlyContent]="true" class="form__section">
+        <div class="language__input">
+          <div
+            #selectedLanguageContainer
+            class="loop-input language__input-country"
+            [class.language__input--open]="dropdownOpen"
+            tabindex="0"
+            role="combobox"
+            (click)="handleSelectorOpenClick()"
+          >
+            <div class="language__input-country-wrap d-flex">
+              <span class="language__input-country-label">{{ 'languages.' + inviteForm.get('languageCode').value | translate }}</span>
+              <app-expand-more-icon class="language__input-icon language__input-icon-chevron"></app-expand-more-icon>
+            </div>
+          </div>
+        </div>
+        <loop-select
+          appDropdown
+          appClickOutside
+          *ngIf="dropdownOpen"
+          [sourceEl]="selectedLanguageContainer"
+          [sourceWidth]="selectedLanguageContainer.clientWidth"
+          [showSuffix]="true"
+          [appStopEvent]="'click'"
+          (appClickOutside)="dropdownOpen = !dropdownOpen"
+        >
+          <loop-select-option *ngFor="let language of selectLanguages; trackBy" (clicked)="handleOptionSelect(language.id)">
+            {{ language.content | translate }}
+          </loop-select-option>
+        </loop-select>
+      </app-form-section>
+    </div>
+    <ng-container *ngIf="userHaveOrganisation && inviteForm.get('email').value">
+      <p class="user-info">
+        {{ 'organisation.invitation.userExistsPart1' | translate }} <span>{{ inviteForm.get('email').value }}</span>
+        {{ 'organisation.invitation.userExistsPart2' | translate }} <span>{{ userOrganization?.name }}</span
+        >. {{ 'organisation.invitation.userExistsPart3' | translate }}
+      </p>
+    </ng-container>
+    <ng-container *ngIf="emailInvited">
+      <p class="user-info">
+        {{ 'organisation.invitation.userExistsPart1' | translate }} <span>{{ inviteForm.get('email').value }}</span>
+        {{ 'organisation.invitation.emailInvitedPart2' | translate }}
+      </p>
+    </ng-container>
+    <ng-container *ngIf="!userHaveOrganisation && !emailInvited">
+      <p class="link-title">{{ 'organisation.invitation.linkEmail' | translate }}</p>
+      <div [class.invalid-border]="submitted && inviteForm.get('organisationId').invalid" class="organisation-card">
+        <div class="search-wrap">
+          <loop-input
+            (keydown.enter)="handleClick($event)"
+            [formControl]="searchOrganisation"
+            [showCloseIcon]="true"
+            [showClearBtn]="true"
+            [solidPlaceholder]="true"
+            [autocomplete]="inputId"
+            [placeholder]="'newStory.form.organisations.placeholder' | translate"
+          >
+            <app-search-icon prefix class="autocomplete__icon autocomplete__search-icon"></app-search-icon>
+          </loop-input>
+        </div>
+        <div class="line"></div>
+
+        <ng-container *ngIf="organizations.length === 0">
+          <div class="no-results">
+            <p class="no-results__text">{{ 'organisation.invitation.noResult' | translate }}</p>
+            <button (click)="clearSearch($event)" class="no-results__btn">{{ 'filtersV2.location.clearSearch' | translate }}</button>
+          </div>
+        </ng-container>
+        <div *ngIf="organizations.length !== 0" class="scroll-form">
+          <div class="shadow"></div>
+          <ng-container *ngFor="let item of organizations; let i = index; trackBy">
+            <div class="form-group-wrap" [class.selected]="item.id === selectedId">
+              <div class="form-group">
+                <div class="form-check">
+                  <label class="radio clickable" data-testid="radio-clickable">
+                    <input
+                      (click)="handleRadioClick(item.id)"
+                      [checked]="checked"
+                      id="organisationId{{ i }}"
+                      formControlName="organisationId"
+                      [value]="item.id"
+                      type="radio"
+                    />
+                    <span
+                      [class.checked]="item.id === selectedId"
+                      tabindex="0"
+                      class="radio__icon d-inline-block"
+                      role="radio"
+                      [attr.aria-checked]="checked"
+                      (keydown.enter)="handleRadioClick(item.id)"
+                    ></span>
+                    <span
+                      class="radio__label"
+                      for="organisationId{{ i }}"
+                      [innerHtml]="item.name | startHighlight : searchOrganisation.value"
+                    ></span>
+                  </label>
+                  <span *ngIf="item.countryCode" class="country-label">{{ item.countryCode | country }}</span>
+                </div>
+
+                <div class="wrap">
+                  <div class="pills-wrap" [class.selected]="item.id === selectedId">
+                    <span class="pills-number">{{ item.storiesCount }}</span>
+                  </div>
+                  <div class="user-wrap">
+                    <loop-icon
+                      [name]="item.usersCount > 0 ? LoopIcon.Name.Check : LoopIcon.Name.NoUser"
+                      [theme]="LoopIcon.Theme.Primary"
+                      [size]="item.usersCount > 0 ? 12 : 24"
+                      [isButton]="false"
+                    ></loop-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div *ngIf="submitted && inviteForm.get('organisationId').invalid" class="error-message">
+        {{ 'organisation.invitation.errorMessage' | translate }}
+      </div>
+    </ng-container>
+  </form>
+
+  <div action-buttons class="btn-wrap">
+    <app-button (clicked)="onModalClose()" mode="v2" variant="secondary">{{ 'global.cancel' | translate }}</app-button>
+    <app-button (clicked)="invite($event)" class="btn-invite" *ngIf="!userHaveOrganisation && !emailInvited" mode="v2" variant="primary">{{
+      'organisation.invitation.invite' | translate
+    }}</app-button>
+  </div>
+</loop-modal>

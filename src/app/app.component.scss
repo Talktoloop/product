@@ -1,0 +1,43 @@
+@import 'variables';
+@import 'mixins';
+
+.app-wrapper {
+  min-height: calc(100vh + 10px);
+
+  &--magic-link {
+    height: 100%;
+    min-height: 100%;
+  }
+}
+
+.notification-container-top {
+  position: fixed;
+  top: 3rem;
+  right: 0;
+  z-index: 9999;
+
+  @media screen and (max-width: $breakpoint-md - 0.1) {
+    width: 98%;
+    @include right(1%);
+  }
+}
+
+@media screen and (max-width: $breakpoint-md - 0.1) {
+  ::ng-deep {
+    .bx--toast-notification {
+      width: 100%;
+    }
+  }
+}
+
+.notification-container-bottom {
+  position: fixed;
+  bottom: 1rem;
+  @include right(0);
+  z-index: 9999;
+
+  @media screen and (max-width: $breakpoint-md - 0.1) {
+    width: 98%;
+    @include right(1%);
+  }
+}

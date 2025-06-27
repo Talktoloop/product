@@ -1,0 +1,8 @@
+<div [class.safe-mode]="safeMode">
+  <div class="safe-mode__text" *ngIf="safeMode">
+    <p cy="safe-mode-paragraph-text" class="safe-mode-paragraph">
+      <app-lock-icon class="mr-0625 flex-center"></app-lock-icon>{{ 'newStoryV2.safeMode' | translate }}
+    </p>
+  </div>
+  <ng-content></ng-content>
+</div>

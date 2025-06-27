@@ -1,0 +1,34 @@
+<div
+  *ngFor="let element of list; let test = index"
+  (click)="onItemClick(element)"
+  class="mobile-table-item"
+  [class.no-padding]="noPadding"
+  [ngClass]="additionalRowClassCondition && additionalRowClassCondition(element)"
+>
+  <div class="mobile-table-item-properties">
+    <ng-container *ngFor="let cell of cells.toArray(); let $index = index">
+      <div [style.flex-basis]="getColumnFlexBasis()" class="mobile-table-column" [class.no-padding]="noPadding">
+        <span class="mobile-table-property-name">
+          {{ columns[$index]?.label | translate }}
+        </span>
+        <div class="mobile-table-property-value">
+          <ng-template *ngTemplateOutlet="cell.templateRef; context: { $implicit: element }"></ng-template>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="mobile-table-action-buttons" *ngIf="showCustomActions">
+    <ng-container *ngFor="let action of element.customActions || actions">
+      <app-button
+        (click)="onActionClick(action, element)"
+        [fullWidth]="true"
+        class="mobile-table-action-buttons__action-btn"
+        mode="v2"
+        [variant]="action.isPrimaryButtonStyle ? 'primary' : 'outlined'"
+      >
+        {{ action.label | translate }}
+      </app-button>
+    </ng-container>
+  </div>
+</div>

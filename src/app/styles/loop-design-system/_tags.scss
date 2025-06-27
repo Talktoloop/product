@@ -1,0 +1,217 @@
+@use 'sass:map';
+@import 'mixins';
+@import 'loop-design-system-v2/colors';
+
+.simple-tag {
+  align-items: center;
+  background: white;
+  border-radius: 100px;
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  font-weight: 600;
+  justify-content: space-between;
+
+  // SIZE
+  &.extra-small {
+    padding: pxToRem(4) pxToRem(12);
+    font-size: pxToRem(14);
+
+    .close-icon {
+      @include margin-left(pxToRem(9), true);
+    }
+  }
+
+  &.small {
+    padding: pxToRem(6) pxToRem(16);
+    font-size: pxToRem(14);
+
+    .close-icon {
+      @include margin-left(pxToRem(13), true);
+    }
+  }
+
+  &.medium {
+    padding: pxToRem(12) pxToRem(20);
+    font-size: pxToRem(16);
+
+    .close-icon {
+      @include margin-left(pxToRem(18), true);
+    }
+  }
+
+  &.large {
+    padding: pxToRem(16) pxToRem(24);
+    font-size: pxToRem(18);
+
+    .close-icon {
+      @include margin-left(pxToRem(18), true);
+    }
+  }
+
+  // THEME
+  &.loop {
+    border-color: map.get($loop-greens, '600');
+    color: map.get($loop-greens, '600');
+
+    &:hover {
+      background: map.get($loop-greens, '100');
+    }
+  }
+
+  &.action {
+    border-color: map.get($action-teals, '600');
+    color: map.get($action-teals, '600');
+
+    &:hover {
+      background: map.get($action-teals, '100');
+    }
+  }
+
+  &.neutral {
+    border-color: map.get($neutrals, '500');
+    color: map.get($neutrals, '500');
+
+    &:hover {
+      background: map.get($neutrals, '050');
+    }
+  }
+
+  &.disable {
+    border-color: map.get($neutrals, '300');
+    color: map.get($neutrals, '300');
+
+    &:hover {
+      background: map.get($neutrals, '000');
+    }
+  }
+
+  &.danger {
+    border-color: map.get($destructive-reds, '600');
+    color: map.get($destructive-reds, '600');
+  }
+}
+
+.story-tag {
+  align-items: center;
+  background: white;
+  border-color: map.get($loop-greens, '600');
+  border-radius: 100px;
+  border-style: solid;
+  border-width: 1px;
+  color: map.get($loop-greens, '600');
+  display: flex;
+  font-weight: normal;
+  justify-content: space-between;
+  line-height: pxToRem(24);
+
+  app-story-category-icon {
+    @include margin-right(pxToRem(13), true);
+  }
+
+  // SIZE
+  &.extra-extra-small {
+    padding: pxToRem(4) pxToRem(12);
+    font-size: pxToRem(14);
+    line-height: 0px;
+    width: auto;
+
+    app-story-category-icon {
+      height: pxToRem(12);
+      width: pxToRem(12);
+    }
+  }
+
+  &.extra-small {
+    padding: pxToRem(4) pxToRem(12);
+    font-size: pxToRem(14);
+
+    app-story-category-icon {
+      height: pxToRem(16);
+      width: pxToRem(16);
+    }
+  }
+
+  &.small {
+    padding: pxToRem(6) pxToRem(16);
+    font-size: pxToRem(14);
+
+    app-story-category-icon {
+      height: pxToRem(16);
+      width: pxToRem(16);
+    }
+  }
+
+  &.medium {
+    padding: pxToRem(12) pxToRem(20);
+    font-size: pxToRem(16);
+
+    app-story-category-icon {
+      height: pxToRem(18);
+      width: pxToRem(18);
+    }
+  }
+
+  &.large {
+    padding: pxToRem(16) pxToRem(24);
+    font-size: pxToRem(18);
+
+    app-story-category-icon {
+      height: pxToRem(20);
+      width: pxToRem(20);
+    }
+  }
+
+  // Sensitive
+  &.sensitive {
+    border-color: map.get($destructive-reds, '600');
+    color: map.get($destructive-reds, '600');
+  }
+}
+
+.required-tag {
+  align-items: center;
+  border-radius: 32px;
+  display: flex;
+  font-weight: 700;
+  justify-content: space-between;
+
+  // SIZE
+  &.extra-small {
+    padding: 4px 12px;
+    line-height: 20px;
+    font-size: pxToRem(14);
+  }
+
+  &.small {
+    padding: pxToRem(12);
+    font-size: pxToRem(14);
+  }
+
+  &.medium {
+    padding: pxToRem(14);
+    font-size: pxToRem(16);
+  }
+
+  &.large {
+    padding: pxToRem(16);
+    font-size: pxToRem(18);
+  }
+
+  // THEME
+  &.neutral {
+    background: map.get($emphasis-blues, '100');
+    color: map.get($emphasis-blues, '600');
+  }
+
+  &.error {
+    background: map.get($destructive-reds, '100');
+    color: map.get($destructive-reds, '600');
+  }
+
+  &.success {
+    background: map.get($action-teals, '100');
+    border-radius: 100%;
+    color: map.get($action-teals, '500');
+  }
+}

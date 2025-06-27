@@ -1,0 +1,19 @@
+<ng-container *ngIf="id && postType">
+  <button class="btn-clear" [class.opened]="contextMenuOpened" (click)="contextMenuClicked($event)" #buttonEl>
+    <app-dots-horizontal-icon></app-dots-horizontal-icon>
+  </button>
+  <loop-select
+    *ngIf="contextMenuOpened"
+    (appClickOutside)="handleOutsideClick()"
+    [omitFirstRenderCheck]="true"
+    [appStopEvent]="'click'"
+    appDropdown
+    [sourceEl]="buttonEl"
+    [dropDownPlacement]="'bottom'"
+    [sourceWidth]="212"
+  >
+    <loop-select-option data-testid="edit" (clicked)="editClicked()" title="">{{
+      'admin.contextMenu.edit' | translate
+    }}</loop-select-option>
+  </loop-select>
+</ng-container>

@@ -1,0 +1,210 @@
+@import 'variables';
+@import 'loop-design-system/helpers';
+@import 'mixins';
+
+$max-width: 78.625rem;
+
+:host {
+  ::ng-deep {
+    loop-filter-section-v2 {
+      display: flex;
+      margin: 0 1rem;
+
+      .filters-section {
+        width: 100%;
+        max-width: 78.625rem;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+.statistics {
+  overflow: hidden;
+  height: 100%;
+  padding-bottom: 3rem;
+  background-color: #fff;
+
+  .routing-bar {
+    background-color: white;
+  }
+
+  ::ng-deep {
+    h3 {
+      color: #1a1a1a;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      @include margin-right(1.5rem);
+      @include mobile-only {
+        font-size: 1.125rem;
+      }
+
+      .highlight {
+        color: $color-purple-light;
+        font-weight: bold;
+      }
+    }
+    .stats-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 15px;
+
+      @include mobile-only {
+        padding: 0;
+      }
+
+      .two-columns {
+        @media screen and (min-width: 1135px) {
+          display: grid;
+          grid-template-columns: minmax(320px, 31.563rem) minmax(16rem, 24.813fr);
+          grid-gap: 1rem;
+          gap: 1rem;
+          &.reversed {
+            grid-template-columns: minmax(16rem, 24.813fr) minmax(320px, 31.563rem);
+          }
+        }
+      }
+    }
+
+    .stats-tooltip {
+      background-color: #262626;
+      border-radius: 8px;
+      padding: 22px 25px 20px 25px;
+      display: flex;
+      z-index: 3;
+
+      .custom-marker-1 {
+        @include margin-right(0.5rem);
+        @include mobile-only {
+          display: inline-block;
+          margin-right: 0.25rem;
+          border-radius: 2px;
+          width: 15px;
+          height: 2px;
+        }
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-left: 8px solid transparent;
+        border-top: 8px solid black;
+        border-right: 8px solid transparent;
+        left: calc(50% - 8px);
+        top: 100%;
+      }
+
+      &.tooltip--right:before {
+        left: 80%;
+      }
+
+      &.tooltip--left:before {
+        left: 15%;
+      }
+
+      p {
+        display: flex;
+        align-items: center;
+      }
+
+      .content {
+        color: white;
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+        font-size: 1rem;
+
+        @include mobile-only {
+          font-size: 0.825rem;
+          line-height: 1.25;
+        }
+        > span:last-child {
+          @include margin-left(0.5rem);
+        }
+      }
+
+      .axis-label {
+        color: white;
+        font-weight: 600;
+        font-size: 1.125rem;
+        @include margin-right(1.25rem);
+        @include padding-right(1.25rem);
+        @include border-right(1px solid #656565);
+
+        @include mobile-only {
+          font-size: 0.825rem;
+        }
+        &.hide-mobile {
+          @include mobile-only {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .chart {
+    border: 1px solid white;
+    border-radius: 8px;
+    margin-top: 1.25rem;
+    background: white;
+    padding: 3rem;
+    position: relative;
+    min-height: 300px;
+
+    @include mobile-only {
+      border-radius: 0;
+      padding: 1rem;
+    }
+
+    .info-circle {
+      cursor: pointer;
+      position: absolute;
+      @include right(2.188rem);
+      top: 2.188rem;
+      z-index: $chart-control-zindex;
+      @include mobile-only {
+        @include right(0.938rem);
+        top: 0.938rem;
+      }
+    }
+  }
+
+  .chart-title {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    margin-top: 5.625rem;
+
+    @include mobile-only {
+      flex-direction: column;
+      margin-bottom: 0;
+      margin-top: 1.25rem;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 2.188rem;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.1;
+      letter-spacing: normal;
+      text-align: left;
+      color: #1a1a1a;
+      @include mobile-only {
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        font-size: 1.375rem;
+      }
+    }
+  }
+}

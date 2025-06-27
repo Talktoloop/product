@@ -1,0 +1,111 @@
+<loop-modal>
+  <h2 class="reject-form__heading subheading" *ngIf="!multiple">
+    {{ 'admin.' + type + '.modal.title' | translate }}
+  </h2>
+  <h2 class="reject-form__heading subheading" *ngIf="multiple">
+    {{
+    (selectedItems.length > 1
+    ? 'admin.storiesSelection.modal.title'
+    : 'admin.storySelection.modal.title') | translate : { count: selectedItems.length }
+    }}
+  </h2>
+  <section class="reject-form__form">
+    <form cy="reject-form-form" [formGroup]="rejectForm">
+      <section class="mb-2">
+        <ng-container *ngIf="(rejectionReasons$ | async)?.length; else skeleton">
+          <h3 class="section-title mb-075">
+            {{ 'admin.rejectModal.reasonsHeading' | translate }}
+          </h3>
+
+          <loop-checkbox-wrapper formControlName="reasons" [singleValue]="false" [options]="expectedReasons | async"
+            [noTranslation]="true" [bulkActionVisible]="false"></loop-checkbox-wrapper>
+
+          <div *ngFor="let item of expectedReasonsWithChildren | async" class="mb-1">
+            <!-- (mouseleave)="toggleDropdown(item.code, true)" -->
+            <div>
+              <button class="drop-toggle" (click)="toggleDropdown(item.code)" type="button">
+                <span style="font-size: large;">{{ item.content | translate }}</span>
+                <div class="toggle-section">
+                  <span class="selected-count" *ngIf="getSelectedCount(item.code) > 0">
+                    {{ getSelectedCount(item.code) }}
+                  </span>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                    [class.rotate-270]="!isDropdownOpen(item.code)" fill="currentColor">
+                    <path d="M24 24H0V0h24v24z" fill="none" opacity=".87" />
+                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z" />
+                  </svg>
+
+                </div>
+              </button>
+              <div class="drop-show" [class.active]="openDropdowns[item.code]">
+                <label *ngFor="let child of item.children" class="dropdown-checkbox">
+                  <input type="checkbox" [checked]="isChildSelected(child.id)"
+                    (change)="onChildOptionChange($event, child.id)" />
+                  <span>{{ child.content }}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other reason text area -->
+          <h3 class="section-title--small mb-075 mt-1875" *ngIf="isOtherSelected">
+            {{ 'admin.rejectModal.otherReasonTextfieldPlaceholder' | translate }}:
+          </h3>
+          <loop-textarea *ngIf="isOtherSelected" formControlName="reasonText"></loop-textarea>
+        </ng-container>
+
+        <ng-template #skeleton>
+          <app-skeleton-loader [lines]="skeletonLines"></app-skeleton-loader>
+        </ng-template>
+      </section>
+      <section class="mb-2">
+        <ng-container *ngIf="hasAuthor; else anonymousNotice">
+          <h3 class="section-title mb-1">
+            {{ 'admin.rejectModal.feedbackHeading' | translate }}
+          </h3>
+          <div class="mb-1">
+            <app-radio-group formControlName="sendFeedback">
+              <loop-new-story-radio cy="reject-form-feedback-no-loop-new-story-radio"
+                [label]="'newStoryV2.form.content.sensitive.no' | translate" [value]="false"
+                [checked]="rejectForm.get('sendFeedback')?.value === false"></loop-new-story-radio>
+              <loop-new-story-radio cy="reject-form-feedback-yes-loop-new-story-radio"
+                data-testid="reject-form-feedback-yes-loop-new-story-radio"
+                [label]="'newStoryV2.form.content.sensitive.yes' | translate" [value]="true"
+                [checked]="rejectForm.get('sendFeedback')?.value === true"></loop-new-story-radio>
+            </app-radio-group>
+          </div>
+          <h3 class="section-title--small mb-075" *ngIf="showFeedbackForm">
+            {{ 'admin.rejectModal.writeYourFeedback' | translate }}:
+          </h3>
+          <loop-textarea cy="reject-form-feedback-loop-textarea" data-testid="reject-form-feedback-loop-textarea"
+            *ngIf="showFeedbackForm" formControlName="rationale"></loop-textarea>
+        </ng-container>
+        <ng-template #anonymousNotice>
+          <p class="body-default italic">
+            {{ 'admin.rejectModal.contentAnnonymous' | translate }}
+          </p>
+        </ng-template>
+      </section>
+    </form>
+  </section>
+
+  <div class="reject-form-author-will-be-not-informed" *ngIf="contactIsNotAccepted">
+    <app-info-icon></app-info-icon>
+    <div class="content">
+      {{ 'admin.pendingStoryReview.authorWillBeNotInformed' | translate }}
+    </div>
+    <app-close-icon [size]="14"></app-close-icon>
+  </div>
+
+  <div cy="reject-form-actions-footer" class="reject-form__actions" action-buttons>
+    <app-button cy="reject-form-app-button-cancel" class="reject-form__button" mode="v2" variant="outlined"
+      (click)="onModalClose()">
+      {{ 'admin.' + type + '.modal.cancelButton' | translate }}
+    </app-button>
+    <app-button cy="reject-form-app-button-submit" data-testid="reject-form-app-button-submit"
+      class="reject-form__button" mode="v2" variant="danger" (click)="rejectClick()" [disabled]="!isFormValid()">
+      <span>{{ 'admin.' + type + '.modal.rejectButton' | translate }}</span>
+    </app-button>
+  </div>
+</loop-modal>

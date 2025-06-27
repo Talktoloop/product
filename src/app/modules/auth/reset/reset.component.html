@@ -1,0 +1,30 @@
+<app-main-template
+  (actionClick$)="resetSubmit($event)"
+  (backClick$)="backAction($event)"
+  [actionText]="'auth.reset.form.submitText' | translate"
+  [backAction]="true"
+  [headerText]="'auth.reset.form.headerText' | translate"
+  [submitting]="submitting"
+>
+  <form form [formGroup]="resetForm" class="reset-form">
+    <p class="reset-form-header">
+      {{ 'auth.reset.form.subHeaderText' | translate }}
+    </p>
+
+    <label class="label-container">
+      <span class="label-content">
+        {{ 'auth.reset.form.email.label' | translate }}
+      </span>
+
+      <loop-input
+        [showClearBtn]="true"
+        [showCloseIcon]="true"
+        autocomplete="email"
+        formControlName="email"
+        id="email"
+        inputmode="email"
+        type="email"
+      ></loop-input>
+    </label>
+  </form>
+</app-main-template>

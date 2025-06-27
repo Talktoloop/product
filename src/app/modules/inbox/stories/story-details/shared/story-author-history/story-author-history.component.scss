@@ -1,0 +1,18 @@
+.feedback-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; /* Add padding inside each line */
+    margin-bottom: 10px; /* Add space between rows */
+    border: 1px solid #ccc; /* Full-width border around each row */
+    border-radius: 2px; /* Optional: slight rounding for aesthetics */
+  }
+  
+  .feedback-status {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .feedback-date {
+    font-size: 15px;
+    color: #747474;
+  }

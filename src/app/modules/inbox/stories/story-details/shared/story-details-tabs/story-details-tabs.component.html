@@ -1,0 +1,19 @@
+<div class="story-review-tabs-container">
+  <div class="tabs-menu">
+    <ng-container *ngFor="let tab of tabs; let index = index">
+      <a data-testid="channelInfo" (click)="selectTab(tab)"
+        [ngClass]="{ 'tabs-menu__item-selected': tab === selectedTab }" class="tabs-menu__item">
+        {{ tab | translate }}
+      </a>
+      <div class="tabs-menu__separator" *ngIf="index !== tabs.length - 1"></div>
+    </ng-container>
+  </div>
+
+  <app-divider class="full-width__divider"></app-divider>
+
+  <div [ngSwitch]="selectedTab">
+    <ng-content *ngSwitchCase="tabs[0]" select="[firstTab]"></ng-content>
+    <ng-content *ngSwitchCase="tabs[1]" select="[secondTab]"></ng-content>
+    <ng-content *ngSwitchCase="tabs[2]" select="[thirdTab]"></ng-content>
+  </div>
+</div>

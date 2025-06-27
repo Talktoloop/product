@@ -1,0 +1,7 @@
+<loop-modal [title]="'newStoryV2.modals.country.title' | translate" class="new-story-v2">
+  <p class="loop-modal__paragraph">{{ 'newStoryV2.modals.country.topParagraph' | translate }}</p>
+  <p class="pt-125">{{ 'newStoryV2.modals.country.bottomParagraph' | translate }}</p>
+  <div action-buttons>
+    <app-button (clicked)="onModalClose()" mode="v2" variant="primary">{{ 'newStoryV2.modals.ok' | translate }}</app-button>
+  </div>
+</loop-modal>

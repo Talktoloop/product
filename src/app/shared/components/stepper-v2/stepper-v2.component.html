@@ -1,0 +1,36 @@
+<div class="wizard" *ngIf="!wizardInvisible">
+  <div class="wizard__step" *ngFor="let step of steps; let index = index">
+    <div class="wizard__dot" *ngIf="!step.invisible">
+      <div class="wizard__connector wizard__connector--start"></div>
+      <div
+        [ngClass]="{
+          wizard__text: true,
+          'wizard__text--previous': isPreviousStep(index),
+          'wizard__text--future': isFutureStep(index),
+          'wizard__text--active': isActive(index),
+          'wizard__text--optional': step.optional
+        }"
+        (click)="handleStepClick(index)"
+      >
+        <div class="wizard__number" [attr.aria-label]="index">
+          <span *ngIf="!isPreviousStep(index); else stepStatus">{{ index + 1 }}</span>
+          <ng-template #stepStatus>
+            <app-done-icon class="wizard__number-icon"></app-done-icon>
+          </ng-template>
+        </div>
+        <div class="wizard__title" [class.wizard__title--optional]="step.optional">{{ step.title }}</div>
+        <app-pill
+          *ngIf="step.optional"
+          class="wizard__optional-pill"
+          [theme]="isActive(index) ? 'outlined-purple' : 'outlined-light-gray3'"
+          [variant]="'new'"
+          [text]="'global.optional' | translate"
+          size="small"
+        ></app-pill>
+      </div>
+      <div class="wizard__connector wizard__connector--end" *ngIf="index !== 2"></div>
+    </div>
+  </div>
+</div>
+
+<ng-content></ng-content>

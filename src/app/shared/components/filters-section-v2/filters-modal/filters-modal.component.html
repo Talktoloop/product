@@ -1,0 +1,206 @@
+<loop-modal
+  [title]="nestedMode ? null : ((isAllFilters ? 'filtersV2.modal.allFilters' : 'filtersV2.modal.moreFilters') | translate)"
+  class="filters-v2-modal"
+>
+  <ng-container *ngIf="nestedMode && !ui.mobileView">
+    <ng-container *ngTemplateOutlet="backBtn"></ng-container>
+  </ng-container>
+  <div class="filters-modal__header" *ngIf="ui.mobileView">
+    <ng-container *ngIf="!nestedMode; else backOnlyNavigationBar">
+      <button class="filtersV2-link-button" (click)="clearAll.emit()">
+        {{ 'filtersV2.clearAll' | translate }}
+      </button>
+      <span class="filters-modal__header-title">{{ 'filtersV2.filters.title' | translate }}</span>
+      <button class="exit-icon" (click)="onModalClose()">
+        <app-close-icon></app-close-icon>
+      </button>
+    </ng-container>
+    <ng-template #backOnlyNavigationBar>
+      <ng-container *ngTemplateOutlet="backBtn"></ng-container>
+    </ng-template>
+  </div>
+  <form class="filters-modal__content" [formGroup]="form">
+    <ng-container *ngFor="let singleConfig of config">
+      <ng-container [ngSwitch]="singleConfig.type">
+        <!-- ORGANISATION -->
+        <ng-container *ngSwitchCase="FilterType.ORGANISATION">
+          <loop-organisation-filter
+            *ngIf="shouldRender(singleConfig)"
+            [formControlName]="singleConfig.internalName"
+            [title]="singleConfig.translationKey | translate"
+            [placeholder]="'filtersV2.organisation.placeholder' | translate"
+            [showAddOption]="false"
+            [showAllWhenEmpty]="true"
+            [isModal]="true"
+          ></loop-organisation-filter>
+        </ng-container>
+
+        <!-- PRESET -->
+        <ng-container *ngSwitchCase="FilterType.PRESET">
+          <loop-filters-preset
+            *ngIf="shouldRender(singleConfig)"
+            [title]="singleConfig.translationKey | translate"
+            [form]="form"
+            (presetApplied)="onPresetApplied($event)">
+          </loop-filters-preset>
+        </ng-container>
+
+        <!-- CHECKBOX -->
+        <ng-container *ngSwitchCase="FilterType.CHECKBOX">
+          <loop-checkbox-wrapper
+            *ngIf="shouldRender(singleConfig)"
+            [options]="singleConfig.data.data"
+            [title]="singleConfig.translationKey | translate"
+            [formControlName]="singleConfig.internalName"
+            [isModal]="true"
+            [strictTranslationCode]="true"
+          ></loop-checkbox-wrapper>
+        </ng-container>
+
+        <!-- ORGANISATION_RESPONSIVENESS -->
+       <ng-container *ngSwitchCase="FilterType.ORGANISATION_RESPONSIVENESS">
+        <loop-replied-to-filter
+          *ngIf="shouldRender(singleConfig)"
+          [config]="singleConfig"
+          [form]="form"
+          (modalFilterDataChange)="onRepliedToFilterChange($event)"
+          [nestedModalMode]="nestedMode===singleConfig.internalName"
+          [isAllFiltersModal]="isAllFilters"
+          [isModal]="true"
+          [repliedToData]="singleConfig.data.data"
+          (seeAllClicked)="onNestedModeClick(singleConfig)"
+          [title]="singleConfig.translationKey | translate"
+          >
+        </loop-replied-to-filter>
+       </ng-container>
+
+        <!-- CHECKBOX TABS -->
+        <ng-container *ngSwitchCase="FilterType.CHECKBOX_TABS">
+          <loop-checkbox-tabs-filter
+            *ngIf="shouldRender(singleConfig)"
+            [title]="singleConfig.translationKey | translate"
+            [config]="singleConfig"
+            [isCases]="isCases"
+            [form]="form.get(singleConfig.internalName)"
+            [data]="singleConfig.data"
+            [isModal]="true"
+            [nestedModalMode]="nestedMode"
+            [isAllFiltersModal]="isAllFilters"
+            (seeAllClicked)="onNestedModeClick(singleConfig)"
+          ></loop-checkbox-tabs-filter>
+        </ng-container>
+
+        <!-- CHECKBOX SINGLE -->
+        <ng-container *ngSwitchCase="FilterType.CHECKBOX_SINGLE">
+          <loop-checkbox-wrapper
+            *ngIf="shouldRender(singleConfig)"
+            [options]="singleConfig.data.data"
+            [title]="singleConfig.translationKey | translate"
+            [formControlName]="singleConfig.internalName"
+            [isModal]="true"
+            [singleValue]="true"
+            [bulkActionVisible]="false"
+            [strictTranslationCode]="true"
+          ></loop-checkbox-wrapper>
+        </ng-container>
+
+        <!-- REGION -->
+        <ng-container *ngSwitchCase="FilterType.REGION">
+          <loop-region-wrapper-filter *ngIf="shouldRender(singleConfig)" [title]="singleConfig.translationKey | translate">
+            <app-location
+              [onlyWithStories]="true"
+              [canChooseMoreThanOne]="true"
+              [isOnlyDropdown]="false"
+              (multiData$)="onDataChange($event)"
+              [semiClicked]="form.get('region')?.value?.semiClicked || []"
+              [selectedRegionsOrCountries]="form.get('region')?.value?.selectedRegionsOrCountries || []"
+            ></app-location>
+          </loop-region-wrapper-filter>
+        </ng-container>
+
+        <!-- CHECKBOX LIST -->
+        <ng-container *ngSwitchCase="FilterType.CHECKBOX_LIST">
+          <loop-checkbox-filter-wrapper-grouped
+            *ngIf="shouldRender(singleConfig)"
+            [title]="singleConfig.translationKey | translate"
+            [filterData]="singleConfig.data"
+            [form]="form"
+            [controlName]="singleConfig.internalName"
+            [isModal]="true"
+            [isAllFiltersModal]="isAllFilters"
+            [nestedModalMode]="nestedMode === singleConfig.internalName"
+            (totalSelectedChange)="applyButtonVisibilityChange(!!$event)"
+            (groupDetailsClicked)="applyButtonVisibilityChange(true)"
+            (seeAllClicked)="onNestedModeClick(singleConfig)"
+          ></loop-checkbox-filter-wrapper-grouped>
+        </ng-container>
+
+        <!-- AUTOCOMPLETE -->
+        <ng-container *ngSwitchCase="FilterType.AUTOCOMPLETE">
+          <loop-autocomplete-filter
+            *ngIf="shouldRender(singleConfig)"
+            [title]="singleConfig.translationKey | translate"
+            [config]="singleConfig"
+            [formControlName]="singleConfig.internalName"
+          ></loop-autocomplete-filter>
+        </ng-container>
+
+        <!-- DOUBLE AUTOCOMPLETE -->
+        <ng-container *ngSwitchCase="FilterType.DOUBLE_AUTOCOMPLETE">
+          <loop-location-wrapper-filter
+            *ngIf="shouldRender(singleConfig)"
+            [isCases]="isCases"
+            [lastLocationQuery]="regionId"
+            [countryControlName]="'country'"
+            [locationControlName]="'location'"
+            (locationQueryChanged)="regionIdChanged.emit($event)"
+            [form]="form.get(singleConfig.internalName)"
+            [title]="'filtersV2.location.label' | translate"
+            [isModal]="true"
+          ></loop-location-wrapper-filter>
+        </ng-container>
+
+        <!-- CALENDAR -->
+        <ng-container *ngSwitchCase="FilterType.CALENDAR">
+          <loop-date-wrapper-filter
+            *ngIf="shouldRender(singleConfig)"
+            [isCases]="isCases"
+            [isModal]="true"
+            [form]="form"
+            [controlName]="singleConfig.internalName"
+            [title]="'filtersV2.date.label' | translate"
+            [isAllFiltersModal]="isAllFilters"
+            [nestedModalMode]="nestedMode === singleConfig.internalName"
+            (seeAllClicked)="onNestedModeClick(singleConfig)"
+          ></loop-date-wrapper-filter>
+        </ng-container>
+
+        <!-- SELECT -->
+        <ng-container *ngSwitchCase="FilterType.SELECT">
+          <loop-language-filter
+            *ngIf="shouldRender(FiltersNames.LANGUAGE)"
+            [controlName]="FiltersNamesMapping[FiltersNames.LANGUAGE]"
+            [form]="form"
+            [title]="'inbox.filters.labels.language' | translate"
+          ></loop-language-filter>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </form>
+  <div action-buttons class="footer">
+    <button *ngIf="!ui.mobileView" class="filtersV2-link-button" (click)="clearAll.emit()">
+      <app-remove-bin-icon class="filters-section__left-panel__clear-all__icon"></app-remove-bin-icon>
+      {{ 'filtersV2.clearAll' | translate }}
+    </button>
+    <app-button #modalApplyBtn class="apply-button" variant="primary" mode="v2" (clicked)="onConfirm()" (focused)="onApplyBtnFocus()">
+      {{ 'filtersV2.apply' | translate }}
+    </app-button>
+  </div>
+</loop-modal>
+
+<ng-template #backBtn>
+  <app-button mode="v2" variant="link-3" class="filtersV2-link-button back-button" (clicked)="onNestedModeClose($event)">
+    <app-arrow-next-icon class="back-button__icon"></app-arrow-next-icon>
+    {{ 'filtersV2.backBtn' | translate }}
+  </app-button>
+</ng-template>

@@ -1,0 +1,9 @@
+<div class="details-container">
+  <div class="details-header" #detailsHeader>
+    <a class="details-header__back-arrow" [routerLink]="backUrl">
+      <img class="arrow-image" src="assets/icons/arrow_previous_green.svg" />
+      <span>{{ backToText | translate }}</span>
+    </a>
+  </div>
+  <ng-content></ng-content>
+</div>

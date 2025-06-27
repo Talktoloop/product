@@ -1,0 +1,21 @@
+@import 'mixins';
+@import 'variables';
+
+.comments-action {
+  @include margin-right(-1.08rem);
+  &__reply {
+    ::ng-deep {
+      .content {
+        font-size: 1.125rem;
+
+        > * + * {
+          @include margin-left(0.625rem);
+        }
+      }
+    }
+  }
+
+  &__upvote {
+    color: $grey;
+  }
+}

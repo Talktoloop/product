@@ -1,0 +1,8 @@
+<app-story-action-buttons
+  [loading]="performingSaveAction"
+  [rejectTranslateKey]="'story.details.review.buttons.rejectStory'"
+  [backButtonDisplayCondition]="storyDetailsService.story.channel === CHANNEL_CONSTANTS.IVRR"
+  [submitButtonDisplayCondition]="false"
+  [rejectButtonDisplayCondition]="false"
+  (backClick)="handleBackClick()"
+></app-story-action-buttons>

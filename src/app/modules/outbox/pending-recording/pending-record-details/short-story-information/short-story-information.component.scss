@@ -1,0 +1,49 @@
+@import 'loop-design-system-v2/colors';
+@import 'mixins';
+@import '_helpers';
+
+:host {
+  .short-story-details {
+    font-weight: 700;
+    letter-spacing: 0;
+    color: $neutral-800;
+    @media (min-width: $breakpoint-xl) {
+      padding: pxToRem(32);
+    }
+    ::ng-deep {
+      app-divider {
+        .divider {
+          margin-top: 1rem;
+        }
+      }
+    }
+    &__title {
+      display: none;
+      font-size: pxToRem(20);
+      @media (min-width: $breakpoint-xl) {
+        display: block;
+      }
+    }
+    &__detail {
+      margin-top: pxToRem(32);
+      line-height: pxToRem(24);
+      &--name {
+        color: $neutral-700;
+        font-size: pxToRem(16);
+      }
+      &--value {
+        font-weight: 400;
+        display: inline-block;
+        font-size: pxToRem(18);
+        margin-top: pxToRem(12);
+        loop-story-tag {
+          ::ng-deep {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}

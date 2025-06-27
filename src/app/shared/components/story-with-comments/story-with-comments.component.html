@@ -1,0 +1,42 @@
+<div class="story-with-comments" [class.one-column]="forceInfoWithin">
+  <div>
+    <app-story-card [story]="story" [showSubheading]="true" [loading]="loading">
+      <ng-container ngProjectAs="after">
+        <div *ngIf="showStoryInfo && ((this.uiService.mobileView$ | async) || forceInfoWithin)">
+          <div class="post__section-separator story-with-comments__form-separator"></div>
+          <ng-container *ngTemplateOutlet="additionalStoryInfo; context: { within: true }"></ng-container>
+        </div>
+        <div id="form-container" *ngIf="showForm">
+          <div class="post__section-separator story-with-comments__form-separator"></div>
+          <app-reply-form [story]="story" [commentId]="story$ | async" [skeleton]="(story$ | async) === undefined"></app-reply-form>
+        </div>
+      </ng-container>
+    </app-story-card>
+
+    <div class="comments" id="comments-container" *ngIf="showReplies">
+      <div class="story-details__components-header" *ngIf="commentsLoadedCount > -1">
+        <h3 class="story-details__comments-count">{{ 'comments.replies' | translate : { count: commentsLoadedCount } }}</h3>
+        <span class="t-medium text-secondary" *ngFor="let organisation of organisationsReplied; let i = index; trackBy: trackByFunction"
+          >{{ commentsLoadedCount > -1 ? organisation : '' }}
+          <ng-container *ngIf="commentsLoadedCount > -1 && i < organisationsReplied.length - 1">,&nbsp;</ng-container></span
+        >
+      </div>
+      <div class="comments-wrapper">
+        <app-comment-list
+          [id]="(story$ | async)?.id"
+          [forceExpanded]="forceExpanded"
+          [showReplyForm]="showForm"
+          (loaded)="commentsLoadedEvent($event)"
+        ></app-comment-list>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showStoryInfo && (this.uiService.mobileView$ | async) === false && !forceInfoWithin">
+    <ng-container *ngTemplateOutlet="additionalStoryInfo; context: { within: false }"></ng-container>
+  </div>
+
+  <ng-template #additionalStoryInfo let-within="within">
+    <app-additional-story-info [story]="story" [flat]="within" [noPadding]="within"></app-additional-story-info>
+  </ng-template>
+</div>

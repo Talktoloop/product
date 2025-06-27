@@ -1,0 +1,229 @@
+@use 'sass:map';
+@import '../../../styles/loop-design-system/colors';
+@import 'variables';
+@import 'mixins';
+@import 'loop-design-system-v2/colors';
+
+:host {
+  &.ng-invalid.ng-dirty {
+    color: grey;
+
+    ::ng-deep {
+      .loop-input {
+        border-color: $error-2;
+
+        &:hover {
+          border-color: $error-2;
+          box-shadow: inset 0 0 1px 2px $error-2;
+        }
+
+        &:focus-within {
+          box-shadow: inset 0 0 1px 2px $error-2;
+        }
+      }
+    }
+  }
+}
+
+$selected-shadow: 0 0 0 0.188rem rgba(0, 0, 0, 0.15);
+
+.autocomplete {
+  $self: &;
+
+  &__country {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: $neutral-500;
+  }
+
+  &__loader {
+    position: absolute;
+    width: auto;
+    @include centerAbsoluteElement;
+  }
+
+  &__icon {
+    color: map.get($loop-greens, '500');
+  }
+
+  &__search-icon {
+    width: 1.5rem;
+  }
+
+  &__icon-chevron {
+    transition: 0.2s;
+    transform: rotate(0);
+    cursor: pointer;
+  }
+
+  &__new-line-icon {
+    color: #c7c8ca;
+  }
+
+  &__cancel-button {
+    @include margin-left(0.938rem);
+
+    ::ng-deep {
+      .button {
+        .content {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  &__input-container--mobile {
+    @include mobile-only {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &--open {
+    #{$self}__icon-chevron {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__mobile-title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.625rem;
+  }
+
+  &__extra-actions {
+    display: none;
+    font-size: 16px;
+    line-height: 22px;
+    color: $grey;
+    flex-direction: column;
+
+    &__or {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 0;
+
+      hr {
+        background: $light-grey-7;
+        width: 40px;
+        height: 1px;
+        margin: 0 8px;
+      }
+    }
+
+    &__action {
+      display: flex;
+      align-items: center;
+
+      >* {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+
+  &__add-new {
+    display: flex;
+    flex-direction: column;
+    gap: pxToRem(5);
+  }
+
+  &__pill {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.375rem 0.875rem;
+    border-radius: 100px;
+    background-color: $action-teal-100;
+    font-size: 1rem;
+    line-height: normal;
+    color: #4d4d4d;
+    border: 1px solid $action-teal-600;
+    @include margin-left(0.938rem);
+    flex-shrink: 0;
+
+    >*+* {
+      @include margin-left(0.866rem);
+    }
+
+    .icon {
+      color: $loop-green-100;
+    }
+
+    @include mobile-only {
+      font-size: 0.875rem;
+      @include margin-left(0.625rem);
+    }
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__add-new-text {
+    display: inline;
+    @include margin-left(1.25rem);
+    font-size: 1rem;
+    line-height: normal;
+    color: $grey;
+    margin-top: 15px;
+
+    @include mobile-only {
+      @include margin-left(0.938rem);
+    }
+  }
+
+  &__pill-container {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+loop-select {
+  @include mobile-only {
+    overflow-y: auto;
+    height: 100%;
+  }
+}
+
+.autocomplete-modal {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 95%;
+  z-index: 10000;
+  background: white;
+  position: fixed;
+  padding: 0.65rem 0.7rem;
+  overflow-y: visible;
+
+  .autocomplete__extra-actions {
+    margin-top: 40px;
+    display: flex;
+  }
+
+  loop-input,
+  .autocomplete loop-input {
+    display: block;
+    transition: 0.2s;
+    box-shadow: none;
+    border-radius: 2px;
+  }
+
+  &--focused {
+    loop-input {
+      box-shadow: $selected-shadow;
+    }
+  }
+}
+
+.loop-input__error {
+  font-size: 0.875rem;
+
+  &__icon {
+    @include margin-right(0.625rem);
+  }
+}
