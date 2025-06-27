@@ -1,1 +1,0 @@
-{"version":3,"file":"send-invitation-to-user.schema.js","sourceRoot":"","sources":["../../../../src/user/request/schema/send-invitation-to-user.schema.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,yCAA2B;AAEd,QAAA,0BAA0B,GAAqB,GAAG,CAAC,MAAM,CAAC;IACrE,MAAM,EAAE,GAAG,CAAC,MAAM,EAAE,CAAC,IAAI,EAAE;CAC5B,CAAC,CAAC,OAAO,CAAC,EAAE,QAAQ,EAAE,UAAU,EAAE,CAAC,CAAC"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"set-comment-as-published.schema.js","sourceRoot":"","sources":["../../../src/ivrr/schema/set-comment-as-published.schema.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,yCAA2B;AAEd,QAAA,2BAA2B,GAAqB,GAAG,CAAC,MAAM,CAAC;IACtE,SAAS,EAAE,GAAG,CAAC,MAAM,EAAE,CAAC,IAAI,EAAE;CAC/B,CAAC,CAAC,OAAO,CAAC,EAAE,YAAY,EAAE,KAAK,EAAE,CAAC,CAAC"}

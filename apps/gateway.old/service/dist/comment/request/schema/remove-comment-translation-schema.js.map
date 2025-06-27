@@ -1,1 +1,0 @@
-{"version":3,"file":"remove-comment-translation-schema.js","sourceRoot":"","sources":["../../../../src/comment/request/schema/remove-comment-translation-schema.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,yCAA2B;AAEd,QAAA,8BAA8B,GAAqB,GAAG,CAAC,MAAM,CAAC;IACzE,QAAQ,EAAE,GAAG,CAAC,MAAM,EAAE,CAAC,QAAQ,EAAE;CAClC,CAAC,CAAC"}

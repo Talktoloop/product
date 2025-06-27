@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:18-alpine3.17
+FROM public.ecr.aws/docker/library/node:20-alpine3.17
 
 # Install system dependencies
 RUN apk add --no-cache build-base libssl1.1 jq python3 py3-pip py3-setuptools groff less bash
@@ -33,7 +33,7 @@ RUN npm config set '//gitlab.com/api/v4/projects/24487110/packages/npm/:_authTok
 RUN yarn install --non-interactive --verbose \
     && yarn cache clean
 # Expose port and run entrypoint
-EXPOSE 5000
+EXPOSE 5005
 
 ENTRYPOINT ["/var/www/backend/entrypoint_local.sh"]
 

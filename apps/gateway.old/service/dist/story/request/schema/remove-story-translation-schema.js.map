@@ -1,1 +1,0 @@
-{"version":3,"file":"remove-story-translation-schema.js","sourceRoot":"","sources":["../../../../src/story/request/schema/remove-story-translation-schema.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,yCAA2B;AAEd,QAAA,4BAA4B,GAAqB,GAAG,CAAC,MAAM,CAAC;IACvE,QAAQ,EAAE,GAAG,CAAC,MAAM,EAAE,CAAC,QAAQ,EAAE;CAClC,CAAC,CAAC"}

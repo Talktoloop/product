@@ -1,1 +1,0 @@
-{"version":3,"file":"assign-stories-schema.js","sourceRoot":"","sources":["../../../../src/story/request/schema/assign-stories-schema.ts"],"names":[],"mappings":";;;;;;AAAA,8CAAsB;AAET,QAAA,mBAAmB,GAAqB,aAAG,CAAC,MAAM,CAAC;IAC9D,QAAQ,EAAE,aAAG,CAAC,KAAK,EAAE,CAAC,KAAK,CAAC,aAAG,CAAC,MAAM,EAAE,CAAC;CAC1C,CAAC,CAAA"}

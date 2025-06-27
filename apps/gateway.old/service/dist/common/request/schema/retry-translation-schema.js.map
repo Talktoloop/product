@@ -1,1 +1,0 @@
-{"version":3,"file":"retry-translation-schema.js","sourceRoot":"","sources":["../../../../src/common/request/schema/retry-translation-schema.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,yCAA2B;AAC3B,uDAAmD;AAEtC,QAAA,sBAAsB,GAAqB,GAAG,CAAC,MAAM,CAAC;IACjE,QAAQ,EAAE,gCAAc,CAAC,QAAQ;CAClC,CAAC,CAAC,OAAO,CAAC,EAAE,QAAQ,EAAE,UAAU,EAAE,CAAC,CAAC"}
