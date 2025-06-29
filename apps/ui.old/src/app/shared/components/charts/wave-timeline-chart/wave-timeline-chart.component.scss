@@ -1,9 +1,0 @@
-@import 'mixins';
-
-.base-chart {
-  height: 315px;
-
-  @include mobile-only {
-    height: 320px;
-  }
-}

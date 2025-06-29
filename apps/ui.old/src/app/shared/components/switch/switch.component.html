@@ -1,3 +1,0 @@
-<button *ngIf="options" class="btn-switch" (click)="switchClicked($event)">
-  <span *ngFor="let option of options" [class.active]="selected === option.code">{{ option.text }}</span>
-</button>

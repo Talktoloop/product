@@ -1,8 +1,0 @@
-<app-auth-page-wrapper [currentStep]="2" (back)="onBack()">
-  <app-create-new-organization
-    [isModal]="false"
-    (canceled)="onBack()"
-    (organizationAdded)="onOrganizationAdded($event)"
-    [organizationName]="organizationName"
-  ></app-create-new-organization
-></app-auth-page-wrapper>

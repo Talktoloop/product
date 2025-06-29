@@ -1,7 +1,0 @@
-@import 'mixins';
-
-.loaders {
-  display: flex;
-  flex-direction: column;
-  @include flex-gap(0.5rem);
-}

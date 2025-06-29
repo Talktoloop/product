@@ -1,8 +1,0 @@
-<section class="organisations d-flex align-items-center">
-  <span class="input-description">{{ 'global.to' | translate }}</span>
-  <app-pill *ngFor="let organisation of visibleOrganisations; trackBy: trackById" [text]="organisation.name"
-    [verified]="organisation.verified" variant="new" theme="outlined-purple"></app-pill>
-  <app-button *ngIf="showExtendButton" [noPadding]="true" variant="link" (click)="handleShowMoreClick($event)"><span>+{{
-      notVisibleOrganisationsCount }}</span>
-  </app-button>
-</section>

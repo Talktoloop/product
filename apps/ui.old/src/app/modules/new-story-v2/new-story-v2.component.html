@@ -1,8 +1,0 @@
-<loop-subpage-header [pageTitle]="'newStoryV2.heading.text'"></loop-subpage-header>
-<div class="container-v2">
-  <loop-safe-mode-wrapper [safeMode]="safeMode">
-    <app-form-newstory2 [userProfile]="userProfile" (safeModeChanged)="safeModeChanged($event)"></app-form-newstory2>
-    <loop-subpage-footer></loop-subpage-footer>
-  </loop-safe-mode-wrapper>
-</div>
-<router-outlet></router-outlet>

@@ -1,8 +1,0 @@
-<loop-modal [padding]="40" [showActionButtons]="false">
-  <app-create-new-organization
-    [isModal]="true"
-    (canceled)="onCanceled()"
-    (organizationAdded)="onOrganizationAdded($event)"
-    [organizationName]="organizationName"
-  ></app-create-new-organization>
-</loop-modal>

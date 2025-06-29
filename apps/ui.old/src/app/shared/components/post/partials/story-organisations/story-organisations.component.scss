@@ -1,6 +1,0 @@
-@import 'src/app/styles/mixins';
-
-.organisations {
-  @include flex-gap(0.625rem);
-  flex-wrap: wrap;
-}

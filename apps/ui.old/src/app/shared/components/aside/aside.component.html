@@ -1,5 +1,0 @@
-<aside *ngIf="asideService.aside$ | async as aside" [ngClass]="['aside', aside.config.position]">
-  <div class="aside__modal">
-    <ng-template [ngTemplateOutlet]="aside.templateRef"></ng-template>
-  </div>
-</aside>
