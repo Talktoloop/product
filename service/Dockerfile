@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/node:20-alpine3.17
+FROM public.ecr.aws/docker/library/node:20-alpine3.17 as final
 
 RUN apk add --no-cache build-base libssl1.1 jq python3 py3-pip py3-setuptools groff less bash
 
