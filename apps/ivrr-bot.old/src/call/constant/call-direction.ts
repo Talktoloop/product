@@ -1,4 +1,0 @@
-export enum CALL_DIRECTION {
-  INBOUND,
-  OUTBOUND,
-}
