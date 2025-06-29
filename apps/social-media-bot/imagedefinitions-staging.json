@@ -1,0 +1,10 @@
+[
+  {
+    "name": "backend",
+    "imageUri": "some-address"
+  },
+  {
+    "name": "sms",
+    "imageUri": "some-address"
+  }
+]
