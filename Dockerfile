@@ -20,7 +20,7 @@ RUN yarn install
 
 # add app
 COPY . /usr/src/ourloop-ui
-COPY src/assets/config-${env}.json src/assets/config.json
+# COPY src/assets/config-${env}.json src/assets/config.json
 COPY nginx.conf /usr/src
 
 # generate build

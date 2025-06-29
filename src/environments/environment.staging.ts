@@ -14,4 +14,6 @@ export const environment = {
   includeE2E: true,
   registerUrl: 'https://airtable.com/shrnAhKGNfOLIdFCV',
   gaTrackingCode: '',
+  posthog_key: '***REMOVED***',
+  posthog_host: 'https://eu.i.posthog.com'
 };
