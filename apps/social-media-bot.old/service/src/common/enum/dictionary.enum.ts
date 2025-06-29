@@ -1,5 +1,0 @@
-export enum DICTIONARY {
-  CONFIG = 'CONFIG',
-  WHATSAPP = 'WHATSAPP',
-  TELEGRAM = 'TELEGRAM',
-}
