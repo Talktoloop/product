@@ -1,6 +1,6 @@
 FROM node:22-alpine as build-stage
 
-ARG env=production
+ARG env=staging
 
 # set working directory
 RUN mkdir -p /usr/src/ourloop-ui
@@ -20,7 +20,7 @@ RUN yarn install
 
 # add app
 COPY . /usr/src/ourloop-ui
-RUN cp src/assets/config-production.json src/assets/config.json
+COPY src/assets/config-${env}.json src/assets/config.json
 COPY nginx.conf /usr/src
 
 # generate build
