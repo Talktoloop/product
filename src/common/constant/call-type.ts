@@ -1,0 +1,4 @@
+export enum CALL_TYPE {
+  MODERATOR_CALL,
+  SURVEY_CALL,
+}
