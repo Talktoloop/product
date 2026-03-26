@@ -82,6 +82,8 @@ import { CyModule } from "@shared/directives/cy/cy.module";
 import { FiltersPresetComponent } from "@shared/components/filters-section-v2/filters-preset/filters-preset.component";
 import { LoopDesignSystemModule } from "@shared/loop-design-system/loop-design-system.module";
 import { RepliedToFilterComponent } from './replied-to-filter/replied-to-filter.component';
+import { TooltipDirectiveModule } from '@shared/directives/tooltip/tooltip.directive.module';
+import { InfoIconModule } from '@shared/icons/info-icon/info-icon.module';
 
 @NgModule({
   declarations: [
@@ -136,7 +138,9 @@ import { RepliedToFilterComponent } from './replied-to-filter/replied-to-filter.
     LocationModule,
     NewStoryModalsModule,
     CyModule,
+    InfoIconModule,
     LoopDesignSystemModule,
+    TooltipDirectiveModule,
   ],
   exports: [FilterSectionV2Component, FilterPillComponent],
 })

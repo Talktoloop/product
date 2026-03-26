@@ -102,11 +102,24 @@ export class MessengerService {
       });
     }
 
-    const content = data.flowResponses.find((item) => item.isStory)?.content;
+    const content = data.story || data.flowResponses.find((item) => item.isStory)?.content;
 
-    const story = await this.storyService.addStory(conversation.languageId, {
+    const country = data.user?.country;
+
+    // Convert shareUserInfo to boolean (it can be 'YES', 'NO', or boolean)
+    const userWantContact =
+      typeof data.shareUserInfo === 'boolean'
+        ? data.shareUserInfo
+        : data.shareUserInfo === 'YES';
+
+    // Extract phone number from WhatsApp format (e.g., "whatsapp:+1234567890" -> "+1234567890")
+    const phone = channel === CHANNEL_CONSTANTS.WHATSAPP && data.senderId
+      ? data.senderId.replace(/^whatsapp:/, '')
+      : data.senderId;
+
+    const storyData = {
       content,
-      country: data.user.country,
+      country,
       channel,
       isSensitive: false,
       messengerConversationId: conversation.id,
@@ -117,9 +130,18 @@ export class MessengerService {
       ageByUser: data.user?.age,
       genderByUser: data.user?.gender,
       difficultyByUser: data.user?.disability,
-      userWantContact: data.shareUserInfo,
+      userWantContact,
       conversationId: conversation.id,
-    });
+      phone,
+    };
+
+    let story;
+    try {
+      story = await this.storyService.addStory(conversation.languageId, storyData);
+    } catch (error) {
+      console.error('Error adding story:', error.message, error.stack);
+      throw error;
+    }
 
     conversation.storyId = story.id;
 
@@ -300,6 +322,10 @@ export class MessengerService {
     messageType: StoryStatus,
     reasonText?: string,
   ): Promise<SuccessRO | boolean> {
+    if (story?.recipient?.userWantContact === false) {
+      return false;
+    }
+
     if (
       this.config.get('application.disableNotifications') ||
       (story.edited &&
@@ -332,6 +358,11 @@ export class MessengerService {
             messengerConversationId: story.conversationId,
             reasonText,
             pageId: story.conversation?.serviceNumber,
+            storyLink: prepareURL(
+              this.config.get('frontend.url'),
+              'story/details',
+              story.id,
+            ),
           },
         )
         .pipe(timeout(this.config.get('application.communicationTimeout'))),
@@ -366,6 +397,10 @@ export class MessengerService {
     commandName: string,
   ): Promise<any> {
     if (this.config.get('application.disableNotifications')) return false;
+
+    if (comment?.story?.recipient?.userWantContact === false) {
+      return false;
+    }
 
     const { language, conversation, recipient } = comment.story;
 

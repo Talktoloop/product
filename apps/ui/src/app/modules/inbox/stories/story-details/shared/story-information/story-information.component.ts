@@ -23,6 +23,7 @@ import { MINORITY_TRANSLATE_MAPPING } from "@shared/types/minority.type"
 export class StoryInformationComponent extends BaseComponent {
   TagSize = TagSize;
   StoryCategory = StoryCategory;
+  readonly OTHER_DISABILITY_ID = 7;
 
   private readonly placeholderValue = '-';
 
@@ -32,6 +33,10 @@ export class StoryInformationComponent extends BaseComponent {
     private metaDataService: MetaDataService,
   ) {
     super();
+  }
+
+  get isOtherDifficultySelected(): boolean {
+    return this.storyDetailsService.story?.difficulties?.some((d) => Number(d.id) === this.OTHER_DISABILITY_ID);
   }
 
   get storyAge(): string {
@@ -55,7 +60,10 @@ export class StoryInformationComponent extends BaseComponent {
   }
 
   get isMinorityGroup(): string {
-    const minorityValue = this.storyDetailsService.story?.isMinority ? 1 : 0;
+    if (this.storyDetailsService.story?.isMinority === undefined || this.storyDetailsService.story?.isMinority === null) {
+      return this.placeholderValue;
+    }
+    const minorityValue = this.storyDetailsService.story.isMinority ? 1 : 0;
     return MINORITY_TRANSLATE_MAPPING[minorityValue] ?? this.placeholderValue;
   }
 
@@ -80,6 +88,24 @@ export class StoryInformationComponent extends BaseComponent {
         return (
           children
             .filter((option) => ids.includes(Number(option.id)))
+            .map((option) => this.translateService.instant(option.code))
+            .join(', ') || this.placeholderValue
+        );
+      }),
+    );
+  }
+
+  get vulnerabilityFactors(): Observable<string> {
+    return this.metaDataService.vulnerabilityFactors$.pipe(
+      map((vulnerabilityFactorsOptions) => {
+        const ids = this.storyDetailsService.story?.vulnerabilityFactors || [];
+        if (!ids || ids.length === 0) {
+          return this.placeholderValue;
+        }
+        const idsAsStrings = ids.map(id => String(id));
+        return (
+          vulnerabilityFactorsOptions
+            .filter((option) => idsAsStrings.includes(String(option.id)))
             .map((option) => this.translateService.instant(option.code))
             .join(', ') || this.placeholderValue
         );

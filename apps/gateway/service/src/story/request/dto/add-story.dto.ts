@@ -51,6 +51,9 @@ export class AddStoryDto {
   phone?: string;
 
   @ApiProperty({ type: 'string', required: false })
+  communicatorId?: string;
+
+  @ApiProperty({ type: 'string', required: false })
   status?: STORY_STATUS;
 
   ageDescriptiveForm?: string;
@@ -84,4 +87,20 @@ export class AddStoryDto {
 
   @ApiProperty({ type: 'string', required: false})
   additionalContactDetails?: string;
+
+  @ApiProperty({ type: 'string', required: false})
+  disabilitiesOtherExplanation?: string;
+
+  @ApiProperty({
+    type: 'array',
+    items: {
+      oneOf: [
+        { type: 'string', format: 'uuid' },
+        { type: 'string' },
+        { type: 'number' }
+      ]
+    },
+    required: false
+  })
+  vulnerabilityFactors?: (string | number)[];
 }

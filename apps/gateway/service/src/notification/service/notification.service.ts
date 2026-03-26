@@ -51,6 +51,7 @@ export class NotificationService extends MailJetService {
       !this.config.get('application.disableNotifications') ||
       allowedEmailTemplates.includes(templateId)
     ) {
+      // console.log('Sending email');
       return super.sendEmail(
         templateId,
         variablesToEscapeAndSend,
@@ -58,7 +59,7 @@ export class NotificationService extends MailJetService {
         to,
         attachments,
         from,
-        replyTo,
+        // replyTo,
       );
     }
   }
@@ -78,6 +79,50 @@ export class NotificationService extends MailJetService {
         .map((email: string) => ({
           Email: email,
         })),
+    );
+  }
+
+  async sendReportEmail(data: {
+    reportType: string;
+    postId: string;
+    guidelineBreaches: string[];
+    replySpecification?: string;
+    additionalInfo?: string;
+    contactEmail?: string;
+  }): Promise<LibraryResponse<any>> {
+    const breachesList = data.guidelineBreaches
+      .map((b) => `- ${b}`)
+      .join('<br/>');
+
+    const message = [
+      `<strong>Report Type:</strong> ${data.reportType}`,
+      `<strong>Post ID:</strong> ${data.postId}`,
+      data.replySpecification
+        ? `<strong>Reply Specification:</strong> ${data.replySpecification}`
+        : null,
+      `<strong>Community Guidelines Breached:</strong><br/>${breachesList}`,
+      data.additionalInfo
+        ? `<strong>Additional Information:</strong> ${data.additionalInfo}`
+        : null,
+      data.contactEmail
+        ? `<strong>Contact Email:</strong> ${data.contactEmail}`
+        : null,
+    ]
+      .filter(Boolean)
+      .join('<br/><br/>');
+
+    const reportEmail =
+      this.config.get('reportEmail') || 'mai@talktoloop.org';
+
+    return this.sendEmail(
+      EMAIL_TEMPLATES.SUPPORT_TEAM_NOTIFICATION,
+      {
+        error_details: message,
+      },
+      {},
+      reportEmail.split(',').map((email: string) => ({
+        Email: email.trim(),
+      })),
     );
   }
 
@@ -113,6 +158,28 @@ export class NotificationService extends MailJetService {
         `sendSMS: ${error.message}, error: ${JSON.stringify(error.error)}`,
       );
     });
+  }
+
+  async sendFeedbackErrorSlackNotification(
+    storyId: string,
+    error: string,
+  ): Promise<void> {
+    try {
+      const webhookUrl: string = this.config.get('slack.feedbackErrorChannel');
+      if (!webhookUrl) return;
+
+      const payload = {
+        text: `🚨 Feedback save failed\n• Story ID: ${storyId}\n• Error: ${error}`,
+      };
+
+      await axios.post(webhookUrl, payload, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    } catch (err) {
+      this.customLogger.error(
+        `sendFeedbackErrorSlackNotification: ${err.message}`,
+      );
+    }
   }
 
   async sendSlackNotification(

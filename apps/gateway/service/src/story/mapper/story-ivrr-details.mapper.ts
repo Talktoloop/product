@@ -13,7 +13,8 @@ export const storyIvrrDetailsMapper = (
   storyLanguageId: number,
   userLanguageId: number,
   defaultLanguage: LanguageEntity,
-  otherStoriesSameRecipient: { id: string, status: string, createdAt }[],
+  otherStoriesSameRecipient: { id: string, status: string, createdAt: Date, channel: string, url: string }[],
+  vulnerabilityFactors?: any[],
 ): StoryIvrrModeratorRO => {
   return {
     ...storyWebDetailsMapper(
@@ -22,6 +23,7 @@ export const storyIvrrDetailsMapper = (
       storyLanguageId,
       userLanguageId,
       defaultLanguage,
+      vulnerabilityFactors,
     ),
     calls: callMapper(conversation),
     contactAccepted: isContactAccepted(story),

@@ -48,7 +48,8 @@ const allowFilters = [
   'organisationResponsiveness',
   'communityResponsiveness',
   'channelFilter',
-  'searchTerm'
+  'searchTerm',
+  'vulnerabilityFactors'
 ];
 const relationsToUpdate = ['difficulty', 'type', 'organisation'];
 const relationsToConvertToInt = [
@@ -751,6 +752,25 @@ export const addFilterCondition = (
           channelFilter: channelStrings,
         });
       }
+    } else if (key === 'vulnerabilityFactors' && value) {
+      const factorIds = Array.isArray(value) 
+        ? value.map(id => parseInt(id.toString(), 10)).filter(id => !isNaN(id))
+        : value.toString().split(',').map(id => parseInt(id.trim(), 10)).filter(id => !isNaN(id));
+      
+      if (factorIds.length > 0) {
+        const existingJoins = query.expressionMap.joinAttributes || [];
+        const hasJoin = existingJoins.some(join => 
+          join.alias && join.alias.name === 'feedbackVulnerabilityFactors'
+        );
+        
+        if (!hasJoin) {
+          query.leftJoin('story.feedbackVulnerabilityFactors', 'feedbackVulnerabilityFactors');
+        }
+        
+        query.andWhere('feedbackVulnerabilityFactors.vulnerabilityFactorId IN (:...vulnerabilityFactorIds)', {
+          vulnerabilityFactorIds: factorIds,
+        });
+      }
     } else {
       //Find solution by name field
       if (relationsToUpdate.includes(key)) {
@@ -823,12 +843,14 @@ export const prepareNotificationData = (
   let phone = '';
   let name = '';
 
-  if (
-    entity.recipient?.phone ||
-    entity.recipient?.email ||
-    (entity.user?.email && entity.user?.notifications)
-  ) {
-    email = entity.recipient?.email ?? entity.user?.email;
+  // Only return contact info if user explicitly wants to be contacted
+  // Note: userWantContact only exists on StoryRecipientEntity, not on CommentRecipientEntity
+  // For comments, we default to allowing contact (backward compatibility)
+  const recipient = entity.recipient as StoryRecipientEntity;
+  const userWantsContact = recipient?.userWantContact !== false;
+
+  if (userWantsContact && (entity.recipient?.phone || entity.recipient?.email)) {
+    email = entity.recipient?.email;
     phone = entity.recipient?.phone;
     name = entity.user?.nickname || name;
   }
@@ -840,11 +862,20 @@ export const includesTranslatableContent = (
   translations: (CommentTranslationEntity | StoryTranslationEntity)[],
 ): boolean => {
   return translations.some(({ content, language: { provider, dialect } }) => {
-    if (!provider) return false;
     if (content) return true;
-    return translations.some(
-      (t) => t.language.code === dialect && !!t.content
-    );
+    
+    if (provider) return true;
+    
+    if (dialect) {
+      const dialectTranslation = translations.find(
+        (t) => t.language?.code === dialect
+      );
+      if (dialectTranslation?.language?.provider) {
+        return true;
+      }
+    }
+    
+    return false;
   });
 };
 
@@ -1159,6 +1190,24 @@ export function extractModuleSpecificFilterParameters(filters, includedKeys) {
   return Object.fromEntries(
     Object.entries(filters)
       .filter(([key]) => includedSet.has(key))
-      .map(([key, value]) => [key, Array.isArray(value) ? value : []])
+      .map(([key, value]) => {
+        if (Array.isArray(value)) {
+          return [key, value];
+        }
+        if (value !== null && value !== undefined && value !== '') {
+          const stringValue = value.toString();
+          return [key, stringValue.includes(',') ? stringValue.split(',') : [stringValue]];
+        }
+        return [key, []];
+      })
+      .filter(([key, value]) => {
+        if (value === null || value === undefined) {
+          return false;
+        }
+        if (Array.isArray(value)) {
+          return true;
+        }
+        return value !== '';
+      })
   );
 }

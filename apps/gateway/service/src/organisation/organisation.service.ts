@@ -110,7 +110,10 @@ export class OrganisationService implements LexiconServiceFactory {
           languageCode: link.languageCode,
           organisationId: link.organisationId,
         });
-      } else if (!user.organisation_id) {
+      } else {
+        // User exists - update organization_id regardless of current value
+        // This handles both: new users without org AND users changing org
+        const oldOrganisationId = user.organisation_id;
         user.organisation_id = link.organisationId;
 
         await this.userService.updateUserData(user, user.id);
@@ -123,6 +126,12 @@ export class OrganisationService implements LexiconServiceFactory {
           languageCode: link.languageCode,
           organisationId: link.organisationId,
         });
+
+        if (oldOrganisationId && oldOrganisationId !== link.organisationId) {
+          console.log(
+            `[OrganisationService] User ${user.email} changed organisation from ${oldOrganisationId} to ${link.organisationId}`,
+          );
+        }
       }
     }
 

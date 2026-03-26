@@ -62,4 +62,8 @@ export class StoryListModeratorRO {
   @Expose()
   @ApiProperty({ type: 'number' })
   numberOfWords?: number;
+
+  @Expose()
+  @ApiProperty({ type: 'boolean' })
+  isMinority?: boolean;
 }

@@ -9,12 +9,13 @@ export class RedisService {
     const exists = await this.redisClient.get(key);
     return !!exists;
   }
-  
-  // async markAsSentIfNotExists(key: string, ttlSeconds: number): Promise<boolean> {
-  //   const result = await this.redisClient.set(key, '1', 'EX', ttlSeconds, 'NX');
-  //   return result === 'OK';
-  // }
-  
+
+  /** Set key only if not exists (NX), with TTL. Returns true if we set it (first), false if already set (duplicate). */
+  async markAsSentIfNotExists(key: string, ttlSeconds: number): Promise<boolean> {
+    const result = await this.redisClient.set(key, '1', 'EX', ttlSeconds, 'NX');
+    return result === 'OK';
+  }
+
   async setModeratorIntroFlag(senderId: string, pageId: string, ttlSeconds: number): Promise<void> {
     const key = `intro_sent:${senderId}:${pageId}`;
     await this.redisClient.set(key, '1', 'EX', ttlSeconds);

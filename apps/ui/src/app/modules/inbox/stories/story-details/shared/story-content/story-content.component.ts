@@ -4,7 +4,10 @@ import { UIService } from '@app/core/services/ui/ui.service';
 import { CHANNEL_CONSTANTS } from '@core/services/api/model/channel.enum';
 import LoopIcon from '@shared/loop-design-system/components/loop-icon';
 import { StoryDetailsService } from '../../story-details.service';
-
+import { StoryService } from '@core/services/api/story/story.service';
+import { lastValueFrom } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-story-content',
   templateUrl: './story-content.component.html',
@@ -22,9 +25,10 @@ export class StoryContentComponent implements OnInit, AfterViewInit {
     disabled:
       this.storyDetailsService.story.channel !== CHANNEL_CONSTANTS.IVRR || this.isEditEnable || !this.storyDetailsService.isReviewStep,
   });
+  transcriptionEdited = false;
   canEdit = this.getCanEditInitialValue();
 
-  constructor(public ui: UIService, public storyDetailsService: StoryDetailsService) {
+  constructor(public ui: UIService, public storyDetailsService: StoryDetailsService, public storyService: StoryService, public toastrService: ToastrService, public translateService: TranslateService) {
     this.storyDetailsService.updatedOriginalStory = null;
     this.storyDetailsService.updatedEditedStory = null;
     this.storyDetailsService.isOriginalContentEditContainErrors = false;
@@ -47,9 +51,11 @@ export class StoryContentComponent implements OnInit, AfterViewInit {
     });
     this.storyDetailsService.originalStoryContentChanged$.subscribe((isOriginalStoryChanged: boolean) => {
       if (isOriginalStoryChanged) {
+        console.log('originalStoryContentChanged', this.storyDetailsService.story.content);
         this.originalContentControl.setValue(this.storyDetailsService.story.content, { emitEvent: false, onlySelf: true });
         this.editedContentControl.setValue(null);
         this.isEditEnable = false;
+        this.transcriptionEdited = true;
       }
     });
   }
@@ -104,7 +110,7 @@ export class StoryContentComponent implements OnInit, AfterViewInit {
   private getInitialEditButtonState() {
     return Boolean(
       this.storyDetailsService.story.historicalContent &&
-        this.storyDetailsService.story.historicalContent.trim() !== this.storyDetailsService.story.content.trim(),
+      this.storyDetailsService.story.historicalContent.trim() !== this.storyDetailsService.story.content.trim(),
     );
   }
 
@@ -116,5 +122,16 @@ export class StoryContentComponent implements OnInit, AfterViewInit {
 
   private getCanEditInitialValue() {
     return !(this.originalContentControl.getRawValue().length >= 5);
+  }
+
+  async saveTranscription() {
+    console.log(this.originalContentControl.value, this.editedContentControl.value);
+    const res = await lastValueFrom(this.storyService.updateTranscription(this.storyDetailsService.story.id, {
+      content: this.originalContentControl.value,
+      editedContent: this.isEditEnable ? this.editedContentControl.value : null,
+    }));
+    if (!res.success)
+      return this.toastrService.error(this.translateService.instant('story.details.review.editStory.saveTranscriptionError'));
+    this.toastrService.success(this.translateService.instant('story.details.review.editStory.saveTranscriptionSuccess'));
   }
 }

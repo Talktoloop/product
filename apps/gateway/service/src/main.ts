@@ -10,6 +10,10 @@ import { configSchema } from './common/validation/config.validation';
 import { ConfigService } from '@nestjs/config';
 import dbConfig from './config/typeorm';
 import { getConnection } from './common/helpers';
+import { serve } from "inngest/express";
+import { inngest } from "./inngest/client";
+import { functions } from "./inngest";
+import { json, urlencoded } from "express";
 
 const setupSwagger = (app: INestApplication, backendUrl: string) => {
   const options = new DocumentBuilder()
@@ -50,12 +54,28 @@ const bootstrap = async () => {
     origin: isLocalOrDevelopment(configService.get('application.environment'))
       ? true
       : [
-          configService.get('frontend.url'),
-          configService.get('landingPage.url'),
-        ],
+        configService.get('frontend.url'),
+        configService.get('landingPage.url'),
+      ],
     credentials: true,
   });
   app.useGlobalFilters(new ExceptionsFilter());
+
+  const express = app.getHttpAdapter().getInstance();
+  express.use(json({ limit: "10mb" }));
+  express.use(urlencoded({ extended: true }));
+  console.log('INNGEST_EVENT_KEY present:', !!process.env.INNGEST_EVENT_KEY);
+  console.log('INNGEST_SIGNING_KEY present:', !!process.env.INNGEST_SIGNING_KEY);
+
+  // 👇 mount Inngest AFTER body parsers
+  if (process.env.INNGEST_EVENT_KEY && process.env.INNGEST_SIGNING_KEY)
+    express.use(
+      "/api/inngest",
+      serve({
+        client: inngest,
+        functions,
+      })
+    );
 
   if (isLocalOrDevelopment(configService.get('application.environment'))) {
     setupSwagger(app, configService.get('backend.url'));
@@ -63,12 +83,12 @@ const bootstrap = async () => {
 
   try {
     app.connectMicroservice({
-    name: 'GATEWAY',
-    transport: Transport.REDIS,
-    options: _omit(configService.get('redis'), [
-      'connectionName',
-      'schema',
-      'user'
+      name: 'GATEWAY',
+      transport: Transport.REDIS,
+      options: _omit(configService.get('redis'), [
+        'connectionName',
+        'schema',
+        'user'
       ]),
     })
   } catch (error) {

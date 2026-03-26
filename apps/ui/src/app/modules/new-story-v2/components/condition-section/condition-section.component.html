@@ -21,6 +21,16 @@
         [difficulties]="difficulties"
       ></loop-story-type-boxgroup>
 
+      <div *ngIf="isOtherSelected" class="mt-125">
+        <label class="font-big semi-bold mb-0625" for="disabilities-other-explanation">{{ 'newStoryV2.form.condition.other.label' | translate }}</label>
+        <loop-textarea
+          id="disabilities-other-explanation"
+          formControlName="disabilitiesOtherExplanation"
+          [placeholder]="'newStoryV2.form.condition.other.placeholder' | translate"
+          [maxLength]="500"
+        ></loop-textarea>
+      </div>
+
       <loop-info-link
         (clicked)="onHelpModalOpen()"
         class="new-story-v2__help-me-link"

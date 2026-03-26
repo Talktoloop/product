@@ -28,6 +28,10 @@ export class CountryAdministrativeDataEntity {
   @Column({ type: 'int', name: 'external_id' })
   externalId: number;
 
+
+  @Column({ type: 'varchar', name: 'area_code', length: 32, nullable: true })
+  areaCode: string;
+
   @Column({ type: 'tinyint' })
   level: number;
 

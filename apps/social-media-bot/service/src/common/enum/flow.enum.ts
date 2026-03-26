@@ -1,5 +1,6 @@
 export enum Flow {
   CHANGE_LANG = 'changeLang',
+  MORE_OPTIONS = 'moreOptions',
   PERSONAL_DETAILS = 'personalDetails',
   BE_ANONYMOUS = 'beAnonymous',
   KEEP_ANONYMOUS = 'keepAnonymous',

@@ -33,5 +33,11 @@ loop-select {
         padding: 0.5rem 0.938rem;
       }
     }
+
+    loop-select-option.report-option {
+      .select-option__content {
+        color: #dc2626;
+      }
+    }
   }
 }

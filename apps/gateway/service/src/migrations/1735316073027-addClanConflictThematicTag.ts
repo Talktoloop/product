@@ -22,7 +22,7 @@ export class AddClanConflictThematicTag1735316073027 implements MigrationInterfa
         [protectionCategoryId],
       );
 
-      let order = currentMaxOrder[0]?.maxOrder + 1 || 0;
+      const order = currentMaxOrder[0]?.maxOrder + 1 || 0;
       this.newProtectionThematics.map((thematicTag, index) => {
         queryRunner.query(
           `INSERT INTO ${this.tableName} (code, \`order\`, parent_thematic_id) VALUES (?, ?, ?)`,

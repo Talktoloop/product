@@ -33,55 +33,114 @@ export class CommentNotificationService {
   async sendNotificationsToStoryOwnerAfterCommentPublication(
     comment: CommentEntity,
   ): Promise<LibraryResponse<any>> {
+    console.log('[sendNotificationsToStoryOwnerAfterCommentPublication] START', {
+      commentId: comment.id,
+      storyId: comment.storyId,
+      storyLanguage: comment.story.language?.code,
+    });
+
     const translation = comment.translations.filter(
       (translation) => translation.languageId === comment.language?.id,
     )[0];
     const { name, email } = prepareNotificationData(comment.story);
 
+    console.log('[StoryOwnerNotification]', {
+      hasEmail: !!email,
+      email: email || 'NO EMAIL',
+      storyOwnerId: comment.story.user?.id,
+    });
+
     if (email) {
-      return this.notificationService.sendEmail(
-        getMailTemplateId(
-          comment.story.language?.code,
-          USER_TEMPLATES.COMMENT_WAS_PUBLISH_ON_OBSERVED_STORY,
-        ),
-        {
-          name,
-          reply_preview: translation?.content,
-          confirmation_link: prepareURL(
-            this.config.get('frontend.url'),
-            'story/details',
-            comment.storyId,
-          ),
-        },
-        {},
-        [{ Email: email }],
+      const templateId = getMailTemplateId(
+        comment.story.language?.code,
+        USER_TEMPLATES.COMMENT_WAS_PUBLISH_ON_OBSERVED_STORY,
       );
+      console.log('[StoryOwnerNotification] Sending EMAIL', {
+        email,
+        templateId,
+        languageCode: comment.story.language?.code,
+      });
+
+      try {
+        const result = await this.notificationService.sendEmail(
+          templateId,
+          {
+            name,
+            reply_preview: translation?.content,
+            confirmation_link: prepareURL(
+              this.config.get('frontend.url'),
+              'story/details',
+              comment.storyId,
+            ),
+          },
+          {},
+          [{ Email: email }],
+        );
+        console.log('[StoryOwnerNotification] Email SENT', { email });
+        return result;
+      } catch (err) {
+        console.error('[StoryOwnerNotification] Email FAILED', { email, err });
+        throw err;
+      }
+    } else {
+      console.log('[StoryOwnerNotification] Skipped - no email available');
     }
   }
 
   async sendNotificationsAfterCommentPublication(
     comment: CommentEntity,
   ): Promise<void> {
+    console.log('[sendNotificationsAfterCommentPublication] START', {
+      commentId: comment.id,
+      storyId: comment.storyId,
+      storyChannel: comment.story?.channel,
+      commentLanguage: comment.language?.code,
+    });
+
     const { name, email } = prepareNotificationData(comment);
     const translation = comment.translations.filter(
       (translation) => translation.languageId === comment.language?.id,
     )[0];
 
+    console.log('[CommentAuthorNotification]', {
+      hasEmail: !!email,
+      email: email || 'NO EMAIL',
+      commentAuthorId: comment.user?.id,
+      hasTranslation: !!translation,
+    });
+
     if (email) {
-      await this.notificationService.sendEmail(
-        getMailTemplateId(comment.language?.code, USER_TEMPLATES.PUBLISH_REPLY),
-        {
-          name,
-          reply_preview: translation?.content,
-          confirmation_link: prepareURL(
-            this.config.get('frontend.url'),
-            'story/details',
-            comment.storyId,
-          ),
-        },
-        {},
-        [{ Email: email }],
+      const templateId = getMailTemplateId(
+        comment.language?.code,
+        USER_TEMPLATES.PUBLISH_REPLY,
       );
+      console.log('[CommentAuthorNotification] Sending EMAIL', {
+        email,
+        templateId,
+        languageCode: comment.language?.code,
+      });
+
+      try {
+        await this.notificationService.sendEmail(
+          templateId,
+          {
+            name,
+            reply_preview: translation?.content,
+            confirmation_link: prepareURL(
+              this.config.get('frontend.url'),
+              'story/details',
+              comment.storyId,
+            ),
+          },
+          {},
+          [{ Email: email }],
+        );
+        console.log('[CommentAuthorNotification] Email SENT', { email });
+      } catch (err) {
+        console.error('[CommentAuthorNotification] Email FAILED', { email, err });
+      }
+    } else {
+      console.log('[CommentAuthorNotification] Skipped - no email available');
     }
 
     if (
@@ -150,29 +209,60 @@ export class CommentNotificationService {
     comment: CommentEntity,
     rejectContent: RejectContentDto,
   ): Promise<void> {
+    console.log('[sendNotificationsAfterRejectingComment] START', {
+      commentId: comment.id,
+      storyId: comment.storyId,
+      hasReasons: !!rejectContent.reasonIds?.length,
+      reasonCount: rejectContent.reasonIds?.length || 0,
+    });
+
     const { name, email } = prepareNotificationData(comment);
+
+    console.log('[RejectCommentNotification]', {
+      hasEmail: !!email,
+      email: email || 'NO EMAIL',
+      commentAuthorId: comment.user?.id,
+      notificationLanguage: rejectContent.notificationLanguage,
+    });
 
     if (rejectContent.reasonIds?.length > 0) {
       if (email) {
-        await this.notificationService.sendEmail(
-          getMailTemplateId(
-            rejectContent.notificationLanguage,
-            USER_TEMPLATES.REJECT_REPLY,
-          ),
-          {
-            name,
-            reject_reason: rejectContent.reasonTexts.join(', '),
-            reject_rationale: rejectContent.rationale,
-            confirmation_link: prepareURL(
-              this.config.get('frontend.url'),
-              'story/details',
-              comment.storyId,
-            ),
-          },
-          {},
-          [{ Email: email }],
+        const templateId = getMailTemplateId(
+          rejectContent.notificationLanguage,
+          USER_TEMPLATES.REJECT_REPLY,
         );
+        console.log('[RejectCommentNotification] Sending EMAIL', {
+          email,
+          templateId,
+          languageCode: rejectContent.notificationLanguage,
+          reasons: rejectContent.reasonTexts,
+        });
+
+        try {
+          await this.notificationService.sendEmail(
+            templateId,
+            {
+              name,
+              reject_reason: rejectContent.reasonTexts.join(', '),
+              reject_rationale: rejectContent.rationale,
+              confirmation_link: prepareURL(
+                this.config.get('frontend.url'),
+                'story/details',
+                comment.storyId,
+              ),
+            },
+            {},
+            [{ Email: email }],
+          );
+          console.log('[RejectCommentNotification] Email SENT', { email });
+        } catch (err) {
+          console.error('[RejectCommentNotification] Email FAILED', { email, err });
+        }
+      } else {
+        console.log('[RejectCommentNotification] Skipped - no email available');
       }
+    } else {
+      console.log('[RejectCommentNotification] Skipped - no reject reasons provided');
     }
   }
 }

@@ -131,11 +131,13 @@ export class WebhookService {
 
       if (userRecord) {
         await this.addRecordingDurationToUser(callSid, userRecord);
+        return await this.apiClientService.sendTwilioStoryToApi(userRecord);
+      } else {
+        this.logger.warn(`No user record found for callSid: ${callSid}`);
+        return await this.apiClientService.sendTwilioStoryToApi(undefined);
       }
-
-      return this.apiClientService.sendTwilioStoryToApi(userRecord);
     } catch (error) {
-      this.logger.error('sendNotCompletedStoryToApi', error);
+      this.logger.error(`Error in sendNotCompletedStoryToApi for callSid: ${callSid}`, error);
     }
   }
 
@@ -191,9 +193,26 @@ export class WebhookService {
     });
   }
 
+  async scheduleCallHangup(callSid: string): Promise<void> {
+    try {
+      this.logger.log(`    [HANGUP_AFTER_LIMIT] Scheduling cutoff for ${callSid}`);
+      await this.queueService.addQueueJob({
+        queue: this.processTwilioCallQueue,
+        jobName: QUEUE_CONSTANT.HANGUP_AFTER_LIMIT,
+        data: { callSid },
+        jobId: `${callSid}:hangup`,
+        jobDelayInSeconds: 15 * 60,
+      });
+      this.logger.log(`    [HANGUP_AFTER_LIMIT] Successfully scheduled ${callSid}`);
+    } catch (err) {
+      this.logger.error(`    [HANGUP_AFTER_LIMIT] Error for ${callSid}: ${err.message}`, err.stack);
+    }
+  }
+
   async handleLoopInboundCall(
     body: TwilioRecordAudioWebhookRequest,
-  ): Promise<Job<any>> {
+  ): Promise<Job<any | void>> {
+
     const twilioCallLog = await this.twilioService.getTwilioCallLog(
       body.CallSid,
     );
@@ -216,6 +235,7 @@ export class WebhookService {
     };
 
     await this.storageService.createUserFlowRecord(userRecord);
+
 
     const job = await this.queueService.addQueueJob({
       queue: this.processTwilioCallQueue,

@@ -2,8 +2,9 @@
   <!--MOBILE-->
   <ng-container *ngIf="ui.mobileView; else desktopTable">
     <div class="selection" #mobileSelection>
-      <app-pagination [storyServiceData]="true" [header]="true" [mobile]="true" (selectAllChanged)="onSelectAllChanged($event)"
-        (rejectSelectedStories)="onRejectSelectedStories()" (assignSelectedStories)="onAssignSelectedStories()"></app-pagination>
+      <app-pagination [storyServiceData]="true" [header]="true" [mobile]="true"
+        (selectAllChanged)="onSelectAllChanged($event)" (rejectSelectedStories)="onRejectSelectedStories()"
+        (assignSelectedStories)="onAssignSelectedStories()"></app-pagination>
     </div>
     <app-mobile-table (actionClick)="onActionClick($event)" [columns]="columns" [itemsInRow]="1"
       [list]="storiesService.listElements$ | async" [additionalRowClassCondition]="mobileRowAdditionalClassCondition"
@@ -51,7 +52,8 @@
                 : (element.numberOfWords ?? '' | wordCount)
                 }}
               </div> |
-              <span class="assigned-to-tag" *ngIf="element.moderatorName"> {{'inbox.table.assignedTo' | translate}} {{element.moderatorName}} </span>
+              <span class="assigned-to-tag" *ngIf="element.moderatorName"> {{'inbox.table.assignedTo' | translate}}
+                {{element.moderatorName}} </span>
               <ng-container [ngTemplateOutlet]="sensitiveTag" *ngIf="element.isSensitive"> </ng-container>
             </div>
           </div>
@@ -62,9 +64,10 @@
 
   <!--DESKTOP-->
   <ng-template #desktopTable>
-    <div class="table-header" *ngIf="(storiesService.isLoading$ | async) === false">
+    <div class=" table-header" *ngIf="(storiesService.isLoading$ | async) === false">
       <app-pagination [storyServiceData]="true" [header]="true" (selectAllChanged)="onSelectAllChanged($event)"
-        (rejectSelectedStories)="onRejectSelectedStories()" (assignSelectedStories)="onAssignSelectedStories()"></app-pagination>
+        (rejectSelectedStories)="onRejectSelectedStories()"
+        (assignSelectedStories)="onAssignSelectedStories()"></app-pagination>
     </div>
     <div *ngIf="storiesService.isLoading$ | async" class="inbox-list-container__loading">
       <span>
@@ -121,7 +124,9 @@
             <div class="date">
               <img *ngIf="element.country" class="flag" [src]="element.country | countryFlagSrc" loading="lazy" />
               <span> {{ element.createdAt | date : DATE_FORMAT }}</span> |
-              <span class="assigned-to-tag" *ngIf="element.moderatorName"> {{'inbox.table.assignedTo' | translate}} {{element.moderatorName}} </span>
+              <span class="assigned-to-tag" *ngIf="element.moderatorName"> {{'inbox.table.assignedTo' |
+                translate}}
+                {{element.moderatorName}} </span>
             </div>
           </div>
         </td>

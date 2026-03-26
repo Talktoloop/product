@@ -109,7 +109,7 @@ export class WhatsappService {
         (data.details as WhatsappIncommingMessageInterface).profileName || null,
     };
   }
-  
+
   async sendMessageToUser(
     message: MessageInterface,
     channel: string,
@@ -122,26 +122,26 @@ export class WhatsappService {
     pageId: string,
   ): Promise<{ sid?: string }> {
     const recipientId = this.createWaIdFromNumber(message.recipient.id);
-    
+
     if (!message.message) {
       // this.logger.warn('Message object is empty');
       return {};
     }
 
     const user = await this.storageService.getUser(recipientId, pageId);
-    
+
     if (user?.holdOnSendMessage) {
       await setDelay(this.config.get('application.messageTimout'));
       return this.sendMessage(message, pageId);
     }
-    
+
     let response;
-    
+
     this.logger.debug(`MESSAGE obj >>> ${JSON.stringify(message, null, 2)}`);
-    
+
     if (message.message.contentSid) {
       const variables = message.message.contentVariables ?? {};
-      
+
       this.logger.debug({
         context: 'WhatsappService',
         action: 'sending template',
@@ -149,16 +149,35 @@ export class WhatsappService {
         variables,
         recipientId,
       });
-      
-      response = await this.whatsapp.client.messages.create({
-        from: this.createWaIdFromNumber(pageId),
-        to: recipientId,
-        contentSid: message.message.contentSid,
-        contentVariables: JSON.stringify(variables),
-      });
+
+      try {
+        response = await this.whatsapp.client.messages.create({
+          from: this.createWaIdFromNumber(pageId),
+          to: recipientId,
+          contentSid: message.message.contentSid,
+          contentVariables: JSON.stringify(variables),
+        });
+      } catch (error) {
+        this.logger.warn({
+          context: 'WhatsappService',
+          action: 'template send failed, falling back to text',
+          error: error.message,
+          contentSid: message.message.contentSid,
+        });
+
+        // Fallback to text when template fails.
+        // Templates use different variable keys ('1', 'title', etc.) so pick the first value found.
+        const fallbackText = (Object.values(variables ?? {})[0] as string) || message.message.text || 'Message sent';
+        response = await this.whatsapp.client.messages.create({
+          statusCallback: this.config.get<ApplicationConfig>('application').whatsapp.callbackUrl,
+          from: this.createWaIdFromNumber(pageId),
+          to: recipientId,
+          body: fallbackText,
+        });
+      }
     } else {
       const finalText = message.message.text;
-      
+
       response = await this.whatsapp.client.messages.create({
         statusCallback: this.config.get<ApplicationConfig>('application').whatsapp.callbackUrl,
         from: this.createWaIdFromNumber(pageId),
@@ -166,7 +185,7 @@ export class WhatsappService {
         body: finalText,
         mediaUrl: [message.message.attachment?.payload.url],
       });
-      
+
       await setDelay(1000);
     }
 
@@ -177,7 +196,7 @@ export class WhatsappService {
         !!message.message.attachment,
       );
     }
-    
+
     return { sid: response.sid };
   }
 
@@ -189,7 +208,7 @@ export class WhatsappService {
       });
 
     if (!messageInstance) return false;
-    
+
     if (messageInstance.status !== 'delivered' && messageInstance.status !== 'read') {
       return false;
     }

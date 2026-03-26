@@ -22,6 +22,7 @@ import { finalize, mergeMap, take, takeUntil } from 'rxjs/operators';
 import { SendToCaseManagerFormComponent } from '../../../../shared/components/send-story-to-case-manager-modal/send-story-to-case-manager-form/send-story-to-case-manager-form.component';
 import { StoryDetailsService } from '../../story-details.service';
 import { ISMSMessage } from '../../../../../../core/services/api/model/story-sms-message.model';
+import { LanguageConfirmationModalComponent } from '../language-confirmation-modal/language-confirmation-modal.component';
 
 @Component({
   selector: 'app-story-translate-action-buttons',
@@ -66,7 +67,13 @@ export class StoryTranslateActionButtonsComponent extends BaseComponent {
       window.scrollTo(0, 0);
       return;
     }
-    this.storyDetailsService.story.isSensitive ? this.handleSendToCaseManager() : this.handlePublishStory();
+    
+    const modal = this.modalService.open(LanguageConfirmationModalComponent);
+    modal.language = this.storyDetailsService.story.language;
+    
+    modal.confirm.pipe(take(1), takeUntil(this.destroyed$)).subscribe((confirmedLanguage) => {
+      this.storyDetailsService.story.isSensitive ? this.handleSendToCaseManager() : this.handlePublishStory();
+    });
   }
 
   protected areRequireFieldsValid(): boolean {
@@ -74,7 +81,7 @@ export class StoryTranslateActionButtonsComponent extends BaseComponent {
 
     return (
       (story.isSensitive || (!story.isSensitive && !!story.categories.length)) &&
-      (!!story.language || story.language === '') &&
+      (!!story.language && story.language.trim() !== '') &&
       !!story.thematics.length &&
       story.isUrgent!==null &&
       !isOriginalContentEditContainErrors &&
@@ -266,6 +273,7 @@ export class StoryTranslateActionButtonsComponent extends BaseComponent {
       gender: story.gender || Gender.NO_ANSWER,
       categories: story.categories.map((category) => Number(category.id)),
       difficulties: story.difficulties.map((difficulty) => Number(difficulty.id)),
+      disabilitiesOtherExplanation: story.disabilitiesOtherExplanation,
       maternityStatus: story.maternityStatus.map((maternity) => Number(maternity.id)),
       organisations: story.organisations.map((organisations) => organisations.id),
       thematics: story.thematics,
@@ -283,6 +291,7 @@ export class StoryTranslateActionButtonsComponent extends BaseComponent {
         : [],
       isUrgent: !!story.isUrgent,
       isMinority: !!story.isMinority,
+      vulnerabilityFactors: story.vulnerabilityFactors,
     };
     if (updatedOriginalStory) {
       updateStoryRequest.content = updatedOriginalStory;

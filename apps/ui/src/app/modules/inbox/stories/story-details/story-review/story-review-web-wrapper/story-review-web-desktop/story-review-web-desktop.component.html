@@ -40,6 +40,11 @@
           <ng-container secondTab>
             <app-story-information></app-story-information>
           </ng-container>
+
+          <ng-container thirdTab>
+            <app-story-author-history
+              [otherStoriesSameRecipient]="storyDetailsService.story.otherStoriesSameRecipient"></app-story-author-history>
+          </ng-container>
         </app-story-details-tabs>
 
         <app-story-review-action-buttons></app-story-review-action-buttons>

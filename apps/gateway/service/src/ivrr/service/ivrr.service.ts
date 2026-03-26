@@ -57,6 +57,7 @@ import { StoryTranslationModeratorService } from '../../story/service/story-tran
 import { StoryTranslationEntity } from '../../story/entity/story-translation.entity';
 import { TRANSLATION_TYPE_CONSTANTS } from '../../common/constant/translation-type.constant';
 import { LanguageService } from '../../language/language.service';
+import { inngest } from '../../inngest/client';
 
 @Injectable()
 export class IvrrService {
@@ -79,7 +80,7 @@ export class IvrrService {
     private readonly httpService: HttpService,
     private readonly storyTranslationModeratorService: StoryTranslationModeratorService,
     private readonly languageService: LanguageService,
-  ) {}
+  ) { }
 
   async findStoryWithIvrrConversationByIdOrCommentId(
     storyId: string,
@@ -167,15 +168,33 @@ export class IvrrService {
         },
       })
       .catch((error) => {
+        this.logger.error(
+          `[updateTwilioCall] Call not found - twilioCallSid: ${dto.twilioCallSid}, error: ${error?.message}`,
+        );
         throw new CustomError(NO_CALL, {
           error: error?.message,
         });
       });
 
-    return await this.ivrrCallRepository.save({
-      ...call,
-      ...dto,
-    });
+    try {
+      return await this.ivrrCallRepository.save({
+        ...call,
+        ...dto,
+      });
+    } catch (error) {
+      this.logger.error(
+        `[updateTwilioCall] Failed to save call - twilioCallSid: ${dto.twilioCallSid}, error: ${error?.message}, stack: ${error?.stack}`,
+      );
+      this.logger.error(
+        `[updateTwilioCall] DTO data: ${JSON.stringify(dto)}`,
+      );
+      this.logger.error(
+        `[updateTwilioCall] Existing call data: ${JSON.stringify({ id: call.id, twilioCallSid: call.twilioCallSid })}`,
+      );
+      throw new CustomError(NO_CALL, {
+        error: `Failed to update call: ${error?.message}`,
+      });
+    }
   }
 
   async saveCall(
@@ -223,12 +242,14 @@ export class IvrrService {
       staticConfig.minimumRecordingDuration;
     const shouldRunTranscription =
       story.conversation?.language?.transcribeLang && data.isCommentReply;
-
+    this.logger.log(`shouldRunTranscription: ${shouldRunTranscription}`);
+    this.logger.log(`STORY_ID-> ${story.id}`);
     if (shouldRunTranscription && recordingWithMinDuration) {
       await this.runTranscriptionLambdaAsync(
         SOURCE_TYPE.COMMENT,
         ivrrCall.id,
         story.conversation?.language?.transcribeLang,
+        story.id
       );
     }
 
@@ -238,11 +259,22 @@ export class IvrrService {
   async saveConversation(
     dto: SaveIvrrStoryDto,
   ): Promise<StoryConversationEntity> {
+    this.logger.log(
+      `[saveConversation] Attempting to find language - language code: ${dto.language}`,
+    );
+
     const languageEntity = await this.fetchFlowLanguage(dto.language);
 
     if (!languageEntity) {
+      this.logger.error(
+        `[saveConversation] Language not found - language code: ${dto.language}. Story will not be created.`,
+      );
       throw new RpcException(LANGUAGE_NOT_FOUND);
     }
+
+    this.logger.log(
+      `[saveConversation] Language found - language code: ${languageEntity.code}, language id: ${languageEntity.id}`,
+    );
 
     let ivrrConversationEntity = await this.storyConversationService.findByUUID(
       dto.storyUuid,
@@ -311,6 +343,7 @@ export class IvrrService {
           SOURCE_TYPE.STORY,
           ivrrCall.id,
           transcribeLang,
+          story.id
         );
       }
     }
@@ -329,14 +362,31 @@ export class IvrrService {
   }
 
   async preparePublishedStoryCall(story: StoryEntity): Promise<boolean> {
-    if (!story.recipient?.userWantContact) return false;
-    if (
-      this.config.get('application.disableNotifications') ||
-      this.config.get('application.disableIvrPublicationNotifications') ||
-      (story.edited &&
-        this.config.get('application.disableNotificationsAfterEdit'))
-    )
+    this.logger.log(
+      `[preparePublishedStoryCall] START - StoryID: ${story.id}, Phone: ${story.recipient?.phone}, UserWantContact: ${story.recipient?.userWantContact}`,
+    );
+
+    if (!story.recipient?.userWantContact) {
+      this.logger.warn(
+        `[preparePublishedStoryCall] SKIPPED - User does not want contact - StoryID: ${story.id}`,
+      );
       return false;
+    }
+
+    const disableNotifications = this.config.get('application.disableNotifications');
+    const disableIvrNotifications = this.config.get('application.disableIvrPublicationNotifications');
+    const disableAfterEdit = story.edited && this.config.get('application.disableNotificationsAfterEdit');
+
+    if (disableNotifications || disableIvrNotifications || disableAfterEdit) {
+      this.logger.warn(
+        `[preparePublishedStoryCall] SKIPPED - Notifications disabled - StoryID: ${story.id}, DisableAll: ${disableNotifications}, DisableIVR: ${disableIvrNotifications}, DisableAfterEdit: ${disableAfterEdit}`,
+      );
+      return false;
+    }
+
+    this.logger.log(
+      `[preparePublishedStoryCall] Sending to IVRR bot - StoryID: ${story.id}`,
+    );
 
     return lastValueFrom(
       this.clientProxy
@@ -346,8 +396,17 @@ export class IvrrService {
         )
         .pipe(timeout(this.config.get('application.communicationTimeout'))),
     )
-      .then((data) => !!data.success)
+      .then((data) => {
+        this.logger.log(
+          `[preparePublishedStoryCall] IVRR bot response - StoryID: ${story.id}, Success: ${!!data.success}`,
+        );
+        return !!data.success;
+      })
       .catch((error) => {
+        this.logger.error(
+          `[preparePublishedStoryCall] ERROR - StoryID: ${story.id}, Error: ${error.message}`,
+          error.stack,
+        );
         throw new CustomError(error.message, error.error);
       });
   }
@@ -450,6 +509,22 @@ export class IvrrService {
       });
   }
 
+  async testCall(phone: string): Promise<boolean> {
+    const testStoryId = '2273b99a-44d2-4c5c-bc79-6f36812faeb8';
+    return lastValueFrom(
+      this.clientProxy
+        .send(
+          { cmd: 'preparePublishedStoryCall' },
+          { phone, languageCode: 'en', storyId: testStoryId, conversation: { shortCodeNumber: '2023' }, status: STORY_STATUS.REJECTED, reasonIds: [1] },
+        )
+        .pipe(timeout(this.config.get('application.communicationTimeout'))),
+    )
+      .then((data) => !!data.success)
+      .catch((error) => {
+        throw new CustomError(error.message, error.error);
+      });
+  }
+
   async prepareNewCommentCall(comment: CommentEntity): Promise<boolean> {
     if (!comment.story?.recipient?.userWantContact) return false;
 
@@ -472,9 +547,15 @@ export class IvrrService {
       return;
     }
 
+    const languageCodeMap: Record<string, string> = {
+      bjn: 'bju',
+    };
+
+    const mappedLang = languageCodeMap[lang] || lang;
+
     return await this.languageEntityRepository.findOne({
       where: {
-        code: lang,
+        code: mappedLang,
       },
     });
   }
@@ -491,7 +572,43 @@ export class IvrrService {
     sourceType: SOURCE_TYPE,
     callId: number,
     language: string,
+    storyId: string
   ): Promise<InvokeAsyncCommandOutput | void> {
+    const call = await this.ivrrCallRepository.findOne({ where: { id: callId } });
+
+    if (!call) {
+      this.logger.error(
+        `[runTranscriptionLambdaAsync] Call not found - callId=${callId}`,
+      );
+      return;
+    }
+
+    if (!call.s3FileId) {
+      this.logger.warn(
+        `[runTranscriptionLambdaAsync] No s3FileId on call - callId=${callId}`,
+      );
+      return;
+    }
+    const audioUrl = await this.s3Service.getFilePublicUrl(call.s3FileId);
+
+
+    this.logger.log(`run transcribe for ${callId} and  ${language}`);
+    try {
+
+      await inngest.send({
+        name: 'transcription/requested.v1',
+        data: {
+          callId,
+          language,
+          sourceType,
+          audioUrl,
+          storyId
+        },
+      });
+    } catch (error) {
+      this.logger.warn(`[runTranscriptionLambdaAsync] INNGEST FAILED`)
+    }
+
     const payload = {
       callId,
       language,
@@ -502,9 +619,6 @@ export class IvrrService {
       FunctionName: this.config.get('transcribe.aws.lambdaARN'),
       Payload: JSON.stringify(payload),
     };
-
-    this.logger.log(`run transcribe for ${callId} and  ${language}`);
-
     return new Promise((resolve, reject) => {
       const command = new InvokeCommand(params);
 

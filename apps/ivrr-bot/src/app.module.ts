@@ -93,4 +93,4 @@ import { AppHooksService } from '@ourloop/shared';
   ],
   providers: [ConfigProvider, ClientProxyProvider, AppHooksService],
 })
-export class AppModule {}
+export class AppModule { }

@@ -21,6 +21,7 @@ import { CountriesService } from '@app/shared/services/countries.service';
 import { GENDER_MAPPING } from '@app/shared/types';
 import { AGE_MAPPING_EXTENDED, AGE_VALUE_EXTENDED } from '@app/shared/types/age.type';
 import { GENDER_VALUE } from '@app/shared/types/gender.type';
+import { IBaseEntityCheck } from '@app/core/services/api/model/response/base-entity.model';
 import { TranslateService } from '@ngx-translate/core';
 import { RegionData } from '@shared/components/location/location.component';
 import LoopIcon from '@shared/loop-design-system/components/loop-icon';
@@ -50,7 +51,8 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
   genderOptions: Option[];
   urgentOptions: Option[];
   minorityOptions: Option[];
-  hasDisabilities: boolean;
+  vulnerabilityFactors: IBaseEntityCheck[];
+  hasDisabilities: boolean | null = null;
   LoopIcon = LoopIcon;
   organisation: string;
   SimpleTagTheme = SimpleTagTheme;
@@ -72,6 +74,7 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
     locationControl: new UntypedFormControl(),
     organisationControl: new UntypedFormControl(),
     thematics: new UntypedFormControl(),
+    vulnerabilityFactors: new UntypedFormControl(),
     isUrgent: new UntypedFormControl(),
     isMinority: new UntypedFormControl(),
   });
@@ -79,6 +82,11 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
   protected allLanguages: ISupportedLanguage[];
   protected readonly StoryCategory = StoryCategory;
   protected readonly AGE_VALUE_EXTENDED = AGE_VALUE_EXTENDED;
+  readonly OTHER_DISABILITY_ID = 7;
+
+  get isOtherDifficultySelected(): boolean {
+    return this.storyDetailsService.story?.difficulties?.some((d) => Number(d.id) === this.OTHER_DISABILITY_ID);
+  }
 
   constructor(
     public ui: UIService,
@@ -119,6 +127,17 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
       }));
   }
 
+  get selectedVulnerabilityFactors(): { id: string; content: string }[] {
+    const codes = this.storyDetailsService.story.vulnerabilityFactors || [];
+    return codes
+      .map((code: string) => this.vulnerabilityFactors.find((factor) => factor.id === code))
+      .filter((factor) => !!factor)
+      .map((factor) => ({
+        id: factor.id,
+        content: factor.code,
+      }));
+  }
+
   get selectedPlace(): { id: string; content: string }[] {
     return this.storyDetailsService.story.place
       ? [{ id: this.storyDetailsService.story.place, content: this.storyDetailsService.story.place }]
@@ -128,11 +147,11 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
   get originalStoryLanguage(): { id: string; content: string }[] {
     return this.storyDetailsService.story.language
       ? [
-          {
-            id: this.storyDetailsService.story.language,
-            content: `languages.${this.storyDetailsService.story.language}`,
-          },
-        ]
+        {
+          id: this.storyDetailsService.story.language,
+          content: `languages.${this.storyDetailsService.story.language}`,
+        },
+      ]
       : [];
   }
 
@@ -145,7 +164,16 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
     this.storyForm.get('languageControl').setValue(this.storyDetailsService.story.language);
     this.storyForm.get('locationControl').setValue(this.storyDetailsService.story.regionId);
     this.storyForm.get('thematics').setValue(this.storyDetailsService.story.thematics);
-    this.storyForm.get('isMinority').setValue(this.storyDetailsService.story.isMinority ? 1 : 0);
+    this.storyForm
+      .get('isMinority')
+      .setValue(
+        this.storyDetailsService.story.isMinority === true
+          ? 1
+          : this.storyDetailsService.story.isMinority === false
+            ? 0
+            : null
+      );
+    this.storyForm.get('vulnerabilityFactors').setValue(this.storyDetailsService.story.vulnerabilityFactors || []);
 
     if (this.storyDetailsService.story.isUrgent === null) {
       this.storyForm.get('isUrgent').setValue(0);
@@ -243,8 +271,43 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
     }
   }
 
+  isSelectedVulnerabilityFactor(id: string): boolean {
+    return this.storyDetailsService.story.vulnerabilityFactors?.includes(id) || false;
+  }
+
+  handleVulnerabilityFactorChange($event, factor: IBaseEntityCheck): void {
+    const { checked } = $event;
+    if (!this.storyDetailsService.story.vulnerabilityFactors) {
+      this.storyDetailsService.story.vulnerabilityFactors = [];
+    }
+
+    if (checked) {
+      this.storyDetailsService.story = {
+        ...this.storyDetailsService.story,
+        vulnerabilityFactors: [...this.storyDetailsService.story.vulnerabilityFactors, factor.id],
+      };
+    } else {
+      this.storyDetailsService.story = {
+        ...this.storyDetailsService.story,
+        vulnerabilityFactors: this.storyDetailsService.story.vulnerabilityFactors.filter((factorId) => factorId !== factor.id),
+      };
+    }
+
+    this.storyForm.get('vulnerabilityFactors').setValue(this.storyDetailsService.story.vulnerabilityFactors);
+  }
+
+  dismissVulnerabilityFactor(id: string): void {
+    const factors = this.storyDetailsService.story.vulnerabilityFactors.filter((factorId) => factorId !== id);
+    this.storyDetailsService.story = {
+      ...this.storyDetailsService.story,
+      vulnerabilityFactors: factors,
+    };
+    this.storyForm.get('vulnerabilityFactors').setValue(factors);
+  }
+
   handleDisabilitiesChange(): void {
-    if (!this.hasDisabilities) {
+    // Only clear if explicitly "No" (null means unanswered)
+    if (this.hasDisabilities === false) {
       this.storyDetailsService.story.difficulties = [];
     }
   }
@@ -333,13 +396,49 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
       this.difficulties = difficulties;
     });
 
-    this.hasDisabilities = !!this.storyDetailsService.story.difficulties.length;
+    this.metaDataService.vulnerabilityFactors$.subscribe((vulnerabilityFactors) => {
+      this.vulnerabilityFactors = vulnerabilityFactors.sort((a, b) => {
+        const isOtherA = a.code.toLowerCase().endsWith('other') || a.code.toLowerCase().endsWith('autre');
+        const isOtherB = b.code.toLowerCase().endsWith('other') || b.code.toLowerCase().endsWith('autre');
+        if (isOtherA && !isOtherB) return 1;
+        if (!isOtherA && isOtherB) return -1;
+
+        const nameA = String(this.translateService.instant(a.code) || a.code);
+        const nameB = String(this.translateService.instant(b.code) || b.code);
+        return nameA.localeCompare(nameB);
+      });
+    });
+
+    this.hasDisabilities = this.storyDetailsService.story.difficulties.length ? true : null;
+
+  }
+  isAuthorNameValid(): boolean {
+    const name = (this.storyDetailsService.story?.authorNickname || '').trim();
+    return name.length > 0;
+  }
+
+  isAgeValid(): boolean {
+    return this.storyDetailsService.story?.age !== null && this.storyDetailsService.story?.age !== undefined;
+  }
+
+  isGenderValid(): boolean {
+    return this.storyDetailsService.story?.gender !== null && this.storyDetailsService.story?.gender !== undefined;
+  }
+
+  isDisabilityValid(): boolean {
+    // Must explicitly choose Yes/No. `null` means unanswered.
+    return this.hasDisabilities !== null;
+  }
+
+  isMinorityValid(): boolean {
+    const v = this.storyForm.get('isMinority')?.value;
+    return v !== null && v !== undefined;
   }
 
   private getMetadata(): void {
-    combineLatest([this.metaDataService.categories$, this.metaDataService.thematicAreas$])
+    combineLatest([this.metaDataService.categories$, this.metaDataService.thematicAreas$, this.metaDataService.vulnerabilityFactors$])
       .pipe(take(1), takeUntil(this.destroyed$))
-      .subscribe(([categories, thematic]) => {
+      .subscribe(([categories, thematic, vulnerabilityFactors]) => {
         this.categories = categories.map((category) => {
           return { code: category.code.split('.').pop(), count: category.count, id: category.id } as ICategory;
         });
@@ -350,9 +449,37 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
               child.parentId = tx.code;
               child.checked = false;
             });
+            tx.children.sort((a, b) => {
+              const isOtherA = a.code.toLowerCase().endsWith('other') || a.code.toLowerCase().endsWith('autre');
+              const isOtherB = b.code.toLowerCase().endsWith('other') || b.code.toLowerCase().endsWith('autre');
+              if (isOtherA && !isOtherB) return 1;
+              if (!isOtherA && isOtherB) return -1;
+
+              const nameA = String(this.translateService.instant(a.code) || a.code);
+              const nameB = String(this.translateService.instant(b.code) || b.code);
+              return nameA.localeCompare(nameB);
+            });
             return tx;
+          }).sort((a, b) => {
+            const nameA = String(this.translateService.instant(a.code) || a.code);
+            const nameB = String(this.translateService.instant(b.code) || b.code);
+            return nameA.localeCompare(nameB);
           }) as IBaseEntityCheckNested[],
         };
+        this.vulnerabilityFactors = vulnerabilityFactors.sort((a, b) => {
+          const isOtherA = a.code.toLowerCase().endsWith('other') || a.code.toLowerCase().endsWith('autre');
+          const isOtherB = b.code.toLowerCase().endsWith('other') || b.code.toLowerCase().endsWith('autre');
+          if (isOtherA && !isOtherB) return 1;
+          if (!isOtherA && isOtherB) return -1;
+
+          const nameA = String(this.translateService.instant(a.code) || a.code);
+          const nameB = String(this.translateService.instant(b.code) || b.code);
+          return nameA.localeCompare(nameB);
+        });
+
+        if (this.storyForm && this.storyDetailsService.story.vulnerabilityFactors) {
+          this.storyForm.get('vulnerabilityFactors').setValue(this.storyDetailsService.story.vulnerabilityFactors);
+        }
       });
   }
 
@@ -447,14 +574,19 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
     this.storyForm
       .get('isMinority')
       .valueChanges.pipe(takeUntil(this.destroyed$))
-      .subscribe((value: number) => {
+      .subscribe((value: number | null) => {
+        // If unanswered, keep it null; otherwise map 1/0 to boolean
+        if (value === null || value === undefined) {
+          (this.storyDetailsService.story as any).isMinority = null;
+          return;
+        }
         this.storyDetailsService.story.isMinority = value === 1;
       });
   }
 
   updateUrgentStatus(value: number): void {
     this.storyForm.get('isUrgent').setValue(value);
-      this.storyDetailsService.story.isUrgent = value === 1;
+    this.storyDetailsService.story.isUrgent = value === 1;
   }
 
   onAgeChange(age: number): void {

@@ -9,8 +9,9 @@
 
   <span class="country" *ngIf="country"><span class="dot">•</span> {{ 'country_name.' + country | translate }}</span>
 
-  <loop-icon *ngIf="closeButton && !disable" (click)="close$.emit()" [name]="LoopIcon.Name.Close" [theme]="iconTheme"
-    [size]="iconSize" class="close-icon simple-tag__icon"></loop-icon>
+  <loop-icon *ngIf="closeButton && !disable" [name]="LoopIcon.Name.Close" [theme]="iconTheme" [size]="iconSize"
+    data-ph-no-capture (mousedown)="close$.emit()" class="close-icon simple-tag__icon"></loop-icon>
+
 
   <svg *ngIf="verified" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
     stroke="currentColor" class="verified-tag">

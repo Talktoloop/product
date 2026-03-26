@@ -45,9 +45,9 @@ import {
   STORY_INCORRECT_STATUS,
 } from '@ourloop/shared';
 import { StoryService } from '../../story/service/story.service';
-import { PermissionGuard } from '../../auth/cerbos/permission.guard';
-import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
-import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
+// import { PermissionGuard } from '../../auth/cerbos/permission.guard';
+// import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
+// import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
 // @UseGuards(AuthGuard('cognito'), PermissionGuard)
 // @PermissionsCerbos(CERBOS_ACTIONS.UPDATE, CERBOS_RESOURCES.COMMENT)
@@ -146,6 +146,8 @@ export class CommentModeratorController {
     @Param('id', new UuidValidationPipe())
     commentId: string,
   ): Promise<SuccessRO> {
+    console.log('[PublishComment] START', { commentId });
+
     const comment = await this.commentService.findComment(commentId, [
       'recipient',
       'user',
@@ -167,10 +169,23 @@ export class CommentModeratorController {
       'story.conversation.messengerMessages',
     ]);
 
+    console.log('[PublishComment] Comment loaded', {
+      commentId,
+      storyId: comment.storyId,
+      storyChannel: comment.story?.channel,
+      commentAuthorId: comment.user?.id,
+    });
+
     const result = await this.commentModeratorService.publishComment(comment);
     const success = result && !!result?.affected;
 
+    console.log('[PublishComment] DB update result', { success });
+
     if (success) {
+      console.log('[PublishComment] Processing notifications for channel', {
+        channel: comment.story.channel,
+      });
+
       switch (comment.story.channel) {
         case CHANNEL_CONSTANTS.MESSENGER: {
           const conversationAvailability =
@@ -232,16 +247,21 @@ export class CommentModeratorController {
         }
 
         default: {
+          console.log('[PublishComment] Sending email notifications (WEB/default channel)');
           await this.commentNotificationService.sendNotificationsAfterCommentPublication(
             comment,
           );
         }
       }
+      console.log('[PublishComment] Sending notification to story owner');
       await this.commentNotificationService.sendNotificationsToStoryOwnerAfterCommentPublication(
         comment,
       );
+    } else {
+      console.log('[PublishComment] Skipped notifications - DB update failed');
     }
 
+    console.log('[PublishComment] END', { commentId, success });
     return plainToClass(SuccessRO, { success });
   }
 
@@ -254,6 +274,12 @@ export class CommentModeratorController {
     @Body(new ValidationPipe(rejectContentSchema))
     rejectContent: RejectContentDto,
   ): Promise<SuccessRO> {
+    console.log('[RejectComment] START', {
+      commentId,
+      hasReasons: !!rejectContent.reasonIds?.length,
+      reasonCount: rejectContent.reasonIds?.length || 0,
+    });
+
     checkRejectReason(rejectContent);
 
     const { reasonIds } = rejectContent;
@@ -269,6 +295,13 @@ export class CommentModeratorController {
       'user',
     ]);
 
+    console.log('[RejectComment] Comment loaded', {
+      commentId,
+      storyId: comment.storyId,
+      commentChannel: comment.channel,
+      commentAuthorId: comment.user?.id,
+    });
+
     const result = await this.commentModeratorService.rejectComment(
       comment,
       rejectContent,
@@ -276,20 +309,27 @@ export class CommentModeratorController {
     );
     const success = !!result?.id;
 
+    console.log('[RejectComment] DB update result', { success });
+
     if (success) {
+      console.log('[RejectComment] Sending rejection notification');
       this.commentNotificationService.sendNotificationsAfterRejectingComment(
         comment,
         rejectContent,
       );
 
       if (comment.channel === CHANNEL_CONSTANTS.IVRR) {
+        console.log('[RejectComment] Preparing IVRR call for rejection');
         await this.ivrrService.prepareRejectedCommentCall(
           comment,
           rejectReasons,
         );
       }
+    } else {
+      console.log('[RejectComment] Skipped notifications - DB update failed');
     }
 
+    console.log('[RejectComment] END', { commentId, success });
     return plainToClass(SuccessRO, { success });
   }
 

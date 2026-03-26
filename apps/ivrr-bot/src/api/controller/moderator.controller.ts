@@ -173,14 +173,25 @@ export class ModeratorController {
 
   @MessagePattern({ cmd: 'preparePublishedStoryCall' })
   async preparePublishedStoryCall(data: IvrrStoryDTO): Promise<SuccessRO> {
+    this.logger.log(
+      `[preparePublishedStoryCall] CALLED - StoryID: ${data.id}, Phone: ${data.phone}, Language: ${data.languageCode}`,
+    );
+
     try {
       const result = await this.callService.preparePublishedStoryCall({
         story: data,
       });
 
+      this.logger.log(
+        `[preparePublishedStoryCall] RESULT: ${result ? 'SUCCESS' : 'FAILED'} - StoryID: ${data.id}`,
+      );
+
       return { success: result };
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error(
+        `[preparePublishedStoryCall] ERROR - StoryID: ${data.id}, Error: ${error.message}`,
+        error.stack,
+      );
       return { success: false };
     }
   }
@@ -202,13 +213,24 @@ export class ModeratorController {
   @MessagePattern({ cmd: 'preparePublishedCommentCall' })
   async preparePublishedCommentCall(data: IvrrCommentDTO): Promise<SuccessRO> {
     try {
+      this.logger.log(
+        `Preparing published comment notification call for comment: ${data.id}, language: ${data.languageCode}`,
+      );
+
       const result = await this.callService.preparePublishedCommentCall({
         comment: data,
       });
 
+      this.logger.log(
+        `Published comment notification call ${result ? 'scheduled' : 'failed'} for comment: ${data.id}`,
+      );
+
       return { success: result };
     } catch (error) {
-      this.logger.error(error);
+      this.logger.error(
+        `Error preparing published comment call for comment ${data.id}`,
+        error,
+      );
       return { success: false };
     }
   }

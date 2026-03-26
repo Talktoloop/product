@@ -1,32 +1,36 @@
-import { AwsCredentials } from '../type/aws-credentials.type';
-import { CognitoIdentityProviderClientConfig } from '@aws-sdk/client-cognito-identity-provider';
+export function prepareAwsCredentials(config) {
+  const { awsAccessKey, awsSecretKey, awsRegion } = config;
 
-export function prepareAwsCredentials(config): CognitoIdentityProviderClientConfig {
-  // Add local endpoint configuration when environment is local
-  if (config.environment === 'local') {
-    return {
-      region: config.awsRegion,
-      endpoint: 'http://host.docker.internal:3001', // SAM local endpoint
-      credentials: {
-        accessKeyId: 'mock', // SAM local doesn't care about real credentials
-        secretAccessKey: 'mock'
-      }
-    };
-  }
-
-  const { awsAccessKey, awsSecretKey, awsRegion, awsEndpoint } = config;
-  const credentials: AwsCredentials = {
+  const clientConfig: Record<string, any> = {
     region: awsRegion,
   };
 
-  if (awsEndpoint) {
-    credentials.endpoint = awsEndpoint;
-  }
-
   if (awsAccessKey && awsSecretKey) {
-    credentials.accessKeyId = awsAccessKey;
-    credentials.secretAccessKey = awsSecretKey;
+    clientConfig.credentials = {
+      accessKeyId: awsAccessKey,
+      secretAccessKey: awsSecretKey,
+    };
   }
 
-  return credentials;
+  return clientConfig;
+}
+
+export function prepareCognitoCredentials(config) {
+  const { cognitoAccessKeyId, cognitoSecretAccessKey, awsRegion } = config;
+
+  const clientConfig: Record<string, any> = {
+    region: awsRegion,
+  };
+
+  const accessKey = cognitoAccessKeyId;
+  const secretKey = cognitoSecretAccessKey;
+
+  if (accessKey && secretKey) {
+    clientConfig.credentials = {
+      accessKeyId: accessKey,
+      secretAccessKey: secretKey,
+    };
+  }
+
+  return clientConfig;
 }

@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { I18nService } from 'nestjs-i18n';
 import { ClientProxyService } from '../api/service/client-proxy.service';
 import { CommunicatorService } from '../communicator/service/communicator.service';
+import { RedisService } from '../communicator/service/redis.service';
 import { StorageService } from '../storage/storage.service';
 import { FlowService } from './flow.service';
 
@@ -38,6 +39,10 @@ describe('FlowService', () => {
         },
         {
           provide: CommunicatorService,
+          useValue: {},
+        },
+        {
+          provide: RedisService,
           useValue: {},
         },
       ],

@@ -39,6 +39,7 @@ import { CategoryService } from '../../category/category.service';
 import { DifficultyService } from '../../lexicon/service/difficulty.service';
 import { OrganisationService } from '../../organisation/organisation.service';
 import { ThematicService } from '../../lexicon/service/thematic.service';
+import { VulnerabilityFactorsRepository } from '../../lexicon/repository/vulnerability-factors.repository';
 import { FilterDto } from '../../common/dto/filter.dto';
 import { generateMD5 } from '../../common/helpers';
 import {
@@ -48,6 +49,7 @@ import {
   OrganisationToExport,
   ThematicAreaToExport,
   StoryRecipientToExport,
+  VulnerabilityFactorToExport,
 } from '../type/data-to-export.type';
 import { StoryAdministrativeDataRepository } from '../repository/story-administrative-data.repository';
 import { CountryService } from '../../country/service/country.service';
@@ -88,6 +90,7 @@ export class ExportService {
     private readonly userExportCsvActivityRepository: UserExportCsvActivityRepository,
     private readonly connection: Connection,
     private readonly commentRepository: CommentRepository,
+    private readonly vulnerabilityFactorsRepository: VulnerabilityFactorsRepository,
   ) { }
 
   makeDateReadable(date: Date, dateFormat?: string): unknown {
@@ -231,6 +234,7 @@ export class ExportService {
         assistanceProvided: externalData[story.id]?.assistanceProvided,
         defaultLanguageIdForAdministrativeData: null,
         isMinority: null,
+        vulnerabilityFactors: [],
       };
     }
 
@@ -348,6 +352,19 @@ export class ExportService {
       items[item.storyId].thematicChildren.push(
         thematicAreaData[item.thematicAreaId]?.code,
       );
+    }
+
+    const vulnerabilityFactorCodes = [];
+    const vulnerabilityFactors = await this.vulnerabilityFactorsRepository.findAll();
+    for (const factor of vulnerabilityFactors) {
+      vulnerabilityFactorCodes[factor.id] = factor.label || factor.code;
+    }
+
+    for (const item of data.storyVulnerabilityFactors) {
+      const factorLabel = vulnerabilityFactorCodes[item.vulnerabilityFactorId];
+      if (factorLabel) {
+        items[item.storyId].vulnerabilityFactors.push(factorLabel);
+      }
     }
 
     return items;
@@ -703,6 +720,9 @@ export class ExportService {
         originalContent: this.clearCSVData(items[key].originalContent),
         originalContentLanguage: items[key].originalContentLanguage,
         isMinority: items[key].isMinority,
+        vulnerabilityFactors: items[key].vulnerabilityFactors
+          ?.map((value) => this.clearCSVData(value))
+          .join(separator),
         url: `${this.config.get('frontend.url')}/story/details/${key}`,
         '': '',
         allegationTypes: items[key].allegationTypes
@@ -1062,6 +1082,38 @@ export class ExportService {
     return data.filter((item) => storyIds.includes(item.storyId));
   }
 
+  async findVulnerabilityFactorsToExportByStoryIds(
+    queryRunner: QueryRunner,
+    storyIds: string[],
+  ): Promise<VulnerabilityFactorToExport[]> {
+    const prefix = 'vulnerability-factors';
+    const fileName = this.findCacheFile(prefix);
+
+    let data = [];
+
+    if (fileName) {
+      data = JSON.parse(this.readFile(fileName, 'utf-8'));
+    } else {
+      data = await queryRunner.manager
+        .createQueryBuilder()
+        .select('fvf.feedback_id', 'storyId')
+        .addSelect('fvf.vulnerability_factor_id', 'vulnerabilityFactorId')
+        .from('feedback_vulnerability_factors', 'fvf')
+        .execute()
+        .catch((error) => {
+          this.logger.error(error);
+          throw new BadRequestException(GET_STORY_FAILED);
+        });
+
+      this.saveCacheFile(
+        this.generateFileName(prefix, 'txt'),
+        JSON.stringify(data),
+      );
+    }
+
+    return data.filter((item) => storyIds.includes(item.storyId));
+  }
+
   async findCommentIdsToExportByStoryIds(
     storyIds: string[],
   ): Promise<CommentEntity[]> {
@@ -1205,6 +1257,8 @@ export class ExportService {
       thematicAreas,
       storyThematicAreas,
       storyRecipients,
+      vulnerabilityFactors,
+      storyVulnerabilityFactors,
     ] = await Promise.all([
       this.findCommentIdsToExportByStoryIds(storyIds),
       this.findStoriesToExportByIds(storyIds),
@@ -1221,6 +1275,8 @@ export class ExportService {
       this.thematicAreaService.findDataToExport(),
       this.findThematicAreasToExportByStoryIds(queryRunner, storyIds),
       this.findStoryRecipientToExportByStoryIds(queryRunner, storyIds),
+      this.vulnerabilityFactorsRepository.findAll(),
+      this.findVulnerabilityFactorsToExportByStoryIds(queryRunner, storyIds),
     ]);
 
     await queryRunner.release();
@@ -1241,6 +1297,8 @@ export class ExportService {
       thematicAreas,
       storyThematicAreas,
       storyRecipients,
+      vulnerabilityFactors,
+      storyVulnerabilityFactors,
     };
   }
 

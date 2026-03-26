@@ -7,6 +7,7 @@ import {
 import { languageSchema } from '../../../common/request/schema/language.schema';
 import { getKeysWithLowerCase } from '../../../common/helpers';
 import { contentSchema } from '../../../common/request/schema/content.schema';
+import { stripHtmlTags } from '../../../common/request/custom.joi';
 
 export const updateStorySchema: Joi.ObjectSchema = Joi.object({
   gender: Joi.number().valid(...Object.values(GENDER_VALUE)),
@@ -40,6 +41,14 @@ export const updateStorySchema: Joi.ObjectSchema = Joi.object({
     Joi.array().optional().items(Joi.number().optional().max(1000)),
     null,
   ],
+  vulnerabilityFactors: [
+    Joi.array().optional().items(Joi.alternatives().try(
+      Joi.string().guid(),
+      Joi.string().max(255),
+      Joi.number()
+    ).optional()),
+    null,
+  ],
   language: languageSchema.language.optional(),
   translations: [
     Joi.array().optional().items({
@@ -55,4 +64,9 @@ export const updateStorySchema: Joi.ObjectSchema = Joi.object({
   regionId: Joi.number().allow(null).optional(),
   isUrgent: Joi.boolean().allow(null).optional(),
   isMinority: Joi.boolean().allow(null).optional(),
+  disabilitiesOtherExplanation: Joi.string()
+    .allow('')
+    .allow(null)
+    .custom(stripHtmlTags)
+    .optional(),
 });

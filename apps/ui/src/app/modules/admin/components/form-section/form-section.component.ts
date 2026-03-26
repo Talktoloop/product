@@ -26,6 +26,8 @@ export class FormSectionComponent extends BaseComponent {
   @Input() required: boolean;
   @Input() dropdownWidth: number | 'auto' = 200;
   @Input() singleValue: boolean;
+  @Input() fabButtonSize: 'small' | 'medium' | 'big' = 'small';
+  @Input() isStaticDropdown = false;
   @Output() dismiss = new EventEmitter<string | number>();
   @Output() apply = new EventEmitter<boolean>();
   @Output() outsideClicked = new EventEmitter<boolean>();

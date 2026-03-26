@@ -14,4 +14,12 @@ export class OtherStoriesBySameRecipientRO {
     @Expose()
     @ApiProperty({ type: Date })
     createdAt: Date;
+
+    @Expose()
+    @ApiProperty({ type: String })
+    channel: string;
+
+    @Expose()
+    @ApiProperty({ type: String })
+    url: string;
 }
