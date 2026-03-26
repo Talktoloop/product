@@ -18,7 +18,7 @@ export interface UserRecordInterface {
   senderId: string;
   storyUuid: string;
   flowStartedAt: Date;
-  lastFlowId: Flow;
+  lastFlowId: Flow | null;
   lang: string;
   flowResponses: Array<UserFlowMessageInterface>;
   story: string;

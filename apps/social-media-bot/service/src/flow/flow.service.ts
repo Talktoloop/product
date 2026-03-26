@@ -43,14 +43,16 @@ export class FlowService {
     repeatLastMessage = false,
   ): Promise<Array<MessageInterface>> {
     let user = await this.storageService.getUser(senderId, pageConfig.pageId);
-    
+
     if (!user) {
       user = await this.storageService.createUser(
         senderId,
         pageConfig,
         profile,
       );
-      
+    }
+
+    if (this.flow.length === 0) {
       this.flow = await createFlowArray(pageConfig, user?.lang);
     }
 
@@ -108,7 +110,7 @@ export class FlowService {
     await this.storageService.setUserLang(
       profile.senderId,
       profile.pageId,
-      profile.user.locale,
+      pageConfig.defaultLanguage,
       pageConfig,
     );
 
@@ -216,7 +218,7 @@ export class FlowService {
           userResponse,
           pageConfig,
         );
-        
+
         if (result?.nextFlowId) {
           nextFlowId = result.nextFlowId;
           break;
@@ -224,6 +226,10 @@ export class FlowService {
       }
 
       if (flowMessage.contentSid) {
+        if (!userResponse || !String(userResponse).trim()) {
+          nextFlowId = null;
+          break;
+        }
         const isValidOption = await this.validateQuickReply(
           [flowMessage],
           userResponse,
@@ -233,9 +239,10 @@ export class FlowService {
         if (!isValidOption) {
           nextFlowId = flowMessage.fallbackFlow;
         } else {
-          userResponse = !this.configService.get('application.supportedQuickReplies')
-            ? userResponse === '1' ? 'YES' : userResponse === '2' ? 'NO' : userResponse
-            : userResponse;
+          userResponse = this.normalizeTemplateButtonPayload(
+            userResponse,
+            flowElement,
+          );
           nextFlowId = await this.getFlowByQuickReply(
             user,
             flowElement,
@@ -260,7 +267,7 @@ export class FlowService {
         pageConfig.pageId,
         pageConfig,
       );
-      
+
       await this.storageService.setLastFlowId(
         senderId,
         pageConfig.pageId,
@@ -298,7 +305,11 @@ export class FlowService {
     ) {
       return null;
     }
-    
+
+    if (!message || !String(message).trim()) {
+      return null;
+    }
+
     const preparedMessage = await this.prepareQuickReplyMessage(profile, message);
 
     for (const [key, value] of Object.entries(flowElement.nextFlowId)) {
@@ -315,15 +326,27 @@ export class FlowService {
     return this.flow.find((flowRecord) => flowRecord?.flowId === flowId);
   }
 
+  private normalizeTemplateButtonPayload(
+    userResponse: string,
+    flowElement: FlowRecordInterface,
+  ): string {
+    const next = flowElement.nextFlowId;
+    const mapNumeric =
+      (typeof next === 'object' && next !== null && 'YES' in next && 'NO' in next) ||
+      !this.configService.get('application.supportedQuickReplies');
+    if (!mapNumeric) return userResponse;
+    return userResponse === '1' ? 'YES' : userResponse === '2' ? 'NO' : userResponse;
+  }
+
   async getQuickReplies(
     flowMessages: FlowMessageInterface[],
     lang: string
   ): Promise<string[] | undefined> {
     const lastMessage = this.getLastFlowMessage(flowMessages);
-    
+
     if (lastMessage?.contentSid) return;
     if (!lastMessage?.options || !Array.isArray(lastMessage.options)) return;
-    
+
     return Promise.all(
       lastMessage.options.map((option) =>
         Number.isInteger(parseInt(option.answerId))
@@ -442,13 +465,17 @@ export class FlowService {
       }
 
       case 'changeLang': {
-        
-        const targetLang = pageConfig.supportedLanguages.find(
-          (lang) => lang.lang === userResponse,
+        const normalizedResponse = userResponse?.toLowerCase().replace(/_/g, ' ');
+        if (normalizedResponse === 'more options') {
+          return { nextFlowId: Flow.MORE_OPTIONS };
+        }
+
+        const targetLang = pageConfig.supportedLanguages.find((lang) =>
+          lang.lang === userResponse || this.i18n.translate(`main.${lang.lang.toUpperCase()}`, { lang: 'en' })?.toLowerCase() === normalizedResponse,
         )?.lang;
-        
+
         const updatedLang = targetLang ?? profile.lang;
-        
+
         await this.storageService.setUserLang(
           profile.senderId,
           profile.pageId,
@@ -477,7 +504,7 @@ export class FlowService {
         );
         break;
       }
-      
+
       case 'publishConsent':
       case 'publishConsentGiven': {
         const consentValue =
@@ -492,7 +519,7 @@ export class FlowService {
             : handlerName === 'publishConsentGiven'
               ? 'YES'
               : 'NO';
-        
+
         await this.storageService.setUserConsent(
           profile.senderId,
           profile.pageId,
@@ -500,11 +527,11 @@ export class FlowService {
         );
         break;
       }
-      
+
       case 'publishConsentDenied': {
         const restartCommand = supportedQuickReplies
           ? 'GET_STARTED' : '1';
-        
+
         if (userResponse === restartCommand) {
           await this.storageService.setLastFlowId(
             profile.senderId,
@@ -512,7 +539,7 @@ export class FlowService {
             null,
           );
         }
-        
+
         await this.storageService.setUserConsent(
           profile.senderId,
           profile.pageId,
@@ -520,38 +547,38 @@ export class FlowService {
         );
         break;
       }
-      
+
       case 'contactConsent': {
-        const value = userResponse !== '1';
-        
+        const value = userResponse === '1';
+
         await this.storageService.setShareUserInfoManual(
           profile.senderId,
           profile.pageId,
           value,
         );
-        
+
         return {
           nextFlowId: value ? Flow.CONTACT_CONSENT_APPROVED : Flow.CONTACT_CONSENT_DENIED,
-        };
+        };  
       }
-      
+
     }
   }
 
   async setShareUserInfoAndSaveStory(
     supportedLanguages: Array<string>,
     data: {
-    profile?: UserRecordInterface;
-    senderId?: string;
-    pageId?: string;
-  }): Promise<boolean> {
+      profile?: UserRecordInterface;
+      senderId?: string;
+      pageId?: string;
+    }): Promise<boolean> {
     if (!data.profile) {
       data.profile = await this.storageService.getUser(
         data.senderId,
         data.pageId,
       );
     }
-    
+
     if (!supportedLanguages.includes('so')) {
       data.profile = await this.storageService.setShareUserInfo(data.profile);
     }
@@ -618,7 +645,7 @@ export class FlowService {
           quick_replies: [],
         },
       };
-      
+
       if (flowMessage.contentSid) {
         const contentVariables = {};
         if (flowMessage.translationId && flowMessage.contentVariableName) {
@@ -631,7 +658,7 @@ export class FlowService {
         delete generatedMessage.message.text;
         delete generatedMessage.message.quick_replies;
       }
-      
+
       if (flowMessage.finishFlow) {
         generatedMessage.finishFlow = true;
       }
@@ -669,9 +696,9 @@ export class FlowService {
     profile: UserRecordInterface,
   ): Promise<boolean> {
     if (!answer) return false;
-    
+
     const lastMessage = this.getLastFlowMessage(flowMessages);
-    
+
     if (lastMessage?.contentSid) return true;
 
     const options = await this.getQuickReplies(flowMessages, profile.lang);

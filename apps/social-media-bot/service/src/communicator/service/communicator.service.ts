@@ -345,6 +345,9 @@ export class CommunicatorService {
     if (data.messageType === StoryStatus.REJECTED) {
       text = text.replace('{{reasonText}}', data.reasonText);
     }
+    if (data.messageType === StoryStatus.PUBLISHED && data.storyLink) {
+      text = `${text}\n\n${data.storyLink}`;
+    }
     
     const messages: Array<UserFlowMessageInterface> = [];
     
@@ -355,8 +358,8 @@ export class CommunicatorService {
     
     if (!hasIntroBeenSent) {
       const introStoryMessage = this.prepareIntroStoryMessage(
-      data.senderId,
-      data.story,
+        data.senderId,
+        data.story,
       );
 
       await this.getProvider().sendMessage(introStoryMessage, data.pageId);
@@ -373,12 +376,12 @@ export class CommunicatorService {
     
     await this.getProvider().sendMessage(
       {
-        recipient: {
-          id: data.senderId,
-        },
-        message: {
-          text: text,
-        },
+      recipient: {
+        id: data.senderId,
+      },
+      message: {
+        text: text,
+      },
       },
       data.pageId,
     );

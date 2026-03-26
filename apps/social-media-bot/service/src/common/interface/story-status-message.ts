@@ -8,4 +8,5 @@ export default interface StoryStatusToMessengerConversationInterface {
   story: string;
   messengerConversationId: number;
   reasonText?: string;
+  storyLink?: string
 }

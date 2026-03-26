@@ -488,12 +488,22 @@ export class StorageService {
   async setShareUserInfo(
     profile: UserRecordInterface,
   ): Promise<UserRecordInterface> {
-    profile.shareUserInfo = !!(
+    // Only update shareUserInfo based on user data if it hasn't been explicitly set
+    // (e.g., through contactConsent flow). If shareUserInfo is already true or false
+    // from an explicit user choice, we should preserve that.
+    // For backward compatibility with old flows, we set it based on whether user provided demographic data.
+    const hasUserData = !!(
       profile.user?.age ||
       profile.user?.gender ||
       profile.user?.firstName ||
       profile.user?.disability
     );
+
+    // If shareUserInfo is already explicitly set (from contactConsent), don't override it
+    // Otherwise, set it based on whether user provided demographic information
+    if (typeof profile.shareUserInfo !== 'boolean') {
+      profile.shareUserInfo = hasUserData;
+    }
 
     await this.saveUser(profile);
 
@@ -516,7 +526,7 @@ export class StorageService {
     profile.storyType = null;
     profile.shareUserInfo = true;
     profile.flowStartedAt = null;
-
+    profile.lang = null;
     await this.saveUser(profile);
   }
 
@@ -579,8 +589,11 @@ export class StorageService {
     pageId: string,
     value: boolean,
   ): Promise<void> {
+    this.logger.log(`setShareUserInfoManual called: senderId=${senderId}, value=${value}`);
     const profile = await this.fetchUser(senderId, pageId);
+    this.logger.log(`Profile before update: shareUserInfo=${profile.shareUserInfo}`);
     profile.shareUserInfo = value;
     await this.saveUser(profile);
+    this.logger.log(`Profile after update: shareUserInfo=${profile.shareUserInfo}`);
   }
 }
