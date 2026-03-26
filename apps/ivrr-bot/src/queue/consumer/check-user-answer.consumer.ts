@@ -91,6 +91,7 @@ export class CheckUserAnswerConsumer {
       );
 
       const callId = job.data.key;
+      this.logger.log(`Polling call status for CallSid: ${callId}`);
 
       const schedulerData = job.data.schedulerData;
       this.logger.log('schedulerData', JSON.stringify(schedulerData));
@@ -100,6 +101,10 @@ export class CheckUserAnswerConsumer {
       if (!call) {
         throw new Error('call is needed');
       }
+
+      this.logger.log(
+        `Call status - Status: ${call.status}, Duration: ${call.duration || 'N/A'}s`,
+      );
 
       const minimumPercentageHeardLevel = this.configService.get(
         'application.minimumPercentageHeardLevel',
@@ -116,6 +121,7 @@ export class CheckUserAnswerConsumer {
         callDone;
 
       if (callCompleted) {
+        this.logger.log(`Call completed successfully - CallSid: ${call.sid}`);
         this.logger.debug(
           `heardLevel <= minimumPercentageHeardLevel: ${
             heardLevel <= minimumPercentageHeardLevel
@@ -133,6 +139,9 @@ export class CheckUserAnswerConsumer {
             );
 
           if (!pendingCall) {
+            this.logger.log(
+              `Marking comment ${schedulerData.sourceId} as published/completed`,
+            );
             await this.apiClientService.setCommentAsPublished(
               schedulerData.sourceId,
             );
@@ -142,18 +151,23 @@ export class CheckUserAnswerConsumer {
         await this.queueService.addQueueJob({
           queue: this.checkUserAnswerCall,
           jobName: QUEUE_CONSTANT.CHECK_USER_ANSWER,
-          data: { key: call?.sid, attempt: 1 },
+          data: { key: call?.sid, attempt: 1, schedulerData },
           jobDelayInSeconds: this.applicationConfig.checkAnswerCallDelay,
         });
       } else if (!callCompleted && schedulerData?.id) {
-        if (
-          schedulerData.sequenceNumber >=
-          this.configService.get('application.sequenceNumberLimit')
-        ) {
+        if (schedulerData?.type === SourceType.COMMENT) {
           await this.setCommentAsPublished(schedulerData);
-        }
+          await this.schedulerService.removeSchedulerEntryById(schedulerData.id);
+        } else {
+          if (
+            schedulerData.sequenceNumber >=
+            this.configService.get('application.sequenceNumberLimit')
+          ) {
+            await this.setCommentAsPublished(schedulerData);
+          }
 
-        await this.schedulerService.setStatusAsFailed(schedulerData);
+          await this.schedulerService.setStatusAsFailed(schedulerData);
+        }
       } else {
         await this.schedulerService.scheduleCall(schedulerData);
       }

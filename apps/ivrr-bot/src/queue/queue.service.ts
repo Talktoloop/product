@@ -28,22 +28,33 @@ export class QueueService {
     job: Job<any>,
     error: Error,
   ): Promise<Job<any>> {
-    const reDeclaredJob = await this.redeClareJob(job);
+    try {
+      const jobState = await job.getState();
+      const jobProgress = await job.progress();
+      const jobAttemptsMade = job.attemptsMade;
+      
+      this.logger.debug(`[QUEUE] Job ${job.id} state before redeclare - State: ${jobState}, Progress: ${jobProgress}, Attempts: ${jobAttemptsMade}, Error: ${error.message}`);
+      
+      const reDeclaredJob = await this.redeClareJob(job);
 
-    if (!reDeclaredJob && !job.data.historicalData) {
-      await sendMessageToSupportTeam(
-        this.configService.get('redis'),
-        `${error.message}, details: ${JSON.stringify(error)}, jobName: ${
-          job.name
-        }, data: ${JSON.stringify(job.data)}`,
-        this.configService.get<ApplicationConfig>('application')
-          .communicationTimeout,
-      );
-    } else {
-      this.logger.log(`Re-declared job ${job.id} of type ${job.name}`);
+      if (!reDeclaredJob && !job.data.historicalData) {
+        await sendMessageToSupportTeam(
+          this.configService.get('redis'),
+          `${error.message}, details: ${JSON.stringify(error)}, jobName: ${
+            job.name
+          }, data: ${JSON.stringify(job.data)}`,
+          this.configService.get<ApplicationConfig>('application')
+            .communicationTimeout,
+        );
+      } else {
+        this.logger.log(`Re-declared job ${job.id} of type ${job.name}`);
+      }
+
+      return reDeclaredJob;
+    } catch (fallbackError) {
+      this.logger.error(`Error in sendNotificationOrRedeclareJob for job ${job.id}:`, fallbackError);
+      return null;
     }
-
-    return reDeclaredJob;
   }
 
   async redeClareJob(job: Job<any>): Promise<Job<any>> {
@@ -93,10 +104,13 @@ export class QueueService {
       jobId,
     });
 
+    const jobState = await job.getState();
+    const jobTimestamp = job.timestamp;
+    
     this.logger.log(
       `Created new job. [${job.id}]: ${job.name}, delay: ${
         delay / 1000
-      } seconds`,
+      } seconds, state: ${jobState}, timestamp: ${jobTimestamp}`,
     );
 
     return job;

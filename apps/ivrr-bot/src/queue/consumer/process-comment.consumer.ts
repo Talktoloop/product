@@ -79,11 +79,18 @@ export class ProcessCommentConsumer {
       let result: Record<string, unknown>;
 
       if (commentId) {
+        this.logger.log(
+          `Attempting to publish comment: ${commentId} for call: ${callLogSid}`,
+        );
         result = await this.apiClientService.setCommentAsPublished(commentId);
 
         if (!result?.success) {
+          this.logger.error(
+            `Failed to publish comment: ${commentId}. Result: ${JSON.stringify(result)}`,
+          );
           throw new Error('Could not publish comment');
         }
+        this.logger.log(`Successfully published comment: ${commentId}`);
       }
 
       const commentCreated = (await this.storageService.getEntry(
@@ -99,18 +106,30 @@ export class ProcessCommentConsumer {
       }
 
       if (!commentCreated && job.data.isCommentReply) {
+        this.logger.log(
+          `Processing recording for comment reply - CommentId: ${commentId}, CallLogSid: ${callLogSid}`,
+        );
+
         const s3KeyFile = await this.webhookService.handleFile(
           callLog,
           job.data.recordingUrl,
         );
+        this.logger.log(`Recording uploaded to S3 - File ID: ${s3KeyFile}`);
 
         const recordingDuration =
           await this.twilioService.getCallRecordingDuration(callLog.sid);
+        this.logger.log(`Recording duration: ${recordingDuration} seconds`);
+
+        const userPhoneNumber = callLog.from;
+        this.logger.log(
+          `CallLog - From: ${callLog.from}, To: ${callLog.to}, Direction: inbound`,
+        );
+        this.logger.log(`Saving user phone for callback: ${userPhoneNumber}`);
 
         result = await this.apiClientService.sendTwilioCallToApi(
           null,
           commentId,
-          callLog.to,
+          userPhoneNumber,
           job.data.isCommentReply,
           {
             twilioCallSid: callLog.sid,
@@ -123,9 +142,15 @@ export class ProcessCommentConsumer {
         );
 
         if (!result?.success) {
+          this.logger.error(
+            `Failed to send recording to API - CommentId: ${commentId}`,
+          );
           throw new Error('Could not send reply to API');
         } else {
           await this.storageService.setEntry(`comment${callLogSid}`, true);
+          this.logger.log(
+            `Successfully saved IVRR call for comment: ${commentId}`,
+          );
         }
       }
 

@@ -77,7 +77,7 @@ export class SchedulerService {
     });
 
     if (filteredCalls.length > limit) {
-      filteredCalls.slice(0, limit);
+      return filteredCalls.slice(0, limit);
     }
 
     return filteredCalls;
@@ -102,6 +102,11 @@ export class SchedulerService {
       id,
       status: Not(In([SchedulerStatus.PENDING, SchedulerStatus.FAILED])),
     });
+  }
+
+  async removeSchedulerEntryById(id: number): Promise<DeleteResult> {
+    this.logger.debug(`removeSchedulerEntryById, id: ${id}`);
+    return this.schedulerRepository.delete({ id });
   }
 
   async scheduleCall(data: SchedulerData): Promise<SchedulerEntity> {
@@ -190,8 +195,12 @@ export class SchedulerService {
 
       return;
     }
-
-    return this.schedulerRepository.update(data.id, {
+    const id = data?.id ?? data?.sourceId;
+    if (!id) {
+      this.logger.error('setStatusAsFailed: missing id/sourceId', { data });
+      return; // or throw; but DO NOT call update with empty criteria
+    }
+    return this.schedulerRepository.update(id, {
       status: SchedulerStatus.FAILED,
       sequenceNumber: data.sequenceNumber + 1,
       time: this.getSchedulerTime(phoneNumberDetails),

@@ -49,4 +49,4 @@ import { SchedulerModule } from '../scheduler/scheduler.module';
     ProcessOutboundCallProvider,
   ],
 })
-export class QueueModule {}
+export class QueueModule { }

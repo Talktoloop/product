@@ -11,7 +11,7 @@ import { CallController } from './call.controller';
 import { QueueModule } from '../queue/queue.module';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { IvrrCallRepository } from './repository/ivrr-call.repository';
+import { IvrrCallEntity } from './entity/ivrr-call.entity';
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { IvrrCallRepository } from './repository/ivrr-call.repository';
     HttpModule,
     QueueModule,
     forwardRef(() => SchedulerModule),
-    TypeOrmModule.forFeature([IvrrCallRepository]),
+    TypeOrmModule.forFeature([IvrrCallEntity]),
   ],
   controllers: [CallController],
   providers: [
@@ -33,4 +33,4 @@ import { IvrrCallRepository } from './repository/ivrr-call.repository';
   ],
   exports: [CallService, TwilioService, TwimlService],
 })
-export class CallModule {}
+export class CallModule { }

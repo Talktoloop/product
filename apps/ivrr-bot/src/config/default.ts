@@ -141,7 +141,11 @@ export default async (): Promise<Record<string, any>> => {
       checkParameterValue(parameters, env.COMMUNICATION_TIMEOUT),
     ) || 5000;
 
-  if (Object.keys(parameters).length === 0 && parameterKeys.length > 0) {
+  if (
+    environment !== 'local' &&
+    Object.keys(parameters).length === 0 &&
+    parameterKeys.length > 0
+  ) {
     sendMessageToSupportTeam(
       redis,
       'IVR SERVICE: failed to provide values for environments variables',
@@ -172,11 +176,13 @@ export default async (): Promise<Record<string, any>> => {
     }
 
   } catch (error) {
-    sendMessageToSupportTeam(
-      redis,
-      `IVR SERVICE: ${JSON.stringify(error.message)} twilioPhoneNumbers: ${twilioPhoneNumbers} env.TWILIO_PHONE_NUMBERS: ${env.TWILIO_PHONE_NUMBERS}`,
-      communicationTimeout,
-    );
+    if (environment !== 'local') {
+      sendMessageToSupportTeam(
+        redis,
+        `IVR SERVICE: ${JSON.stringify(error.message)} twilioPhoneNumbers: ${twilioPhoneNumbers} env.TWILIO_PHONE_NUMBERS: ${env.TWILIO_PHONE_NUMBERS}`,
+        communicationTimeout,
+      );
+    }
   }
 
   return {
@@ -219,10 +225,10 @@ export default async (): Promise<Record<string, any>> => {
       startNightHour:
         Number.parseInt(
           checkParameterValue(parameters, env.START_NIGHT_HOUR),
-        ) || 22,
+        ) || 22, 
       endNightHour:
         Number.parseInt(checkParameterValue(parameters, env.END_NIGHT_HOUR)) ||
-        6,
+        6, 
       limitOfPhoneCalls: 10,
       maxLengthOfRecordBlockInSeconds:
         Number.parseInt(
@@ -234,7 +240,7 @@ export default async (): Promise<Record<string, any>> => {
       schedulerDiffInHours:
         Number.parseFloat(
           checkParameterValue(parameters, env.SCHEDULER_DIFF_IN_HOURS),
-        ) || 24,
+        ) || 0,
       sequenceNumberLimit: 3,
       minimumPercentageHeardLevel:
         Number.parseInt(
@@ -287,7 +293,7 @@ export default async (): Promise<Record<string, any>> => {
             audio:
               'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/R/R1.1.mp3',
           },
-          bjn: {
+          bju: {
             text: 'Kang waliba adeeg cod eh oo mar hora la duubi.\nKang waliba adeeg cod eh oo mar hora la duubi.\nWaliba mar dhow dhegeysadaase jowaabtiyo kubacadana waliba doorada doonte ini ada ku jowaabta I ini kale.',
             audio:
               'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R1.1.mp3',
@@ -329,7 +335,7 @@ export default async (): Promise<Record<string, any>> => {
             audio:
               'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/R/R2.1.mp3',
           },
-          bjn: {
+          bju: {
             text: 'Sidi ana mar kale ing dhugunsata fariingtung ada hada dhugunsati fadlang rii 1.\nHooba ada fadaasa ini ad ahata ku jowaabta fariingtung fadlan rii 2.\nHooba ada fadaasa ini ad ahata ka jowaabta fariingta mar hora fadlan rii 3.\nHooba ada ing fadaana ini ada jowaabta fadlan rii 4.',
             audio:
               'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R2.1.mp3',
@@ -349,7 +355,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/R/R4.1.mp3',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/R/R4.1.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/R/R4.1.mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R4.1.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R4.1.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/R/R4.1.mp3',
           },
           '1': {
@@ -359,7 +365,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/R/R2.1.mp3',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/R/R2.1.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/R/R2.1.mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R2.1.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R2.1.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/R/R2.1.mp3'
           },
           '2': {
@@ -369,7 +375,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/R/R3.1.mp3',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/R/R3.1.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/R/R3.1.mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R3.1.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R3.1.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/R/R3.1.mp3'
           },
           '3': {
@@ -379,7 +385,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/English/IVR-Format/R/R3.2.wav',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/R/R3.2.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/R/R3.2.mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R3.2.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R3.2.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/R/R3.2.mp3',
           },
           '4': {
@@ -389,7 +395,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/R/R3.3.mp3',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/R/R3.3.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/R/R3.3.mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R3.3.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/R/R3.3.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/R/R3.3.mp3',
           },
         },
@@ -402,7 +408,7 @@ export default async (): Promise<Record<string, any>> => {
           so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/P/P1.1.mp3',
           maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/P/P1.1.mp3',
           bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/P/P1.1.mp3',
-          bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/P/P1.1.mp3',
+          bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/P/P1.1.mp3',
           bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/P/P1.1.mp3'
         },
         reply: {
@@ -412,7 +418,7 @@ export default async (): Promise<Record<string, any>> => {
           so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/P/P1.2.mp3',
           maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/P/P1.2.mp3',
           bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/P/P1.2.mp3',
-          bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/P/P1.2.mp3',
+          bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/P/P1.2.mp3',
           bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/P/P1.2.mp3'
         },
       },
@@ -425,7 +431,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/X/X1.1.mp3',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/X/X1.1.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/X/X1.1mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X1.1.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X1.1.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/X/X1.1.mp3'
           },
           reasons: {
@@ -481,7 +487,7 @@ export default async (): Promise<Record<string, any>> => {
               '7': 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/X/X2.6.mp3',
               '10': 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/X/X2.10.mp3',
             },
-            bjn: {
+            bju: {
               '1': 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X2.1.mp3',
               '2': 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X2.2.mp3',
               '3': 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X2.3.mp3',
@@ -507,7 +513,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/X/X3.1.mp3',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/X/X3.1.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/X/X3.1mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X3.1.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X3.1.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/X/X3.1.mp3'
           },
         },
@@ -519,7 +525,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/X/X1.1.mp3',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/X/X1.1.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/X/X1.1.mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X1.1.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X1.1.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/X/X1.1.mp3'
           },
           reasons: {
@@ -571,7 +577,7 @@ export default async (): Promise<Record<string, any>> => {
               '5': 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/X/X2.5.mp3',
               '7': 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/X/X2.6.mp3',
             },
-            bjn: {
+            bju: {
               '1': 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X2.1.mp3',
               '2': 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X2.2.mp3',
               '3': 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X2.3.mp3',
@@ -595,7 +601,7 @@ export default async (): Promise<Record<string, any>> => {
             so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/X/X3.1.mp3',
             maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/X/X3.1.mp3',
             bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/X/X3.1mp3',
-            bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X3.1.mp3',
+            bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X3.1.mp3',
             bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/X/X3.1.mp3'
           },
         },
@@ -606,7 +612,7 @@ export default async (): Promise<Record<string, any>> => {
           so: 'https://social-media-files.talktoloop.org/Somali-Maxatiri/IVR-Format/X/X4.1.mp3',
           maa: 'https://social-media-files.talktoloop.org/Somalia-Maay/IVR-Format/X/X4.1.mp3',
           bnd: 'https://social-media-files.talktoloop.org/Somali-Banadiri-Marka/IVR-Format/X/X4.1mp3',
-          bjn: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X4.1.mp3',
+          bju: 'https://social-media-files.talktoloop.org/Somali-Baajuuni/IVR-Format/X/X4.1.mp3',
           bara: 'https://social-media-files.talktoloop.org/Somali-Barawani-Chimini/IVR-Format/X/X4.1.mp3'
         },
       },
