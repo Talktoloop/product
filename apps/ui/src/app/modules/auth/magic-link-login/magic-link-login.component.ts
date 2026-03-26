@@ -3,6 +3,7 @@ import { FormControl, FormGroup, UntypedFormGroup, Validators } from '@angular/f
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AUTH_ROUTES, MAIN_ROUTES, PROFILE_ROUTES } from '@app/app-routing.props';
+import { SOCIAL_LINKS } from '@app/core/header/header.constants';
 import { AuthService } from '@app/core/services/auth/auth.service';
 import { UIService } from '@app/core/services/ui/ui.service';
 import { BaseComponent } from '@app/shared/components/base.component';
@@ -23,9 +24,9 @@ export class MagicLinkLoginComponent extends BaseComponent implements OnInit, On
   isTablet: boolean;
   accountRequired: boolean;
   magicLinkLoginSvg = this.sanitizer.bypassSecurityTrustHtml(magicLinkLoginSvg);
-  loopMobileLogoSvg = this.sanitizer.bypassSecurityTrustHtml(loopMobileLogoSvg);
-  loopDesktopLogoSvg = this.sanitizer.bypassSecurityTrustHtml(loopDesktopLogoSvg);
+  logoPath = 'assets/loop_logo.png';
   requestProcessing = false;
+  socialLinks = SOCIAL_LINKS;
 
   constructor(
     private activatedRoute: ActivatedRoute,

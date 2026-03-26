@@ -143,6 +143,7 @@ export class StoryReviewActionButtonsComponent extends BaseComponent {
       gender: story.gender || Gender.NO_ANSWER,
       categories: story.categories.map((category) => Number(category.id)),
       difficulties: story.difficulties.map((difficulty) => Number(difficulty.id)),
+      disabilitiesOtherExplanation: story.disabilitiesOtherExplanation,
       maternityStatus: story.maternityStatus.map((maternity) => Number(maternity.id)),
       organisations: story.organisations.map((organisations) => organisations.id),
       thematics: story.thematics,
@@ -160,6 +161,7 @@ export class StoryReviewActionButtonsComponent extends BaseComponent {
         : [],
         isUrgent: !!story.isUrgent,
         isMinority: !!story.isMinority,
+        vulnerabilityFactors: story.vulnerabilityFactors,
     };
     if (updatedOriginalStory) {
       updateStoryRequest.content = updatedOriginalStory;

@@ -1,7 +1,7 @@
 {
   "name": "ourloop-ui",
   "version": "1.0.3",
-  "packageManager": "yarn@4.0.1",
+  "packageManager": "yarn@3.1.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -27,8 +27,8 @@
     "e2e": "ng e2e",
     "check:dependencies": "depcheck",
     "analyze": "ng build --configuration production --stats-json && webpack-bundle-analyzer dist/ourloop-ui/stats.json",
-    "prepare": "husky install",
-    "postinstall": "husky install",
+    "prepare": "test -f ../../.git/config && (cd ../.. && husky install apps/ui/.husky) || husky install",
+    "postinstall": "test -f ../../.git/config && (cd ../.. && husky install apps/ui/.husky) || husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "rebuild": "true"

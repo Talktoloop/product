@@ -1,6 +1,6 @@
 <div class="story-with-comments" [class.one-column]="forceInfoWithin">
   <div>
-    <app-story-card [story]="story" [showSubheading]="true" [loading]="loading">
+    <app-story-card [story]="(story$ | async) || story" [showSubheading]="true" [loading]="loading">
       <ng-container ngProjectAs="after">
         <div *ngIf="showStoryInfo && ((this.uiService.mobileView$ | async) || forceInfoWithin)">
           <div class="post__section-separator story-with-comments__form-separator"></div>
@@ -37,6 +37,6 @@
   </div>
 
   <ng-template #additionalStoryInfo let-within="within">
-    <app-additional-story-info [story]="story" [flat]="within" [noPadding]="within"></app-additional-story-info>
+    <app-additional-story-info [story]="(story$ | async) || story" [flat]="within" [noPadding]="within"></app-additional-story-info>
   </ng-template>
 </div>

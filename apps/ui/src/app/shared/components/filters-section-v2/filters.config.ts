@@ -1,17 +1,10 @@
 import { FormControl, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-
 import { FilterType, IFilterV2 } from '@shared/components/filters-section-v2/filter.model';
-
 import { CASES_AGE_REVERSE_MAPPING } from '@shared/types/age.type';
-
 import { ASSISTANCE_REFERRED_MAPPING } from '@shared/types/assistance-referred.type';
-
 import { CASE_TYPE_MAPPING } from '@shared/types/case-type.type';
-
 import { CASES_GENDER_REVERSE_MAPPING } from '@shared/types/gender.type';
-
 import { ORGANISATION_TYPE_MAPPING } from '@shared/types/organisation-type.type';
-
 import { MultiRegionData } from '@shared/components/location/location.component';
 import * as moment from 'moment';
 import { CheckboxFilterData } from './filters-controls-data.model';
@@ -35,6 +28,7 @@ export enum StoriesFilters {
   CHANNEL_FILTER = 'channelFilter',
   LANGUAGE = 'language',
   COMMUNITY_RESPONSIVENESS = 'communityResponsiveness',
+  VULNERABILITY_FACTORS = 'vulnerabilityFactors',
 }
 
 export const DEMOGRAPHIC_FILTER_SESSION_STORAGE_KEYS = ['age', 'gender', 'difficulty', 'minority'];
@@ -158,7 +152,7 @@ export const openStoriesFiltersConfig: IFilterV2<StoriesFilters>[] = [
       mapValueFromStorage: (key, value: { id: number; name: string }[], mapToFormData) => ({
         language: value?.map((singleValue) => (mapToFormData ? singleValue.id : singleValue.name)),
       }),
-      mapValue: (data: { id: number; name: string }[]) => data.map((singleData) => singleData.id),
+      mapValue: (data: { id: number; name: string }[]) => data.map((singleData) =>singleData.id),
     },
   {
     // --------------------- THEMATIC AREA ---------------------
@@ -222,6 +216,15 @@ export const openStoriesFiltersConfig: IFilterV2<StoriesFilters>[] = [
     filterFormConfig: { communityResponsiveness: new UntypedFormControl(null) },
     type: FilterType.CHECKBOX_SINGLE,
     sessionStorageKey: 'communityResponsiveness',
+  },
+  {
+    // --------------------- VULNERABILITY FACTORS ---------------------
+    translationKey: 'filtersV2.vulnerabilityFactors.label',
+    internalName: StoriesFilters.VULNERABILITY_FACTORS,
+    filterFormConfig: { vulnerabilityFactors: new UntypedFormControl(null) },
+    type: FilterType.CHECKBOX,
+    sessionStorageKey: 'vulnerabilityFactors',
+    countValueAsOne: false,
   }
 ];
 

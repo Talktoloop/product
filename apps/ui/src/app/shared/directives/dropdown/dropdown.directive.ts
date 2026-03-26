@@ -16,6 +16,7 @@ export class DropdownDirective implements AfterViewInit, OnDestroy, DoCheck {
   @Input() isNotSticky? = false;
   @Input() isDisabled? = false;
   @Input() isDisabledOnMobile? = false;
+  @Input() isStatic? = false;
   isInitiated = false;
 
   popper: Instance;
@@ -47,39 +48,45 @@ export class DropdownDirective implements AfterViewInit, OnDestroy, DoCheck {
         }
       });
     }
-    !this.autoWidth && this.setWidth();
-    this.zone.runOutsideAngular(() => {
-      this.popper = createPopper(this.sourceEl, this.el.nativeElement, {
-        modifiers: [
-          {
-            name: 'preventOverflow',
-            options: this.isAxisNotReversed
-              ? {}
-              : {
-                  mainAxis: true,
-                  altAxis: !this.isNotSticky,
-                },
-          },
-        ],
-      });
-
-      setInterval(() => {
-        if (this.popper) {
-          this.popper.forceUpdate();
-        }
-      }, 100);
-
+    if (!this.isStatic) {
       !this.autoWidth && this.setWidth();
-      !this.autoWidth &&
-        setTimeout(() => {
+      this.zone.runOutsideAngular(() => {
+        this.popper = createPopper(this.sourceEl, this.el.nativeElement, {
+          modifiers: [
+            {
+              name: 'preventOverflow',
+              options: this.isAxisNotReversed
+                ? {}
+                : {
+                    mainAxis: true,
+                    altAxis: !this.isNotSticky,
+                  },
+            },
+          ],
+        });
+
+        setInterval(() => {
           if (this.popper) {
             this.popper.forceUpdate();
           }
-        }, 200);
-    });
+        }, 100);
+
+        !this.autoWidth && this.setWidth();
+        !this.autoWidth &&
+          setTimeout(() => {
+            if (this.popper) {
+              this.popper.forceUpdate();
+            }
+          }, 200);
+      });
+    }
   }
 
   ngDoCheck(): void {
+    if (this.isStatic) {
+      return;
+    }
+    
     setTimeout(() => {
       if (this.popper) {
         this.popper.forceUpdate();
@@ -95,9 +102,11 @@ export class DropdownDirective implements AfterViewInit, OnDestroy, DoCheck {
   }
 
   setWidth(): void {
-    if (this.sourceEl && this.el.nativeElement) {
-      this.el.nativeElement.style.width = this.calculateWidth();
+    if (this.isStatic || !this.sourceEl || !this.el.nativeElement) {
+      return;
     }
+    
+    this.el.nativeElement.style.width = this.calculateWidth();
   }
 
   private calculateWidth(): string {

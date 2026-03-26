@@ -17,13 +17,14 @@
           [title]="(isEditing ? 'global.submit' : 'global.add') | translate"
           theme="moderator-fab"
           [rotate]="isEditing ? 90 : 45"
+          [size]="fabButtonSize"
           (clicked)="handleFabClick()"
         >
         </app-fab-button>
       </div>
       <ng-container *ngIf="isEditing">
         <ng-container *ngIf="!ui.mobileView">
-          <div appDropdown [offset]="[10, 10]" [sourceEl]="fabWrapper.nativeElement" [sourceWidth]="dropdownWidth" class="dropdown">
+          <div appDropdown [offset]="[10, 10]" [sourceEl]="fabWrapper.nativeElement" [sourceWidth]="dropdownWidth" [isStatic]="isStaticDropdown" class="dropdown">
             <h3 class="dropdown__title">{{ heading | translate }}</h3>
             <ng-container *ngTemplateOutlet="content"></ng-container>
             <app-button cy="form-section-app-button-apply-btn" data-testid="form-section-app-button-apply-btn" (clicked)="onApplyClick()" class="dropdown__apply-btn" [mode]="'v2'">
