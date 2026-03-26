@@ -42,7 +42,7 @@ import { StoryTranslateActionButtonsComponent } from './story-translate-action-b
 import { StoryTranslateGlobalComponent } from './story-translate-global/story-translate-global.component';
 import { TranslateHeaderComponent } from './translate-header/translate-header.component';
 import { StoryAuthorHistoryComponent } from './story-author-history/story-author-history.component';
-
+import { LanguageConfirmationModalComponent } from './language-confirmation-modal/language-confirmation-modal.component';
 @NgModule({
   declarations: [
     DividerComponent,
@@ -59,6 +59,7 @@ import { StoryAuthorHistoryComponent } from './story-author-history/story-author
     StoryActionButtonsComponent,
     InvitationModalComponent,
     StoryAuthorHistoryComponent,
+    LanguageConfirmationModalComponent,
   ],
   exports: [
     DividerComponent,
@@ -73,7 +74,8 @@ import { StoryAuthorHistoryComponent } from './story-author-history/story-author
     StoryTranslateGlobalComponent,
     TranslateHeaderComponent,
     StoryActionButtonsComponent,
-    StoryAuthorHistoryComponent
+    StoryAuthorHistoryComponent,
+    LanguageConfirmationModalComponent,
   ],
   imports: [
     AutocompleteModule,

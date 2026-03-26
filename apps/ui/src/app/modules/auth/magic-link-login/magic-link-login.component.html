@@ -1,6 +1,7 @@
 <div class="login-panel">
-  <div class="login-panel__logo" [routerLink]="['/']"
-    [innerHTML]="isMobile || isTablet ? loopMobileLogoSvg : loopDesktopLogoSvg"></div>
+  <div class="login-panel__logo" [routerLink]="['/']">
+    <img [src]="logoPath" alt="Talk to Loop Logo" />
+  </div>
   <div class="login-panel__form-container">
     <h2 *ngIf="accountRequired">{{ 'auth.magicLinkLogin.form.title' | translate }}</h2>
     <h4>{{ 'auth.magicLinkLogin.form.description' | translate }}</h4>
@@ -29,6 +30,12 @@
     </h2>
     <app-button [routerLink]="['/']" mode="v2" variant="link-3">{{ 'auth.magicLinkLogin.footer.button.text' | translate
       }}</app-button>
+    <div class="login-panel__social-links">
+      <a *ngFor="let link of socialLinks" class="login-panel__social-link" [href]="link.url" [attr.target]="link.target"
+        [attr.aria-label]="link.code | translate">
+        <img [src]="link.imagePath" [alt]="link.code | translate" />
+      </a>
+    </div>
   </div>
 </div>
 <div class="login-image" *ngIf="!isMobile && !isTablet">

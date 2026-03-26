@@ -68,7 +68,7 @@ export class FormComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.setupSensitiveModeListener();
-    this.setupAgeListener();
+    this.setupAgeListener();  
     // this.setupContactInfoListener();
   }
 
@@ -92,7 +92,7 @@ export class FormComponent extends BaseComponent implements OnInit {
         isSensitive: [false],
       }),
       step2: this.fb.group({
-        countryId: [null],
+        countryId: [null, [Validators.required]],
         regionId: [null],
         organisations: [null],
       }),
@@ -104,6 +104,13 @@ export class FormComponent extends BaseComponent implements OnInit {
         age: [0],
         difficulties: [null],
         difficulty: [0],
+        disabilitiesOtherExplanation: [
+          '',
+          [
+            Validators.maxLength(500),
+            Validators.pattern(/^(\p{L}|\p{N}|\p{P}|\p{S}|\p{Z}|\p{M})+$/mu),
+          ],
+        ],
         additionalContactDetails: [
           '',
           [
@@ -228,8 +235,20 @@ export class FormComponent extends BaseComponent implements OnInit {
     // TODO check 'channel' with backend 'channel: CHANNEL_CONSTANTS.WEB'
     // filter out only prefix selected
     values.phone = values.phone?.length > 3 ? values.phone : null;
+
+    // Store original email value (including empty string) before pickBy removes it
+    const hasEmail = 'email' in values;
+    const emailValue = values.email;
+
     console.log("Form Values", values)
-    return pickBy<IAddStoryDTO>(values, identity);
+    const result = pickBy<IAddStoryDTO>(values, identity);
+
+    // If email field existed but was empty, explicitly set to null to indicate anonymous
+    if (hasEmail && !emailValue) {
+      result.email = null;
+    }
+
+    return result;
   }
 
   handleStepChange(step: number): void {
@@ -293,9 +312,12 @@ export class FormComponent extends BaseComponent implements OnInit {
     if (!currentStepForm) {
       return;
     }
+    console.log("Current Step Form", currentStepForm)
     currentStepForm.markAllAsTouched();
+
     this.formHelperService.markAllAsDirty(currentStepForm);
     currentStepForm.updateValueAndValidity();
+    console.log("Current Step Form", currentStepForm)
   }
 
   // private setupContactInfoListener(): void {

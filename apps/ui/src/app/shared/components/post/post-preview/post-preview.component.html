@@ -23,7 +23,6 @@
         (click)="$event.stopPropagation(); $event.preventDefault()">
       </loop-share-icon>
       <loop-post-context-menu
-        *ngIf="profileService.isAdmin"
         [id]="postData.id"
         [channel]="postData.channel"
         [postType]="'story'"

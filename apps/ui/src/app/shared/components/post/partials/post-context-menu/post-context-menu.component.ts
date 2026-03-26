@@ -5,7 +5,9 @@ import { CommentService } from '@app/core/services/api/comment/comment.service';
 import { CHANNEL_CONSTANTS } from '@app/core/services/api/model/channel.enum';
 import { IBaseApiResponse } from '@app/core/services/api/model/response/base-response.model';
 import { ProfileService } from '@app/core/services/api/profile/profile.service';
+import { ModalServiceV2 } from '@app/core/services/modal/modal-v2.service';
 import { StoryService } from '@app/core/services/api/story/story.service';
+import { ReportFormComponent } from '@app/shared/components/report-form/report-form.component';
 import { BaseComponent } from '@app/shared/components/base.component';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -29,6 +31,7 @@ export class PostContextMenuComponent extends BaseComponent {
     private commentService: CommentService,
     private router: Router,
     private storyService: StoryService,
+    private modalService: ModalServiceV2,
     private toastr: ToastrService,
     private translateService: TranslateService,
     private cd: ChangeDetectorRef,
@@ -60,6 +63,14 @@ export class PostContextMenuComponent extends BaseComponent {
 
   editClicked(): void {
     this.unpublishHandler();
+  }
+
+  reportClicked(): void {
+    this.contextMenuOpened = false;
+    this.modalService.open(ReportFormComponent, {
+      postId: this.id,
+      postType: this.postType,
+    });
   }
 
   private unpublishHandler(withReject = false): void {

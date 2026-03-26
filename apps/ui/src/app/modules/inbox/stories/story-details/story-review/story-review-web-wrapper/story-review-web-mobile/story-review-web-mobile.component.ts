@@ -9,7 +9,7 @@ import { StoryDetailsService } from '../../../story-details.service';
 })
 export class StoryReviewWebMobileComponent extends StoryReviewGlobalComponent {
   //translation keys
-  rightSectionTabs: string[] = ['story.details.review.tabs.review', 'story.details.review.tabs.storyInformation'];
+  rightSectionTabs: string[] = ['story.details.review.tabs.review', 'story.details.review.tabs.storyInformation', 'story.details.review.tabs.authorHistory'];
 
   constructor(storyDetailsService: StoryDetailsService) {
     super(storyDetailsService);

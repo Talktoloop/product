@@ -450,7 +450,21 @@ export class ReplyReviewAndTranslateComponent extends InboxPostBaseComponent imp
               child.parentId = tx.code;
               child.checked = false;
             });
+            tx.children.sort((a, b) => {
+              const isOtherA = a.code.toLowerCase().endsWith('other') || a.code.toLowerCase().endsWith('autre');
+              const isOtherB = b.code.toLowerCase().endsWith('other') || b.code.toLowerCase().endsWith('autre');
+              if (isOtherA && !isOtherB) return 1;
+              if (!isOtherA && isOtherB) return -1;
+              
+              const nameA = String(this.translateService.instant(a.code) || a.code);
+              const nameB = String(this.translateService.instant(b.code) || b.code);
+              return nameA.localeCompare(nameB);
+            });
             return tx;
+          }).sort((a, b) => {
+            const nameA = String(this.translateService.instant(a.code) || a.code);
+            const nameB = String(this.translateService.instant(b.code) || b.code);
+            return nameA.localeCompare(nameB);
           }) as IBaseEntityCheckNested[],
         };
         this.thematicAreaDataNew$.next(processedData);

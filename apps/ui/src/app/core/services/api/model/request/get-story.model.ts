@@ -14,6 +14,7 @@ export class IGetStoriesFiltersAPI {
   to?: string = null;
   organisationResponsiveness?: string[] = null;
   communityResponsiveness?: string[] = null;
+  vulnerabilityFactors?: string[] = null;
   channelFilter?: string = null;
   storySearchText?: string = null;
   language?: string[] = null;

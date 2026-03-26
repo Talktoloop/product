@@ -4,6 +4,9 @@ import { SupportedLanguagesService } from '@app/core/services/locales/supported-
 import { UserLanguageService } from '@app/core/services/locales/user-language.service';
 import { UIService } from '@app/core/services/ui/ui.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ISupportedLanguage } from '@app/core/services/api/meta-data/model/supported-language.model';
 
 @Component({
   selector: 'loop-subpage-header',
@@ -16,6 +19,10 @@ export class SubpageHeaderComponent {
   @Input() pageTitle: string;
   languageSelectOpen = false;
   selectedLanguage: string;
+
+  filteredLanguages$: Observable<ISupportedLanguage[]>;
+
+  readonly allowedLanguages = ['en', 'fr', 'es', 'so', 'ar', 'sw']
   constructor(
     private translateService: TranslateService,
     public ui: UIService,
@@ -24,6 +31,9 @@ export class SubpageHeaderComponent {
     public languageService: SupportedLanguagesService,
   ) {
     this.selectedLanguage = userLanguageService.getLanguage();
+    this.filteredLanguages$ = this.languageService.supportedLanguages$.pipe(
+      map((languages) => languages.filter((lang) => this.allowedLanguages.includes(lang.language))),
+    );
   }
 
   toggleLangSwitch(): void {

@@ -15,3 +15,24 @@
   border-radius: 100px;
   background: transparent;
 }
+
+.filter-pill__wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-pill__info-icon {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  z-index: 1;
+  
+  &:hover {
+    opacity: 1;
+  }
+}
+

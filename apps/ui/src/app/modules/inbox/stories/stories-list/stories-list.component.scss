@@ -88,6 +88,7 @@ tr.mat-header-row {
       border-color: $color-green-60;
       transition: border-color 0.2s;
     }
+
     @include mobile-only {
       justify-content: center;
       padding: 12px 16px 8px 16px;
@@ -120,6 +121,7 @@ tr.mat-header-row {
       display: flex;
       justify-content: space-between;
       width: 100%;
+
       .content {
         display: flex;
         gap: 7px;
@@ -293,6 +295,30 @@ tr.mat-header-row {
   font-size: 12px;
   line-height: 16px;
   color: $destructive-red-600;
+
+  @include mobile-only {
+    display: flex;
+    padding: 0px 4px;
+    align-items: center;
+    gap: 2px;
+
+    img {
+      width: 8px;
+      height: 8px;
+    }
+  }
+}
+
+.minority-tag {
+  display: flex;
+  padding: 0px 8px;
+  align-items: center;
+  gap: 4px;
+  border-radius: 100px;
+  background-color: $alert-gold-100;
+  font-size: 12px;
+  line-height: 16px;
+  color: $alert-gold-600;
 
   @include mobile-only {
     display: flex;
