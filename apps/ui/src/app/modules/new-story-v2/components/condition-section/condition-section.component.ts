@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MetaDataService } from '@app/core/services/api/meta-data/meta-data.service';
 import { IBaseEntity } from '@app/core/services/api/model/response/base-entity.model';
@@ -20,12 +20,18 @@ export class ConditionSectionComponent extends BaseComponent implements OnInit {
   @Input() isSensitiveStory: boolean;
   difficulties: IBaseEntity[];
   formControl = new UntypedFormControl(null);
+  readonly OTHER_DISABILITY_ID   = 7;
 
   get isCondition(): boolean {
     return this.formControl.value === true;
   }
 
-  constructor(private metadataService: MetaDataService, private modalService: ModalServiceV2) {
+  get isOtherSelected(): boolean {
+    const difficulties = this.form.get('difficulties')?.value;
+    return difficulties && difficulties.includes(this.OTHER_DISABILITY_ID);
+  }
+
+  constructor(private metadataService: MetaDataService, private modalService: ModalServiceV2, private cd: ChangeDetectorRef) {
     super();
   }
 
@@ -35,6 +41,14 @@ export class ConditionSectionComponent extends BaseComponent implements OnInit {
     this.formControl.valueChanges.pipe(takeUntil(this.destroyed$)).subscribe((val) => {
       !val && this.form.get('difficulties').setValue([]);
       this.form.get('difficulty').setValue(this.getDifficultyControlValue(val));
+      this.cd.markForCheck();
+    });
+    
+    this.form.get('difficulties')?.valueChanges.pipe(takeUntil(this.destroyed$)).subscribe((difficulties) => {
+      if (!difficulties || !difficulties.includes(this.OTHER_DISABILITY_ID)) {
+        this.form.get('disabilitiesOtherExplanation')?.setValue('');
+      }
+      this.cd.markForCheck();
     });
   }
 

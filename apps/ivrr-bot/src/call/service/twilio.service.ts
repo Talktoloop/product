@@ -26,7 +26,9 @@ import { Queue } from 'bull';
 import { SourceType } from '../../scheduler/enum/source-type.enum';
 import { SchedulerStatus } from '../../scheduler/enum/status.enum';
 import { TwilioCallStatsInterface } from '../../common/interface/twilio-call-stats.interface';
-import { IvrrCallRepository } from '../repository/ivrr-call.repository';
+import { IvrrCallEntity } from '../entity/ivrr-call.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class TwilioService {
@@ -49,7 +51,8 @@ export class TwilioService {
     private readonly queueService: QueueService,
     @Inject(QUEUE_CONSTANT.CHECK_USER_ANSWER)
     private checkUserAnswerCall: Queue,
-    private readonly ivrrCallRepository: IvrrCallRepository
+    @InjectRepository(IvrrCallEntity)
+    private readonly ivrrCallRepository: Repository<IvrrCallEntity>
   ) {
     this.s3Service.setS3Bucket(
       this.configService.get('application.awsS3Bucket'),
@@ -268,6 +271,12 @@ export class TwilioService {
       ? `${this.applicationConfig.ivrrServiceUrl}/api/v1/webhook/loop-comment-reply/${data.commentId}`
       : `${this.applicationConfig.ivrrServiceUrl}/api/v1/webhook/loop-reply/${data.storyId}`;
     const twiml = this.twimlService.createTwilioXmlCallData(data);
+
+    this.logger.log(
+      `Initiating ${data.commentId ? 'comment' : 'story'} notification call - Using SBC: ${phoneNumberDetails.trunkSid ? 'YES' : 'NO'}`,
+    );
+    this.logger.log(`Status Callback URL: ${callStatusUrl}`);
+
     const call = await this.twilio.twilioClient.calls.create({
       twiml,
       byoc: phoneNumberDetails.trunkSid ?? undefined,
@@ -279,6 +288,8 @@ export class TwilioService {
       machineDetection: 'Enable',
       machineDetectionTimeout: 10,
     });
+
+    this.logger.log(`Call created - SID: ${call.sid}, Status: ${call.status}`);
 
     await this.queueService.addQueueJob({
       queue: this.checkUserAnswerCall,
@@ -398,16 +409,16 @@ export class TwilioService {
       `Remove call ${callLogSid} log from Twilio result: ${result}`,
     );
 
-          await this.ivrrCallRepository
-            .update(
-              { twilioCallSid: callLogSid },
-              { recordingDuration: null },
-            )
-            .catch(() => {
-              this.logger.debug(
-                `Update recording duration for sid: ${callLogSid} error`,
-              );
-            });
+    await this.ivrrCallRepository
+      .update(
+        { twilioCallSid: callLogSid },
+        { recordingDuration: null },
+      )
+      .catch(() => {
+        this.logger.debug(
+          `Update recording duration for sid: ${callLogSid} error`,
+        );
+      });
 
     return result;
   }
@@ -461,12 +472,12 @@ export class TwilioService {
 
     archiveCalls.forEach((call) => {
       operations.push(
-        this.removeRecord(call.sid) 
-        .catch((error) =>
-          this.logger.debug(
-            `Cannot remove record for call ${call.sid}: ${error}`,
+        this.removeRecord(call.sid)
+          .catch((error) =>
+            this.logger.debug(
+              `Cannot remove record for call ${call.sid}: ${error}`,
+            ),
           ),
-        ),
       );
 
       operations.push(
@@ -537,5 +548,13 @@ export class TwilioService {
         `Cannot get story recording duration for callSid: ${callSid} with error: ${error}`,
       );
     }
+  }
+
+  async completeCall(callSid: string) {
+    return this.twilio.twilioClient.calls(callSid).update({ status: 'completed' });
+  }
+
+  async updateCallTwiml(callSid: string, twiml: string) {
+    return this.twilio.twilioClient.calls(callSid).update({ twiml });
   }
 }

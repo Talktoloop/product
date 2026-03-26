@@ -152,7 +152,10 @@
           "label": "Ciwaan",
           "placeholder": "hebel@tuusale.com",
           "invalid": "Ciwaankaaga ma shaqeynayo",
-          "info": "Ogeysin hel maarkad heesho faalo.Lama wadaageyna ciwaankaga shaqsiyaad sadexaad"
+          "info": "Ogeysin hel maarkad heesho faalo.Lama wadaageyna ciwaankaga shaqsiyaad sadexaad",
+          "nonSensitive": {
+            "info": "Bixi ciwaankaaga iimaylka si aad u hesho ogeysiis jawaabaha. Ciwaankaaga iimaylka qofna uma muuqan doono."
+          }
         },
         "checkbox": "Waan ogolahay in jawaabteyda lagu daabaco TalkToLoop.org and lagu wadaagaqaadka si hayy'aadaha adeegyadooda lotayeeyo",
         "submit": "Gudbi jawaabta",
@@ -304,6 +307,12 @@
           "storyAlreadyRejected": "Sheekada waa la  diiday",
           "storyAlreadySentToCaseManager": "Sheekada waxaa loo diray case manager ka"
         },
+        "languageConfirmation": {
+          "title": "Xaqiijinta Luuqadda",
+          "message": "Ma rabtaa inaad sii wadato {{language}}?",
+          "cancel": "Baajin",
+          "continue": "Sii wad"
+        },
         "form": {
           "sensitiveLabel": "Sheekoyinka xasaasiga ah marnaba laguma daabici doono Loop website",
           "demographicalInfo": "Macluumadka tirakoobka",
@@ -338,7 +347,10 @@
         },
         "editStory": {
           "minLengthErrorMessage": "Warcelinta waa in ay ahaataa ugu yaraan 5 xaraf si loo daabaco. Haddii aan loo baahnayn tifaaftirkan, fadlan dami qaybta ka sarreysa goobtan qoraalka.",
-          "editButton": "Falcelinta wa in la tifaaftiraa inta aanan la daabicin."
+          "editButton": "Falcelinta wa in la tifaaftiraa inta aanan la daabicin.",
+          "saveTranscriptionButton": "Kaydi qoraalka dhagaysiga",
+          "saveTranscriptionError": "Khalad ayaa dhacay marka la kaydinayay qoraalka dhagaysiga. Fadlan isku day mar kale.",
+          "saveTranscriptionSuccess": "Qoraalka dhagaysiga waa la kaydiyey si guul leh."
         }
       },
       "translate": {
@@ -973,7 +985,9 @@
         "other": "Wax'kale",
         "duplicate": "Nuqul",
         "communityStandards": "Kufsiga heerarka bulshada",
-        "poorAudioQuality": "Tayada maqalka oo liidata"
+        "poorAudioQuality": "Tayada maqalka oo liidata",
+        "generalAssistanceRequest": "Codsi gargaar guud",
+        "generalAssistanceRequestFull": "Fariintaadu waa codsi gargaar guud, mana aha wax aan awoodno inaan kaa caawinno waqtigan."
       }
     },
     "comment": {
@@ -1332,6 +1346,7 @@
     "idp": "Dad gudaha u barakacay (IDP)",
     "general-assistance": "Ka caawin guud",
     "aid-effectiveness": "Waxtarka gargaarka",
+    "aid-accessibility": "Helitaanka gargaarka",
     "clothing": "Dhar",
     "hygiene-items": "Alaabta nadaafadda",
     "cooking-items": "Alaabta karinta",
@@ -1351,6 +1366,7 @@
     "discrimination": "Takoor",
     "general-protection": "Ilaalin guud",
     "human-rights": "Xuquuqda aadanaha",
+    "disruption-of-aid": "Hakadka/joojinta gargaarka",
     "rule-of-law": "Sharciga sare",
     "skills-acquisition": "Kasbashada xirfadaha",
     "commodity-prices": "Qiimaha badeecooyinka",
@@ -1399,13 +1415,15 @@
     "ru": "Русский",
     "bju": "Somali (Baajuuni)",
     "bnd": "Somali (Banadiri-Marka)",
-    "bara": "Somali (Barawani-Chimini)"
+    "bara": "Somali (Barawani-Chimini)",
+    "kiz": "Somali (Kizigua)",
+    "sw": "Kiswahili"
   },
   "newStoryV2": {
     "form": {
       "content": {
-        "label": "Maxaad jeclaan lahayd  inaad la wadaagto",
-        "info": "Ma jeclaan lahayd inaad wadaagto khibrad aad la kulantay? Faahfaahin dheeraad ah oo aad bixiso, ayaa sida ugu wanaagsan aan kuugu xidhi karnaa hay'adaha ay khusayso ee laga yaabo inay ku caawiyaan.",
+        "label": "Maxaad jeclaan lahayd  inaad nala wadaagto",
+        "info": "Ma jeclaan lahayd inaad nala wadaagto khibrad aad la kulantay? Faahfaahin dheeraad ah oo aad bixiso, ayaa sida ugu wanaagsan aan kuugu xidhi karnaa hay'adaha ay khusayso ee laga yaabo inay ku caawiyaan.",
         "publishInfo": "Haddii la daabaco, sheekadani waxay ka muuqan doontaa internetka si qof qalba u arko",
         "placeholder": "Bilow qoritaanka sheekadaada (ugu yaraan 8 xaraf)",
         "stateInfoGreat": "abuur xog badan waxey kacawinesa shekadada hey,ada kuhabon",
@@ -1419,7 +1437,7 @@
           "yes": "Haa",
           "no": "Maya",
           "label": "Falcelintan ma tahay mid xasaasi ah?",
-          "info": "Fellcelinta xasaasiga ah (sida musuqmaasuqa, xadgudubka, rabshadaha) marna laguma wadaago madaalka Furan.",
+          "info": "Fellcelinta xasaasiga ah (sida musuqmaasuqa, xadgudubka, rabshadaha) marna laguma wadaago madaasha Furan.",
           "explanation": "Waa maxay jawaab celinta xasaasiga ah?"
         },
         "stateInfoDefault": "Ugu yaraan 8 xarfood ayaa lo bahaanyahay",
@@ -1433,8 +1451,8 @@
       },
       "name": {
         "title": "Magacaa?",
-        "info": "Isticmaal magacaaga oo dhameystiran, naanays, ama ka tag meel bannaan si aad qarsoodi u noqoto.",
-        "explanation": "Maxaynu tan u weydiinaa?"
+        "info": "Isticmaal magacaaga oo dhameystiran, naanays, ama ka tag meesha bannaan si aad qariso xogtaada",
+        "explanation": "Maxaanu tan u weydiinaa?"
       },
       "email": {
         "explanation": "Maxan tan u weydinaa?",
@@ -1442,7 +1460,7 @@
           "info": "Haddii aad ka tagto ciwaankaaga iimaylka, Loop wuu kula soo xiriiri karaa si uu faahfaahin dheeri ah kaaga weydiiyo jawaabtaada, ama si uu kuugu gudbiyo hay’ad kaa caawin karta. Ma wadaagi doonno iimaylkaaga hay’ad kale adigoon oggolaanin marka hore."
         },
         "nonSensitive": {
-          "info": "Bixi ciwaanka emailkaaga si laguu ogeysiiyo jawaabaha. Waxaad ka bixi kartaa ogeysiisyadan wakhti kasta. Ciwaanka emailkaaga cidna uma muuqan doono."
+          "info": "Bixi ciwaanka emailkaaga si laguu ogeysiiyo jawaabaha. Waxaad ka bixi kartaa ogeysiisyadan wakhti kasta. Ciwaanka emailkaaga cidna ma arki doono."
         },
         "title": "Ciwaanka iimaylka"
       },
@@ -1474,7 +1492,7 @@
           "preferNotToAnswer": "Doorbida inaadan ka jawaabin"
         },
         "type": {
-          "title": "Xaaladaadu ma saameysay mid ka mid ah meelaha soo socdo?",
+          "title": "Xaaladaadu miyay saamaysay qaybahan?",
           "info": "Waxaad xulan kartaa fursado badan",
           "seeing": {
             "title": "Araga"
@@ -1497,6 +1515,10 @@
           "other": {
             "title": "Kale"
           }
+        },
+        "other": {
+          "label": "Fadlan sharax",
+          "placeholder": "Fadlan bixi faahfaahin dheeraad ah oo ku saabsan xaaladdaada."
         }
       },
       "phoneNumber": {
@@ -1518,15 +1540,16 @@
       },
       "location": {
         "title": "Goobta jawaab celinta",
-        "subtitle": "Halkee ka dhacday ra'yi-celintaadu? Tani waxay noqon kartaa magaalo, tuulo ama xero. Ma muujin doono ama cidna lama wadaageyno  goobtaada saxda ah.",
-        "helperText": "Maxaynu rabnaa inaan ogaano goobta jawaab celintaada?",
+        "subtitle": "Halkee ayay ka dhacday ra'yi-celintaadu? Tani waxay noqon kartaa magaalo, tuulo ama xero. Ma muujin doono ama cidna lama wadaageyno goobtaada saxda ah.",
+        "helperText": "Maxaanu rabnaa inaan ogaano goobta jawaab celintaada?",
         "useMyLocation": "Isticmaal aageyga hadda",
         "useLocation": "Isticmaal goob ku habboon",
         "or": "Ama",
         "hint": "Raadi magaalo ama caasimad kuu dhow",
         "cancel": "Baajin",
         "addNew": "Isticmaal magaca meeshan",
-        "unavailable": "Goobta lama heli karo"
+        "unavailable": "Goobta lama heli karo",
+        "required": "Goobtu waa lama huraan"
       },
       "help": {
         "explanation": "Iga caawi inaan doorto"
@@ -1534,7 +1557,7 @@
     },
     "steps": {
       "step1": {
-        "label": "Qor ra'yi-celintaada"
+        "label": "Qor ra'yi celintaada (ugu yaraan 8 xaraf)"
       },
       "step2": {
         "label": "Faahfaahinta jawaab celinta"
@@ -1543,16 +1566,16 @@
         "label": "Faahfaahintaada"
       },
       "info": {
-        "title": "Soo gudbi jawaab celin",
-        "visibility": "Laga arko internetka si qof walbo u aarko",
-        "editStory": "Tafatir sheekada",
+        "title": "Macluumaadka ra'yi celinta",
+        "visibility": "Lagu arki karo online si cid kastaa u arki karto",
+        "editStory": "Wax ka bedel ra'yi celinta",
         "storyType": "Nooca sheekada",
         "thanks": "Mahadsanid",
         "organisation": "Ururka",
         "location": "Goobta",
         "storyBy": "sheekadan waxa qore",
         "consentInfo": "Waxaan ogolahay in jawaab celintayda lagu daabaco TalkToLoop.org si aan  uga gacan geysto horumarinta adeegyada",
-        "submit": "Gudbi sheekada",
+        "submit": "Gudbi ra'yi celinta",
         "visibilityHidden": "Laguma arko onlayn",
         "sensitiveConsentInfo": "Waxaan oggolahay in Loop ay u isticmaasho xogta ku jirta jawaab-celintayda <strong>si qarsoodi ah</strong> ujeeddooyin tiro-koob iyo warbixin. Tani waxay la macno tahay in magacayga, faahfaahinta xiriirka, iyo goobtayda saxda ah aan la isticmaali doonin.",
         "consentInfoError": "Fadlan ogolaw ka hor intaadan gudbin sheekadaada"
@@ -1565,8 +1588,8 @@
     },
     "ourloopPromise": {
       "nonSensitive": {
-        "heading": "Ballanteenna Loop",
-        "content": "Loop waxa uu ku dadaali doonaa in uu u hago ra'yi-celintaada hay'ad kasta oo ay khusayso, kuna dhiirigeliso inay ka jawaabaan. Waxaan u maarayn doonaa jawaab celintaada si xasaasi ah anagoo adeegsanayna tillaabooyinka amniga xogta ugu sarreeya. Haddii aad la wadaagto faahfaahinta xidhiidhkaaga Loop markaas waanu ku ogaysiin doonaa haddii cidi ka jawaabto jawaab celintaada. Cidna lama wadaageyno macluumaadkada khaaska ah.\nFadlan ogow inaan meesha ka saari doono macluumaad kasta oo gaar ah oo lagu aqoonsan karo adiga ama kuwa kale ka hor intaanan daabicin. Nuxurka jawaab-celintaadu waxay ahaan doontaa sidii hore, laakiin caddaynta faahfaahinta uma muuqan doonto inay hubiso sirta"
+        "heading": "Box ka cagaaran ee dhanka midig: Ballanqaadka loop",
+        "content": "Loop waxa ay ku dadaali doontaa in ay la wadaagto ra'yi-celintaada hay'ad kasta oo ay khusayso, kuna dhiirigeliso inay ka jawaabaan. Waxaan u maarayn doonaa ra'yi celintaada si xasaasi ah anagoo ilaalinayna amniga ugu sarreeya ee xogtaada. Haddii aad nala wadaagto meesha lagaala soo xidhiidhayo, waanu ku ogeysiin doonaa haddii qof uu ka jawaabo ra'yi celintaada. Cidna lama wadaageyno macluumaadkada khaaska ah. Fadlan ogow inaan meesha ka saari doono macluumaad kasta oo gaar ah oo lagu aqoonsan karo adiga ama dadka kale, ka hor intaanan la daabicin. Nuxurka ra'yi celintaadu waxay ahaan doontaa sidii hore, laakiin macluumaadka wax lagu aqoonsankaro ma ahaan doonaan kuwo bixiya xogta qofka."
       },
       "sensitive": {
         "heading": "Sheekadaadu nabad bay nala tahay",
@@ -1591,9 +1614,9 @@
       "cancel": "Baajin",
       "ok": "Hagaag",
       "sensitiveStory": {
-        "title": "Waa maxay jawaab celin xasaasi ah?",
+        "title": "Waa maxay jawaab celinta xasaasi ah?",
         "topParagraph": "Jawaab-celinta la xiriirta mid ka mid ah mowduucyada soo socda ayaa loo arkaa mid xasaasi ah:",
-        "bottomParagraph": "Haddii aad wadaagto jawaab celin xasaasi ah, shaqalaheena ayaa u maarayn doona si qarsoodi ah. Faahfaahin shakhsi ah oo lagu aqoonsan karo ma lagu daabici doono onlayn.",
+        "bottomParagraph": "Haddii aad nala wadaagto jawaab celin xasaasi ah, shaqalaheena ayaa u maarayn doona si qarsoodi ah. Faahfaahin shakhsi ah oo lagu aqoonsan karo ma lagu daabici doono online.",
         "list": {
           "one": "Ka faa'iidaysiga galmada, xadgudubka, ama dhibaataynta",
           "two": "Xadgudub ku salaysan jinsiga",
@@ -1605,20 +1628,20 @@
         }
       },
       "storyType": {
-        "title": "nooca sheekada: fursada'hagga",
-        "paragraph": "Waxaad u kala saari karta sheekadaada mid ama in ka badan noocyada sheekoyinka soosocda.Ha wewelin in kasto haddii aad ka tagto meel bannaan, dhexdhexaadiyaha Loop aya kuu sumadeyn doona sheekada. Tani waxay naga caawineysa inan isku dayno inaan helno dadka ku habboon inay akhriyaan oo ay kaaga'so jawaabaan",
+        "title": "Nooca ra'yi celinta: doorashadaada",
+        "paragraph": "Waxaad u kala saari kartaa ra'yi-celintaada mid ama ka badan oo ka mid ah noocyada soo socda ee ra'yi celinta. Ha walwaliin lakiin,  haddii aad ka tagto meesha oo bannaan, shaqaalaha Loop ayaa kuu calaamadayn doona ra'yi celintaada. Tani waxay naga caawinaysaa inaan isku dayno inaan helno dadka ku habboon ay akhriyaan oo ay kuu soo jawaabaan. Wax balan qaad ah kuuma samayn karno, laakiin waxanu isku taxaluujin doona inaan kugu xidhno hay'adaha ka jawaabi kara ra'yi celintaada.",
         "sections": {
           "thanks": {
-            "title": "Mahadsanid",
-            "content": "U muuji mahadnaqa aad u hayso hayadaha, adeeg, ama qof ka tirsan bulshadaada adiga oo ku qoraya jawaab celin fariin mahadnaq ah"
+            "title": "Mahadnaq",
+            "content": "U muuji mahadnaqa aad u hayso hayada, adeeg, ama qof ka tirsan bulshadaada adiga oo ku qoraya ra'yi celin fariin mahadnaq ah"
           },
           "question": {
             "title": "Codsiga Macluumaadka",
-            "content": "Haddii aad rabto inaad su'aal waydiiso hayada, waxaad ku qori kartaa jawaab celin su'aal ku sabsaab."
+            "content": "Ma qabtaa codsi ku saabsan adeeg gaar ah, ama adeeg adiga ama bulshadaadu u baahantahay?  Qor ra'yi celin oo ku dheji codsi ahaan."
           },
           "suggestion_opinion": {
             "title": "Talo / Aragti",
-            "content": "Ma leedahay fikrad adag mise waxaad rabtaa inaad la wadaagto wax aad maqashay oo aad aragto inay run tahay? Qor jawaab celin oo ku dheji ra'yi ahaan."
+            "content": "Ma haysaa fikrad muhiim ah mise waxaad rabtaa inaad la wadaagto wax aad maqashay oo aad aragto inay run tahay? Qor ra'yi celin oo ku dheji ra'yi ahaan. Loop  waxa ay isku dayi doona in ay cidi kuusoo jawaabto."
           },
           "request": {
             "title": "Codsiga Caawinta",
@@ -1626,7 +1649,7 @@
           },
           "concern": {
             "title": "Walaac",
-            "content": "Miyaad ka welwelsan tahay ama ka cabsan tahay wax ka mid ah bulshadaada? Ku calaamadee ra'yi-celintaada mid walaac leh oo"
+            "content": "Miyaad ka welwelsan tahay ama ka werwersan tahay wax ka jira bulshadaada? Ku calaamadee ra'yi celintaada mid walaac leh. Loop waxay ku dhiiri galin doontaa hay'adaha ka shaqeeya deegaankaaga inay kuu soo jawaabaan."
           }
         }
       },
@@ -1641,8 +1664,8 @@
           "paragraph": "Ku daridda urur jawaab-celintaada waxay naga caawinaysaa inaan ogaano cidda baari karta cabashadaada. Haddii aadan garanayn magaca ururka ay khusayso jawaab-celintaada, ma jiro wax dhibaato ah. Weli waad gudbin kartaa jawaab-celintaada adigoon magacaabin urur. Si kastaba ha ahaatee, suurtogal ma noqon karto inaan si toos ah kuu caawinno. Beddelkeeda, jawaab-celintaada waxaa loo isticmaali karaa warbixin iyo tirakoob, oggolaanshahaaga."
         },
         "nonSensitive": {
-          "topParagraph": "Ku darida hayadaha ra'yi-celintaada waxay naga caawinaysaa inaan ku dhiirigelino hayadahaas inuu kuu soo jawaabo. Waxa kale oo ay naga caawisaa in aan tusno hayada dhegaysanaya oo ka jawaabaya jawaab celinta iyada oo loo marayo Loop.",
-          "bottomParagraph": "Haddii aadan aqoon magaca hayada ku lugta leh jawaab celintaada, taasi dhib ma leh. Weli waad soo gudbin kartaa ra'yi-celintaada adigoon magacaabin hayada, shaqalaha Loop waxay ku dadaali doonaan sidii ay u heli lahaayeen hayada ay sumadeeyaan. Wadaagista tafaasiil dheeri ah waxay ka caawisaa shaqalaha Loop inay helaan hayada saxda ah ee jawaab celintaada."
+          "topParagraph": "Ku darida hayadaha ra'yi-celintaada waxay naga caawinaysaa inaan ku dhiirigelino hayadahaas inay kuu soo jawaabo. Waxa kale oo ay naga caawinaysaa in aan muujino ama sheegno hay'adahee dhegaysanaya oo ka jawaabaya ra'yi celinta iyada oo loo marayo Loop.",
+          "bottomParagraph": "Haddii aadan aqoon magaca hayada ku lugta leh ra'yi celintaada, dhib ma leh. Weli waad soo gudbin kartaa ra'yi-celintaada adigoon magacaabin hayada, shaqalaha Loop waxay ku dadaali doonaan sidii ay u heli lahaayeen hay'ada lala wadaagayo ra'yi celintaada. Wadaagista tafaasiil dheeri ah waxay ka caawisaa shaqalaha Loop inay helaan hayada saxda ah ee ra'yi celintaada.Ballanqaadka loop"
         }
       },
       "name": {
@@ -1651,8 +1674,8 @@
           "paragraph": "Waxaad dooran kartaa inaad magacaga bixiso ama aadan bixin. Haddii aad rabto inaad si buuxda qarsoodi u ahaato, taasi waa caadi. Kaliya meel madhan ka tag goobta magaca."
         },
         "nonSensitive": {
-          "topParagraph": "Magacaga waxaa lagu soo bandhigay faallo celintaada haddii lagu daabacay Loop. Tani waxay kaa caawinaysaa shakhsiyaynta ra'yi-celintaada waxayna u oggolaanaysaa qof kasta oo ka jawaabaya jawaab-celintaada inuu ku tixraaco magacaaga. Waxaad bixin kartaa magacaaga oo buuxa, qayb ka mid ah magacaaga, ama xitaa naaneyska.",
-          "bottomParagraph": "Haddii aad rabto inaad gabi ahaanba ahaato qarsoodi, taasi sidoo kale waa fiican tahay. Si fudud uga tag goobta magaca oo banaan, ra'yi-celintaadana waxa loo calaamadin doonaa si qarsoodi ah."
+          "topParagraph": "Magacaga waxaa lagu soo bandhigayaa ra'yi celintaada haddii lagu daabacay Loop. Tani waxay sahlaysaa in laguu gaar yeelo ra'yi celintaada waxayna u oggolaanaysaa qof kasta oo ka jawaabaya ra'yi celintaada inuu ku tixraaco magacaaga. Waxaad bixin kartaa magacaaga oo buuxa, qayb ka mid ah magacaaga, ama xitaa naaneyska.",
+          "bottomParagraph": "Haddii aad rabto in gabi ahaanba xogtaadu ahaato qarsoodi, taasi sidoo kale way fiican tahay. Kaliya ka tag goobta magaca loogu talogalay oo banaan, ra'yi celintaadana waxa loo calaamadin doonaa si qarsoodi ah."
         }
       },
       "phoneNumber": {
@@ -1660,8 +1683,8 @@
         "title": "Maxaynu u weydiinaynaa lambarkaaga taleefanka?"
       },
       "email": {
-        "topParagraph": "Haddii aad nooga tagto ciwaanka emailkaaga, waanu ku ogaysiin doonaa marka ra'yi celintaada la daabaco                                                                                  Waxaan sidoo kale ku ogeysiin doonaa haddii qof ka jawaabo faallo celintaada.",
-        "bottomParagraph": "Ciwaanka iimaylkaaga laguma daabicin onlayn, waligayna lama wadaagi doono ciwaanka iimaylkaaga.",
+        "topParagraph": "Haddii aad nooga tagto ciwaanka emailkaaga, waxaanu ku ogaysiin doonaa marka ra'yi celintaada la daabaco                                                                                Waxaan sidoo kale ku ogeysiin doonaa haddii qof ka jawaabo faallo celintaada.",
+        "bottomParagraph": "Ciwaanka iimaylkaaga laguma daabicayo onlayn, cidna lalama wadaagi doono ciwaanka iimaylkaaga.",
         "title": "Maxaanu kuu weydinaa ciwaankaaga email-ka?"
       },
       "age": {
@@ -1710,37 +1733,37 @@
           "paragraph": "Oggolaanshahaaga, Loop waxay isticmaali doontaa goobtaada si ay u aqoonsato adeegyada kugu dhow si ay kuu caawiyaan ama si ay u siiso macluumaadkan ururada si ay u gacan ka geystaan baaritaanka cabashadaada. Loop ma ururiso goobtaada saxda ah."
         },
         "nonSensitive": {
-          "topParagraph": "Loop wuxuu isticmaalaa qiyaastii goobtaada (tusaale, degmada ama gobolka aad ku sugan tahay) si uu ugu dhiirigaliyo hayadaha kuu dhow inay ka jawaabaan jawaab celintaada.",
-          "bottomParagraph": "Loop ma ururiyo goobtaada saxda ah. Si kastaba ha ahaatee, goobtaada ku dhow ayaa la soo bandhigi doonaa iyadoo ay weheliso jawaab celintaada. Tani waxay naga caawinaysaa inaan helno dadka saxda ah ee ra'yi-celintaada."
+          "topParagraph": "Loop wuxay isticmaashaa qiyaas ahaan goobta ugu dhow (tusaale, degmada ama gobolka aad ku sugan tahay) si loo dhiirigaliyo hayadaha kuu dhow inay ka jawaabaan ra'yi celintaada.",
+          "bottomParagraph": "Loop ma ururiso goobtaada saxda ah. Si kastaba ha ahaatee, goobtaada ugu dhow ayaa la soo bandhigi doonaa iyadoo ay weheliso ra'yi celintaada. Tani waxay naga caawinaysaa inaan helno cida ku haboon ra'yi-celintaada."
         }
       },
       "conditionHelpMe": {
-        "topParagraph": "Xaalad noocee ah ayaa ku haysaa jir ama maskaxeed?",
-        "middleParagraphPart1": "Su'aalahani waa su'aalo caadi ah (sida lagu qeexay",
-        "middleParagraphPart2": ") si loo qeexo noocyada naafada. Fadlan sax sanduuqa khuseeya haddii aad haa kaga jawaabto mid ama in ka badan oo ka mid ah su'aalahan soo socda:",
+        "topParagraph": "Waa noocma xaalada jireed ama maskaxeed ee aad qabto?",
+        "middleParagraphPart1": "Su’aalahan waa su’aalo caadi ah (sida uu qeexay Washington Group",
+        "middleParagraphPart2": ") oo loo isticmaalo in lagu qeexo noocyada naafonimada. Fadlan calaamadee sanduuqa kugu habboon haddii aad ‘haa’ ku jawaabto hal ama in ka badan oo ka mid ah su’aalaha hoose",
         "seeing": {
-          "explanation": "Dhibaato ma ku qabtaa aragga xitaa markaad xiran tahay muraayadaha?",
-          "label": "Arkay"
+          "explanation": "miyay kugu adagtahay inaad wax aragto hadii aad xataa gashato okiyaalo?",
+          "label": "Araga"
         },
         "hearing": {
           "label": "Maqalka",
-          "explanation": "Dhibaato ma ku qabtaa maqalka, xitaa haddii aad isticmaasho qalabka gargaarka maqalka?"
+          "explanation": "miyay kugu adagtahay inaad wax maqasho hadii aad xataa xidhato qalabka maqalka caawiya?"
         },
         "speaking": {
-          "label": "Hadlaya",
-          "explanation": "Adigoo isticmaalaya luqadaada caadiga ah, dhib ma ku qabtaa inaad la xiriirto? Tusaale ahaan, inad  fahmtoo ama lagu fahmo?"
+          "label": "Hadalka",
+          "explanation": "miyay kugu adagtahay inaad ku hadasho luuqadaada hooyo si aad ula xidhiidhka dadka? Tusaale in aad dadka fahamto ama lagu fahmo?"
         },
         "selfCare": {
           "label": "Is-daryeelid",
           "explanation": "Dhibaato ma ku qabtaa daryeelka nafsiga ah sida dhaqidda oo dhan ama dhar xidhashada?"
         },
         "learningUnderstanding": {
-          "label": "Barashada / Fahamka",
-          "explanation": "Ma ku adag tahay inaad xasuusato ama aad xoogga saarto?"
+          "label": "Waxbarashada / Fahamka",
+          "explanation": "miyay kugu adagtahay inaad wax xasuusato ama aad wax u fiirsato?"
         },
         "mobilityDexterity": {
           "label": "Dhaqdhaqaaqa",
-          "explanation": "Ma kugu adagtahay socodka ama fuulitaanka jaranjarooyinka?"
+          "explanation": "miyay kugu adagtahay inaadsocoto ama aad korto jaran jarooyinka?"
         },
         "unspecified": {
           "label": "Aan la cayimin",
@@ -1767,7 +1790,7 @@
     },
     "locationPromptText": "Fadlan u ogolow browserka internetkaaga in uu ogaado goobta aad ku sugantahay si aan u khiyaasno aagaaga",
     "safeMode": "Hab aamin ah-Sheedan ma noqon doonto mid lasoo bandhigo",
-    "callout": "Badbaadadaadu waa noo muhiim. Kaliya buuxi foomkan meesha iyo goorta aad ammaan dareemayso. Dhinaca geeska bidix ee hoose ee foomka internetka, waxaad ka heli doontaa badhanka “Exit”. Haddii sabab kasta ay tahay inaad ka baxdo boggan, waad riixi kartaa oo isla markiiba waxay kugu celin doontaa Google iyada oo aan la helin raad raac boggan."
+    "callout": "Badqabkaagu waa noo muhiim. Kaliya buuxi foomkan meesha iyo goorta aad ammaan dareemayso. Dhinaca geeska bidix ee hoose ee foomka online ka ah, waxaad ka heli doontaa badhanka 'Exit'. Haddii sabab kasta ay tahay inaad ka baxdo boggan, waad riixi kartaa oo isla markiiba waxay kugu celin doontaa Google iyada oo aan la helin raad raaca boggan"
   },
   "country_name": {
     "gg": "Guernsey",
@@ -2075,8 +2098,29 @@
       "placeholder": "Muuji jawaab celinta leh ugu yaraan 1 jawaab ama aan lahayn midna"
     },
     "communityResponsiveness": {
-      "label": "Falcelinta bulshada",
-      "placeholder": "Muuji jawaab celinta leh ugu yaraan 1 jawaab ama aan lahayn midna"
+      "label": "Falcelinta Bulshada",
+      "placeholder": "Muuji jawaab celinta leh ugu yaraan 1 jawaab ama aan lahayn midna",
+      "tooltip": "Ka baar jawaab celinta ku salaysan is-dhexgalka bulshada - hadday jawaab celinta uu helay jawaabo ama cod laga siiyay bulshada"
+    },
+    "vulnerabilityFactors": {
+      "label": "Arrimaha Nuglaanta",
+      "children": "Carruur",
+      "youth": "Dhallinyaro",
+      "femaleHeadedHouseholds": "Guryaha uu hoggaamiyo haweeney",
+      "personsLivingWithDisabilities": "Dadka naafada ah",
+      "elderly": "Waayeel",
+      "lgbtqPlus": "LGBTQ+",
+      "chronicallyIllPeople": "Dadka qaba cudurro daba-dheeraaday",
+      "legalStatusRefugees": "Xaaladda sharci (qaxooti, muhaajiriin, aan dhalasho lahayn, iwm.)",
+      "indigenousCommunity": "Bulshada asaliga ah",
+      "lowIncomeFamilies": "Qoysaska dakhligoodu yar yahay",
+      "internallyDisplacedPeople": "Dadka barakacayaasha ah (IDP)",
+      "alcoholDrugAbuseInFamily": "Khamri ama daroogo ku jirta qoyska",
+      "fosteringOtherFamilyMembers": "Daryeelida xubnaha kale ee qoyska",
+      "hivPlus": "HIV+",
+      "memberOfMarginalisedGroup": "Xubin ka tirsan koox la takooro",
+      "orphan": "Agaan",
+      "other": "Kale"
     },
     "date": {
       "label": "Taariikhda Gudbinta",
@@ -2122,9 +2166,9 @@
     "selectAll": "Xulo dhamaan",
     "deselectAll": "Dib u xulo dhamaan",
     "category": {
-      "thanks": "Mahad",
-      "question": "Codsiga macaluumadka",
-      "suggestion_opinion": "Talo / Aragti ",
+      "thanks": "Mahadnaq",
+      "question": "Codsi gargaar",
+      "suggestion_opinion": "Soo jeeding/Aragti",
       "concern": "Walaac",
       "request": "Codsi gargaar",
       "sensitive": "xasaasi"
@@ -2315,7 +2359,8 @@
     "social": {
       "twitterLabel": "Twitterka Loop",
       "facebookLabel": "Faceebooga Loop",
-      "linkedinLabel": "Loop-kaanaga linkedin "
+      "linkedinLabel": "Loop-kaanaga linkedin ",
+      "newsletterLabel": "Isku qor warsidaha loop"
     },
     "static": {
       "loopWebsiteLabel": "Shabakada Loop",
@@ -2365,6 +2410,7 @@
   "storyHasNotBeenPublishedOnTalkToLoop": "Sheekadada laguma daabicin TalkToLoop.org",
   "organisationHaveBeenTaggedInStoryOnTalkToLoop": "Uruakaga aya lagu sumadeeyay sheeko ku qorron talktoloop.org",
   "replyHasNotBeenPublishedOnTalkToLoop": "Jawaabtaada laguma daabicin Talktoloop.org",
+  "replyHasBeenPublishedOnTalkToLoop": "Jawaabtaada waxaa lagu daabicay Talktoloop.org",
   "storyHasBeenPublishedOnTalkToLoop": "Sheekadaada laguma daabicin Talktoloop.org",
   "statisticsCases": {
     "section1": "Intee in le'eg ayaa nalagu  xisaabtami kara?",
@@ -3279,5 +3325,31 @@
     "reject": "Reject ({{count}})",
     "assignModerators": "Magacaabi Dhexdhexaadiyayaal ({{count}})",
     "deselectAll": "Dhamaan  ha dooran"
+  },
+  "report": {
+    "submitReport": "Gudbi warbixinta",
+    "title": "Codsi in laga tirro/saaro ra'yi-celin la daabacay ama jawaab celin",
+    "intro": "Fadlan isticmaal Form-kan si aad noola wadaagto ujeedada aan uga saarayno ra'yi-celinta ama jawaab celinta lagu daabacay bogga Talk to Loop.",
+    "introFormLinked": "Foormkan wuxuu khuseeyaa oo kaliya hal ra'yi-celin ama jawaab celin.",
+    "introConfidential": "Waanu ku eegi doonaa dhamaan codsiyada mudo hal usbuuc ah, waxana aanu ilaalin doonaa xogta.",
+    "introGuidelines": "Fadlan halkan ka eeg tilmaamaha bulsho si aad u hesho macluumaad dheeraad ah.",
+    "guidelinesLink": "halkan",
+    "reportAboutLabel": "Warbixin taydu waxay khusaysaa:",
+    "originalFeedback": "Ra'yi celin hore",
+    "oneOfReplies": "Mid ka mida Jawaab celino",
+    "specifyReply": "Fadlan cayin ama cadee jawaab celintaada hadii ay yihiin wax ka badan hal",
+    "guidelinesBreachLabel": "Ra'yi-celinta ama jawaab celintu waxay khilaafsan tahay mid kamida tilmaamaha bulsho ee hoose",
+    "offensiveLanguage": "Luuqad aflagaado ama faquuq bulsho ku jiro",
+    "communityStandards": "Maysan raacin mustawihii bulsho ee loogu talo galay in lagu xaqiijiyo bad qabka",
+    "authenticityConcern": "Walaac ku saabsan hubanti la'aanta ra'yi-celinta ama jawaab celinta",
+    "causesHarm": "Dhib u keenaysa dadka",
+    "privacyViolation": "Aan ilaalinayn dhowrsanaanta xogta ee dadka",
+    "additionalInfo": "Ma jiraa macluumaad dheeraad ah oo aad ku kabayso codsigaaga?",
+    "contactEmail": "Hadii aad rabto inaad hesho jawaab ku saabsan go'aanka, fadlan qor email kaaga",
+    "emailPlaceholder": "your@email.com",
+    "optional": "(ikhtiyaari)",
+    "submitButton": "Gudbi warbixinta",
+    "cancelButton": "Ka noqo",
+    "successMessage": "Warbixintaadii waa la diray si guul leh"
   }
 }

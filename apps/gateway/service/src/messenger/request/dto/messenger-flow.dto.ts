@@ -24,6 +24,9 @@ export class MessengerFlowRequestDto {
   @ApiProperty()
   additionalInfo: string;
 
+  @ApiProperty({ required: false })
+  story?: string;
+
   @ApiProperty()
   storyType: string;
 

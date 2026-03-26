@@ -92,4 +92,8 @@ export class StoryListRO {
   @Expose()
   @ApiProperty({ type: Number, isArray: true })
   thematics: number[];
+
+  @Expose()
+  @ApiProperty({ type: 'boolean', nullable: true })
+  isMinority: boolean | null;
 }

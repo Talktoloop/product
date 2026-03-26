@@ -22,7 +22,7 @@
         <loop-select *ngIf="languageSelectOpen" (appClickOutside)="this.languageSelectOpen = false"
           [appStopEvent]="'click'" [showHeader]="false" [showSuffix]="true" appDropdown [sourceEl]="languageSelect"
           [sourceWidth]="languageSelect.clientWidth">
-          <loop-select-option *ngFor="let language of languageService.supportedLanguages$ | async"
+          <loop-select-option *ngFor="let language of filteredLanguages$ | async"
             (clicked)="languageSwitch(language.language)">{{ 'languages.' + language.language | translate }}
           </loop-select-option>
         </loop-select>

@@ -1,0 +1,109 @@
+<loop-modal>
+  <h2 class="report-form__heading subheading">
+    {{ 'report.title' | translate }}
+  </h2>
+
+  <section class="report-form__intro">
+    <p class="body-default">
+      {{ 'report.intro' | translate }}
+    </p>
+    <p class="body-default">
+      {{ 'report.introFormLinked' | translate }}
+    </p>
+    <p class="body-default">
+      {{ 'report.introConfidential' | translate }}
+    </p>
+    <p class="body-default">
+      {{ 'report.introGuidelines' | translate }}
+      <a [href]="communityGuidelinesUrl" target="_blank" class="report-form__link">
+        {{ 'report.guidelinesLink' | translate }}
+      </a>
+    </p>
+  </section>
+
+  <section class="report-form__form">
+    <form [formGroup]="reportForm">
+      <!-- Report about -->
+      <section class="mb-2">
+        <h3 class="section-title mb-075">
+          {{ 'report.reportAboutLabel' | translate }}
+        </h3>
+        <app-radio-group formControlName="reportAbout">
+          <loop-new-story-radio
+            [label]="'report.originalFeedback' | translate"
+            [value]="'feedback'"
+            [checked]="reportForm.get('reportAbout')?.value === 'feedback'"
+          ></loop-new-story-radio>
+          <loop-new-story-radio
+            [label]="'report.oneOfReplies' | translate"
+            [value]="'reply'"
+            [checked]="reportForm.get('reportAbout')?.value === 'reply'"
+          ></loop-new-story-radio>
+        </app-radio-group>
+      </section>
+
+      <!-- Reply specification (conditional) -->
+      <section class="mb-2" *ngIf="isReplySelected">
+        <h3 class="section-title--small mb-075">
+          {{ 'report.specifyReply' | translate }}
+        </h3>
+        <loop-textarea formControlName="replySpecification"></loop-textarea>
+      </section>
+
+      <!-- Guideline breaches -->
+      <section class="mb-2">
+        <h3 class="section-title mb-075">
+          {{ 'report.guidelinesBreachLabel' | translate }}
+        </h3>
+        <div class="report-form__checkboxes">
+          <label *ngFor="let option of guidelineOptions" class="report-form__checkbox-item">
+            <input
+              type="checkbox"
+              [checked]="isGuidelineSelected(option.value)"
+              (change)="onGuidelineChange($event, option.value)"
+            />
+            <span>{{ option.labelKey | translate }}</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Additional info (optional) -->
+      <section class="mb-2">
+        <h3 class="section-title--small mb-075">
+          {{ 'report.additionalInfo' | translate }}
+          <span class="optional-label">{{ 'report.optional' | translate }}</span>
+        </h3>
+        <loop-textarea formControlName="additionalInfo"></loop-textarea>
+      </section>
+
+      <!-- Contact email (optional) -->
+      <section class="mb-2">
+        <h3 class="section-title--small mb-075">
+          {{ 'report.contactEmail' | translate }}
+          <span class="optional-label">{{ 'report.optional' | translate }}</span>
+        </h3>
+        <input
+          type="email"
+          class="report-form__email-input"
+          formControlName="contactEmail"
+          [placeholder]="'report.emailPlaceholder' | translate"
+        />
+      </section>
+    </form>
+  </section>
+
+  <div class="report-form__actions" action-buttons>
+    <app-button class="report-form__button" mode="v2" variant="outlined" (click)="onModalClose()">
+      {{ 'report.cancelButton' | translate }}
+    </app-button>
+    <app-button
+      class="report-form__button"
+      mode="v2"
+      variant="primary"
+      (click)="submitReport()"
+      [disabled]="!isFormValid || submitting"
+    >
+      {{ 'report.submitButton' | translate }}
+    </app-button>
+  </div>
+</loop-modal>

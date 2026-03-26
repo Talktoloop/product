@@ -43,7 +43,7 @@ export const filterConditions = {
   language: stringOrNumberValidation,
   storySearchText: stringOrNumberValidation,
   searchTerm: stringOrNumberValidation,
-  //new logic for metabase
+  vulnerabilityFactors: stringOrNumberValidation,
   organisationResponsiveness: stringOrNumberValidation,
   communityResponsiveness: stringOrNumberValidation,
 };

@@ -34,4 +34,8 @@ export const storyListSchema: Joi.ObjectSchema = Joi.object({
     Joi.array().items(Joi.string().max(255)),
     Joi.string().max(255),
   ),
+  vulnerabilityFactors: Joi.alternatives().try(
+    Joi.array().items(Joi.string().max(255)),
+    Joi.string().max(255),
+  ),
 }).options({ presence: 'optional' });

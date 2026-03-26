@@ -1,7 +1,13 @@
 #!/bin/bash
+set -o pipefail
+
+# Ensure dist exists before running TypeORM migrations.
+# `typeorm:run` uses `dist/config/typeorm.js`, so `yarn build` must happen first.
+echo "Building gateway (for dist/config/typeorm.js) ..."
+yarn build
 
 # Run migrations and store the exit code
-npm run typeorm:run
+yarn typeorm:run
 MIGRATION_EXIT_CODE=$?
 
 # Check if migrations failed
@@ -12,4 +18,4 @@ fi
 
 # If we get here, migrations succeeded, so start the dev server
 echo "✅ Migrations successful - starting dev server..."
-npm run start:dev
+yarn start:dev

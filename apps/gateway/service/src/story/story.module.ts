@@ -53,6 +53,11 @@ import { IvrrCallRepository } from '../ivrr/repository/ivrr-call.repository';
 import { PosthogService } from './service/posthog.service';
 import { UNDataExportService } from './service/un-data-export.service';
 import { StoryOrganisationTagRepository } from './repository/story-organisation-tag.repository';
+import { FeedbackVulnerabilityFactorsRepository } from './repository/feedback-vulnerability-factors.repository';
+import { FeedbackVulnerabilityFactorsEntity } from './entity/feedback-vulnerability-factors.entity';
+import { FeedbackVulnerabilityFactorsService } from './service/feedback-vulnerability-factors.service';
+import { VulnerabilityFactorsRepository } from '../lexicon/repository/vulnerability-factors.repository';
+import { VulnerabilityFactorsEntity } from '../lexicon/entity/vulnerability-factors.entity';
 import { CerbosService } from '../common/cerbos/cerbos.service';
 import { PermissionGuard } from '../auth/cerbos/permission.guard';
 
@@ -80,7 +85,11 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
       OrganisationRepository,
       CommentRepository,
       IvrrCallRepository,
-      StoryOrganisationTagRepository
+      StoryOrganisationTagRepository,
+      FeedbackVulnerabilityFactorsRepository,
+      FeedbackVulnerabilityFactorsEntity,
+      VulnerabilityFactorsRepository,
+      VulnerabilityFactorsEntity,
     ]),
     forwardRef(() => LexiconModule),
     forwardRef(() => OrganisationModule),
@@ -119,6 +128,7 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     StoryRecipientService,
     AirTableOrganisationService,
     PosthogService,
+    FeedbackVulnerabilityFactorsService,
     PermissionGuard,
     CerbosService
   ],
@@ -130,6 +140,7 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     StoryTranslationModeratorService,
     StoryConversationService,
     StoryRecipientService,
+    FeedbackVulnerabilityFactorsService,
   ],
 })
 export class StoryModule { }

@@ -15,6 +15,7 @@ export interface IFiltersData {
   languages: IBaseEntityDN[];
   organisationResponsiveness: IBaseEntityCheck[];
   communityResponsiveness: IBaseEntityCheck[];
+  vulnerabilityFactors: IBaseEntityCheck[];
 }
 
 export interface ICasesFiltersData {

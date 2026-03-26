@@ -5,7 +5,7 @@ import {
   USER_TEMPLATES,
   MANAGER_TEMPLATES
 } from '../../common/constant/email-templates.constants';
-import { prepareNotificationData, prepareURL } from '../../common/helpers';
+import { prepareNotificationData, prepareURL, isContactAccepted } from '../../common/helpers';
 import { UserService } from '../../user/service/user.service';
 import { UserEntity } from '../../user/entity/user.entity';
 import { NotificationService } from './notification.service';
@@ -32,98 +32,80 @@ export class StoryNotificationService {
   async sendNotificationsAfterStoryPublication(
     story: StoryEntity,
   ): Promise<void> {
+    this.logger.log('[sendNotificationsAfterStoryPublication] START', {
+      storyId: story.id,
+      edited: story.edited,
+      disableAfterEdit: this.config.get('application.disableNotificationsAfterEdit'),
+      organisationsCount: story.organisations?.length ?? 0,
+      translationsCount: story.translations?.length ?? 0,
+    });
 
-    if (
-      story.edited &&
-      this.config.get('application.disableNotificationsAfterEdit')
-    )
-      return;
+    const isRePublish = story.edited && this.config.get('application.disableNotificationsAfterEdit');
 
-    const { name, email, phone } = prepareNotificationData(story);
-    const origin = story.translations.filter(
-      (translation) => translation.languageId === story.language.id,
-    )[0];
+    // Author notification: only on first publish and only if user accepts contact
+    if (isRePublish) {
+      this.logger.log('[sendNotificationsAfterStoryPublication] Skipped author notification (re-publish with disable flag ON)');
+    } else if (!isContactAccepted(story)) {
+      this.logger.log('[sendNotificationsAfterStoryPublication] Skipped author notification (user does not want contact)');
+    } else {
+      const { name, email, phone } = prepareNotificationData(story);
+      this.logger.log('[NotificationData]', { name, email, phone });
 
-    //Notification for story author
-    if (email) {
-
-      await this.notificationService.sendEmail(
-        getMailTemplateId(story.language?.code, USER_TEMPLATES.PUBLISH_STORY),
-        {
-          name,
-          var_preview: origin?.content,
-          confirmation_link: prepareURL(
-            this.config.get('frontend.url'),
-            'story/details',
-            story.id,
-          ),
-        },
-        {},
-        [{ Email: email }],
+      const origin = story.translations.find(
+        (translation) => translation.languageId === story.language.id,
       );
-    } else if (phone && story.conversation?.smsMessages && story.conversation.provider) {
-      await this.notificationService.sendSMS(
-        story.language?.code,
-        phone,
-        story.conversation.serviceNumber,
-        USER_TEMPLATES.PUBLISH_STORY,
-        story.conversation.provider,
-        story.country?.code,
-      );
-    }
 
-    let users: UserEntity[] = [];
-
-    //Notification for organisation if has been tagged
-    if (story.organisations.length > 0) {
-      users =
-        await this.userService.findUsersFormOrganisationsWithNotificationOn(
-          story.organisations,
-        );
-    }
-
-    if (users) {
-      const confirmationLink = await prepareURL(
-        this.config.get('frontend.url'),
-        'story/details',
-        story.id,
-      );
-      const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
-      for (const user of users) {
-        const languageCode = user.language?.code ?? LANGUAGES_CONSTANTS.ENGLISH;
-        const selectedTranslation = story.translations.find(
-          (t) => t.language.code === languageCode,
-        );
-
+      if (email) {
+        this.logger.log('[AuthorNotification] Sending EMAIL', { email });
         try {
           await this.notificationService.sendEmail(
-            getMailTemplateId(
-              languageCode,
-              USER_TEMPLATES.YOUR_ORGANISATION_HAS_BEEN_TAGGED,
-            ),
+            getMailTemplateId(story.language?.code, USER_TEMPLATES.PUBLISH_STORY),
             {
-              name: user.nickname ?? '',
-              organisation_name: user.organisation.name,
-              story_preview: selectedTranslation?.content ?? origin.content,
-              confirmation_link: confirmationLink,
+              name,
+              var_preview: origin?.content,
+              confirmation_link: prepareURL(
+                this.config.get('frontend.url'),
+                'story/details',
+                story.id,
+              ),
             },
             {},
-            [{ Email: user.email }],
-            [],
-            undefined,
-            {
-              Email: 'orgs@talktoloop.org',
-              Name: 'Talk to Loop Support',
-            },
+            [{ Email: email }],
           );
+          this.logger.log('[AuthorNotification] Email SENT', { email });
         } catch (err) {
-          console.error(`Failed to send to ${user.email}:`, err);
+          console.error('[AuthorNotification] Email FAILED', { email, err });
         }
-
-        await delay(1000); // wait 1 second between sends
+      } else if (phone && story.conversation?.smsMessages && story.conversation.provider) {
+        this.logger.log('[AuthorNotification] Sending SMS', {
+          phone,
+          provider: story.conversation.provider,
+        });
+        try {
+          await this.notificationService.sendSMS(
+            story.language?.code,
+            phone,
+            story.conversation.serviceNumber,
+            USER_TEMPLATES.PUBLISH_STORY,
+            story.conversation.provider,
+            story.country?.code,
+          );
+          this.logger.log('[AuthorNotification] SMS SENT', { phone });
+        } catch (err) {
+          console.error('[AuthorNotification] SMS FAILED', { phone, err });
+        }
+      } else {
+        this.logger.log('[AuthorNotification] Skipped (no email/phone)');
       }
     }
+
+    // Org notifications are NOT sent here.
+    // They are handled by sendNotificationsForOrganisationTags,
+    // called from updateStory for both first-publish and re-publish flows.
+    // This avoids double notifications and ensures orgs are always notified
+    // regardless of author contact preference or disableNotificationsAfterEdit flag.
+
+    this.logger.log('[sendNotificationsAfterStoryPublication] END', { storyId: story.id });
   }
 
   async sendNotificationAfterUrgentStory(storyId: string): Promise<void> {
@@ -185,6 +167,69 @@ export class StoryNotificationService {
           },
         );
       }
+    }
+  }
+
+
+  async sendNotificationsForOrganisationTags(
+    story: StoryEntity,
+    organisationIds: string[],
+    options?: { force?: boolean },
+  ): Promise<void> {
+    if (
+      !options?.force &&
+      story.edited &&
+      this.config.get('application.disableNotificationsAfterEdit')
+    ) {
+      return;
+    }
+
+    const organisationsToNotify = (story.organisations ?? []).filter(o =>
+      organisationIds.includes(o.id),
+    );
+
+    if (organisationsToNotify.length === 0) return;
+
+    const origin = story.translations.find(
+      t => t.languageId === story.language.id,
+    );
+
+    const users = await this.userService.findUsersFormOrganisationsWithNotificationOn(
+      organisationsToNotify,
+    );
+
+    if (!users?.length) return;
+
+    const confirmationLink = prepareURL(
+      this.config.get('frontend.url'),
+      'story/details',
+      story.id,
+    );
+
+    const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
+    for (const user of users) {
+      const languageCode = user.language?.code ?? LANGUAGES_CONSTANTS.ENGLISH;
+      const selectedTranslation = story.translations.find(
+        t => t.language.code === languageCode,
+      );
+
+      await this.notificationService.sendEmail(
+        getMailTemplateId(languageCode, USER_TEMPLATES.YOUR_ORGANISATION_HAS_BEEN_TAGGED),
+        {
+          name: user.nickname ?? '',
+          organisation_name: user.organisation.name,
+          story_preview: selectedTranslation?.content ?? origin?.content,
+          confirmation_link: confirmationLink,
+        },
+        {},
+        [{ Email: user.email }],
+        [],
+        undefined,
+        { Email: 'orgs@talktoloop.org', Name: 'Talk to Loop Support' },
+      );
+
+      await delay(1000);
     }
   }
 }

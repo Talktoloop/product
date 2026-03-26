@@ -25,6 +25,10 @@ import { ModeratorEntity } from './entity/moderator.entity';
 import { ModeratorRepository } from './repository/moderator.repository';
 import { ModeratorService } from './service/moderators.service';
 import { ModeratorsController } from './controller/moderators.controller';
+import { VulnerabilityFactorsEntity } from './entity/vulnerability-factors.entity';
+import { VulnerabilityFactorsRepository } from './repository/vulnerability-factors.repository';
+import { VulnerabilityFactorsService } from './service/vulnerability-factors.service';
+import { VulnerabilityFactorsController } from './controller/vulnerability-factors.controller';
 import { CerbosService } from '../common/cerbos/cerbos.service';
 import { PermissionGuard } from '../auth/cerbos/permission.guard';
 
@@ -41,6 +45,8 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
       RejectReasonRepository,
       ModeratorEntity,
       ModeratorRepository,
+      VulnerabilityFactorsEntity,
+      VulnerabilityFactorsRepository,
     ]),
   ],
   providers: [
@@ -51,6 +57,7 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     AgeService,
     GenderService,
     ModeratorService,
+    VulnerabilityFactorsService,
     PermissionGuard,
     CerbosService
   ],
@@ -63,6 +70,7 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     GenderController,
     StorySortingController,
     ModeratorsController,
+    VulnerabilityFactorsController,
   ],
   exports: [
     DifficultyService,
@@ -70,6 +78,7 @@ import { PermissionGuard } from '../auth/cerbos/permission.guard';
     RejectReasonService,
     ThematicService,
     ModeratorService,
+    VulnerabilityFactorsService,
   ],
 })
 export class LexiconModule {}

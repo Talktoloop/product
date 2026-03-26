@@ -42,4 +42,26 @@ export class StoryRO extends StoryListRO {
   @Expose()
   @ApiProperty({ type: 'string' })
   channel: string;
+
+  @Expose()
+  @ApiProperty({ type: 'boolean', nullable: true })
+  isMinority: boolean | null;
+
+  @Expose()
+  @ApiProperty({ 
+    type: 'array', 
+    items: { 
+      oneOf: [
+        { type: 'string', format: 'uuid' },
+        { type: 'string' },
+        { type: 'number' }
+      ]
+    },
+    required: false 
+  })
+  vulnerabilityFactors?: (string | number)[];
+
+  @Expose()
+  @ApiProperty({ type: String, required: false })
+  disabilitiesOtherExplanation?: string;
 }

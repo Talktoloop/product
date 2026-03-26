@@ -67,7 +67,7 @@ export class UserService {
     private readonly airTableUserService: AirTableUserService,
     private readonly notificationService: NotificationService,
     private readonly brevoService: BrevoService,
-  ) {}
+  ) { }
 
   async saveUser(
     data: Partial<UserEntity>,
@@ -167,13 +167,16 @@ export class UserService {
       data.consentsDate = new Date();
     }
     const nickname = prepareUsername(data, data.hideLastName);
+    const user = {
+      ...data,
+      nickname: nickname,
+      optin_marketing: optin_marketing || false,
+      organisation_id: organisationApplicationId
+
+    };
 
     const updatedUser = await this.userRepository
-      .update(userId, {
-        ...data,
-        nickname: nickname,
-        optin_marketing: optin_marketing || false,
-      })
+      .update(userId, user)
       .catch((error) => {
         this.logger.error(error.response);
         throw new BadRequestException(UPDATE_USER_ERROR);

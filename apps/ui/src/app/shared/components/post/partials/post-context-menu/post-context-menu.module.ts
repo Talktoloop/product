@@ -7,6 +7,7 @@ import { DropdownDirectiveModule } from '@app/shared/directives/dropdown/dropdow
 import { SharedModule } from '@app/shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { DotsHorizontalIconModule } from '@shared/icons/dots-horizontal-icon/dots-horizontal-icon.module';
+import { ReportFormModule } from '@app/shared/components/report-form/report-form.module';
 import { PostContextMenuComponent } from './post-context-menu.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { PostContextMenuComponent } from './post-context-menu.component';
     SelectOptionModule,
     SharedModule,
     DropdownDirectiveModule,
+    ReportFormModule,
   ],
   exports: [PostContextMenuComponent],
 })

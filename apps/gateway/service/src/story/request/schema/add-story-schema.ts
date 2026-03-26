@@ -38,5 +38,6 @@ export const addStorySchema: Joi.ObjectSchema = Joi.object({
   regionId: Joi.number().allow(null),
   countryId: Joi.number(),
   additionalContactDetails: Joi.string().allow('').custom(stripHtmlTags),
-  sensitiveStoryContactConsent: Joi.boolean()
+  sensitiveStoryContactConsent: Joi.boolean(),
+  disabilitiesOtherExplanation: Joi.string().allow('').custom(stripHtmlTags)
 }).options({ presence: 'optional' });

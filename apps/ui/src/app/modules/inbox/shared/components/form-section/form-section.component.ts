@@ -31,6 +31,8 @@ export class FormSectionComponent extends BaseComponent {
   @Input() requiredValidationError = false;
   @Input() selectedItems: Pill[];
   @Input() singleValue: boolean;
+  @Input() fabButtonSize: 'small' | 'medium' | 'big' = 'small';
+  @Input() isStaticDropdown = false;
   @Output() apply = new EventEmitter<boolean>();
   @Output() dismiss = new EventEmitter<string | number>();
   @Output() outsideClicked = new EventEmitter<boolean>();

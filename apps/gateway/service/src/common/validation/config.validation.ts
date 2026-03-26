@@ -40,4 +40,7 @@ export const configSchema: Joi.ObjectSchema = Joi.object({
   AWS_REGION: Joi.string(),
   AZURE_SUBSCRIPTION_TOKEN: Joi.string(),
   ONLY_GET_REQUEST: Joi.string(),
+  INNGEST_SIGNING_KEY: Joi.string(),
+  INNGEST_EVENT_KEY: Joi.string(),
 }).options({ allowUnknown: true, presence: 'required' });
+

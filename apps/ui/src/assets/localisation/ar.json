@@ -152,7 +152,10 @@
           "label": "البريد الإلكتروني",
           "placeholder": "someone@example.com\n",
           "invalid": "بريدك الإلكتروني غير صالح",
-          "info": "احصل على إشعار عندما تتلقى\\تتلقين تعليقاً. نحن لا نشارك بريدك الإلكتروني مع أطراف ثالثة."
+          "info": "احصل على إشعار عندما تتلقى\\تتلقين تعليقاً. نحن لا نشارك بريدك الإلكتروني مع أطراف ثالثة.",
+          "nonSensitive": {
+            "info": "أدخل بريدك الإلكتروني ليصلك إشعار بالردود. لن يظهر بريدك الإلكتروني لأي شخص."
+          }
         },
         "checkbox": "أوافق على نشر تعليقاتي على TalkToLoop.org و مشاركتها عبر الإنترنت للمساعدة في تحسين الخدمات",
         "submit": "تقديم الرد",
@@ -304,6 +307,12 @@
           "storyAlreadyRejected": "Feedback is already rejected",
           "storyAlreadySentToCaseManager": "Feedback is already sent to case manager"
         },
+        "languageConfirmation": {
+          "title": "تأكيد اللغة",
+          "message": "هل تريد المتابعة باللغة {{language}}؟",
+          "cancel": "إلغاء",
+          "continue": "متابعة"
+        },
         "form": {
           "sensitiveLabel": "لا يتم نشر التعليقات الحساسة أبداً على موقع Loop الإلكتروني.",
           "demographicalInfo": "المعلومات الديموغرافية",
@@ -338,7 +347,10 @@
         },
         "editStory": {
           "minLengthErrorMessage": "يجب أن تتكون التعليقات من 5 أحرف على الأقل ليتم نشرها. إذا لم يكن هناك حاجة إلى هذا التعديل، فيرجى تعطيل مفتاح التبديل فوق حقل هذا النص.",
-          "editButton": "يجب تعديل التعليقات قبل النشر."
+          "editButton": "يجب تعديل التعليقات قبل النشر.",
+          "saveTranscriptionButton": "حفظ النسخ",
+          "saveTranscriptionError": "حدث خطأ أثناء حفظ النسخ. يرجى المحاولة مرة أخرى.",
+          "saveTranscriptionSuccess": "تم حفظ النسخ بنجاح."
         }
       },
       "translate": {
@@ -973,7 +985,9 @@
         "other": "أخرى",
         "duplicate": "مكرر",
         "communityStandards": "ينتهك معايير المجتمع",
-        "poorAudioQuality": "جودة صوت رديئة"
+        "poorAudioQuality": "جودة صوت رديئة",
+        "generalAssistanceRequest": "طلب مساعدة عامة",
+        "generalAssistanceRequestFull": "ملاحظتك هي طلب مساعدة عامة، وهي خارج نطاق قدرتنا على المساعدة في الوقت الحالي."
       }
     },
     "comment": {
@@ -1332,6 +1346,7 @@
     "idp": "النازحون داخليًا (IDP)",
     "general-assistance": "المساعدة العامة",
     "aid-effectiveness": "فعالية المساعدات",
+    "aid-accessibility": "إمكانية الوصول إلى المساعدات",
     "clothing": "الملابس",
     "hygiene-items": "مستلزمات النظافة",
     "cooking-items": "أدوات الطهي",
@@ -1351,6 +1366,7 @@
     "discrimination": "التمييز",
     "general-protection": "الحماية العامة",
     "human-rights": "حقوق الإنسان",
+    "disruption-of-aid": "تعطيل/تعليق المساعدات",
     "rule-of-law": "سيادة القانون",
     "skills-acquisition": "اكتساب المهارات",
     "commodity-prices": "أسعار السلع",
@@ -1397,7 +1413,9 @@
     "pl": "Polski",
     "uk": "Український",
     "ru": "Русский",
-    "bara": "Somali (Barawani-Chimini)"
+    "bara": "Somali (Barawani-Chimini)",
+    "kiz": "Somali (Kizigua)",
+    "sw": "Kiswahili"
   },
   "newStoryV2": {
     "form": {
@@ -1495,6 +1513,10 @@
           "other": {
             "title": "آخر"
           }
+        },
+        "other": {
+          "label": "يرجى الشرح",
+          "placeholder": "يرجى تقديم مزيد من التفاصيل حول حالتك"
         }
       },
       "phoneNumber": {
@@ -1524,7 +1546,8 @@
         "hint": "ابحث\\ابحثي عن مدينة أو بلدة قريبة منك.",
         "cancel": "إلغاء",
         "addNew": "استخدم اسم هذا المكان",
-        "unavailable": "الموقع غير متوفر"
+        "unavailable": "الموقع غير متوفر",
+        "required": "الموقع مطلوب"
       },
       "help": {
         "explanation": "ساعدني في الاختيار"
@@ -2073,8 +2096,29 @@
       "placeholder": "عرض التعليقات التي تحتوي على رد واحد على الأقل أو لا تحتوي على أي رد"
     },
     "communityResponsiveness": {
-      "label": "استجابة المجتمع",
-      "placeholder": "عرض التعليقات التي تحتوي على رد واحد على الأقل أو لا تحتوي على أي رد"
+      "label": "ردود الفعل المجتمعية",
+      "placeholder": "عرض التعليقات التي تحتوي على رد واحد على الأقل أو لا تحتوي على أي رد",
+      "tooltip": "تصفية التعليقات بناءً على التفاعل المجتمعي - سواء كان التعليق قد تلقى ردودًا أو تصويتات إيجابية من المجتمع"
+    },
+    "vulnerabilityFactors": {
+      "label": "عوامل الضعف",
+      "children": "الأطفال",
+      "youth": "الشباب",
+      "femaleHeadedHouseholds": "الأسر التي ترأسها نساء",
+      "personsLivingWithDisabilities": "الأشخاص ذوو الإعاقة",
+      "elderly": "كبار السن",
+      "lgbtqPlus": "LGBTQ+",
+      "chronicallyIllPeople": "الأشخاص المصابون بأمراض مزمنة",
+      "legalStatusRefugees": "الوضع القانوني (لاجئون، مهاجرون، عديمو الجنسية، إلخ)",
+      "indigenousCommunity": "المجتمع الأصلي",
+      "lowIncomeFamilies": "الأسر ذات الدخل المنخفض",
+      "internallyDisplacedPeople": "النازحون داخلياً",
+      "alcoholDrugAbuseInFamily": "تعاطي الكحول أو المخدرات في الأسرة",
+      "fosteringOtherFamilyMembers": "رعاية أفراد الأسرة الآخرين",
+      "hivPlus": "HIV+",
+      "memberOfMarginalisedGroup": "عضو في مجموعة مهمشة",
+      "orphan": "يتيم",
+      "other": "أخرى"
     },
     "date": {
       "label": "تاريخ التقديم",
@@ -2311,9 +2355,10 @@
   },
   "navbar": {
     "social": {
-      "twitterLabel": "حساب تويتر/X الخاص ب Loop",
+      "twitterLabel": "حساب تويتر الخاص ب Loop",
       "facebookLabel": "تواصل\\تواصلي مع فيسبوك Loop",
-      "linkedinLabel": "تواصل\\تواصلي مع Loop عبر LinkedIn"
+      "linkedinLabel": "تواصل\\تواصلي مع Loop عبر LinkedIn",
+      "newsletterLabel": "اشترك في النشرة الإخبارية لـ Loop"
     },
     "static": {
       "loopWebsiteLabel": "موقع Loop الإلكتروني",
@@ -2363,6 +2408,7 @@
   "storyHasNotBeenPublishedOnTalkToLoop": "لم يتم نشر تعليقك على موقع TalkToLoop.org",
   "organisationHaveBeenTaggedInStoryOnTalkToLoop": "تم توجيه تعليقات إلى منظمتك على TalkToLoop.org",
   "replyHasNotBeenPublishedOnTalkToLoop": "لم يتم نشر ردك\\كِ على TalkToLoop.org",
+  "replyHasBeenPublishedOnTalkToLoop": "تم نشر ردك\\كِ على TalkToLoop.org",
   "storyHasBeenPublishedOnTalkToLoop": "تم نشر تعليقاتك على موقع TalkToLoop.org",
   "statisticsCases": {
     "section1": "ما مدى مسؤوليتنا؟",
@@ -3277,5 +3323,31 @@
     "reject": "رفض{{count}}",
     "assignModerators": "تعيين المشرفين ({{count}})",
     "deselectAll": "الغاء تحديد الكل"
+  },
+  "report": {
+    "submitReport": "إرسال الطلب",
+    "title": "طلب إزالة تعليق منشور أو رد",
+    "intro": "يرجى استخدام هذا النموذج لتوضيح الأسباب التي تستدعي إزالة تعليق منشور أو رد من منصة Talk to Loop.",
+    "introFormLinked": "هذا النموذج مرتبط بتعليق واحد أو رد واحد فقط.",
+    "introConfidential": "سنقوم بمراجعة جميع الطلبات والتعامل معها بسرية تامة خلال أسبوع عمل واحد.",
+    "introGuidelines": "يرجى الرجوع إلى إرشادات المجتمع الخاصة بنا",
+    "guidelinesLink": "هنا",
+    "reportAboutLabel": "تقريري يتعلق بـ:",
+    "originalFeedback": "التعليق الأصلي",
+    "oneOfReplies": "أحد الردود",
+    "specifyReply": "يرجى تحديد الرد المقصود إذا كان هناك أكثر من رد.",
+    "guidelinesBreachLabel": "هذا التعليق أو الرد ينتهك أحد إرشادات مجتمع Loop التالية:",
+    "offensiveLanguage": "لغة مسيئة أو تمييزية",
+    "communityStandards": "لا يتبع معايير المجتمع المصممة لضمان بيئة آمنة",
+    "authenticityConcern": "مخاوف بشأن مصداقية التعليق أو الرد",
+    "causesHarm": "يسبب ضرراً للآخرين",
+    "privacyViolation": "لا يحترم خصوصية الآخرين",
+    "additionalInfo": "هل هناك أي معلومات إضافية لدعم طلبكم؟",
+    "contactEmail": "إذا كنتم ترغبون في تلقي رد بخصوص قرارنا، يرجى كتابة البريد الإلكتروني.",
+    "emailPlaceholder": "your@email.com",
+    "optional": "(اختياري)",
+    "submitButton": "إرسال الطلب",
+    "cancelButton": "إلغاء",
+    "successMessage": "تم إرسال بلاغك بنجاح"
   }
 }

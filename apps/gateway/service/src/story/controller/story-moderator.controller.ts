@@ -83,10 +83,13 @@ import { assignStoriesSchema } from '../request/schema/assign-stories-schema';
 import { AssignStoriesDTO } from '../request/dto/assign-stories.dto';
 import { AssignStoriesRO } from '../response/assigned-stories.ro';
 import { ModeratorService } from '../../lexicon/service/moderators.service';
-import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
-import { PermissionGuard } from '../../auth/cerbos/permission.guard';
-import { CerbosService } from '../../common/cerbos/cerbos.service';
-import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
+import { updateTranscriptionSchema } from '../request/schema/update-transcription.schema';
+import { UpdateTranscriptionDto } from '../request/dto/update-transcription.dto';
+import { FeedbackVulnerabilityFactorsService } from '../service/feedback-vulnerability-factors.service';
+// import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
+// import { PermissionGuard } from '../../auth/cerbos/permission.guard';
+// import { CerbosService } from '../../common/cerbos/cerbos.service';
+// import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
 // @UseGuards(AuthGuard('cognito'), PermissionGuard)
 // @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.STORY)
@@ -116,6 +119,7 @@ export class StoryModeratorController {
     private readonly config: ConfigService,
     private readonly messageService: MessageService,
     private readonly moderatorService: ModeratorService,
+    private readonly feedbackVulnerabilityFactorsService: FeedbackVulnerabilityFactorsService,
   ) { }
 
   @ApiOperation({
@@ -167,13 +171,27 @@ export class StoryModeratorController {
     const success = result && !!result?.affected;
 
     if (success) {
-      const caseManagers = await this.caseManagerService.findWithEmail();
-      this.storyModeratorService.sendNotificationAfterExportToAirTable(
-        user,
-        caseManagers,
-      );
-      if (data.immediateAssistance) {
-        await this.storyNotificationService.sendNotificationAfterUrgentStory(storyId);
+      try {
+        const caseManagers = await this.caseManagerService.findWithEmail();
+        await this.storyModeratorService.sendNotificationAfterExportToAirTable(
+          user,
+          caseManagers,
+        ).catch((error) => {
+          this.logger.error(
+            `[exportStoryToAirTable] Failed to send notification after export to AirTable for story ${storyId}: ${error?.message}`,
+          );
+        });
+        if (data.immediateAssistance) {
+          await this.storyNotificationService.sendNotificationAfterUrgentStory(storyId).catch((error) => {
+            this.logger.error(
+              `[exportStoryToAirTable] Failed to send notification after urgent story for story ${storyId}: ${error?.message}`,
+            );
+          });
+        }
+      } catch (error) {
+        this.logger.error(
+          `[exportStoryToAirTable] Failed to send notification after export to AirTable for story ${storyId}: ${error?.message}`,
+        );
       }
     }
 
@@ -231,6 +249,8 @@ export class StoryModeratorController {
     }
   }
 
+
+
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Update story' })
   @Put(':id')
@@ -282,6 +302,43 @@ export class StoryModeratorController {
 
     return plainToClass(SuccessRO, { success: !!result });
   }
+
+  @ApiOperation({ summary: 'Update story transcription' })
+  @ApiResponse({ status: 200, type: SuccessRO })
+  @Put(':id/transcription')
+  async updateStoryTranscription(
+    @Auth() user: UserEntity,
+    @Param('id', new UuidValidationPipe())
+    storyId: string,
+    @Body(new ValidationPipe(updateTranscriptionSchema))
+    data: UpdateTranscriptionDto,
+  ): Promise<SuccessRO> {
+    if (!data.content && !data.editedContent) {
+      throw new BadRequestException(VALIDATION_FAILED);
+    }
+    const story = await this.storyService.checkThatStoryExist(
+      { id: storyId },
+      'updateStory',
+      [
+        'user',
+        'user.language',
+        'organisations',
+        'translations',
+        'translations.language',
+        'language',
+        'recipient',
+      ],
+    );
+
+    const result = await this.storyModeratorService.updateStoryTranscription(
+      user.id,
+      story,
+      data,
+    );
+
+    return plainToClass(SuccessRO, { success: !!result });
+  }
+
 
   @ApiResponse({ status: 200, type: SuccessRO })
   @ApiOperation({ summary: 'Unpublish story' })
@@ -341,18 +398,41 @@ export class StoryModeratorController {
     const success = result && !!result?.affected;
 
     if (success) {
+      this.logger.log(
+        `[publishStory] Story published successfully - StoryID: ${story.id}, Channel: ${story.channel}`,
+      );
+
       this.storyNotificationService.sendNotificationsAfterStoryPublication(
         story,
       );
 
       if (story.channel === CHANNEL_CONSTANTS.IVRR) {
-        await this.ivrrService.preparePublishedStoryCall(story);
+        this.logger.log(
+          `[publishStory] Preparing IVRR outbound call - StoryID: ${story.id}`,
+        );
+
+        try {
+          await this.ivrrService.preparePublishedStoryCall(story);
+          this.logger.log(
+            `[publishStory] IVRR call prepared successfully - StoryID: ${story.id}`,
+          );
+        } catch (error) {
+          this.logger.error(
+            `[publishStory] Failed to prepare IVRR call - StoryID: ${story.id}, Error: ${error.message}`,
+            error.stack,
+          );
+        }
+
         await this.ivrrService.removeStoryLogs(story);
       }
 
       if (story.recipient?.communicatorId) {
         this.messengerService.sendStoryStatus(story, StoryStatus.PUBLISHED);
       }
+    } else {
+      this.logger.warn(
+        `[publishStory] Story publish result was not successful - StoryID: ${story.id}`,
+      );
     }
 
 
@@ -417,12 +497,27 @@ export class StoryModeratorController {
         story,
       );
 
+    const vulnerabilityFactors = await this.feedbackVulnerabilityFactorsService.findByStoryId(storyId);
+
+    let otherFeedbackBySameRecipient = [];
+    if (story?.recipient && (story.recipient.phone || story.recipient.email || story.recipient.communicatorId)) {
+      otherFeedbackBySameRecipient =
+        await this.storyModeratorService.getStoriesBySameRecipient(
+          story.recipient.phone,
+          story.recipient.email,
+          story.recipient.communicatorId,
+          story.id,
+        );
+    }
+
     return storyWebDetailsMapper(
       story,
       historicalContent?.content,
       story.languageId,
       userLanguageId,
       defaultLanguage,
+      vulnerabilityFactors,
+      otherFeedbackBySameRecipient,
     );
   }
 
@@ -550,6 +645,17 @@ export class StoryModeratorController {
         story.channel,
       );
 
+    let otherFeedbackBySameRecipient = [];
+    if (story?.recipient && (story.recipient.phone || story.recipient.email || story.recipient.communicatorId)) {
+      otherFeedbackBySameRecipient =
+        await this.storyModeratorService.getStoriesBySameRecipient(
+          story.recipient.phone,
+          story.recipient.email,
+          story.recipient.communicatorId,
+          story.id,
+        );
+    }
+
     return storyMessengerDetailsMapper(
       story,
       pinnedMessages,
@@ -557,6 +663,7 @@ export class StoryModeratorController {
       userLanguageId,
       defaultLanguage,
       messages,
+      otherFeedbackBySameRecipient,
     );
   }
 
@@ -595,6 +702,17 @@ export class StoryModeratorController {
         story.channel,
       );
 
+    let otherFeedbackBySameRecipient = [];
+    if (story?.recipient && (story.recipient.phone || story.recipient.email || story.recipient.communicatorId)) {
+      otherFeedbackBySameRecipient =
+        await this.storyModeratorService.getStoriesBySameRecipient(
+          story.recipient.phone,
+          story.recipient.email,
+          story.recipient.communicatorId,
+          story.id,
+        );
+    }
+
     return storyMessengerDetailsMapper(
       story,
       pinnedMessages,
@@ -602,6 +720,7 @@ export class StoryModeratorController {
       userLanguageId,
       defaultLanguage,
       messages,
+      otherFeedbackBySameRecipient,
     );
   }
 

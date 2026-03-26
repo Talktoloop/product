@@ -264,12 +264,23 @@ export class CallService {
   }): Promise<boolean> {
     const story = data.story;
     const language = story.languageCode;
+    
+    this.logger.log(
+      `[preparePublishedStoryCall] START - StoryID: ${story.id}, Language: ${language}, Phone: ${story.phone}`,
+    );
+
     const recordings = this.getRecordingFiles(language);
 
     if (!recordings.publication.story[language]) {
-      this.logger.error('Published story - no recording in the given language');
-      return;
+      this.logger.error(
+        `[preparePublishedStoryCall] MISSING RECORDING - Language: ${language}, StoryID: ${story.id}`,
+      );
+      return false;
     }
+
+    this.logger.log(
+      `[preparePublishedStoryCall] Recording found: ${recordings.publication.story[language]}`,
+    );
 
     const callBlocks = [
       {
@@ -278,7 +289,11 @@ export class CallService {
       },
     ];
 
-    return this.addCallInitializationJob(story.conversation.shortCodeNumber, {
+    this.logger.log(
+      `[preparePublishedStoryCall] Adding call init job - ShortCode: ${story.conversation.shortCodeNumber}`,
+    );
+
+    const result = await this.addCallInitializationJob(story.conversation.shortCodeNumber, {
       storyId: story.id,
       resourceStatus: story.status,
       toPhoneNumber: story.phone,
@@ -287,6 +302,12 @@ export class CallService {
       callBlocks,
       schedulerData: data.schedulerData,
     });
+
+    this.logger.log(
+      `[preparePublishedStoryCall] Call init job result: ${result ? 'SUCCESS' : 'FAILED'} - StoryID: ${story.id}`,
+    );
+
+    return result;
   }
 
   async prepareRejectedStoryCall(data: {
@@ -344,9 +365,13 @@ export class CallService {
     const language = comment.languageCode;
     const recordings = this.getRecordingFiles(language);
 
+    this.logger.log(
+      `Preparing published comment call - Comment: ${comment.id}, Language: ${language}`,
+    );
+
     if (!recordings.publication.reply[language]) {
       this.logger.error(
-        'Published comment - no recording in the given language',
+        `Published comment - no recording in language: ${language}`,
       );
       return;
     }

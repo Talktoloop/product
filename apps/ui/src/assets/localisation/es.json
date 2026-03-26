@@ -152,7 +152,10 @@
           "label": "Correo electrónico",
           "placeholder": "alguien@ejemplo.com",
           "invalid": "Tu dirección de correo electrónico no es válida.",
-          "info": "Obtén una notificación cuando recibas comentarios. No compartiremos tu correo con terceros."
+          "info": "Obtén una notificación cuando recibas comentarios. No compartiremos tu correo con terceros.",
+          "nonSensitive": {
+            "info": "Proporciona tu correo electrónico para recibir notificaciones de respuestas. Tu correo electrónico no será visible para nadie."
+          }
         },
         "checkbox": "Doy mi consentimiento para que mi respuesta sea publicada en TalkToLoop.org y compartida en línea para ayudar a las organizaciones a mejorar sus servicios.",
         "submit": "Enviar respuesta",
@@ -304,6 +307,12 @@
           "storyAlreadyRejected": "Feedback is already rejected",
           "storyAlreadySentToCaseManager": "Feedback is already sent to case manager"
         },
+        "languageConfirmation": {
+          "title": "Confirmación de Idioma",
+          "message": "¿Deseas continuar con {{language}}?",
+          "cancel": "Cancelar",
+          "continue": "Continuar"
+        },
         "form": {
           "sensitiveLabel": "Nunca publicamos información delicada en la página web de Loop.",
           "demographicalInfo": "Información demográfica",
@@ -338,7 +347,10 @@
         },
         "editStory": {
           "minLengthErrorMessage": "El comentario debe tener al menos 5 caracteres para ser publicado. Si no tienes que editarlo, por favor desactiva el recuadro que está arriba de este cuadro de texto.",
-          "editButton": "La retroalimentación debe ser editada antes de ser publicada."
+          "editButton": "La retroalimentación debe ser editada antes de ser publicada.",
+          "saveTranscriptionButton": "Guardar transcripción",
+          "saveTranscriptionError": "Error al guardar la transcripción. Por favor, inténtelo de nuevo.",
+          "saveTranscriptionSuccess": "Transcripción guardada con éxito."
         }
       },
       "translate": {
@@ -973,7 +985,9 @@
         "other": "Otro",
         "poorAudioQuality": "Mala calidad de audio",
         "duplicate": "Duplicado",
-        "communityStandards": "Viola los estándares de la comunidad"
+        "communityStandards": "Viola los estándares de la comunidad",
+        "generalAssistanceRequest": "Solicitud de asistencia general",
+        "generalAssistanceRequestFull": "Tu retroalimentación es una solicitud de asistencia general, y no estamos capacitados para asistirte en este momento."
       }
     },
     "comment": {
@@ -1332,6 +1346,7 @@
     "idp": "Personas desplazadas internas (PDI)",
     "general-assistance": "Asistencia general",
     "aid-effectiveness": "Efectividad de la ayuda",
+    "aid-accessibility": "Accesibilidad de la ayuda",
     "clothing": "Ropa",
     "hygiene-items": "Artículos de higiene",
     "cooking-items": "Utensilios de cocina",
@@ -1351,6 +1366,7 @@
     "discrimination": "Discriminación",
     "general-protection": "Protección general",
     "human-rights": "Derechos humanos",
+    "disruption-of-aid": "Interrupción/suspensión de la ayuda",
     "rule-of-law": "Estado de derecho",
     "skills-acquisition": "Adquisición de habilidades",
     "commodity-prices": "Precios de productos básicos",
@@ -1399,7 +1415,9 @@
     "ru": "Русский",
     "bju": "Somali (Baajuuni)",
     "bnd": "Somali (Banadiri-Marka)",
-    "bara": "Somali (Barawani-Chimini)"
+    "bara": "Somali (Barawani-Chimini)",
+    "kiz": "Somali (Kizigua)",
+    "sw": "Kiswahili"
   },
   "newStoryV2": {
     "form": {
@@ -1497,6 +1515,10 @@
           "other": {
             "title": "Otro"
           }
+        },
+        "other": {
+          "label": "Por favor explique",
+          "placeholder": "Por favor proporcione más detalles sobre su condición"
         }
       },
       "phoneNumber": {
@@ -1526,7 +1548,8 @@
         "hint": "Buscar población o ciudad cerca de ti",
         "cancel": "Cancelar",
         "addNew": "Usar el nombre de este lugar",
-        "unavailable": "Ubicación no disponible"
+        "unavailable": "Ubicación no disponible",
+        "required": "Ubicación es requerida"
       },
       "help": {
         "explanation": "Ayuda para elegir"
@@ -2075,8 +2098,29 @@
       "placeholder": "Mostrar comentarios que tienen al menos 1 respuesta o ninguno"
     },
     "communityResponsiveness": {
-      "label": "Capacidad de respuesta de la comunidad",
-      "placeholder": "Mostrar comentarios que tienen al menos 1 respuesta o ninguno"
+      "label": "Reacciones Comunitarias",
+      "placeholder": "Mostrar comentarios que tienen al menos 1 respuesta o ninguno",
+      "tooltip": "Filtrar comentarios según el compromiso comunitario - si el comentario ha recibido respuestas o votos positivos de la comunidad"
+    },
+    "vulnerabilityFactors": {
+      "label": "Factores de vulnerabilidad",
+      "children": "Niños",
+      "youth": "Jóvenes",
+      "femaleHeadedHouseholds": "Hogares encabezados por mujeres",
+      "personsLivingWithDisabilities": "Personas con discapacidad",
+      "elderly": "Personas mayores",
+      "lgbtqPlus": "LGBTQ+",
+      "chronicallyIllPeople": "Personas con enfermedades crónicas",
+      "legalStatusRefugees": "Estatus legal (refugiados, migrantes, apátridas, etc.)",
+      "indigenousCommunity": "Comunidad indígena",
+      "lowIncomeFamilies": "Familias de bajos ingresos",
+      "internallyDisplacedPeople": "Personas desplazadas internamente (PDI)",
+      "alcoholDrugAbuseInFamily": "Abuso de alcohol o drogas en la familia",
+      "fosteringOtherFamilyMembers": "Acogida de otros miembros de la familia",
+      "hivPlus": "VIH+",
+      "memberOfMarginalisedGroup": "Miembro de un grupo marginado",
+      "orphan": "Huérfano",
+      "other": "Otro"
     },
     "date": {
       "label": "Fecha de entrega",
@@ -2315,7 +2359,8 @@
     "social": {
       "twitterLabel": "El twitter de Loop",
       "facebookLabel": "Habla con el Facebook de Loop",
-      "linkedinLabel": "Habla con el linkedin de Loop"
+      "linkedinLabel": "Habla con el linkedin de Loop",
+      "newsletterLabel": "Suscríbete al boletín de Loop"
     },
     "static": {
       "loopWebsiteLabel": "Sitio web de Loop",
@@ -2365,6 +2410,7 @@
   "storyHasNotBeenPublishedOnTalkToLoop": "Tu comentario no se publicó en TalkToLoop.org",
   "organisationHaveBeenTaggedInStoryOnTalkToLoop": "Tu organización ha sido etiquetada en un comentario en TalkToLoop.org",
   "replyHasNotBeenPublishedOnTalkToLoop": "Tu respuesta no se ha publicado en TalkToLoop.org",
+  "replyHasBeenPublishedOnTalkToLoop": "Tu respuesta se ha publicado en TalkToLoop.org",
   "storyHasBeenPublishedOnTalkToLoop": "Tu comentario se ha publicado en TalkToLoop.org",
   "statisticsCases": {
     "section1": "¿Qué tan responsables somos?",
@@ -3279,5 +3325,31 @@
     "reject": "Reject ({{count}})",
     "assignModerators": "Asignar Moderadores ({{count}})",
     "deselectAll": "Deselect all"
+  },
+  "report": {
+    "submitReport": "Enviar reporte",
+    "title": "Solicitud para eliminar retroalimentaci\u00f3n publicada o una respuesta",
+    "intro": "Utiliza este formulario para contarnos por qu\u00e9 deber\u00edamos eliminar una retroalimentaci\u00f3n publicada o una respuesta en la plataforma Talk to Loop.",
+    "introFormLinked": "Este formulario est\u00e1 asociado a una sola retroalimentaci\u00f3n o a una sola respuesta.",
+    "introConfidential": "Revisaremos todas las solicitudes y las trataremos de manera confidencial dentro de un plazo de una semana laboral.",
+    "introGuidelines": "Puedes consultar nuestras normas de la comunidad",
+    "guidelinesLink": "aqu\u00ed",
+    "reportAboutLabel": "Mi reporte es sobre:",
+    "originalFeedback": "La retroalimentaci\u00f3n original",
+    "oneOfReplies": "Una de las respuestas",
+    "specifyReply": "Especifica cu\u00e1l respuesta, si hay m\u00e1s de una",
+    "guidelinesBreachLabel": "Esta retroalimentaci\u00f3n o respuesta infringe una de las siguientes normas de la comunidad de Loop:",
+    "offensiveLanguage": "Lenguaje ofensivo o discriminatorio",
+    "communityStandards": "No cumple con los est\u00e1ndares de la comunidad dise\u00f1ados para garantizar un espacio seguro",
+    "authenticityConcern": "Dudas sobre la autenticidad de la retroalimentaci\u00f3n o de la respuesta",
+    "causesHarm": "Genera da\u00f1o a otras personas",
+    "privacyViolation": "No respeta la privacidad de terceros",
+    "additionalInfo": "\u00bfAlguna informaci\u00f3n adicional que respalde tu solicitud?",
+    "contactEmail": "Si deseas recibir retroalimentaci\u00f3n sobre nuestra decisi\u00f3n, por favor escribe tu correo electr\u00f3nico",
+    "emailPlaceholder": "tu@email.com",
+    "optional": "(opcional)",
+    "submitButton": "Enviar reporte",
+    "cancelButton": "Cancelar",
+    "successMessage": "Tu reporte ha sido enviado exitosamente"
   }
 }

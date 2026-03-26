@@ -66,9 +66,12 @@ export class OpenStoryController {
   ): Promise<MetabaseOpenFeedbackLinkRO> {
     const newFilters =
       await this.metabaseFilterService.mapFiltersToMetabase(filters);
-    return {
+    
+    const result = {
       url: await this.openStoryService.getSignedMetabaseURL(newFilters),
     };
+    
+    return result;
   }
 
   @Get('/summary')

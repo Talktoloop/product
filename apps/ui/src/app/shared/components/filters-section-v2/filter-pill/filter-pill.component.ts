@@ -21,6 +21,7 @@ import { takeUntil } from 'rxjs/operators';
 import { MultiRegionData, RegionData } from '@shared/components/location/location.component';
 import { PlacePipe } from '@shared/pipes/place.pipe';
 import { PillComponent } from '../../pills/pill/pill.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   providers: [PlacePipe],
@@ -49,7 +50,7 @@ export class FilterPillComponent extends PillComponent implements OnInit, OnDest
 
   nativeElementRef: HTMLElement;
 
-  constructor(private el: ElementRef, private cd: ChangeDetectorRef, private filtersService: FiltersService) {
+  constructor(private el: ElementRef, private cd: ChangeDetectorRef, private filtersService: FiltersService, private translateService: TranslateService) {
     super();
   }
 
@@ -181,6 +182,35 @@ export class FilterPillComponent extends PillComponent implements OnInit, OnDest
     this.destroyed$.next(null);
     this.destroyed$.complete();
   }
+
+  getTooltipText(): string {
+    if (!this.config?.translationKey) {
+      return '';
+    }
+    
+    // Special handling for community reactions filter only
+    if (this.config.translationKey === 'filtersV2.communityResponsiveness.label') {
+      return this.translateService.instant('filtersV2.communityResponsiveness.tooltip');
+    }
+    
+    return '';
+  }
+
+  hasTooltip(): boolean {
+    if (!this.config?.translationKey) {
+      return false;
+    }
+    
+    // Show tooltip for community reactions filter only
+    if (this.config.translationKey === 'filtersV2.communityResponsiveness.label') {
+      return true;
+    }
+    
+    // Return false for all other filters
+    return false;
+  }
+
+
 }
 
 interface INamedPill {

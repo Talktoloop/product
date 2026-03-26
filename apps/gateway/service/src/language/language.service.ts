@@ -32,7 +32,7 @@ import { CommentTranslationEntity } from '../comment/entity/comment-translation.
 import { CommentTranslationModeratorService } from '../comment/service/comment-translation-moderator.service';
 import { TRANSLATION_TYPE_CONSTANTS } from '../common/constant/translation-type.constant';
 import { ConfigService } from '@nestjs/config';
-
+import { inngest } from '../inngest/client';
 @Injectable()
 export class LanguageService {
   private readonly logger = new Logger(LanguageService.name);
@@ -164,6 +164,67 @@ export class LanguageService {
         });
       }
     }
+  }
+
+  async invokeTranslationViaInngest(
+    sourceId: string,
+    content: string,
+    originalTextLangId: number,
+    sourceType = SOURCE_TYPE.STORY,
+  ): Promise<void> {
+    // 1) Resolve origin language
+    const translateFrom = await this.languageRepository.findOne({
+      where: { id: originalTextLangId },
+    });
+    if (!translateFrom) return;
+
+    // If origin has no provider but has dialect, normalize it
+    let origin = translateFrom;
+    if (!origin.provider && origin.dialect) {
+      origin = await this.languageRepository.findOne({
+        where: { code: origin.dialect },
+      });
+      if (!origin) return;
+    }
+
+    // 2) Build ordered provider list, fetch machine-translation languages
+    const orderList = await this.getListOfProviders(origin.provider);
+    const languages = await this.languageRepository.findMachineTranslatedLanguages(orderList);
+
+    // 3) Compute targets (exclude original language)
+    const languagesToTranslation = languages.filter(({ id }) => id !== originalTextLangId);
+
+    // 4) Find the English entity (used as hint for first hop)
+    const englishEntity = languages.find((l) => l.code === LANGUAGES_CONSTANTS.ENGLISH);
+
+    // 5) Build provider-aware targets for the workflow
+    const targets = languagesToTranslation.map((l) => ({
+      code: l.code,
+      provider: (l.provider as any) || 'GOOGLE',
+      altProvider: l.alternativeProvider ?? null,
+    }));
+
+    // 6) Send the Inngest event
+    await inngest.send({
+      name: 'translation/requested.v1',
+      data: {
+        sourceId,
+        sourceType,
+        from: origin.code,
+        provider: origin.provider as any,                            // 'AWS' | 'GOOGLE'
+        altProvider: origin.alternativeProvider ?? null,
+        content,                                                    // full raw content (needed for EN hop)
+        english: {
+          code: LANGUAGES_CONSTANTS.ENGLISH,
+          provider: (englishEntity?.provider as any) || 'GOOGLE',
+        },
+        to: targets,
+      },
+    });
+
+    this.logger.log(
+      `[Inngest] Emitted translation/requested.v1 for ${sourceType} ${sourceId} from=${origin.code} provider=${origin.provider} targets=${targets.length}`,
+    );
   }
 
   async invokeTranslation(
@@ -502,9 +563,12 @@ export class LanguageService {
       } else if (
         !manualTranslationLanguages.includes(translation.language.code)
       ) {
-        translation.content = '';
-        translation.status = TRANSLATION_STATUS_CONSTANTS.ERROR;
-        translation.type = TRANSLATION_TYPE_CONSTANTS.MACHINE;
+        const isEnglish = translation.language?.code === LANGUAGES_CONSTANTS.ENGLISH;
+        if (!isEnglish) {
+          translation.content = '';
+          translation.status = TRANSLATION_STATUS_CONSTANTS.ERROR;
+          translation.type = TRANSLATION_TYPE_CONSTANTS.MACHINE;
+        }
       }
 
       return translation;
