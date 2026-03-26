@@ -1,3 +1,4 @@
+# Legacy Node 14 image — not used by docker-compose (Dockerfile.local). Confirm with ops before removing.
 FROM node:14.1.0
 
 RUN apt-get update && apt-get install -y \

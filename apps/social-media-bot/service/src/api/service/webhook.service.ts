@@ -23,7 +23,7 @@ export class WebhookService {
     const pageId = this.communicatorService.getPageId(data, pageConfig);
     const receivedMessages = await this.communicatorService.extractMessages(data, pageId);
     const senderId = this.communicatorService.getSenderId(data, receivedMessages);
-    
+
     if (!pageConfig || !senderId || !receivedMessages) {
       this.logger.debug('Initial values error.', JSON.stringify({ pageConfig, senderId, receivedMessages }));
       return;
@@ -61,14 +61,16 @@ export class WebhookService {
     }
 
     if (messagesToSend?.some((m) =>
-        m.finishFlow === true)) {
+      m.finishFlow === true)) {
       const supportedLanguages = pageConfig.supportedLanguages.map((language) => language?.lang);
-      
+
       await this.flowManagerService.setShareUserInfoAndSaveStory(
         supportedLanguages, {
         senderId: senderId,
         pageId: pageConfig.pageId,
       });
+
+      await this.storageService.purgeCurrentMessageFlowData(senderId, pageConfig.pageId);
     }
   }
 }

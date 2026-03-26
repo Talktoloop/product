@@ -64,20 +64,14 @@ export class WhatsappController {
   ): Promise<{ messengerConversationId: number; messages: UserFlowMessageInterface[] }> {
     this.logger.debug('--- sendStoryStatusToWhatsappConversation ---', data);
     const key = `status:${data.messengerConversationId}:${data.messageType}`;
-    // const ttlSeconds = 30;
-    
-    const alreadySent = await this.redisService.checkIfAlreadySent(key);
-    if (alreadySent) {
-      this.logger.log('⛔ Duplicate status. Skipping...');
+    const ttlSeconds = 60;
+
+    const isFirst = await this.redisService.markAsSentIfNotExists(key, ttlSeconds);
+    if (!isFirst) {
+      this.logger.log('⛔ Duplicate story status. Skipping...');
       return { messengerConversationId: data.messengerConversationId, messages: [] };
     }
-    
-    // const success = await this.redisService.markAsSentIfNotExists(key, ttlSeconds);
-    // if (!success) {
-    //   this.logger.log('❗Status update already being processed. Skipping...');
-    //   return { messengerConversationId: data.messengerConversationId, messages: [] };
-    // }
-    
+
     const result = await this.communicatorService.sendStoryStatusToMessengerConversation(data);
     this.logger.log('## sendStoryStatusToWhatsappConversation - result ##', result);
 

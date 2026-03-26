@@ -5,7 +5,7 @@ import { getLocalizedTemplate, TwilioLocalizedTemplates } from '../../common/con
 import { TwilioTemplateKey } from '../../common/enum/twilio-template-key.enum';
 
 export const unifiedFlow = async (lang: keyof typeof TwilioLocalizedTemplates): Promise<FlowRecordInterface[]> => {
-  
+
   return [
     {
       flowId: Flow.SHARE_ANONYMOUS,
@@ -22,7 +22,7 @@ export const unifiedFlow = async (lang: keyof typeof TwilioLocalizedTemplates): 
           type: MessageType.MESSAGE,
           contentSid: getLocalizedTemplate(lang, TwilioTemplateKey.PUBLISH_CONSENT),
           translationId: TwilioTemplateKey.PUBLISH_CONSENT,
-          contentVariableName: 'title_consent',
+          contentVariableName: '1',
           customHandler: Flow.PUBLISH_CONSENT,
           fallbackFlow: Flow.PUBLISH_CONSENT,
         },
@@ -39,7 +39,7 @@ export const unifiedFlow = async (lang: keyof typeof TwilioLocalizedTemplates): 
           type: MessageType.MESSAGE,
           contentSid: getLocalizedTemplate(lang, TwilioTemplateKey.PUBLISH_CONSENT),
           translationId: TwilioTemplateKey.PUBLISH_CONSENT,
-          contentVariableName: 'title_consent',
+          contentVariableName: '1',
           customHandler: Flow.PUBLISH_CONSENT,
           fallbackFlow: Flow.PUBLISH_CONSENT,
         },
@@ -95,12 +95,26 @@ export const unifiedFlow = async (lang: keyof typeof TwilioLocalizedTemplates): 
     },
     {
       flowId: Flow.THANKS,
-      nextFlowId: null,
+      nextFlowId: Flow.CONTACT_CONSENT,
       flowMessages: [
         {
           type: MessageType.MESSAGE,
           translationId: Flow.THANKS.toUpperCase(),
         },
+        {
+          type: MessageType.MESSAGE,
+          contentSid: getLocalizedTemplate(lang, TwilioTemplateKey.CONTACT_CONSENT),
+          translationId: TwilioTemplateKey.CONTACT_CONSENT,
+          contentVariableName: 'title',
+          customHandler: Flow.CONTACT_CONSENT,
+          fallbackFlow: Flow.CONTACT_CONSENT,
+        },
+      ],
+    },
+    {
+      flowId: Flow.CONTACT_CONSENT,
+      nextFlowId: null,
+      flowMessages: [
         {
           type: MessageType.MESSAGE,
           contentSid: getLocalizedTemplate(lang, TwilioTemplateKey.CONTACT_CONSENT),
@@ -114,13 +128,15 @@ export const unifiedFlow = async (lang: keyof typeof TwilioLocalizedTemplates): 
       flowId: Flow.CONTACT_CONSENT_APPROVED,
       nextFlowId: null,
       flowMessages: [
-        // {
-        //   type: MessageType.MESSAGE,
-        //   translationId: 'CONTACT_CONSENT_APPROVED',
-        // },
         {
           type: MessageType.MESSAGE,
-          translationId: Flow.GOODBYE.toUpperCase(),
+          translationId: 'CONTACT_CONSENT_APPROVED',
+        },
+        {
+          type: MessageType.MESSAGE,
+          translationId: 'END_OF_SERVICE_MODERATOR_FLOW',
+          contentSid: getLocalizedTemplate(lang, TwilioTemplateKey.END_OF_SERVICE),
+          contentVariableName: 'title',
           finishFlow: true,
         },
       ],
@@ -135,7 +151,9 @@ export const unifiedFlow = async (lang: keyof typeof TwilioLocalizedTemplates): 
         },
         {
           type: MessageType.MESSAGE,
-          translationId: Flow.GOODBYE.toUpperCase(),
+          translationId: 'END_OF_SERVICE_MODERATOR_FLOW',
+          contentSid: getLocalizedTemplate(lang, TwilioTemplateKey.END_OF_SERVICE),
+          contentVariableName: 'title',
           finishFlow: true,
         },
       ],
