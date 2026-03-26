@@ -74,26 +74,36 @@ export class ApiClientService {
       userRecord.country = flowConfig?.country;
     }
 
-    return this.clientProxy
-      .send(
-        {
-          cmd: 'saveIvrrStory',
-        },
-        userRecord,
-      )
-      .pipe(
-        timeout(
-          this.configService.get<ApplicationConfig>('application')
-            .communicationTimeout,
-        ),
-      )
-      .toPromise()
-      .catch((error) => {
-        this.logger.error(
-          `Could not send story, error: ${JSON.stringify(error)}`,
-        );
-        return error;
-      });
+    try {
+      const result = await this.clientProxy
+        .send(
+          {
+            cmd: 'saveIvrrStory',
+          },
+          userRecord,
+        )
+        .pipe(
+          timeout(
+            this.configService.get<ApplicationConfig>('application')
+              .communicationTimeout,
+          ),
+        )
+        .toPromise();
+
+      this.logger.debug(`Story sent successfully: ${JSON.stringify(result)}`);
+      return result;
+    } catch (error) {
+      this.logger.error(
+        `Could not send story, error: ${JSON.stringify(error)}`,
+      );
+      
+      if (error?.message?.includes('E0024') || error?.status === 'error' && error?.message === 'E0024') {
+        this.logger.warn(`Story already exists for phoneNumber: ${userRecord.phoneNumber}`);
+        return { success: true, message: 'STORY_ALREADY_EXITS' };
+      }
+      
+      return { success: false, error: error.message || 'Unknown error' };
+    }
   }
 
   public async sendTwilioCallToApi(
@@ -176,6 +186,11 @@ export class ApiClientService {
   }
 
   public async getStoryDetails(storyId: string): Promise<IvrrStoryDTO> {
+    const communicationTimeout = this.configService.get<ApplicationConfig>(
+      'application',
+    ).communicationTimeout;
+    const detailsFetchTimeout = Math.max(communicationTimeout, 15000);
+
     return this.clientProxy
       .send(
         {
@@ -184,20 +199,22 @@ export class ApiClientService {
         { storyId },
       )
       .pipe(
-        timeout(
-          this.configService.get<ApplicationConfig>('application')
-            .communicationTimeout,
-        ),
+        timeout(detailsFetchTimeout),
       )
       .toPromise()
       .catch((error) => {
         this.logger.error(
-          `Could not send message to support, error: ${JSON.stringify(error)}`,
+          `Could not fetch IVRR story details (cmd=getIvrrStoryDetails, storyId=${storyId}, timeoutMs=${detailsFetchTimeout}), error: ${JSON.stringify(error)}`,
         );
       });
   }
 
   public async getCommentDetails(commentId: string): Promise<IvrrCommentDTO> {
+    const communicationTimeout = this.configService.get<ApplicationConfig>(
+      'application',
+    ).communicationTimeout;
+    const detailsFetchTimeout = Math.max(communicationTimeout, 15000);
+
     return this.clientProxy
       .send(
         {
@@ -206,15 +223,12 @@ export class ApiClientService {
         { commentId },
       )
       .pipe(
-        timeout(
-          this.configService.get<ApplicationConfig>('application')
-            .communicationTimeout,
-        ),
+        timeout(detailsFetchTimeout),
       )
       .toPromise()
       .catch((error) => {
         this.logger.error(
-          `Could not send message to support, error: ${JSON.stringify(error)}`,
+          `Could not fetch IVRR comment details (cmd=getIvrrCommentDetails, commentId=${commentId}, timeoutMs=${detailsFetchTimeout}), error: ${JSON.stringify(error)}`,
         );
       });
   }
