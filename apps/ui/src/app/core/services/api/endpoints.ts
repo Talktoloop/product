@@ -22,6 +22,7 @@ export const endpoints = {
   linkUsersToOrganisations: '/organisation/link-user',
   getCategories: '/category',
   getThematicAreas: '/thematic',
+  getVulnerabilityFactors: '/vulnerability-factors',
   getPresetFilters: '/filters-preset',
   createPresetFilters: '/filters-preset/create',
   shareUserPresetToOrganization: '/filters-preset/share',
@@ -67,6 +68,7 @@ export const endpoints = {
   verifyCommentTranslationModerator: '/comment/moderator/{id}/translation/verify',
   addCommentTranslationModerator: '/comment/moderator/{id}/translation',
   retryCommentTranslationModerator: '/comment/moderator/{id}/translation/retry',
+  updateTranscription: '/story/moderator/{id}/transcription',
   updateCommentModerator: '/comment/moderator/{id}',
   deleteCommentAdmin: '/comment/{id}',
   getRejectReasons: '/reject_reason',
@@ -90,4 +92,5 @@ export const endpoints = {
   getPendingRecordingComments: '/comment/moderator/pending-recording',
   putPendingRecordingComment: '/comment/moderator/{id}/pending-recording',
   feedbackSharing: 'https://app.talktoloop.org/story/details/',
+  submitReport: '/notification/report',
 };

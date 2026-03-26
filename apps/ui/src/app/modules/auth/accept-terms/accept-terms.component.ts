@@ -17,8 +17,8 @@ export class AcceptTermsComponent {
   optInMarketinChecked: boolean;
   MAIN_ROUTES = MAIN_ROUTES;
   showError: boolean;
-  privacyPolicyUrl = 'https://www.iubenda.com/privacy-policy/99407557';
-  termsOfServiceUrl = 'https://www.iubenda.com/terms-and-conditions/99407557';
+  privacyPolicyUrl = 'https://cdn.prod.website-files.com/66d09c3d470602563f53a069/670cd3e6effa8d2842f61d28_Privacy%20Policy.pdf';
+  termsOfServiceUrl = 'https://cdn.prod.website-files.com/66d09c3d470602563f53a069/691332b64e358d111c36d49d_Loop%20Cookie%20Policy%20-%20Septemeber%202025.docx.pdf';
   private firstName: string;
   private lastName: string;
   private organizationId: string;

@@ -1,1 +1,1 @@
-export const TRANSLATIONS_VERSION = '78';
+export const TRANSLATIONS_VERSION = '94';

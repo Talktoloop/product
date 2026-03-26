@@ -153,7 +153,10 @@
           "label": "Email",
           "placeholder": "someone@example.com",
           "invalid": "Your email address is invalid.",
-          "info": "Get notified when you receive a comment. We don’t share your email with third parties."
+          "info": "Get notified when you receive a comment. We don’t share your email with third parties.",
+          "nonSensitive": {
+            "info": "Provide your email address to get notified of replies. Your email address will not be visible to anyone."
+          }
         },
         "checkbox": "I consent to my feedback being published on TalkToLoop.org and shared online to help improve services",
         "submit": "Submit reply",
@@ -310,6 +313,12 @@
           "storyAlreadyRejected": "Feedback is already rejected",
           "storyAlreadySentToCaseManager": "Feedback is already sent to case manager"
         },
+        "languageConfirmation": {
+          "title": "Language Confirmation",
+          "message": "Do you want to continue with {{language}}?",
+          "cancel": "Cancel",
+          "continue": "Continue"
+        },
         "form": {
           "sensitiveLabel": "Sensitive feedback is never published on the Loop website.",
           "demographicalInfo": "Demographical information",
@@ -344,7 +353,10 @@
         },
         "editStory": {
           "minLengthErrorMessage": "The feedback must be at least 5 characters long to publish. If this edit is not needed, please disable the toggle above this text field.",
-          "editButton": "Feedback needs to be edited before posting."
+          "editButton": "Feedback needs to be edited before posting.",
+          "saveTranscriptionButton": "Save transcription",
+          "saveTranscriptionError": "Error while saving transcription. Please try again.",
+          "saveTranscriptionSuccess": "Transcription saved successfully."
         }
       },
       "translate": {
@@ -984,6 +996,8 @@
         "duplicate": "Duplicate",
         "communityStandards": "Violates community standards",
         "poorAudioQuality": "Poor audio quality",
+        "generalAssistanceRequest": "General Assistance Request",
+        "generalAssistanceRequestFull": "Your feedback is a general assistance request, and is not within our capabilities to assist you at this time.",
         "notSensitive": "Not sensitive",
         "notSensitiveFull": "Your feedback is not sensitive, and we cannot publish your feedback, please submit your feedback again without marking it as sensitive"
       }
@@ -1263,35 +1277,34 @@
     "foodItems": "Food items",
     "essential-living-supplies": "Essential living supplies",
     "health": "Health",
-    "medicalCentres": "Medical centers",
+    "medicalCentres": "Health centres",
     "quarantineFacilities": "Quarantine facilities",
-    "vaccines": "Vaccines",
-    "insurance": "Insurance",
+    "vaccines": "Vaccinations",
+    "insurance": "Health fees",
     "hygiene": "Hygienic practices",
-    "awareness-raising": "Awareness raising and materials",
-    "landRights": "Land Rights",
-    "landmines/UnexplodedOrdnance": "Landmines/unexploded Ordnance",
-    "transportation": "Transportation",
+    "awareness-raising": "Communication, awareness raising and materials",
+    "landRights": "Housing, land and property rights",
+    "landmines/UnexplodedOrdnance": "Landmines/unexploded ordnance",
     "droughts": "Droughts",
-    "laborAndJobs": "Labor and Jobs",
+    "laborAndJobs": "Labour and jobs",
     "nutrition": "Nutrition",
     "communitySensitisation": "Community sensitisation",
-    "gender-basedViolence": "Gender based violence",
+    "gender-basedViolence": "Gender-based violence",
     "mentalHealth": "Mental health",
-    "sexualAndReproductiveRights": "Sexual & reproductive rights",
+    "sexualAndReproductiveRights": "Sexual and reproductive health",
     "epidemics/Pandemics": "Epidemics / pandemics",
     "ebola": "Ebola",
     "foodSecurity": "Food security",
-    "livelihoods": "Livelihoods",
+    "livelihoods": "Livelihoods and economic support",
     "training": "Training",
     "wash": "WASH",
     "waterPoints": "Water points",
     "latrines": "Latrines",
-    "shelter": "Shelter",
+    "shelter": "Shelter & camp management",
     "housing": "Housing",
     "lightingAndElectricity": "Lighting and electricity",
     "logistics": "Logistics",
-    "construction": "Construction",
+    "construction": "Building or reconstruction of houses",
     "education": "Education",
     "formal-education": "Formal education",
     "higher-education": "Higher education",
@@ -1310,11 +1323,11 @@
     "handwashingStations": "Handwashing stations",
     "waterTrucking": "Water trucking",
     "solidWaste/GarbageManagement": "Solid waste / garbage management",
-    "waterFacilitiesAndSupplies": "Water facilities & supplies",
+    "waterFacilitiesAndSupplies": "Water supply and systems",
     "temporaryShelters": "Temporary shelters",
-    "campCoordinationManagement": "Camp coordination management",
+    "campCoordinationManagement": "Camp coordination/management",
     "technicalSupport": "Technical support",
-    "scholarships": "Scholarships",
+    "scholarships": "Scolarships/internships",
     "children": "Children",
     "youngPeople": "Young people",
     "women": "Women",
@@ -1325,16 +1338,17 @@
     "legalStatus(refugees)": "Legal status (refugees)",
     "indigenousCommunity": "Indigenous community",
     "lowIncomeFamilies": "Low income families",
-    "clan-conflict": "Clan Conflict",
+    "clan-conflict": "Clan/community violence",
     "civicSpace": "Civic Space",
     "telecommunications": "Telecommunications",
     "climateChange": "Climate Change",
     "energy-environment": "Energy & environment",
+    "energy-environment-other": "Other",
     "drrAndPreparedness": "DRR and Preparedness",
     "earlyChildhood": "Early Childhood",
     "elections": "Elections",
     "gov-spending-social-protection": "Government spending/social protection",
-    "protection": "Protection",
+    "protection": "Protection & Human Rights",
     "governance": "Governance",
     "loopOnboarding": "Loop Onboarding",
     "crop-livestock": "Crop & livestock",
@@ -1344,36 +1358,67 @@
     "idp": "Internally Displaced People (IDP)",
     "general-assistance": "General assistance",
     "aid-effectiveness": "Aid effectiveness",
+    "aid-accessibility": "Accessibility of Aid",
     "clothing": "Clothing",
     "hygiene-items": "Hygiene items",
     "cooking-items": "Cooking items",
     "household-items": "Household items (Jerricans/fans/mosquito nets, etc.)",
     "lights": "Lights",
+    "assistive-devices-plwd": "Assistive devices for PLWD",
+    "essential-living-supplies-other": "Other",
     "health-emergency-services": "Health emergency services",
     "rehab-services": "Rehabilitation services",
     "medical-waste": "Medical waste",
+    "injuries-accidents": "Injuries and accidents",
+    "maternal-newborn-child-health": "Maternal, newborn and child health",
+    "non-communicable-diseases": "Non-communicable diseases",
     "food-vouchers": "Food vouchers",
     "water-drainage": "Water drainage",
+    "hygiene-practices": "Hygiene practices",
+    "water-supply-and-systems": "Water supply and systems",
     "cholera": "Cholera",
     "temporary-accomodation": "Temporary accomodation for migrants/refugees",
+    "building-reconstruction-houses": "Building or reconstruction of houses",
+    "temporary-accommodation-migrants-refugees": "Temporary accommodation for migrants / refugees",
+    "temporary-shelters": "Temporary shelters",
     "informal-education": "Informal education",
     "vocational-training": "Vocational training",
+    "religious-schooling": "Religious schooling (madrassa, mosque, etc.)",
+    "special-needs-education": "Special needs and inclusive education",
+    "school-infrastructure": "School infrastructure, fees and supplies",
+    "special-needs-inclusive-education": "Special needs and inclusive education",
+    "school-infrastructure-fees-supplies": "School infrastructure, fees and supplies",
     "child-protection": "Child protection",
-    "sexual-abuse": "Sexual abuse",
-    "discrimination": "Discrimination",
+    "sexual-abuse": "Sexual exploitation, abuse and harassment",
+    "discrimination": "Discrimination and exclusion",
     "general-protection": "General protection",
     "human-rights": "Human rights",
-    "rule-of-law": "Rule of law",
+    "clan-community-violence": "Clan / community violence",
+    "housing-land-property-rights": "Housing, land and property rights",
+    "sexual-exploitation-abuse-harassment": "Sexual exploitation, abuse and harassment",
+    "disruption-of-aid": "Disruption/suspension of Aid",
+    "rule-of-law": "Rule of law (justice system, police)",
+    "banks-financial-institutions": "Banks and financial institutions",
+    "civil-documentation": "Civil Documentation / Administrative Services.",
+    "peacebuilding-conflict-resolution": "Peacebuilding/Conflict resolution",
+    "transportation": "Transportation infrastructure",
     "skills-acquisition": "Skill acquisition",
+    "business-entrepreneurship": "Business and entrepreneurship support",
+    "fishing-aquaculture": "Fishing and aqualculture",
+    "local-markets": "Local markets",
+    "livelihoods-other": "Other",
     "commodity-prices": "Commodity prices",
     "inflation-devaluation": "Inflation/devaluation",
     "emergency-telecom": "Emergency telecom",
     "logistics-transportation": "Transportation",
     "warehouses": "Warehouses",
+    "logistics-other": "Other",
     "firewood": "Firewood",
     "heating-cooling": "Heating/cooling",
     "natural-disasters": "Natural disasters",
     "pollution-hazards": "Pollution hazards",
+    "biodiversity-ecosystem": "Biodiversity & ecosystem management",
+    "natural-resources": "Natural resources management",
     "cfm-process": "CFM processes",
     "participation-representation": "Participation and representation processes",
     "aid-relevance": "Relevance of Aid",
@@ -1382,7 +1427,8 @@
     "aid-quantity": "Quantity of Aid",
     "aid-distribution-safety": "Safety of aid distribution",
     "aid-distribution-fairness": "Fairness of aid distribution",
-    "aid-distribution-inclusiveness": "Inclusiveness of aid distribution"
+    "aid-distribution-inclusiveness": "Inclusiveness of aid distribution",
+    "aid-effectiveness-other": "Other"
   },
   "maternity": {
     "notPregnantOrBreastfeeding": "Not pregnant or breastfeeding",
@@ -1414,7 +1460,9 @@
     "lt": "Lietuvių",
     "de": "Deutsch",
     "nl": "Nederlands",
-    "bara": "Somali (Barawani-Chimini)"
+    "bara": "Somali (Barawani-Chimini)",
+    "kiz": "Somali (Kizigua)",
+    "sw": "Kiswahili"
   },
   "newStoryV2": {
     "form": {
@@ -1433,7 +1481,7 @@
         "sensitive": {
           "yes": "Yes",
           "no": "No",
-          "label": "Is this sensitive feedback",
+          "label": "Is this sensitive feedba",
           "info": "Sensitive feedback (i.e. corruption, abuse, violence) is never shared on the platform",
           "explanation": "What is sensitive feedback"
         },
@@ -1511,7 +1559,14 @@
           },
           "other": {
             "title": "Other"
+          },
+          "unspecified": {
+            "title": "Unspecified"
           }
+        },
+        "other": {
+          "label": "Please explain",
+          "placeholder": "Please provide more details about your condition"
         }
       },
       "phoneNumber": {
@@ -1541,7 +1596,8 @@
         "hint": "Search for a town or city near you",
         "cancel": "Cancel",
         "addNew": "Use this place name",
-        "unavailable": "Location unavailable"
+        "unavailable": "Location unavailable",
+        "required": "Location is required"
       },
       "help": {
         "explanation": "Help me choose"
@@ -1560,7 +1616,7 @@
       "info": {
         "title": "Feedback information",
         "visibility": "Visible online for anyone to see",
-        "editStory": "Edit feedback",
+        "Story": "Edit feedback",
         "storyType": "Type of feedback",
         "thanks": "Thanks",
         "organisation": "Organisation",
@@ -1629,11 +1685,11 @@
           },
           "question": {
             "title": "Request for Information",
-            "content": "If you want to ask a question to an organisation, you can write feedback with a question in it."
+            "content": "If you want to ask a question to an organisation, you can write feedback with a question in it. We can’t promise anything but we can try to get someone to respond."
           },
           "suggestion_opinion": {
             "title": "Suggestion / Opinion",
-            "content": "Do you have a strong opinion or do you want to share something you have heard about and see if it is true? Write feedback and tag it as an opinion."
+            "content": "Do you have a strong opinion or do you want to share something you have heard about and see if it is true? Write feedback and tag it as an opinion. Loop will try to get somebody to respond to you."
           },
           "request": {
             "title": "Request for Assistance",
@@ -1641,7 +1697,7 @@
           },
           "concern": {
             "title": "Concern",
-            "content": "Are you worried or concerned about something in your community? Tag your feedback as a concern."
+            "content": "Are you worried or concerned about something in your community? Tag your feedback as a concern and Loop will encourage organisations in your area to respond."
           }
         }
       },
@@ -2090,8 +2146,29 @@
       "placeholder": "Show feedbacks that have at least 1 reply or have none"
     },
     "communityResponsiveness": {
-      "label": "Community Responsiveness",
-      "placeholder": "Show feedbacks that have at least 1 reply or have none"
+      "label": "Community Reactions",
+      "placeholder": "Show feedbacks that have at least 1 reply or have none",
+      "tooltip": "Filter feedback based on community engagement - whether the feedback has received replies or upvotes from the community"
+    },
+    "vulnerabilityFactors": {
+      "label": "Vulnerability Factors",
+      "children": "Children",
+      "youth": "Youth",
+      "femaleHeadedHouseholds": "Female-headed households",
+      "personsLivingWithDisabilities": "Persons living with disabilities",
+      "elderly": "Elderly",
+      "lgbtqPlus": "LGBTQ+",
+      "chronicallyIllPeople": "Chronically ill people",
+      "legalStatusRefugees": "Legal status (refugees, migrants, stateless, etc.)",
+      "indigenousCommunity": "Indigenous community",
+      "lowIncomeFamilies": "Low income families",
+      "internallyDisplacedPeople": "Internally displaced people (IDP)",
+      "alcoholDrugAbuseInFamily": "Alcohol, drug abuse in family",
+      "fosteringOtherFamilyMembers": "Fostering other family members",
+      "hivPlus": "HIV+",
+      "memberOfMarginalisedGroup": "Member of marginalised group",
+      "orphan": "Orphan",
+      "other": "Other"
     },
     "date": {
       "label": "Submission Date",
@@ -2328,9 +2405,10 @@
   },
   "navbar": {
     "social": {
-      "twitterLabel": "Our loop's twitter",
+      "twitterLabel": "Our Loop's on X",
       "facebookLabel": "Talk To Loop's Facebook",
-      "linkedinLabel": "Talk To Loop's linkedin"
+      "linkedinLabel": "Talk To Loop's linkedin",
+      "newsletterLabel": "Sign-up to Loop's newsletter"
     },
     "static": {
       "loopWebsiteLabel": "Loop website",
@@ -2380,6 +2458,7 @@
   "storyHasNotBeenPublishedOnTalkToLoop": "Your feedback has not been published on TalkToLoop.org",
   "organisationHaveBeenTaggedInStoryOnTalkToLoop": "Your organisation have been tagged in feedback on TalkToLoop.org",
   "replyHasNotBeenPublishedOnTalkToLoop": "Your reply has not been published on TalkToLoop.org",
+  "replyHasBeenPublishedOnTalkToLoop": "Your reply has been published on TalkToLoop.org",
   "storyHasBeenPublishedOnTalkToLoop": "Your feedback has been published on TalkToLoop.org",
   "statisticsCases": {
     "section1": "How accountable are we?",
@@ -3297,5 +3376,31 @@
     "reject": "Reject ({{count}})",
     "assignModerators": "Assign Moderators ({{count}})",
     "deselectAll": "Deselect all"
+  },
+  "report": {
+    "submitReport": "Submit a report",
+    "title": "Request to remove a piece of published feedback or a reply",
+    "intro": "Please use this form to tell us why we should remove a piece of published feedback or a reply from the Talk to Loop platform.",
+    "introFormLinked": "This form is linked to one piece of feedback or one reply.",
+    "introConfidential": "We will review all requests and treat them confidentially within 1 work week.",
+    "introGuidelines": "Please refer to our community guidelines",
+    "guidelinesLink": "here",
+    "reportAboutLabel": "My report is about:",
+    "originalFeedback": "The original piece of feedback",
+    "oneOfReplies": "One of the replies",
+    "specifyReply": "Please specify the reply if there is more than one",
+    "guidelinesBreachLabel": "This feedback or reply breaches one of the following Loop community guidelines:",
+    "offensiveLanguage": "Offensive or discriminatory language",
+    "communityStandards": "Does not follow community standards designed to ensure a safe space",
+    "authenticityConcern": "Concern about the authenticity of the feedback or reply",
+    "causesHarm": "Causes harm to others",
+    "privacyViolation": "Does not respect the privacy of others",
+    "additionalInfo": "Any additional information to support your request?",
+    "contactEmail": "If you want to receive feedback about our decision, please write your email",
+    "emailPlaceholder": "your@email.com",
+    "optional": "(optional)",
+    "submitButton": "Submit report",
+    "cancelButton": "Cancel",
+    "successMessage": "Your report has been submitted successfully"
   }
 }

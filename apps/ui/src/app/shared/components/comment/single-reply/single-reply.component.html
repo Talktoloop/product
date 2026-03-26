@@ -2,7 +2,7 @@
   <div class="reply-heading-container">
     <app-post-author-date class="d-block mb-125" [postData]="comment" class="post-author-date"></app-post-author-date>
     <loop-post-context-menu
-      *ngIf="comment && profileService.isAdmin && comment.status !== COMMENT_STATUS.PENDING_REVIEW"
+      *ngIf="comment && comment.status !== COMMENT_STATUS.PENDING_REVIEW"
       [id]="comment.id"
       [postType]="'reply'"
     ></loop-post-context-menu>

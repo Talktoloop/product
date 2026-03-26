@@ -43,12 +43,12 @@ export class StoryService extends ApiService {
     //replace searchText filter key
     const updatedFilters = filters
       ? Object.keys(filters).reduce((acc, key) => {
-          if (allowedFilters.includes(key)) {
-            const newKey = key.includes('SearchText') ? 'searchTerm' : key;
-            acc[newKey] = filters[key];
-          }
-          return acc;
-        }, {} as Record<string, any>)
+        if (allowedFilters.includes(key)) {
+          const newKey = key.includes('SearchText') ? 'searchTerm' : key;
+          acc[newKey] = filters[key];
+        }
+        return acc;
+      }, {} as Record<string, any>)
       : {};
 
     let params = new HttpParams().set('page', page.toString()).set('limit', limit.toString()).append('order', order.toString());
@@ -233,6 +233,10 @@ export class StoryService extends ApiService {
       }
     }
     return this.prepareParams(filters);
+  }
+
+  updateTranscription(id: string, payload: { content: string; editedContent?: string }): Observable<IBaseApiResponse> {
+    return this.http.put<IBaseApiResponse>(this.getRequestUrl(endpoints.updateTranscription, { '{id}': id }), payload);
   }
 }
 

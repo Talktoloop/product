@@ -81,7 +81,7 @@ export const inboxFiltersConfig: IFilterV2<InboxFilters>[] = [
     mapValueFromStorage: (key, value: { id: number; name: string }[], mapToFormData) => ({
       language: value?.map((singleValue) => (mapToFormData ? singleValue.id : singleValue.name)),
     }),
-    mapValue: (data: { id: number; name: string }[]) => data.map((singleData) => singleData.id),
+    mapValue: (data: { id: number; name: string }[]) => data.map((singleData) =>singleData.id),
   },
   {
     // --------------------- COUNTRY ---------------------

@@ -23,6 +23,7 @@ export interface IAddStoryDTO {
   isSensitive: boolean;
   categories?: number[];
   difficulties?: number[];
+  disabilitiesOtherExplanation?: string;
   maternityStatus?: number[];
   phone?: string;
   channel: CHANNEL_CONSTANTS;

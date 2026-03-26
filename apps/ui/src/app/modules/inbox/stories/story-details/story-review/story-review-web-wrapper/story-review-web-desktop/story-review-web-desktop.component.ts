@@ -15,7 +15,7 @@ export class StoryReviewWebDesktopComponent extends StoryReviewGlobalComponent i
   @ViewChild('storyReviewContainer') storyReviewContainerElement: ElementRef;
   @ViewChild('storyDetails') storyDetailsElement: ElementRef;
 
-  rightSectionTabs: string[] = ['story.details.review.tabs.review', 'story.details.review.tabs.storyInformation'];
+  rightSectionTabs: string[] = ['story.details.review.tabs.review', 'story.details.review.tabs.storyInformation', 'story.details.review.tabs.authorHistory'];
 
   private fixedElementData: FixedElementData;
 

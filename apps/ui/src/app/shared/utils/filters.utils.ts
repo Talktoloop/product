@@ -88,7 +88,12 @@ export function prepareStoriesFilterData(
             return {
               ...singleConfig,
               data: { data: filtersData.communityResponsiveness, titleKey: 'filtersV2.communityResponsiveness.label' } as CheckboxFilterData
-            }
+            };
+          case StoriesFilters.VULNERABILITY_FACTORS:
+            return {
+              ...singleConfig,
+              data: { data: filtersData.vulnerabilityFactors, titleKey: 'filtersV2.vulnerabilityFactors.label' } as CheckboxFilterData
+            };
           default:
             return singleConfig;
         }

@@ -32,6 +32,15 @@
 
   &__logo {
     cursor: pointer;
+
+    img {
+      max-width: 250px;
+      height: auto;
+
+      @include mobile-and-tablet-only {
+        max-width: 150px;
+      }
+    }
   }
 
   &__form-container {
@@ -144,12 +153,38 @@
       line-height: 0.1em;
       margin: 10px 0 20px;
     }
+
     h2 span {
       background-color: $neutral-000;
       padding: 0 10px;
       font-weight: 400;
       font-size: 16px;
       color: $neutral-800;
+    }
+  }
+
+  &__social-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  &__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
     }
   }
 }

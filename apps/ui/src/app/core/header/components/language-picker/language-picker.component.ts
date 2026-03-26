@@ -29,7 +29,7 @@ export class LanguagePickerComponent extends BaseComponent {
   get selectedOption(): Option | null {
     return this.options.find((option) => option.selected);
   }
-  readonly platformLanguages = ['en', 'fr', 'es', 'so', 'ar']
+  readonly platformLanguages = ['en', 'fr', 'es', 'so', 'ar', 'sw']
   constructor(
     private languageService: SupportedLanguagesService,
     private modalService: ModalServiceV2,

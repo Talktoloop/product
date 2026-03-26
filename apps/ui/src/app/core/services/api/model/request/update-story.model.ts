@@ -8,6 +8,7 @@ export interface IUpdateStoryAPI {
   content?: string;
   categories: number[];
   difficulties: number[];
+  disabilitiesOtherExplanation?: string;
   gender?: Gender;
   isSensitive: boolean;
   language: string;
@@ -20,4 +21,5 @@ export interface IUpdateStoryAPI {
   pinnedMessageIds?: string[];
   isUrgent?: boolean;
   isMinority?: boolean;
+  vulnerabilityFactors?: string[];
 }
