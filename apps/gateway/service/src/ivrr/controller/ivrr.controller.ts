@@ -111,6 +111,16 @@ export class IvrrController {
     return { success: true };
   }
 
+  @Post('test-call')
+  async testCall(
+    @Body() body: {
+      phone: string;
+    },
+  ): Promise<any> {
+    const result = await this.ivrrService.testCall(body.phone);
+    return { result };
+  }
+
   @MessagePattern({ cmd: 'getIvrrCommentDetails' })
   async getIvrrCommentDetails(
     @Body(new ValidationPipe(getCommentDetailsSchema, { isRpcException: true }))
@@ -181,12 +191,29 @@ export class IvrrController {
     )
     data: SetCommentAsPublishedDto,
   ): Promise<SuccessRO> {
-    const comment = await this.commentService.findComment(data.commentId);
+    this.logger.log(
+      `setCommentAsPublished called for comment: ${data.commentId}`,
+    );
+
+    const comment = await this.commentService.findComment(data.commentId, [
+      'recipient'
+    ]);
+
+    this.logger.log(
+      `Comment loaded - status: ${comment.status}, translations: ${comment.translations?.length || 0}, recipient phone: ${comment.recipient?.phone ? 'EXISTS' : 'NULL'}`,
+    );
 
     const result = await this.commentModeratorService.setCommentStatus(
       comment,
       COMMENT_STATUS.PUBLISHED,
       [COMMENT_STATUS.REJECTED],
+    );
+
+    this.logger.log(
+      `Comment status updated to PUBLISHED - success: ${!!result?.id}`,
+    );
+    this.logger.log(
+      `Comment details - Phone: ${comment.recipient?.phone}, Language: ${comment.language?.code}, Story recipient wants contact: ${comment.story?.recipient?.userWantContact}`,
     );
 
     return plainToClass(SuccessRO, { success: !!result?.id });
@@ -199,9 +226,15 @@ export class IvrrController {
     )
     data: UpdateIvrrCallFlowDto,
   ): Promise<SuccessRO> {
-    const ivrrCall = await this.ivrrService.updateTwilioCall(data);
-
-    return plainToClass(SuccessRO, { success: !!ivrrCall?.id });
+    try {
+      const ivrrCall = await this.ivrrService.updateTwilioCall(data);
+      return plainToClass(SuccessRO, { success: !!ivrrCall?.id });
+    } catch (error) {
+      this.logger.error(
+        `[updateTwilioCall] Error updating call - twilioCallSid: ${data.twilioCallSid}, error: ${JSON.stringify(error)}`,
+      );
+      throw new RpcException(error);
+    }
   }
 
   @ApiResponse({ status: 200, type: String })
@@ -229,7 +262,7 @@ export class IvrrController {
     // we were asked to add two more dialects, Baajuuni and Banadiri-Marka, bjn and bnd respectively
     // This caused a bug where moderators could not open the replies in the outbox because of this endpoint saying the language is not supported
     // The change we're trying to make is so that only the main dialect of the country is used internally and for display, while allowing users to submit feedback in their dialects
-    const sanitizedLanguage = ['bjn', 'bnd', 'bara'].includes(language) ? 'so' : language;
+    const sanitizedLanguage = ['bjn', 'bnd', 'bara', 'kiz'].includes(language) ? 'so' : language;
     const recordings = await this.ivrrService.getRecordingFiles(sanitizedLanguage);
 
     return recordingsMapper(recordings, sanitizedLanguage);

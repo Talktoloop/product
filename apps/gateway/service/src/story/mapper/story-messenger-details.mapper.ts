@@ -5,6 +5,7 @@ import { StoryMessengerModeratorRO } from '../response/story-messenger-moderator
 import { isContactAccepted } from '../../common/helpers';
 import { LanguageEntity } from '../../language/entity/language.entity';
 import { MessengerMessageEntity } from '../../messenger/entity/messenger-message.entity';
+import { OtherStoriesBySameRecipientRO } from '../../ivrr/response/other-stories.ro';
 
 export const storyMessengerDetailsMapper = (
   story: StoryEntity,
@@ -13,6 +14,7 @@ export const storyMessengerDetailsMapper = (
   userLanguageId: number,
   defaultLanguage: LanguageEntity,
   messages: MessengerMessageEntity[],
+  otherStoriesSameRecipient: OtherStoriesBySameRecipientRO[] = [],
 ): StoryMessengerModeratorRO => {
   return {
     ...storyWebDetailsMapper(
@@ -24,5 +26,6 @@ export const storyMessengerDetailsMapper = (
     ),
     messages: messageMapper(messages, story),
     contactAccepted: isContactAccepted(story),
+    otherStoriesSameRecipient,
   };
 };

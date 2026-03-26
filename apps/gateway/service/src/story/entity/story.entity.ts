@@ -31,6 +31,7 @@ import { StoryRecipientEntity } from './story-recipient.entity';
 import { StoryAdministrativeDataEntity } from './story-administrative-data.entity';
 import { STORY_STATUS } from '@ourloop/shared';
 import { StoryOrganisationTagEntity } from './story-organisation-tag.entity';
+import { FeedbackVulnerabilityFactorsEntity } from './feedback-vulnerability-factors.entity';
 
 @Entity('story')
 export class StoryEntity {
@@ -242,4 +243,7 @@ export class StoryEntity {
 
   @OneToMany(() => StoryOrganisationTagEntity, (tag) => tag.story)
   organisationsTagged: StoryOrganisationTagEntity[];
+
+  @OneToMany(() => FeedbackVulnerabilityFactorsEntity, (fvf) => fvf.story)
+  feedbackVulnerabilityFactors: FeedbackVulnerabilityFactorsEntity[];
 }

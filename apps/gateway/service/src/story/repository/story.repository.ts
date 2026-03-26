@@ -137,6 +137,8 @@ export class StoryRepository extends Repository<StoryEntity> {
     );
   }
 
+
+
   async findSensitiveStories(): Promise<StoryEntity[]> {
     return this.find({ where: { isSensitive: true } });
   }
@@ -271,6 +273,7 @@ export class StoryRepository extends Repository<StoryEntity> {
       .addSelect('thematic.id', 'thematic_id')
       .leftJoinAndSelect('administrativeData.names', 'administrativeDataNames')
       .leftJoinAndSelect('story.recipient', 'recipient')
+      .addSelect('recipient.is_minority_by_moderator', 'isMinority')
       .leftJoinAndSelect('story.country', 'country')
       .leftJoinAndSelect('story.organisations', 'organisations')
       .addSelect('organisations.verified', 'organisations_verified') // Select verified property here
@@ -298,6 +301,7 @@ export class StoryRepository extends Repository<StoryEntity> {
       .addGroupBy('translations.id')
       .addGroupBy('storyAdministrativeData.id')
       .addGroupBy('administrativeDataNames.id')
+      .addGroupBy('recipient.is_minority_by_moderator')
 
       .where(`story.id IN (:ids)`, { ids });
 
@@ -321,9 +325,9 @@ export class StoryRepository extends Repository<StoryEntity> {
     }
 
     return query.execute().catch((error) => {
-      this.logger.error(error);
-      throw new BadRequestException(GET_STORY_FAILED);
-    });
+        this.logger.error(error);
+        throw new BadRequestException(GET_STORY_FAILED);
+      });
   }
 
   async findStoriesForUNExport(
@@ -363,6 +367,11 @@ export class StoryRepository extends Repository<StoryEntity> {
       .addSelect([
         'COUNT(comments.id) AS story_comments',
         `GROUP_CONCAT(DISTINCT commentTranslations.content ORDER BY commentTranslations.id SEPARATOR " | ") AS commentsContents`,
+      ])
+      .leftJoin('story.feedbackVulnerabilityFactors', 'feedbackVulnerabilityFactors')
+      .leftJoin('feedbackVulnerabilityFactors.vulnerabilityFactor', 'vulnerabilityFactor')
+      .addSelect([
+        `GROUP_CONCAT(DISTINCT COALESCE(vulnerabilityFactor.label, vulnerabilityFactor.code) ORDER BY vulnerabilityFactor.id SEPARATOR " | ") AS vulnerability_factors`,
       ])
       .where('story.id IN (:...ids)', { ids })
       .groupBy('story.id')
@@ -537,11 +546,13 @@ export class StoryRepository extends Repository<StoryEntity> {
         'translations_original.numberOfWords',
         'numberOfWordsOfOriginalContent',
       )
+      .addSelect('recipient.is_minority_by_moderator', 'isMinority')
       .leftJoin('story.country', 'country')
       .leftJoin('story.categories', 'categories')
       .leftJoin('story.language', 'language')
       .leftJoin('story.conversation', 'conversation')
       .leftJoin('conversation.ivrrMessages', 'ivrrMessages')
+      .leftJoin('story.recipient', 'recipient')
       .leftJoinAndSelect(
         'story.translations',
         'translations',

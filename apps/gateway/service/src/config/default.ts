@@ -145,6 +145,8 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
       env.TWILIO_AUTH_TOKEN,
       env.BREVO_API_KEY,
       env.AZURE_SUBSCRIPTION_TOKEN,
+      env.INNGEST_SIGNING_KEY,
+      env.INNGEST_EVENT_KEY
     ],
     '/ecs',
   );
@@ -216,10 +218,11 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
       communicationTimeout: Number.parseInt(
         checkParameterValue(parameters, env.COMMUNICATION_TIMEOUT),
       ),
-      awsEndpoint: environment === 'local' ? 'host.docker.internal:3001' : undefined,
       awsAccessKey: env.AWS_ACCESS_KEY,
       awsSecretKey: env.AWS_SECRET_KEY,
       awsRegion: env.AWS_REGION,
+      cognitoAccessKeyId: env.COGNITO_ACCESS_KEY_ID || env.AWS_ACCESS_KEY,
+      cognitoSecretAccessKey: env.COGNITO_SECRET_ACCESS_KEY || env.AWS_SECRET_KEY,
       awsS3Bucket: checkParameterValue(parameters, env.AWS_S3_BUCKET),
       onlyGetRequest: isTrue(
         checkParameterValue(parameters, env.ONLY_GET_REQUEST),
@@ -250,6 +253,7 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
       ),
     },
     supportEmail: checkParameterValue(parameters, env.SUPPORT_EMAIL),
+    reportEmail: checkParameterValue(parameters, env.REPORT_EMAIL) || 'mai@talktoloop.org',
     database: {
       charset: 'utf8mb4_unicode_ci',
       database: checkParameterValue(parameters, env.DB_DATABASE),
@@ -292,6 +296,7 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
     },
     slack: {
       channel: checkParameterValue(parameters, env.SLACK_CHANNEL),
+      feedbackErrorChannel: checkParameterValue(parameters, env.SLACK_FEEDBACK_ERROR_CHANNEL),
     },
     landingPage: {
       url: checkParameterValue(parameters, env.LANDING_PAGE_URL),
@@ -307,6 +312,9 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
       clientId: checkParameterValue(parameters, env.COGNITO_CLIENT_ID),
       userPoolId,
       jwks: `https://cognito-idp.${env.AWS_REGION}.amazonaws.com/${userPoolId}/.well-known/jwks.json`,
+    },
+    inngest: {
+      signingKey: checkParameterValue(parameters, env.INNGEST_SIGNING_KEY),
     },
     location: {
       googleApiKey:

@@ -43,6 +43,9 @@ import { CountryAdministrativeDataRepository } from './../../country/repository/
 import { AirTableOrganisationService } from '../../airtable-client/service/airtable-organisation.service';
 import { ExportService } from './export.service';
 import { StoryOrganisationTagRepository } from '../repository/story-organisation-tag.repository';
+import { FeedbackVulnerabilityFactorsService } from './feedback-vulnerability-factors.service';
+import { NotificationService } from '../../notification/service/notification.service';
+import { parseStringArrayToInt } from '../../common/helpers';
 
 interface IOperations {
   isUrgent: boolean;
@@ -52,6 +55,7 @@ interface IOperations {
   maternityStatus?: Array<MaternityStatusEntity>;
   organisations?: Array<OrganisationEntity>;
   thematics?: Array<ThematicEntity>;
+  vulnerabilityFactors?: (string | number)[];
 }
 
 @Injectable()
@@ -77,67 +81,11 @@ export class StoryService {
     private readonly countryAdministrativeDataRepository: CountryAdministrativeDataRepository,
     private readonly airTableOrganisationService: AirTableOrganisationService,
     private readonly exportService: ExportService,
+    private readonly feedbackVulnerabilityFactorsService: FeedbackVulnerabilityFactorsService,
+    private readonly notificationService: NotificationService,
   ) { }
+  readonly duplicateCountriesExcluded = [250];
 
-  async removeDuplicateAuthorsScript() {
-    const duplicates = await this.storyRecipientRepository
-      .createQueryBuilder('sr')
-      .select(['sr.email', 'sr.phone', 'COUNT(*) AS duplicateCount'])
-      .where('sr.email IS NOT NULL OR sr.phone IS NOT NULL')
-      .groupBy('sr.email, sr.phone')
-      .having('COUNT(*) > 1')
-      .getRawMany();
-
-    const seenIds = new Set(); // Prevent processing the same "keep" twice
-    const results = [];
-
-    for (const duplicate of duplicates) {
-      let whereConditions = [];
-
-      if (duplicate.sr_email) whereConditions.push({ email: duplicate.sr_email });
-      if (duplicate.sr_phone) whereConditions.push({ phone: duplicate.sr_phone });
-
-      const foundRecipients = await this.storyRecipientRepository.find({
-        where: whereConditions,
-        order: { createdAt: 'DESC' } // ✅ Keep the most recently created record
-      });
-
-      if (foundRecipients.length <= 1) continue;
-
-      let [keep, ...toDelete] = foundRecipients;
-
-
-      if (seenIds.has(keep.id)) continue;
-      seenIds.add(keep.id);
-
-      for (const recipient of toDelete) {
-        if (!keep.phone && recipient.phone) keep.phone = recipient.phone;
-        if (!keep.email && recipient.email) keep.email = recipient.email;
-        if (!keep.firstName && recipient.firstName) keep.firstName = recipient.firstName;
-        if (!keep.lastName && recipient.lastName) keep.lastName = recipient.lastName;
-        if (!keep.nickname && recipient.nickname) keep.nickname = recipient.nickname;
-        if (!keep.genderByUser && recipient.genderByUser !== null) keep.genderByUser = recipient.genderByUser;
-        if (!keep.genderByModerator && recipient.genderByModerator !== null) keep.genderByModerator = recipient.genderByModerator;
-        if (!keep.ageByUser && recipient.ageByUser !== null) keep.ageByUser = recipient.ageByUser;
-        if (!keep.ageByModerator && recipient.ageByModerator !== null) keep.ageByModerator = recipient.ageByModerator;
-        if (!keep.difficultyByUser && recipient.difficultyByUser !== null) keep.difficultyByUser = recipient.difficultyByUser;
-        if (!keep.difficultyByModerator && recipient.difficultyByModerator !== null) keep.difficultyByModerator = recipient.difficultyByModerator;
-        if (!keep.communicatorId && recipient.communicatorId) keep.communicatorId = recipient.communicatorId;
-      }
-
-
-      await this.storyRecipientRepository.save(keep);
-
-      for (const recipient of toDelete) {
-        await this.storyRepository.update({ recipientId: recipient.id }, { recipientId: keep.id });
-        await this.storyRecipientRepository.delete(recipient.id);
-      }
-
-      results.push({ keep, toDelete });
-    }
-
-    return results;
-  }
   async getNumberOfAdministrativeDataConnectionsByCountryId(
     countryId: number,
   ): Promise<number> {
@@ -336,7 +284,21 @@ export class StoryService {
         storyIdsByLanguage
       );
 
-      delete params.searchTerm;
+      delete params.language;
+    }
+
+    if (params.vulnerabilityFactors) {
+      const storyIdsByVulnerabilityFactors = await this.findStoryIdsByVulnerabilityFactorsOrGetFromCache(
+        params.vulnerabilityFactors.toString(),
+        isExport,
+      );
+
+      params.storyIds = this.getCommonStoryIds(
+        params.storyIds,
+        storyIdsByVulnerabilityFactors,
+      );
+
+      delete params.vulnerabilityFactors;
     }
 
     if (params.storyIds?.length === 0) {
@@ -490,6 +452,38 @@ export class StoryService {
           languages.split(',').map((value) => value),
         )
         .then((result) => result.map((item) => item.id));
+
+      if (isExport) {
+        this.exportService.saveCacheFile(
+          this.exportService.generateFileName(prefix, 'txt'),
+          JSON.stringify(storyIds),
+        );
+      }
+    }
+
+    return storyIds;
+  }
+
+  async findStoryIdsByVulnerabilityFactorsOrGetFromCache(
+    vulnerabilityFactors: string,
+    isExport: boolean,
+  ): Promise<string[]> {
+    const md5 = generateMD5(vulnerabilityFactors);
+    const prefix = `story-ids-by-vulnerability-factors-${md5}`;
+    let fileName: string;
+    let storyIds: string[] = [];
+
+    if (isExport) {
+      fileName = this.exportService.findCacheFile(prefix);
+    }
+
+    if (fileName) {
+      storyIds = JSON.parse(this.exportService.readFile(fileName, 'utf-8'));
+    } else {
+      storyIds = await this.feedbackVulnerabilityFactorsService
+        .findStoryIdsByVulnerabilityFactorIds(
+          vulnerabilityFactors.split(','),
+        );
 
       if (isExport) {
         this.exportService.saveCacheFile(
@@ -825,6 +819,13 @@ export class StoryService {
       operations.thematics = null;
     }
 
+    if (story.vulnerabilityFactors) {
+      const stringIds = story.vulnerabilityFactors.map(id => id.toString());
+      operations.vulnerabilityFactors = parseStringArrayToInt(stringIds).filter(id => id !== -1);
+    } else {
+      operations.vulnerabilityFactors = null;
+    }
+
     return operations;
   }
 
@@ -874,16 +875,23 @@ export class StoryService {
           ? DIFFICULTY_VALUE[data.difficulty.toUpperCase()]
           : null,
         communicatorId: data.communicatorId,
-        userWantContact: typeof data.sensitiveStoryContactConsent === 'boolean' ? data.sensitiveStoryContactConsent : data.userWantContact,
-        additionalContactDetails: data.additionalContactDetails
-      }
-      const where = {};
-      if (data.phone && data.phone.length > 0) where['phone'] = data.phone;
-      if (data.email && data.email.length > 0) where['email'] = data.email;
+        userWantContact:
+          typeof data.sensitiveStoryContactConsent === 'boolean'
+            ? data.sensitiveStoryContactConsent
+            : data.userWantContact,
+        additionalContactDetails: data.additionalContactDetails,
+        disabilitiesOtherExplanation: data.disabilitiesOtherExplanation,
+      };
       let recipient: StoryRecipientEntity | undefined;
-      if (where['phone'] || where['email']) {
-        recipient = await this.storyRecipientRepository.findOne({ where });
-        if (recipient) updatedOrSaveBody.id = recipient.id;
+
+      const where = {};
+      if (data.countryId && !this.duplicateCountriesExcluded.includes(data.countryId)) {
+        if (data.phone && data.phone.length > 0) where['phone'] = data.phone;
+        if (data.email && data.email.length > 0) where['email'] = data.email;
+        if (where['phone'] || where['email']) {
+          recipient = await this.storyRecipientRepository.findOne({ where });
+          if (recipient) updatedOrSaveBody.id = recipient.id;
+        }
       }
       recipient = await this.storyRecipientRepository.save(updatedOrSaveBody);
 
@@ -932,6 +940,12 @@ export class StoryService {
             data.content,
             languageId,
           );
+
+          //           this.languageService.invokeTranslationViaInngest(
+          //   story.id,
+          //   data.content,
+          //   languageId,
+          // );
         }
       }
 
@@ -950,6 +964,10 @@ export class StoryService {
 
       return story;
     } catch (error) {
+      this.notificationService.sendFeedbackErrorSlackNotification(
+        'unknown',
+        error?.message || JSON.stringify(error),
+      );
       throw new CustomError(STORY_ADD_ERROR, error);
     }
   }

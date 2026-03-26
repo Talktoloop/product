@@ -58,13 +58,14 @@ export class OpenStoryService {
       'replied_to',
       'submission_date',
       'original_feedback_language',
-      'replies_by_specific_organisation'
+      'replies_by_specific_organisation',
+      'vulnerability_factors'
     ]);
 
     const payload = {
       resource: { dashboard: 2 },
       params: filteredParams,
-      exp: Math.floor(Date.now() / 1000) + 10 * 60, // 10-minute expiration
+      exp: Math.floor(Date.now() / 1000) + 60 * 60, // 1 hour expiration
     };
     const token = jwt.sign(payload, METABASE_SECRET_KEY);
 

@@ -14,6 +14,7 @@ export const storyToStoryRO = (
   story: StoryEntity,
   userLanguageId: number,
   defaultLanguage: LanguageEntity,
+  vulnerabilityFactors?: any[],
 ): StoryRO => {
   if (story) {
     const translation = getTranslationByLanguageId(
@@ -27,6 +28,7 @@ export const storyToStoryRO = (
       defaultLanguage.id,
       story.country?.defaultLanguageId,
     );
+
 
     return plainToClass(StoryRO, {
       ...story,
@@ -54,6 +56,8 @@ export const storyToStoryRO = (
       authorNickname: story.onBehalfOf ?? null,
       isUrgent: story.isUrgent,
       isMinority: story.recipient?.isMinority ?? null,
+      vulnerabilityFactors: vulnerabilityFactors?.map(fvf => fvf.vulnerabilityFactorId) || [],
+      disabilitiesOtherExplanation: story.recipient?.disabilitiesOtherExplanation,
     });
   }
 };

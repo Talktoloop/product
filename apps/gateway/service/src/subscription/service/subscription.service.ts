@@ -51,7 +51,7 @@ export class SubscriptionService {
     private readonly organisationTokenRepository: OrganisationTokenRepository,
     private readonly subscriptionApplicationRepository: SubscriptionApplicationRepository,
     private readonly airTableUserService: AirTableUserService,
-  ) {}
+  ) { }
 
   public decodeToken(token: string): SubscriptionToken {
     if (!token) return;
@@ -280,12 +280,46 @@ export class SubscriptionService {
     return !!(await this.organisationTokenRepository.findByToken(token));
   }
 
+  private async renewOrganisationToken(
+    organisationId: string,
+    plan: string,
+  ): Promise<string> {
+    const validityDays =
+      this.config.get<number>('subscription.loopAdvocateTokenValidityInDays') ?? 365;
+
+    const payload = {
+      sub: organisationId,
+      groupType: 'organisation',
+      plan,
+    };
+
+    const token = jwt.sign(payload, this.config.get('subscription.jwtSecret'), {
+      expiresIn: `${validityDays} days`,
+    });
+
+    const createdAt = new Date();
+    const organisationToken = await this.organisationTokenRepository.findOne({
+      where: { organisationId },
+    });
+
+    if (organisationToken) {
+      organisationToken.token = token;
+      organisationToken.createdAt = createdAt;
+      await this.organisationTokenRepository.save(organisationToken);
+    } else {
+      await this.organisationTokenRepository.save({ token, organisationId, createdAt });
+    }
+
+    return token;
+  }
+
   async getUserSubscriptionToken(
     userData: UserEntity,
   ): Promise<{ decodedToken: SubscriptionToken; token: string }> {
     let decodedToken: SubscriptionToken;
     let token: string = null;
     let isExpired = true;
+    const loopId = '4e607482-5979-4fb1-b4a9-58c9301097f1';
 
     if (userData?.organisation_id) {
       const organisationTokenData =
@@ -297,6 +331,16 @@ export class SubscriptionService {
       isExpired = this.checkIfTokenExpired(decodedToken?.exp);
 
       if (!isExpired) token = organisationTokenData?.token;
+
+      // If the organisation token is expired and this user belongs to the Loop org, auto-renew it
+      if (isExpired && userData?.organisation_id === loopId) {
+        const newToken = await this.renewOrganisationToken(
+          userData.organisation_id,
+          decodedToken?.plan ?? 'premium',
+        );
+        const newDecoded = this.decodeToken(newToken);
+        return { decodedToken: newDecoded, token: newToken };
+      }
     }
 
     if (isExpired) {

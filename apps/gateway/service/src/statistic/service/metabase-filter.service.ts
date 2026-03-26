@@ -5,6 +5,7 @@ import { CountryService } from '../../country/service/country.service';
 import { DifficultyService } from '../../lexicon/service/difficulty.service';
 import { FilterDto } from '../../common/dto/filter.dto';
 import { ThematicService } from '../../lexicon/service/thematic.service';
+import { VulnerabilityFactorsService } from '../../lexicon/service/vulnerability-factors.service';
 import { CHANNEL_NUMBER_TO_CONSTANT } from '../../common/constant/channel.constant';
 import {
   GENDER_NUMBER_TO_CONSTANT,
@@ -29,6 +30,7 @@ export class MetabaseFilterService {
     private readonly countryService: CountryService,
     private readonly difficultyService: DifficultyService,
     private readonly thematicAreaService: ThematicService,
+    private readonly vulnerabilityFactorsService: VulnerabilityFactorsService,
   ) {}
 
   async mapFiltersToMetabase(
@@ -83,6 +85,8 @@ export class MetabaseFilterService {
     mappedFilters.thematic = await this.mapThematicAreas(filters.thematic);
 
     mappedFilters.channel = this.mapChannels(filters.channelFilter);
+
+    mappedFilters.vulnerabilityFactors = await this.mapVulnerabilityFactors(filters.vulnerabilityFactors);
 
     return this.mapFiltersToMetabaseParams(mappedFilters);
   }
@@ -151,8 +155,29 @@ export class MetabaseFilterService {
     return channelConstants.length ? channelConstants.join(',') : null;
   }
 
+  private async mapVulnerabilityFactors(
+    vulnerabilityFactorIds: string | number | string[] | number[] | undefined,
+  ): Promise<string | null> {
+    if (!vulnerabilityFactorIds) return null;
+    
+    const ids = Array.isArray(vulnerabilityFactorIds)
+      ? vulnerabilityFactorIds.map(id => Number(id))
+      : vulnerabilityFactorIds.toString().split(',').map(id => Number(id.trim())).filter(id => !isNaN(id));
+    
+    if (ids.length === 0) return null;
+    
+    const allFactors = await this.vulnerabilityFactorsService.findAll();
+    const factorMap = new Map(allFactors.map(factor => [factor.id, factor.code]));
+    
+    const codes = ids
+      .map(id => factorMap.get(id))
+      .filter(Boolean);
+    
+    return codes.length ? codes.join(',') : null;
+  }
+
   mapFiltersToMetabaseParams(
-    filters: FilterCasesDto & FilterDto,
+    filters: FilterCasesDto & FilterDto & { vulnerabilityFactors?: string | null },
   ): Record<string, string | string[] | number> {
     const formatDate = (date: string) => date.split('T')[0]; // Extract only 'YYYY-MM-DD'
     const allegationTypes = [
@@ -200,7 +225,9 @@ export class MetabaseFilterService {
       original_feedback_language: filters.language
         ? filters.language.toString().split(',')
         : [],
-      replied_to: [...mapEnumValues(filters.repliedTo, ORG_RESP_NUMBER_TO_CONSTANT)],
+      replied_to: filters.repliedTo
+        ? [...mapEnumValues(filters.repliedTo, ORG_RESP_NUMBER_TO_CONSTANT)]
+        : [],
       submission_date:
         filters.from && filters.to
           ? [`${formatDate(filters.from)}~${formatDate(filters.to)}`]
@@ -209,6 +236,11 @@ export class MetabaseFilterService {
             : [],
       thematic_area: filters.thematic
         ? filters.thematic.toString().split(',')
+        : [],
+      vulnerability_factors: filters.vulnerabilityFactors
+        ? (typeof filters.vulnerabilityFactors === 'string'
+            ? filters.vulnerabilityFactors.split(',').filter(v => v.trim())
+            : [])
         : [],
 
       // New Metabase mappings

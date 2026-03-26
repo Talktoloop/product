@@ -9,11 +9,11 @@ import { XlsxReturnData } from '../interface/xlsx-return-data.interface';
 export class AdministrativeXlsxDataService {
   constructor(
     private readonly administrativeDataRepository: CountryAdministrativeDataRepository,
-  ) {}
+  ) { }
 
   async getXlsxData(file: Express.Multer.File): Promise<XlsxReturnData> {
     const workbook = new xlsx.Workbook();
-    await workbook.xlsx.load(file.buffer);
+    // await workbook.xlsx.load(file.buffer as Buffer);
     const data = workbook.worksheets;
 
     const regionArray = await this.getXlsxDataFromFirstTwoSheets(data);

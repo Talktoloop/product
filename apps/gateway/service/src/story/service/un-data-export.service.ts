@@ -80,6 +80,7 @@ export class UNDataExportService {
           administrativeDataNames_name: story.administrativeDataNames_name ? [story.administrativeDataNames_name] : [],
           administrative_level: story.administrative_level ? [story.administrative_level] : [],
           organisations_name: story.organisations_name ? [story.organisations_name] : [],
+          vulnerability_factors: story.vulnerability_factors || null,
         });
       } else {
         const existing = mergedData.get(storyId);
@@ -156,7 +157,7 @@ export class UNDataExportService {
         sex: mappedGender,
         populationType: mappedPopulationType,
         communitiesWithMinorityAffiliations: story.is_minority_by_moderator ? 'Yes' : 'No',
-        vulnerabilityFactor: 'N/A',
+        vulnerabilityFactor: story.vulnerability_factors || 'N/A',
         washingtonGroupQ1: disability['1'],
         washingtonGroupQ2: disability['2'],
         washingtonGroupQ3: disability['3'],

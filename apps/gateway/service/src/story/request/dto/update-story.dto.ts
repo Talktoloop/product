@@ -28,6 +28,19 @@ export class UpdateStoryDto {
   @ApiProperty({ type: 'number', isArray: true })
   thematics?: number[] | null;
 
+  @ApiProperty({
+    type: 'array',
+    items: {
+      oneOf: [
+        { type: 'string', format: 'uuid' },
+        { type: 'string' },
+        { type: 'number' }
+      ]
+    },
+    required: false 
+  })
+  vulnerabilityFactors?: (string | number)[] | null;
+
   @ApiProperty({ type: 'string', required: false })
   language?: string;
 
@@ -63,4 +76,7 @@ export class UpdateStoryDto {
 
   isUrgent?: boolean;
   isMinority?: boolean;
+
+  @ApiProperty({ type: String, required: false })
+  disabilitiesOtherExplanation?: string;
 }

@@ -49,3 +49,12 @@ AWS_ACCESS_KEY=
 AWS_SECRET_KEY=
 AWS_REGION=eu-central-1
 AWS_S3_BUCKET=ivrr-development
+
+# Inngest (gateway mounts /api/inngest when both are set)
+INNGEST_SIGNING_KEY=
+INNGEST_EVENT_KEY=
+
+# Azure Speech — used by Inngest transcribe worker
+AZURE_SPEECH_KEY=
+# Optional JSON array, e.g. ["so-SO"]
+AZURE_TRANSCRIBE_LANGUAGES=
