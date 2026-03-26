@@ -90,6 +90,7 @@ export interface IStory extends IPostAuthorDate, IStoryPlace, IStoryIVRR {
     id: string;
     code: string;
   }>;
+  disabilitiesOtherExplanation?: string;
   emailProvided?: boolean;
   gender?: Gender;
   id: string;
@@ -114,5 +115,6 @@ export interface IStory extends IPostAuthorDate, IStoryPlace, IStoryIVRR {
   countryId: number;
   isUrgent?: boolean;
   isMinority?: boolean;
-  otherStoriesSameRecipient?: { id: string; createdAt: Date; status: string }[];
+  vulnerabilityFactors?: string[];
+  otherStoriesSameRecipient?: { id: string; createdAt: Date; status: string; url?: string }[];
 }

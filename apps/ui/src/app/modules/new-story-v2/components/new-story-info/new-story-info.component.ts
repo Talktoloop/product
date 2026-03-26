@@ -6,6 +6,8 @@ import { TagSize } from '@app/shared/loop-design-system/components/tags/tag-size
 import { StoryCategory } from '@app/shared/types/story-category.type';
 import { BaseComponent } from '@shared/components/base.component';
 import { debounceTime, takeUntil } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-story-info',
@@ -36,7 +38,7 @@ export class NewStoryInfoComponent extends BaseComponent {
   StoryCategory = StoryCategory;
   TagSize = TagSize;
 
-  constructor(private cd: ChangeDetectorRef, private metadataService: MetaDataService) {
+  constructor(private translate: TranslateService, private cd: ChangeDetectorRef, private metadataService: MetaDataService, private toastr: ToastrService) {
     super();
     this.metadataService.organisations$.pipe(takeUntil(this.destroyed$), debounceTime(300)).subscribe((organisations) => {
       this.organisations = organisations;
@@ -88,6 +90,7 @@ export class NewStoryInfoComponent extends BaseComponent {
 
   handleSubmitButtonClick(): void {
     if (!this.consentFormControl.value) {
+      this.toastr.warning(this.translate.instant(`newStoryV2.steps.info.consentInfoError`));
       this.consentFormControl.markAsTouched();
       return;
     }

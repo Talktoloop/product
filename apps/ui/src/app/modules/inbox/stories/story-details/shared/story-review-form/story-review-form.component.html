@@ -1,28 +1,18 @@
 <div class="story-review-form-container form">
   <!-- STORY TYPE -->
-  <app-form-section
-    [heading]="'StoryType'"
-    [isValid]="isAnyCategorySelected()"
-    [onlyContent]="true"
-    [required]="true"
+  <app-form-section [heading]="'StoryType'" [isValid]="isAnyCategorySelected()" [onlyContent]="true" [required]="true"
     [requiredValidationError]="submittingError" class="form__section">
     <div class="form__checkbox-wrapper">
-      <app-checkbox
-        *ngFor="let category of categories"
-        (changed)="handleCategoryChange($event, category)"
-        [checked]="isSelectedCategory(category.id)"
-        [value]="category.id" class="form__checkbox">{{ 'category.' + category.code | translate }}</app-checkbox>
+      <app-checkbox *ngFor="let category of categories" (changed)="handleCategoryChange($event, category)"
+        [checked]="isSelectedCategory(category.id)" [value]="category.id" class="form__checkbox">{{ 'category.' +
+        category.code | translate }}</app-checkbox>
     </div>
 
     <div class="sensitive-story-type-container">
-      <loop-moderator-tag
-        *ngIf="storyDetailsService.story.age === AGE_VALUE_EXTENDED.BETWEEN_0_AND_13"
-        [category]="StoryCategory.CONCERN"
-        [tagSize]="TagSize.LARGE"></loop-moderator-tag>
+      <loop-moderator-tag *ngIf="storyDetailsService.story.age === AGE_VALUE_EXTENDED.BETWEEN_0_AND_13"
+        [category]="StoryCategory.CONCERN" [tagSize]="TagSize.LARGE"></loop-moderator-tag>
       <br>
-      <app-slide-toggle
-        (changed$)="handleIsSensitiveChange()"
-        [checked]="storyDetailsService.story.isSensitive"
+      <app-slide-toggle (changed$)="handleIsSensitiveChange()" [checked]="storyDetailsService.story.isSensitive"
         [disabled]="storyDetailsService.story.age === AGE_VALUE_EXTENDED.BETWEEN_0_AND_13"
         [text]="'This is a sensitive feedback'"></app-slide-toggle>
 
@@ -38,30 +28,28 @@
   <h3 class="story-review-form-section-title">{{ 'story.details.review.form.demographicalInfo' | translate }}</h3>
 
   <!-- Author name -->
-  <app-form-section [heading]="'Author name'" [onlyContent]="true" class="form__section">
+  <app-form-section [required]="true" [heading]="'Author name'" [onlyContent]="true" class="form__section"
+    [isValid]="isAuthorNameValid()" [requiredValidationError]="submittingError">
     <loop-input [showClearBtn]="true" [showCloseIcon]="true"
       [placeholder]="'story.review.authorName.placeholder' | translate"
       [(ngModel)]="storyDetailsService.story.authorNickname" id="authorName" inputmode="text" type="text"></loop-input>
   </app-form-section>
 
   <!-- AGE -->
-  <app-form-section [heading]="'global.age' | translate" [onlyContent]="true" class="form__section">
-    <app-radio-group
-      name="age"
-      [(ngModel)]="storyDetailsService.story.age"
-      [columns]="ui.tabletView ? 1 : 2"
+  <app-form-section [required]="true" [heading]="'global.age' | translate" [onlyContent]="true" class="form__section"
+    [isValid]="isAgeValid()" [requiredValidationError]="submittingError">
+    <app-radio-group name="age" [(ngModel)]="storyDetailsService.story.age" [columns]="ui.tabletView ? 1 : 2"
       (ngModelChange)="onAgeChange($event)">
-      <loop-new-story-radio
-        *ngFor="let ageOption of ageOptions"
-        [checked]="ageOption.value === storyDetailsService.story.age"
-        [label]="ageOption.content | translate"
+      <loop-new-story-radio *ngFor="let ageOption of ageOptions"
+        [checked]="ageOption.value === storyDetailsService.story.age" [label]="ageOption.content | translate"
         [value]="ageOption.value">
       </loop-new-story-radio>
     </app-radio-group>
   </app-form-section>
 
   <!-- GENDER -->
-  <app-form-section [heading]="'global.gender' | translate" [onlyContent]="true" class="form__section">
+  <app-form-section [required]="true" [heading]="'global.gender' | translate" [onlyContent]="true" class="form__section"
+    [isValid]="isGenderValid()" [requiredValidationError]="submittingError">
     <app-radio-group name="gender" [(ngModel)]="storyDetailsService.story.gender" [columns]="ui.tabletView ? 1 : 2">
       <loop-new-story-radio *ngFor="let genderOption of genderOptions"
         [checked]="genderOption.value === storyDetailsService.story.gender" [label]="genderOption.content | translate"
@@ -70,7 +58,8 @@
   </app-form-section>
 
   <!-- DISABILITY -->
-  <app-form-section [heading]="'Does the author have any disability?'" [onlyContent]="true" class="form__section">
+  <app-form-section [required]="true" [heading]="'Does the author have any disability?'" [onlyContent]="true"
+    class="form__section" [isValid]="isDisabilityValid()" [requiredValidationError]="submittingError">
     <app-radio-group name="disability" [(ngModel)]="hasDisabilities" (ngModelChange)="handleDisabilitiesChange()"
       [columns]="ui.tabletView ? 1 : 2">
       <loop-new-story-radio *ngFor="let disabilityOption of disabilityOptions"
@@ -83,23 +72,22 @@
         <span class="form__checkbox-text">{{ difficulty.code | translate }}</span>
       </app-checkbox>
     </div>
+
+    <div *ngIf="hasDisabilities && isOtherDifficultySelected" class="form__text-field-wrapper space-above-wrapper">
+      <label class="form__label">{{ 'newStoryV2.form.condition.other.label' | translate }}</label>
+      <loop-textarea [(ngModel)]="storyDetailsService.story.disabilitiesOtherExplanation"
+        [placeholder]="'newStoryV2.form.condition.other.placeholder' | translate" [maxLength]="500"></loop-textarea>
+    </div>
   </app-form-section>
 
   <!--  IS MINORITY-->
-  <app-form-section class="form__section"
-                    [heading]="'global.isMinority' | translate"
-                    [onlyContent]="true">
-
+  <app-form-section [required]="true" class="form__section" [heading]="'global.isMinority' | translate"
+    [onlyContent]="true" [isValid]="isMinorityValid()" [requiredValidationError]="submittingError">
     <app-radio-group name="minority" [columns]="ui.tabletView ? 1 : 2">
-
-      <loop-new-story-radio
-        *ngFor="let option of minorityOptions"
-        [checked]="storyForm.get('isMinority').value === option.value"
-        (change)="updateMinorityStatus(option.value)"
-        [label]="option.content | translate"
-        [value]="option.value">
+      <loop-new-story-radio *ngFor="let option of minorityOptions"
+        [checked]="storyForm.get('isMinority').value === option.value" (change)="updateMinorityStatus(option.value)"
+        [label]="option.content | translate" [value]="option.value">
       </loop-new-story-radio>
-
     </app-radio-group>
   </app-form-section>
 
@@ -211,17 +199,25 @@
       [reset$]="resetThematics$" controlName="thematics"></loop-checkbox-filter-wrapper-grouped>
   </app-form-section>
 
+  <!-- VULNERABILITY FACTORS -->
+  <app-form-section (dismiss)="dismissVulnerabilityFactor($event)"
+    [heading]="'filtersV2.vulnerabilityFactors.label' | translate" [selectedItems]="selectedVulnerabilityFactors"
+    [fabButtonSize]="'small'" [isStaticDropdown]="true" class="form__section" dropdownWidth="auto">
+    <div class="form__checkbox-wrapper">
+      <app-checkbox *ngFor="let factor of vulnerabilityFactors"
+        (changed)="handleVulnerabilityFactorChange($event, factor)" [checked]="isSelectedVulnerabilityFactor(factor.id)"
+        [value]="factor.id" class="form__checkbox">
+        <span class="form__checkbox-text">{{ factor.code | translate }}</span>
+      </app-checkbox>
+    </div>
+  </app-form-section>
+
   <!-- IS URGENT -->
-  <app-form-section class="form__section"
-    [heading]="'global.isUrgent' | translate"
-    [onlyContent]="true">
+  <app-form-section class="form__section" [heading]="'global.isUrgent' | translate" [onlyContent]="true">
     <app-radio-group name="urgent" [columns]="ui.tabletView ? 1 : 2">
-      <loop-new-story-radio
-        *ngFor="let option of urgentOptions"
-        [checked]="storyForm.get('isUrgent').value === option.value"
-        (change)="updateUrgentStatus(option.value)"
-        [label]="option.content | translate"
-        [value]="option.value">
+      <loop-new-story-radio *ngFor="let option of urgentOptions"
+        [checked]="storyForm.get('isUrgent').value === option.value" (change)="updateUrgentStatus(option.value)"
+        [label]="option.content | translate" [value]="option.value">
       </loop-new-story-radio>
     </app-radio-group>
   </app-form-section>

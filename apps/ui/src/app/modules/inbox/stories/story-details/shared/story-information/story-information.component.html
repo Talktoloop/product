@@ -46,15 +46,23 @@
     </div>
 
     <!-- Disabilities -->
-    <div *ngIf="storyDetailsService.story.difficulties?.length" class="story-information-section">
+    <div class="story-information-section">
       <p class="section-header">{{ 'story.details.review.info.disabilities' | translate }}</p>
       <div class="section-value">
         {{ disabilities }}
       </div>
     </div>
 
+    <!-- Other Condition Explanation -->
+    <div *ngIf="isOtherDifficultySelected && storyDetailsService.story.disabilitiesOtherExplanation" class="story-information-section">
+      <p class="section-header">{{ 'newStoryV2.form.condition.other.label' | translate }}</p>
+      <div class="section-value">
+        {{ storyDetailsService.story.disabilitiesOtherExplanation }}
+      </div>
+    </div>
+
     <!-- Minority Group-->
-    <div *ngIf="storyDetailsService.story.isMinority" class="story-information-section">
+    <div class="story-information-section">
       <p class="section-header">{{ 'story.details.review.info.minority' | translate }}</p>
       <div class="section-value">
         {{ isMinorityGroup | translate }}
@@ -86,6 +94,13 @@
       <p class="section-header">{{ 'story.details.review.info.thematicArea' | translate }}</p>
       <div class="section-value">
         {{ thematicAreas | async }}
+      </div>
+    </div>
+    <!-- Vulnerability Factors -->
+    <div class="story-information-section">
+      <p class="section-header">{{ 'filtersV2.vulnerabilityFactors.label' | translate }}</p>
+      <div class="section-value">
+        {{ vulnerabilityFactors | async }}
       </div>
     </div>
     <!-- Urgent -->

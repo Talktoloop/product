@@ -36,6 +36,16 @@
     <p class="additional-story-info__info">{{ disabilities }}</p>
   </app-additional-story-info-section>
 
+  <!-- MINORITY GROUP -->
+  <app-additional-story-info-section [heading]="'story.details.review.info.minority' | translate">
+    <p class="additional-story-info__info">{{ isMinorityGroup | translate }}</p>
+  </app-additional-story-info-section>
+
+  <!-- VULNERABILITY FACTORS -->
+  <app-additional-story-info-section [heading]="'filtersV2.vulnerabilityFactors.label' | translate">
+    <p class="additional-story-info__info">{{ vulnerabilityFactorsText$ | async }}</p>
+  </app-additional-story-info-section>
+
   <!-- CHANNEL -->
   <app-additional-story-info-section [heading]="'story.details.storyInformation.sentBy.label' | translate">
     <p class="additional-story-info__info">{{ storyChannel }}</p>

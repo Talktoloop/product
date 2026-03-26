@@ -21,6 +21,7 @@ import { BehaviorSubject, combineLatest, Observable, of, ReplaySubject } from 'r
 import { catchError, finalize, map, retryWhen, take, tap, timeout } from 'rxjs/operators';
 import { ModeratorDetailList } from '../model/response/moderator-details.model';
 import { COMMUNITY_RESPONSIVENESS_MAPPING, COMMUNITY_RESPONSIVENESS_VALUE } from "@shared/types/communityResponsiveness.type";
+import { VULNERABILITY_FACTORS_MAPPING } from "@shared/types/vulnerabilityFactors.type";
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +48,7 @@ export class MetaDataService extends ApiService {
   channelFilter$ = new ReplaySubject<IBaseEntityCheck[]>(1);
   organisationResponsiveness$ = new ReplaySubject<IBaseEntityCheck[]>(1);
   communityResponsiveness$ = new ReplaySubject<IBaseEntityCheck[]>(1);
+  vulnerabilityFactors$ = new ReplaySubject<IBaseEntityCheck[]>(1);
 
   private metaDataProcessing = false;
   private casesMetaDataProcessing = false;
@@ -104,6 +106,7 @@ export class MetaDataService extends ApiService {
       this.getChannelFilter().pipe(take(1)),
       this.getMinority().pipe(take(1)),
       this.getCommunityResponsiveness().pipe(take(1)),
+      this.getVulnerabilityFactors().pipe(take(1)),
     ])
       .pipe(
         take(1),
@@ -421,6 +424,24 @@ export class MetaDataService extends ApiService {
     ).pipe(
       tap((commResp) => {
         this.communityResponsiveness$.next(commResp);
+      }),
+    );
+  }
+
+  getVulnerabilityFactors(): Observable<IBaseEntityCheck[]> {
+    return this.http.get<any[]>(this.getRequestUrl(endpoints.getVulnerabilityFactors)).pipe(
+      map((factors) => factors.map((factor) => {
+        // Use real ID from API instead of hardcoded mapping
+        return {
+          id: factor.id.toString(),
+          value: factor.id.toString(),
+          checked: false,
+          code: VULNERABILITY_FACTORS_MAPPING[factor.code] || factor.code,
+        };
+      })),
+      retryWhen(genericRetryStrategy()),
+      tap((vulnerabilityFactors) => {
+        this.vulnerabilityFactors$.next(vulnerabilityFactors);
       }),
     );
   }

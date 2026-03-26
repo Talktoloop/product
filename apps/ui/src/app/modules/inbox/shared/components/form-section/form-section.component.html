@@ -28,6 +28,7 @@
           [rotate]="isEditing ? 90 : 45"
           [title]="(isEditing ? 'global.submit' : 'global.add') | translate"
           theme="moderator-fab"
+          [size]="fabButtonSize"
         >
         </app-fab-button>
       </div>
@@ -39,6 +40,7 @@
             [offset]="[10, 10]"
             [sourceEl]="fabWrapper.nativeElement"
             [sourceWidth]="dropdownWidth"
+            [isStatic]="isStaticDropdown"
             class="dropdown"
             (appClickOutside)="handleFabOutsideClick()"
           >

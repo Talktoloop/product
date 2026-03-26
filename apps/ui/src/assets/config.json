@@ -8,7 +8,7 @@
   "frontendSessionTime": 3600,
   "rollbarConfig": {
     "accessToken": "",
-    "environment": "staging"
+    "environment": "local"
   },
   "apiUrl": "http://localhost:5005/api/v1"
 }

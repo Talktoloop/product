@@ -1,0 +1,14 @@
+<loop-modal [title]="'story.details.review.languageConfirmation.title' | translate" class="new-story-v2">
+  <p class="loop-modal__paragraph pt-125 pb-125 font-bold">
+    {{ 'story.details.review.languageConfirmation.message' | translate: { language: ('languages.' + language | translate) } }}
+  </p>
+
+  <div action-buttons>
+    <app-button mode="v2" variant="secondary" (clicked)="onCancel()">
+      {{ 'global.cancel' | translate }}
+    </app-button>
+    <app-button mode="v2" variant="primary" (clicked)="confirmLanguage()">
+      {{ 'story.details.review.languageConfirmation.continue' | translate }}
+    </app-button>
+  </div>
+</loop-modal>

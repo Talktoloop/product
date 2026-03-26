@@ -25,6 +25,7 @@ export class PostPreviewComponent extends BaseComponent implements OnChanges {
   @Input() postData: IStory = null;
   @Input() showActions = true;
   @Input() selfLinkClickable = true;
+  @Input() showFeedbackTags: boolean | null = null;
   @Input() categories = [];
   @Input() index = 0;
   @Input() highlightItem = true;

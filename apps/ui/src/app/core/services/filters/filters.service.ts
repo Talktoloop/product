@@ -70,7 +70,20 @@ export class FiltersService {
           genders,
           disability: difficulties,
           countries: this.countriesService.countriesModel(),
-          thematic,
+          thematic: thematic.map((tx) => {
+            if (tx.children) {
+              tx.children.sort((a, b) => {
+                const nameA = String(this.translateService.instant(a.code) || a.code);
+                const nameB = String(this.translateService.instant(b.code) || b.code);
+                return nameA.localeCompare(nameB);
+              });
+            }
+            return tx;
+          }).sort((a, b) => {
+            const nameA = String(this.translateService.instant(a.code) || a.code);
+            const nameB = String(this.translateService.instant(b.code) || b.code);
+            return nameA.localeCompare(nameB);
+          }),
         } as ICasesFiltersData),
       ),
       tap((data) => (this.casesFiltersDataV = data)),
@@ -90,6 +103,7 @@ export class FiltersService {
       this.getFormattedLanguages(),
       this.metaDataService.organisationResponsiveness$,
       this.metaDataService.communityResponsiveness$,
+      this.metaDataService.vulnerabilityFactors$,
     ]).pipe(
       map((
         [
@@ -104,6 +118,7 @@ export class FiltersService {
           languages,
           organisationResponsiveness,
           communityResponsiveness,
+          vulnerabilityFactors,
         ]
       ) => {
 
@@ -127,7 +142,21 @@ export class FiltersService {
               child.parentId = tx.code;
               child.checked = false;
             });
+            tx.children.sort((a, b) => {
+              const isOtherA = a.code.toLowerCase().endsWith('other') || a.code.toLowerCase().endsWith('autre');
+              const isOtherB = b.code.toLowerCase().endsWith('other') || b.code.toLowerCase().endsWith('autre');
+              if (isOtherA && !isOtherB) return 1;
+              if (!isOtherA && isOtherB) return -1;
+              
+              const nameA = String(this.translateService.instant(a.code) || a.code);
+              const nameB = String(this.translateService.instant(b.code) || b.code);
+              return nameA.localeCompare(nameB);
+            });
             return tx;
+          }).sort((a, b) => {
+            const nameA = String(this.translateService.instant(a.code) || a.code);
+            const nameB = String(this.translateService.instant(b.code) || b.code);
+            return nameA.localeCompare(nameB);
           }),
           ages: ages.map((a) => {
             a.checked = false;
@@ -153,6 +182,19 @@ export class FiltersService {
           communityResponsiveness: communityResponsiveness.map((c) => {
             c.checked = false;
             return c;
+          }),
+          vulnerabilityFactors: vulnerabilityFactors.map((vf) => {
+            vf.checked = false;
+            return vf;
+          }).sort((a, b) => {
+            const isOtherA = a.code.toLowerCase().endsWith('other') || a.code.toLowerCase().endsWith('autre');
+            const isOtherB = b.code.toLowerCase().endsWith('other') || b.code.toLowerCase().endsWith('autre');
+            if (isOtherA && !isOtherB) return 1;
+            if (!isOtherA && isOtherB) return -1;
+            
+            const nameA = String(this.translateService.instant(a.code) || a.code);
+            const nameB = String(this.translateService.instant(b.code) || b.code);
+            return nameA.localeCompare(nameB);
           })
         } as IFiltersData;
       }),

@@ -17,8 +17,8 @@
             <app-share-content [control]="step1Form.get('content')"></app-share-content>
             <div class="section-separator"></div>
             <app-sensitive-story class="d-block new-story__sensitive-story" [form]="step1Form"></app-sensitive-story>
-            <div class="section-separator"></div>
-            <loop-story-type-boxgroup formControlName="categories" [clearWhen]="isSensitive"></loop-story-type-boxgroup>
+            <div class="section-separator" *ngIf="!isSensitive"></div>
+            <loop-story-type-boxgroup *ngIf="!isSensitive" formControlName="categories" [clearWhen]="isSensitive"></loop-story-type-boxgroup>
           </loop-form-step>
         </loop-stepper-step>
         <!-- STEP 2 -->
