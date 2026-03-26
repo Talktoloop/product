@@ -18,6 +18,8 @@ export enum LANGUAGES_CONSTANTS {
   BAAJUUNI = 'bju',
   BANADIRI = 'bnd',
   BARAWANI = 'bara',
+  KIZIGUA = 'kiz',
+  SWAHILI = 'sw',
 }
 
 export const LANGUAGE_NAMES = {
@@ -44,4 +46,6 @@ export const LANGUAGE_NAMES = {
   22: "Somali (Baajuuni)",
   23: "Somali (Banadiri-Marka)",
   24: "Somali (Barawani-Chimini)",
+  25: "Somali (Kizigua)",
+  26: "Swahili",
 };

@@ -32,6 +32,7 @@ export const filterConditions = {
   from: Joi.string(),
   to: Joi.string(),
   repliedTo: stringOrNumberValidation,
+  vulnerabilityFactors: stringOrNumberValidation,
   // new logic for metabase
   organisationResponsiveness: stringOrNumberValidation,
   communityResponsiveness: stringOrNumberValidation,

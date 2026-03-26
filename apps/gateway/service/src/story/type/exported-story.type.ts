@@ -25,5 +25,6 @@ export type ExportedStory = {
   numberOfComments: number;
   channel: string;
   originalContentLanguage: string;
-  isMinority: boolean
+  isMinority: boolean;
+  vulnerabilityFactors: string[];
 };

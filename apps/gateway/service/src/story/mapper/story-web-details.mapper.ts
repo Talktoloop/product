@@ -13,6 +13,7 @@ import {
 } from '../../common/helpers';
 import { placeMapper } from '../../country/mapper/place.mapper';
 import { LanguageEntity } from '../../language/entity/language.entity';
+import { OtherStoriesBySameRecipientRO } from '../../ivrr/response/other-stories.ro';
 
 export const storyWebDetailsMapper = (
   story: StoryEntity,
@@ -20,6 +21,8 @@ export const storyWebDetailsMapper = (
   storyLanguageId: number,
   userLanguageId: number,
   defaultLanguage: LanguageEntity,
+  vulnerabilityFactors?: any[],
+  otherStoriesSameRecipient: OtherStoriesBySameRecipientRO[] = [],
 ): StoryWebModeratorRO => {
   const translation = getTranslationByLanguageId(
     story.translations,
@@ -32,6 +35,8 @@ export const storyWebDetailsMapper = (
     defaultLanguage.id,
     story.country?.defaultLanguageId,
   );
+
+
   return plainToClass(StoryWebModeratorRO, {
     ...story,
     difficulty: getKeyByValue(
@@ -61,5 +66,9 @@ export const storyWebDetailsMapper = (
     authorNickname: story.recipient.nickname,
     isUrgent: story.isUrgent,
     isMinority: story.recipient.isMinority,
+    vulnerabilityFactors:
+      vulnerabilityFactors?.map((fvf) => fvf.vulnerabilityFactorId) || [],
+    disabilitiesOtherExplanation: story.recipient.disabilitiesOtherExplanation,
+    otherStoriesSameRecipient,
   });
 };

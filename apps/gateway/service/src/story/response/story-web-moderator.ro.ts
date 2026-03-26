@@ -10,6 +10,7 @@ import { CategoryRO } from '../../category/response/category.ro';
 import { LexiconRO } from '../../lexicon/response/lexicon.ro';
 import { StoryListRO } from './story-list.ro';
 import { MARKED_AS_SENSITIVE_BY } from '../../common/constant/marked-as-sensitive.constant';
+import { OtherStoriesBySameRecipientRO } from '../../ivrr/response/other-stories.ro';
 
 @Exclude()
 export class StoryWebModeratorRO extends StoryListRO {
@@ -92,4 +93,26 @@ export class StoryWebModeratorRO extends StoryListRO {
   @Expose()
   @ApiProperty({ type: Boolean })
   isMinority: boolean;
+
+  @Expose()
+  @ApiProperty({ 
+    type: 'array', 
+    items: { 
+      oneOf: [
+        { type: 'string', format: 'uuid' },
+        { type: 'string' },
+        { type: 'number' }
+      ]
+    },
+    required: false 
+  })
+  vulnerabilityFactors?: (string | number)[];
+
+  @Expose()
+  @ApiProperty({ type: String, required: false })
+  disabilitiesOtherExplanation?: string;
+
+  @Expose()
+  @ApiProperty({ type: OtherStoriesBySameRecipientRO, isArray: true })
+  otherStoriesSameRecipient: OtherStoriesBySameRecipientRO[];
 }

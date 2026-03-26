@@ -54,6 +54,9 @@ export class FilterDto {
   @ApiProperty({ type: 'string', required: false })
   language?: StringOrNumber;
 
+  @ApiProperty({ type: 'string', required: false })
+  vulnerabilityFactors?: StringOrNumber | StringOrNumber[];
+
   // new logic for metabase
   organisationResponsiveness?: string;
   communityResponsiveness?: string;

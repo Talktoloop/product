@@ -6,11 +6,12 @@ import {
   BadRequestException,
   forwardRef,
 } from '@nestjs/common';
-import { UpdateResult, In, Not, LessThan, IsNull, Between } from 'typeorm';
+import { UpdateResult, In, Not, Between } from 'typeorm';
 import { StoryEntity } from '../entity/story.entity';
 import { StoryRepository } from '../repository/story.repository';
 import { StoryRecipientRepository } from '../repository/story-recipient.repository';
 import { StoryRejectReasonRepository } from '../repository/story-reject-reason.repository';
+import { FeedbackVulnerabilityFactorsService } from './feedback-vulnerability-factors.service';
 import {
   UpdateStoryDto,
   TranslationDto,
@@ -46,7 +47,10 @@ import {
   AGE_VALUE,
   REJECT_REASON_CODE,
 } from '../../common/types';
-import { LANGUAGES_CONSTANTS } from '../../common/constant/languages.constants';
+import {
+  LANGUAGES_CONSTANTS,
+  LANGUAGE_NAMES,
+} from '../../common/constant/languages.constants';
 import { StoryPaginationWithOrderAndFilterDto } from '../../common/dto/story-pagination-with-order-and-filter.dto';
 import {
   includesTranslatableContent,
@@ -97,6 +101,8 @@ import { MessengerService } from '../../messenger/service/messenger.service';
 import { OtherStoriesBySameRecipientRO } from '../../ivrr/response/other-stories.ro';
 import { AssignStoriesDTO } from '../request/dto/assign-stories.dto';
 import { StoryOrganisationTagRepository } from '../repository/story-organisation-tag.repository';
+import { UpdateTranscriptionDto } from '../request/dto/update-transcription.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class StoryModeratorService {
@@ -124,10 +130,12 @@ export class StoryModeratorService {
     private readonly organisationRepository: OrganisationRepository,
     private readonly storyOrganisationTagRepository: StoryOrganisationTagRepository,
     private readonly rejectReasonService: RejectReasonService,
+    private readonly feedbackVulnerabilityFactorsService: FeedbackVulnerabilityFactorsService,
     @Inject(SHARED_DI.CLIENT_PROXY)
     private readonly clientProxy: ClientProxy,
     private readonly storyNotificationService: StoryNotificationService,
     private readonly messengerService: MessengerService,
+    private readonly config: ConfigService,
   ) { }
 
   async changeStoryStatus(from: STORY_STATUS, to: STORY_STATUS) {
@@ -202,10 +210,20 @@ export class StoryModeratorService {
       throw new BadRequestException(STORY_INCORRECT_STATUS);
     }
 
-    const place = await this.getStoryPlace(story);
+    const place = await this.getStoryPlace(story).catch((error) => {
+      this.logger.error(
+        `[exportStoryToAirTable] Failed to get story place for story ${id}: ${error?.message}`,
+      );
+      return '';
+    });
+
 
     if (story.channel === CHANNEL_CONSTANTS.IVRR) {
-      await this.ivrrService.removeStoryLogs(story);
+      await this.ivrrService.removeStoryLogs(story).catch((error) => {
+        this.logger.error(
+          `[exportStoryToAirTable] Failed to remove IVRR logs for story ${id}: ${error?.message}`,
+        );
+      });
     }
 
     const originalTranslation = story.translations.find(
@@ -235,7 +253,7 @@ export class StoryModeratorService {
 
     fields[SENSITIVE_STORY_COLUMNS.MARKED_AS_SENSITIVE_BY] =
       markedAsSensitiveBy;
-    fields[SENSITIVE_STORY_COLUMNS.ADDITIONAL_CONTACT_DETAILS] = story.recipient?.additionalContactDetails
+    fields[SENSITIVE_STORY_COLUMNS.ADDITIONAL_CONTACT_DETAILS] = story.recipient?.additionalContactDetails;
     fields[SENSITIVE_STORY_COLUMNS.AUTHOR_ALLOWED_FOR_CONTACT] =
       !!story.recipient?.userWantContact ? 'true' : 'false';
 
@@ -244,9 +262,13 @@ export class StoryModeratorService {
     fields[SENSITIVE_STORY_COLUMNS.ORGANIZATION] = story.organisations
       .map((item) => item.name)
       .join(', ');
-    fields[SENSITIVE_STORY_COLUMNS.LANGUAGE] = upperCaseFirst(
-      getKeyByValue(LANGUAGES_CONSTANTS, story.language.code),
-    );
+    // Handle language mapping with fallback for BAAJUUNI (bju) and other languages
+    // Twilio sends 'bjn' which is mapped to 'bju' in fetchFlowLanguage, but we need to ensure
+    // the language name is correctly mapped when exporting to Airtable
+    const languageKey = getKeyByValue(LANGUAGES_CONSTANTS, story.language.code);
+    fields[SENSITIVE_STORY_COLUMNS.LANGUAGE] = languageKey
+      ? upperCaseFirst(languageKey)
+      : LANGUAGE_NAMES[story.language.id] || story.language.code || 'Unknown';
     fields[SENSITIVE_STORY_COLUMNS.COUNTRY] = story.country?.name;
     fields[SENSITIVE_STORY_COLUMNS.GENDER] = upperCaseFirst(
       getKeyByValue(GENDER_VALUE, story.recipient?.genderByModerator),
@@ -265,6 +287,14 @@ export class StoryModeratorService {
     fields[SENSITIVE_STORY_COLUMNS.DISABILITY] = story.difficulties.map(
       (item) => getKeyByValue(DIFFICULTY, item.code, false),
     );
+
+    fields[SENSITIVE_STORY_COLUMNS.MINORITY_GROUP] = story.recipient?.isMinority ? 'Yes' : 'No';
+
+    const vulnerabilityFactors = await this.feedbackVulnerabilityFactorsService.findByStoryId(story.id);
+    fields[SENSITIVE_STORY_COLUMNS.VULNERABILITY_FACTORS] = vulnerabilityFactors.map(
+      (item) => item.vulnerabilityFactor?.label || item.vulnerabilityFactor?.code,
+    ).filter(Boolean);
+
     fields[SENSITIVE_STORY_COLUMNS.CATEGORY] = story.thematics.map((thematic) =>
       getKeyByValue(
         THEMATIC,
@@ -274,19 +304,20 @@ export class StoryModeratorService {
     );
 
     fields[SENSITIVE_STORY_COLUMNS.SUBCATEGORY] = story.thematics
-      .filter((thematic) => thematic.parent)
+        .filter((thematic) => thematic.parent)
       .map((thematic) =>
-        getKeyByValue(
-          THEMATIC,
-          `${thematic.parent.code}.${thematic.code}`,
-          false,
-        ),
-      )
-      .filter((thematic) => thematic);
+      getKeyByValue(
+        THEMATIC,
+        `${thematic.parent.code}.${thematic.code}`,
+        false,
+      ),
+    ).filter(thematic => thematic);
     fields[SENSITIVE_STORY_COLUMNS.MODERATOR_NOTE] = data.note;
     fields[SENSITIVE_STORY_COLUMNS.URGENCY] = upperCaseFirst(
       getKeyByValue(URGENT, +data.immediateAssistance),
     );
+    fields[SENSITIVE_STORY_COLUMNS.INBOX_RECEIVED_DATE] = story.createdAt;
+
     await this.airTable
       .table('Sensitive Stories')
       .create({
@@ -354,8 +385,12 @@ export class StoryModeratorService {
         error: 'Story ID does not exist',
       });
 
-    data.recipient.nickname = data.onBehalfOf ?? null;
+    data.recipient.nickname = data.onBehalfOf ?? data.recipient?.nickname ?? null;
 
+    if (withDetails) {
+      (data as any).feedbackVulnerabilityFactors =
+        await this.feedbackVulnerabilityFactorsService.findByStoryId(id);
+    }
     return data;
   }
 
@@ -406,6 +441,7 @@ export class StoryModeratorService {
           moderatorId: row.assignedModerator_id,
           moderatorName: row.assignedModerator_nickname,
           moderatorEmail: row.assignedModerator_email,
+          isMinority: row.isMinority,
         };
         if (story.channel === CHANNEL_CONSTANTS.IVRR) {
           story.s3FileId = row.s3FileId;
@@ -561,11 +597,45 @@ export class StoryModeratorService {
     return story;
   }
 
+  async updateStoryTranscription(
+    userId: string,
+    story: StoryEntity,
+    data: UpdateTranscriptionDto,
+  ): Promise<StoryEntity | void> {
+    console.log(data.content, data.editedContent);
+    if (data.editedContent && data.editedContent.length > 0) {
+      let historicalContent = await this.storyHistoricalTranslationModeratorService.findHistoricaloriginalContentForStory(story, {
+        createdAt: story.channel === CHANNEL_CONSTANTS.IVRR ? 'DESC' : 'ASC',
+      }, true);
+      if (!historicalContent) {
+        historicalContent = await this.storyHistoricalTranslationModeratorService.findHistoricaloriginalContentForStory(story, {
+          createdAt: story.channel === CHANNEL_CONSTANTS.IVRR ? 'DESC' : 'ASC',
+        }, false);
+      }
+      await this.storyTranslationModeratorService.saveTranslation({ content: data.editedContent, language: story.language.code }, story, userId);
+      if (!historicalContent) {
+        historicalContent = await this.storyHistoricalTranslationModeratorService.findHistoricaloriginalContentForStory(story, {
+          createdAt: story.channel === CHANNEL_CONSTANTS.IVRR ? 'DESC' : 'ASC',
+        }, false);
+      }
+      if (historicalContent) {
+        await this.storyTranslationModeratorService.storyHistoricalTranslationService.updateOldStories(story);
+        await this.storyTranslationModeratorService.updateTranscription(historicalContent, userId, true);
+      }
+    }
+    if (!data.editedContent && data.content && data.content.length > 0) {
+      await this.storyTranslationModeratorService.updateCurrentTranslation(story, data.content);
+    }
+    return story;
+  }
+
   async updateStory(
     userId: string,
     story: StoryEntity,
     data: UpdateStoryDto,
   ): Promise<StoryEntity | void> {
+    const previousOrganisationIds = (story.organisations ?? []).map(o => o.id);
+    this.logger.debug(`[updateStory] storyId=${story.id} previousOrganisationIds=${JSON.stringify(previousOrganisationIds)} incomingOrganisations=${JSON.stringify(data.organisations)}`);
     const country = await this.countryService.findByIdOrFail(data.countryId);
     const languages = await this.languageRepository.find();
     const language = await this.languageService.checkOriginLanguage(
@@ -637,21 +707,61 @@ export class StoryModeratorService {
         : story.markedAsSensitiveByRole;
 
     if (story.recipient) {
-      await this.storyRecipientRepository.update(story.recipientId, {
-        ageByModerator: data.age ?? story.recipient.ageByModerator,
-        genderByModerator: data.gender ?? story.recipient.genderByModerator,
-        isMinority: data.isMinority ?? story.recipient.isMinority,
-      });
+      const shouldNotMemorizePII = [
+        CHANNEL_CONSTANTS.IVRR,
+        CHANNEL_CONSTANTS.MESSENGER,
+        CHANNEL_CONSTANTS.WHATSAPP,
+        CHANNEL_CONSTANTS.TELEGRAM,
+        CHANNEL_CONSTANTS.WEB,
+      ].includes(story.channel);
+
+
+      if (shouldNotMemorizePII) {
+        const newRecipient = await this.storyRecipientRepository.save({
+          ageByModerator: data.age ?? story.recipient.ageByModerator ?? null,
+          genderByModerator: data.gender ?? story.recipient.genderByModerator ?? null,
+          isMinority: data.isMinority ?? story.recipient.isMinority ?? null,
+          nickname: story.recipient?.nickname ?? null,
+          countryId: story.countryId ?? null,
+          phone: story.recipient?.phone ?? null,
+          email: story.recipient?.email ?? null,
+          communicatorId: story.recipient?.communicatorId ?? null,
+          userWantContact: story.recipient?.userWantContact ?? null,
+          additionalContactDetails: story.recipient?.additionalContactDetails ?? null,
+          firstName: story.recipient?.firstName ?? null,
+          lastName: story.recipient?.lastName ?? null,
+          ageByUser: story.recipient?.ageByUser ?? null,
+          genderByUser: story.recipient?.genderByUser ?? null,
+          difficultyByUser: story.recipient?.difficultyByUser ?? null,
+          difficultyByModerator: story.recipient?.difficultyByModerator ?? null,
+          disabilitiesOtherExplanation:
+            data.disabilitiesOtherExplanation ??
+            story.recipient.disabilitiesOtherExplanation ??
+            null,
+        });
+        story.recipientId = newRecipient.id;
+      } else {
+        await this.storyRecipientRepository.update(story.recipientId, {
+          ageByModerator: data.age ?? story.recipient.ageByModerator,
+          genderByModerator: data.gender ?? story.recipient.genderByModerator,
+          isMinority: data.isMinority ?? story.recipient.isMinority,
+          disabilitiesOtherExplanation:
+            data.disabilitiesOtherExplanation ??
+            story.recipient.disabilitiesOtherExplanation
+        });
+      }
     }
 
     const edited = story.status === STORY_STATUS.PENDING_EDIT;
 
+    delete story.recipient;
+
     const updatedStory = await this.storyRepository
       .save({
-        ...(_omit(story as Record<string, any>, ['language']) as Record<
-          string,
-          unknown
-        >),
+        ...(_omit(story as Record<string, any>, [
+          'language',
+          'recipient',
+        ]) as Record<string, unknown>),
         ...(_pick(
           data,
           [
@@ -682,6 +792,7 @@ export class StoryModeratorService {
         markedAsSensitiveByRole,
         markedAsSensitiveByUserId: markedAsSensitiveByRole ? userId : null,
         onBehalfOf: data.authorNickname ?? story.recipient?.nickname,
+        recipientId: story.recipientId,
         ...(edited ? { edited } : {}),
       })
       .catch((error) => {
@@ -736,6 +847,33 @@ export class StoryModeratorService {
         data.regionId,
         story.id,
       );
+    }
+
+    if (data.vulnerabilityFactors && data.vulnerabilityFactors.length > 0) {
+      await this.feedbackVulnerabilityFactorsService.saveVulnerabilityFactors(
+        story.id,
+        data.vulnerabilityFactors,
+      );
+    } else if (data.vulnerabilityFactors !== undefined) {
+      await this.feedbackVulnerabilityFactorsService.deleteByStoryId(story.id);
+    }
+
+    const newlyAddedOrganisationIds = (data.organisations ?? []).filter(id => !previousOrganisationIds.includes(id));
+    this.logger.debug(`[updateStory] storyId=${story.id} newlyAddedOrganisationIds=${JSON.stringify(newlyAddedOrganisationIds)}`);
+    if (newlyAddedOrganisationIds.length > 0) {
+      this.logger.debug(`[updateStory] storyId=${story.id} Sending org tag notifications for ${newlyAddedOrganisationIds.length} new org(s)`);
+      const fullStory = await this.getStoryDetailsByIdAndChannelOrFail(
+        updatedStory.id,
+        updatedStory.channel,
+        true,
+      );
+
+      await this.storyNotificationService.sendNotificationsForOrganisationTags(
+        fullStory,
+        newlyAddedOrganisationIds,
+        { force: true },
+      );
+      this.logger.debug(`[updateStory] storyId=${story.id} Org tag notifications sent successfully`);
     }
 
     const result =
@@ -1070,9 +1208,10 @@ export class StoryModeratorService {
       .execute();
   }
 
-  getStoriesBySameRecipient(
-    phone: string,
-    email: string,
+  async getStoriesBySameRecipient(
+    phone: string = '',
+    email: string = '',
+    communicatorId: string = '',
     storyId: string,
   ): Promise<OtherStoriesBySameRecipientRO[]> {
     const whereConditions = [];
@@ -1082,11 +1221,28 @@ export class StoryModeratorService {
     if (email) {
       whereConditions.push({ recipient: { email }, id: Not(storyId) });
     }
+    if (communicatorId) {
+      whereConditions.push({ recipient: { communicatorId }, id: Not(storyId) });
+    }
+
     if (!whereConditions.length) return Promise.resolve([]);
-    return this.storyRepository.find({
+    const stories = await this.storyRepository.find({
       where: whereConditions,
       relations: ['translations'],
-      select: ['id', 'status', 'createdAt']
+      select: ['id', 'status', 'createdAt', 'channel']
+    });
+
+    return stories.map((story): OtherStoriesBySameRecipientRO => {
+      const isPublished = String(story.status).toLowerCase() === String(STORY_STATUS.PUBLISHED).toLowerCase();
+      return {
+        id: story.id,
+        status: story.status,
+        createdAt: story.createdAt,
+        channel: story.channel,
+        url: isPublished
+          ? `/story/details/${story.id}`
+          : `/inbox/stories/story/${story.channel}/${story.id}/review`,
+      };
     });
   }
 

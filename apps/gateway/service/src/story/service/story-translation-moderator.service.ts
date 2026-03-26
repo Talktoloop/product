@@ -1,5 +1,5 @@
 import { Injectable, Inject, forwardRef } from '@nestjs/common';
-import { UpdateResult, DeleteResult, Not } from 'typeorm';
+import { UpdateResult, DeleteResult, Not, In } from 'typeorm';
 import { StoryTranslationRepository } from '../repository/story-translation.repository';
 import {
   CustomError,
@@ -40,10 +40,9 @@ export class StoryTranslationModeratorService {
     @Inject(forwardRef(() => StoryService))
     private readonly storyService: StoryService,
     private readonly storyTranslationRepository: StoryTranslationRepository,
-    private readonly storyHistoricalTranslationService: StoryHistoricalTranslationModeratorService,
+    public readonly storyHistoricalTranslationService: StoryHistoricalTranslationModeratorService,
     @Inject(forwardRef(() => LanguageService))
     private languageService: LanguageService,
-    private messengerService: MessengerService,
   ) { }
 
   async checkOriginalContent(
@@ -317,6 +316,7 @@ export class StoryTranslationModeratorService {
     story: StoryEntity,
     userId: string,
     forceRunTranslations = false,
+    // recorevable
   ): Promise<StoryTranslationEntity> {
     let result;
 
@@ -376,6 +376,18 @@ export class StoryTranslationModeratorService {
       throw new CustomError(error.message, error.error);
     }
     return result;
+  }
+
+  async updateTranscription(storyTranslationHistorical: StoryHistoricalTranslationEntity, userId: string, isRecoverable: boolean) {
+    return await this.storyHistoricalTranslationService.update({ id: storyTranslationHistorical.id }, {
+      userId,
+      isRecoverable: isRecoverable,
+    });
+  }
+
+  async updateCurrentTranslation(story: StoryEntity, content: string) {
+    await this.storyHistoricalTranslationService.updateOldStories(story);
+    return await this.storyTranslationRepository.update({ id: In(story.translations.map((item) => item.id)) }, { content });
   }
 
   async getTranslations(storyId: string): Promise<StoryEntity> {

@@ -19,9 +19,10 @@ import { LANGUAGES_CONSTANTS } from '../../common/constant/languages.constants';
 import { LanguageId } from '../../language/language-id.decorator';
 import { LanguageService } from '../../language/language.service';
 import { StoryConversationService } from '../service/story-conversation.service';
-import { PermissionGuard } from '../../auth/cerbos/permission.guard';
-import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
-import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
+import { FeedbackVulnerabilityFactorsService } from '../service/feedback-vulnerability-factors.service';
+// import { PermissionGuard } from '../../auth/cerbos/permission.guard';
+// import { PermissionsCerbos } from '../../auth/cerbos/permission.decorator';
+// import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
 // @UseGuards(AuthGuard('cognito'), PermissionGuard)
 // @PermissionsCerbos(CERBOS_ACTIONS.READ, CERBOS_RESOURCES.STORY)
@@ -36,6 +37,7 @@ export class StoryIVRRModeratorController {
     private readonly storyHistoricalTranslationModeratorService: StoryHistoricalTranslationModeratorService,
     private readonly languageService: LanguageService,
     private readonly storyConversationService: StoryConversationService,
+    private readonly feedbackVulnerabilityFactorsService: FeedbackVulnerabilityFactorsService,
   ) { }
 
   @ApiOperation({
@@ -74,15 +76,18 @@ export class StoryIVRRModeratorController {
         },
       );
     let otherFeedbackBySameRecipient = [];
-    if (story?.recipient && (story.recipient.phone || story.recipient.email)) {
+    if (story?.recipient && (story.recipient.phone || story.recipient.email || story.recipient.communicatorId)) {
       otherFeedbackBySameRecipient =
         await this.storyModeratorService.getStoriesBySameRecipient(
           story.recipient.phone,
           story.recipient.email,
+          story.recipient.communicatorId,
           story.id,
         );
     }
 
+    const vulnerabilityFactors = await this.feedbackVulnerabilityFactorsService.findByStoryId(storyId);
+    
     return storyIvrrDetailsMapper(
       story,
       conversation,
@@ -91,6 +96,7 @@ export class StoryIVRRModeratorController {
       userLanguageId,
       defaultLanguage,
       otherFeedbackBySameRecipient,
+      vulnerabilityFactors,
     );
   }
 }

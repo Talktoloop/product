@@ -107,7 +107,7 @@ export class CaseService {
     const payload = {
       resource: { dashboard: 3 },
       params: filteredParams,
-      exp: Math.round(Date.now() / 1000) + 10 * 60, // 10 minute expiration
+      exp: Math.round(Date.now() / 1000) + (60 * 60), // 1 hour expiration
     };
     const token = jwt.sign(payload, METABASE_SECRET_KEY);
 

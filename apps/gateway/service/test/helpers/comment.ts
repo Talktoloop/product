@@ -208,6 +208,7 @@ export const initializeDataset = async (): Promise<{
     provider: PROVIDER_TYPE.AWS,
   });
 
+
   const languages = await getLanguages();
   const categories = await getCategories();
   const notDefaultLanguage = getLanguageFromList(languages, false);

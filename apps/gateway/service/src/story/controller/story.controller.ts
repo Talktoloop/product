@@ -38,6 +38,7 @@ import { AdministrativeDataService } from '../../country/service/administrative-
 import { LanguageService } from '../../language/language.service';
 import { ConfigService } from '@nestjs/config';
 import { DI_CONSTANTS as COMMON_DI } from '../../common/constant/di.constant';
+import { FeedbackVulnerabilityFactorsService } from '../service/feedback-vulnerability-factors.service';
 
 @ApiTags('Story')
 @Controller('story')
@@ -46,15 +47,10 @@ export class StoryController {
     private readonly storyService: StoryService,
     private readonly administrativeDataService: AdministrativeDataService,
     private readonly languageService: LanguageService,
+    private readonly feedbackVulnerabilityFactorsService: FeedbackVulnerabilityFactorsService,
     @Inject(COMMON_DI.CONFIG)
     private readonly config: ConfigService,
   ) { }
-
-
-  // @Get('remove-duplicate-authors')
-  // testStuff() {
-  //   return this.storyService.removeDuplicateAuthorsScript();
-  // }
 
   @UseGuards(AuthGuard(['anonymous']))
   @ApiHeader({
@@ -157,7 +153,9 @@ export class StoryController {
       );
     }
 
-    return storyToStoryRO(story, userLanguageId, defaultLanguage);
+    const vulnerabilityFactors = await this.feedbackVulnerabilityFactorsService.findByStoryId(storyId);
+
+    return storyToStoryRO(story, userLanguageId, defaultLanguage, vulnerabilityFactors);
   }
 
   @ApiHeader({

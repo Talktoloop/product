@@ -120,16 +120,18 @@ export const storiesToStoriesPaginationRO = (
           item.country_default_language_id_for_administrative_data,
         user: item.user_id
           ? formatUser({
-            organisation: {
-              name: item.organisation_name,
-            },
-          })
+              organisation: {
+                name: item.organisation_name,
+              },
+            })
           : null,
         comments: item.story_comments,
         publishedAt: item.story_published_at,
         createdAt: item.story_created_at,
         languageId: item.story_language_id,
+        isMinority: item.isMinority !== null && item.isMinority !== undefined ? Boolean(Number(item.isMinority)) : null,
       };
+
     }
 
     if (

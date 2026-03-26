@@ -14,8 +14,11 @@ export enum SENSITIVE_STORY_COLUMNS {
   SUBCATEGORY = 'Thematic Area - Subsection',
   MODERATOR_NOTE = 'Note from moderator 🔒',
   URGENCY = 'Urgency',
+  INBOX_RECEIVED_DATE = 'Inbox Received Date',
   LOCATION = 'Location',
   MARKED_AS_SENSITIVE_BY = 'Tagged sensitive by 🔒',
   AUTHOR_ALLOWED_FOR_CONTACT = 'Author allowed for contact',
-  ADDITIONAL_CONTACT_DETAILS = 'Additional contact details'
+  ADDITIONAL_CONTACT_DETAILS = 'Additional contact details',
+  MINORITY_GROUP = 'Minority Group',
+  VULNERABILITY_FACTORS = 'Vulnerability Factors'
 }
