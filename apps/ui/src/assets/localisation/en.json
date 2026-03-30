@@ -1481,7 +1481,7 @@
         "sensitive": {
           "yes": "Yes",
           "no": "No",
-          "label": "Is this sensitive feedback",
+          "label": "Is this sensitive feedba",
           "info": "Sensitive feedback (i.e. corruption, abuse, violence) is never shared on the platform",
           "explanation": "What is sensitive feedback"
         },
