@@ -2,7 +2,6 @@ FROM node:22-alpine AS build
 
 WORKDIR /app
 
-# Install dependencies using Yarn
 COPY package.json yarn.lock ./
 
 ARG NPM_TOKEN
@@ -11,15 +10,26 @@ RUN npm config set @ourloop:registry https://gitlab.com/api/v4/packages/npm/
 RUN npm config set '//gitlab.com/api/v4/packages/npm/:_authToken' $ENV_NPM_TOKEN
 RUN npm config set '//gitlab.com/api/v4/projects/24487110/packages/npm/:_authToken' $ENV_NPM_TOKEN
 
-RUN yarn install --production
+RUN yarn install --frozen-lockfile
 
 COPY . .
 
-FROM node:22-alpine as final
+RUN yarn build
+
+FROM node:22-alpine AS final
 
 WORKDIR /app
 
-COPY --from=build /app /app
+ARG NPM_TOKEN
+ENV ENV_NPM_TOKEN=$NPM_TOKEN
+RUN npm config set @ourloop:registry https://gitlab.com/api/v4/packages/npm/
+RUN npm config set '//gitlab.com/api/v4/packages/npm/:_authToken' $ENV_NPM_TOKEN
+RUN npm config set '//gitlab.com/api/v4/projects/24487110/packages/npm/:_authToken' $ENV_NPM_TOKEN
+
+COPY package.json yarn.lock ./
+RUN yarn install --production --frozen-lockfile
+
+COPY --from=build /app/dist ./dist
 
 EXPOSE 5000
 
