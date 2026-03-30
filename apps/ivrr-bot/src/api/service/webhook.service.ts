@@ -212,44 +212,69 @@ export class WebhookService {
   async handleLoopInboundCall(
     body: TwilioRecordAudioWebhookRequest,
   ): Promise<Job<any | void>> {
+    try {
+      this.logger.log(
+        `[loop-inbound] start CallSid=${body.CallSid} recordingUrl=${body.RecordingUrl ? 'ok' : 'MISSING'}`,
+      );
 
-    const twilioCallLog = await this.twilioService.getTwilioCallLog(
-      body.CallSid,
-    );
-    const callerCountryCode = await this.storageService.getCallerCountry(
-      body.CallSid,
-    );
-    const s3KeyFile = await this.handleFile(twilioCallLog, body.RecordingUrl);
-    const userRecord: UserFlowRecord = {
-      phoneNumber: twilioCallLog.from,
-      shortCodeNumber: twilioCallLog.to,
-      calls: [
-        {
-          twilioCallSid: twilioCallLog.sid,
-          s3FileId: s3KeyFile,
-          isStory: true,
-          isModeratorCall: false,
-          callDate: new Date(body.RecordingStartTime),
+      const twilioCallLog = await this.twilioService.getTwilioCallLog(
+        body.CallSid,
+      );
+      this.logger.log(`[loop-inbound] twilio call fetch ok ${body.CallSid}`);
+
+      const callerCountryCode = await this.storageService.getCallerCountry(
+        body.CallSid,
+      );
+
+      this.logger.log(`[loop-inbound] downloading recording ${body.CallSid}`);
+      const s3KeyFile = await this.handleFile(twilioCallLog, body.RecordingUrl);
+      if (!s3KeyFile) {
+        throw new Error(
+          `[loop-inbound] handleFile returned no S3 key for ${body.CallSid}`,
+        );
+      }
+      this.logger.log(`[loop-inbound] s3 upload ok key=${s3KeyFile}`);
+
+      const userRecord: UserFlowRecord = {
+        phoneNumber: twilioCallLog.from,
+        shortCodeNumber: twilioCallLog.to,
+        calls: [
+          {
+            twilioCallSid: twilioCallLog.sid,
+            s3FileId: s3KeyFile,
+            isStory: true,
+            isModeratorCall: false,
+            callDate: new Date(body.RecordingStartTime),
+          },
+        ],
+      };
+
+      await this.storageService.createUserFlowRecord(userRecord);
+      this.logger.log(`[loop-inbound] user flow record saved ${body.CallSid}`);
+
+      const job = await this.queueService.addQueueJob({
+        queue: this.processTwilioCallQueue,
+        jobName: QUEUE_CONSTANT.PROCESS_STORY_CALL,
+        data: {
+          key: body.CallSid,
+          attempt: 1,
+          callerCountryCode,
+          historicalData: false,
         },
-      ],
-    };
+        jobId: body.CallSid,
+      });
 
-    await this.storageService.createUserFlowRecord(userRecord);
-
-
-    const job = await this.queueService.addQueueJob({
-      queue: this.processTwilioCallQueue,
-      jobName: QUEUE_CONSTANT.PROCESS_STORY_CALL,
-      data: {
-        key: body.CallSid,
-        attempt: 1,
-        callerCountryCode,
-        historicalData: false,
-      },
-      jobId: body.CallSid,
-    });
-
-    return job;
+      this.logger.log(
+        `[loop-inbound] done queued PROCESS_STORY_CALL ${body.CallSid} job=${job?.id}`,
+      );
+      return job;
+    } catch (err) {
+      this.logger.error(
+        `[loop-inbound] FAILED CallSid=${body?.CallSid}: ${err?.message}`,
+        err?.stack,
+      );
+      throw err;
+    }
   }
 
   async handleFile(
