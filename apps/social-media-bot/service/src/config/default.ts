@@ -45,6 +45,7 @@ export interface RedisConfig {
   port: number;
   password: string;
   db: number;
+  tls?: Record<string, unknown>;
 }
 
 const env = process.env;
