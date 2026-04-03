@@ -93,10 +93,15 @@ export class WhatsappService {
     this.logger.log('Getting page config for pageId: ', data.pageId);
 
     if (!data.pageId) {
+      this.logger.debug('[pipeline:whatsapp] getPageConfigByData: missing pageId');
       return;
     }
 
-    return getWhatsappNumberConfig(data.pageId);
+    const cfg = await getWhatsappNumberConfig(data.pageId);
+    this.logger.debug(
+      `[pipeline:whatsapp] getPageConfigByData: ${cfg ? 'FOUND' : 'NOT_IN_PROVIDER_CONFIG'} pageId=${data.pageId}`,
+    );
+    return cfg;
   }
 
   async getUserProfile(data: {
@@ -137,6 +142,9 @@ export class WhatsappService {
 
     let response;
 
+    this.logger.debug(
+      `[pipeline:whatsapp] sendMessage start pageId=${pageId} to=${recipientId} template=${!!message.message?.contentSid}`,
+    );
     this.logger.debug(`MESSAGE obj >>> ${JSON.stringify(message, null, 2)}`);
 
     if (message.message.contentSid) {
@@ -197,6 +205,9 @@ export class WhatsappService {
       );
     }
 
+    this.logger.debug(
+      `[pipeline:whatsapp] sendMessage Twilio ok sid=${response?.sid ?? 'n/a'}`,
+    );
     return { sid: response.sid };
   }
 
