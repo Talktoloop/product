@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Logger } from '@nestjs/common';
+import { Body, Controller, Post, Logger, HttpCode, HttpStatus } from '@nestjs/common';
 import WhatsappMessageRequest from '../../common/interface/whatsapp-message-request';
 import WhatsappIncommingMessage from '../../common/interface/whatsapp-incomming-message';
 import WhatsappStatusCallback from '../../common/interface/whatsapp-status-callback';
@@ -18,7 +18,8 @@ export class WhatsappController {
   ) {}
 
   @Post('webhook')
-  async handleWebhook(@Body() body: WhatsappMessageRequest): Promise<void> {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  handleWebhook(@Body() body: WhatsappMessageRequest): void {
     const incomingMessage: WhatsappIncommingMessage = {
       smsMessageSid: body.SmsMessageSid,
       numMedia: body.NumMedia,
@@ -37,7 +38,9 @@ export class WhatsappController {
     };
     this.logger.log(`Process handleWebhook: ${JSON.stringify(body)}`);
 
-    await this.webhookService.handleWebhook(incomingMessage);
+    void this.webhookService.handleWebhook(incomingMessage).catch((err) => {
+      this.logger.error('handleWebhook async error', err?.stack ?? err);
+    });
   }
 
   @Post('callback')
