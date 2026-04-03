@@ -534,7 +534,21 @@ export class StorageService {
     senderId: string,
     pageId: string,
   ): Promise<UserRecordInterface> {
-    return await this.cacheManager.get(this.generateKey(senderId, pageId));
+    const key = this.generateKey(senderId, pageId);
+    this.logger.debug(`[pipeline:storage] cacheManager.get start key=${key}`);
+    const started = Date.now();
+    try {
+      const profile = await this.cacheManager.get(key);
+      this.logger.debug(
+        `[pipeline:storage] cacheManager.get done in ${Date.now() - started}ms hit=${!!profile}`,
+      );
+      return profile;
+    } catch (err) {
+      this.logger.error(
+        `[pipeline:storage] cacheManager.get failed after ${Date.now() - started}ms: ${err instanceof Error ? err.message : String(err)}`,
+      );
+      throw err;
+    }
   }
 
   private async saveUser(userRecord: UserRecordInterface): Promise<void> {

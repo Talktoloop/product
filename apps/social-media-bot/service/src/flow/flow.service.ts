@@ -46,7 +46,14 @@ export class FlowService {
       `[pipeline:flow] handleMessage start senderId=${senderId} pageId=${pageConfig.pageId} repeatLast=${repeatLastMessage} msgPreview=${String(receivedMessages).slice(0, 120)}`,
     );
 
+    const getUserStarted = Date.now();
+    this.logger.debug(
+      '[pipeline:flow] awaiting storageService.getUser (Redis cache) — if no log after this, Redis/cache is hanging or unreachable',
+    );
     let user = await this.storageService.getUser(senderId, pageConfig.pageId);
+    this.logger.debug(
+      `[pipeline:flow] storageService.getUser done in ${Date.now() - getUserStarted}ms hasUser=${!!user}`,
+    );
 
     if (!user) {
       this.logger.debug('[pipeline:flow] no user, createUser');
