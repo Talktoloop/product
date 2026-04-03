@@ -30,7 +30,16 @@ const bootstrap = async () => {
     throw error;
   });
 
-  const app = await NestFactory.create(AppModule);
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  const app = await NestFactory.create(AppModule, {
+    logger: isDevelopment
+      ? ['error', 'warn', 'log', 'debug', 'verbose']
+      : ['error', 'warn', 'log'],
+  });
+
+  if (isDevelopment) {
+    Logger.log('NODE_ENV=development: debug & verbose logging enabled');
+  }
 
   const configService = app.get<ConfigService>(ConfigService);
   const applicationConfig = <ApplicationConfig>configService.get('application');
