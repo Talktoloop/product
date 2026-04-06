@@ -42,5 +42,6 @@ export const configSchema: Joi.ObjectSchema = Joi.object({
   ONLY_GET_REQUEST: Joi.string(),
   INNGEST_SIGNING_KEY: Joi.string(),
   INNGEST_EVENT_KEY: Joi.string(),
+  METABASE_SITE_URL: Joi.string().uri().optional(),
 }).options({ allowUnknown: true, presence: 'required' });
 
