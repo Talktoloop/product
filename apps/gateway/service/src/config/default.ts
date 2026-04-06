@@ -375,6 +375,7 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
     brevo: {
       apiKey: env.BREVO_API_KEY
     },
-    metabase_secret_key: env.METABASE_SECRET_KEY
+    metabase_secret_key: env.METABASE_SECRET_KEY,
+    metabase_site_url: env.METABASE_SITE_URL || 'http://localhost:3000',
   };
 };
