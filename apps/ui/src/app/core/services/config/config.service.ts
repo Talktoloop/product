@@ -21,6 +21,7 @@ export interface Config {
   frontendSessionTime: number;
   rollbarConfig: RollbarConfig;
   apiUrl: string;
+  metabaseStoriesDashboardUrl: string;
 }
 
 // Cannot be nullish due to the login in app init. If this is null whole app should crash.

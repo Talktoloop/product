@@ -40,8 +40,8 @@ export class OpenStoryService {
   ) {}
 
   async getSignedMetabaseURL(filters: any) {
-    const METABASE_SITE_URL = "https://meta.talktoloop.org";
-    const METABASE_SECRET_KEY = this.config.get('metabase_secret_key')
+    const METABASE_SITE_URL = this.config.get<string>('metabase_site_url');
+    const METABASE_SECRET_KEY = this.config.get('metabase_secret_key');
 
     const filteredParams = extractModuleSpecificFilterParameters(filters, [
       'age_group',

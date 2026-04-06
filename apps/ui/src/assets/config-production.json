@@ -10,5 +10,6 @@
     "accessToken": "da35c36196904867bb63bf574c830742",
     "environment": "production-ol"
   },
-  "apiUrl": "https://api.talktoloop.org/api/v1"
+  "apiUrl": "https://api.talktoloop.org/api/v1",
+  "metabaseStoriesDashboardUrl": "https://meta.talktoloop.org/public/dashboard/5708c729-6c87-4b9e-a064-624b2853c62d?age_group=&channel=&country=&disability=&feedback_type=&gender_group=&minority_group=&organization=&submission_date=&tab=4-overview&thematic_area="
 }
