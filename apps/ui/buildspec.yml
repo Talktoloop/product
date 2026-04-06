@@ -17,11 +17,12 @@ phases:
 
   post_build:
     commands:
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-8)
       - echo Pushing the Docker image to Amazon ECR with tag $IMAGE_TAG...
       - docker push $ECR_URL:$IMAGE_TAG
       - docker tag $ECR_URL:$IMAGE_TAG $ECR_URL:latest
       - docker push $ECR_URL:latest
-      - printf '[{"name":"%s","imageUri":"%s"}]' ${APP_NAME} $ECR_URL:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' ${APP_NAME} $ECR_URL:$IMAGE_TAG > ${APP_PATH}/imagedefinitions.json
       - echo Build and push completed successfully.
 
 artifacts:
