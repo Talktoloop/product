@@ -40,10 +40,6 @@ export class ClientProxyService {
       userRecord.flowStartedAt = new Date();
     }
 
-    this.logger.debug(
-      `[pipeline:gateway-rpc] sendStory cmd=save${this.providerName}Story storyUuid=${userRecord.storyUuid} senderId=${userRecord.senderId}`,
-    );
-
     const conversation = await lastValueFrom(
       this.clientProxy
         .send(
@@ -57,10 +53,6 @@ export class ClientProxyService {
       this.logger.error(`Could not send story, error: ${JSON.stringify(e)}`);
       success = false;
     });
-
-    this.logger.debug(
-      `[pipeline:gateway-rpc] sendStory result success=${success} conversationId=${conversation?.id ?? 'n/a'}`,
-    );
 
     if (success) {
       this.logger.log(`Story ${userRecord.storyUuid} added successfully`);
