@@ -7,7 +7,7 @@
   },
   "frontendSessionTime": 3600,
   "rollbarConfig": {
-    "accessToken": "20a5b3bf0fc7432e95867759e8c70081",
+    "accessToken": "",
     "environment": "staging-ol"
   },
   "apiUrl": "https://api.dev.talktoloop.org/api/v1"
