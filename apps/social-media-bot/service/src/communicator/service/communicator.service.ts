@@ -138,7 +138,10 @@ export class CommunicatorService {
     success = true,
   ): Promise<void> {
     const user = await this.storageService.getUser(senderId, pageId);
-    const lang = user?.lang || DEFAULT_LANG;
+    if (!user) {
+      return;
+    }
+    const lang = user.lang || DEFAULT_LANG;
 
     if (success) {
       const config = await this.getProvider().getPageConfigByPageId(pageId);
