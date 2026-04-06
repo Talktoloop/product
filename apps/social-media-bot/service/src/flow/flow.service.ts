@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { I18nService } from 'nestjs-i18n';
 import { StorageService } from '../storage/storage.service';
 import User from '../common/interface/user';
@@ -22,8 +22,6 @@ import { TwilioTemplateKey } from '../common/enum/twilio-template-key.enum';
 
 @Injectable()
 export class FlowService {
-  private readonly logger: Logger = new Logger(FlowService.name);
-
   private flow: Array<FlowRecordInterface> = [];
 
   constructor(
@@ -42,33 +40,18 @@ export class FlowService {
     pageConfig: CommunicatorConfig,
     repeatLastMessage = false,
   ): Promise<Array<MessageInterface>> {
-    this.logger.debug(
-      `[pipeline:flow] handleMessage start senderId=${senderId} pageId=${pageConfig.pageId} repeatLast=${repeatLastMessage} msgPreview=${String(receivedMessages).slice(0, 120)}`,
-    );
-
-    const getUserStarted = Date.now();
-    this.logger.debug('[pipeline:flow] awaiting storageService.getUser');
     let user = await this.storageService.getUser(senderId, pageConfig.pageId);
-    this.logger.debug(
-      `[pipeline:flow] storageService.getUser done in ${Date.now() - getUserStarted}ms hasUser=${!!user}`,
-    );
 
     if (!user) {
-      this.logger.debug('[pipeline:flow] no user, createUser');
       user = await this.storageService.createUser(
         senderId,
         pageConfig,
         profile,
       );
-    } else {
-      this.logger.debug(
-        `[pipeline:flow] existing user lastFlowId=${user.lastFlowId ?? 'none'} storyUuid=${user.storyUuid ?? 'none'}`,
-      );
     }
 
     if (this.flow.length === 0) {
       this.flow = await createFlowArray(pageConfig, user?.lang);
-      this.logger.debug(`[pipeline:flow] createFlowArray length=${this.flow.length}`);
     }
 
     const moderatorFlow = await this.handleModeratorFlow(
@@ -79,9 +62,6 @@ export class FlowService {
     );
 
     if (moderatorFlow) {
-      this.logger.debug(
-        '[pipeline:flow] handleModeratorFlow handled request; returning empty outbound list',
-      );
       await this.redisService.resetModeratorIntroFlag(
         senderId,
         pageConfig.pageId,
@@ -98,23 +78,16 @@ export class FlowService {
       if (userWithLocation) {
         user = userWithLocation;
       }
-      this.logger.debug('[pipeline:flow] setLocation done');
     }
 
     let messagesToSend;
 
     if (user.lastFlowId) {
-      this.logger.debug(
-        `[pipeline:flow] branch=continuingFlow lastFlowId=${user.lastFlowId}`,
-      );
       if (repeatLastMessage) {
         messagesToSend = await this.repeatLastMessege(
           senderId,
           pageConfig.pageId,
           pageConfig,
-        );
-        this.logger.debug(
-          `[pipeline:flow] repeatLastMessege count=${messagesToSend?.length ?? 0}`,
         );
         return messagesToSend;
       }
@@ -125,13 +98,9 @@ export class FlowService {
         receivedMessages,
       );
     } else {
-      this.logger.debug('[pipeline:flow] branch=newFlow generateMessagesForNewFlow');
       messagesToSend = await this.generateMessagesForNewFlow(user, pageConfig);
     }
 
-    this.logger.debug(
-      `[pipeline:flow] handleMessage end count=${messagesToSend?.length ?? 0}`,
-    );
     return messagesToSend;
   }
 
@@ -139,9 +108,6 @@ export class FlowService {
     profile: UserRecordInterface,
     pageConfig: CommunicatorConfig,
   ): Promise<Array<MessageInterface>> {
-    this.logger.debug(
-      `[pipeline:flow] generateMessagesForNewFlow firstFlowId=${this.flow[0]?.flowId} defaultLang=${pageConfig.defaultLanguage}`,
-    );
     await this.storageService.setUserLang(
       profile.senderId,
       profile.pageId,
@@ -157,16 +123,12 @@ export class FlowService {
       flowRecord.flowId,
     );
 
-    const out = await this.generateMessages(
+    return await this.generateMessages(
       flowRecord,
       profile.senderId,
       profile.pageId,
       pageConfig,
     );
-    this.logger.debug(
-      `[pipeline:flow] generateMessagesForNewFlow done count=${out?.length ?? 0}`,
-    );
-    return out;
   }
 
   async handleModeratorFlow(
@@ -181,13 +143,9 @@ export class FlowService {
     );
 
     if (!userModeratorFlow) {
-      this.logger.debug('[pipeline:flow] handleModeratorFlow: no active moderator flow');
       return false;
     }
 
-    this.logger.debug(
-      `[pipeline:flow] handleModeratorFlow: active messengerConversationId=${userModeratorFlow.messengerConversationId}`,
-    );
     const userResponse = this.communicatorService.getLastMessage(messages);
 
     const languageCode = userModeratorFlow.language || defaultLang;
@@ -231,25 +189,16 @@ export class FlowService {
     incomingMessages: Messages,
   ): Promise<Array<MessageInterface>> {
     const user = await this.storageService.getUser(senderId, pageConfig.pageId);
-    this.logger.debug(
-      `[pipeline:flow] parseUserResponse lastFlowId=${user?.lastFlowId} storyUuid=${user?.storyUuid ?? 'none'}`,
-    );
     if (!user) {
       return [];
     }
     const flowElement = this.getFlowElement(user.lastFlowId);
 
     if (!flowElement) {
-      this.logger.debug(
-        `--- Flow element not found for flowId: ${user.lastFlowId} ---`,
-      );
       return [];
     }
 
     let userResponse = this.communicatorService.getLastMessage(incomingMessages);
-    this.logger.debug(
-      `[pipeline:flow] parseUserResponse flowId=${flowElement.flowId} userResponsePreview=${String(userResponse).slice(0, 80)}`,
-    );
     let nextFlowId = null;
     let messages: Array<MessageInterface> = [];
 
@@ -262,8 +211,6 @@ export class FlowService {
     });
 
     for (const flowMessage of flowElement.flowMessages) {
-      // this.logger.debug('--- flowMessage --- ', JSON.stringify(flowMessage, null, 2));
-
       if (flowMessage.customHandler) {
         const result = await this.handleCustomHandler(
           user,
@@ -625,16 +572,11 @@ export class FlowService {
       senderId?: string;
       pageId?: string;
     }): Promise<boolean> {
-    this.logger.debug(
-      `[pipeline:flow] setShareUserInfoAndSaveStory start senderId=${data.senderId} pageId=${data.pageId} langs=${supportedLanguages.join(',')}`,
-    );
-
     if (!data.profile) {
       data.profile = await this.storageService.getUser(
         data.senderId,
         data.pageId,
       );
-      this.logger.debug('[pipeline:flow] setShareUserInfoAndSaveStory loaded profile from storage');
     }
 
     if (!data.profile) {
@@ -643,14 +585,9 @@ export class FlowService {
 
     if (!supportedLanguages.includes('so')) {
       data.profile = await this.storageService.setShareUserInfo(data.profile);
-      this.logger.debug('[pipeline:flow] setShareUserInfo done');
     }
 
-    const sent = await this.clientProxyService.sendStory(data.profile);
-    this.logger.debug(
-      `[pipeline:flow] setShareUserInfoAndSaveStory sendStory result=${sent}`,
-    );
-    return sent;
+    return await this.clientProxyService.sendStory(data.profile);
   }
 
   async repeatLastMessege(
@@ -684,9 +621,6 @@ export class FlowService {
     pageId: string,
     pageConfig: CommunicatorConfig,
   ): Promise<Array<MessageInterface>> {
-    this.logger.debug(
-      `[pipeline:flow] generateMessages flowId=${flowRecord.flowId} messagesInRecord=${flowRecord.flowMessages?.length ?? 0}`,
-    );
     await this.storageService.saveQuickReplyKeys(flowRecord);
 
     const user = await this.storageService.getUser(senderId, pageId);
@@ -761,9 +695,6 @@ export class FlowService {
       messages.push(generatedMessage);
     }
 
-    this.logger.debug(
-      `[pipeline:flow] generateMessages built total=${messages.length} (includes typing_on pairs) flowId=${flowRecord.flowId}`,
-    );
     return messages;
   }
 

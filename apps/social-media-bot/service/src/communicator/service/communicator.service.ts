@@ -284,14 +284,7 @@ export class CommunicatorService {
     message: MessageInterface,
     pageId: string,
   ): Promise<{ sid?: string } | Response> {
-    this.logger.debug(
-      `[pipeline:communicator] sendMessage pageId=${pageId} flowId=${message?.flowId} to=${message?.recipient?.id}`,
-    );
-    const result = await this.getProvider().sendMessage(message, pageId);
-    this.logger.debug(
-      `[pipeline:communicator] sendMessage done pageId=${pageId} sid=${(result as { sid?: string })?.sid ?? 'n/a'}`,
-    );
-    return result;
+    return this.getProvider().sendMessage(message, pageId);
   }
 
   getUserProfile(

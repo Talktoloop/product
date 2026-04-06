@@ -93,15 +93,10 @@ export class WhatsappService {
     this.logger.log('Getting page config for pageId: ', data.pageId);
 
     if (!data.pageId) {
-      this.logger.debug('[pipeline:whatsapp] getPageConfigByData: missing pageId');
       return;
     }
 
-    const cfg = await getWhatsappNumberConfig(data.pageId);
-    this.logger.debug(
-      `[pipeline:whatsapp] getPageConfigByData: ${cfg ? 'FOUND' : 'NOT_IN_PROVIDER_CONFIG'} pageId=${data.pageId}`,
-    );
-    return cfg;
+    return await getWhatsappNumberConfig(data.pageId);
   }
 
   async getUserProfile(data: {
@@ -142,21 +137,8 @@ export class WhatsappService {
 
     let response;
 
-    this.logger.debug(
-      `[pipeline:whatsapp] sendMessage start pageId=${pageId} to=${recipientId} template=${!!message.message?.contentSid}`,
-    );
-    this.logger.debug(`MESSAGE obj >>> ${JSON.stringify(message, null, 2)}`);
-
     if (message.message.contentSid) {
       const variables = message.message.contentVariables ?? {};
-
-      this.logger.debug({
-        context: 'WhatsappService',
-        action: 'sending template',
-        contentSid: message.message.contentSid,
-        variables,
-        recipientId,
-      });
 
       try {
         response = await this.whatsapp.client.messages.create({
@@ -205,9 +187,6 @@ export class WhatsappService {
       );
     }
 
-    this.logger.debug(
-      `[pipeline:whatsapp] sendMessage Twilio ok sid=${response?.sid ?? 'n/a'}`,
-    );
     return { sid: response.sid };
   }
 
