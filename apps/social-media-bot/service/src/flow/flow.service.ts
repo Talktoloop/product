@@ -47,9 +47,7 @@ export class FlowService {
     );
 
     const getUserStarted = Date.now();
-    this.logger.debug(
-      '[pipeline:flow] awaiting storageService.getUser (Redis cache) — if no log after this, Redis/cache is hanging or unreachable',
-    );
+    this.logger.debug('[pipeline:flow] awaiting storageService.getUser');
     let user = await this.storageService.getUser(senderId, pageConfig.pageId);
     this.logger.debug(
       `[pipeline:flow] storageService.getUser done in ${Date.now() - getUserStarted}ms hasUser=${!!user}`,
@@ -608,7 +606,7 @@ export class FlowService {
 
         return {
           nextFlowId: value ? Flow.CONTACT_CONSENT_APPROVED : Flow.CONTACT_CONSENT_DENIED,
-        };  
+        };
       }
 
     }
