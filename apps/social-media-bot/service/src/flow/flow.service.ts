@@ -90,11 +90,14 @@ export class FlowService {
     }
 
     if (user && user.shareUserInfo) {
-      user = await this.storageService.setLocation(
+      const userWithLocation = await this.storageService.setLocation(
         senderId,
         pageConfig.pageId,
         profile.locale,
       );
+      if (userWithLocation) {
+        user = userWithLocation;
+      }
       this.logger.debug('[pipeline:flow] setLocation done');
     }
 
@@ -231,6 +234,9 @@ export class FlowService {
     this.logger.debug(
       `[pipeline:flow] parseUserResponse lastFlowId=${user?.lastFlowId} storyUuid=${user?.storyUuid ?? 'none'}`,
     );
+    if (!user) {
+      return [];
+    }
     const flowElement = this.getFlowElement(user.lastFlowId);
 
     if (!flowElement) {
@@ -631,6 +637,10 @@ export class FlowService {
       this.logger.debug('[pipeline:flow] setShareUserInfoAndSaveStory loaded profile from storage');
     }
 
+    if (!data.profile) {
+      return false;
+    }
+
     if (!supportedLanguages.includes('so')) {
       data.profile = await this.storageService.setShareUserInfo(data.profile);
       this.logger.debug('[pipeline:flow] setShareUserInfo done');
@@ -649,6 +659,10 @@ export class FlowService {
     pageConfig: CommunicatorConfig,
   ): Promise<Array<MessageInterface>> {
     const user = await this.storageService.getUser(senderId, pageId);
+
+    if (!user) {
+      return [];
+    }
 
     const flowIndex = this.flow.findIndex(
       (flow) => flow.flowId === user.lastFlowId,

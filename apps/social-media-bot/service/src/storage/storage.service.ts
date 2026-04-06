@@ -41,8 +41,10 @@ export class StorageService {
   async userExists(
     senderId: string,
     pageId: string,
-  ): Promise<UserRecordInterface> {
-    return await this.cacheManager.get(this.generateKey(senderId, pageId));
+  ): Promise<UserRecordInterface | undefined> {
+    return await this.cacheManager.get<UserRecordInterface>(
+      this.generateKey(senderId, pageId),
+    );
   }
 
   async clearTheDataForParticularSender(profile: UserRecordInterface) {
@@ -56,8 +58,11 @@ export class StorageService {
   async anonimizeUser(
     senderId: string,
     pageId: string,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     const profile = await this.fetchUser(senderId, pageId);
+    if (!profile) {
+      return undefined;
+    }
     const oldFlow = profile.flowResponses;
     const newFlow: UserFlowMessageInterface[] = oldFlow.map(
       (response: UserFlowMessageInterface) => {
@@ -180,14 +185,21 @@ export class StorageService {
       },
     } as UserRecordInterface);
 
-    return this.getUser(senderId, pageConfig.pageId);
+    const user = await this.getUser(senderId, pageConfig.pageId);
+    if (!user) {
+      throw new Error(`createUser: cache miss for ${senderId}`);
+    }
+    return user;
   }
 
   async setAnonymous(
     senderId: string,
     pageId: string,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     const userRecord = await this.fetchUser(senderId, pageId);
+    if (!userRecord) {
+      return undefined;
+    }
     const newUser = {
       ...userRecord,
       user: {
@@ -209,8 +221,11 @@ export class StorageService {
     senderId: string,
     pageId: string,
     profile: UserInterface,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     const userRecord = await this.fetchUser(senderId, pageId);
+    if (!userRecord) {
+      return undefined;
+    }
     const newUser = {
       ...userRecord,
       user: {
@@ -234,7 +249,7 @@ export class StorageService {
   async getUser(
     senderId: string,
     pageId: string,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     return await this.fetchUser(senderId, pageId);
   }
 
@@ -244,6 +259,10 @@ export class StorageService {
     flowId: Flow,
   ): Promise<void> {
     const profile = await this.fetchUser(senderId, pageId);
+
+    if (!profile) {
+      return;
+    }
 
     profile.lastFlowId = flowId;
 
@@ -259,7 +278,7 @@ export class StorageService {
   }): Promise<void> {
     if (!payload.content) return;
 
-    const profile: UserRecordInterface = await this.fetchUser(
+    const profile = await this.fetchUser(
       payload.userId,
       payload.pageId,
     );
@@ -319,7 +338,7 @@ export class StorageService {
   async clearJobs(userId: string, pageId: string): Promise<void> {
     const profile = await this.fetchUser(userId, pageId);
 
-    if (!profile.flowResponses) {
+    if (!profile?.flowResponses) {
       return;
     }
 
@@ -381,6 +400,10 @@ export class StorageService {
     const availableLangs = pageConfig.supportedLanguages;
     const profile = await this.fetchUser(senderId, pageId);
 
+    if (!profile) {
+      return;
+    }
+
     if (availableLangs.find((item) => item.lang === newLang)) {
       profile.lang = newLang;
 
@@ -392,8 +415,12 @@ export class StorageService {
     senderId: string,
     pageId: string,
     firstName: string,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     const profile = await this.fetchUser(senderId, pageId);
+
+    if (!profile) {
+      return undefined;
+    }
 
     profile.user.firstName = firstName;
 
@@ -406,8 +433,12 @@ export class StorageService {
     senderId: string,
     pageId: string,
     gender: string,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     const profile = await this.fetchUser(senderId, pageId);
+
+    if (!profile) {
+      return undefined;
+    }
 
     profile.user.gender = gender;
 
@@ -420,8 +451,12 @@ export class StorageService {
     senderId: string,
     pageId: string,
     age: string,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     const profile = await this.fetchUser(senderId, pageId);
+
+    if (!profile) {
+      return undefined;
+    }
 
     profile.user.age = age;
 
@@ -434,8 +469,12 @@ export class StorageService {
     senderId: string,
     pageId: string,
     disability: string,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     const profile = await this.fetchUser(senderId, pageId);
+
+    if (!profile) {
+      return undefined;
+    }
 
     profile.user.disability = disability;
 
@@ -448,8 +487,12 @@ export class StorageService {
     senderId: string,
     pageId: string,
     location: string,
-  ): Promise<UserRecordInterface> {
+  ): Promise<UserRecordInterface | undefined> {
     const profile = await this.fetchUser(senderId, pageId);
+
+    if (!profile) {
+      return undefined;
+    }
 
     if (profile.user) {
       profile.user.locale = location;
@@ -467,6 +510,10 @@ export class StorageService {
   ): Promise<void> {
     const profile = await this.fetchUser(senderId, pageId);
 
+    if (!profile) {
+      return;
+    }
+
     profile.story = story;
     profile.flowStartedAt = new Date();
 
@@ -479,6 +526,10 @@ export class StorageService {
     additionalInfo: string,
   ): Promise<void> {
     const profile = await this.fetchUser(senderId, pageId);
+
+    if (!profile) {
+      return;
+    }
 
     profile.additionalInfo = additionalInfo;
 
@@ -533,22 +584,10 @@ export class StorageService {
   private async fetchUser(
     senderId: string,
     pageId: string,
-  ): Promise<UserRecordInterface> {
-    const key = this.generateKey(senderId, pageId);
-    this.logger.debug(`[pipeline:storage] cacheManager.get start key=${key}`);
-    const started = Date.now();
-    try {
-      const profile = await this.cacheManager.get(key);
-      this.logger.debug(
-        `[pipeline:storage] cacheManager.get done in ${Date.now() - started}ms hit=${!!profile}`,
-      );
-      return profile;
-    } catch (err) {
-      this.logger.error(
-        `[pipeline:storage] cacheManager.get failed after ${Date.now() - started}ms: ${err instanceof Error ? err.message : String(err)}`,
-      );
-      throw err;
-    }
+  ): Promise<UserRecordInterface | undefined> {
+    return await this.cacheManager.get<UserRecordInterface>(
+      this.generateKey(senderId, pageId),
+    );
   }
 
   private async saveUser(userRecord: UserRecordInterface): Promise<void> {
@@ -594,6 +633,9 @@ export class StorageService {
   
   async setUserConsent(senderId: string, pageId: string, consent: string): Promise<void> {
     const user = await this.fetchUser(senderId, pageId);
+    if (!user) {
+      return;
+    }
     user.user.consent = consent;
     await this.saveUser(user);
   }
@@ -605,6 +647,10 @@ export class StorageService {
   ): Promise<void> {
     this.logger.log(`setShareUserInfoManual called: senderId=${senderId}, value=${value}`);
     const profile = await this.fetchUser(senderId, pageId);
+    if (!profile) {
+      this.logger.warn(`setShareUserInfoManual: no profile for ${senderId}/${pageId}`);
+      return;
+    }
     this.logger.log(`Profile before update: shareUserInfo=${profile.shareUserInfo}`);
     profile.shareUserInfo = value;
     await this.saveUser(profile);
