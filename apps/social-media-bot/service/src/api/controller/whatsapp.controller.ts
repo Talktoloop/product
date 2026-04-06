@@ -37,9 +37,6 @@ export class WhatsappController {
       buttonPayload: body.ButtonPayload
     };
     this.logger.log(`Process handleWebhook: ${JSON.stringify(body)}`);
-    this.logger.debug(
-      `[pipeline:webhook] queued async handleWebhook MessageSid=${incomingMessage.messageSid} from=${incomingMessage.from}`,
-    );
 
     void this.webhookService.handleWebhook(incomingMessage).catch((err) => {
       this.logger.error('handleWebhook async error', err?.stack ?? err);
@@ -48,10 +45,6 @@ export class WhatsappController {
 
   @Post('callback')
   async handleCallback(@Body() body: WhatsappMessageRequest): Promise<void> {
-    this.logger.debug(
-      `[pipeline:callback] MessageSid=${body.MessageSid} status=${body.MessageStatus} ErrorCode=${body.ErrorCode ?? 'none'}`,
-    );
-
     const statusCallback: WhatsappStatusCallback = {
       smsSid: body.SmsSid,
       recipientId: body.To,
