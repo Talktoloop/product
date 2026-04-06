@@ -20,7 +20,7 @@
         *ngIf="statisticsBeta"
         class="nav-li"
       >
-        <a href="https://meta.talktoloop.org/public/dashboard/5708c729-6c87-4b9e-a064-624b2853c62d?age_group=&channel=&country=&disability=&feedback_type=&gender_group=&minority_group=&organization=&submission_date=&tab=4-overview&thematic_area=" target="_blank" tabindex="0"
+        <a [href]="metabaseStoriesDashboardUrl" target="_blank" rel="noopener noreferrer" tabindex="0"
           >{{ 'statistics.navigation.stories' | translate }}&nbsp;
         </a>
         <app-expand-more-icon

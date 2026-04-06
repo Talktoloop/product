@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { CONFIG } from '@app/core/services/config/config.service';
 import { UIService } from '@app/core/services/ui/ui.service';
 import { merge } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -33,6 +34,8 @@ export class SubnavigationBarComponent extends BaseComponent implements OnInit {
     return this._routes;
   }
 
+  readonly metabaseStoriesDashboardUrl = CONFIG.metabaseStoriesDashboardUrl;
+
   _routes: SubNavigationRoute[];
   _isFirstRoutesFetch = true;
 
@@ -41,7 +44,6 @@ export class SubnavigationBarComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.statisticsBeta)
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),

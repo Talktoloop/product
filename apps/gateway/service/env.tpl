@@ -54,6 +54,10 @@ AWS_S3_BUCKET=ivrr-development
 INNGEST_SIGNING_KEY=
 INNGEST_EVENT_KEY=
 
+# Metabase static embedding (override to match your Metabase base URL + embedding secret)
+METABASE_SITE_URL=http://localhost:3000
+METABASE_SECRET_KEY=
+
 # Azure Speech — used by Inngest transcribe worker
 AZURE_SPEECH_KEY=
 # Optional JSON array, e.g. ["so-SO"]
