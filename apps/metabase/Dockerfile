@@ -1,4 +1,4 @@
-FROM metabase/metabase:latest as final
+FROM metabase/metabase:v0.56.4 AS final
 
 ARG MB_DB_DBNAME
 ARG MB_DB_PORT
