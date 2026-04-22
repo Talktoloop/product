@@ -19,7 +19,6 @@ export class ApiClientService {
   ) {}
 
   async test(): Promise<boolean> {
-    console.log('send message testToGateway');
     return lastValueFrom(
       this.clientProxy
         .send({ cmd: 'testToGateway' }, {})
@@ -40,7 +39,6 @@ export class ApiClientService {
   }
 
   async testInternal(): Promise<boolean> {
-    console.log('send message testInternal');
     return lastValueFrom(
       this.clientProxy
         .send({ cmd: 'testInternal' }, {})
@@ -90,7 +88,6 @@ export class ApiClientService {
         )
         .toPromise();
 
-      this.logger.debug(`Story sent successfully: ${JSON.stringify(result)}`);
       return result;
     } catch (error) {
       this.logger.error(
