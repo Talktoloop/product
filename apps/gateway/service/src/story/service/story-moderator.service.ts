@@ -602,6 +602,7 @@ export class StoryModeratorService {
     story: StoryEntity,
     data: UpdateTranscriptionDto,
   ): Promise<StoryEntity | void> {
+    this.logger.debug(`[updateStoryTranscription] storyId=${story.id} hasEditedContent=${!!data.editedContent} hasContent=${!!data.content}`);
     console.log(data.content, data.editedContent);
     if (data.editedContent && data.editedContent.length > 0) {
       let historicalContent = await this.storyHistoricalTranslationModeratorService.findHistoricaloriginalContentForStory(story, {
