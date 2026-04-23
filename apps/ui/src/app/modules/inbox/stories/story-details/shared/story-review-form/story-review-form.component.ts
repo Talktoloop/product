@@ -160,6 +160,7 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
     this.setOrganisations();
     this.setThematics();
     this.invites = this.organisationService.getInvites(this.storyDetailsService.story.id);
+    console.log('[StoryReviewFormComponent] init', { storyId: this.storyDetailsService.story.id, channel: this.storyDetailsService.story.channel });
 
     this.storyForm.get('languageControl').setValue(this.storyDetailsService.story.language);
     this.storyForm.get('locationControl').setValue(this.storyDetailsService.story.regionId);
