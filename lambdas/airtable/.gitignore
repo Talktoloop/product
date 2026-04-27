@@ -1,0 +1,15 @@
+# Build-time copies of shared/ produced by buildspec.yml
+authorizer/shared/
+user_update/shared/
+user_invite/shared/
+user_accept/shared/
+user_reject/shared/
+user_suspend/shared/
+user_unsuspend/shared/
+organisation_create/shared/
+organisation_update/shared/
+organisation_link/shared/
+
+# npm
+**/node_modules/
+**/package-lock.json
