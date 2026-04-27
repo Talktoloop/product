@@ -16,8 +16,9 @@ scheduler/
 │   ├── constants/
 │   │   └── mailjet-templates.js
 │   └── services/
-│       ├── db.js
-│       └── mailjet.js
+│       ├── secrets.js   ← AWS Secrets Manager resolver (cold-start cache)
+│       ├── db.js        ← resolves SECRETS_DB_USERNAME / SECRETS_DB_PASSWORD
+│       └── mailjet.js   ← resolves SECRETS_MAILJET_API_KEY / SECRETS_MAILJET_API_SECRET
 ├── registration_scheduler/
 ├── loop_advocate_scheduler/
 ├── ACTIVATION.md
@@ -30,16 +31,23 @@ Same as `airtable/`: each Lambda has its own image, the `buildspec.yml` copies `
 
 ## Environment variables
 
-| Variable | Source | Used by |
+Two kinds of env vars:
+
+- **Plain values** — set directly by Terraform (DB host, schedule interval, etc.)
+- **Secret ARN references** — env var name prefixed with `SECRETS_`, value is the AWS Secrets Manager ARN. Resolved at Lambda cold-start by [shared/services/secrets.js](shared/services/secrets.js).
+
+| Variable | Kind | Used by |
 |---|---|---|
-| `DB_HOST`, `DB_PORT`, `DB_DATABASE` | Terraform output (RDS MySQL) | Both |
-| `DB_USERNAME`, `DB_PASSWORD` | Secrets Manager ARN | Both |
-| `MAILJET_API_KEY`, `MAILJET_API_SECRET` | Secrets Manager ARN | Both |
-| `MAILJET_SENDER_EMAIL` | Plain env var | Both |
-| `MAILJET_SENDER_NAME` | Plain env var (optional, defaults to `Loop`) | Both |
-| `TRIGGER_INTERVAL_HOURS` | Plain env var (e.g. `"4"`) | Both — must match EventBridge schedule |
-| `SHOULD_REGISTRATION_EMAILS_BE_SEND` | Plain env var (`"true"`/`"false"`) | `registration_scheduler` — kill switch |
-| `LOOP_ADVOCATE_BETA_RECIPIENTS` | Plain env var (comma-separated emails) | `loop_advocate_scheduler` — empty string = send to all |
+| `DB_HOST`, `DB_PORT`, `DB_DATABASE` | Plain (Terraform output from RDS MySQL) | Both |
+| `SECRETS_DB_USERNAME`, `SECRETS_DB_PASSWORD` | Secret ARN | Both |
+| `SECRETS_MAILJET_API_KEY`, `SECRETS_MAILJET_API_SECRET` | Secret ARN | Both |
+| `MAILJET_SENDER_EMAIL` | Plain | Both |
+| `MAILJET_SENDER_NAME` | Plain (optional, defaults to `Loop`) | Both |
+| `TRIGGER_INTERVAL_HOURS` | Plain (e.g. `"4"`) | Both — must match EventBridge schedule |
+| `SHOULD_REGISTRATION_EMAILS_BE_SEND` | Plain (`"true"`/`"false"`) | `registration_scheduler` — kill switch |
+| `LOOP_ADVOCATE_BETA_RECIPIENTS` | Plain (comma-separated emails) | `loop_advocate_scheduler` — empty string = send to all |
+
+The Lambda execution role must include `secretsmanager:GetSecretValue` for each ARN it resolves.
 
 ## Triggers (currently NOT wired up)
 
