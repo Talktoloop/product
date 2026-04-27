@@ -1,30 +1,32 @@
 const axios = require('axios');
 const rateLimit = require('axios-rate-limit');
+const { resolveSecret } = require('./secrets');
 const { logError } = require('../helpers/logger');
 const { getCurrentDateInCustomFormat } = require('../helpers/date-mapper');
 
+const httpClient = rateLimit(axios.create(), {
+  maxRequests: 5,
+  perMilliseconds: 1000,
+});
+
+async function authHeaders() {
+  const apiKey = await resolveSecret('SECRETS_AIRTABLE_API_KEY');
+  return { Authorization: `Bearer ${apiKey}` };
+}
+
 class AirTableService {
   constructor() {
-    this.apiKey = process.env.AIRTABLE_API_KEY || '';
     this.organisationsUrl = process.env.AIRTABLE_ORGANISATIONS_URL || '';
     this.usersUrl = process.env.AIRTABLE_USERS_URL || '';
     this.countriesUrl = process.env.AIRTABLE_COUNTRIES_URL || '';
-    this.client = rateLimit(axios.create(), {
-      maxRequests: 5,
-      perMilliseconds: 1000,
-    });
-  }
-
-  get authHeaders() {
-    return { Authorization: `Bearer ${this.apiKey}` };
   }
 
   async updateOrganisationId(airTableId, organisationId) {
     try {
-      return await this.client.patch(
+      return await httpClient.patch(
         `${this.organisationsUrl}/${airTableId}`,
         { fields: { ID: organisationId } },
-        { headers: this.authHeaders },
+        { headers: await authHeaders() },
       );
     } catch (error) {
       logError('Airtable update organisation id error', error);
@@ -41,8 +43,8 @@ class AirTableService {
   async getOrganisationInfoByAirTableId(airTableId) {
     try {
       if (!airTableId) return {};
-      const response = await this.client.get(`${this.organisationsUrl}/${airTableId}`, {
-        headers: this.authHeaders,
+      const response = await httpClient.get(`${this.organisationsUrl}/${airTableId}`, {
+        headers: await authHeaders(),
       });
       const fields = (response && response.data && response.data.fields) || {};
       return {
@@ -58,9 +60,9 @@ class AirTableService {
 
   async getAirTableOrganisationData(organisationId) {
     try {
-      const response = await this.client.get(
+      const response = await httpClient.get(
         `${this.organisationsUrl}?filterByFormula=FIND('${organisationId}', {ID})`,
-        { headers: this.authHeaders },
+        { headers: await authHeaders() },
       );
       const records = (response.data && response.data.records) || [];
       const mapped = records.map((record) => ({
@@ -81,9 +83,9 @@ class AirTableService {
 
   async getAirTableUserData(userId) {
     try {
-      const response = await this.client.get(
+      const response = await httpClient.get(
         `${this.usersUrl}?filterByFormula=FIND('${userId}', {ID})`,
-        { headers: this.authHeaders },
+        { headers: await authHeaders() },
       );
       const records = (response.data && response.data.records) || [];
       const mapped = records.map((record) => ({
@@ -107,8 +109,8 @@ class AirTableService {
 
   async deleteAirTableOrganisation(airTableId) {
     try {
-      return await this.client.delete(`${this.organisationsUrl}/${airTableId}`, {
-        headers: this.authHeaders,
+      return await httpClient.delete(`${this.organisationsUrl}/${airTableId}`, {
+        headers: await authHeaders(),
       });
     } catch (error) {
       logError('Airtable delete organisation error', error);
@@ -125,10 +127,10 @@ class AirTableService {
           [fieldToUpdate]: organisationAirTableId ? [organisationAirTableId] : null,
         };
         try {
-          await this.client.patch(
+          await httpClient.patch(
             `${this.usersUrl}/${userAirTableId}`,
             { fields },
-            { headers: this.authHeaders },
+            { headers: await authHeaders() },
           );
         } catch (error) {
           logError(`Airtable ${fieldToUpdate} update error`, error);
@@ -142,10 +144,10 @@ class AirTableService {
       const fields = { Name: organisationName };
       if (organisationCountry) fields.Country = [organisationCountry];
       if (organisationAcronym) fields.Acronym = organisationAcronym;
-      return await this.client.patch(
+      return await httpClient.patch(
         `${this.organisationsUrl}/${airTableId}`,
         { fields },
-        { headers: this.authHeaders },
+        { headers: await authHeaders() },
       );
     } catch (error) {
       logError('Airtable update organisation data error', error);
@@ -154,8 +156,8 @@ class AirTableService {
 
   async getCountryNameByAirTableId(airTableId) {
     try {
-      const response = await this.client.get(`${this.countriesUrl}/${airTableId}`, {
-        headers: this.authHeaders,
+      const response = await httpClient.get(`${this.countriesUrl}/${airTableId}`, {
+        headers: await authHeaders(),
       });
       return response && response.data && response.data.fields && response.data.fields.Name;
     } catch (error) {
@@ -165,9 +167,9 @@ class AirTableService {
 
   async findCountryIdByName(countryName) {
     try {
-      const response = await this.client.get(
+      const response = await httpClient.get(
         `${this.countriesUrl}?filterByFormula=FIND('${countryName}', {Name})`,
-        { headers: this.authHeaders },
+        { headers: await authHeaders() },
       );
       const records = (response.data && response.data.records) || [];
       return records[0] && records[0].id;
@@ -182,10 +184,10 @@ class AirTableService {
       const data = await this.getAirTableOrganisationData(organisationId);
       const airTableId = data && data.airTableId;
       if (!airTableId) return;
-      await this.client.patch(
+      await httpClient.patch(
         `${this.organisationsUrl}/${airTableId}`,
         { fields: { [fieldToUpdate]: count } },
-        { headers: this.authHeaders },
+        { headers: await authHeaders() },
       );
     } catch (error) {
       logError(`Airtable update number of ${column} error`, error);
@@ -194,7 +196,7 @@ class AirTableService {
 
   async updateDataAfterReInvite(airTableId) {
     try {
-      return await this.client.patch(
+      return await httpClient.patch(
         `${this.usersUrl}/${airTableId}`,
         {
           fields: {
@@ -202,7 +204,7 @@ class AirTableService {
             'Date of invitation': getCurrentDateInCustomFormat(),
           },
         },
-        { headers: this.authHeaders },
+        { headers: await authHeaders() },
       );
     } catch (error) {
       logError('Airtable update data after re-invite failed', error);
@@ -211,10 +213,10 @@ class AirTableService {
 
   async updateUser(airTableId, data) {
     try {
-      return await this.client.patch(
+      return await httpClient.patch(
         `${this.usersUrl}/${airTableId}`,
         { fields: data },
-        { headers: this.authHeaders },
+        { headers: await authHeaders() },
       );
     } catch (error) {
       logError('Airtable update user failed', error);
