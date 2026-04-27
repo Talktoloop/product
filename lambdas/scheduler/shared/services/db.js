@@ -1,28 +1,43 @@
 const mysql = require('mysql2');
+const { resolveSecret } = require('./secrets');
 const { logError } = require('../helpers/logger');
 
-class DbService {
-  constructor() {
-    this.pool = mysql.createPool({
-      host: process.env.DB_HOST,
-      user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306,
-    });
-  }
+let _poolPromise = null;
 
+async function getPool() {
+  if (!_poolPromise) {
+    _poolPromise = (async () => {
+      const [user, password] = await Promise.all([
+        resolveSecret('SECRETS_DB_USERNAME'),
+        resolveSecret('SECRETS_DB_PASSWORD'),
+      ]);
+      return mysql.createPool({
+        host: process.env.DB_HOST,
+        user,
+        password,
+        database: process.env.DB_DATABASE,
+        port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306,
+      });
+    })();
+  }
+  return _poolPromise;
+}
+
+async function query(sql, params) {
+  const pool = await getPool();
+  return pool.promise().query(sql, params);
+}
+
+class DbService {
   async getRegisteredUsers() {
     try {
       const twoMonthsAgo = new Date();
       twoMonthsAgo.setMonth(new Date().getMonth() - 2);
 
-      const [rows] = await this.pool
-        .promise()
-        .query(
-          'SELECT email, first_name, registration_date FROM user WHERE registration_date >= ?',
-          [twoMonthsAgo],
-        );
+      const [rows] = await query(
+        'SELECT email, first_name, registration_date FROM user WHERE registration_date >= ?',
+        [twoMonthsAgo],
+      );
       return rows || [];
     } catch (error) {
       logError('Get registered users database error', error);
@@ -35,7 +50,7 @@ class DbService {
       const oneMonthAgo = new Date();
       oneMonthAgo.setMonth(new Date().getMonth() - 1);
 
-      const query = `
+      const sql = `
         SELECT email, first_name, user_token.created_at AS created_at
         FROM user
         JOIN user_token ON user.id = user_token.user_id
@@ -45,7 +60,7 @@ class DbService {
         FROM user u
         JOIN organisation_token ot ON u.organisation_id = ot.organisation_id
         WHERE ot.created_at >= ?`;
-      const [rows] = await this.pool.promise().query(query, [oneMonthAgo, oneMonthAgo]);
+      const [rows] = await query(sql, [oneMonthAgo, oneMonthAgo]);
       return rows || [];
     } catch (error) {
       logError('Get loop advocate users database error', error);
@@ -58,7 +73,7 @@ class DbService {
       const twoDaysAgo = new Date();
       twoDaysAgo.setDate(new Date().getDate() - 2);
 
-      const query = `
+      const sql = `
         SELECT u.first_name, u.email, ua.timestamp AS created_at
         FROM user_export_csv_activity ua
         JOIN user u ON u.id = ua.user_id
@@ -72,7 +87,7 @@ class DbService {
             FROM user_export_csv_activity
             WHERE user_id = u.id
           )`;
-      const [rows] = await this.pool.promise().query(query, [twoDaysAgo, twoDaysAgo]);
+      const [rows] = await query(sql, [twoDaysAgo, twoDaysAgo]);
       return rows || [];
     } catch (error) {
       logError('Get loop advocate potential members database error', error);
