@@ -13,8 +13,9 @@ airtable/
 │   │   ├── logger.js
 │   │   └── date-mapper.js
 │   └── services/
-│       ├── db.js            ← MySQL pool + DB queries
-│       ├── airtable.js      ← AirTable REST client (axios + rate limiter)
+│       ├── secrets.js       ← AWS Secrets Manager resolver (cold-start cache)
+│       ├── db.js            ← MySQL pool + DB queries (resolves SECRETS_DB_USERNAME/PASSWORD)
+│       ├── airtable.js      ← AirTable REST client (resolves SECRETS_AIRTABLE_API_KEY)
 │       ├── redis.js         ← Redis pub/sub helper (used by user_invite)
 │       └── cognito.js       ← Cognito admin operations
 ├── authorizer/              ← API Gateway custom authorizer (Basic token)
@@ -52,19 +53,23 @@ Local dev: symlink `shared` into the Lambda dir (`ln -s ../shared shared`) befor
 
 ## Environment variables
 
-Standardised on UPPERCASE_SNAKE_CASE matching the `cloud/` Terraform pattern. All values are injected by Terraform at deploy time — secrets via Secrets Manager ARNs, infrastructure values as plain env vars.
+Two kinds of env vars:
 
-| Variable | Source | Used by |
+- **Plain values** — set directly by Terraform at deploy time (DB host, AirTable URLs, etc.)
+- **Secret ARN references** — env var name prefixed with `SECRETS_`, value is the AWS Secrets Manager ARN. Resolved at Lambda cold-start by [shared/services/secrets.js](shared/services/secrets.js); cached per-ARN inside the execution context for the lifetime of the warm container.
+
+| Variable | Kind | Used by |
 |---|---|---|
-| `DB_HOST`, `DB_PORT`, `DB_DATABASE` | Terraform output (RDS MySQL) | All handlers |
-| `DB_USERNAME`, `DB_PASSWORD` | Secrets Manager ARN | All handlers |
-| `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`, `REDIS_SCHEMA` | Terraform output (ElastiCache) | `user_invite` |
-| `AIRTABLE_API_KEY` | Secrets Manager ARN | All handlers except `authorizer`, `user_suspend`, `user_unsuspend` |
-| `AIRTABLE_ORGANISATIONS_URL` | Plain env var | All handlers using AirTable |
-| `AIRTABLE_USERS_URL` | Plain env var | All handlers using AirTable |
-| `AIRTABLE_COUNTRIES_URL` | Plain env var | `organisation_create` |
-| `BASIC_TOKEN` | Secrets Manager ARN | `authorizer` |
-| `COGNITO_USER_POOL_ID`, `COGNITO_REGION` | Plain env var | `user_suspend`, `user_unsuspend` |
+| `DB_HOST`, `DB_PORT`, `DB_DATABASE` | Plain (Terraform output from RDS MySQL) | All DB handlers |
+| `SECRETS_DB_USERNAME`, `SECRETS_DB_PASSWORD` | Secret ARN | All DB handlers |
+| `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`, `REDIS_SCHEMA` | Plain (Terraform output from ElastiCache) | `user_invite` |
+| `AIRTABLE_ORGANISATIONS_URL`, `AIRTABLE_USERS_URL` | Plain | All handlers using AirTable |
+| `AIRTABLE_COUNTRIES_URL` | Plain | `organisation_create` |
+| `SECRETS_AIRTABLE_API_KEY` | Secret ARN | All handlers using AirTable |
+| `SECRETS_BASIC_TOKEN` | Secret ARN | `authorizer` |
+| `COGNITO_USER_POOL_ID`, `COGNITO_REGION` | Plain | `user_suspend`, `user_unsuspend` |
+
+The Lambda execution role must include `secretsmanager:GetSecretValue` for each ARN it resolves.
 
 ## Triggers (currently NOT wired up)
 
