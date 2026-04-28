@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_URL
+      - echo Copying shared code into build context...
+      - cp -r ${CODEBUILD_SRC_DIR}/lambdas/airtable_sync/shared ${CODEBUILD_SRC_DIR}/${APP_PATH}/shared
+
+  build:
+    commands:
+      - echo Building the Docker image...
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-8)
+      - docker build ${APP_PATH}/. --tag $ECR_URL:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo Pushing the Docker image to Amazon ECR with tag $IMAGE_TAG...
+      - docker push $ECR_URL:$IMAGE_TAG
+      - echo Deploying lambda...
+      - aws s3 cp s3://${ARTIFACTS_BUCKET}/deploy_lambda.sh deploy_lambda.sh
+      - chmod +x deploy_lambda.sh
+      - ./deploy_lambda.sh
+
+artifacts:
+  files: '**/*'
