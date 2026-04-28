@@ -198,3 +198,249 @@ inngest-dashboard-dev:
       changes:
         - apps/inngest-dashboard/**/*
   stage: deploy
+
+# --- AirTable Lambdas ---
+
+lambda-airtable-authorizer-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_AUTHORIZER_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/authorizer/**/*
+  stage: deploy
+
+lambda-airtable-user-update-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_UPDATE_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/user_update/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+lambda-airtable-user-invite-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_INVITE_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/user_invite/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+lambda-airtable-user-accept-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_ACCEPT_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/user_accept/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+lambda-airtable-user-reject-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_REJECT_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/user_reject/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+lambda-airtable-user-suspend-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_SUSPEND_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/user_suspend/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+lambda-airtable-user-unsuspend-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_UNSUSPEND_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/user_unsuspend/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+lambda-airtable-organisation-create-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_ORGANISATION_CREATE_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/organisation_create/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+lambda-airtable-organisation-update-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_ORGANISATION_UPDATE_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/organisation_update/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+lambda-airtable-organisation-link-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_ORGANISATION_LINK_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable/organisation_link/**/*
+        - lambdas/airtable/shared/**/*
+  stage: deploy
+
+# --- Scheduler Lambdas ---
+
+lambda-scheduler-registration-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_REGISTRATION_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/scheduler/registration_scheduler/**/*
+        - lambdas/scheduler/shared/**/*
+  stage: deploy
+
+lambda-scheduler-loop-advocate-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_LOOP_ADVOCATE_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/scheduler/loop_advocate_scheduler/**/*
+        - lambdas/scheduler/shared/**/*
+  stage: deploy
+
+# =============================================================================
+# Session 3 — translation, transcription, airtable_sync, 3 redis schedulers
+# =============================================================================
+
+# --- Translation Lambdas ---
+
+lambda-translation-translate-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_TRANSLATION_TRANSLATE_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/translation/translate/**/*
+        - lambdas/translation/shared/**/*
+  stage: deploy
+
+lambda-translation-translate-history-content-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_TRANSLATION_TRANSLATE_HISTORY_CONTENT_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/translation/translate_history_content/**/*
+        - lambdas/translation/shared/**/*
+  stage: deploy
+
+# --- Transcription Lambda ---
+
+lambda-transcription-transcribe-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_TRANSCRIPTION_TRANSCRIBE_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/transcription/transcribe/**/*
+        - lambdas/transcription/shared/**/*
+  stage: deploy
+
+# --- AirTable Sync Lambdas ---
+
+lambda-airtable-sync-case-manager-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_SYNC_CASE_MANAGER_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable_sync/case_manager_sync/**/*
+        - lambdas/airtable_sync/shared/**/*
+  stage: deploy
+
+lambda-airtable-sync-organisations-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_SYNC_ORGANISATIONS_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable_sync/organisations_sync/**/*
+        - lambdas/airtable_sync/shared/**/*
+  stage: deploy
+
+lambda-airtable-sync-organisation-user-save-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_SYNC_ORGANISATION_USER_SAVE_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/airtable_sync/organisation_user_save/**/*
+        - lambdas/airtable_sync/shared/**/*
+  stage: deploy
+
+# --- Redis-pub-sub Scheduler Lambdas (Session 3) ---
+
+lambda-scheduler-ivrr-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_IVRR_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/scheduler/ivrr_scheduler/**/*
+        - lambdas/scheduler/shared/**/*
+  stage: deploy
+
+lambda-scheduler-ivrr-clear-history-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_IVRR_CLEAR_HISTORY_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/scheduler/ivrr_clear_history/**/*
+        - lambdas/scheduler/shared/**/*
+  stage: deploy
+
+lambda-scheduler-gateway-dev:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_GATEWAY_PIPELINE_NAME}
+  extends: [.deploy-dev]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      changes:
+        - lambdas/scheduler/gateway_scheduler/**/*
+        - lambdas/scheduler/shared/**/*
+  stage: deploy
