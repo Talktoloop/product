@@ -12,7 +12,7 @@ const { logInfo, logError } = require('../helpers/logger');
 
 class RedisProvider {
   constructor() {
-    const schema = process.env.REDIS_SCHEMA || 'redis';
+    const schema = process.env.REDIS_SCHEMA || 'rediss';
     const password = process.env.REDIS_PASSWORD || '';
     const host = process.env.REDIS_HOST || '';
     const port = process.env.REDIS_PORT || '6379';
