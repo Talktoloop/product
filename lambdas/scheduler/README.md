@@ -18,7 +18,7 @@ scheduler/
 │   └── services/
 │       ├── secrets.js   ← AWS Secrets Manager resolver (cold-start cache)
 │       ├── db.js        ← resolves SECRETS_DB_USERNAME / SECRETS_DB_PASSWORD
-│       └── mailjet.js   ← resolves SECRETS_MAILJET_API_KEY / SECRETS_MAILJET_API_SECRET
+│       └── mailjet.js   ← reads MAILJET_API_KEY (plain) + resolves SECRETS_MAILJET_API_SECRET
 ├── registration_scheduler/
 ├── loop_advocate_scheduler/
 ├── ACTIVATION.md
@@ -40,7 +40,8 @@ Two kinds of env vars:
 |---|---|---|
 | `DB_HOST`, `DB_PORT`, `DB_DATABASE` | Plain (Terraform output from RDS MySQL) | Both |
 | `SECRETS_DB_USERNAME`, `SECRETS_DB_PASSWORD` | Secret ARN | Both |
-| `SECRETS_MAILJET_API_KEY`, `SECRETS_MAILJET_API_SECRET` | Secret ARN | Both |
+| `MAILJET_API_KEY` | Plain (mirrors gateway pattern) | Both |
+| `SECRETS_MAILJET_API_SECRET` | Secret ARN | Both |
 | `MAILJET_SENDER_EMAIL` | Plain | Both |
 | `MAILJET_SENDER_NAME` | Plain (optional, defaults to `Loop`) | Both |
 | `TRIGGER_INTERVAL_HOURS` | Plain (e.g. `"4"`) | Both — must match EventBridge schedule |
