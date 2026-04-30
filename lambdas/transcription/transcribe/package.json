@@ -1,0 +1,20 @@
+{
+  "name": "transcription_transcribe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-lambda": "^3.658.0",
+    "@aws-sdk/client-s3": "^3.658.0",
+    "@aws-sdk/client-secrets-manager": "^3.658.0",
+    "@aws-sdk/client-transcribe": "^3.658.0",
+    "@aws-sdk/s3-request-presigner": "^3.658.0",
+    "axios": "^1.7.0",
+    "music-metadata": "^7.14.0",
+    "mysql2": "^3.11.0",
+    "uuid": "^10.0.0"
+  }
+}
