@@ -1,0 +1,7 @@
+# Build-time copies of shared/ produced by buildspec.yml
+translate/shared/
+translate_history_content/shared/
+
+# npm
+**/node_modules/
+**/package-lock.json
