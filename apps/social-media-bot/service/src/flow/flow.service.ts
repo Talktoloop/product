@@ -22,11 +22,7 @@ import { TwilioTemplateKey } from '../common/enum/twilio-template-key.enum';
 
 @Injectable()
 export class FlowService {
-<<<<<<< ours
   private flow: Array<FlowRecordInterface> = [];
-=======
-  private readonly logger: Logger = new Logger(FlowService.name);
->>>>>>> theirs
 
   constructor(
     private readonly storageService: StorageService,
@@ -192,18 +188,10 @@ export class FlowService {
     incomingMessages: Messages,
   ): Promise<Array<MessageInterface>> {
     const user = await this.storageService.getUser(senderId, pageConfig.pageId);
-<<<<<<< ours
     if (!user) {
       return [];
     }
     const flowElement = this.getFlowElement(user.lastFlowId);
-=======
-    const flow = await createFlowArray(
-      pageConfig,
-      user?.lang ?? pageConfig.defaultLanguage,
-    );
-    const flowElement = this.getFlowElement(user.lastFlowId, flow);
->>>>>>> theirs
 
     if (!flowElement) {
       return [];
@@ -567,15 +555,11 @@ export class FlowService {
         data.pageId,
       );
     }
-<<<<<<< ours
 
     if (!data.profile) {
       return false;
     }
 
-=======
-    
->>>>>>> theirs
     if (!supportedLanguages.includes('so')) {
       data.profile = await this.storageService.setShareUserInfo(data.profile);
     }
@@ -594,15 +578,11 @@ export class FlowService {
       user?.lang ?? pageConfig.defaultLanguage,
     );
 
-<<<<<<< ours
     if (!user) {
       return [];
     }
 
     const flowIndex = this.flow.findIndex(
-=======
-    const flowIndex = flow.findIndex(
->>>>>>> theirs
       (flow) => flow.flowId === user.lastFlowId,
     );
 
