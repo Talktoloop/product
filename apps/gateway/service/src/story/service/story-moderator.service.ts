@@ -93,6 +93,7 @@ import { administrativeDataPathMapper } from '../../country/mapper/administrativ
 import { AirTableOrganisationService } from '../../airtable-client/service/airtable-organisation.service';
 import { OrganisationRepository } from '../../organisation/organisation.repository';
 import { RejectReasonService } from '../../lexicon/service/reject-reason.service';
+import { getRejectReasonLocalizedText } from '../../lexicon/constants/reject-reason-localized-text.constant';
 import { lastValueFrom } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';
 import { StoryStatus } from '../../messenger/enum/story-status.enum';
@@ -1074,6 +1075,31 @@ export class StoryModeratorService {
     return !!difference.length || actualPinnes.length !== newPinnes.length;
   }
 
+  private localizeRejectContent(
+    rejectContent: RejectContentDto,
+    rejectReasons: RejectReasonEntity[],
+    targetLanguageCode: string,
+  ): RejectContentDto {
+    if (!rejectContent?.reasonTexts?.length) return rejectContent;
+    if (!targetLanguageCode) return rejectContent;
+
+    const localizedReasonTexts = rejectReasons?.map((reason, index) => {
+      const fallbackText = rejectContent.reasonTexts[index];
+      return (
+        getRejectReasonLocalizedText(reason.code, targetLanguageCode) ||
+        fallbackText
+      );
+    });
+
+    return {
+      ...rejectContent,
+      notificationLanguage: targetLanguageCode,
+      reasonTexts: localizedReasonTexts?.length
+        ? localizedReasonTexts
+        : rejectContent.reasonTexts,
+    };
+  }
+
   async checkStoryAndReject(
     storyId: string,
     rejectContent: RejectContentDto,
@@ -1105,16 +1131,28 @@ export class StoryModeratorService {
 
     this.validateReasonsForChannels(story, rejectReasons);
 
+    const targetLanguageCode =
+      story.language?.code || rejectContent.notificationLanguage;
+    const rejectContentLocalized = this.localizeRejectContent(
+      rejectContent,
+      rejectReasons,
+      targetLanguageCode,
+    );
+
     const result = await this.rejectStory(
       user ? user?.id : '',
       story,
-      rejectContent,
+      rejectContentLocalized,
       rejectReasons,
     );
     const success = !!result?.id;
 
     if (success && notify) {
-      this.handleActionsAfterRejection(story, rejectContent, rejectReasons);
+      this.handleActionsAfterRejection(
+        story,
+        rejectContentLocalized,
+        rejectReasons,
+      );
     }
 
     return success;
@@ -1193,6 +1231,7 @@ export class StoryModeratorService {
         story,
         StoryStatus.REJECTED,
         this.messengerService.prepareNotificatonReasonText(rejectContent),
+        story.language?.code || rejectContent.notificationLanguage,
       );
     }
   }
