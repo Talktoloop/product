@@ -413,11 +413,6 @@ export class StoryReviewFormComponent extends BaseComponent implements OnInit {
     this.hasDisabilities = this.storyDetailsService.story.difficulties.length ? true : null;
 
   }
-  isAuthorNameValid(): boolean {
-    const name = (this.storyDetailsService.story?.authorNickname || '').trim();
-    return name.length > 0;
-  }
-
   isAgeValid(): boolean {
     return this.storyDetailsService.story?.age !== null && this.storyDetailsService.story?.age !== undefined;
   }

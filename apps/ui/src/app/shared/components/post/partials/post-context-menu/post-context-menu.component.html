@@ -15,7 +15,7 @@
     <loop-select-option *ngIf="profileService.isAdmin" data-testid="edit" (clicked)="editClicked()" title="">{{
       'admin.contextMenu.edit' | translate
     }}</loop-select-option>
-    <loop-select-option class="report-option" data-testid="report" (clicked)="reportClicked()" title="">{{
+    <loop-select-option data-testid="report" (clicked)="reportClicked()" title="">{{
       'report.submitReport' | translate
     }}</loop-select-option>
   </loop-select>
