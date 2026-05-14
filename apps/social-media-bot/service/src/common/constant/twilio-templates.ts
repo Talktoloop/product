@@ -13,19 +13,19 @@ export const TwilioLocalizedTemplates = {
   fr: {
     [TwilioTemplateKey.CHOOSE_LANG]: 'HX22534a5f0ec9e8da5c3c4d23370c8638',
     [TwilioTemplateKey.MORE_OPTIONS]: 'HX4c358781f77f9f9773c4a8376c93a2b4',
-    [TwilioTemplateKey.PUBLISH_CONSENT]: 'HX1fe781b62220b199949685d8bb11e822',
+    [TwilioTemplateKey.PUBLISH_CONSENT]: 'HX34ba7dce0ed4a93f88de23543f87be42',
     [TwilioTemplateKey.CONTACT_CONSENT]: 'HX19e61d77cd7c3cb85434265b98665378',
     [TwilioTemplateKey.GET_STARTED]: 'HXc2e0c5d40685f5f598c38c7f7b7ba3b9',
-    [TwilioTemplateKey.END_OF_SERVICE]: 'HX965b6025ea3de0aa20209b362e5926d5'
+    [TwilioTemplateKey.END_OF_SERVICE]: 'HX0063d28c5f0d0fd434b8109888501cbc'
   },
 
   ar: {
     [TwilioTemplateKey.CHOOSE_LANG]: 'HX0ec4769f884db762be8014cae5772e17',
     [TwilioTemplateKey.MORE_OPTIONS]: 'HXd4e9ac57d23fb5b284e078cfcb79a0b9',
-    [TwilioTemplateKey.PUBLISH_CONSENT]: 'HXa2a46ede90fd785bbdcf937e0b13e3dd',
-    [TwilioTemplateKey.CONTACT_CONSENT]: 'HXcbbf70295548b75fac629ad7b0297f3c',
-    [TwilioTemplateKey.GET_STARTED]: 'HXc8d3aed81803fb364d953fab54e4bd25',
-    [TwilioTemplateKey.END_OF_SERVICE]: 'HXc07f4f6979b7ec0ddb7c1db5a5dc0bf1'
+    [TwilioTemplateKey.PUBLISH_CONSENT]: 'HX2d8c88414df13bf80180cdf0c2fb54f2',
+    [TwilioTemplateKey.CONTACT_CONSENT]: 'HX489f124075dd3dbf09e9634f016fbad1',
+    [TwilioTemplateKey.GET_STARTED]: 'HX3a03c9077a6b6bfc1ebdef10b2139058',
+    [TwilioTemplateKey.END_OF_SERVICE]: 'HX1d4798021459f20f5656822c1b09094f'
   },
 
   es: {
@@ -40,7 +40,7 @@ export const TwilioLocalizedTemplates = {
   so: {
     [TwilioTemplateKey.CHOOSE_LANG]: 'HX3cd0ed0dea4942ee2ab96230bbbf185d',
     [TwilioTemplateKey.MORE_OPTIONS]: 'HX656258d028549832941f1ed8f3cbadd8',
-    [TwilioTemplateKey.PUBLISH_CONSENT]: 'HX1ab83d28250e67f5ef74fe7b2f8e853d',
+    [TwilioTemplateKey.PUBLISH_CONSENT]: 'HXdd24840597965e4a48fbcb17644d8d0f',
     [TwilioTemplateKey.CONTACT_CONSENT]: 'HXe9693782e3fb90cc294e8e4ed87abe6a',
     [TwilioTemplateKey.GET_STARTED]: 'HX7cc849fe08e81bcf265ce0b64668cc42',
     [TwilioTemplateKey.END_OF_SERVICE]: 'HX82bbe7cf3d1f82e3c1f5c08d59b11b22'
@@ -52,7 +52,7 @@ export const TwilioLocalizedTemplates = {
     [TwilioTemplateKey.PUBLISH_CONSENT]: 'HX54e49333af4def0f650877662915c3b5',
     [TwilioTemplateKey.CONTACT_CONSENT]: 'HX5db373c8fa6353f9f550a1af48cdec58',
     [TwilioTemplateKey.GET_STARTED]: 'HX11c8f65fda1dded71d5239a72fb1b140',
-    [TwilioTemplateKey.END_OF_SERVICE]: 'HXbfda736b94e5b8ab2f18383d2daf4d5c'
+    [TwilioTemplateKey.END_OF_SERVICE]: 'HX8e25bd7f9cacbc1122cb209e43c8a1b3'
   },
 
 } as const;

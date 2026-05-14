@@ -53,8 +53,12 @@ export const unifiedFlow = async (lang: keyof typeof TwilioLocalizedTemplates): 
       flowMessages: [
         {
           type: MessageType.MESSAGE,
-          contentSid: getLocalizedTemplate(lang, TwilioTemplateKey.GET_STARTED),
           translationId: 'PUBLISH_CONSENT_DENIED',
+        },
+        {
+          type: MessageType.MESSAGE,
+          contentSid: getLocalizedTemplate(lang, TwilioTemplateKey.GET_STARTED),
+          translationId: TwilioTemplateKey.GET_STARTED,
           contentVariableName: 'title',
           customHandler: Flow.PUBLISH_CONSENT_DENIED,
           fallbackFlow: Flow.PUBLISH_CONSENT_DENIED,
