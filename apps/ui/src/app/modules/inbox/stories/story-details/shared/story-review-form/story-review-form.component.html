@@ -28,8 +28,7 @@
   <h3 class="story-review-form-section-title">{{ 'story.details.review.form.demographicalInfo' | translate }}</h3>
 
   <!-- Author name -->
-  <app-form-section [required]="true" [heading]="'Author name'" [onlyContent]="true" class="form__section"
-    [isValid]="isAuthorNameValid()" [requiredValidationError]="submittingError">
+  <app-form-section [heading]="'Author name'" [onlyContent]="true" class="form__section">
     <loop-input [showClearBtn]="true" [showCloseIcon]="true"
       [placeholder]="'story.review.authorName.placeholder' | translate"
       [(ngModel)]="storyDetailsService.story.authorNickname" id="authorName" inputmode="text" type="text"></loop-input>
