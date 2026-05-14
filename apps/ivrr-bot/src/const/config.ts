@@ -21,6 +21,7 @@ export const LANG_MAA = 'maa'; // Somalia-Maay
 export const LANG_BND = 'bnd'; // Somali-Banadiri-Marka
 export const LANG_BJU = 'bju'; // Somali-Baajuuni
 export const LANG_BARA = 'bara'; // Somali-Barawani-Chimini
+export const LANG_KIZ = 'kiz'; // Kiziba
 
 /** All languages supported by the IVRR system. Must match keys in recordings config (default.ts). */
 export const AvailableLangs = [
@@ -33,6 +34,7 @@ export const AvailableLangs = [
   LANG_BND,
   LANG_BJU,
   LANG_BARA,
+  LANG_KIZ,
 ];
 export const DEFAULT_LANG = LANG_EN;
 

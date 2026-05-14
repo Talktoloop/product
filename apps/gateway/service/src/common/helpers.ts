@@ -678,6 +678,7 @@ export const addFilterCondition = (
   filter: Record<string, unknown> | StoryFilterAndOrderDto | FilterDto,
   query: SelectQueryBuilder<any>,
   acceptSensitiveStories = false,
+  usePublishedAtForDateFilter = false,
 ): SelectQueryBuilder<any> => {
   if (filter.thematicAreaToFiltration) {
     query = thematicConditionAdd(
@@ -687,6 +688,10 @@ export const addFilterCondition = (
   }
 
   filter = _pick(filter, allowFilters);
+
+  const dateColumn = usePublishedAtForDateFilter
+    ? 'COALESCE(story.published_at, story.createdAt)'
+    : 'story.createdAt';
 
   let idx = 0;
   for (let [key, value] of Object.entries(filter)) {
@@ -707,13 +712,13 @@ export const addFilterCondition = (
       if (acceptSensitiveStories) {
         query.andWhere(
           new Brackets((qb) => {
-            qb.where(`DATE(story.createdAt) >= :from`, {
+            qb.where(`DATE(${dateColumn}) >= :from`, {
               from: parseISO(value),
             }).orWhere('story.createdAt IS NULL');
           }),
         );
       } else {
-        query.andWhere(`DATE(story.createdAt) >= :from`, {
+        query.andWhere(`DATE(${dateColumn}) >= :from`, {
           from: parseISO(value),
         });
       }
@@ -730,13 +735,13 @@ export const addFilterCondition = (
       if (acceptSensitiveStories) {
         query.andWhere(
           new Brackets((qb) => {
-            qb.where(`DATE(story.createdAt) <= :to`, {
+            qb.where(`DATE(${dateColumn}) <= :to`, {
               to: parseISO(value),
             }).orWhere('story.createdAt IS NULL');
           }),
         );
       } else {
-        query.andWhere(`DATE(story.createdAt) <= :to`, {
+        query.andWhere(`DATE(${dateColumn}) <= :to`, {
           to: parseISO(value),
         });
       }

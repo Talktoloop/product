@@ -178,10 +178,13 @@ export class StoryRepository extends Repository<StoryEntity> {
     ]);
 
     if (!isEmpty(filter)) {
+      const isPublishedOnlyList =
+        statuses.length === 1 && statuses[0] === STORY_STATUS.PUBLISHED;
       query = addFilterCondition(
         filter,
         addFilterJoins(query),
         statuses.includes(STORY_STATUS.SENT_TO_CASE_MANAGER),
+        isPublishedOnlyList,
       );
     }
 
