@@ -93,12 +93,7 @@ import { administrativeDataPathMapper } from '../../country/mapper/administrativ
 import { AirTableOrganisationService } from '../../airtable-client/service/airtable-organisation.service';
 import { OrganisationRepository } from '../../organisation/organisation.repository';
 import { RejectReasonService } from '../../lexicon/service/reject-reason.service';
-<<<<<<< ours
 import { getRejectReasonLocalizedText } from '../../lexicon/constants/reject-reason-localized-text.constant';
-=======
-import { googleTranslateText } from '../../inngest/providers/translate.google';
-import { awsTranslateText } from '../../inngest/providers/translate.aws';
->>>>>>> theirs
 import { lastValueFrom } from 'rxjs';
 import { ClientProxy } from '@nestjs/microservices';
 import { StoryStatus } from '../../messenger/enum/story-status.enum';
@@ -1080,7 +1075,6 @@ export class StoryModeratorService {
     return !!difference.length || actualPinnes.length !== newPinnes.length;
   }
 
-<<<<<<< ours
   private localizeRejectContent(
     rejectContent: RejectContentDto,
     rejectReasons: RejectReasonEntity[],
@@ -1096,80 +1090,13 @@ export class StoryModeratorService {
         fallbackText
       );
     });
-=======
-  private async translateTextToLanguage(
-    text: string,
-    targetLanguageCode: string,
-  ): Promise<string> {
-    const trimmed = (text ?? '').trim();
-    if (!trimmed) return trimmed;
-    if (!targetLanguageCode || targetLanguageCode === 'en') return trimmed;
-
-    const sourceLanguageCode = 'en';
-
-    try {
-      if (process.env.GOOGLE_PROJECT_ID) {
-        return (
-          (await googleTranslateText(
-            trimmed,
-            sourceLanguageCode,
-            targetLanguageCode,
-          )) ?? trimmed
-        ).trim();
-      }
-    } catch (error) {
-      this.logger.warn(
-        `Google translate failed, falling back to AWS. target=${targetLanguageCode}`,
-      );
-    }
-
-    try {
-      const result = await awsTranslateText({
-        text: trimmed,
-        sourceLanguageCode,
-        targetLanguageCode,
-      });
-      return result?.translatedText?.trim() || trimmed;
-    } catch (error) {
-      this.logger.warn(
-        `AWS translate failed. Keeping original text. target=${targetLanguageCode}`,
-      );
-      return trimmed;
-    }
-  }
-
-  private async translateRejectContentIfNeeded(
-    rejectContent: RejectContentDto,
-    targetLanguageCode: string,
-  ): Promise<RejectContentDto> {
-    if (!rejectContent?.reasonTexts?.length) return rejectContent;
-    if (!targetLanguageCode || targetLanguageCode === 'en') return rejectContent;
-
-    const translatedReasonTexts = await Promise.all(
-      rejectContent.reasonTexts.map((text) =>
-        this.translateTextToLanguage(text, targetLanguageCode),
-      ),
-    );
-
-    const translatedRationale = rejectContent.rationale
-      ? await this.translateTextToLanguage(
-          rejectContent.rationale,
-          targetLanguageCode,
-        )
-      : rejectContent.rationale;
->>>>>>> theirs
 
     return {
       ...rejectContent,
       notificationLanguage: targetLanguageCode,
-<<<<<<< ours
       reasonTexts: localizedReasonTexts?.length
         ? localizedReasonTexts
         : rejectContent.reasonTexts,
-=======
-      reasonTexts: translatedReasonTexts,
-      rationale: translatedRationale,
->>>>>>> theirs
     };
   }
 
@@ -1206,14 +1133,9 @@ export class StoryModeratorService {
 
     const targetLanguageCode =
       story.language?.code || rejectContent.notificationLanguage;
-<<<<<<< ours
     const rejectContentLocalized = this.localizeRejectContent(
       rejectContent,
       rejectReasons,
-=======
-    const rejectContentLocalized = await this.translateRejectContentIfNeeded(
-      rejectContent,
->>>>>>> theirs
       targetLanguageCode,
     );
 
