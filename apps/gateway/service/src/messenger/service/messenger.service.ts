@@ -321,6 +321,7 @@ export class MessengerService {
     story: StoryEntity,
     messageType: StoryStatus,
     reasonText?: string,
+    notificationLanguage?: string,
   ): Promise<SuccessRO | boolean> {
     if (story?.recipient?.userWantContact === false) {
       return false;
@@ -348,7 +349,8 @@ export class MessengerService {
           { cmd: `sendStoryStatus${messengerType}Notification` },
           {
             language:
-              story.conversation?.language?.code ??
+              notificationLanguage ||
+              story.conversation?.language?.code ||
               messengerConversation?.language?.code,
             senderId: story.recipient?.communicatorId,
             messageType,
