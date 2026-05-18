@@ -22,7 +22,7 @@ exports.handler = async (event) => {
     const airtableRecords = (
       await airtable.list('Organisations', '')
     ).map((record) => ({
-      id: record.fields['ID'],
+      id: record.fields['Loop ID'],
       name: record.fields['Name'],
       airtableId: record.id,
     }));
@@ -93,7 +93,7 @@ async function addMissingData(airtable, db, airtableRecords) {
   if (!missing.length) return;
 
   const mapped = missing.map(({ id, name }) => ({
-    fields: { ID: id, Name: name },
+    fields: { 'Loop ID': id, Name: name },
   }));
 
   for (let i = 0; i < mapped.length; i += 10) {
