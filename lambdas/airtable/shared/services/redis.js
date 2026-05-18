@@ -1,5 +1,6 @@
 const { createClient } = require('redis');
 const { v4: uuidv4 } = require('uuid');
+const { resolveSecret } = require('./secrets');
 const { logInfo, logError } = require('../helpers/logger');
 
 /**
@@ -9,14 +10,16 @@ const { logInfo, logError } = require('../helpers/logger');
  */
 class RedisService {
   constructor() {
-    const schema = process.env.REDIS_SCHEMA || 'rediss';
-    const password = process.env.REDIS_PASSWORD || '';
-    const host = process.env.REDIS_HOST || '';
-    const port = process.env.REDIS_PORT || '6379';
-    this.client = createClient({
-      url: `${schema}://:${password}@${host}:${port}`,
-    });
-    this.connection = this.client.connect();
+    this.connection = (async () => {
+      const schema = process.env.REDIS_SCHEMA || 'rediss';
+      const password = await resolveSecret('SECRETS_REDIS_PASSWORD');
+      const host = process.env.REDIS_HOST || '';
+      const port = process.env.REDIS_PORT || '6379';
+      this.client = createClient({
+        url: `${schema}://:${password}@${host}:${port}`,
+      });
+      await this.client.connect();
+    })();
   }
 
   /**
