@@ -191,7 +191,7 @@ export class FlowService {
     if (!user) {
       return [];
     }
-    const flowElement = this.getFlowElement(user.lastFlowId);
+    const flowElement = this.getFlowElement(user.lastFlowId, this.flow);
 
     if (!flowElement) {
       return [];
@@ -249,7 +249,7 @@ export class FlowService {
     }
 
     if (nextFlowId) {
-      let nextFlowElement = this.getFlowElement(nextFlowId, flow);
+      let nextFlowElement = this.getFlowElement(nextFlowId, this.flow);
 
       if (!nextFlowElement) {
         nextFlowElement = EMPTY_FLOW;

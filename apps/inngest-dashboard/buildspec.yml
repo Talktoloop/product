@@ -21,7 +21,7 @@ phases:
       - docker push $ECR_URL:$IMAGE_TAG
       - docker tag $ECR_URL:$IMAGE_TAG $ECR_URL:latest
       - docker push $ECR_URL:latest
-      - printf '[{"name":"%s","imageUri":"%s"}]' ${APP_NAME} $ECR_URL:$IMAGE_TAG > ${APP_PATH}/imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' ${APP_NAME} $ECR_URL:$IMAGE_TAG > imagedefinitions.json
       - echo Build and push completed successfully.
 
 artifacts:
