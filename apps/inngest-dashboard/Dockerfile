@@ -1,4 +1,4 @@
-FROM inngest/inngest as final
+FROM inngest/inngest:v1.19.4 as final
 
 ARG INNGEST_BASE_URL
 ARG INNGEST_DEV
@@ -10,4 +10,4 @@ ARG INNGEST_STREAMING
 ARG INNGEST_REDIS_URI
 ARG INNGEST_POSTGRES_URI
 
-CMD ["inngest", "start"]
+CMD ["sh", "-c", "exec inngest start --signing-key=\"${INNGEST_SIGNING_KEY#signkey-*-}\""]
