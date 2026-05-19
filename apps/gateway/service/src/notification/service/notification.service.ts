@@ -94,50 +94,6 @@ export class NotificationService extends MailJetService {
       .map((b) => `- ${b}`)
       .join('<br/>');
 
-    const message = [
-      `<strong>Report Type:</strong> ${data.reportType}`,
-      `<strong>Post ID:</strong> ${data.postId}`,
-      data.replySpecification
-        ? `<strong>Reply Specification:</strong> ${data.replySpecification}`
-        : null,
-      `<strong>Community Guidelines Breached:</strong><br/>${breachesList}`,
-      data.additionalInfo
-        ? `<strong>Additional Information:</strong> ${data.additionalInfo}`
-        : null,
-      data.contactEmail
-        ? `<strong>Contact Email:</strong> ${data.contactEmail}`
-        : null,
-    ]
-      .filter(Boolean)
-      .join('<br/><br/>');
-
-    const reportEmail =
-      this.config.get('reportEmail') || 'mai@talktoloop.org';
-
-    return this.sendEmail(
-      EMAIL_TEMPLATES.SUPPORT_TEAM_NOTIFICATION,
-      {
-        error_details: message,
-      },
-      {},
-      reportEmail.split(',').map((email: string) => ({
-        Email: email.trim(),
-      })),
-    );
-  }
-
-  async sendReportEmail(data: {
-    reportType: string;
-    postId: string;
-    guidelineBreaches: string[];
-    replySpecification?: string;
-    additionalInfo?: string;
-    contactEmail?: string;
-  }): Promise<LibraryResponse<any>> {
-    const breachesList = data.guidelineBreaches
-      .map((b) => `- ${b}`)
-      .join('<br/>');
-
     const feedbackUrl = `https://app.talktoloop.org/story/details/${data.postId}`;
 
     const message = [
