@@ -14,14 +14,14 @@
 
       <div class="flex flex-col gap-0.5">
         <div class="group px-4 py-2.5" :class="[
-          colorClasses,
+          messageClasses,
           cornerClasses
         ]">
           <div class="text-sm">
             <slot />
           </div>
         </div>
-        <div v-if="$slots.error" class="px-3 text-xs text-destructive-700">
+        <div v-if="$slots.error" class="px-3 text-xs text-message-error-text">
           <slot name="error" />
         </div>
       </div>
@@ -46,18 +46,16 @@ const props = defineProps<{
   sequencePosition: SequencePosition
 }>()
 
-const colorClasses = computed(() => {
+const messageClasses = computed(() => {
   switch (props.variant) {
     case 'primary':
-      return 'bg-primary-100 text-primary-foreground-700 border border-1 border-primary-200'
+      return 'bg-message-selected-bg text-message-selected-text border border-1 border-message-selected-border'
     case 'primary-story':
-      return 'bg-primary-200 text-primary-foreground-700 border border-1 border-primary-300'
-    case 'muted':
-      return 'bg-muted-50 text-muted-foreground border border-1 border-muted-100'
+      return 'bg-message-active-bg text-message-active-text border border-1 border-message-active-border'
     case 'destructive':
-      return 'bg-destructive-50 text-destructive-700 border border-1 border-destructive-700'
-    default:
-      return ''
+      return 'bg-message-error-bg text-message-error-text border border-1 border-message-error-border'
+    default: // muted
+      return 'bg-message-bg text-message-text border border-1 border-message-border'
   }
 })
 

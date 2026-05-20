@@ -1,0 +1,77 @@
+<div class="form-section">
+  <div class="form-section__title">
+    <h3 class="form-section__title-label">{{ heading | translate }}</h3>
+
+    <ng-container class="form-section__astrix" *ngIf="required">
+      <loop-required-tag [state]="requiredTagState" [tagSize]="TagSize.EXTRA_SMALL"></loop-required-tag>
+    </ng-container>
+  </div>
+
+  <div class="form-section__body">
+    <div class="form-section__tags" *ngIf="!onlyContent">
+      <div class="form-section__tags__list">
+        <loop-simple-tag
+          *ngFor="let item of selectedItems; trackBy: trackFn"
+          (close$)="handleDismiss(item.id)"
+          [closeButton]="true"
+          [tagSize]="TagSize.MEDIUM"
+          [tagTheme]="SimpleTagTheme.LOOP"
+          [text]="item.content | translate"
+        ></loop-simple-tag>
+      </div>
+
+      <div #fabWrapper *ngIf="!singleValue || !selectedItems.length">
+        <app-fab-button
+          (clicked)="handleFabClick()"
+          [cy]="isEditing ? 'form-section-app-fab-btn-submit' : 'form-section-app-fab-btn-add'"
+          data-testid="form-section-app-fab-btn-add"
+          [rotate]="isEditing ? 90 : 45"
+          [title]="(isEditing ? 'global.submit' : 'global.add') | translate"
+          theme="moderator-fab"
+          [size]="fabButtonSize"
+        >
+        </app-fab-button>
+      </div>
+
+      <ng-container *ngIf="isEditing">
+        <ng-container *ngIf="!ui.mobileView">
+          <div
+            appDropdown
+            [offset]="[10, 10]"
+            [sourceEl]="fabWrapper.nativeElement"
+            [sourceWidth]="dropdownWidth"
+            [isStatic]="isStaticDropdown"
+            class="dropdown"
+            (appClickOutside)="handleFabOutsideClick()"
+          >
+            <h3 class="dropdown__title">{{ heading | translate }}</h3>
+            <ng-container *ngTemplateOutlet="content"></ng-container>
+            <app-button cy="form-section-app-button-apply-btn" data-testid="form-section-app-button-apply-btn" (clicked)="onApplyClick()" class="dropdown__apply-btn" [mode]="'v2'">
+              <span>{{ 'filtersV2.apply' | translate }}</span>
+            </app-button>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="onlyContent">
+      <ng-container *ngTemplateOutlet="content"></ng-container>
+    </ng-container>
+    <ng-content select="[slot=helptext]"></ng-content>
+  </div>
+</div>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-template #modalContent>
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</ng-template>
+<ng-template #modalActionButtons>
+  <app-button (clicked)="onApplyClick()" class="dropdown__apply-btn" [mode]="'v2'">
+    <span>{{ 'filtersV2.apply' | translate }}</span>
+  </app-button>
+  <app-button (clicked)="onCancelClick()" class="dropdown__apply-btn d-flex mt-1" [mode]="'v2'" [variant]="'secondary'">
+    <span>{{ 'global.cancel' | translate }}</span>
+  </app-button>
+</ng-template>

@@ -1,0 +1,57 @@
+<app-auth-page-wrapper [currentStep]="2" (back)="onBack()" [autoHeight]="control.value">
+  <div class="wrapper">
+    <div class="form">
+      <h2>{{ 'auth.registerOrganization.header' | translate }}</h2>
+      <ul>
+        <li>
+          <loop-icon name="check" [size]="11"></loop-icon>
+          <span>
+            {{ 'auth.registerOrganization.list.notify' | translate }}
+          </span>
+        </li>
+        <li>
+          <loop-icon name="check" [size]="11"></loop-icon>
+          <span>
+            {{ 'auth.registerOrganization.list.display' | translate }}
+          </span>
+        </li>
+        <li>
+          <loop-icon name="check" [size]="11"></loop-icon>
+          <span>
+            {{ 'auth.registerOrganization.list.changeSetting' | translate }}
+          </span>
+        </li>
+      </ul>
+      <div class="form__input">
+        <label>{{ 'auth.registerOrganization.form.label' | translate }}</label>
+        <loop-organisation
+          [formControl]="control"
+          [placeholder]="'auth.registerOrganization.form.placeholder' | translate"
+          [showAddOption]="true"
+          [openDropDownOnSuffixClick]="true"
+          [showAllWhenEmpty]="true"
+          [customAddOrganizationHandler]="true"
+          [shouldRouteForMobile]="false"
+          (organizationAddClicked)="onAddOrganization($event)"
+        >
+        </loop-organisation>
+      </div>
+      <div class="form__full-name" [class.form__full-name--visible]="control.value">
+        <h3>{{ 'auth.confirmName.header' | translate }}</h3>
+        <span class="description">{{ 'auth.registerOrganization.fullNameForm.description' | translate }}</span>
+        <app-full-name-form [firstName]="firstName" [lastName]="lastName" [hideLastName]="hideLastName"></app-full-name-form>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <div class="skip-button">
+        <app-button mode="v2" variant="link-4" (click)="onSkip()">
+          <span class="skip-button__content">{{ 'auth.registerOrganization.skipButton.text' | translate }}</span>
+        </app-button>
+      </div>
+      <div class="continue-button">
+        <app-button mode="v3" variant="primary" (click)="continue()">{{ 'auth.registerOrganization.button.text' | translate }}</app-button>
+      </div>
+    </div>
+  </div>
+</app-auth-page-wrapper>

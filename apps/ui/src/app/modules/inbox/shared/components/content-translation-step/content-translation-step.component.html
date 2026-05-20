@@ -1,0 +1,59 @@
+<ng-container *ngIf="isEditing; else addTranslationButton">
+  <div class="w-100 form__target-language-row">
+    <div class="form__target-language-row-container">
+      <label class="form__target-language-title">{{ 'admin.pendingStoryReview.translationLanguage' | translate }}:</label>
+      <loop-language-autocomplete
+        cy="content-translation-step-loop-language-autocomplete"
+        [existingOptions]="languages"
+        [(ngModel)]="targetLanguage"
+        (ngModelChange)="targetLanguageChange.emit(targetLanguage)"
+        [placeholder]="'admin.pendingStoryReview.targetLanguagePlaceholder' | translate"
+      ></loop-language-autocomplete>
+    </div>
+  </div>
+
+  <div class="w-100 form__translated-text">
+    <span class="form__target-language-title">{{ 'admin.pendingStoryReview.yourNewTranslation' | translate }}:</span>
+    <form>
+      <loop-textarea
+        class="new-translation__textarea"
+        cy="content-translation-step-translation-textarea"
+        name="placeholder"
+        [attr.dir]="rtlService.getDirAttr(targetLanguage)"
+        [disabled]="!targetLanguage"
+        [(ngModel)]="translatedText"
+        (ngModelChange)="translatedTextChange.emit(translatedText)"
+      ></loop-textarea>
+    </form>
+
+    <div class="flex-center-right">
+      <app-button
+        class="save-translation__button"
+        cy="content-translation-step-translation-save-btn"
+        [loading]="processing"
+        [disabled]="!targetLanguage || !translatedText"
+        variant="outlined"
+        mode="v2"
+        (clicked)="submitTranslation.emit(); isEditing = false"
+      >
+        <span>{{ 'admin.pendingStoryReview.saveTranslation' | translate }}</span>
+      </app-button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #addTranslationButton>
+  <span class="d-flex add-translation__button-title form__target-language-title">{{
+    'admin.pendingStoryReview.manualTranslation' | translate
+  }}</span>
+  <app-button
+    class="add-translation__button save-translation__button"
+    [loading]="processing"
+    [fullWidth]="false"
+    variant="outlined"
+    mode="v2"
+    (clicked)="isEditing = true"
+  >
+    <span>{{ 'admin.pendingStoryReview.addATranslation' | translate }}</span>
+  </app-button>
+</ng-template>

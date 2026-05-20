@@ -1,0 +1,45 @@
+@import 'mixins';
+@import 'loop-design-system/colors';
+
+.story-details {
+  &__content {
+    max-width: 69.188rem;
+    margin: auto;
+    padding: 2rem 1rem;
+
+    @include mobile-only {
+      padding: 1.938rem 0;
+    }
+  }
+}
+
+.story-details-top {
+  display: flex;
+  max-width: 78rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  border-bottom: 1px solid #b1b4b6;
+  padding: 1.5rem 0;
+
+  > * {
+    display: inline-flex;
+    align-items: center;
+    @media screen and (max-width: 1290px) {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .jump-to {
+    ::ng-deep {
+      button {
+        padding: 1.125rem 1.625rem;
+      }
+    }
+  }
+
+  .r-m90 {
+    transform: rotate(-90deg);
+  }
+}

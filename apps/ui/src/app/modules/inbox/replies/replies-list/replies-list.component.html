@@ -1,0 +1,85 @@
+<div class="inbox-list-container">
+  <!--MOBILE-->
+  <ng-container *ngIf="ui.mobileView; else desktopTable">
+    <app-mobile-table
+      (actionClick)="onActionClick($event)"
+      [itemsInRow]="2"
+      [actions]="listActions"
+      [list]="repliesService.listElements$ | async"
+      [columns]="columns"
+    >
+      <ng-container *loopMobileCell="let element">
+        {{ element.createdAt | date : DATE_FORMAT }}
+      </ng-container>
+
+      <ng-container *loopMobileCell="let element">
+        {{ 'country_name.' + element.country | translate }}
+      </ng-container>
+
+      <ng-container *loopMobileCell="let element">
+        {{ element.language ? ('languages.' + element.language | translate) : '-' }}
+      </ng-container>
+
+      <ng-container *loopMobileCell="let element">
+        {{ element.channel | channel }}
+      </ng-container>
+    </app-mobile-table>
+  </ng-container>
+
+  <!--DESKTOP-->
+  <ng-template #desktopTable>
+    <table mat-table [dataSource]="repliesService.dataSource$ | async" class="inbox-table replies-table">
+      <!-- DateTime Column -->
+      <ng-container matColumnDef="datetime">
+        <th mat-header-cell *matHeaderCellDef>{{ getColumnHeader('datetime') }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.createdAt | date : DATE_FORMAT }}</td>
+      </ng-container>
+
+      <!-- Country Column -->
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef>{{ 'filters.country' | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ 'country_name.' + element.country | translate }}</td>
+      </ng-container>
+
+      <!-- Language Column -->
+      <ng-container matColumnDef="language">
+        <th mat-header-cell *matHeaderCellDef>{{ getColumnHeader('language') }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.language ? ('languages.' + element.language | translate) : '-' }}</td>
+      </ng-container>
+
+      <!-- Channel Column -->
+      <ng-container matColumnDef="channel">
+        <th mat-header-cell *matHeaderCellDef>{{ getColumnHeader('channel') }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.channel | channel }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        [class.lastVisitedId]="(repliesService.lastVisitedId$ | async) === row.id"
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="rowClicked(row)"
+      ></tr>
+    </table>
+  </ng-template>
+
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="500"
+    [fromRoot]="true"
+    (scrolled)="repliesService.onRepliesScroll()"
+  ></div>
+
+  <div *ngIf="loading" class="inbox-list-container__loading">
+    <span>
+      {{ 'inbox.table.loading' | translate }}
+    </span>
+  </div>
+
+  <div *ngIf="repliesService.noMoreItems$" class="inbox-list-container__no-more-results">
+    <span>
+      {{ 'storiesList.text.noMoreStories' | translate }}
+    </span>
+  </div>
+</div>

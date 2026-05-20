@@ -18,18 +18,19 @@ const delegatedProps = computed(() => {
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
+
+const menubarClasses = tw`
+  flex h-10 items-center gap-x-1 
+  rounded-md border 
+  bg-background p-1
+  
+  dark:bg-dark-background
+  dark:border-dark-border
+`
 </script>
 
 <template>
-  <MenubarRoot
-    v-bind="forwarded"
-    :class="
-      cn(
-        'flex h-10 items-center gap-x-1 rounded-md border bg-background p-1',
-        props.class,
-      )
-    "
-  >
+  <MenubarRoot v-bind="forwarded" :class="cn(menubarClasses, props.class)">
     <slot />
   </MenubarRoot>
 </template>

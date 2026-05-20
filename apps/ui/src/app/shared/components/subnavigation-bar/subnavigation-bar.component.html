@@ -1,0 +1,34 @@
+<div class="routing-bar" *ngIf="routes">
+  <div class="stats-container">
+    <ul class="tab-controls-custom">
+      <li
+        class="nav-li"
+        *ngFor="let route of routes; let first = first"
+        [ngClass]="{ collapsed: !first && ui.mobileView && !isExpanded, blocked: route?.blocked }"
+        (click)="toogle($event, first)"
+      >
+        <a [routerLink]="[route?.path]" [routerLinkActive]="'tab-active'" [routerLinkActiveOptions]="{ exact: route?.exact }" tabindex="0"
+          >{{ route?.name }}&nbsp;
+        </a>
+        <app-expand-more-icon
+          *ngIf="first && routes.length > 1 && ui.mobileView"
+          [rotate]="isExpanded ? 0 : 180"
+          class="toogle-arrow"
+        ></app-expand-more-icon>
+      </li>
+      <li
+        *ngIf="statisticsBeta"
+        class="nav-li"
+      >
+        <a [href]="metabaseStoriesDashboardUrl" target="_blank" rel="noopener noreferrer" tabindex="0"
+          >{{ 'statistics.navigation.stories' | translate }}&nbsp;
+        </a>
+        <app-expand-more-icon
+            *ngIf="first && routes.length > 1 && ui.mobileView"
+            [rotate]="isExpanded ? 0 : 180"
+            class="toogle-arrow"
+          ></app-expand-more-icon>
+      </li>
+    </ul>
+  </div>
+</div>

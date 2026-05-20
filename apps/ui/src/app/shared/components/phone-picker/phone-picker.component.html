@@ -1,0 +1,90 @@
+<div cy="phone-picker" class="phone-picker" (appClickOutside)="handleOutsideInputClick()">
+  <div #phonePicker>
+    <div class="phone-picker__input">
+      <div
+        cy="phone-picker-input-country"
+        class="loop-input phone-picker__input-country"
+        [class.ng-invalid]="prefixControl.invalid"
+        [class.ng-touched]="prefixControl.touched"
+        [class.phone-picker__input-country--open]="dropDownOpen"
+        [appInvalidFocusable]="prefixInvalid"
+        tabindex="0"
+        role="combobox"
+        (click)="handleSelectorOpenClick()"
+      >
+        <div class="d-flex">
+          <!--        <img-->
+          <!--          class="phone-picker__input-country-flag"-->
+          <!--          [src]="selectedCountry?.code | countryFlagSrc"-->
+          <!--          [alt]="selectedCountry?.name"-->
+          <!--          loading="lazy"-->
+          <!--        />-->
+          <span class="phone-picker__input-country-label">{{ prefixControl.value ? '+' + prefixControl.value : '-' }}</span>
+          <app-expand-more-icon class="phone-picker__input-country-dropdown"></app-expand-more-icon>
+        </div>
+      </div>
+      <input
+        [appInvalidFocusable]="numberControl.invalid"
+        [formControl]="numberControl"
+        appPhoneInput
+        autocomplete="phone"
+        class="loop-input phone-picker__phone-input"
+        inputmode="tel-local"
+        pattern="[0-9]*"
+        type="tel"
+      />
+    </div>
+
+    <div cy="phone-picker-phone-input-error" class="loop-input__error" [class.loop-input__error--visible]="phoneInputInvalid">
+      {{ phoneInputError$ | async }}
+    </div>
+    <div cy="phone-picker-prefix-input-error" class="loop-input__error" [class.loop-input__error--visible]="prefixInvalid">
+      {{ prefixError$ | async }}
+    </div>
+  </div>
+
+  <loop-select
+    *ngIf="dropDownOpen"
+    cy="phone-picker-country-loop-select"
+    appDropdown
+    [sourceEl]="phonePicker"
+    [sourceWidth]="phonePicker.clientWidth"
+    [fullWidth]="true"
+    [showHeader]="!!prefixControl.value"
+  >
+    <div *ngIf="selectedCountry" header>
+      <loop-select-option (clicked)="handleSelectedOptionClick()">
+        <div class="phone-picker__option">
+          <!--          <img-->
+          <!--            class="phone-picker__flag"-->
+          <!--            [src]="selectedCountry.code | countryFlagSrc"-->
+          <!--            [alt]="getCountryNameCode(selectedCountryCode) | translate"-->
+          <!--            loading="lazy"-->
+          <!--          />-->
+          <div class="phone-picker__label">
+            <span>{{ getCountryNameCode(selectedCountry.code) | translate }}</span>
+            <span class="phone-picker__prefix">(+{{ selectedCountry.prefix }} )</span>
+          </div>
+        </div>
+      </loop-select-option>
+    </div>
+    <loop-select-option
+      *ngFor="let country of countries; trackBy: trackByFn"
+      (clicked)="handleOptionClick(country)"
+      [autofocus]="selectedCountryCode === country.code"
+    >
+      <div class="phone-picker__option">
+        <!--        <img-->
+        <!--          class="phone-picker__flag"-->
+        <!--          [src]="country.code | countryFlagSrc"-->
+        <!--          [alt]="getCountryNameCode(country.code) | translate"-->
+        <!--          loading="lazy"-->
+        <!--        />-->
+        <div class="phone-picker__label">
+          <div>{{ country.name }}</div>
+          <div class="phone-picker__prefix">(+{{ country.prefix }})</div>
+        </div>
+      </div>
+    </loop-select-option>
+  </loop-select>
+</div>

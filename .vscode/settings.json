@@ -24,5 +24,6 @@
     "tw={\"([^\"}]*)",
     "tw\\.\\w+`([^`]*)",
     "tw\\(.*?\\)`([^`]*)"
-  ]
+  ],
+  "typescript.tsserver.maxTsServerMemory": 4096
 }

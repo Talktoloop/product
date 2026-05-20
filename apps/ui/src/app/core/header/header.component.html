@@ -1,0 +1,43 @@
+<div *ngIf="showHeader$ | async" class="header" [class.hide]="isScrollingDown">
+  <ng-container *ngIf="!isInUserSection; else loginHeaderTemplate">
+    <header class="header__element">
+      <button class="header__hamburger" (click)="handleHamburgerClick()">
+        <app-menu-icon></app-menu-icon>
+      </button>
+      <a class="header__logo" routerLink="/">
+        <img class="main-logo" src="assets/new-logo-loop.png" />
+      </a>
+      <ul class="header__nav-links">
+        <ng-container *ngFor="let linkKey of Object.keys(menuLinks)">
+          <li *ngIf="!menuLinks[linkKey].protected || profileService.isAdmin">
+            <a class="header__nav-link" [cy]="getHeaderRouteCode(linkKey)" role="menuitem" tabindex="0"
+              [routerLink]="[menuLinks[linkKey].route]" [routerLinkActive]="'header__nav-link--active'"
+              [routerLinkActiveOptions]="{ exact: menuLinks[linkKey].exact }">
+              {{ getHeaderRouteCode(linkKey) | translate }}
+              <span class="header__nav-link__badge" *ngIf="menuLinks[linkKey].value">
+                {{ menuLinks[linkKey].value }}
+              </span>
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+      <app-login-status class="header__login-status"></app-login-status>
+      <div class="header__separator"></div>
+      <app-language-picker class="header__lang-picker"></app-language-picker>
+      <app-button *ngIf="ui.desktopView$ | async" variant="primary" [routerLink]="MAIN_ROUTES.NEW_STORY">
+        <span class="fw-600">{{ 'header.link.newStory' | translate }}</span>
+        <app-add-circle-icon></app-add-circle-icon>
+      </app-button>
+    </header>
+  </ng-container>
+</div>
+<ng-template #loginHeaderTemplate>
+  <header class="header__login_header">
+    <a class="header__logo" routerLink="/">
+      <img class="main-logo" src="assets/new-logo-loop.png" />
+    </a>
+    <app-language-picker class="header__lang-picker"></app-language-picker>
+  </header>
+</ng-template>
+
+<app-aside-menu *ngIf="asideMenuOpen" (closed)="handleHamburgerClick()"></app-aside-menu>

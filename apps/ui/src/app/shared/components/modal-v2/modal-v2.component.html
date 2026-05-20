@@ -1,0 +1,42 @@
+<div class="modal__wrapper" *ngIf="animationStart" [@modalAnimation]="animationStart">
+  <div class="modal__backdrop" [@fade]>
+    <div #modal class="dialog" role="dialog">
+      <ng-container *ngIf="ui.mobileView; else desktopModal">
+        <div class="modal" [@slideMobile]>
+          <div [ngTemplateOutlet]="modalContent"></div>
+        </div>
+      </ng-container>
+      <ng-template #desktopModal>
+        <div
+          class="modal"
+          [class.modal--fit-content]="fitContent"
+          [ngStyle]="padding ? { padding: padding + 'px' } : {}"
+          [@slideDesktop]
+          (appClickOutside)="close()"
+          [omitFirstRenderCheck]="true"
+        >
+          <div [ngTemplateOutlet]="modalContent"></div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalContent>
+  <div class="modal__back-wrapper" *ngIf="showBack">
+    <button class="modal__back-btn" (click)="close()">
+      <img class="arrow-image" src="assets/icons/arrow_previous_green.svg" />
+      <span class="modal__back-txt">{{ 'newStoryV2.navigation.back' | translate }}</span>
+    </button>
+  </div>
+  <span class="modal__title" *ngIf="title">{{ title }}</span>
+  <div class="modal__content">
+    <ng-content></ng-content>
+  </div>
+  <div class="modal__close-button" (click)="close()">
+    <app-close-icon></app-close-icon>
+  </div>
+  <div class="modal__action-buttons" *ngIf="showActionButtons">
+    <ng-content select="[action-buttons]"></ng-content>
+  </div>
+</ng-template>

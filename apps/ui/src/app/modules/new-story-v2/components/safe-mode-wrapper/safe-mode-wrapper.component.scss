@@ -1,0 +1,60 @@
+@import 'variables';
+@import 'mixins';
+
+$safe-mode-padding-t: 0;
+$safe-mode-padding-lbr: 0.75rem;
+$safe-mode-padding-mobile: 0 0.25rem 0.25rem 0.25rem;
+$form-padding-tb: 8.75rem;
+$form-padding-lr: 5.688rem;
+
+.safe-mode {
+  background-color: $color-green-medium;
+  padding: $safe-mode-padding-t $safe-mode-padding-lbr $safe-mode-padding-lbr $safe-mode-padding-lbr;
+
+  @include mobile-only {
+    padding: $safe-mode-padding-mobile;
+  }
+
+  .safe-mode-paragraph {
+    font-size: 1.125rem;
+    text-align: center;
+    color: $color-green-stepper;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include mobile-only {
+      font-size: 1rem;
+    }
+  }
+
+  &__text {
+    background-color: $color-green-medium;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    @include mobile-only {
+      app-lock-icon svg {
+        width: 13px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+// Safe Mode form paddings
+@media screen and (min-width: $breakpoint-lg) {
+  ::ng-deep {
+    .safe-mode app-form-newstory2 {
+      padding-top: calc(#{$form-padding-tb} - #{$safe-mode-padding-t});
+      padding-bottom: calc(#{$form-padding-tb} - #{$safe-mode-padding-lbr});
+      padding-left: calc(#{$form-padding-lr} - #{$safe-mode-padding-lbr});
+      padding-right: calc(#{$form-padding-lr} - #{$safe-mode-padding-lbr});
+    }
+
+    :not(.safe-mode) app-form-newstory2 {
+      padding: $form-padding-tb $form-padding-lr;
+    }
+  }
+}

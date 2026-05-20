@@ -1,0 +1,17 @@
+<div [ngClass]="['checkbox', containerClass || '', disabled ? 'disabled' : '', v2 ? 'v2' : '']" [class.checked]="checked">
+  <label [for]="id">
+    <input [id]="id" class="d-none" type="checkbox" [checked]="checked" [value]="value" (change)="handleClick($event)" #element />
+    <app-check-square
+      class="check"
+      data-testid="check"
+      [v2]="v2"
+      [checked]="checked"
+      [disabled]="disabled"
+      [tabIndex]="0"
+      [compact]="compact"
+      (clicked)="onElementClick($event, element)"
+      [alwaysRenderCheckmark]="alwaysRenderCheckmark"
+    ></app-check-square>
+    <ng-content></ng-content>
+  </label>
+</div>

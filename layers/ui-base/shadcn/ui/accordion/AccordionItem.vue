@@ -7,18 +7,20 @@ const props = defineProps<AccordionItemProps & { class?: HTMLAttributes['class']
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
 
 const forwardedProps = useForwardProps(delegatedProps)
+
+const itemClasses = tw`
+  border-b
+  border-border
+  dark:border-dark-border
+`
 </script>
 
 <template>
-  <AccordionItem
-    v-bind="forwardedProps"
-    :class="cn('border-b', props.class)"
-  >
+  <AccordionItem v-bind="forwardedProps" :class="cn(itemClasses, props.class)">
     <slot />
   </AccordionItem>
 </template>

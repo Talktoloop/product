@@ -17,20 +17,40 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>
 
 <template>
-  <SliderRoot
-    :class="cn(
-      'relative flex w-full touch-none select-none items-center data-[orientation=vertical]:flex-col data-[orientation=vertical]:w-2 data-[orientation=vertical]:h-full',
-      props.class,
-    )"
-    v-bind="forwarded"
-  >
-    <SliderTrack class="relative h-2 w-full data-[orientation=vertical]:w-2 grow overflow-hidden rounded-full bg-secondary">
-      <SliderRange class="absolute h-full data-[orientation=vertical]:w-full bg-primary" />
+  <SliderRoot :class="cn(tw`
+      relative flex w-full touch-none select-none items-center 
+      data-[orientation=vertical]:flex-col data-[orientation=vertical]:w-2 data-[orientation=vertical]:h-full
+    `, props.class)" v-bind="forwarded">
+    <SliderTrack :class="tw`
+      relative h-2 w-full 
+      data-[orientation=vertical]:w-2 
+      grow overflow-hidden rounded-full 
+      bg-secondary
+      dark:bg-dark-secondary
+    `">
+      <SliderRange :class="tw`
+        absolute h-full 
+        data-[orientation=vertical]:w-full 
+        bg-primary
+        dark:bg-dark-primary
+      `" />
     </SliderTrack>
-    <SliderThumb
-      v-for="(_, key) in modelValue"
-      :key="key"
-      class="block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-    />
+    <SliderThumb v-for="(_, key) in modelValue" :key="key" :class="tw`
+        block h-5 w-5 rounded-full 
+        border-2 border-primary 
+        bg-background 
+        ring-offset-background 
+        transition-colors 
+        focus-visible:outline-none 
+        focus-visible:ring-2 
+        focus-visible:ring-ring 
+        focus-visible:ring-offset-2 
+        disabled:pointer-events-none 
+        disabled:opacity-50
+        dark:border-dark-primary
+        dark:bg-dark-background
+        dark:ring-offset-dark-background
+        dark:focus-visible:ring-dark-ring
+      `" />
   </SliderRoot>
 </template>

@@ -1,0 +1,16 @@
+<button
+  (click)="handleClick($event)"
+  [ngClass]="['fab-button', size, theme, mode, text ? 'text' : '', padded ? 'padded' : '']"
+  [title]="title"
+>
+  <span
+    [@widthAnimation]="animated ? (text ? 'in' : 'out') : false"
+    *ngIf="text || animated"
+    class="fab-button__text mr-0813"
+    [ngClass]="textClass"
+  >
+    {{ text }}
+  </span>
+  <app-close-icon *ngIf="defaultIcon" role="button" class="fab-button__icon" [rotate]="rotate" size="15"></app-close-icon>
+  <ng-content *ngIf="!defaultIcon"></ng-content>
+</button>

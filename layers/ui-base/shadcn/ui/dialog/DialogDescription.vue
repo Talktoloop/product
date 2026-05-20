@@ -7,18 +7,20 @@ const props = defineProps<DialogDescriptionProps & { class?: HTMLAttributes['cla
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
 
 const forwardedProps = useForwardProps(delegatedProps)
+
+const descriptionClasses = tw`
+  text-sm 
+  text-muted-foreground
+  dark:text-dark-muted-foreground
+`
 </script>
 
 <template>
-  <DialogDescription
-    v-bind="forwardedProps"
-    :class="cn('text-sm text-muted-foreground', props.class)"
-  >
+  <DialogDescription v-bind="forwardedProps" :class="cn(descriptionClasses, props.class)">
     <slot />
   </DialogDescription>
 </template>

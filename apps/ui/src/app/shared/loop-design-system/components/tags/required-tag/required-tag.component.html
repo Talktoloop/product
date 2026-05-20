@@ -1,0 +1,14 @@
+<div [ngClass]="[state, tagSize]" class="required-tag">
+  <span *ngIf="state !== RequiredTagState.SUCCESS">
+    {{ 'global.required' | translate }}
+  </span>
+
+  <loop-icon
+    *ngIf="state === RequiredTagState.SUCCESS"
+    [isButton]="false"
+    [name]="LoopIcon.Name.Check"
+    [size]="iconSize"
+    [theme]="LoopIcon.Theme.Action"
+    codeRepresent
+  ></loop-icon>
+</div>

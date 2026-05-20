@@ -1,0 +1,20 @@
+@import 'loop-design-system-v2/colors';
+@import 'mixins';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.back-button {
+  margin-bottom: 32px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 24px;
+  }
+}

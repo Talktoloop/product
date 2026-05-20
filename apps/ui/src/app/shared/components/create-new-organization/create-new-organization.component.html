@@ -1,0 +1,35 @@
+<h3>{{ 'createNewOrganization.title' | translate }}</h3>
+
+<h4>{{ 'createNewOrganization.description.title' | translate }}</h4>
+<div class="description">
+  {{ 'createNewOrganization.description.text' | translate }}
+</div>
+<loop-input [formControl]="organizationNameControl"></loop-input>
+
+<div class="slide">
+  <app-slide-toggle
+    [checked]="hasAcronym"
+    (changed$)="onHasAcronymChanged($event)"
+    [text]="'createNewOrganization.acronym.text' | translate"
+  ></app-slide-toggle>
+</div>
+<div class="acronym-input" *ngIf="hasAcronym">
+  <h4>{{ 'createNewOrganization.acronym.title' | translate }}</h4>
+  <div class="description">
+    {{ 'createNewOrganization.acronym.description' | translate }}
+  </div>
+  <loop-input [formControl]="organizationAcronymControl"></loop-input>
+</div>
+
+<h4>{{ 'createNewOrganization.country.title' | translate }}</h4>
+<div class="description">
+  {{ 'createNewOrganization.country.description' | translate }}
+</div>
+<loop-country-section [control]="countryControl" [showInputOnly]="true"></loop-country-section>
+
+<div class="footer" [class.footer--page]="!isModal">
+  <app-button [class.footer__cancel]="!isModal" mode="v2" variant="link-4" (click)="onCancel()">
+    <span>{{ 'createNewOrganization.cancel' | translate }}</span>
+  </app-button>
+  <app-button mode="v3" variant="primary" (click)="createNewOrganization()">{{ 'createNewOrganization.create' | translate }}</app-button>
+</div>

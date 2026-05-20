@@ -1,0 +1,111 @@
+@import 'variables';
+@import 'mixins';
+
+.share-content__input-state {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  z-index: $new-story-content-state-zindex;
+  @include left(0);
+  width: 100vw;
+  background-color: white;
+
+  @include mobile-only {
+    padding: 0 1.25rem 0.25rem;
+    justify-content: center;
+    height: 4rem;
+  }
+
+  @include mobile-up {
+    position: unset;
+    width: 100%;
+    padding: 0.5rem 1.25rem 1.188rem;
+  }
+
+  &__progress {
+    display: none;
+    height: 0.25rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    @include left(0);
+
+    @include mobile-up {
+      position: relative;
+
+      &.state-one &-item:first-child {
+        background-color: $header-purple;
+      }
+
+      &.state-two &-item:nth-child(-n + 2) {
+        background-color: $header-purple;
+      }
+
+      &.state-three &-item {
+        background-color: $header-purple;
+      }
+    }
+
+    @include mobile-only {
+      background-color: $purple-light;
+    }
+
+    &.state-zero &-item:first-child {
+      width: 5%;
+      background-color: $header-purple;
+      transition: 0.3s;
+    }
+
+    &.state-one &-item:first-child {
+      width: 33%;
+      background-color: $header-purple;
+      transition: 0.3s;
+    }
+
+    &.state-two &-item:first-child {
+      width: 66%;
+      background-color: $header-purple;
+      transition: 0.3s;
+    }
+
+    &.state-three &-item:first-child {
+      width: 100%;
+      background-color: $header-purple;
+      transition: 0.3s;
+    }
+
+    &-item {
+      display: none;
+      height: 100%;
+      background-color: $purple-light;
+
+      @include mobile-up {
+        display: block;
+        border-radius: 8px;
+        flex: 1;
+      }
+
+      &:first-child {
+        display: block;
+        transition: 0.3s;
+      }
+
+      &:nth-child(2) {
+        @include margin-right(0.313rem);
+        @include margin-left(0.313rem);
+      }
+    }
+  }
+
+  &__text {
+    display: none !important;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: $header-purple;
+
+    @include mobile-up {
+      margin: 0.938rem 0 0;
+    }
+  }
+}

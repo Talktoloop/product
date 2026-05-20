@@ -1,0 +1,15 @@
+<span
+  class="square"
+  role="checkbox"
+  [tabindex]="tabIndex"
+  [class.full]="checked"
+  [class.semi]="semiChecked"
+  [class.compact]="compact"
+  [class.v2]="v2"
+  [class.disabled]="v2 && disabled"
+  [attr.aria-checked]="checked || semiChecked"
+  (keydown.space)="$event.preventDefault(); handleClick($event)"
+>
+  <img *ngIf="checked || alwaysRenderCheckmark" ngSrc="assets/icons/checkmark.svg" alt="✓" height="12" width="16"/>
+  <img *ngIf="semiChecked && !checked" ngSrc="assets/icons/horizontal_rule.svg" alt="-" height="16" width="16"/>
+</span>

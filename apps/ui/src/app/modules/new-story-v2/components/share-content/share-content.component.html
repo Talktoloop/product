@@ -1,0 +1,21 @@
+<section class="share-content">
+  <span class="font-big semi-bold">{{ 'newStoryV2.form.content.label' | translate }}</span>
+  <p class="share-content__info-text input-description mt-125">{{ 'newStoryV2.form.content.info' | translate }}</p>
+  <div class="share-content__input" [ngClass]="stateClasses" [class.invalid]="control.touched && control.errors">
+    <textarea
+      cy="share-content-textarea"
+      #textareaComponent
+      [appInvalidFocusable]="control.invalid"
+      [formControl]="control"
+      (change)="onStoryTextChange($event)"
+      class="p-125 share-content__input__textarea"
+      [placeholder]="'newStoryV2.form.content.placeholder' | translate"
+      [maxlength]="30000"
+    ></textarea>
+    <app-share-content-state [stateClasses]="stateClasses" [state]="state"></app-share-content-state>
+  </div>
+  <!-- <div class="share-content__publish-info info-text">
+    <app-visibility-icon></app-visibility-icon>
+    <span>{{ 'newStoryV2.form.content.publishInfo' | translate }}</span>
+  </div> -->
+</section>

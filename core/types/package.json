@@ -5,7 +5,12 @@
   "packageManager": "yarn@4.2.2",
   "type": "module",
   "exports": {
-    "types": "./src/index.d.ts"
+    ".": {
+      "types": "./src/index.d.ts"
+    },
+    "./api-generator": {
+      "types": "./src/api-generator.d.ts"
+    }
   },
   "dependencies": {
     "@ourloop/product-core-config": "*"

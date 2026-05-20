@@ -1,0 +1,15 @@
+{
+  "extends": "@ourloop/product-core-config/tsconfig",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "moduleResolution": "bundler",
+    "module": "es2022",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "src"
+  ]
+}

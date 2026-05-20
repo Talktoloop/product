@@ -1,0 +1,63 @@
+<form class="condition-section" [formGroup]="form">
+  <h4 class="font-big semi-bold">{{ 'newStoryV2.form.condition.title' | translate }}</h4>
+
+  <app-radio-group cy="condition-section-app-radio-group" class="d-block mt-125" [formControl]="formControl">
+    <loop-new-story-radio
+      cy="condition-section-loop-new-story-radio"
+      data-testid="condition-section-loop-new-story-radio"
+      [checked]="form.get('difficulty').value === true"
+      [label]="'newStoryV2.form.condition.radio.yes' | translate"
+      [value]="true"
+    ></loop-new-story-radio>
+
+    <div class="condition-section__type overflow-hidden" *ngIf="isCondition">
+      <span class="font-big semi-bold">{{ 'newStoryV2.form.condition.type.title' | translate }}</span>
+      <span class="new-story-v2__info-link">{{ 'newStoryV2.form.condition.type.info' | translate }}</span>
+
+      <loop-story-type-boxgroup
+        formControlName="difficulties"
+        [clearWhen]="isSensitiveStory"
+        [difficultiesMode]="true"
+        [difficulties]="difficulties"
+      ></loop-story-type-boxgroup>
+
+      <div *ngIf="isOtherSelected" class="mt-125">
+        <label class="font-big semi-bold mb-0625" for="disabilities-other-explanation">{{ 'newStoryV2.form.condition.other.label' | translate }}</label>
+        <loop-textarea
+          id="disabilities-other-explanation"
+          formControlName="disabilitiesOtherExplanation"
+          [placeholder]="'newStoryV2.form.condition.other.placeholder' | translate"
+          [maxLength]="500"
+        ></loop-textarea>
+      </div>
+
+      <loop-info-link
+        (clicked)="onHelpModalOpen()"
+        class="new-story-v2__help-me-link"
+        [text]="'newStoryV2.form.help.explanation' | translate"
+      ></loop-info-link>
+    </div>
+
+    <loop-new-story-radio
+      cy="condition-section-loop-new-story-radio"
+      data-testid="condition-section-loop-new-story-radio"
+      [checked]="form.get('difficulty').value === false"
+      [label]="'newStoryV2.form.condition.radio.no' | translate"
+      [value]="false"
+    ></loop-new-story-radio>
+
+    <loop-new-story-radio
+      cy="condition-section-loop-new-story-radio"
+      data-testid="condition-section-loop-new-story-radio"
+      [checked]="form.get('difficulty').value === 0"
+      [label]="'newStoryV2.form.condition.radio.preferNotToAnswer' | translate"
+      [value]="0"
+    ></loop-new-story-radio>
+  </app-radio-group>
+
+  <loop-info-link
+    (clicked)="onWhyModalOpen()"
+    class="new-story-v2__explanation-link"
+    [text]="'newStoryV2.form.name.explanation' | translate"
+  ></loop-info-link>
+</form>

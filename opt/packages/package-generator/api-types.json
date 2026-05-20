@@ -1,0 +1,25 @@
+{
+  "$schema": "../core/config/schema/api-types.schema.json",
+  "name": "@ourloop/product-core-api",
+  "path": "core/api.generated",
+  "templates": {
+    "path": "config/templates",
+    "files": [
+      "package.template.json",
+      "tsconfig.template.json",
+      ".gitignore.template"
+    ]
+  },
+  "apis": [
+    {
+      "name": "TalkToLoop",
+      "spec": "@ourloop/product-core-config/api/TalkToLoop-swagger-spec.json",
+      "outputDir": "talk-to-loop",
+      "options": {
+        "clientName": "TalkToLoopClient",
+        "useOptions": true,
+        "useUnionTypes": true
+      }
+    }
+  ]
+}
