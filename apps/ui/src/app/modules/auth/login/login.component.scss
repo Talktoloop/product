@@ -1,0 +1,92 @@
+@import 'variables';
+@import 'mixins';
+@import 'loop-design-system/helpers';
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3.75rem;
+
+  @include mobile-only {
+    margin-top: 1.25rem;
+  }
+
+  .label-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+
+    .reset-password {
+      align-items: flex-end;
+      display: flex;
+      flex: 0 0 calc(35% - 0.625rem);
+      margin-bottom: 0.9375rem;
+      order: 2;
+
+      @include mobile-only {
+        flex: 0 0 100%;
+        margin-top: 1rem;
+        order: 3;
+      }
+    }
+
+    .label-content {
+      display: flex;
+      flex: 1 1 65%;
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: pxToRem(27);
+      margin-bottom: pxToRem(15);
+      order: 1;
+    }
+
+    loop-input {
+      order: 3;
+      flex: 0 0 100%;
+
+      @include mobile-only {
+        order: 2;
+      }
+    }
+  }
+}
+
+.login-footer-container {
+  align-items: center;
+  border-top: 1px solid $light-grey-8;
+  display: flex;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+
+  @include mobile-only {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .login-create-account-text {
+    color: $grey;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.5rem;
+  }
+}
+
+.action-link {
+  @include margin-left(0.625rem);
+  align-items: flex-start;
+  color: $loop-interactive-01;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-left: pxToRem(10);
+  text-decoration: underline;
+
+  @include mobile-only {
+    @include margin-left(0);
+    font-size: 1rem;
+    margin-top: pxToRem(3);
+  }
+}

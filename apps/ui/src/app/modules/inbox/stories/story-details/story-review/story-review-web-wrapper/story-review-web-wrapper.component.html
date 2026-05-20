@@ -1,0 +1,5 @@
+<ng-container [ngSwitch]="ui.mobileView">
+  <app-story-review-web-mobile *ngSwitchCase="true"></app-story-review-web-mobile>
+
+  <app-story-review-web-desktop *ngSwitchDefault></app-story-review-web-desktop>
+</ng-container>

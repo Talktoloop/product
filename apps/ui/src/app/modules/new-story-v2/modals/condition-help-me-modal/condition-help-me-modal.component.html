@@ -1,0 +1,56 @@
+<loop-modal [title]="'newStoryV2.modals.conditionHelpMe.topParagraph' | translate" class="new-story-v2">
+  <p class="pt-125 loop-modal__paragraph">
+    <span> {{ 'newStoryV2.modals.conditionHelpMe.middleParagraphPart1' | translate }} </span
+    ><a href="https://www.washingtongroup-disability.com/question-sets/wg-short-set-on-functioning-wg-ss/" target="_blank"
+      >The Washington Group</a
+    ><span>{{ 'newStoryV2.modals.conditionHelpMe.middleParagraphPart2' | translate }}</span>
+  </p>
+
+  <ul class="loop-modal__list pt-125">
+    <li class="loop-modal__list-row">
+      <span class="loop-modal__list-label"> {{ 'newStoryV2.modals.conditionHelpMe.seeing.label' | translate }}: </span>
+      <span class="loop-modal__list-value">
+        {{ 'newStoryV2.modals.conditionHelpMe.seeing.explanation' | translate }}
+      </span>
+    </li>
+
+    <li class="loop-modal__list-row">
+      <span class="loop-modal__list-label"> {{ 'newStoryV2.modals.conditionHelpMe.hearing.label' | translate }}: </span>
+      <span class="loop-modal__list-value">
+        {{ 'newStoryV2.modals.conditionHelpMe.hearing.explanation' | translate }}
+      </span>
+    </li>
+
+    <li class="loop-modal__list-row">
+      <span class="loop-modal__list-label"> {{ 'newStoryV2.modals.conditionHelpMe.speaking.label' | translate }}: </span>
+      <span class="loop-modal__list-value">
+        {{ 'newStoryV2.modals.conditionHelpMe.speaking.explanation' | translate }}
+      </span>
+    </li>
+
+    <li class="loop-modal__list-row">
+      <span class="loop-modal__list-label"> {{ 'newStoryV2.modals.conditionHelpMe.mobilityDexterity.label' | translate }}: </span>
+      <span class="loop-modal__list-value">
+        {{ 'newStoryV2.modals.conditionHelpMe.mobilityDexterity.explanation' | translate }}
+      </span>
+    </li>
+
+    <li class="loop-modal__list-row">
+      <span class="loop-modal__list-label"> {{ 'newStoryV2.modals.conditionHelpMe.learningUnderstanding.label' | translate }}: </span>
+      <span class="loop-modal__list-value">
+        {{ 'newStoryV2.modals.conditionHelpMe.learningUnderstanding.explanation' | translate }}
+      </span>
+    </li>
+
+    <li class="loop-modal__list-row">
+      <span class="loop-modal__list-label"> {{ 'newStoryV2.modals.conditionHelpMe.selfCare.label' | translate }}: </span>
+      <span class="loop-modal__list-value">
+        {{ 'newStoryV2.modals.conditionHelpMe.selfCare.explanation' | translate }}
+      </span>
+    </li>
+  </ul>
+
+  <div action-buttons>
+    <app-button (clicked)="onModalClose()" mode="v2" variant="primary">{{ 'newStoryV2.modals.ok' | translate }}</app-button>
+  </div>
+</loop-modal>

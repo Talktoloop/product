@@ -7,15 +7,21 @@ const props = defineProps<CalendarHeadCellProps & { class?: HTMLAttributes['clas
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
 
 const forwardedProps = useForwardProps(delegatedProps)
+
+const headCellClasses = tw`
+  w-9 rounded-md
+  text-[0.8rem] font-normal
+  text-muted-foreground
+  dark:text-dark-muted-foreground
+`
 </script>
 
 <template>
-  <CalendarHeadCell :class="cn('w-9 rounded-md text-[0.8rem] font-normal text-muted-foreground', props.class)" v-bind="forwardedProps">
+  <CalendarHeadCell :class="cn(headCellClasses, props.class)" v-bind="forwardedProps">
     <slot />
   </CalendarHeadCell>
 </template>

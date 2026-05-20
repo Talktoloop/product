@@ -1,0 +1,18 @@
+<button class="filter-pill__button">
+  <div class="filter-pill__wrapper">
+    <app-pill [text]="forcedTitle ? (forcedTitle | translate) : text" [theme]="theme" [badge]="badge" [customContent]="customContent">
+      <ng-content></ng-content>
+    </app-pill>
+    <app-info-icon 
+      *ngIf="hasTooltip()" 
+      class="filter-pill__info-icon"
+      [size]="15"
+      fillColor="#6B7280"
+      appTooltip
+      [tooltipText]="getTooltipText()"
+      [tooltipPlacement]="'bottom'"
+      [tooltipOffset]="[0, 8]"
+      [showTooltip]="true">
+    </app-info-icon>
+  </div>
+</button>

@@ -1,0 +1,30 @@
+import { CountryAdministrativeDataEntity } from '../../country/entity/country-administrative-data.entity';
+
+export type ExportedStory = {
+  isSensitive: string;
+  categories: string[];
+  country: string;
+  assistanceProvided: string[];
+  outcomesOfInvestigation: string[];
+  organisationTypes: string[];
+  allegationTypes: string[];
+  id: string;
+  originalContent: string;
+  content: string;
+  publishedAt: Date;
+  thematicChildren: string[];
+  thematicParents: string[];
+  difficulties: string[];
+  gender: string;
+  age: string;
+  place: string;
+  district: string;
+  administrativeData: CountryAdministrativeDataEntity[];
+  defaultLanguageIdForAdministrativeData: number;
+  organisations: string[];
+  numberOfComments: number;
+  channel: string;
+  originalContentLanguage: string;
+  isMinority: boolean;
+  vulnerabilityFactors: string[];
+};

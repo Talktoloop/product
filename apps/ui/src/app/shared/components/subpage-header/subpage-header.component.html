@@ -1,0 +1,37 @@
+<header class="loop-header">
+  <div class="loop-header__content">
+    <div class="loop-header__content__back-link">
+      <a [routerLink]="backUrl.link" role="menuitem" tabindex="0">
+        <app-arrow-previous-icon class="mr-0625"></app-arrow-previous-icon>
+        <span class="font-1125" *ngIf="(ui.mobileView$ | async) === false">{{ backUrl.text | translate }}</span>
+      </a>
+    </div>
+    <div class="loop-header__content__mid-section">
+      <ng-container *ngTemplateOutlet="(ui.mobileView$ | async) ? titleSection : logoSection"></ng-container>
+    </div>
+    <div class="loop-header__content__lang-switcher">
+      <span class="flex-center" #languageSelect>
+        <span class="mr-0625 font-1125" *ngIf="(ui.mobileView$ | async) === false">{{ 'global.language' | translate
+          }}:</span>
+        <app-button variant="link" [noPadding]="true" (clicked)="toggleLangSwitch()" [appStopEvent]="'click'">
+          <div class="flex-center font-1125 font-bold">
+            {{ 'languages.' + selectedLanguage | translate }}
+            <app-expand-more-icon [class.expand-rotated]="languageSelectOpen"></app-expand-more-icon>
+          </div>
+        </app-button>
+        <loop-select *ngIf="languageSelectOpen" (appClickOutside)="this.languageSelectOpen = false"
+          [appStopEvent]="'click'" [showHeader]="false" [showSuffix]="true" appDropdown [sourceEl]="languageSelect"
+          [sourceWidth]="languageSelect.clientWidth">
+          <loop-select-option *ngFor="let language of filteredLanguages$ | async"
+            (clicked)="languageSwitch(language.language)">{{ 'languages.' + language.language | translate }}
+          </loop-select-option>
+        </loop-select>
+      </span>
+    </div>
+  </div>
+
+  <ng-template #logoSection>
+    <img id="nav-logo" src="assets/new-logo-loop.png" class="main-logo" alt="Loop logo" />
+  </ng-template>
+  <ng-template #titleSection><span class="page-title">{{ pageTitle | translate }}</span></ng-template>
+</header>

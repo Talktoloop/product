@@ -1,0 +1,13 @@
+<app-fab-button
+  class="new-story-btn__float fw-600"
+  size="big"
+  mode="v2"
+  rotate="45"
+  [animated]="true"
+  [textClass]="['fw-600', 'text-regular', 'ws-nowrap']"
+  [text]="windowScrolled ? null : ('header.link.newStory' | translate)"
+  [title]="'header.link.newStory' | translate"
+  [padded]="true"
+  (clicked)="newStoryClicked($event)"
+>
+</app-fab-button>

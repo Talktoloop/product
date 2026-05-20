@@ -1,0 +1,227 @@
+@import 'variables';
+@import 'mixins';
+@import 'typography';
+
+:host {
+  background: #ffffff;
+  border-radius: 8px;
+  ::ng-deep {
+    .wizard__title {
+      text-transform: capitalize;
+    }
+  }
+}
+
+.story-details {
+  background: #ffffff;
+  border-radius: 8px;
+  @include mobile-only {
+    border-radius: unset;
+  }
+}
+
+.translations-controller {
+  margin-top: 1.875rem;
+
+  @include mobile-up {
+    margin-top: 3.125rem;
+  }
+}
+
+.arrow-icon {
+  transform: translateY(calc(0.75rem / 4));
+}
+
+h3 {
+  @include subheading;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+a {
+  @include link-green;
+}
+
+.panel-content {
+  h2 {
+    @include subheading;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  .preview-heading-close {
+    cursor: pointer;
+    padding: 1.25rem;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+}
+
+.review-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  @media screen and (max-width: $breakpoint-md - 0.1px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @media screen and (min-width: $breakpoint-md) {
+    display: flex;
+  }
+
+  &__wrapper {
+    overflow-y: auto;
+    padding: 1.25rem;
+
+    @include mobile-up {
+      padding: 3.75rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #fff;
+
+    &__error {
+      color: $support-01;
+      font-size: 0.75rem;
+    }
+
+    @include mobile-up {
+      @include margin-left(calc(50% + 1.25rem));
+      width: calc(50% - 0.625rem);
+      flex-direction: row;
+      flex: unset;
+      border-radius: pxToRem(16);
+    }
+  }
+}
+
+.stepper-section {
+  transition: box-shadow 0.4s ease-in-out;
+  padding: 1.625rem 2rem;
+
+  &.shadow {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+
+    &-none {
+      box-shadow: none;
+    }
+  }
+}
+
+.review-spacer {
+  @media screen and (min-width: $breakpoint-md) {
+    @include border-right(1px solid $border-gray);
+  }
+
+  @media screen and (max-width: $breakpoint-md - 0.1) {
+    border-bottom: 1px solid $border-gray;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.spacer {
+  height: 100%;
+  width: 1.25rem;
+
+  @media screen and (max-width: $breakpoint-md - 0.1px) {
+    display: none;
+  }
+}
+
+::ng-deep {
+  .post-skeleton {
+    p {
+      height: 1.5rem;
+
+      &:first-child {
+        height: 2rem;
+      }
+    }
+  }
+
+  .form-skeleton {
+    padding-top: 1.5rem;
+
+    p {
+      &:last-child {
+        height: 20rem;
+      }
+
+      &:first-child {
+        height: 3rem;
+      }
+    }
+  }
+}
+
+.loading-indicator {
+  width: 0;
+}
+
+.thread-preview {
+  font-size: 0.75rem;
+
+  a {
+    font-size: inherit;
+    font-weight: 600;
+  }
+
+  @include mobile-up {
+    font-size: 1rem;
+  }
+
+  &__separator {
+    $sideMargin: 1.25rem;
+    display: block;
+    height: 1px;
+    width: calc(100% + 2 * #{$sideMargin});
+    background-color: $light-grey-8;
+    margin: 1.25rem (-$sideMargin) 1.5rem;
+
+    @include mobile-up {
+      width: 100%;
+      margin: 2.5rem 0;
+    }
+  }
+
+  &__language:before {
+    content: '•';
+    margin: 0 0.625rem;
+  }
+}
+
+.story-details__paragraph {
+  font-size: 1rem;
+
+  @include mobile-up {
+    margin-top: 1.875rem;
+    font-size: 1.25rem;
+  }
+}
+
+.content-translation-step {
+  display: block;
+  padding-bottom: 1.875rem;
+
+  @include mobile-up {
+    padding-bottom: 3.75rem;
+  }
+}
+
+app-audio-player {
+  margin-top: 2rem;
+}
+
+.solution-proposed{
+  margin-top: 10px;
+}
+
+.reply_thematic_form__section__dropdown{
+    height: auto !important;
+    max-height: 400px !important;
+    overflow-y: auto !important;
+}

@@ -7,16 +7,18 @@ const props = defineProps<AlertDialogTitleProps & { class?: HTMLAttributes['clas
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
+
+const titleClasses = tw`
+  text-lg font-semibold
+  text-foreground
+  dark:text-dark-foreground
+`
 </script>
 
 <template>
-  <AlertDialogTitle
-    v-bind="delegatedProps"
-    :class="cn('text-lg font-semibold', props.class)"
-  >
+  <AlertDialogTitle v-bind="delegatedProps" :class="cn(titleClasses, props.class)">
     <slot />
   </AlertDialogTitle>
 </template>

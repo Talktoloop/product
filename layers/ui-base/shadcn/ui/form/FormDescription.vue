@@ -8,13 +8,16 @@ const props = defineProps<{
 }>()
 
 const { formDescriptionId } = useFormField()
+
+const descriptionClasses = tw`
+  text-sm 
+  text-muted-foreground
+  dark:text-dark-muted-foreground
+`
 </script>
 
 <template>
-  <p
-    :id="formDescriptionId"
-    :class="cn('text-sm text-muted-foreground', props.class)"
-  >
+  <p :id="formDescriptionId" :class="cn(descriptionClasses, props.class)">
     <slot />
   </p>
 </template>

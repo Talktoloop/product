@@ -1,0 +1,10 @@
+<article class="our-loop-promise" [class.our-loop-promise--sensitive]="isSensitive">
+  <h3 class="our-loop-promise__heading">{{ heading | translate }}</h3>
+  <p class="our-loop-promise__content">{{ content | translate }}</p>
+</article>
+<loop-info-link
+  *ngIf="isSensitive"
+  (clicked)="onModalOpen()"
+  class="d-block mt-25"
+  [text]="'newStoryV2.modals.whatHappenStory.title' | translate"
+></loop-info-link>

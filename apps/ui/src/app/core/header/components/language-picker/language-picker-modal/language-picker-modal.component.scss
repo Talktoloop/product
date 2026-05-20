@@ -1,0 +1,26 @@
+@import 'mixins';
+@import 'loop-design-system/colors';
+@import 'variables';
+
+.select-language-modal {
+  &__header {
+    color: #000000;
+    font-size: 1.375rem;
+    font-weight: 700;
+    padding-bottom: 1.25rem;
+  }
+
+  &__row {
+    align-items: center;
+    color: $dark-grey;
+    display: flex;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: normal;
+    height: 3.125rem;
+    justify-content: flex-start;
+    letter-spacing: normal;
+    line-height: normal;
+    text-align: left;
+  }
+}

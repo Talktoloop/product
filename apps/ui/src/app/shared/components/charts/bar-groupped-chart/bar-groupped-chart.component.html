@@ -1,0 +1,2 @@
+<h3 class="chart-subtitle">{{ titleTKey | translate }}</h3>
+<div *ngIf="chartOption" echarts (chartInit)="onChartInit($event)" [options]="chartOption" class="base-chart"></div>

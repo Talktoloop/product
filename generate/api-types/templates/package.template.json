@@ -1,0 +1,30 @@
+{
+  "name": "{{name}}",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Generated TypeScript types from the OpenAPI/Swagger specification",
+  "packageManager": "yarn@4.2.2",
+  "type": "module",
+  "exports": {
+    "{$entries}": {
+      "{{#each apis}}": [
+        "./{{outputDir}}",
+        "./src/{{outputDir}}/index.ts"
+      ]
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ourloop/product-core-config": "*",
+    "axios": "^1.6.7",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

@@ -10,16 +10,18 @@ const props = defineProps<AlertDialogDescriptionProps & { class?: HTMLAttributes
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
+
+const descriptionClasses = tw`
+  text-sm
+  text-muted-foreground
+  dark:text-dark-muted-foreground
+`
 </script>
 
 <template>
-  <AlertDialogDescription
-    v-bind="delegatedProps"
-    :class="cn('text-sm text-muted-foreground', props.class)"
-  >
+  <AlertDialogDescription v-bind="delegatedProps" :class="cn(descriptionClasses, props.class)">
     <slot />
   </AlertDialogDescription>
 </template>

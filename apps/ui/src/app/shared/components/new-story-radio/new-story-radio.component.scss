@@ -1,0 +1,107 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+  &.checked {
+    .radio {
+      border: 1px solid $color-green-stepper;
+      background-color: $color-green-medium;
+
+      &__icon:after {
+        background-color: $color-green-stepper;
+      }
+    }
+
+    .label-disabled {
+      .radio__icon {
+        &:after {
+          background-color: #d4dfd0 !important;
+        }
+      }
+    }
+  }
+
+  &:not(.checked) .radio:hover {
+    border: 1px solid $color-green-stepper;
+
+    .radio__icon {
+      border: 1px solid $color-green-stepper;
+
+      &:after {
+        background-color: $color-green-stepper;
+      }
+    }
+  }
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  margin-bottom: 0.313rem;
+  padding: 1.063rem 1rem;
+  border: 1px solid $light-grey-2;
+  border-radius: 2px;
+  font-size: 1rem;
+  transition: border 0.2s linear;
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 1.375rem;
+    min-width: 1.375rem;
+    border: 1px solid $color-green-stepper;
+    @include margin-right(0.625rem);
+    border-radius: 50%;
+    transition: background-color 0.2s linear;
+
+    &:after {
+      content: '';
+      display: block;
+      height: 0.715rem;
+      width: 0.715rem;
+      border-radius: 50%;
+      background: transparent;
+      transition: border 0.2s linear;
+
+      @include mobile-up {
+        height: 0.813rem;
+        min-height: 0.813rem;
+        min-width: 0.813rem;
+        width: 0.813rem;
+      }
+    }
+
+    @include mobile-up {
+      height: 1.563rem;
+      min-height: 1.563rem;
+      min-width: 1.563rem;
+      width: 1.563rem;
+    }
+  }
+
+  @include mobile-up {
+    height: 4.063rem;
+    margin-bottom: 0.625rem;
+    padding: 1.25rem;
+    font-size: 1.125rem;
+  }
+}
+
+.label-disabled {
+  background-color: $input-disabled-bg !important;
+  border: 1px solid $border-grey !important;
+  box-shadow: none !important;
+  color: $grey !important;
+  pointer-events: none !important;
+
+  .radio {
+    border: 1px solid $light-grey-2;
+  }
+}

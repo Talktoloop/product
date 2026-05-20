@@ -12,27 +12,31 @@ const props = defineProps<AccordionTriggerProps & { class?: HTMLAttributes['clas
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
+
+const triggerClasses = tw`
+  flex flex-1 items-center justify-between py-4
+  font-medium transition-all
+  hover:underline hover:text-foreground
+  dark:hover:text-dark-foreground
+  [&[data-state=open]>svg]:rotate-180
+`
+
+const iconClasses = tw`
+  h-4 w-4 shrink-0
+  transition-transform duration-200
+  text-muted-foreground
+  dark:text-dark-muted-foreground
+`
 </script>
 
 <template>
   <AccordionHeader class="flex">
-    <AccordionTrigger
-      v-bind="delegatedProps"
-      :class="
-        cn(
-          'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
-          props.class,
-        )
-      "
-    >
+    <AccordionTrigger v-bind="delegatedProps" :class="cn(triggerClasses, props.class)">
       <slot />
       <slot name="icon">
-        <ChevronDown
-          class="h-4 w-4 shrink-0 transition-transform duration-200"
-        />
+        <ChevronDown :class="iconClasses" />
       </slot>
     </AccordionTrigger>
   </AccordionHeader>

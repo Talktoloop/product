@@ -18,15 +18,16 @@ export const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border bg-background text-foreground',
+        default:
+          'border bg-background text-foreground dark:border-dark-border dark:bg-dark-background dark:text-dark-foreground',
         destructive:
-                    'destructive group border-destructive bg-destructive text-destructive-foreground',
+          'destructive group border-destructive bg-destructive text-destructive-foreground dark:border-dark-destructive dark:bg-dark-destructive dark:text-dark-destructive-foreground',
       },
     },
     defaultVariants: {
       variant: 'default',
     },
-  },
+  }
 )
 
 type ToastVariants = VariantProps<typeof toastVariants>

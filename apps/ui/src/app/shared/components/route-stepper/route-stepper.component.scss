@@ -1,0 +1,78 @@
+@import 'loop-design-system/colors';
+@import 'loop-design-system/helpers';
+@import 'mixins';
+@import 'variables';
+
+.stepper {
+  border-bottom: 0.063rem solid $color-green-light;
+  display: flex;
+  margin-bottom: 3rem;
+  overflow-x: auto;
+  padding-left: pxToRem(24);
+
+  @include mobile-up {
+    padding-left: pxToRem(0);
+
+    >*+* {
+      @include margin-left(5rem);
+    }
+  }
+
+  &-step {
+    align-items: center;
+    color: $color-green-light;
+    cursor: pointer;
+    display: flex;
+    padding-bottom: pxToRem(14);
+    text-decoration: none;
+    margin-right: pxToRem(32);
+
+    @include mobile-up {
+      padding-bottom: pxToRem(28);
+    }
+  }
+
+  &-number {
+    align-items: center;
+    background-color: $color-green-10;
+    border-radius: 50px;
+    color: $color-green-90;
+    display: flex;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 1.625rem;
+    justify-content: center;
+    line-height: 1.375rem;
+    margin-right: pxToRem(12);
+    padding: 0.125rem 0.5rem;
+    width: 1.625rem;
+
+    @include mobile-up {
+      margin-right: pxToRem(20);
+      @include margin-right(0.938rem);
+    }
+  }
+
+  &-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+    @include mobile-only {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.stepper-active-step {
+  border-bottom: 4px solid $color-green-stepper;
+
+  .stepper-number {
+    background-color: $color-green-stepper;
+    color: $white;
+  }
+
+  .stepper-title {
+    color: $color-green-stepper;
+  }
+}

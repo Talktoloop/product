@@ -1,0 +1,116 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "name",
+    "path",
+    "templates",
+    "apis"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Package name for the generated types"
+    },
+    "path": {
+      "type": "string",
+      "description": "Output path for the generated types"
+    },
+    "templates": {
+      "type": "object",
+      "required": [
+        "path",
+        "files"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Path to the templates directory"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of template files to copy"
+        }
+      }
+    },
+    "apis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "spec",
+          "outputDir"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the API"
+          },
+          "spec": {
+            "type": "string",
+            "description": "Path to the OpenAPI/Swagger spec file"
+          },
+          "outputDir": {
+            "type": "string",
+            "description": "Directory name for this API's generated types"
+          },
+          "options": {
+            "type": "object",
+            "description": "Options for openapi-typescript-codegen",
+            "default": {
+              "httpClient": "axios",
+              "exportCore": true,
+              "exportServices": true,
+              "exportModels": true
+            },
+            "properties": {
+              "httpClient": {
+                "type": "string",
+                "enum": [
+                  "fetch",
+                  "xhr",
+                  "node",
+                  "axios",
+                  "angular"
+                ],
+                "description": "HTTP client to use",
+                "default": "axios"
+              },
+              "clientName": {
+                "type": "string",
+                "description": "Custom name for the API client"
+              },
+              "useOptions": {
+                "type": "boolean",
+                "description": "Use options pattern for method parameters"
+              },
+              "useUnionTypes": {
+                "type": "boolean",
+                "description": "Use union types instead of enums"
+              },
+              "exportCore": {
+                "type": "boolean",
+                "description": "Export core functionality",
+                "default": true
+              },
+              "exportServices": {
+                "type": "boolean",
+                "description": "Export service classes",
+                "default": true
+              },
+              "exportModels": {
+                "type": "boolean",
+                "description": "Export model interfaces",
+                "default": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

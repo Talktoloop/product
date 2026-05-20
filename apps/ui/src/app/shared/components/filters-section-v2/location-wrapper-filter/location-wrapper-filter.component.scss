@@ -1,0 +1,18 @@
+@import 'mixins';
+
+.location-filter-container {
+  display: flex;
+  flex-direction: column;
+
+  div:first-child {
+    margin-bottom: 1.25rem;
+  }
+
+  @include mobile-up {
+    &.modal-filter {
+      div:first-child {
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+}

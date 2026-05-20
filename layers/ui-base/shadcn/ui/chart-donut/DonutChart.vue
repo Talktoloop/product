@@ -60,7 +60,11 @@ const totalValue = computed(() => props.data.reduce((prev, curr) => {
 </script>
 
 <template>
-  <div :class="cn('w-full h-48 flex flex-col items-end', $attrs.class ?? '')">
+  <div :class="cn(tw`
+    w-full h-48 flex flex-col items-end
+    dark:bg-dark-background
+    dark:text-dark-foreground
+  `, $attrs.class ?? '')">
     <VisSingleContainer :style="{ height: isMounted ? '100%' : 'auto' }" :margin="{ left: 20, right: 20 }" :data="data">
       <ChartSingleTooltip :selector="Donut.selectors.segment" :index="category" :items="legendItems"
         :value-formatter="valueFormatter" :custom-tooltip="customTooltip" />
@@ -80,6 +84,10 @@ const totalValue = computed(() => props.data.reduce((prev, curr) => {
                 elements[i].style.opacity = '1'
               }
             },
+          },
+        }" :attributes="{
+          [Donut.selectors.segment]: {
+            class: 'dark:opacity-80',
           },
         }" />
 

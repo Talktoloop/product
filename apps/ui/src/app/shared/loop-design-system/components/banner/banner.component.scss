@@ -1,0 +1,70 @@
+@use 'sass:map';
+@import 'mixins';
+@import 'loop-design-system-v2/colors';
+@import 'loop-design-system/helpers';
+
+:host {
+  ::ng-deep {
+    .close-icon .loop-icon-close {
+      cursor: pointer;
+    }
+  }
+}
+
+.banner {
+  align-items: flex-start;
+  border-style: solid;
+  border-width: pxToRem(1);
+  display: flex;
+  min-height: pxToRem(48);
+  padding: pxToRem(10) pxToRem(21) pxToRem(10) pxToRem(26);
+  width: pxToRem(458);
+
+  @include mobile-only {
+    width: 100%;
+  }
+
+  .banner-prefix-icon {
+    @include margin-right(pxToRem(14));
+    display: flex;
+    flex: 0 0 pxToRem(20);
+    justify-content: flex-start;
+    margin-top: pxToRem(3);
+  }
+
+  .banner-suffix-icon {
+    flex: 0 0 pxToRem(14);
+    padding: pxToRem(5);
+  }
+
+  .banner-main-content {
+    flex: 1;
+    font-size: pxToRem(18);
+    font-style: normal;
+    font-weight: 400;
+    line-height: pxToRem(24);
+    @include margin-right(pxToRem(15));
+  }
+
+  // THEME
+  &.info {
+    background: map.get($loop-purples, '100');
+    border-color: map.get($loop-purples, '600');
+    color: map.get($loop-purples, '800');
+  }
+  &.success {
+    background: map.get($action-teals, '100');
+    border-color: map.get($action-teals, '600');
+    color: map.get($action-teals, '800');
+  }
+  &.warning {
+    background: map.get($alert-golds, '100');
+    border-color: map.get($alert-golds, '600');
+    color: map.get($alert-golds, '800');
+  }
+  &.error {
+    background: map.get($destructive-reds, '100');
+    border-color: map.get($destructive-reds, '600');
+    color: map.get($destructive-reds, '800');
+  }
+}

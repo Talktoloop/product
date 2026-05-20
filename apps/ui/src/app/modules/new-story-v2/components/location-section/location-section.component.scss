@@ -1,0 +1,142 @@
+@import 'loop-design-system/helpers';
+@import 'variables';
+@import 'mixins';
+
+:host {
+  ::ng-deep {
+    loop-autocomplete {
+      transition: width 0.2s linear;
+      width: 100%;
+
+      app-location-icon {
+        display: flex;
+      }
+
+      app-modal {
+        .dialog {
+          padding: 1.41rem 1.28rem;
+        }
+      }
+
+      loop-select {
+        .select__options {
+          max-height: unset;
+          min-height: 120px;
+        }
+
+        loop-select-option {
+          .select-option {
+            padding: 1.45rem 0;
+
+            >* {
+              font-size: 1.15rem;
+              line-height: 1;
+              color: $dark-grey;
+            }
+          }
+
+          &:only-of-type {
+            margin-top: 1.25rem;
+          }
+
+          &:last-of-type {
+            .select-option {
+              margin-top: -1.25rem;
+              display: block;
+              padding: 0;
+            }
+          }
+        }
+      }
+
+      app-close-icon {
+        cursor: pointer;
+        color: #ffffff;
+        background: $grey;
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        @include margin-right(0.5rem);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 0.625rem;
+          height: 0.625rem;
+        }
+      }
+
+      loop-input {
+        .loop-input {
+          input {
+            width: 0;
+          }
+        }
+
+        @include mobile-only {
+          width: 100%;
+
+          .loop-input {
+            padding: 0.15rem 1.25rem;
+
+            input {
+              line-height: 3.5rem;
+              height: 3.5rem;
+            }
+          }
+        }
+      }
+
+      .inside {
+        @include margin-left(0.5rem);
+        @include padding-left(0.5rem);
+        border-left: 0.0625rem solid $light-grey-4;
+
+        .button {
+          padding: 0.5rem;
+        }
+      }
+
+      .full-screen {
+        .inside {
+          display: none;
+        }
+
+        .location-section--use-location-button {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .location-section--use-location-button {
+    overflow: hidden;
+    max-width: 180px;
+    white-space: nowrap;
+
+    ::ng-deep button {
+      padding: 0;
+    }
+
+    @include padding-left(0.5rem);
+
+    @include mobile-only {
+      display: none;
+    }
+  }
+}
+
+.required {
+  color: $error-2;
+}
+
+.error-location {
+  background-color: #f5d5db;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  color: red;
+  font-weight: 700;
+}

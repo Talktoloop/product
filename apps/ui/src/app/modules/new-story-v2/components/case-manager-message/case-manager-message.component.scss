@@ -1,0 +1,57 @@
+@import 'loop-design-system/helpers';
+@import 'mixins';
+@import 'variables';
+
+.case-manager-message {
+  display: flex;
+  padding: pxToRem(30) pxToRem(30) pxToRem(40);
+  background: $input-disabled-bg;
+  border-radius: pxToRem(8);
+
+  &__quotes {
+    padding-right: pxToRem(25);
+    border-right: 1px solid $light-grey-4;
+    height: pxToRem(40);
+    margin-top: 4px;
+  }
+
+  &__content {
+    @include margin-left(pxToRem(25));
+  }
+
+  &__text {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: pxToRem(21);
+  }
+
+  &__person-info {
+    display: grid;
+    column-gap: 15px;
+    grid-template-columns: pxToRem(50) 1fr;
+    grid-template-rows: repeat(2, pxToRem(25));
+    font-size: pxToRem(14);
+    line-height: pxToRem(24);
+  }
+
+  &__avatar {
+    height: 100%;
+    grid-row: span 2;
+    border-radius: 100%;
+  }
+
+  &__nickname {
+    font-size: 0.875rem;
+    line-height: 1.71;
+    color: $dark-grey;
+    align-self: end;
+  }
+
+  &__role {
+    font-size: 0.875rem;
+    line-height: 1.71;
+    color: $grey;
+    white-space: nowrap;
+    align-self: start;
+  }
+}

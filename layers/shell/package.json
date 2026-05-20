@@ -13,12 +13,17 @@
     "clean": "rimraf .nuxt .playground/.nuxt .output node_modules"
   },
   "dependencies": {
-    "@ourloop/product-layer-core": "*"
+    "@ourloop/product-core-model": "*",
+    "@ourloop/product-core-types": "*",
+    "@ourloop/product-layer-core": "*",
+    "@pinia/nuxt": "^0.9.0",
+    "pinia": "^2.3.1"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.7.1",
     "eslint": "^9.14.0",
     "nuxt": "^3.14.159",
+    "nuxt-remote-fn": "0.5.3",
     "typescript": "^5.6.3",
     "vue": "latest"
   }

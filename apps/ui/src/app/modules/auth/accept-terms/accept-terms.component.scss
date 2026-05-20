@@ -1,0 +1,221 @@
+@import 'loop-design-system-v2/colors';
+@import 'mixins';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.form-container {
+  h2 {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 48px;
+    color: $neutral-800;
+    margin-bottom: 16px;
+
+    @include mobile-only {
+      font-size: 22px;
+      line-height: 32px;
+    }
+  }
+
+  h5 {
+    margin-bottom: 8px;
+  }
+
+  h5,
+  ul {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: $neutral-500;
+
+    @include mobile-only {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  ul {
+    font-weight: 400;
+    list-style: disc;
+    padding: 0 0 0 40px;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+  }
+
+  .learn-more {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+
+    @include mobile-only {
+      margin-bottom: 51px;
+    }
+
+    a {
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+      color: $action-teal-500;
+    }
+  }
+}
+
+.continue-button {
+  height: 56px;
+  margin-top: 24px;
+
+  @include mobile-only {
+    height: 48px;
+    margin-top: 16px;
+  }
+}
+
+app-auth-page-wrapper {
+  div {
+    app-checkbox {
+      margin-top: 8px;
+
+      &.error {
+        ::ng-deep {
+          .checkbox {
+            border: 1px solid $destructive-red-600;
+            background-color: transparent;
+
+            label .square {
+              border: 1px solid $destructive-red-600;
+            }
+          }
+        }
+      }
+      ::ng-deep {
+        .checkbox {
+          box-sizing: border-box;
+          padding: 8px 12px 8px 16px;
+          background-color: transparent;
+          border: 1px solid $loop-purple-200;
+          border-radius: 4px;
+          transition: 0.2s;
+
+          @include mobile-only {
+            padding: 16px;
+          }
+
+          label {
+            display: flex;
+            align-items: center;
+
+            .square {
+              border: 1px solid $neutral-700;
+              border-radius: 2px;
+              box-shadow: none;
+            }
+
+            span {
+              font-weight: 400;
+              font-size: 18px;
+              line-height: 24px;
+              color: $neutral-800;
+            }
+          }
+
+          &.checked {
+            border: 1px solid $loop-purple-600;
+            background-color: $loop-purple-200;
+
+            .square {
+              border-color: $loop-purple-600;
+              background-color: $loop-purple-600;
+
+              img {
+                display: block;
+              }
+            }
+
+            &:hover {
+              border: 1px solid $loop-purple-600;
+              background-color: $loop-purple-100;
+
+              .square {
+                border-color: $loop-purple-400;
+                background-color: $loop-purple-400;
+
+                img {
+                  display: block;
+                }
+              }
+            }
+
+            &:focus,
+            &:active {
+              border: 1px solid $loop-purple-600;
+              background-color: $loop-purple-100;
+              box-shadow: 0px 0px 8px $emphasis-blue-500;
+
+              .square {
+                border-color: $loop-purple-400;
+                background-color: $loop-purple-400;
+
+                img {
+                  display: block;
+                }
+              }
+            }
+          }
+
+          &:hover:not(.checked) {
+            border: 1px solid $loop-purple-600;
+
+            .square {
+              border-color: transparent;
+              background-color: $loop-purple-300;
+
+              img {
+                display: block;
+              }
+            }
+          }
+
+          &:focus:not(.checked),
+          &:active:not(.checked) {
+            box-shadow: 0px 0px 8px $emphasis-blue-500;
+          }
+        }
+      }
+    }
+  }
+}
+
+.text {
+  width: 100%;
+}
+
+.error {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: $destructive-red-600;
+
+  @include mobile-only {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
+.optin-marketing {
+  margin-bottom: 10px;
+}
+//checked .checkbox
+// background-color: $loop-purple-200;
+// border: 1px solid $loop-purple-600;

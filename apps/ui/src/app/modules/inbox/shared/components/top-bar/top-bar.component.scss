@@ -1,0 +1,148 @@
+@import 'loop-design-system/colors';
+@import 'loop-design-system/helpers';
+@import 'mixins';
+@import 'variables';
+
+$content-offset-left: 1.275rem;
+
+.header {
+  @include mobile-only {
+    padding: 0 pxToRem(20);
+  }
+
+  &-top {
+    border-bottom: solid pxToRem(1) $light-grey-2;
+    padding: pxToRem(18) 0 pxToRem(26);
+
+    @include mobile-up {
+      padding: pxToRem(44) 0 pxToRem(47);
+    }
+  }
+
+  &-bottom {
+    padding-top: pxToRem(29);
+
+    @include mobile-up {
+      padding-top: pxToRem(48);
+    }
+  }
+
+  &__back-arrow {
+    align-items: center;
+    color: $loop-green-125;
+    display: flex;
+    font-family: Noto Sans;
+    font-size: pxToRem(14);
+    font-style: normal;
+    font-weight: 600;
+    gap: pxToRem(10);
+    letter-spacing: 0em;
+
+    @include mobile-up {
+      font-size: pxToRem(18);
+    }
+
+    img {
+      margin: 0;
+      @include margin-right(0.25rem);
+    }
+  }
+
+  &__heading {
+    color: $dark-grey;
+    font-family: Noto Sans;
+    font-size: pxToRem(30);
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0em;
+    @include mobile-up {
+      font-size: pxToRem(35);
+    }
+  }
+
+  &__subheading {
+    color: $grey;
+    font-family: Noto Sans;
+    font-size: pxToRem(16);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0em;
+    line-height: pxToRem(22);
+    padding-top: pxToRem(7);
+
+    @include mobile-up {
+      font-size: pxToRem(20);
+      line-height: pxToRem(27);
+      padding-top: pxToRem(17);
+      width: 50%;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    @include margin-left($content-offset-left);
+  }
+}
+
+.bar-flex {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+  min-height: 10.5rem;
+}
+
+// Styles for old wrapper
+// Have to be removed after rdesign is complete
+#top-bar {
+  min-height: $topbar-height;
+  background: white;
+  border-bottom: 1px solid $line-color;
+
+  .bx--grid {
+    max-width: pxToRem(1298);
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 2.1875rem;
+    font-weight: bold;
+  }
+
+  .header {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 10.5rem;
+
+    &__back-arrow {
+      font-size: 0.75rem;
+      color: #000000;
+      margin-bottom: 1.625rem;
+      text-decoration: none;
+      @include margin-left($content-offset-left);
+      display: block;
+
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+
+      img {
+        @include margin-right(0.25rem);
+      }
+    }
+
+    &__heading {
+      font-size: 2.188rem;
+      line-height: 3rem;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

@@ -10,18 +10,31 @@ const props = defineProps<DialogContentProps & { class?: HtmlHTMLAttributes['cla
 const emits = defineEmits<DialogContentEmits>()
 
 const forwarded = useForwardPropsEmits(props, emits)
+
+const contentClasses = tw`
+  fixed inset-x-0 bottom-0 z-50 
+  mt-24 
+  flex h-auto flex-col 
+  rounded-t-[10px] 
+  border bg-background 
+  dark:bg-dark-background
+  dark:border-dark-border
+`
+
+const handleClasses = tw`
+  mx-auto mt-4 
+  h-2 w-[100px] 
+  rounded-full 
+  bg-muted
+  dark:bg-dark-muted
+`
 </script>
 
 <template>
   <DrawerPortal>
     <DrawerOverlay />
-    <DrawerContent
-      v-bind="forwarded" :class="cn(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background',
-        props.class,
-      )"
-    >
-      <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
+    <DrawerContent v-bind="forwarded" :class="cn(contentClasses, props.class)">
+      <div :class="handleClasses" />
       <slot />
     </DrawerContent>
   </DrawerPortal>

@@ -1,0 +1,38 @@
+<div class="categories-wrapper" [class.disabled]="storyInfoMode">
+  <h3 *ngIf="!storyInfoMode && !difficultiesMode" class="font-big mb-0625 bold">{{ 'newStoryV2.form.type.title' | translate }}</h3>
+  <p *ngIf="!storyInfoMode && !difficultiesMode" class="subsection input-description">{{ 'newStoryV2.form.type.subtitle' | translate }}</p>
+  <div class="categories-controls" *ngIf="categories">
+    <loop-checkbox-icon-square
+      cy="story-type-boxgroup-checkbox"
+      data-testid="story-type-boxgroup-checkbox"
+      class="categories-controls__square"
+      *ngFor="let category of categoriesForView; trackBy: trackByFn"
+      (changed)="onCheckboxChange($event)"
+      [value]="category.id"
+      [label]="category.code | translate"
+      [checked]="isChecked(category.id)"
+    >
+      <app-story-category-icon
+        class="type-icon"
+        [category]="difficultiesMode ? DifficultiesMapping[category.id] : StoryCategoryMapping[category.id]"
+      ></app-story-category-icon>
+    </loop-checkbox-icon-square>
+  </div>
+  <div class="mt-125 mb-125">
+    <ng-container *ngIf="storyInfoMode || difficultiesMode; else sensitiveRadio">
+      {{ formArray.controls.length ? '' : storyInfoMode ? '-' : '' }}
+    </ng-container>
+    <ng-template #sensitiveRadio>
+      <loop-new-story-radio
+        (changed)="noneClicked()"
+        [label]="'newStoryV2.form.type.none' | translate"
+        [checked]="isNoneChecked()"
+      ></loop-new-story-radio>
+    </ng-template>
+  </div>
+  <loop-info-link
+    (clicked)="onModalOpen()"
+    *ngIf="!storyInfoMode && !difficultiesMode"
+    [text]="'newStoryV2.form.type.helperText' | translate"
+  ></loop-info-link>
+</div>

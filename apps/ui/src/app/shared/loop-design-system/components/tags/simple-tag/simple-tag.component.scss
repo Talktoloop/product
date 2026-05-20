@@ -1,0 +1,49 @@
+@import 'mixins';
+
+:host {
+  ::ng-deep {
+    .close-icon .loop-icon-close {
+      cursor: pointer;
+    }
+  }
+}
+
+.simple-tag {
+  &__name {
+    word-break: break-word;
+    flex: 1;
+  }
+
+  &__icon {
+    flex: 0;
+  }
+}
+
+.left-icon {
+  display: flex;
+  align-items: center;
+  @include margin-right(0.688rem);
+  max-height: 20px;
+  max-width: 20px;
+
+  @include mobile-up {
+    @include margin-right(1.125rem);
+  }
+}
+
+.country {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+
+  .dot {
+    font-size: 10px;
+    margin: 0 6px;
+  }
+}
+
+.verified-tag {
+  height: 20px;
+  margin-left: 2px;
+}

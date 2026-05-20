@@ -13,16 +13,21 @@ const emits = defineEmits<ComboboxRootEmits>()
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
+
+const commandClasses = tw`
+  flex h-full w-full flex-col 
+  overflow-hidden rounded-md 
+  bg-surface text-surface-foreground
+  dark:bg-dark-surface dark:text-dark-surface-foreground
+`
 </script>
 
 <template>
-  <ComboboxRoot v-bind="forwarded"
-    :class="cn('flex h-full w-full flex-col overflow-hidden rounded-md bg-surface text-surface-foreground', props.class)">
+  <ComboboxRoot v-bind="forwarded" :class="cn(commandClasses, props.class)">
     <slot />
   </ComboboxRoot>
 </template>

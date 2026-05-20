@@ -1,0 +1,19 @@
+<section class="post-author">
+  <div class="post-author__username-organisation d-flex align-items-center">
+    <h3 class="font-big semi-bold" [class.username-02]="byCurrentUser">{{ userName$ | async }}</h3>
+    <app-pill *ngIf="postData?.user?.organisation" [text]="postData?.user?.organisation" theme="outlined-gray"></app-pill>
+    <ng-container *ngIf="showFeedbackTags">
+      <loop-story-tag
+        *ngFor="let category of postData.categories"
+        [category]="category.code"
+        [tagSize]="TagSize.EXTRA_EXTRA_SMALL"
+        [fitContent]="true"
+      ></loop-story-tag>
+    </ng-container>
+  </div>
+  <div class="post-author__date-location input-description d-flex">
+    <span>{{ getDateFromNow() }}</span>
+    <span>•</span>
+    <span>{{ place }}</span>
+  </div>
+</section>
