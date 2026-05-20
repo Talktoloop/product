@@ -1,0 +1,243 @@
+@import 'mixins';
+@import 'variables';
+@import 'loop-design-system/colors';
+@import 'loop-design-system-v2/colors';
+
+:host {
+  ::ng-deep {
+    @include mobile-up {
+      .radio-group {
+        display: flex;
+        gap: 0.625rem;
+
+        loop-new-story-radio {
+          flex: 1;
+        }
+      }
+    }
+
+    .checkbox-filter-wrapper {
+      grid-gap: 0.313rem;
+      gap: 0.313rem;
+      margin: 0;
+
+      .checkbox {
+        min-height: 3.5rem;
+        border: 1px solid $light-grey-2;
+
+        @include mobile-up {
+          min-height: 4.063rem;
+        }
+
+        &.checked {
+          border-color: $header-purple;
+        }
+      }
+    }
+  }
+}
+
+.reject-form {
+  $self: &;
+
+  &__header {
+    #{$self}__image {
+      background: transparentize($danger-red, 0.5);
+      color: $danger-red;
+      height: 3.75rem;
+      width: 3.75rem;
+
+      ::ng-deep {
+        svg {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+      }
+    }
+  }
+
+  &__heading {
+    color: #000000;
+    font-size: 1.375rem;
+    font-weight: 700;
+    padding-bottom: 1.25rem;
+
+    @include mobile-up {
+      font-size: 2.188rem;
+      padding-bottom: 2.5rem;
+    }
+  }
+
+  &-author-will-be-not-informed {
+    display: flex;
+    padding: 0.875rem 1.625rem;
+    background: $alert-gold-100;
+    justify-content: space-between;
+    border: 1px solid $alert-gold-600;
+
+    @include mobile-only {
+      padding: 0.875rem;
+    }
+
+    .content {
+      margin: 0 14px;
+      font-weight: 400;
+      letter-spacing: 0;
+      font-size: 1.125rem;
+      line-height: 1.5rem;
+      color: $alert-gold-800;
+    }
+
+    ::ng-deep {
+      app-info-icon {
+        color: $alert-gold-500;
+      }
+
+      app-close-icon {
+        color: $alert-gold-500;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.625rem;
+  }
+
+  &__button {
+    flex: 1;
+    min-height: 3.125rem;
+
+    @include mobile-up {
+      min-height: 4.375rem;
+    }
+  }
+}
+
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  @include mobile-up {
+    font-size: 1.25rem;
+  }
+
+  &--small {
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    @include mobile-up {
+      font-size: 1rem;
+    }
+  }
+}
+
+
+/***
+    css for multi select drop down
+**/
+.drop-toggle {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 6px;
+  cursor: pointer;
+  border: 1px solid $light-grey-2;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #1f2937;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+
+  .selected-count {
+    background: $color-green-30;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-right: 8px;
+  }
+
+  .toggle-section {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.drop-show {
+  padding: 0;
+  width: 100%;
+  background-color: #FFF;
+  border: 1px solid $light-grey-2;
+  border-top: none;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+
+  // Hidden state
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scaleY(0.9);
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+
+  &.active {
+    // Expanded state
+    max-height: 300px; // Adjust as per your dropdown's max height
+    overflow: visible;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+
+.dropdown-checkbox {
+  width: 100%;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  /* Changed from center */
+  cursor: pointer;
+  min-height: rem;
+
+  @include mobile-up {
+    min-height: 1.063rem;
+  }
+
+  &:not(:last-child) { 
+    border-bottom: 1px solid $light-grey-2;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: $header-green;
+    flex-shrink: 0;
+    /* Prevents shrinking */
+    margin-top: 2px;
+    /* Adjusts vertical alignment */
+
+    &:checked {
+      background-color: $header-green;
+      border-color: $header-green;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    color: #1f2937;
+    margin-left: 4px;
+    /* Adds spacing between checkbox and label */
+  }
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
+}

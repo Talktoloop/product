@@ -12,18 +12,17 @@ const delegatedProps = computed(() => {
 })
 
 const forwardedProps = useForwardProps(delegatedProps)
+
+const listClasses = tw`
+  group flex flex-1 
+  list-none 
+  items-center justify-center 
+  gap-x-1
+`
 </script>
 
 <template>
-  <NavigationMenuList
-    v-bind="forwardedProps"
-    :class="
-      cn(
-        'group flex flex-1 list-none items-center justify-center gap-x-1',
-        props.class,
-      )
-    "
-  >
+  <NavigationMenuList v-bind="forwardedProps" :class="cn(listClasses, props.class)">
     <slot />
   </NavigationMenuList>
 </template>

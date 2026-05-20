@@ -1,0 +1,11 @@
+<h3 class="chart-subtitle">{{ titleTKey | translate }}</h3>
+<div class="p-rel">
+  <loop-switch
+    *ngIf="ui.mobileView$ | async"
+    [options]="switchOptions"
+    [selected]="visibleData"
+    (clicked)="chartSwitchClicked()"
+  ></loop-switch>
+
+  <div *ngIf="chartOption" echarts (chartInit)="onChartInit($event)" [options]="chartOption" class="base-chart"></div>
+</div>

@@ -1,0 +1,12 @@
+<section class="content">
+  <div class="content__text" [innerHtml]="visibleContent"></div>
+  <app-button
+    *ngIf="showReadMoreButton"
+    (clicked)="onReadMoreClick($event)"
+    class="mt-125 d-block"
+    variant="link-2"
+    [routerLink]="storyDetailsLink"
+  >
+    {{ 'global.readMore' | translate }}
+  </app-button>
+</section>

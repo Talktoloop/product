@@ -1,0 +1,13 @@
+<div class="main-content">
+  <h3>{{ 'auth.magicLinkSent.header' | translate }}</h3>
+  <span>{{ 'auth.magicLinkSent.description' | translate : { emailAddress: email } }}</span>
+  <app-button *ngIf="timeLeft > 0; else enabledButton" mode="v2" variant="link-3" [disabled]="true">{{
+    'auth.magicLinkSent.resendActionTimer' | translate : { timeLeft: timeLeft }
+  }}</app-button>
+  <ng-template #enabledButton>
+    <app-button mode="v2" variant="link-3" [disabled]="timeLeft > 0" (click)="resendEmail()">{{
+      'auth.magicLinkSent.resendAction' | translate : { timeLeft: timeLeft }
+    }}</app-button>
+  </ng-template>
+</div>
+<app-button [routerLink]="['/']" mode="v2" variant="link-3">{{ 'auth.magicLinkSent.loginAction' | translate }}</app-button>

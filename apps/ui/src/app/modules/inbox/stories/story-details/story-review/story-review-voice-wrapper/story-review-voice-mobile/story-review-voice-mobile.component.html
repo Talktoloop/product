@@ -1,0 +1,48 @@
+<div class="story-review">
+  <app-review-header [title]="'story.details.review.other.header.title' | translate"
+    [subTitle]="'story.details.review.other.header.subTitle' | translate"></app-review-header>
+
+  <div class="story-review__details-container">
+    <!-- Left container -->
+    <div class="story-review__left-container">
+      <div class="background">
+        <app-story-header></app-story-header>
+
+        <app-audio-player [isEscapeButtonEnable]="true" class="audio-player ivrr-step__top-player"
+          [audioSrc]="audioSrc$ | async"></app-audio-player>
+
+        <app-story-content></app-story-content>
+      </div>
+    </div>
+
+    <!-- Right container -->
+    <div class="story-review__right-container">
+      <div class="background">
+        <app-story-details-tabs [tabs]="rightSectionTabs" class="story-details-tabs__header">
+          <ng-container firstTab>
+            <app-story-review-form class="d-block mt-1"></app-story-review-form>
+          </ng-container>
+
+          <ng-container secondTab>
+            <app-story-information></app-story-information>
+          </ng-container>
+          <ng-container thirdTab>
+            <app-story-author-history
+              [otherStoriesSameRecipient]="storyDetailsService.story.otherStoriesSameRecipient"></app-story-author-history>
+          </ng-container>
+        </app-story-details-tabs>
+
+        <app-story-review-action-buttons></app-story-review-action-buttons>
+      </div>
+
+      <app-case-manager-note *ngIf="storyDetailsService.getCaseManagerNote()"
+        [note]="storyDetailsService.getCaseManagerNote()"></app-case-manager-note>
+
+      <div *ngIf="submittingError" class="story-review__validation-banner">
+        <loop-banner [bannerTheme]="BannerTheme.ERROR" [prefixIcon]="LoopIcon.Name.Info"
+          [text]="'story.details.review.form.toast.error.reviewError' | translate"
+          (close$)="submittingError = false"></loop-banner>
+      </div>
+    </div>
+  </div>
+</div>

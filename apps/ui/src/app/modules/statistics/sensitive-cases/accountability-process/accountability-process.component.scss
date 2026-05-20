@@ -1,0 +1,178 @@
+@import 'mixins';
+@import 'variables';
+
+:host {
+  display: flex;
+  width: 100%;
+  margin: 1.25rem 0 0.313rem;
+
+  @include mobile-up {
+    margin: 1.25rem 0 3.125rem;
+  }
+
+  .accountability-process__more-button {
+    ::ng-deep button {
+      padding: 0.781rem 2rem;
+
+      @include mobile-up {
+        padding: 1.094rem 2.875rem;
+      }
+
+      .content {
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  * {
+    line-height: normal;
+  }
+}
+
+.accountability-process {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  padding: 1.25rem 1.25rem 1.875rem 1.25rem;
+  background-color: white;
+
+  @include mobile-only {
+    align-items: center;
+  }
+
+  @include mobile-up {
+    padding: 3.125rem 3.125rem 3.75rem;
+    border-radius: 0.5rem;
+  }
+
+  &__close-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0.938rem;
+    @include right(0.938rem);
+    color: $light-grey-3;
+    cursor: pointer;
+    transition: 0.2s;
+
+    @include mobile-up {
+      top: 2.188rem;
+      @include right(2.188rem);
+    }
+
+    &:hover {
+      color: $color-purple-90;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @include mobile-up {
+      flex-direction: row;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    order: 2;
+
+    @include mobile-only {
+      border-top: 1px solid $light-grey-8;
+      text-align: center;
+
+      .accountability-process__more-button {
+        width: 100% !important;
+      }
+    }
+
+    @include mobile-up {
+      order: 1;
+    }
+
+    @include mobile-up {
+      @include padding-right(3.125rem);
+
+      &:after {
+        content: '';
+        display: block;
+        max-height: 21.875rem;
+        height: calc(100% + 1rem);
+        width: 1px;
+        position: absolute;
+        top: -1rem;
+        @include right(0);
+        background-color: $light-grey-8;
+      }
+    }
+
+    &-text {
+      padding-top: 1.875rem;
+      font-size: 0.875rem;
+
+      @include mobile-up {
+        max-width: 31.125rem;
+        font-size: 1rem;
+      }
+    }
+
+    .accountability-process__more-button {
+      width: fit-content;
+    }
+  }
+
+  &__slider {
+    flex: 1;
+    order: 1;
+
+    @include mobile-up {
+      order: 2;
+      max-width: 50%;
+    }
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: bold;
+
+    @include mobile-up {
+      font-size: 1.5rem;
+    }
+  }
+
+  &--hidden {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.25rem 1.25rem 1.875rem 1.25rem;
+    background-color: white;
+
+    @include mobile-up {
+      flex-direction: row;
+      align-items: center;
+      padding: 2.063rem 3.125rem;
+    }
+  }
+
+  &__more-button {
+    font-size: 1.125rem;
+
+    @include mobile-only {
+      margin-top: 1.25rem;
+    }
+
+    &.main {
+      @include mobile-up {
+        margin-top: 1.875rem;
+      }
+    }
+  }
+}

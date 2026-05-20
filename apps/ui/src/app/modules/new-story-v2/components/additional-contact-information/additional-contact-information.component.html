@@ -1,0 +1,18 @@
+<form class="additional-contact-detail-section" [formGroup]="form">
+  <h4 class="font-big semi-bold mb-0625">{{ 'newStoryV2.form.additionContactDetails.title' | translate }}</h4>
+  <div class="new-story-v2__info-link">
+    <app-lock-icon class="mr-0625"></app-lock-icon>
+    <span class="input-description">{{ 'newStoryV2.form.additionContactDetails.info' | translate }}</span>
+  </div>
+
+  <div class="p-rel">
+    <loop-textarea
+      formControlName="additionalContactDetails"
+      [formControl]="form"
+      [maxLength]="30000"
+      [autosize]="true"
+      [small]="true"
+    >
+    </loop-textarea>
+  </div>
+</form>

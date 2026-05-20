@@ -13,7 +13,11 @@ const delegatedProps = computed(() => {
 </script>
 
 <template>
-  <ToastTitle v-bind="delegatedProps" :class="cn('text-sm font-semibold', props.class)">
+  <ToastTitle v-bind="delegatedProps" :class="cn(tw`
+    text-sm font-semibold
+    text-foreground
+    dark:text-dark-foreground
+  `, props.class)">
     <slot />
   </ToastTitle>
 </template>

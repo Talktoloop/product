@@ -1,0 +1,264 @@
+@import 'loop-design-system/colors';
+@import 'variables';
+@import 'mixins';
+
+:host {
+  ::ng-deep {
+    .mat-accordion {
+      .mat-expansion-panel {
+        .mat-expansion-panel-header {
+          padding: 1.375rem 0.677rem;
+          border-bottom: 1px solid $gray-line-color;
+          border-radius: 0;
+
+          strong {
+            font-weight: 600;
+            color: $loop-green-100;
+          }
+
+          .mat-content {
+            padding: 1px 0; // Workaround to cut text (top, bottom)
+          }
+
+          .mat-expansion-indicator {
+            color: $loop-interactive-01;
+          }
+
+          p {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background-color: #f2f2f2;
+            font-style: italic;
+            font-size: 1rem;
+          }
+        }
+
+        .mat-expansion-panel-body {
+          padding: 0.375rem 0 1rem 0;
+
+          textarea {
+            background-color: $loop-green-5;
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            min-height: 110px;
+            padding: 1rem 1.5rem;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+            font-style: normal;
+            font-size: 1rem;
+          }
+        }
+
+        &:last-of-type {
+          .mat-expansion-panel-header {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .mat-expansion-panel-spacing {
+      margin: 0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+
+      .button .content {
+        >*+* {
+          @include margin-left(0.375rem, true);
+        }
+      }
+    }
+
+    .purple-textarea {
+      textarea {}
+    }
+  }
+}
+
+h3 {
+  font-size: 0.875rem;
+  text-transform: capitalize;
+  letter-spacing: 1.2px;
+  margin: 1.5rem 0 0.75rem 0;
+
+  @include mobile-up {
+    font-size: 1rem;
+  }
+}
+
+.no-translations {
+  display: block;
+}
+
+.status-indicator {
+  margin-right: 0.625rem;
+}
+
+.retry-link {
+  color: $loop-interactive-01;
+  text-decoration: underline;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+
+  img {
+    @include padding-right(0.344rem);
+  }
+
+  &.disabled {
+    pointer-events: none;
+    color: $light-grey;
+  }
+
+  &__separator {
+    display: block;
+    height: 1.563rem;
+    width: 1px;
+    margin: 0 1.25rem;
+    background-color: $light-grey-8;
+  }
+}
+
+.accordion-header {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  flex-direction: row;
+  text-align: left;
+
+  .retry-link {
+    font-weight: bold;
+    @include margin-left(1.438rem);
+  }
+}
+
+::ng-deep {
+
+  .translation-controller-accordion,
+  .translation-controller-accordion--disabled {
+    strong {
+      font-weight: 600;
+      color: $loop-green-100;
+    }
+
+    .bx--accordion {
+      background: transparent;
+
+      &__item {
+        border-top: none;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      &__title {
+        font-weight: 600;
+      }
+
+      &__item {
+        border-bottom: 1px solid $gray-line-color;
+
+        p {
+          padding: 1rem 1.5rem;
+          border-radius: 8px;
+          margin-bottom: 1rem;
+          background-color: #f2f2f2;
+          font-style: italic;
+          font-size: 1rem;
+        }
+
+        button {
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      &__heading {
+        padding: 0.938rem 0.677rem;
+
+        @include mobile-up {
+          padding: 1.375rem 0.677rem;
+        }
+
+        &:hover::before {
+          background-color: transparent;
+        }
+      }
+
+      &__arrow {
+        margin: 0;
+      }
+
+      &__content {
+        padding: 0.375rem 0 1rem 0;
+      }
+
+      .status-text {
+        @include padding-left(0.375rem);
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 1rem;
+
+      .button {
+        padding: 0.5rem;
+      }
+
+      &>* {
+        flex: 1;
+      }
+    }
+  }
+
+  .no-translations {
+    display: block;
+  }
+
+  .retry-link {
+    color: $loop-interactive-01;
+    text-decoration: underline;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+
+    img {
+      @include padding-right(0.344rem);
+    }
+
+    &.disabled {
+      pointer-events: none;
+      color: $light-grey;
+    }
+
+    &__separator {
+      display: block;
+      height: 1.563rem;
+      width: 1px;
+      margin: 0 1.25rem;
+      background-color: $light-grey-8;
+    }
+  }
+
+  .accordion-header {
+    display: flex;
+    flex: 1;
+    gap: 1rem;
+    flex-direction: row;
+    text-align: left;
+
+    .retry-link {
+      font-weight: bold;
+      @include margin-left(1.438rem);
+    }
+  }
+}

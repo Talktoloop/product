@@ -1,0 +1,4 @@
+<button class="upvote" [ngClass]="voted ? 'voted' : ''" (click)="upvote($event)" [attr.aria-label]="ariaLabel | translate">
+  <app-arrow-drop-up-icon class="upvote__icon"></app-arrow-drop-up-icon>
+  <span class="upvote__text">{{ votes | number }}</span>
+</button>

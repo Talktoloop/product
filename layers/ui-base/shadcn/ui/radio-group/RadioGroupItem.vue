@@ -14,9 +14,22 @@ const delegatedProps = computed(() => {
 
 <template>
   <RadioGroupItem v-bind="delegatedProps" :class="cn(
-    'aspect-square h-4 w-4 rounded-full border border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
+    tw`
+      aspect-square h-4 w-4 rounded-full
+      border border-primary text-primary
+      dark:border-primary dark:text-primary
+      
+      shadow focus:outline-none
+      focus-visible:ring-1 focus-visible:ring-ring
+      dark:focus-visible:ring-ring
+      
+      disabled:cursor-not-allowed disabled:opacity-50
+    `,
     props.class,
   )">
-    <Circle class="h-2.5 w-2.5 fill-current text-current" />
+    <Circle :class="tw`
+      h-2.5 w-2.5
+      fill-current text-current
+    `" />
   </RadioGroupItem>
 </template>

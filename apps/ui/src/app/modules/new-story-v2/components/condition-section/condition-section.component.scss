@@ -1,0 +1,37 @@
+@import 'variables';
+@import 'mixins';
+
+.condition-section {
+  ::ng-deep loop-story-type-boxgroup .checkbox-block {
+    height: 9.75rem;
+
+    @include mobile-up {
+      height: 11.875rem;
+    }
+  }
+
+  ::ng-deep loop-story-type-boxgroup loop-checkbox-icon-square:last-of-type app-story-category-icon {
+    margin: 0;
+  }
+
+  &__type {
+    background-color: $light-grey-6;
+    padding: 1.875rem 1.25rem;
+
+    @include mobile-up {
+      margin: 1.625rem -1.5rem 1.25rem;
+      padding: 1.875rem 1.5rem;
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+      margin: 1.625rem -3.125rem 1.875rem;
+      padding: 3.741rem 3.125rem 3.071rem;
+    }
+  }
+}
+
+.new-story-v2__info-link {
+  @include mobile-up {
+    padding: 0.625rem 0 1.875rem;
+  }
+}

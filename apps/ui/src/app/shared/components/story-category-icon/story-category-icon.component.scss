@@ -1,0 +1,18 @@
+:host {
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+
+  * {
+    height: 100%;
+    width: 100%;
+  }
+
+  ::ng-deep {
+    svg {
+      width: auto;
+      height: auto;
+    }
+  }
+}

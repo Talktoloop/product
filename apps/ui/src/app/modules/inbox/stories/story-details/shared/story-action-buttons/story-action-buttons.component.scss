@@ -1,0 +1,113 @@
+@use 'sass:map';
+@import 'loop-design-system-v2/colors';
+@import 'loop-design-system/helpers';
+@import 'mixins';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: pxToRem(32) 0 0;
+  background: white;
+  gap: 16px;
+
+  .error-text {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    color: $destructive-red-600;
+
+    @include mobile-only {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+.story-action-buttons-container {
+  display: flex;
+
+  @include small-desktop-only {
+    flex-wrap: wrap;
+  }
+
+  @include mobile-only {
+    flex-wrap: wrap;
+  }
+
+  app-button {
+    margin-bottom: pxToRem(8);
+    margin-top: pxToRem(8);
+    @include margin-right(pxToRem(12));
+    @include margin-left(pxToRem(12));
+
+    &:first-of-type {
+      @include margin-left(0);
+    }
+
+    &:last-of-type {
+      @include margin-right(0);
+    }
+
+    app-arrow-previous-icon {
+      @include margin-right(pxToRem(8));
+    }
+
+    app-arrow-next-icon {
+      @include margin-left(pxToRem(8));
+    }
+  }
+
+  .reject-button,
+  .publish-button {
+    min-width: pxToRem(200);
+  }
+
+  .back-button {
+    order: 1;
+    @include margin-right(pxToRem(18));
+
+    @include small-desktop-only {
+      @include margin-right(0);
+      flex: 1 1 100%;
+      order: 1;
+      display: flex;
+    }
+
+    @include mobile-only {
+      flex: 1;
+      order: 2;
+    }
+  }
+
+  .reject-button {
+    order: 2;
+
+    @include small-desktop-only {
+      flex: 1;
+    }
+
+    @include mobile-only {
+      flex: 2;
+      order: 3;
+      @include margin-right(0);
+    }
+  }
+
+  .submit-button {
+    order: 3;
+
+    @include small-desktop-only {
+      flex: 1;
+    }
+
+    @include mobile-only {
+      flex: 1 1 100%;
+      order: 1;
+      @include margin-left(0);
+    }
+  }
+}

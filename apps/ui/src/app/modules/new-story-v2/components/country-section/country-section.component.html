@@ -1,0 +1,43 @@
+<ng-container *ngIf="!showInputOnly">
+  <h3 class="font-big mb-0625 bold">{{ 'newStoryV2.form.country.title' | translate }}</h3>
+  <p class="subsection input-description">{{ 'newStoryV2.form.country.subtitle' | translate }}</p>
+</ng-container>
+<div class="input-section mb-125">
+  <loop-autocomplete
+    cy="country-section-loop-autocomplete"
+    #countryAutocomplete
+    [options]="matchingCountries | sortByCountryName"
+    [formControl]="control"
+    (queryChanged)="handleQueryChange($event)"
+    (focusedOut)="focusedOut($event)"
+    [showAddOption]="false"
+    [showClearBtn]="!autodetectedCountry"
+    [customPrefix]="manualSelect && !autodetectedCountry ? prefix : ''"
+    [customSuffix]="manualSelect && !autodetectedCountry ? suffix : ''"
+    [showAllWhenEmpty]="true"
+    [openDropDownOnSuffixClick]="true"
+    [placeholder]="'newStoryV2.form.country.selectCountry' | translate"
+  >
+    <ng-template #prefix></ng-template>
+    <ng-template #suffix></ng-template>
+  </loop-autocomplete>
+
+  <app-button
+    cy="country-section-edit-country-btn"
+    *ngIf="autodetectedCountry && !manualSelect"
+    variant="link-3"
+    (clicked)="changeClicked()"
+  >
+    <app-edit-pencil-icon class="mr-0938"></app-edit-pencil-icon>
+    <ng-container *ngIf="(ui.mobileView$ | async) === false">
+      {{ 'newStoryV2.form.country.changeCountry' | translate }}
+    </ng-container>
+  </app-button>
+
+  <div *ngIf="autodetectedCountry && manualSelect">
+    <app-button variant="link-3" (clicked)="revertAutodetectedCountry($event)">
+      <app-close-icon></app-close-icon>
+    </app-button>
+  </div>
+</div>
+<loop-info-link *ngIf="!showInputOnly" (clicked)="onModalOpen()" [text]="'newStoryV2.form.country.helperText' | translate"></loop-info-link>

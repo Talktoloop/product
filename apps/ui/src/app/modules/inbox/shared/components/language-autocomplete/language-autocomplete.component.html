@@ -1,0 +1,11 @@
+<loop-autocomplete
+  name="placeholder"
+  [disabled]="disabled"
+  [options]="matchingLanguages"
+  [ngModel]="control?.value"
+  (ngModelChange)="onValueChange($event)"
+  (queryChanged)="handleQueryChange($event)"
+  [openDropDownOnSuffixClick]="true"
+  [placeholder]="placeholder"
+  [showAllWhenEmpty]="true"
+></loop-autocomplete>

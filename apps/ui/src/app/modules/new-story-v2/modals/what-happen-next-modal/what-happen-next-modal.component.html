@@ -1,0 +1,9 @@
+<loop-modal [title]="'newStoryV2.modals.whatHappenStory.title' | translate" class="new-story-v2">
+  <div class="what-happen-next__item" *ngFor="let listItem of list; let i = index">
+    <h4 class="semi-bold">{{ i + 1 }}. {{ 'newStoryV2.modals.whatHappenStory.list.' + listItem + '.title' | translate }}</h4>
+    <p>{{ 'newStoryV2.modals.whatHappenStory.list.' + listItem + '.content' | translate }}</p>
+  </div>
+  <div action-buttons>
+    <app-button (clicked)="onModalClose()" mode="v2" variant="primary">{{ 'newStoryV2.modals.ok' | translate }}</app-button>
+  </div>
+</loop-modal>

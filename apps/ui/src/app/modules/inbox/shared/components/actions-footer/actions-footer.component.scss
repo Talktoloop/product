@@ -1,0 +1,36 @@
+@import 'variables';
+@import 'mixins';
+@import 'loop-design-system/helpers';
+
+:host {
+  margin-top: pxToRem(50);
+  display: block;
+
+  ::ng-deep button {
+    text-transform: capitalize;
+  }
+}
+
+.action-footer {
+  display: flex;
+  flex-direction: column;
+  gap: pxToRem(10);
+
+  @include mobile-up {
+    gap: pxToRem(50);
+  }
+}
+
+.reject-publish-wrapper {
+  display: flex;
+  gap: pxToRem(10);
+}
+
+.reject-button,
+.publish-button {
+  width: 100%;
+
+  @include mobile-up {
+    width: 50%;
+  }
+}

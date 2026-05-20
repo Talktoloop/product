@@ -1,0 +1,9 @@
+@import 'variables';
+
+.what-next-modal {
+  &__community-guidelines {
+    color: $loop-interactive-01;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

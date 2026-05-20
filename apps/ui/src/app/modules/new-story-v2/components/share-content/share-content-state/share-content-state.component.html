@@ -1,0 +1,10 @@
+<div class="share-content__input-state">
+  <div class="share-content__input-state__progress" [ngClass]="stateClasses">
+    <div class="share-content__input-state__progress-item"></div>
+    <div class="share-content__input-state__progress-item"></div>
+    <div class="share-content__input-state__progress-item"></div>
+  </div>
+  <div class="share-content__input-state__text info-text">
+    <span cy="share-content-state-infotext">{{ stateInfoText | translate | textMaxLength: STATE_MAX_LENGTH }}</span>
+  </div>
+</div>

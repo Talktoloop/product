@@ -8,13 +8,16 @@ import { useFormField } from './useFormField'
 const props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>()
 
 const { error, formItemId } = useFormField()
+
+const labelClasses = tw`
+  text-foreground
+  dark:text-dark-foreground
+  ${error && 'text-destructive dark:text-dark-destructive'}
+`
 </script>
 
 <template>
-  <Label :class="cn(
-    error && 'text-destructive',
-    props.class,
-  )" :for="formItemId">
+  <Label :class="cn(labelClasses, props.class)" :for="formItemId">
     <slot />
   </Label>
 </template>

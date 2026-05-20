@@ -1,0 +1,96 @@
+<form class="new-story__form" [formGroup]="storyForm">
+  <app-callout variant="success">
+    {{ 'newStoryV2.callout' | translate }}
+  </app-callout>
+
+  <loop-quick-exit-button></loop-quick-exit-button>
+  <h1 class="new-story__form__heading" *ngIf="activeStepperStep !== 3">{{ 'newStoryV2.heading.text' | translate }}</h1>
+  <loop-stepper class="new-story__stepper" [activeStepNo]="activeStepperStep" (stepChanged)="activeStepperStep = $event"
+    [disabledClick]="true" [wizardInvisible]="activeStepperStep === 3">
+    <div class="new-story__content" [class.review]="activeStepperStep === 3">
+      <main>
+        <!-- STEP 1 -->
+        <loop-stepper-step [title]="'newStoryV2.steps.step1.label' | translate">
+          <loop-form-step formGroupName="step1">
+            <span class="new-story__content__mobile-header font-1875">{{ 'newStoryV2.steps.step1.label' | translate
+              }}</span>
+            <app-share-content [control]="step1Form.get('content')"></app-share-content>
+            <div class="section-separator"></div>
+            <app-sensitive-story class="d-block new-story__sensitive-story" [form]="step1Form"></app-sensitive-story>
+            <div class="section-separator" *ngIf="!isSensitive"></div>
+            <loop-story-type-boxgroup *ngIf="!isSensitive" formControlName="categories" [clearWhen]="isSensitive"></loop-story-type-boxgroup>
+          </loop-form-step>
+        </loop-stepper-step>
+        <!-- STEP 2 -->
+        <loop-stepper-step [title]="'newStoryV2.steps.step2.label' | translate" [optional]="true">
+          <loop-form-step>
+            <span class="new-story__content__mobile-header font-1875">{{ 'newStoryV2.steps.step2.label' | translate
+              }}</span>
+            <loop-location-section (countryCode$)="onCountryCodeChange($event)"
+              [regionIdFormControl]="step2Form.get('regionId')" [countryIdFormControl]="step2Form.get('countryId')"
+              [isSensitive]="isSensitive"></loop-location-section>
+            <div class="section-separator"></div>
+            <loop-organizations-section [form]="step2Form" [isSensitive]="isSensitive"></loop-organizations-section>
+          </loop-form-step>
+        </loop-stepper-step>
+        <!-- STEP 3 -->
+        <loop-stepper-step [title]="'newStoryV2.steps.step3.label' | translate" [optional]="true">
+          <loop-form-step formGroupName="step3">
+            <span class="new-story__content__mobile-header font-1875">{{ 'newStoryV2.steps.step3.label' | translate
+              }}</span>
+            <loop-what-is-your-name [form]="step3Form" [isSensitive]="isSensitive"></loop-what-is-your-name>
+            <div class="section-separator"></div>
+            <loop-phone-number-section [control]="step3Form.get('phone')"
+              [isSensitive]="isSensitive"></loop-phone-number-section>
+            <div class="section-separator"></div>
+            <loop-email-section [form]="step3Form" [isSensitive]="isSensitive"></loop-email-section>
+            <!-- Additional sensitive feedback fields -->
+            <div *ngIf="isSensitive">
+              <div class="section-separator"></div>
+              <app-additional-contact-information [form]="step3Form"></app-additional-contact-information>
+              <div class="section-separator"></div>
+              <app-sensitive-story-contact-consent [form]="step3Form"></app-sensitive-story-contact-consent>
+            </div>
+            <div class="section-separator"></div>
+            <loop-gender-section [form]="step3Form"></loop-gender-section>
+            <div class="section-separator"></div>
+            <loop-age-section [form]="step3Form"></loop-age-section>
+            <div class="section-separator"></div>
+            <loop-condition-section [isSensitiveStory]="isSensitive" [form]="step3Form"></loop-condition-section>
+          </loop-form-step>
+        </loop-stepper-step>
+        <loop-stepper-step [invisible]="true">
+          <div *ngTemplateOutlet="step4"></div>
+        </loop-stepper-step>
+        <ng-container *ngTemplateOutlet="stepperControlButtons"></ng-container>
+      </main>
+      <aside class="new-story__form__right-panel" *ngIf="activeStepperStep !== 3">
+        <app-new-story-info *ngIf="activeStepperStep > 0 && activeStepperStep !== 3"
+          (stepChange)="handleStepChange($event)" [regionId]="step2Form.get('regionId').value"
+          [countryCode]="countryCode" [form]="storyForm" [isReview]="false"></app-new-story-info>
+        <app-our-loop-promise [isSensitive]="isSensitive"></app-our-loop-promise>
+      </aside>
+    </div>
+  </loop-stepper>
+
+  <ng-template #step4>
+    <h1 class="new-story__content__mobile-header new-story__form__heading--submit font-1875">
+      {{ 'newStoryV2.heading.submitText' | translate }}
+    </h1>
+    <div class="new-story__content review-content" [class.review]="activeStepperStep === 3">
+      <main>
+        <app-new-story-info [form]="storyForm" [regionId]="step2Form.get('regionId').value" [countryCode]="countryCode"
+          [isReview]="true" [submitting]="submitting" (stepChange)="handleStepChange($event)"
+          (submitStory)="submitForm()"></app-new-story-info>
+      </main>
+      <aside>
+        <app-our-loop-promise [isSensitive]="isSensitive"></app-our-loop-promise>
+      </aside>
+    </div>
+  </ng-template>
+</form>
+
+<ng-template #stepperControlButtons>
+  <loop-stepper-navigation [prevVisible]="!!activeStepperStep" [nextVisible]="activeStepperStep < 3"
+    (nextClicked)="nextStep()" (prevClicked)="prevStep()"></loop-stepper-navigation>
+</ng-template>

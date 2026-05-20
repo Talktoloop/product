@@ -1,0 +1,41 @@
+@import 'variables';
+@import 'mixins';
+
+$actions-font-size: 0.75rem;
+$action-min-width: 45px;
+
+.post-actions {
+  color: $grey;
+  @include margin-right(-1.06rem);
+
+  &__text {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1rem;
+  }
+
+  &__stat-label {
+    display: none;
+
+    @include mobile-up {
+      display: inline-block;
+    }
+  }
+
+  &__icon {
+    color: rgba(0, 0, 0, 0.25);
+    @include margin-right(0.375rem);
+
+    &--small {
+      width: 1.188rem;
+    }
+  }
+
+  &__replies-count {
+    @include margin-left(1rem);
+  }
+}
+
+.left-section,
+.right-section {
+  line-height: 1.5;
+}

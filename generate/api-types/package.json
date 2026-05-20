@@ -1,0 +1,10 @@
+{
+  "name": "@ourloop/generate-api-types",
+  "main": "./api-types.json",
+  "scripts": {
+    "generate-package": "generate-package @ourloop/generate-api-types"
+  },
+  "dependencies": {
+    "@ourloop/product-opt-package-generator": "*"
+  }
+}

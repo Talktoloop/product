@@ -1,0 +1,64 @@
+<div class="dual-calendar" [class.dual-calendar-modal]="isModal">
+  <div class="dual-calendar__column" [class.dual-calendar-modal__column]="isModal">
+    <div class="dual-calendar__column-header">
+      <button
+        (click)="changeRange(-2)"
+        class="btn-clear flex-center dual-calendar__chevron dual-calendar__chevron--left"
+        [class.dual-calendar-modal__chevron--left]="isModal"
+      >
+        <app-expand-more-icon [rotate]="90"></app-expand-more-icon>
+      </button>
+
+      <p class="dual-calendar__date-top">{{ monthOneLabel }}</p>
+
+      <button
+        *ngIf="isModal"
+        (click)="changeRange(2)"
+        class="btn-clear flex-center dual-calendar__chevron dual-calendar__chevron--right"
+        [class.dual-calendar-modal__chevron--right]="isModal"
+      >
+        <app-expand-more-icon [rotate]="-90"></app-expand-more-icon>
+      </button>
+    </div>
+    <div class="dual-calendar__column-content">
+      <mat-calendar
+        #calendarOne
+        (selectedChange)="onSelect($event)"
+        [startAt]="calendarOneDate"
+        [selected]="selectedDate"
+        (_userSelection)="$event.event.stopPropagation()"
+        [dateClass]="getDateClass"
+      ></mat-calendar>
+    </div>
+  </div>
+
+  <div class="dual-calendar__column" [class.dual-calendar-modal__column]="isModal">
+    <div class="dual-calendar__column-header">
+      <button *ngIf="!isModal" (click)="changeRange(2)" class="btn-clear flex-center dual-calendar__chevron dual-calendar__chevron--right">
+        <app-expand-more-icon [rotate]="-90"></app-expand-more-icon>
+      </button>
+      <p class="dual-calendar__date-top">{{ monthTwoLabel }}</p>
+    </div>
+    <div class="dual-calendar__column-content">
+      <mat-calendar
+        #calendarTwo
+        (selectedChange)="onSelect($event)"
+        [startAt]="calendarTwoDate"
+        [selected]="selectedDate"
+        (_userSelection)="$event.event.stopPropagation()"
+        [dateClass]="getDateClass"
+      ></mat-calendar>
+    </div>
+  </div>
+</div>
+
+<div class="dual-calendar__info">
+  <p class="dual-calendar__info-text">
+    <span *ngIf="!selectedDate.start || !selectedDate.end; else selectedDateInfo">
+      {{ 'filtersV2.date.noRangeSelected' | translate }}
+    </span>
+    <ng-template #selectedDateInfo>
+      <span class="dual-calendar__info-text--selected"> {{ dateRangeLabel('from') }} - {{ dateRangeLabel('to') }} </span>
+    </ng-template>
+  </p>
+</div>

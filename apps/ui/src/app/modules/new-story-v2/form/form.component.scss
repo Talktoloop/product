@@ -1,0 +1,202 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+  display: inline-block;
+  width: 100%;
+  padding: 0 1.25rem;
+
+  ::ng-deep {
+    .subsection {
+      margin-bottom: 1.25rem;
+      color: $grey;
+    }
+
+    .input-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+
+      > app-button {
+        display: flex;
+        justify-content: flex-end;
+        flex: 0 0 auto;
+        @include margin-left(2.125rem, true);
+
+        &.inside {
+          height: 100%;
+          width: auto;
+
+          button {
+            padding: 0;
+            border-radius: 0;
+
+            .content {
+              @include padding-left(1.25rem, true);
+              @include border-left(1px solid $light-grey-4, true);
+            }
+          }
+        }
+      }
+    }
+
+    loop-stepper-navigation {
+      display: block;
+      margin-top: 2.5rem;
+      padding-bottom: 4rem;
+
+      button {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.938rem;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .new-story-v2 {
+    &__info-link {
+      display: flex;
+      padding: 0.625rem 0 1.25rem;
+      align-items: flex-start;
+      color: $grey;
+
+      > * {
+        line-height: 1.5rem;
+      }
+
+      app-lock-icon {
+        display: inline-flex;
+        margin-top: 3px;
+      }
+    }
+
+    &__explanation-link {
+      display: flex;
+      width: fit-content;
+      padding-top: 0.938rem;
+
+      @include mobile-up {
+        padding-top: 1.25rem;
+      }
+    }
+  }
+}
+
+.new-story {
+  &__content {
+    margin-top: 3.813rem;
+
+    @include mobile-up {
+      display: grid;
+      grid-template-columns: minmax(320px, 38.563rem) minmax(16rem, 24.813fr);
+      gap: 3.75rem;
+    }
+
+    &.review {
+      display: flex;
+      flex-direction: column;
+
+      @include mobile-up {
+        .review-content {
+          display: grid;
+        }
+
+        ::ng-deep .new-story-info {
+          max-width: 38.563rem;
+        }
+      }
+
+      @include mobile-only {
+        main {
+          order: 2;
+        }
+
+        ::ng-deep .new-story-info {
+          margin: 0 -1.25rem;
+        }
+
+        app-our-loop-promise {
+          display: block;
+          margin-bottom: 2.5rem;
+        }
+
+        .new-story__content__mobile-header {
+          margin-top: 3.75rem !important;
+        }
+      }
+
+      .new-story__content__mobile-header {
+        display: flex !important;
+      }
+    }
+
+    &__mobile-header {
+      display: flex;
+      margin: 0 0 2.5rem;
+      font-weight: 900;
+
+      @include mobile-up {
+        display: none;
+      }
+    }
+  }
+
+  &__form {
+    max-width: 68.188rem;
+    margin: auto;
+
+    &__right-panel {
+      display: none;
+
+      @media screen and (min-width: $breakpoint-md) {
+        display: block;
+      }
+    }
+
+    &__heading {
+      display: none;
+      line-height: 3.813rem;
+      font-size: 2.813rem;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 0.781rem;
+
+      @include mobile-up {
+        display: block;
+      }
+
+      &--submit {
+        max-width: 26.043rem;
+      }
+    }
+  }
+
+  &__sensitive-story {
+    margin-bottom: 49px;
+  }
+}
+
+.info-text {
+  display: flex;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #31135e;
+
+  img {
+    @include margin-right(0.625rem);
+  }
+}
+
+.section-separator {
+  height: 1px;
+  background-color: $light-grey-4;
+  margin: 2.5rem 0;
+
+  @media screen and (min-width: $breakpoint-md) {
+    margin: 3.75rem 0;
+  }
+}

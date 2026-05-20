@@ -1,0 +1,14 @@
+apiVersion: "api.cerbos.dev/v1"
+resourcePolicy:
+  version: "default"
+  resource: "story"
+  rules:
+    - actions: ["read", "update", "stop", "export"] 
+      effect: "EFFECT_ALLOW"
+      roles: ["MODERATOR", "CASE_MANAGER", "SUPER_ADMIN"]
+    - actions: ["export"]
+      effect: "EFFECT_ALLOW"
+      roles: ["USER"]
+      condition:
+        match:
+          expr: request.resource.attr.token != null

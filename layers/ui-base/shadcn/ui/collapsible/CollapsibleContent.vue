@@ -2,10 +2,19 @@
 import { CollapsibleContent, type CollapsibleContentProps } from 'radix-vue'
 
 const props = defineProps<CollapsibleContentProps>()
+
+const contentClasses = tw`
+  overflow-hidden 
+  transition-all 
+  data-[state=closed]:animate-collapsible-up 
+  data-[state=open]:animate-collapsible-down
+  dark:bg-dark-background
+  dark:text-dark-foreground
+`
 </script>
 
 <template>
-  <CollapsibleContent v-bind="props" class="overflow-hidden transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+  <CollapsibleContent v-bind="props" :class="contentClasses">
     <slot />
   </CollapsibleContent>
 </template>

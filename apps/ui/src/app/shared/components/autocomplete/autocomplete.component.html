@@ -1,0 +1,127 @@
+<div
+  (appClickOutside)="handleSelectClickOut()"
+  class="autocomplete"
+  [class.autocomplete--open]="shouldShowDropdown"
+  [class.autocomplete--focused]="inputFocused"
+>
+  <ng-container *ngIf="!showDropdownModal" [ngTemplateOutlet]="selectorRef"></ng-container>
+  <ng-template #selectorRef>
+    <div #inputContainerRef class="autocomplete__input-container autocomplete__input-container--mobile">
+      <span class="autocomplete__mobile-title" *ngIf="isMobile && showDropdownModal && mobileTitle">{{ mobileTitle }}</span>
+      <div class="d-flex-space-between-center">
+        <loop-input
+          cy="autocomplete-loop-input"
+          class="flex-grow-1"
+          [class.invalid]="isInvalid"
+          [formControl]="inputControl"
+          [showCloseIcon]="true"
+          [showClearBtn]="true"
+          [placeholder]="placeholder"
+          [solidPlaceholder]="true"
+          autocomplete="off"
+          (clicked)="handleInputClicked($event)"
+          (clearClicked)="handleInputClearClicked($event)"
+          (focused)="handleInputFocus()"
+          (focusedOut)="onFocusOut()"
+          [maxLength]="maxLength"
+          (keyPressed)="onInputKeyPress($event)"
+        >
+          <ng-container *ngTemplateOutlet="customPrefix || defaultPrefix" prefix></ng-container>
+          <ng-container *ngTemplateOutlet="customSuffix || defaultSuffix" suffix></ng-container>
+          <ng-template #defaultPrefix>
+            <app-search-icon *ngIf="!isMobile" prefix class="autocomplete__icon autocomplete__search-icon"></app-search-icon>
+          </ng-template>
+          <ng-template #defaultSuffix>
+            <app-expand-more-icon
+              *ngIf="!isMobile"
+              suffix
+              class="autocomplete__icon autocomplete__icon-chevron"
+              (click)="handleSuffixClick()"
+            ></app-expand-more-icon>
+          </ng-template>
+        </loop-input>
+        <app-button
+          *ngIf="isMobile && showDropdownModal"
+          class="autocomplete__cancel-button"
+          variant="link"
+          noPadding="true"
+          (clicked)="closeDropDownModal(true)"
+          >{{ 'global.cancel' | translate }}</app-button
+        >
+      </div>
+    </div>
+    <div class="loop-input__error" [class.loop-input__error--visible]="isInvalid">
+      <app-error-icon class="loop-input__error__icon" *ngIf="showErrorIcon"></app-error-icon>
+      <span>{{ errorMessage$ | async }}</span>
+    </div>
+    <loop-select
+      *ngIf="shouldShowDropdown"
+      cy="autocomplete-loop-select"
+      [fullWidth]="true"
+      [flat]="isMobile"
+      appDropdown
+      [isAxisNotReversed]="true"
+      [sourceEl]="inputContainerRef"
+      [sourceWidth]="inputContainerRef.clientWidth"
+    >
+      <loop-select-option
+        *ngFor="let option of options; trackBy: trackById"
+        (clicked)="handleOptionClick(option, $event)"
+        [prefix]="prefix"
+        [suffix]="suffix"
+      >
+        <div *ngIf="prefixTemplate" prefix>
+          <ng-template [ngTemplateOutlet]="prefixTemplate" [ngTemplateOutletContext]="{option}"></ng-template>
+        </div>
+        <div
+          [innerHtml]="
+            option.content
+              ? (option.content | translate | startHighlight : inputControl.value)
+              : (option.name | startHighlight : inputControl.value)
+          "
+        ></div>
+        <div *ngIf="countryTemplate" class="autocomplete__country">
+          <ng-template [ngTemplateOutlet]="countryTemplate" [ngTemplateOutletContext]="{option}"></ng-template>
+        </div>
+        <div *ngIf="suffixTemplate" suffix>
+          <ng-template [ngTemplateOutlet]="suffixTemplate" [ngTemplateOutletContext]="{option}"></ng-template>
+        </div>
+      </loop-select-option>
+      <loop-select-option *ngIf="showAddOption && queryChanged.getValue()" (clicked)="handleAddOptionClick($event)">
+        <div class="autocomplete__add-new">
+          <div class="autocomplete__pill-wrapper">
+            <app-new-line-icon class="autocomplete__new-line-icon"></app-new-line-icon>
+            <div class="autocomplete__pill">
+              <app-add-icon class="icon"></app-add-icon>
+              <span class="br-word">{{ queryChanged.getValue() }}</span>
+            </div>
+          </div>
+          <div class="autocomplete__add-new-text br-word">
+            {{ addNewLabel | translate }} "<span class="bold">{{ queryChanged.getValue() }}"</span>
+          </div>
+        </div>
+      </loop-select-option>
+      <loop-select-option>
+        <div class="autocomplete__extra-actions" *ngIf="extraActionButtonText || hint">
+          <div *ngIf="hint && !queryChanged.getValue()">
+            {{ hint }}
+          </div>
+          <div class="autocomplete__extra-actions__or" *ngIf="extraActionButtonText && hint">
+            <hr />
+            or
+            <hr />
+          </div>
+          <div class="autocomplete__extra-actions__action" *ngIf="extraActionButtonText">
+            <app-button variant="secondary" mode="v2" [fullWidth]="true" [bigPadding]="true" (click)="extraButtonClicked.emit($event)">
+              {{ extraActionButtonText | translate }}
+            </app-button>
+          </div>
+        </div>
+      </loop-select-option>
+    </loop-select>
+  </ng-template>
+</div>
+
+<div *ngIf="isMobile && showDropdownModal" class="autocomplete-modal" [class.autocomplete-modal--focused]="inputFocused">
+  <ng-container [ngTemplateOutlet]="selectorRef"></ng-container>
+</div>

@@ -1,0 +1,59 @@
+<div [class.cases]="!openStoriesMode">
+  <h3>{{ title }}</h3>
+  <ng-content></ng-content>
+  <div class="d-flex block-container">
+    <ng-container *ngFor="let item of data; let i = index">
+      <div
+        class="block-item"
+        *ngIf="item.average !== null"
+        appTooltip
+        [tooltipContent]="tooltipContent"
+        [tooltipContentContext]="{ item }"
+        [tooltipPlacement]="'bottom'"
+        [tooltipOffset]="[0, 36]"
+        [lockTooltipMobile]="false"
+        [showTooltip]="!openStoriesMode"
+      >
+        <p class="value" *ngIf="openStoriesMode; else casesValue">
+          {{ item.value?.value }}<span class="d-block unit">{{ 'global.unitsLong.' + item.value.unit | translate }}</span>
+        </p>
+        <ng-template #casesValue>
+          <p class="value">
+            {{ item.value?.value }}
+            <span class="d-block unit">
+              {{
+                (item.value.value <= 1
+                  ? 'statisticsCases.averageTimeToCompleteStep.dayTo'
+                  : 'statisticsCases.averageTimeToCompleteStep.daysTo'
+                ) | translate
+              }}</span
+            >
+          </p>
+        </ng-template>
+        <p class="block-item__title" *ngIf="!openStoriesMode">
+          {{ item.code | translate }}
+        </p>
+        <p class="legend">
+          <span class="circle" [ngStyle]="{ backgroundColor: openStoriesMode ? color[i] : item.color }"></span
+          >{{ openStoriesMode ? (item.translation | translate) : '' }}
+        </p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #tooltipContent let-item="item">
+  <div class="average-time-taken-to-complete-step-hover">
+    <!-- TODO check with Marek tooltips context -->
+    <span class="average-time-taken-to-complete-step-hover__title">{{ item.code | translate }}</span>
+    <span class="average-time-taken-to-complete-step-hover__content">
+      {{
+        item.extraData?.tooltipContentKey
+          | translate: { casesCount: item.extraData?.numberOfCases || 0, value: item.extraData?.averageTime || 0 }
+      }}
+    </span>
+    <span class="average-time-taken-to-complete-step-hover__footer">
+      {{ item.extraData?.tooltipFooterKey | translate }}
+    </span>
+  </div>
+</ng-template>

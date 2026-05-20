@@ -1,0 +1,56 @@
+<div class="story-translations">
+  <div>{{ 'story.originalStoryIn' | translate: { language: storyLanguage | async } }}</div>
+  <span class="story-translations__separator">•</span>
+  <span class="d-flex align-items-center" #languageSelect>
+    <app-story-translation-type-icon
+      *ngIf="!isOriginalSameAsCurrent"
+      class="story-translations__current-translation-icon mr-0625"
+      [translationType]="selectedTranslationType"
+    ></app-story-translation-type-icon>
+    <app-button
+      class="story-translations__selector"
+      [appStopEvent]="'click'"
+      variant="link"
+      [noPadding]="true"
+      (click)="toggleTranslationSelect()"
+    >
+      <div class="d-flex">
+        {{ changeLanguageButtonText | async }}
+        <app-expand-more-icon class="story-translations__expand-more-icon"></app-expand-more-icon>
+      </div>
+    </app-button>
+
+    <loop-select
+      *ngIf="translationSelectOpen"
+      (appClickOutside)="toggleTranslationSelect()"
+      [omitFirstRenderCheck]="true"
+      [appStopEvent]="'click'"
+      [showSuffix]="true"
+      appDropdown
+      [sourceEl]="languageSelect"
+    >
+      <h4 class="story-translations__select-heading" header>{{ 'story.details.translations.heading' | translate }}</h4>
+      <loop-select-option
+        *ngFor="let translation of allTranslations"
+        [prefix]="true"
+        [disabled]="isTranslationNotAvailable(translation.status)"
+        (clicked)="handleLanguageClick(translation)"
+      >
+        <app-story-translation-type-icon
+          prefix
+          class="story-translations__translation-icon"
+          [translationType]="translation.type"
+        ></app-story-translation-type-icon>
+        <div>{{ getLanguageCode(translation.code) | translate }}</div>
+      </loop-select-option>
+      <ng-container suffix>
+        <app-button class="d-block mb-0313" variant="outlined" [disabled]="true" [fullWidth]="true">
+          {{ 'story.details.translations.suggestTranslation' | translate }}
+        </app-button>
+        <app-button variant="outlined" [disabled]="true" [fullWidth]="true">{{
+          'story.details.translations.requestTranslation' | translate
+        }}</app-button>
+      </ng-container>
+    </loop-select>
+  </span>
+</div>

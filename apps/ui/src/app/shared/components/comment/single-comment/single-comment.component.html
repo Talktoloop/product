@@ -1,0 +1,40 @@
+<div class="comment">
+  <app-single-reply
+    *ngIf="isVisibleForAdmin(comment) || isVisibleForNonAdmin(comment)"
+    [ngStyle]="getNgStyleForComment(comment)"
+    (click)="isVisibleForAdmin(comment) && handlePendingReviewCommentClick()"
+    (reply)="replyFormSwitch()"
+    (upvote)="upvote($event)"
+    [comment]="comment"
+    [isReplyEnable]="isReplyEnabled(comment)"
+    [isUpVoteEnable]="isUpVoteEnabled(comment)"
+    [isReplyFormShown]="replyFormShown"
+    [showReply]="showReplyForm"
+    [voted]="voted.indexOf(comment.id) > -1"
+    [votes]="votes[comment.id]"
+  ></app-single-reply>
+</div>
+
+<div class="comment-replies">
+  <loop-card class="comment-replies__reply" *ngIf="replyFormShown && showReplyForm">
+    <app-reply-form [commentId]="commentId" [focus]="true"></app-reply-form>
+  </loop-card>
+  <div class="comment-replies__list">
+    <ng-container *ngFor="let subcomment of comment.children; let i = index; trackBy: trackByFunction">
+      <app-single-reply
+        *ngIf="isVisibleForAdmin(subcomment) || isVisibleForNonAdmin(subcomment)"
+        [ngStyle]="getNgStyleForComment(subcomment)"
+        (click)="isVisibleForAdmin(subcomment) && handlePendingReviewCommentReplyClick(subcomment)"
+        (reply)="replyFormSwitch()"
+        (upvote)="upvote($event)"
+        [comment]="subcomment"
+        [isReplyEnable]="isReplyEnabled(subcomment)"
+        [isUpVoteEnable]="isUpVoteEnabled(subcomment)"
+        [showReply]="false"
+        [voted]="voted.indexOf(subcomment.id) > -1"
+        [votes]="votes[subcomment.id]"
+        class="comment-replies__reply"
+      ></app-single-reply>
+    </ng-container>
+  </div>
+</div>

@@ -20,13 +20,16 @@ const delegatedProps = computed(() => {
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
+
+const menuClasses = tw`
+  relative z-10 
+  flex max-w-max flex-1 
+  items-center justify-center
+`
 </script>
 
 <template>
-  <NavigationMenuRoot
-    v-bind="forwarded"
-    :class="cn('relative z-10 flex max-w-max flex-1 items-center justify-center', props.class)"
-  >
+  <NavigationMenuRoot v-bind="forwarded" :class="cn(menuClasses, props.class)">
     <slot />
     <NavigationMenuViewport />
   </NavigationMenuRoot>

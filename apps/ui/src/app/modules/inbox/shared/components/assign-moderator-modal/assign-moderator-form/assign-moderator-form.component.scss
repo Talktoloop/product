@@ -1,0 +1,120 @@
+@import 'loop-design-system/helpers';
+@import 'mixins';
+@import 'variables';
+@import 'loop-design-system-v2/colors';
+@import 'loop-design-system/colors';
+
+.assign-moderator {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  width: 100%;
+  overflow: hidden;
+
+  .search-user {
+    width: 500px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #000000;
+    font-size: 1.5rem;
+
+    @include mobile-up {
+      font-size: 2rem;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    overflow-y: auto;
+    max-height: calc(70vh - 120px);
+    padding-right: 8px;
+    margin-bottom: 16px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.625rem;
+    padding-top: 16px;
+    border-top: 1px solid #ddd;
+  }
+}
+
+.inbox-table {
+  width: 100%;
+  margin-bottom: 24px;
+
+  th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type,
+  th.mat-header-cell:first-of-type,
+  td.mat-cell:first-of-type,
+  td.mat-footer-cell:first-of-type {
+    padding: 0;
+  }
+
+  .item {
+    color: $neutral-500;
+    border: 2px solid transparent;
+    margin: 2px 0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    width: 700px;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+      background-color: $color-green-10;
+      cursor: pointer;
+    }
+
+    &.selected {
+      background-color: $color-green-10;
+      border: 2px solid $color-green-60;
+      color: $color-green-60;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .header {
+      display: flex;
+      border-radius: 8px;
+
+      &.selected {
+        border-color: $color-green-60;
+      }
+
+      .main {
+        .story-content {
+          display: flex;
+          width: 100%;
+          .intro {
+            display: flex;
+            flex-direction: row;
+            width: 500px;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+  }
+}
+
+.assign-form__actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+
+  .assign-form__button {
+    min-width: 120px;
+    flex: 0 1 auto;
+  }
+}

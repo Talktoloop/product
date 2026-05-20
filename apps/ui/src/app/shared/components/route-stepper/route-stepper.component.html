@@ -1,0 +1,17 @@
+<div class="stepper">
+  <a
+    [routerLink]="step.path"
+    [relativeTo]="activatedRoute"
+    routerLinkActive="stepper-active-step"
+    class="stepper-step"
+    *ngFor="let step of steps; let i = index"
+  >
+    <div class="stepper-number" [attr.aria-label]="i">
+      <span>{{ i + 1 }}</span>
+    </div>
+
+    <div class="stepper-title">{{ step.title }}</div>
+  </a>
+</div>
+
+<router-outlet></router-outlet>

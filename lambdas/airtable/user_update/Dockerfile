@@ -1,0 +1,10 @@
+FROM public.ecr.aws/lambda/nodejs:20
+
+COPY package.json ${LAMBDA_TASK_ROOT}/
+WORKDIR ${LAMBDA_TASK_ROOT}
+RUN npm install --omit=dev
+
+COPY index.js ${LAMBDA_TASK_ROOT}
+COPY shared/ ${LAMBDA_TASK_ROOT}/shared/
+
+CMD [ "index.handler" ]

@@ -1,0 +1,75 @@
+@import 'variables';
+
+:host[data-popper-placement^='top'] .custom-tooltip-arrow {
+  bottom: -4px;
+}
+
+:host[data-popper-placement^='bottom'] .custom-tooltip-arrow {
+  top: -4px;
+}
+
+:host[data-popper-placement^='top'],
+:host[data-popper-placement^='bottom'] {
+  &[data-popper-placement$='start'] .custom-tooltip-arrow {
+    transform: unset !important;
+    left: 8px !important;
+  }
+
+  &[data-popper-placement$='end'] .custom-tooltip-arrow:before {
+    left: -8px !important;
+  }
+}
+
+:host[data-popper-placement^='left'] .custom-tooltip-arrow {
+  right: -4px;
+}
+
+:host[data-popper-placement^='right'] .custom-tooltip-arrow {
+  left: -4px;
+}
+
+:host[data-popper-placement^='left'],
+:host[data-popper-placement^='right'] {
+  &[data-popper-placement$='start'] .custom-tooltip-arrow:before {
+    top: -8px !important;
+  }
+
+  &[data-popper-placement$='end'] .custom-tooltip-arrow:before {
+    top: 8px !important;
+  }
+}
+
+:host {
+  z-index: $tooltip-zindex;
+}
+
+.custom-tooltip {
+  position: relative;
+  background-color: #262626;
+  padding: 1.25rem 1.563rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: white;
+
+  &-arrow,
+  &-arrow:before {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: inherit;
+  }
+
+  &-arrow {
+    visibility: hidden;
+  }
+
+  &-arrow:before {
+    visibility: visible;
+    content: '';
+    transform: rotate(45deg);
+  }
+  &:hover {
+    color: white;
+  }
+}

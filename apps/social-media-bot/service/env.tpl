@@ -1,0 +1,17 @@
+NODE_ENV=development
+GLOBAL_PREFIX=api/v1
+ROLLBAR_ACCESS_TOKEN=***REMOVED***
+REDIS_HOST=0.0.0.0
+REDIS_SCHEMA=redis
+REDIS_USER=redis
+REDIS_PORT=6379
+REDIS_PASSWORD=redis_password
+APP_PORT=5002
+VERIFY_TOKEN=Kzj7fj4KjygwrD/DL0tNYQ==
+FB_API_URL=https://graph.facebook.com/v12.0
+IMAGE_THANKS_NAME=image.png
+MESSENGER_FLOW_TTL=900
+MESSENGER_MODERATOR_TTL=86400
+COMMUNICATION_TIMEOUT=5000
+FACEBOOK_PAGES=[{"pageId":"108149314338086","pageAccessToken":"***","supportedLanguages":[{"lang":"en","locale":"default","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/image.png"},{"lang":"es","locale":"es_ES","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/image.png"},{"lang":"fr","locale":"fr_FR","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/image.png"},{"lang":"ar","locale":"ar_AR","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/image.png"}],"defaultLanguage":"en"},{"pageId":"2049287381976538","pageAccessToken":"***","supportedLanguages":[{"lang":"en","locale":"default","thanksImageUrl":"https://social-media.loop.elitecrew.io/en/image.png"},{"lang":"tl","locale":"tl_PH","thanksImageUrl":"https://social-media.loop.elitecrew.io/tl/image.png"}],"defaultLanguage":"en"}]
+REDIS_DB_PORT=11

@@ -1,0 +1,14 @@
+<div class="length-flex align-items-center">
+  <div class="length-flex f-column length-input__wrapper">
+    <span class="length-input__label">{{ 'filtersV2.date.from' | translate }}</span>
+    <loop-input #minInput type="number" (focusedOut)="onValueChange(minInput, 'min')" [formControl]="minControl"></loop-input>
+  </div>
+  <div class="separator"></div>
+  <div class="length-flex f-column length-input__wrapper">
+    <span class="length-input__label">{{ 'filtersV2.date.to' | translate }}</span>
+    <loop-input #maxInput type="number" (focusedOut)="onValueChange(maxInput, 'max')" [formControl]="maxControl"></loop-input>
+  </div>
+</div>
+<button class="select-all filtersV2-link-button clear-all" (click)="onClearClicked()">
+  {{ 'filtersV2.clear' | translate }}
+</button>

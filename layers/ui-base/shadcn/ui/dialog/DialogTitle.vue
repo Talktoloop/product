@@ -7,23 +7,21 @@ const props = defineProps<DialogTitleProps & { class?: HTMLAttributes['class'] }
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
 
 const forwardedProps = useForwardProps(delegatedProps)
+
+const titleClasses = tw`
+  text-lg font-semibold 
+  leading-none tracking-tight
+  text-foreground
+  dark:text-dark-foreground
+`
 </script>
 
 <template>
-  <DialogTitle
-    v-bind="forwardedProps"
-    :class="
-      cn(
-        'text-lg font-semibold leading-none tracking-tight',
-        props.class,
-      )
-    "
-  >
+  <DialogTitle v-bind="forwardedProps" :class="cn(titleClasses, props.class)">
     <slot />
   </DialogTitle>
 </template>
