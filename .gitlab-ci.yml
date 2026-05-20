@@ -444,3 +444,425 @@ lambda-scheduler-gateway-dev:
         - lambdas/scheduler/gateway_scheduler/**/*
         - lambdas/scheduler/shared/**/*
   stage: deploy
+
+# =============================================================================
+# PRODUCTION deploy jobs
+#
+# Mirror every dev job above with main-branch + when:manual gating so a merge
+# from develop -> main lands the code but does NOT auto-fire any pipeline.
+# Each prod deploy is an explicit button click in the GitLab pipeline UI.
+#
+# `extends: .deploy-production` switches the GitLab environment scope to
+# `production`, which resolves the `${X_PIPELINE_NAME}` and AWS_* variables
+# against the production-scoped values in Settings -> CI/CD -> Variables.
+# =============================================================================
+
+# --- Cognito Lambdas ---
+
+lambda-create-challenge-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_CREATE_CHALLENGE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/auth/create_challenge/**/*
+      when: manual
+  stage: deploy
+
+lambda-define-challenge-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_DEFINE_CHALLENGE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/auth/define_challenge/**/*
+      when: manual
+  stage: deploy
+
+lambda-pre-signup-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_PRE_SIGNUP_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/auth/pre_signup/**/*
+      when: manual
+  stage: deploy
+
+lambda-verify-challenge-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_VERIFY_CHALLENGE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/auth/verify_challenge/**/*
+      when: manual
+  stage: deploy
+
+lambda-login-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_LOGIN_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/auth/login/**/*
+      when: manual
+  stage: deploy
+
+# --- ECS services ---
+
+gateway-production:
+  variables:
+    PIPELINE_NAME: ${GATEWAY_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - apps/gateway/service/**/*
+      when: manual
+  stage: deploy
+
+ivr-production:
+  variables:
+    PIPELINE_NAME: ${IVR_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - apps/ivrr-bot/**/*
+      when: manual
+  stage: deploy
+
+ui-production:
+  variables:
+    PIPELINE_NAME: ${UI_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - apps/ui/**/*
+      when: manual
+  stage: deploy
+
+whatsapp-production:
+  variables:
+    PIPELINE_NAME: ${WHATSAPP_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - apps/social-media-bot/service/**/*
+      when: manual
+  stage: deploy
+
+cerbos-production:
+  variables:
+    PIPELINE_NAME: ${CERBOS_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - apps/cerbos/**/*
+      when: manual
+  stage: deploy
+
+metabase-production:
+  variables:
+    PIPELINE_NAME: ${METABASE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - apps/metabase/**/*
+      when: manual
+  stage: deploy
+
+inngest-server-production:
+  variables:
+    PIPELINE_NAME: ${INNGEST_SERVER_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - apps/inngest-service/**/*
+      when: manual
+  stage: deploy
+
+inngest-dashboard-production:
+  variables:
+    PIPELINE_NAME: ${INNGEST_DASHBOARD_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - apps/inngest-dashboard/**/*
+      when: manual
+  stage: deploy
+
+# --- AirTable Lambdas ---
+
+lambda-airtable-authorizer-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_AUTHORIZER_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/authorizer/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-user-update-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_UPDATE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/user_update/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-user-invite-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_INVITE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/user_invite/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-user-accept-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_ACCEPT_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/user_accept/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-user-reject-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_REJECT_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/user_reject/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-user-suspend-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_SUSPEND_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/user_suspend/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-user-unsuspend-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_USER_UNSUSPEND_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/user_unsuspend/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-organisation-create-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_ORGANISATION_CREATE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/organisation_create/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-organisation-update-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_ORGANISATION_UPDATE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/organisation_update/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-organisation-link-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_ORGANISATION_LINK_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable/organisation_link/**/*
+        - lambdas/airtable/shared/**/*
+      when: manual
+  stage: deploy
+
+# --- Scheduler Lambdas ---
+
+lambda-scheduler-registration-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_REGISTRATION_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/scheduler/registration_scheduler/**/*
+        - lambdas/scheduler/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-scheduler-loop-advocate-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_LOOP_ADVOCATE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/scheduler/loop_advocate_scheduler/**/*
+        - lambdas/scheduler/shared/**/*
+      when: manual
+  stage: deploy
+
+# --- Translation Lambdas ---
+
+lambda-translation-translate-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_TRANSLATION_TRANSLATE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/translation/translate/**/*
+        - lambdas/translation/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-translation-translate-history-content-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_TRANSLATION_TRANSLATE_HISTORY_CONTENT_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/translation/translate_history_content/**/*
+        - lambdas/translation/shared/**/*
+      when: manual
+  stage: deploy
+
+# --- Transcription Lambda ---
+
+lambda-transcription-transcribe-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_TRANSCRIPTION_TRANSCRIBE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/transcription/transcribe/**/*
+        - lambdas/transcription/shared/**/*
+      when: manual
+  stage: deploy
+
+# --- AirTable Sync Lambdas ---
+
+lambda-airtable-sync-case-manager-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_SYNC_CASE_MANAGER_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable_sync/case_manager_sync/**/*
+        - lambdas/airtable_sync/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-sync-organisations-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_SYNC_ORGANISATIONS_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable_sync/organisations_sync/**/*
+        - lambdas/airtable_sync/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-airtable-sync-organisation-user-save-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_AIRTABLE_SYNC_ORGANISATION_USER_SAVE_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/airtable_sync/organisation_user_save/**/*
+        - lambdas/airtable_sync/shared/**/*
+      when: manual
+  stage: deploy
+
+# --- Redis-pub-sub Scheduler Lambdas ---
+
+lambda-scheduler-ivrr-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_IVRR_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/scheduler/ivrr_scheduler/**/*
+        - lambdas/scheduler/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-scheduler-ivrr-clear-history-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_IVRR_CLEAR_HISTORY_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/scheduler/ivrr_clear_history/**/*
+        - lambdas/scheduler/shared/**/*
+      when: manual
+  stage: deploy
+
+lambda-scheduler-gateway-production:
+  variables:
+    PIPELINE_NAME: ${LAMBDA_SCHEDULER_GATEWAY_PIPELINE_NAME}
+  extends: [.deploy-production]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      changes:
+        - lambdas/scheduler/gateway_scheduler/**/*
+        - lambdas/scheduler/shared/**/*
+      when: manual
+  stage: deploy
