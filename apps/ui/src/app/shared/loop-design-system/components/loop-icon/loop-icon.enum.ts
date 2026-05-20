@@ -1,0 +1,31 @@
+export enum Name {
+  ArrowBack = 'arrow-back',
+  ArrowDown = 'arrow-down',
+  ArrowForward = 'arrow-forward',
+  ArrowUp = 'arrow-up',
+  AudioPlayerDelete = 'audio-player-delete',
+  AudioPlayerPause = 'audio-player-pause',
+  AudioPlayerPlay = 'audio-player-play',
+  AudioPlayerReplay = 'audio-player-replay',
+  AudioRecorderRecord = 'audio-recorder-record',
+  AudioRecorderStop = 'audio-recorder-stop',
+  Check = 'check',
+  Close = 'close',
+  CloseCircle = 'close-circle',
+  Info = 'info',
+  Menu = 'menu',
+  Padlock = 'padlock',
+  DoneCircle = 'done-circle-icon',
+  OrganizationUser = 'organization-user',
+  IndividualUser = 'individual-user',
+  NoUser = 'no-user',
+}
+
+export enum Theme {
+  Primary = 'primary',
+  Action = 'action',
+  Neutral = 'neutral',
+  Danger = 'danger',
+  Alert = 'alert',
+  Emphasis = 'emphasis',
+}

@@ -1,0 +1,53 @@
+<loop-modal>
+  <h2 class="send-story-to-case-manager-form__heading subheading">
+    {{ 'admin.' + type + '.modal.sendStoryToCaseManagerTitle' | translate }}
+  </h2>
+
+  <section class="send-story-to-case-manager-form__form">
+    <form cy="send-story-to-case-manager-form-form" [formGroup]="sendToCaseManagerForm">
+      <section class="mb-2">
+        <h3 class="section-title mb-1">{{ 'admin.sendStoryToCaseManagerModal.immediateAssistance.label' | translate }}</h3>
+        <div class="mb-1">
+          <app-radio-group formControlName="immediateAssistance">
+            <loop-new-story-radio
+              cy="send-story-to-case-manager-form-not-urgent"
+              [label]="'admin.sendStoryToCaseManagerModal.immediateAssistance.urgent' | translate"
+              [value]="true"
+              [checked]="sendToCaseManagerForm.get('immediateAssistance')?.value === true"
+            ></loop-new-story-radio>
+            <loop-new-story-radio
+              cy="send-story-to-case-manager-form-urgent"
+              [label]="'admin.sendStoryToCaseManagerModal.immediateAssistance.notUrgent' | translate"
+              [value]="false"
+              [checked]="sendToCaseManagerForm.get('immediateAssistance')?.value === false"
+            ></loop-new-story-radio>
+          </app-radio-group>
+        </div>
+
+        <h3 class="section-title--small mb-075">{{ 'admin.sendStoryToCaseManagerModal.reason' | translate }}</h3>
+        <loop-textarea cy="send-story-to-case-manager-form-feedback-loop-textarea" formControlName="note"></loop-textarea>
+      </section>
+    </form>
+  </section>
+
+  <div cy="send-story-to-case-manager-form-actions-footer" class="send-story-to-case-manager-form__actions" action-buttons>
+    <app-button
+      cy="send-story-to-case-manager-form-app-button-submit"
+      class="send-story-to-case-manager-form__button"
+      mode="v2"
+      variant="primary"
+      [disabled]="sendToCaseManagerForm.invalid"
+      (click)="sendStoryToCaseManager()"
+    >
+      <span>{{ 'admin.pendingStoryReview.sendToCaseManager' | translate }}</span>
+    </app-button>
+    <app-button
+      cy="send-story-to-case-manager-form-app-button-cancel"
+      class="send-story-to-case-manager-form__button"
+      mode="v2"
+      variant="outlined"
+      (click)="onModalClose()"
+      >{{ 'admin.' + type + '.modal.cancelButton' | translate }}</app-button
+    >
+  </div>
+</loop-modal>

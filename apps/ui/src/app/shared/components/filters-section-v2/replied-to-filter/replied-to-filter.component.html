@@ -1,0 +1,86 @@
+<div *ngIf="title" class="filter-v2-container__section-title"
+  [class.mobile-title]="(ui.mobileView$ | async) && nestedModalMode">
+  <div class="d-flex-space-between align-items-center">
+    <span class="filter-v2-container__section-title-name">{{ title }}</span>
+    <app-button mode="v2" variant="link-3" class="filtersV2-link-button modal-see-all__button"
+      *ngIf="isModal && !nestedModalMode && isAllFiltersModal" (clicked)="onSeeAllClicked($event)">
+      {{ 'filtersV2.seeAll' | translate }}
+      <app-expand-more-icon class="modal-see-all__icon"></app-expand-more-icon>
+    </app-button>
+  </div>
+  <div class="separator" [class.no-bottom-margin]="isModal"></div>
+</div>
+
+<form [formGroup]="form" *ngIf="nestedModalMode || !isAllFiltersModal">
+  <!-- Main Filter Section -->
+  <div>
+    <!-- Filter Options -->
+    <ng-container *ngFor="let option of repliedToData; let i = index">
+      <!-- Section Divider -->
+      <div *ngIf="flat && (i === 0 || options[i - 1].parentId !== option.parentId)"
+           class="filter-v2-container__section-title">
+        <div class="separator above"></div>
+        <span class="filter-v2-container__section-title-name">{{ option.parentId | translate }}</span>
+        <div class="separator"></div>
+      </div>
+
+      <!-- Checkbox Option -->
+      <app-checkbox cy="checkbox-wrapper-app-checkbox" data-testid="checkbox-wrapper-app-checkbox"
+        (click)="($event.stopPropagation())" [class.d-none]="option.hidden" [checked]="option.checked"
+        (changed)="onCheckboxChanged($event)" [value]="option.id">
+        <div cy="checkbox-wrapper-name" class="checkbox-filter-wrapper__name" data-testid="checkbox-wrapper-name">
+          <span *ngIf="noTranslation; else translation">{{ option.content || '' }}</span>
+          <ng-template #translation>
+            <span>{{ (option.code) | translate }}</span>
+          </ng-template>
+        </div>
+      </app-checkbox>
+    </ng-container>
+
+    <!-- Mobile Apply Button -->
+    <div class="mobile-btns" *ngIf="!isModal">
+      <app-button class="apply-btn" [mode]="'v2'" [disabled]="false" (click)="submitForm()">
+        <span>{{ 'filtersV2.apply' | translate }}</span>
+      </app-button>
+    </div>
+  </div>
+
+  <!-- Organization Filter Section -->
+  <ng-container *ngIf="toggleOrganisation | async">
+    <div class="organisation-filter">
+      <!-- Search Input -->
+      <div>
+        <loop-input [showClearBtn]="false" [showCloseIcon]="false" [placeholder]="'Please select an organisation'"
+          [formControl]="searchOrganisation" class="flex-grow-1" cy="autocomplete-loop-input" autocomplete="off"
+          [solidPlaceholder]="true">
+          <app-search-icon prefix class="autocomplete__icon autocomplete__search-icon"></app-search-icon>
+        </loop-input>
+
+        <!-- Organization List -->
+        <div class="scrollable-organization-list">
+          <div *ngFor="let organization of matchingOrganizations; trackBy: trackByFn" class="organization-item">
+            <div class="form-group-wrap" [class.checked]="isOrganizationSelected(organization)"
+                 (click)="toggleOrganizationSelection(organization)">
+              <div class="form-check">
+                <app-check-square [checked]="isOrganizationSelected(organization)" [tabIndex]="0" class="new"
+                  [compact]="true" [attr.aria-checked]="isOrganizationSelected(organization)"
+                  (clicked)="toggleOrganizationSelection(organization)"
+                  [class.checked]="isOrganizationSelected(organization)">
+                </app-check-square>
+                <div class="organization-info">
+                  <span class="checkbox__label">{{ organization.name }}</span>
+                  <span class="organisation-country">{{ organization.countryName }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Select/Deselect All Button -->
+        <app-button [mode]="'v2'" [variant]="'secondary'" class="select-all" (click)="toggleSelectAll()">
+          {{ (selectedOrganizations.length ? 'filtersV2.deselectAll' : 'filtersV2.selectAll') | translate }}
+        </app-button>
+      </div>
+    </div>
+  </ng-container>
+</form>

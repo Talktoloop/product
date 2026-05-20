@@ -1,0 +1,15 @@
+<app-inbox-outbox-styler>
+  <main class="outbox">
+    <ng-container *ngIf="isMainListPath">
+      <loop-subnavigation-bar #subNavigationBar [routes]="outboxRoutes"></loop-subnavigation-bar>
+    </ng-container>
+
+    <div
+      class="outbox__content-wrapper"
+      [class.max-width]="setMaxWidth"
+      [class.padding-sides]="isMainListPath || ui.tabletView || ui.desktopView"
+    >
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</app-inbox-outbox-styler>

@@ -1,0 +1,14 @@
+<form class="gender-section d-flex f-column" [formGroup]="form">
+  <h4 class="font-big bold">{{ 'newStoryV2.form.gender.title' | translate }}</h4>
+  <span class="new-story-v2__info-link">{{ 'newStoryV2.form.gender.info' | translate }}</span>
+  <app-radio-group cy="gender-section-app-radio-group" formControlName="gender">
+    <loop-new-story-radio
+      *ngFor="let gender of gendersAvailable"
+      cy="gender-section-loop-new-story-radio"
+      data-testid="gender-section-loop-new-story-radio"
+      [checked]="gender === form.get('gender').value"
+      [label]="genderMapping[gender] | translate"
+      [value]="gender"
+    ></loop-new-story-radio>
+  </app-radio-group>
+</form>

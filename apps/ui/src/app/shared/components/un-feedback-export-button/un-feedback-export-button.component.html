@@ -1,0 +1,9 @@
+<ng-container *ngIf="isLoopMember">
+  <app-button [disabled]="downloadInProgress" mode="v2" variant="link-5" (click)="onDownloadClick()">
+    {{ 'unifiedFeedbackExportButton.text' | translate }}
+  </app-button>
+  <loop-icon name="new-alt" [size]="24"></loop-icon>
+  <div class="loader" *ngIf="downloadInProgress">
+    <img ngSrc="assets/icons/loader.gif" height="150" width="150" alt=""/>
+  </div>
+</ng-container>

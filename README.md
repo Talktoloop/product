@@ -1,6 +1,6 @@
 # Product Monorepo
 
-A Nuxt-based monorepo using a layered architecture approach for scalable application development.
+A Nuxt-based monorepo using a layered architecture approach for scalable application development
 
 ## Repository Structure
 

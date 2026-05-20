@@ -1,0 +1,14 @@
+<div *ngIf="title && !flat" class="filter-v2-container__section-title">
+  <span class="filter-v2-container__section-title-name">{{ title }}</span>
+  <div class="separator"></div>
+</div>
+
+<loop-autocomplete
+  (queryChanged)="handleQueryChange($event)"
+  [formControl]="control"
+  [openDropDownOnSuffixClick]="true"
+  [options]="matchingCountries | sortByCountryName"
+  [placeholder]="'filtersV2.country.placeholder' | translate"
+  [showAllWhenEmpty]="true"
+  [showErrorIcon]="true"
+></loop-autocomplete>

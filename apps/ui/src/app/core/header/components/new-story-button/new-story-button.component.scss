@@ -1,0 +1,18 @@
+@import 'mixins';
+
+:host {
+  .new-story-btn {
+    &__float {
+      position: fixed;
+      bottom: 2.5rem;
+      @include right(5%);
+    }
+  }
+  &.moderator {
+    .new-story-btn {
+      &__float {
+        bottom: 5rem;
+      }
+    }
+  }
+}

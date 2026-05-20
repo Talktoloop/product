@@ -1,0 +1,18 @@
+{
+  "name": "translation_translate_history_content",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-comprehend": "^3.658.0",
+    "@aws-sdk/client-lambda": "^3.658.0",
+    "@aws-sdk/client-secrets-manager": "^3.658.0",
+    "@aws-sdk/client-translate": "^3.658.0",
+    "@google-cloud/translate": "^8.5.0",
+    "joi": "^17.13.0",
+    "mysql2": "^3.11.0"
+  }
+}

@@ -1,0 +1,115 @@
+import { MigrationInterface, QueryRunner } from 'typeorm';
+
+export class addThematicLabels1748956879364 implements MigrationInterface {
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`UPDATE thematic SET label = 'Health' WHERE code = 'health'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Food Security' WHERE code = 'foodSecurity'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Water, Sanitation, and Hygiene' WHERE code = 'wash'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Shelter & camp management' WHERE code = 'shelter'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Education' WHERE code = 'education'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Protection and Human Rights' WHERE code = 'protection'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Governance' WHERE code = 'governance'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Cross cutting' WHERE code = 'cross-cutting'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Livelihoods & economic support' WHERE code = 'livelihoods'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Essential living supplies' WHERE code = 'essential-living-supplies'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Logistics' WHERE code = 'logistics'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Energy & environment' WHERE code = 'energy-environment'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Health centres' WHERE code = 'medicalCentres'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Mental health' WHERE code = 'mentalHealth'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Medications' WHERE code = 'medications'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Epidemics/pandemics' WHERE code = 'epidemics/Pandemics'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Ebola' WHERE code = 'ebola'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'HIV/AIDS' WHERE code = 'hiv/Aids'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Gender based violence' WHERE code = 'gender-basedViolence'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Sexual and reproductive health' WHERE code = 'sexualAndReproductiveRights'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Quarantine facilities' WHERE code = 'quarantineFacilities'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Health fees' WHERE code = 'insurance'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Vaccinations' WHERE code = 'vaccines'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Nutrition' WHERE code = 'nutrition'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Food items' WHERE code = 'foodItems'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Crop and livestock' WHERE code = 'crop-livestock'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Agriculture' WHERE code = 'agriculture'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Locust' WHERE code = 'locust'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Handwashing stations' WHERE code = 'handwashingStations'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Water points' WHERE code = 'waterPoints'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Latrines' WHERE code = 'latrines'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Water trucking' WHERE code = 'waterTrucking'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Solid waste/garbage management' WHERE code = 'solidWaste/GarbageManagement'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Water supply systems' WHERE code = 'waterFacilitiesAndSupplies'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Flooding/heavy rains' WHERE code = 'flooding/HeavyRains'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Hygiene practices' WHERE code = 'hygiene'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Temporary shelters' WHERE code = 'temporaryShelters'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Camp coordination/management' WHERE code = 'campCoordinationManagement'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Housing' WHERE code = 'housing'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Lighting and electricity' WHERE code = 'lightingAndElectricity'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Building or reconstruction of houses' WHERE code = 'construction'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Technical support' WHERE code = 'technicalSupport'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Early childhood' WHERE code = 'earlyChildhood'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Formal education' WHERE code = 'formal-education'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Higher education' WHERE code = 'higher-education'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Scholarships/internships' WHERE code = 'scholarships'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Housing, land and property rights' WHERE code = 'landRights'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Landmines/unexploded ordnance' WHERE code = 'landmines/UnexplodedOrdnance'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Clan/community violence' WHERE code = 'clan-conflict'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Gender-based violence' WHERE code = 'gender-basedViolence'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Elections' WHERE code = 'elections'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Government spending/social protection' WHERE code = 'gov-spending-social-protection'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Civic Space' WHERE code = 'civicSpace'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Safety, security and instability' WHERE code = 'safetyAndSecurity'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Transportation infrastructrue' WHERE code = 'transportation'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Telecommuncations' WHERE code = 'telecommunications'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Logistics' WHERE code = 'logistics'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Cash' WHERE code = 'cash'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Capacity building' WHERE code = 'capacityBuilding'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Community sensitisation' WHERE code = 'communitySensitisation'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Aid workers' WHERE code = 'aidWorkers'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Climate change' WHERE code = 'climateChange'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Loop onboarding' WHERE code = 'loopOnboarding'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'DRR and preparedness' WHERE code = 'drrAndPreparedness'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'General assistance' WHERE code = 'general-assistance'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Skills acquisition' WHERE code = 'skills-acquisition'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Prices of commodities' WHERE code = 'commodity-prices'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Inflation/devaluation' WHERE code = 'inflation-devaluation'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Clothing' WHERE code = 'clothing'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Hygiene items' WHERE code = 'hygiene-items'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Cooking items' WHERE code = 'cooking-items'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Household items (Jerricans/fans/mosquito nets, etc.)' WHERE code = 'household-items'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Lights' WHERE code = 'lights'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Emergency telecommunications' WHERE code = 'emergency-telecom'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Transportation' WHERE code = 'logistics-transportation'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Warehouses' WHERE code = 'warehouses'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Firewood' WHERE code = 'firewood'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Heating/cooling' WHERE code = 'heating-cooling'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Natural disasters' WHERE code = 'natural-disasters'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Pollution and hazards' WHERE code = 'pollution-hazards'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'CFM processes' WHERE code = 'cfm-process'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Participation and representation processes' WHERE code = 'participation-representation'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Relevance of Aid' WHERE code = 'aid-relevance'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Timeliness of Aid' WHERE code = 'aid-timeliness'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Quality of Aid' WHERE code = 'aid-quality'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Quantity of Aid' WHERE code = 'aid-quantity'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Safety of Aid distribution' WHERE code = 'aid-distribution-safety'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Fairness of Aid distribution' WHERE code = 'aid-distribution-fairness'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Inclusiveness of aid distribution' WHERE code = 'air-distribution-inclusiveness'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Children' WHERE code = 'children'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Youth' WHERE code = 'youngPeople'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Female-headed household' WHERE code = 'women'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Persons living with disabilities' WHERE code = 'personWithDisabilities'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Elderly' WHERE code = 'elderlies'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'LGBTQ+' WHERE code = 'lgtbq+'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Chronically ill people' WHERE code = 'chronicallyIllPeople'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Legal status (refugees, migrants, stateless, etc.)' WHERE code = 'legalStatus(refugees)'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Indigenous community' WHERE code = 'indigenousCommunity'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Low income families' WHERE code = 'lowIncomeFamilies'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Internally displaced people (IDP)' WHERE code = 'idp'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Awareness raising and materials' WHERE code = 'awareness-raising'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Droughts' WHERE code = 'droughts'`);
+    await queryRunner.query(`UPDATE thematic SET label = 'Labor and jobs' WHERE code = 'laborAndJobs'`);
+
+  }
+
+  public async down(queryRunner: QueryRunner): Promise<void> {
+  await queryRunner.query(`UPDATE thematic SET label = NULL`);
+  
+  }
+}

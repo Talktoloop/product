@@ -10,19 +10,18 @@ defineOptions({
 const props = defineProps<WithClassAsProps>()
 
 const { carouselRef, orientation } = useCarousel()
+
+const contentClasses = (orient: string = 'horizontal') => tw`
+  flex
+  ${orient === 'horizontal' ? '-ml-4' : '-mt-4 flex-col'}
+  dark:bg-dark-background
+  dark:text-dark-foreground
+`
 </script>
 
 <template>
   <div ref="carouselRef" class="overflow-hidden">
-    <div
-      :class="
-        cn(
-          'flex',
-          orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
-          props.class,
-        )"
-      v-bind="$attrs"
-    >
+    <div :class="cn(contentClasses(orientation || 'horizontal'), props.class)" v-bind="$attrs">
       <slot />
     </div>
   </div>

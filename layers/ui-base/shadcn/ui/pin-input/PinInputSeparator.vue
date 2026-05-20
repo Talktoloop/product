@@ -9,7 +9,10 @@ const forwardedProps = useForwardProps(props)
 <template>
   <Primitive v-bind="forwardedProps">
     <slot>
-      <Dot />
+      <Dot :class="tw`
+        h-4 w-4
+        text-muted-foreground dark:text-muted-foreground
+      `" />
     </slot>
   </primitive>
 </template>

@@ -1,0 +1,3403 @@
+{
+  "global": {
+    "Stories": "Maoni",
+    "Replies": "Majibu",
+    "Annonymous": "Bila kujulikana",
+    "replied": "amejibu",
+    "ago": "iliyopita",
+    "units": {
+      "minutes": "m",
+      "hours": "h",
+      "days": "d",
+      "months": "M"
+    },
+    "loading": "Inaendelea",
+    "required": "Lazima",
+    "optional": "Hiari",
+    "gender": "Jinsia",
+    "isUrgent": "Je, maoni haya ni ya dharura?",
+    "isMinority": "Je, mwandishi anatoka kwenye jamii ya wachache?",
+    "age": "Umri",
+    "disability": "Ulemavu",
+    "errorMessage": "Hitilafu imetokea",
+    "noMoreData": "Hakuna data zaidi",
+    "difficulty": "Ugumu",
+    "problems": "Matatizo",
+    "previousStep": "Hatua iliyotangulia",
+    "nextStep": "Hatua inayofuata",
+    "language": "Lugha",
+    "reload": "Pakia upya",
+    "selectOption": "Chagua/chaguo khiari",
+    "to": "Kwa:",
+    "you": "Wewe",
+    "today": "Leo",
+    "readMore": "Soma zaidi",
+    "views": "zilizotazamwa",
+    "comments": "maoni",
+    "upvote": "Kupigia kura ya juu",
+    "replies": "majibu",
+    "upvoted": "Imepigiwa kura ya juu",
+    "cancel": "Ghairi",
+    "unitsLong": {
+      "hours": "saa",
+      "days": "siku",
+      "weeks": "wiki",
+      "months": "miezi",
+      "years": "miaka",
+      "year": "mwaka",
+      "month": "mwezi",
+      "week": "wiki",
+      "day": "siku",
+      "hour": "saa",
+      "stories": "maoni",
+      "cases": "kesi",
+      "investigations": "uchunguzi"
+    },
+    "next": "Inayofuata",
+    "here": "Hapa",
+    "sort": {
+      "newest_first": "Mpya zaidi",
+      "oldest_first": "Ya zamani zaidi",
+      "not_started": "Haijaanza kwanza",
+      "pending_publication": "Tayari kuchapishwa kwanza",
+      "desc": "Mpya zaidi",
+      "asc": "Ya zamani zaidi",
+      "upvoted": "Imependekezwa"
+    },
+    "sortBy": "Panga kwa",
+    "order": "Mpangilio",
+    "dummyDataBanner": "Data inaonyesha sasa ni ya mfano",
+    "show": "Onyesha",
+    "hide": "Ficha",
+    "hideText": "Ficha maandishi",
+    "showText": "Onyesha maandishi",
+    "hideReply": "Ficha jibu",
+    "showReply": "Onyesha jibu",
+    "recordReply": "Rekodi jibu",
+    "authorName": "Jina la mwandishi",
+    "transcribeReply": "Andika jibu (transcribe)"
+  },
+  "error": {
+    "generic": {
+      "title": "Kuna tatizo",
+      "subtitle": "Kitu kibaya kimetokea. Hakikisha ombi lako au wasiliana na support@talktoloop.org"
+    }
+  },
+  "header": {
+    "navLabel": "Kichwa cha tovuti ya Loop",
+    "link": {
+      "home": "Nyumbani",
+      "feedback": "Maoni",
+      "newStory": "Tuma maoni",
+      "profile": "Akaunti ya mtumiaji",
+      "pending": "Inasubiri",
+      "rejected": "Imekataliwa",
+      "statistics": "Takwimu",
+      "inbox": "Kisanduku cha kupokea ujumbe",
+      "cases": "Kesi",
+      "about": "Kuhusu",
+      "outbox": "Kisanduku cha kutuma ujumbe"
+    },
+    "search": {
+      "aria": {
+        "back": "Funga utafutaji",
+        "title": "Tafuta",
+        "label": "Tafuta maoni"
+      },
+      "placeholder": "Tafuta maoni kwenye Loop"
+    },
+    "filters": {
+      "aria": {
+        "title": "Chuja",
+        "label": "Chuja maoni"
+      }
+    },
+    "topBar": {
+      "backToInbox": "Rudi kwenye kisanduku cha kupokea ujumbe"
+    },
+    "topNotificationShort": "Anza kutumia Loop leo ",
+    "topNotificationLong": "Anza na uwe bingwa wa uwajibikaji leo 🏆️",
+    "hybernationInfo": {
+      "text": "Talk to Loop iko katika usingizi kutokana na ukosefu wa ufadhili"
+    }
+  },
+  "storiesList": {
+    "text": {
+      "noMoreStories": "Hakuna maoni zaidi",
+      "loading": "Inapakia {{value}} maoni zaidi"
+    },
+    "aria": {
+      "expandOrganisations": "Panua mashirika",
+      "clickToVote": "Bofya kupiga kura kwa maoni haya",
+      "clickToUnvote": "Bofya kuondoa kura"
+    }
+  },
+  "story": {
+    "replyForm": {
+      "text": {
+        "content": {
+          "label": "Jibu maoni",
+          "placeholder": "Andika jibu lako hapa",
+          "invalid": "Tafadhali andika jibu lako (kiwango cha chini herufi {{value}})"
+        },
+        "name": {
+          "label": "Jina au jina la utani",
+          "placeholder": "Hiari",
+          "info": "Acha wazi ili ubaki bila kujulikana"
+        },
+        "organisation": {
+          "label": "Shirika lako",
+          "placeholder": "Hiari"
+        },
+        "email": {
+          "label": "Barua pepe",
+          "placeholder": "mtu@example.com",
+          "invalid": "Anwani yako ya barua pepe si sahihi",
+          "info": "Pata taarifa unapopokea jibu. Hatuchangii barua pepe yako kwa wengine",
+          "nonSensitive": {
+            "info": "Toa anwani yako ya barua pepe ili upate taarifa za majibu. Anwani yako ya barua pepe haitaonekana kwa mtu yeyote."
+          }
+        },
+        "checkbox": "Ninakubali maoni yangu kuchapishwa kwenye TalkToLoop.org na kuwekwa mtandaoni kuboresha huduma",
+        "submit": "Tuma jibu",
+        "submitting": "Inatuma jibu",
+        "smsTooltip": "Jibu limewekewa kikomo cha herufi 320 ili tuweze kulipeleka kwa mwandishi kupitia SMS",
+        "warningSignIn": "Ikiwa unajibu kwa niaba ya shirika, lazima uingie kwa barua pepe ya kazi"
+      },
+      "toast": {
+        "success": {
+          "title": "Jibu limetumwa",
+          "subtitle": "Jibu lipo mtandaoni"
+        },
+        "error": {
+          "title": "Hitilafu kutuma jibu",
+          "subtitle": "Hitilafu imetokea. Tafadhali jaribu tena"
+        }
+      },
+      "success": {
+        "text": {
+          "line1": "Asante kwa kuacha jibu lako",
+          "line2": "Jibu lako litaonekana baada ya siku 1–2 za kazi"
+        },
+        "action": "Acha jibu lingine"
+      },
+      "header": {
+        "text": "Jibu lako"
+      },
+      "signOut": "Toka",
+      "replyingAs": "Unajibu kama:"
+    },
+    "status": {
+      "not_started": "Haijaanza",
+      "pending_translation": "Inasubiri kutafsiriwa",
+      "awaiting_replay": "Inangojea jibu",
+      "published": "Imechapishwa",
+      "rejected": "Imekataliwa",
+      "issuer_replied": "Mwandishi amejibu",
+      "issuer_did_not_replied": "Mwandishi hajajibu",
+      "pending_publication": "Tayari kuchapishwa",
+      "sent_from_case_manager_to_loop": "Rudishwa na Meneja wa Kesi",
+      "pending_transcription": "Inasubiri kunakili",
+      "transcription_in_progress": "Uandishi unaendelea",
+      "transcription_failed": "Uandishi umeshindikana",
+      "sent_to_case_manager": "Imetumwa kwa Meneja wa Kesi",
+      "pending_edit": "Rudishwa kwa uhariri",
+      "pending_rejection_not_sensitive": "Inasubiri kukataliwa (sio nyeti)"
+    },
+    "details": {
+      "viewStory": "Tazama maoni",
+      "storyInformation": {
+        "type": {
+          "label": "Aina ya maoni"
+        },
+        "age": {
+          "label": "Umri"
+        },
+        "gender": {
+          "label": "Jinsia"
+        },
+        "disability": {
+          "label": "Ulemavu"
+        },
+        "sentBy": {
+          "label": "Imetumwa na"
+        },
+        "thematic": {
+          "label": "Eneo la mada"
+        },
+        "isUrgent": {
+          "label": "Dharura"
+        },
+        "heading": "Taarifa za maoni"
+      },
+      "translations": {
+        "suggestTranslation": "Pendekeza tafsiri",
+        "requestTranslation": "Omba tafsiri",
+        "heading": "Tazama maoni kwa:"
+      },
+      "jumpToReplies": "Ruka kwenye majibu ({{value}})",
+      "step": {
+        "review": "Kagua",
+        "translate": "Tafsiri",
+        "transcribe": "Nakili (Transcribe)"
+      },
+      "transcribe": {
+        "header": {
+          "subtitle": "Sikiliza rekodi na uandike unachosikia. Ukimaliza, endelea kukagua taarifa"
+        },
+        "content": {
+          "placeholder": "Anza kuandika maoni yako"
+        },
+        "footer": {
+          "reviewStory": "Kagua maoni",
+          "poorAudioQuality": "Ubora duni wa sauti",
+          "rejectStory": "Kataa maoni",
+          "cancel": "Ghairi"
+        },
+        "toast": {
+          "storyRejected": {
+            "success": {
+              "title": "Maoni yamekataliwa",
+              "subtitle": "Maoni yamekataliwa na mwandishi ataarifiwa"
+            },
+            "error": {
+              "title": "Kuna hitilafu",
+              "subtitle": "Hatuwezi kukataa maoni kwa sasa. Tafadhali jaribu tena"
+            }
+          },
+          "reviewStory": {
+            "error": {
+              "title": "Kuna hitilafu",
+              "subtitle": "Hatuwezi kukagua maoni kwa sasa. Tafadhali jaribu tena"
+            }
+          }
+        },
+        "storyRejectModal": {
+          "subtitle": "Mwandishi ataarifiwa kuwa maoni hayakuchapishwa kwa sababu sauti haikusikika",
+          "title": "Unakaribia kukataa maoni haya",
+          "confirm": "Unataka kuendelea?"
+        }
+      },
+      "review": {
+        "other": {
+          "header": {
+            "subTitle": "Kagua maoni na vitambulisho vilivyowekwa na mtumiaji, ongeza vile vinavyokosekana na utafsiri maoni ukimaliza",
+            "title": "Kagua na tafsiri maoni"
+          },
+          "noHistory": "Hakuna historia ya awali kwa mwandishi huyu"
+        },
+        "content": {
+          "readStory": "Soma maoni"
+        },
+        "info": {
+          "organisations": "Mashirika",
+          "thematicArea": "Eneo la mada",
+          "disabilities": "Ulemavu",
+          "location": "Eneo",
+          "originalLanguage": "Lugha ya asili",
+          "channel": "Kituo",
+          "gender": "Jinsia",
+          "minority": "Kikundi cha walio wachache",
+          "urgent": "Dharura",
+          "age": "Umri",
+          "storyType": "Aina ya maoni",
+          "storyInformation": "Taarifa za maoni",
+          "country": "Nchi"
+        },
+        "buttons": {
+          "back": "Rudi nyuma",
+          "rejectStory": "Kataa maoni",
+          "translate": "Tafsiri",
+          "publishStory": "Chapisha maoni",
+          "storyAlreadyPublished": "Maoni yamekwisha kuchapishwa",
+          "storyAlreadyRejected": "Maoni yamekwisha kukataliwa",
+          "storyAlreadySentToCaseManager": "Maoni tayari yametumwa kwa meneja wa kesi"
+        },
+        "languageConfirmation": {
+          "title": "Uthibitisho wa lugha",
+          "message": "Unataka kuendelea na {{language}}?",
+          "cancel": "Ghairi",
+          "continue": "Endelea"
+        },
+        "form": {
+          "sensitiveLabel": "Maoni nyeti hayachapishwi kamwe kwenye tovuti ya Loop",
+          "demographicalInfo": "Taarifa za kidemografia",
+          "geographicalInfo": "Taarifa za kijiografia",
+          "otherInfo": "Taarifa nyingine",
+          "toast": {
+            "error": {
+              "reviewError": "Tafadhali jaza vipengele vyote vyenye alama ya \"lazima\" ili kuendelea"
+            }
+          }
+        },
+        "header": {
+          "toRecipient": "kwa:"
+        },
+        "tabs": {
+          "smsConversation": "Mazungumzo ya SMS",
+          "storyPreview": "Muhtasari wa maoni",
+          "whatsAppConversation": "Mazungumzo ya WhatsApp",
+          "messengerConversation": "Mazungumzo ya Messenger",
+          "review": "Kagua",
+          "storyInformation": "Taarifa za maoni",
+          "telegramConversation": "Mazungumzo ya Telegram",
+          "authorHistory": "Historia ya mwandishi"
+        },
+        "guard": {
+          "toast": {
+            "warning": {
+              "title": "Hatua ya ukaguzi haijapatikana bado",
+              "subtitle": "Tafadhali kamilisha hatua ya kunakili kabla ya kukagua"
+            }
+          }
+        },
+        "editStory": {
+          "minLengthErrorMessage": "Maoni lazima yawe angalau herufi 5 ili kuchapishwa. Ikiwa uhariri huu si lazima, zima kitufe hapo juu",
+          "editButton": "Maoni yanahitaji kuhaririwa kabla ya kuchapishwa",
+          "saveTranscriptionButton": "Hifadhi uandishi",
+          "saveTranscriptionError": "Hitilafu kuhifadhi uandishi. Tafadhali jaribu tena",
+          "saveTranscriptionSuccess": "Uandishi umehifadhiwa"
+        }
+      },
+      "translate": {
+        "guard": {
+          "toast": {
+            "warning": {
+              "title": "Hatua ya tafsiri haijapatikana bado",
+              "subtitle": "Tafadhali kamilisha hatua ya kukagua maoni kabla ya kutafsiri"
+            }
+          }
+        },
+        "tabs": {
+          "translation": "Tafsiri"
+        },
+        "ivrr": {
+          "header": {
+            "title": "Tafsiri maoni",
+            "subTitle": "Sikiliza rekodi na andika unachosikia. Ukimaliza, endelea kukagua taarifa"
+          }
+        }
+      }
+    },
+    "comments": {
+      "viewReplies": "Tazama majibu ({{count}})",
+      "hideReplies": "Ficha majibu ({{count}})"
+    },
+    "originalStoryIn": "Maoni ya asili yaliwasilishwa kwa {{language}}",
+    "translatedTo": "Imetafsiriwa kwa {{language}}",
+    "notTranslatedTo": "Haijatafsiriwa kwa {{language}}",
+    "changeTranslation": "Badilisha tafsiri",
+    "toast": {
+      "errors": {
+        "failedToLoad": "Kuna hitilafu",
+        "failedToLoadSubtitle": "Hatuwezi kupakua maelezo ya maoni kwa sasa. Tafadhali jaribu tena"
+      }
+    },
+    "review": {
+      "authorName": {
+        "placeholder": "Mshike mwandishi kuwa bila kujulikana"
+      },
+      "player": {
+        "escape": {
+          "key": {
+            "info": "⌨️ Bonyeza [esc] kusikiliza/kusitisha sauti unapotipa"
+          }
+        }
+      }
+    }
+  },
+  "newStory": {
+    "title": "Tuma maoni",
+    "steps": {
+      "first": "Maoni yako",
+      "second": "Maelezo",
+      "third": "Kuhusu wewe",
+      "fourth": "Ridhaa",
+      "confirmation": "Uthibitisho"
+    },
+    "navigation": {
+      "next": "Inayofuata",
+      "back": "Rudi",
+      "submit": "Tuma"
+    },
+    "form": {
+      "content": {
+        "label": "Ungependa kutuelezea nini leo?",
+        "placeholder": "",
+        "helperText": "Je, kuna uzoefu unaokumbuka ulio nao na huduma katika eneo lako? Je, ulikuwa mzuri au mbaya? Ungependa kusema nini kwa shirika?",
+        "publishInfo": "Iwapo itachapishwa, itakuwa ya umma",
+        "invalid": "Tafadhali andika angalau herufi 10."
+      },
+      "nickname": {
+        "label": "Jina au lakabu",
+        "placeholder": "Hiari",
+        "additional": "Hii itaonekana pamoja na maoni yako. Acha wazi ili ubaki bila kujulikana."
+      },
+      "place": {
+        "label": "Maoni yako yalitokea wapi?",
+        "helperText": "Jiji / mji / kijiji / kambi"
+      },
+      "country": {
+        "label": "Ni nchi gani maoni yako yalitokea?"
+      },
+      "organisations": {
+        "label": "Maoni yako ni kuhusu shirika lipi/lipi?",
+        "placeholder": "Tafuta shirika",
+        "new": {
+          "header": "Shirika jipya",
+          "text": "Hatuwezi kupata mechi yoyote kwa \"{{value}}\". Tumia tagi hapo chini kumtaja kwa hiyo."
+        },
+        "invitations": "Wakati maoni haya yatakapochapishwa, mialiko itatumwa kwa:"
+      },
+      "genderManual": {
+        "label": "Taja jinsia",
+        "placeholder": "Hiari"
+      },
+      "maternityStatus": {
+        "label": "Je, uko mimba au unanyonyesha?"
+      },
+      "difficulties": {
+        "label": "Ulemavu"
+      },
+      "categories": {
+        "label": "Aina"
+      },
+      "consent": {
+        "text": "Ninakubali maoni yangu kuchapishwa kwenye TalkToLoop.org na kuwekwa mtandaoni kusaidia mashirika kuboresha huduma zao."
+      },
+      "email": {
+        "label": "Barua pepe",
+        "placeholder": "Hiari",
+        "helperText": "Toa anwani yako ya barua pepe ili upokee arifa za majibu. Unaweza kujiondoa kwenye arifa hizi wakati wowote.",
+        "invalid": "Barua pepe yako si sahihi."
+      },
+      "preview": {
+        "tagsLabel": "Tagi hizi zinaonekana kwa kila mtu",
+        "emailInfo": "Barua pepe yako haionekani kwenye jukwaa",
+        "notifications": "Arifa",
+        "previewText": "Muhtasari wa maoni yako",
+        "edit": "Hariri"
+      },
+      "toast": {
+        "success": {
+          "title": "Maoni yametumwa",
+          "subtitle": "Msimamizi anaikagua maoni yako. Yataonekana hapa mara itakaposafika.",
+          "sensitive": {
+            "withContact": {
+              "subtitle": "Tutayashughulikia kwa uangalifu na utulivu. Tutakufahamisha kuhusu kinachotokea."
+            },
+            "withoutContact": {
+              "subtitle": "Tutayashughulikia kwa uangalifu na utulivu."
+            },
+            "title": "Msimamizi anaikagua maoni yako nyeti"
+          }
+        },
+        "error": {
+          "title": "Hitilafu kutuma maoni",
+          "subtitle": "Kulikuwa na hitilafu wakati wa kutuma maoni yako. Tafadhali jaribu tena."
+        },
+        "consent": {
+          "title": "Hitilafu ya radhi",
+          "subtitle": "Umetoa radhi  ya kuwasilishwa, lakini hujatoa barua pepe au nambari sahihi. Tafadhali toa barua pepe au nambari sahihi."
+        }
+      },
+      "submitting": "Inatuma maoni"
+    }
+  },
+  "comments": {
+    "replies": "Majibu ({{count}})",
+    "reply": {
+      "solutionProposedTag": "Suluhisho lilipendekezwa",
+      "reply": "Jibu",
+      "hideReplyForm": "Ficha fomu ya jibu"
+    }
+  },
+  "auth": {
+    "login": {
+      "header": "Ingia",
+      "applyLink": "Unda akaunti",
+      "form": {
+        "username": {
+          "label": "Barua pepe",
+          "invalid": "Tafadhali andika barua pepe yako."
+        },
+        "password": {
+          "label": "Neno la siri",
+          "invalid": "Tafadhali andika nenosiri lako."
+        },
+        "button": {
+          "text": "Ingia"
+        },
+        "submitting": "Inaingia...",
+        "email": {
+          "invalid": "Tafadhali andika barua pepe yako."
+        },
+        "headerText": "Karibu tena!",
+        "submitText": "Ingia",
+        "forgotPassword": "Umesahau nenosiri?"
+      },
+      "toast": {
+        "success": {
+          "title": "Ingia imefanikiwa!",
+          "subtitle": "Karibu."
+        },
+        "error": {
+          "title": "Hitilafu ya kuingia",
+          "subtitle": "Hitilafu imetokea, tafadhali jaribu tena."
+        }
+      },
+      "createAccount": "Huna akaunti bado?"
+    },
+    "logout": {
+      "toast": {
+        "success": {
+          "title": "Toka",
+          "subtitle": "Umetoka"
+        },
+        "expired": {
+          "title": "Kikao kimeisha",
+          "subtitle": "Tafadhali ingia tena."
+        }
+      }
+    },
+    "confirmUser": {
+      "form": {
+        "headerText": "Weka nenosiri jipya",
+        "newPassword": {
+          "label": "Nenosiri jipya"
+        },
+        "confirmPassword": {
+          "label": "Thibitisha nenosiri jipya"
+        },
+        "submitText": "Weka nenosiri"
+      },
+      "toast": {
+        "success": {
+          "title": "Thibitisho limefanikiwa",
+          "subtitle": "Akaunti yako imewezeshwa na nenosiri limewekwa"
+        },
+        "error": {
+          "title": "Hitilafu ya uthibitisho",
+          "subtitle": "Hitilafu imetokea. Tafadhali wasiliana na alex@talktoloop.org"
+        },
+        "confirmedAlready": {
+          "title": "Akaunti imethibitishwa",
+          "subtitle": "Akaunti yako imethibitishwa. Tafadhali ingia"
+        }
+      }
+    },
+    "back": "Rudi",
+    "reset": {
+      "form": {
+        "headerText": "Weka upya nenosiri lako",
+        "subHeaderText": "Weka anwani ya barua pepe uliyotumia kufungua akaunti, tutakutumia kiungo kipya cha kuweka upya nenosiri.",
+        "email": {
+          "label": "Barua pepe yako"
+        },
+        "submitText": "Weka upya nenosiri"
+      },
+      "toast": {
+        "success": {
+          "title": "Thibitisho limefanikiwa",
+          "subtitle": "Barua pepe imetumwa kuweka upya nenosiri"
+        },
+        "error": {
+          "title": "Hitilafu ya uthibitisho",
+          "subtitle": "Hitilafu imetokea. Tafadhali wasiliana na alex@talktoloop.org"
+        }
+      }
+    },
+    "create": {
+      "form": {
+        "submitText": "Hifadhi",
+        "headerText": "Unda nenosiri jipya",
+        "password": {
+          "label": "Nenosiri jipya"
+        },
+        "confirmPassword": {
+          "label": "Thibitisha nenosiri lako"
+        }
+      }
+    },
+    "resetPassword": {
+      "toast": {
+        "error": {
+          "title": "Hitilafu ya kubadilisha nenosiri",
+          "subtitle": "Hitilafu imetokea. Tafadhali wasiliana na alex@talktoloop.org"
+        },
+        "success": {
+          "subtitle": "Nenosiri lako limebadilishwa",
+          "title": "Thibitisho limefanikiwa"
+        }
+      }
+    },
+    "magicLinkLogin": {
+      "popup": {
+        "result": "Matokeo",
+        "success": "Barua pepe imetumwa",
+        "error": "Barua pepe haijatumwa"
+      },
+      "form": {
+        "username": {
+          "label": "Barua pepe",
+          "invalid": "Tafadhali andika barua pepe yako."
+        },
+        "button": {
+          "text": "Nitumie kiungo cha kipekee"
+        },
+        "description": "Tutakuingiza kwa akaunti, au tutakuundia akaunti ikiwa huna bado",
+        "title": "Unahitaji kuwa na akaunti kwa hiyo!"
+      },
+      "footer": {
+        "separator": "au",
+        "button": {
+          "text": "Endelea bila akaunti"
+        }
+      },
+      "image": {
+        "description": "Jibu jamii kwa lugha yoyote, kwenye kifaa chochote"
+      }
+    },
+    "registerSelect": {
+      "button": {
+        "text": "Endelea"
+      }
+    },
+    "registerIndividual": {
+      "back": "Rudi",
+      "header": "Tunaweza kukuita vipi?",
+      "form": {
+        "firstName": "Jina la kwanza",
+        "secondName": "Jina la mwisho",
+        "errors": {
+          "minLength": "Jina lako linaloonyeshwa lazima liwe na angalau herufi {{requiredLength}}",
+          "pattern": "Jina lako haliwezi kuwa na namba, nafasi au alama maalum kama ! * au $",
+          "required": "Sehemu hii ni lazima"
+        },
+        "toggle": {
+          "text": "Ficha jina langu la mwisho kwenye mtazamo wa umma. (Unaweza kubadilisha hili wakati wowote.)"
+        }
+      },
+      "button": {
+        "text": "Endelea"
+      },
+      "description": "Jina lako linaonekana karibu na kila kitu unachochapisha kwenye jukwaa."
+    },
+    "magicLinkSent": {
+      "header": "Asante!",
+      "description": "Barua pepe imetumwa kwa {{emailAddress}}",
+      "resendActionTimer": "Tuma barua tena ({{timeLeft}})",
+      "resendAction": "Tuma barua tena",
+      "loginAction": "Endelea bila akaunti"
+    },
+    "registerOrganization": {
+      "back": "Rudi",
+      "header": "Tafuta shirika lako",
+      "form": {
+        "label": "Shirika",
+        "placeholder": "Hakuna shirika lililochaguliwa",
+        "error": "Hii ni sehemu ya lazima"
+      },
+      "button": {
+        "text": "Endelea"
+      },
+      "list": {
+        "notify": "Pokea arifa wakati shirika lako linatajwa katika maoni.",
+        "display": "Inaonyesha kila wakati unachapisha kwenye Loop.",
+        "changeSetting": "Badilisha mipangilio hii wakati wowote."
+      },
+      "skipButton": {
+        "text": "Ruka kwa sasa"
+      },
+      "fullNameForm": {
+        "description": "Hii inatusaidia kuthibitisha kuwa unafanya kazi katika shirika lililo hapa chini."
+      }
+    },
+    "createNewOrganizationPage": {
+      "button": {
+        "text": "Rudi"
+      }
+    },
+    "processing": {
+      "title": "Subiri wakati tunapothibitisha akaunti yako",
+      "description": "Hii inaweza kuchukua dakika moja au mbili, kulingana na muunganisho wako wa intaneti"
+    },
+    "wrapper": {
+      "steps": "Hatua {{currentStep}} ya {{numberOfSteps}}",
+      "back": "Rudi"
+    },
+    "acceptTerms": {
+      "header": "Tunajali faragha ya data yako",
+      "list": {
+        "title": "Loop haitawahi:",
+        "firstItem": "Kupeana data zako za mawasiliano na wahusika wengine, bila idhini yako wazi (mfano, kwa ajili ya rufaa ya msaada zaidi)",
+        "secondItem": "Kuuliza eneo lako halisi"
+      },
+      "learnMore": "Jifunze zaidi katika",
+      "privacyPolicy": "sera ya faragha",
+      "communityGuidelines": "miongozo ya jamii",
+      "and": "na ",
+      "termsOfService": "vigezo vya huduma",
+      "checkbox": {
+        "optinMarketing": {
+          "text": "Nisajili kwenye jarida la Loop"
+        },
+        "acceptTermsOfService": {
+          "text": "Nakubali vigezo vya huduma",
+          "error": "Tafadhali kubali sera ya faragha hapa chini"
+        }
+      },
+      "button": {
+        "text": "Endelea"
+      },
+      "userCreatedToast": {
+        "success": "Akaunti yako imeundwa"
+      },
+      "userEditedToast": {
+        "success": "Akaunti yako imebadilishwa"
+      }
+    },
+    "confirmName": {
+      "header": "Thibitisha jina lako kamili",
+      "description": "Hii inatusaidia kuthibitisha wewe na shirika lako.",
+      "fullName": {
+        "title": "Jina kamili",
+        "descriptionFirstPart": "Jina hili litatumika tu kuthibitisha kuwa unafanya kazi katika shirika lililo hapo juu. Hautachapishwa",
+        "descriptionSecondPart": "kwenye jukwaa",
+        "descriptionThirdPart": "."
+      },
+      "button": {
+        "text": "Endelea"
+      },
+      "form": {
+        "errors": {
+          "required": "Hii ni sehemu ya lazima"
+        }
+      }
+    }
+  },
+  "profile": {
+    "header": "Profaili",
+    "usernameLabel": "Jina",
+    "organisationLabel": "Jina la shirika",
+    "notificationSwitch": {
+      "label": "Arifa za barua pepe: Pokea muhtasari wa kila siku wakati kuna maoni yanayohusiana na shirika lako",
+      "onText": "Washa",
+      "offText": "Zima"
+    },
+    "notifications": {
+      "toast": {
+        "error": {
+          "title": "Hitilafu wakati wa sasisho",
+          "subtitle": "Tafadhali jaribu tena."
+        },
+        "success": {
+          "title": "Profaili imesahihishwa",
+          "subtitle": "Mapendeleo ya arifa yamebadilishwa."
+        }
+      }
+    },
+    "hideLastNameButton": {
+      "toast": {
+        "error": {
+          "title": "Hitilafu wakati wa sasisho",
+          "subtitle": "Tafadhali jaribu tena."
+        },
+        "success": {
+          "title": "Ficha jina la mwisho limesahihishwa",
+          "subtitle": "Mapendeleo ya jina la mwisho yamebadilishwa."
+        }
+      }
+    },
+    "notification": {
+      "on": "Niarifu kwa barua pepe wakati {{organisationName}} itatajwa kwenye maoni"
+    },
+    "logout": "Toka nje",
+    "reminders": {
+      "on": "Niarifu kwa barua pepe kuhusu maoni yaliyobaki ambapo {{organisationName}} bado hajajibu"
+    },
+    "plan": {
+      "label": "Mpango",
+      "premium": "Mshauri wa Loop",
+      "free": "Loop Huru",
+      "remainingDays": "({{validityTimeInDays}} siku zimebaki)"
+    },
+    "edit": "Hariri/badilisha maelezo haya",
+    "hideLastName": "Ficha jina langu la mwisho kwenye mtazamo wa umma"
+  },
+  "filters": {
+    "header": "Chuja maoni",
+    "reset": "Weka upya",
+    "search": "Tafuta",
+    "category": "Eneo la mada",
+    "type": "Aina",
+    "location&organisation": "Eneo & shirika",
+    "demographic": "Kidogo",
+    "disability": "Ulemavu",
+    "minority": "Kundi la jamii ndogo",
+    "thematic": "Eneo la mada",
+    "place": "Mahali",
+    "placePlaceholder": "Jiji / mji / kijiji / kambi",
+    "age": "Umri",
+    "gender": "Jinsia",
+    "chooseCountry": "Chagua nchi",
+    "chooseOrganisation": "Chagua shirika",
+    "country": "Nchi",
+    "taggedOrganisation": "Shirika lililotajwa",
+    "selectAll": "Chagua yote",
+    "clearAll": "Futa yote",
+    "showAll": "Onyesha yote",
+    "showStories": "Onyesha {{value}} maoni",
+    "chooseAreas": "Chagua eneo(za)"
+  },
+  "gender": {
+    "female": "Mwanamke",
+    "male": "Mwanaume",
+    "nonBinary": "Asiye na jinsia maalum",
+    "noAnswer": "Sipendi kujibu"
+  },
+  "age": {
+    "between0_13": "Kati ya 0 na 13",
+    "between14_17": "Kati ya 14 na 17",
+    "between18_29": "Kati ya 18 na 29",
+    "between30_59": "Kati ya 30 na 59",
+    "60Plus": "60+",
+    "noAnswer": "Sipendi kujibu",
+    "between0_5": "Kati ya 0 na 5",
+    "between6_13": "Kati ya 6 na 13"
+  },
+  "minority": {
+    "group": "Kundi la jamii ndogo"
+  },
+  "urgent": {
+    "yes": "Inahitaji msaada wa haraka",
+    "no": "Haihitaji msaada wa haraka"
+  },
+  "admin": {
+    "publish": "Chapisha",
+    "reject": "Kataa",
+    "delete": "Futa kabisa",
+    "deleteLabel": "Futa",
+    "pendingPosts": "Kisanduku cha kupokea ujumbe",
+    "rejectedPosts": "Uchapisho zilizokataliwa",
+    "category": "aina",
+    "tagsHeading": "Tagi za ziada",
+    "organisationsLabel": "Shirika(s)",
+    "thematicLabel": "Eneo la mada",
+    "noMoreStories": {
+      "new": {
+        "title": "Hakuna maoni zaidi yanayosubiri",
+        "subtitle": "Kazi yako hapa imekamilika! Mara itakapokuwa na maoni zaidi, yataonekana hapa kwa ukaguzi wako"
+      },
+      "rejected": {
+        "title": "Hakuna maoni yaliyokataliwa ",
+        "subtitle": "Kazi yako hapa imekamilika! Mara itakapokuwa na maoni yaliyokataliwa, yataonekana hapa kwa ukaguzi wako"
+      }
+    },
+    "noMoreComments": {
+      "new": {
+        "title": "Hakuna majibu zaidi yanayosubiri",
+        "subtitle": "Kazi yako hapa imekamilika! Mara majibu yatakapokuwa, yataonekana hapa kwa ukaguzi wako"
+      },
+      "rejected": {
+        "title": "Hakuna majibu yaliyokataliwa ",
+        "subtitle": "Kazi yako hapa imekamilika! Mara majibu yaliyokataliwa yatakapokuwa, yataonekana hapa kwa ukaguzi wako"
+      }
+    },
+    "story": {
+      "rejectingLoading": "Inakataa...",
+      "publishingLoading": "Inachapisha...",
+      "deletingLoading": "Inafuta...",
+      "loadingMore": "Inapakia maoni mengine {{value}}...",
+      "noMoreStories": "Hakuna maoni zaidi.",
+      "modal": {
+        "title": "Unakaribia kukataa maoni haya",
+        "contentVerified": "Una hakika ungependa kukataa maoni haya?",
+        "rejectButton": "Kataa maoni",
+        "cancelButton": "Futa",
+        "reason": {
+          "label": "Kwa nini maoni haya yanakataliwa?"
+        },
+        "rationale": {
+          "label": "Ufafanuzi mwingine wowote unaoweza kutoa?",
+          "helperText": "Kutoa maelezo kadiri ya uwezo husaidia mwandishi kuelewa kwanini maoni yake hayakuchapishwa."
+        },
+        "sendStoryToCaseManagerTitle": "Tuma maoni kwa meneja wa kesi"
+      },
+      "toast": {
+        "published": {
+          "success": {
+            "title": "Maoni yamechapishwa",
+            "subtitle": "Maoni yamechapishwa."
+          },
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Hitilafu wakati wa kuchapisha maoni. Tafadhali jaribu tena."
+          }
+        },
+        "rejected": {
+          "success": {
+            "title": "Maoni yamekataliwa",
+            "subtitle": "Maoni yamekataliwa."
+          },
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Hitilafu wakati wa kukataa maoni. Tafadhali jaribu tena."
+          }
+        },
+        "deleted": {
+          "success": {
+            "title": "Maoni yamefutwa",
+            "subtitle": "Maoni yamefutwa kabisa."
+          },
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Hitilafu wakati wa kufuta maoni. Tafadhali jaribu tena."
+          }
+        },
+        "saved": {
+          "success": {
+            "title": "Maoni yamehifadhiwa",
+            "subtitle": "Maoni yamehifadhiwa kwa ufanisi"
+          },
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Imeshindikana kuhifadhi maoni. Mabadiliko hayajahifadhiwa."
+          }
+        },
+        "sendStoryToCaseManager": {
+          "error": {
+            "subtitle": "Hitilafu wakati wa kutuma maoni kwa Meneja wa Kesi. Tafadhali jaribu tena.",
+            "title": "Hitilafu"
+          },
+          "success": {
+            "title": "Maoni yametumwa kwa Meneja wa Kesi",
+            "subtitle": "Maoni yamepelekwa kwa Meneja wa Kesi"
+          }
+        },
+        "assignedToModerator": {
+          "success": {
+            "title": "{{storyCount}} Yamepewa Msimamizi",
+            "subtitle": "{{storyCount}} yamepewa {{nickname}}"
+          },
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Imeshindikana kugawa hadithi. Mabadiliko hayajahifadhiwa"
+          }
+        }
+      },
+      "rejectReasons": {
+        "story_replyHasOffensiveOrDiscriminatoryLanguageInIt": "Maoni yana maneno ya kudhalilisha au ya ubaguzi",
+        "story_replyDoesNotFollowTheCommunityStandards": "Maoni hayafuati miongozo ya jamii, vilivyoundwa ili kuhakikisha usalama wa mahali hapa pa kupeana maoni",
+        "thereIsConcernAboutTheAuthenticityOfTheStory_reply": "Kuna wasiwasi kuhusu uhalisi wa maoni huu",
+        "thereWasConcernThatTheStory_replyCouldCauseHarmIfPostedPublicly": "Kuna wasiwasi kuwa maoni yanaweza kusababisha madhara ikichapishwa hadharani. Yamepelekwa kwa wataalamu",
+        "story_replyDoesNotRespectTheRightToPrivacyOfOthers": "Maoni hayaheshimi haki ya faragha ya wengine",
+        "other": "Nyingine",
+        "duplicate": "Kurudia",
+        "communityStandards": "Inakiuka viwango vya jamii",
+        "poorAudioQuality": "Ubora duni wa sauti",
+        "notSensitive": "Sio nyeti",
+        "notSensitiveFull": "Maoni yako sio nyeti, na hatuwezi kuchapisha maoni yako, tafadhali tuma tena bila kuweka kama nyeti",
+        "generalAssistanceRequest": "Ombi la msaada wa jumla",
+        "generalAssistanceRequestFull": "Maoni yako ni ombi la msaada wa jumla, na kwa sasa yako nje ya uwezo wetu wa kukusaidia."
+      }
+    },
+    "comment": {
+      "solutionProposedButton": "Suluhisho lilipendekezwa",
+      "clickToPreview": "Bofya majibu kuona kabla ya chapisho",
+      "noMoreComments": "Hakuna maoni zaidi.",
+      "loadingMore": "Inapakia majibu mengine {{value}}...",
+      "preview": {
+        "title": "Muhtasari wa thread",
+        "hide": "Ficha"
+      },
+      "modal": {
+        "title": "Unakaribia kukataa jibu hili",
+        "contentVerified": "Una hakika ungependa kukataa jibu hili?",
+        "rejectButton": "Kataa jibu",
+        "cancelButton": "Futa",
+        "reason": {
+          "label": "Kwa nini jibu hili linakataliwa?"
+        },
+        "rationale": {
+          "label": "Ufafanuzi mwingine wowote unaoweza kutoa?",
+          "helperText": "Kutoa maelezo kadiri ya uwezo husaidia mwandishi kuelewa kwanini jibu lake halikuchapishwa."
+        }
+      },
+      "toast": {
+        "published": {
+          "success": {
+            "title": "Chapisho limefanikiwa",
+            "subtitle": "Umechapisha jibu."
+          },
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Hitilafu wakati wa kuchapisha jibu. Tafadhali jaribu tena."
+          }
+        },
+        "rejected": {
+          "success": {
+            "title": "Kataa limefanikiwa",
+            "subtitle": "Jibu limekataliwa."
+          },
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Hitilafu wakati wa kukataa jibu. Tafadhali jaribu tena."
+          }
+        },
+        "deleted": {
+          "success": {
+            "title": "Futa limefanikiwa",
+            "subtitle": "Jibu limefutwa kabisa."
+          },
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Hitilafu wakati wa kufuta jibu. Tafadhali jaribu tena."
+          }
+        },
+        "preview": {
+          "error": {
+            "title": "Hitilafu",
+            "subtitle": "Hitilafu wakati wa kupakia muhtasari. Tafadhali jaribu tena."
+          }
+        },
+        "sentToPendingRecording": {
+          "success": {
+            "title": "Jibu limechapishwa",
+            "subtitle": "Jibu sasa linaonekana kwenye ukurasa wa Maoni na nakala yake imetumwa kwenye kisanduku cha kutuma ujumbe kwa mwandishi."
+          },
+          "error": {
+            "title": "Jibu halijatumwa",
+            "subtitle": "Jibu halijatumwa kwenye rekodi ya sauti"
+          }
+        }
+      },
+      "rejectReasons": {
+        "story_replyHasOffensiveOrDiscriminatoryLanguageInIt": "Jibu lina maneno ya kudhalilisha au ya ubaguzi",
+        "story_replyDoesNotFollowTheCommunityStandards": "Jibu halifuati miongozo ya jamii, vilivyoundwa ili kuhakikisha usalama wa mahali hapa pa kupeana maoni",
+        "thereIsConcernAboutTheAuthenticityOfTheStory_reply": "Kuna wasiwasi kuhusu uhalisi wa jibu",
+        "thereWasConcernThatTheStory_replyCouldCauseHarmIfPostedPublicly": "Kuna wasiwasi kuwa jibu linaweza kusababisha madhara ikichapishwa hadharani. Limepelekwa kwa wataalamu",
+        "story_replyDoesNotRespectTheRightToPrivacyOfOthers": "Jibu haliheshimi haki ya faragha ya wengine",
+        "other": "Nyingine",
+        "duplicate": "Kurudia",
+        "communityStandards": "Jibu halifuati viwango vya jamii, vilivyoundwa kuhakikisha mahali salama pa kupeana maoni",
+        "poorAudioQuality": "Ubora duni wa sauti"
+      }
+    },
+    "rejectModal": {
+      "contentAnnonymous": "Hakuna maelezo ya mawasiliano wa mwandishi huyu, kwa hivyo hatapokea arifa yoyote.",
+      "reasonsHeading": "Chagua sababu:",
+      "otherReasonTextfieldPlaceholder": "Andika sababu",
+      "feedbackHeading": "Maoni:",
+      "feedbackToggleLabel": "Tuma maoni kwa mwandishi",
+      "feedbackPlaceholder": "Andika maoni",
+      "writeYourFeedback": "Andika maoni yako"
+    },
+    "assignModeratorModal": {
+      "title": "Gawa Msimamizi",
+      "assignButton": "Gawa",
+      "cancelButton": "Futa",
+      "searchPlaceholder": "Tafuta Watumiaji"
+    },
+    "pendingStoryReview": {
+      "heading": "Kagua maoni",
+      "subheading": "Kagua maoni na tagi zilizotolewa na mtumiaji, ongeza tagi zilizokosekana na tafsiri maoni katika hatua ya 2.",
+      "location": "Eneo",
+      "storyType": "Aina ya maoni",
+      "originalLanguage": "Lugha ya asili",
+      "originalLanguagePlaceholder": "Chagua lugha ya asili ya maoni",
+      "iAmGoingToTranslateTheTextTo": "Nitatafsiri kwa",
+      "targetLanguagePlaceholder": "Chagua lugha",
+      "writeTranslation": "Andika tafsiri",
+      "toRecipient": "Kwa",
+      "review": "Kagua",
+      "translation": "Tafsiri",
+      "publishStory": "Chapisha maoni",
+      "missingStoryType": "Lazima utoe aina ya maoni kabla ya kuchapishwa",
+      "missingOriginalLanguage": "Lazima uchague lugha ya asili ya maoni",
+      "storyPreview": "Muhtasari wa maoni",
+      "conversationTab": {
+        "sms": "Mazungumzo ya SMS",
+        "messenger": "Mazungumzo ya Messenger",
+        "whatsapp": "Mazungumzo ya WhatsApp"
+      },
+      "story": "Maoni",
+      "reply": "Tuma",
+      "sendToCaseManager": "Tuma kwa meneja wa kesi",
+      "caseManagerNotice": "Maoni yanaweza kutumwa kwa meneja wa kesi baada ya kutafsiriwa katika hatua ya 2.",
+      "missingThematicArea": "Lazima uchague angalau eneo moja la mada.",
+      "yourNewTranslation": "Tafsiri yako mpya",
+      "saveTranslation": "Hifadhi tafsiri",
+      "translate": "Tafsiri",
+      "addAnotherTranslation": "Ongeza tafsiri nyingine",
+      "storyMarkedAsSensitiveReturnedByCaseManager": "Mwandishi alitaja maoni haya kama nyeti. Hata hivyo, meneja wa kesi amakurudishia maoni haya, ikimaanisha si nyeti. Huwezi kubadilisha tagi ya aina ya maoni tena.",
+      "storyMarkedAsSensitiveReturnedByCaseManagerCannotPublish": "Maoni haya hayawezi kuchapishwa kwani yalitajwa kama nyeti na mwandishi. Meneja wa kesi pia amakurudishia kwa sababu hayakidhi vigezo vya maoni nyeti. Tafadhali kataa maoni na fikiria kumwalika mwandishi atumie tena maoni yake na tagi tofauti.",
+      "addATranslation": "Ongeza tafsiri",
+      "translationLanguage": "Lugha ya tafsiri",
+      "manualTranslation": "Tafsiri ya mwongozo",
+      "authorWillBeNotInformed": "Mwandishi wa maoni haya hakuacha maelezo yake ya mawasiliano. Hatapokea arifa yoyote kwamba maoni haya yamekataliwa."
+    },
+    "table": {
+      "dateTime": "Tarehe / muda",
+      "storyType": "Aina ya maoni",
+      "language": "Lugha",
+      "country": "Nchi",
+      "channel": "Kituo",
+      "status": "Hali",
+      "reviewButton": "Kagua"
+    },
+    "pendingReplyReview": {
+      "heading": "Kagua jibu",
+      "subheading": "Kagua na tafsiri jibu.",
+      "reply": "Jibu",
+      "originalStoryWrittenIn": "Maoni ya asili yaliyoandikwa katika",
+      "reviewStep": "Kagua & tafsiri",
+      "publishReply": "Chapisha jibu",
+      "rejectReply": "Kataa jibu",
+      "reviewAndTranslate": "Kagua & tafsiri",
+      "publishAndForwardToVoiceRecord": "Chapisha & tuma kwenye rekodi"
+    },
+    "translationStatus": {
+      "manual_0": "Inangojea kutafsiriwa kwa {{lang}}",
+      "machine_0": "Inangojea kutafsiriwa kwa {{lang}}",
+      "manual_1": "Inatafsiriwa kwa {{lang}}",
+      "machine_1": "Inatafsiriwa kwa {{lang}}",
+      "manual_2": "Maandishi yame tafsiriwa kwa {{lang}}",
+      "machine_2": "Maandishi yame tafsiriwa kwa {{lang}}",
+      "machine_3": "Haipatikani kwa {{lang}} kwa sasa"
+    },
+    "translationProcess": {
+      "close": "Funga",
+      "cancel": "Futa",
+      "retry": "Jaribu tena",
+      "automaticTranslation": "Tafsiri ya moja kwa moja",
+      "manualTranslation": "Tafsiri ya msimamizi",
+      "addTranslation": "Ongeza tafsiri mpya",
+      "verifyTranslation": "Thibitisha tafsiri",
+      "editTranslation": "Hariri tafsiri",
+      "deleteTranslation": "Futa tafsiri",
+      "noTranslations": "Hakuna tafsiri bado",
+      "notAvailable": "Haipatikani",
+      "unavailableTitle": "Haipatikani kwa muda, sababu zinaweza kuwa:",
+      "unavailableReason1": "",
+      "unavailableReason2": "",
+      "translating": "Kutafsiri"
+    },
+    "conversationReply": {
+      "unavailable": {
+        "userDenied": "Huwezi kumtumia ujumbe mwandishi, kwani hawajakubali Loop kuwasiliana nao.",
+        "threadOpen": {
+          "content": "Huwezi kumtumia ujumbe mwandishi kwa sasa, kwani wana kipande kingine cha mazungumzo kilicho wazi hapa",
+          "link": "Kwa sasa fungua hapa"
+        },
+        "cannotSend": "Huwezi kumtumia ujumbe mwandishi kwa sasa."
+      },
+      "author": {
+        "loop": "Loop",
+        "anonymous": "Bila jina"
+      },
+      "toast": {
+        "send": {
+          "error": {
+            "title": "Ujumbe haukutumwa",
+            "subtitle": "Hitilafu kutuma ujumbe"
+          }
+        }
+      },
+      "intro": {
+        "sms": "Utangulizi wa SMS",
+        "messenger": "Utangulizi wa Messenger",
+        "whatsapp": "Utangulizi wa WhatsApp",
+        "telegram": "Utangulizi wa Telegram"
+      }
+    },
+    "contextMenu": {
+      "edit": "Hariri",
+      "unpublish": "Futa chapisho",
+      "success": {
+        "story": {
+          "title": "Maoni halijachapishwa"
+        },
+        "reply": {
+          "title": "Jibu halijachapishwa"
+        },
+        "redirecting": "Kupelekwa kwenye kisanduku cha kupokea ujumbe",
+        "link": "Bonyeza hapa kukagua sasa"
+      }
+    },
+    "sendStoryToCaseManagerModal": {
+      "immediateAssistance": {
+        "label": "Tambua maoni kama:",
+        "urgent": "Ya Haraka",
+        "notUrgent": "Silo ya Haraka"
+      },
+      "reason": "Andika sababu:"
+    },
+    "storySelection": {
+      "modal": {
+        "title": "Unakaribia kukataa kipande cha maoni {{count}}"
+      }
+    },
+    "storiesSelection": {
+      "modal": {
+        "title": "Unakaribia kukataa vipande vya maoni {{count}}"
+      }
+    }
+  },
+  "category": {
+    "thanks": "Asante",
+    "question": "Ombi la habari",
+    "suggestion_opinion": "Pendekezo / Maoni",
+    "concern": "Shida au Wasiwasi",
+    "request": "Ombi la Msaada",
+    "sensitive": "Nyeti",
+    "comments": "Majibu"
+  },
+  "repliedTo": {
+    "repliedToBySpecificOrganisation": "Yamejibiwa na Shirika Maalum",
+    "repliedToByOrganisation": "Yamejibiwa na Shirika",
+    "solutionProposed": "Suluhisho lilipendekezwa",
+    "notRepliedTo": "Haijajibiwa"
+  },
+  "communityResponsiveness": {
+    "repliedTo": "Ilijibiwa",
+    "upvoted": "ilipendekezwa/iliyo pigiwa kura"
+  },
+  "country": {
+    "philipinnes": "Ufilipino",
+    "zambia": "Zambia",
+    "other": "Niko katika nchi nyingine"
+  },
+  "thematic": {
+    "emergencyResponse": "Majibu ya dharura",
+    "idCards": "Kadi za kitambulisho",
+    "campManagement": "Usimamizi wa kambi",
+    "distribution": "Usambazaji",
+    "cash": "Pesa taslimu",
+    "foodItems": "Vyakula",
+    "essential-living-supplies": "Vitu vya msingi vya maisha",
+    "health": "Afya",
+    "medicalCentres": "Vituo vya afya",
+    "quarantineFacilities": "Vituo vya karantini",
+    "vaccines": "Chanjo",
+    "insurance": "Ada za afya",
+    "hygiene": "Mila ya usafi",
+    "awareness-raising": "Mawasiliano, uhamasishaji na vifaa",
+    "landRights": "Makazi, ardhi na haki za mali",
+    "landmines/UnexplodedOrdnance": "Bomu ambalo halijalipuka",
+    "droughts": "Ukame",
+    "laborAndJobs": "Ajira na kazi",
+    "nutrition": "Lishe",
+    "communitySensitisation": "Uhamasishaji wa jamii",
+    "gender-basedViolence": "Ukatili wa kijinsia",
+    "mentalHealth": "Afya ya akili",
+    "sexualAndReproductiveRights": "Afya ya ngono na uzazi",
+    "epidemics/Pandemics": "Milipuko / janga",
+    "ebola": "Ebola",
+    "foodSecurity": "Usalama wa chakula",
+    "livelihoods": "Msaada wa maisha na kiuchumi",
+    "training": "Mafunzo",
+    "wash": "WASH",
+    "waterPoints": "Vituo vya maji",
+    "latrines": "Vyoo",
+    "shelter": "Usimamizi wa makazi/kambi",
+    "housing": "Makazi",
+    "lightingAndElectricity": "Taa na umeme",
+    "logistics": "Mipango ya usafirishaji na vifaa (Logistics)",
+    "construction": "Ujenzi au ukarabati wa nyumba",
+    "education": "Elimu",
+    "formal-education": "Elimu rasmi",
+    "higher-education": "Elimu ya juu",
+    "crossCutting": "Zote zinazovukana",
+    "safetyAndSecurity": "Usalama na Ulinzi",
+    "campCoordination/Management": "Uratibu / usimamizi wa kambi",
+    "capacityBuilding": "Ujenzi wa uwezo",
+    "aidWorkers": "Wafanyakazi wa misaada",
+    "other": "Nyingine",
+    "financeManagement": "Usimamizi wa fedha",
+    "government": "Serikali",
+    "foodAssistance": "Msaada wa chakula",
+    "cross-cutting": "Zote zinazovukana",
+    "medications": "Dawa",
+    "hiv/Aids": "HIV/ Ukimwi",
+    "handwashingStations": "Vituo vya kunawa mikono",
+    "waterTrucking": "Usafirishaji wa maji",
+    "solidWaste/GarbageManagement": "Usimamizi wa taka ",
+    "waterFacilitiesAndSupplies": "Usambazaji wa maji na mifumo",
+    "temporaryShelters": "Malazi ya muda",
+    "campCoordinationManagement": "Uratibu / usimamizi wa kambi",
+    "technicalSupport": "Msaada wa kiufundi",
+    "scholarships": "Scholarship/ shule za ufunzo /taaluma",
+    "children": "Watoto",
+    "youngPeople": "Vijana",
+    "women": "Wanawake",
+    "personWithDisabilities": "Watu wenye ulemavu",
+    "elderlies": "Wazee",
+    "lgtbq+": "LGBTQ+",
+    "chronicallyIllPeople": "Watu wagonjwa sugu",
+    "legalStatus(refugees)": "Hali ya kisheria (wakimbizi)",
+    "indigenousCommunity": "Jamii asili",
+    "lowIncomeFamilies": "Familia zenye kipato kidogo",
+    "clan-conflict": "Mzozo wa kifamilia / kijamii",
+    "civicSpace": "Eneo la kiraia",
+    "telecommunications": "Mawasiliano",
+    "climateChange": "Mabadiliko ya hali ya hewa",
+    "energy-environment": "Nishati & mazingira",
+    "energy-environment-other": "Nyingine",
+    "drrAndPreparedness": "Kupambana na majanga na maandalizi",
+    "earlyChildhood": "Umri wa awali wa mtoto",
+    "elections": "Uchaguzi",
+    "gov-spending-social-protection": "Matumizi ya serikali / ulinzi wa kijamii",
+    "protection": "Ulinzi na Haki za Binadamu",
+    "governance": "Uongozi",
+    "loopOnboarding": "Kuingizwa kwenye Loop",
+    "crop-livestock": "Mazao & mifugo",
+    "agriculture": "Kilimo",
+    "locust": "Nzige",
+    "flooding/HeavyRains": "Mafuriko / mvua nyingi",
+    "idp": "Wakimbizi wa ndani ya nchi (IDP)",
+    "general-assistance": "Msaada wa jumla",
+    "aid-effectiveness": "Ufanisi wa msaada",
+    "aid-accessibility": "Ufikiaji wa msaada",
+    "clothing": "Mavazi",
+    "hygiene-items": "Vifaa vya usafi",
+    "cooking-items": "Vifaa vya kupikia",
+    "household-items": "Vifaa vya nyumbani (Jerricans/feni/nyasi za mosquito, n.k.)",
+    "lights": "Taa",
+    "assistive-devices-plwd": "Vifaa vya msaada kwa Watu Wenye Ulemavu (PLWD)",
+    "essential-living-supplies-other": "Nyingine",
+    "health-emergency-services": "Huduma za dharura za afya",
+    "rehab-services": "Huduma za urejeshaji",
+    "medical-waste": "Taka za matibabu/afya",
+    "injuries-accidents": "Majeraha na ajali",
+    "maternal-newborn-child-health": "Afya ya mama, mtoto mchanga na mtoto",
+    "non-communicable-diseases": "Magonjwa yasiyo ya kuambukiza",
+    "food-vouchers": "Vocha za chakula",
+    "water-drainage": "Usafishaji wa maji",
+    "hygiene-practices": "Usafi",
+    "water-supply-and-systems": "Usambazaji wa maji na mifumo",
+    "cholera": "Kolera",
+    "temporary-accomodation": "Malazi ya muda kwa wahamiaji / wakimbizi",
+    "building-reconstruction-houses": "Ujenzi au ukarabati wa nyumba",
+    "temporary-accommodation-migrants-refugees": "Malazi ya muda kwa wahamiaji / wakimbizi",
+    "temporary-shelters": "Malazi ya muda",
+    "informal-education": "Elimu isiyo rasmi",
+    "vocational-training": "Mafunzo ya kazi",
+    "religious-schooling": "Shule za dini (madrasa, msikiti, n.k.)",
+    "special-needs-education": "Elimu maalum na jumuishi",
+    "school-infrastructure": "Miundombinu ya shule, ada na vifaa",
+    "special-needs-inclusive-education": "Elimu maalum na jumuishi",
+    "school-infrastructure-fees-supplies": "Miundombinu ya shule, ada na vifaa",
+    "child-protection": "Ulinzi wa watoto",
+    "sexual-abuse": "Unyonyaji wa kingono, ukatili na unyanyasaji",
+    "discrimination": "Ubaguzi na kutengwa",
+    "general-protection": "Ulinzi wa jumla",
+    "human-rights": "Haki za binadamu",
+    "clan-community-violence": "Mzozo wa kifamilia / kijamii",
+    "housing-land-property-rights": "Makazi, ardhi na haki za mali",
+    "sexual-exploitation-abuse-harassment": "Unyonyaji wa kingono, ukatili na unyanyasaji",
+    "disruption-of-aid": "Kukatizwa / kusimamishwa kwa Msaada",
+    "rule-of-law": "Sheria ya nchi (mfumo wa haki, polisi)",
+    "banks-financial-institutions": "Mabenki na taasisi za kifedha",
+    "civil-documentation": "Hati za kiraia / Huduma za kiutawala",
+    "peacebuilding-conflict-resolution": "Ujenzi wa amani / utatuzi wa migogoro",
+    "transportation": "Miundombinu ya usafirishaji",
+    "skills-acquisition": "Upataji wa ujuzi",
+    "business-entrepreneurship": "Msaada wa biashara ",
+    "fishing-aquaculture": "Uvuvi na kilimo cha maji",
+    "local-markets": "Soko la mitaa",
+    "livelihoods-other": "Nyingine",
+    "commodity-prices": "Bei ya bidhaa",
+    "inflation-devaluation": "Mfumuko wa bei / kupungua kwa thamani",
+    "emergency-telecom": "Telekom dharura",
+    "logistics-transportation": "Usafirishaji",
+    "warehouses": "Maghala",
+    "logistics-other": "Nyingine",
+    "firewood": "Kuni za moto",
+    "heating-cooling": "Kupasha moto / baridi",
+    "natural-disasters": "Majanga ya asili",
+    "pollution-hazards": "Hatari za uchafuzi",
+    "biodiversity-ecosystem": "Biodiversity & usimamizi wa mifumo ya ikolojia",
+    "natural-resources": "Usimamizi wa rasilimali za asili",
+    "cfm-process": "Mchakato wa CFM",
+    "participation-representation": "Ushiriki na uwakilishi",
+    "aid-relevance": "Ulinganifu wa msaada",
+    "aid-timeliness": "Wakati wa msaada",
+    "aid-quality": "Ubora wa msaada",
+    "aid-quantity": "Kiasi cha msaada",
+    "aid-distribution-safety": "Usalama wa usambazaji wa msaada",
+    "aid-distribution-fairness": "Usawa wa usambazaji wa msaada",
+    "aid-distribution-inclusiveness": "Ushirikishwaji wa usambazaji wa msaada",
+    "aid-effectiveness-other": "Nyingine"
+  },
+  "maternity": {
+    "notPregnantOrBreastfeeding": "Sijazaa au kutojifungua",
+    "pregnant": "Mimba",
+    "breastfeeding": "Unanyonyesha",
+    "bothPregnantAndBreastfeeding": "Mjamzito na pia anayenyonyesha",
+    "notDisclosed": "Hajatolewa"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "ny": "Chichewa",
+    "ar": "عربي",
+    "so": "Somali (Maxatiri)",
+    "tl": "Tagalog",
+    "ai": "Anguilla",
+    "bem": "Bemba",
+    "ceb": "Cebuano",
+    "id": "Bahasa Indonesia",
+    "maa": "Somali (af Maay)",
+    "tog": "Tonga",
+    "loz": "Lozi",
+    "pl": "Polski",
+    "uk": "Український",
+    "ru": "Русский",
+    "bju": "Somali (Baajuuni)",
+    "bnd": "Somali (Banadiri-Marka)",
+    "lt": "Lietuvių",
+    "de": "Deutsch",
+    "nl": "Nederlands",
+    "bara": "Somali (Barawani-Chimini)",
+    "kiz": "Somali (Kizigua)",
+    "sw": "Kiswahili"
+  },
+  "newStoryV2": {
+    "form": {
+      "content": {
+        "label": "Ungependa kutuelezea  nini?",
+        "info": "Ungependa kutuelezea ulilopitia? Kadri unavyotoa maelezo zaidi, ndivyo tunaweza kukuunganisha na mashirika husika ambayo yanaweza kusaidia.",
+        "publishInfo": "Iwapo itachapishwa, maoni haya yataonekana mtandaoni na yeyote ",
+        "placeholder": "Anza kuandika maoni yako (angalia herufi 8 angalau)",
+        "stateInfoGreat": "Nzuri! Maelezo zaidi husaidia kupata maoni yako kwa mashirika sahihi",
+        "state": {
+          "great": "Nzuri",
+          "good": "Bora",
+          "superb": "Bora sana"
+        },
+        "stateInfoGood": "Nzuri! Unaendelea vizuri, endelea",
+        "sensitive": {
+          "yes": "Ndiyo",
+          "no": "Hapana",
+          "label": "Je, hii ni maoni nyeti",
+          "info": "Maoni nyeti (mfano ufisadi, unyanyasaji, ukatili) hayachapishwi mtandaoni",
+          "explanation": "Maoni nyeti ni nini"
+        },
+        "stateInfoDefault": "Herufi 8 angalau zinahitajika",
+        "stateInfoSuperb": "Nzuri sana! Maelezo haya yanatoa uelewa mzuri wa hali yako"
+      },
+      "type": {
+        "title": "Aina ya maoni",
+        "subtitle": "Unaweza kuchagua chaguzi nyingi",
+        "helperText": "Nisaidie kuchagua",
+        "none": "Hakuna"
+      },
+      "name": {
+        "title": "Jina lako ni lipi?",
+        "info": "Tumia jina lako kamili, jina la utani au acha tupu ili kubaki bila kujulikana",
+        "explanation": "Kwa nini tunauliza hili?"
+      },
+      "email": {
+        "explanation": "Kwa nini tunauliza hili?",
+        "sensitive": {
+          "info": "Ikiwa utaacha anwani yako ya barua pepe, Loop inaweza kuwasiliana nawe kuomba maelezo zaidi au kukupeleka kwa shirika linaloweza kusaidia. Hatupeana barua pepe yako na shirika lolote bila idhini yako."
+        },
+        "nonSensitive": {
+          "info": "Toa barua pepe yako ili kupokea taarifa za majibu. Unaweza kujiondoa wakati wowote. Barua pepe yako haitaonekana na wengine."
+        },
+        "title": "Anwani ya barua pepe"
+      },
+      "additionContactDetails": {
+        "title": "Maelezo ya mawasiliano zaidi",
+        "info": "Tafadhali toa maelezo muhimu ya jinsi ya kuwasiliana nawe ikiwa unatumia simu na watu wengine na pia wakati au siku bora ya kuwasiliana nawe kwa usalama."
+      },
+      "sensitiveStoryContactConsent": {
+        "title": "Idhini ya mawasiliano",
+        "info": "Ninakubali Loop kuwasiliana nami ili kujadili ripoti yangu kwa undani ili nipate rufaa kwa shirika linaloweza kusaidia."
+      },
+      "gender": {
+        "title": "Jinsia",
+        "info": "Je jinsia yako ni gani?",
+        "radio": {
+          "female": "Kike"
+        }
+      },
+      "age": {
+        "title": "Umri",
+        "info": "Una umri gani?",
+        "explanation": "Je, itakuwaje kama mimi niko chini ya miaka 14?"
+      },
+      "condition": {
+        "title": "Je, una hali ya kiafya au ya akili?",
+        "radio": {
+          "yes": "Ndiyo",
+          "no": "Hapana",
+          "preferNotToAnswer": "Sipendi kujibu"
+        },
+        "type": {
+          "title": "Je, hali yako inaathiri maeneo yafuatayo?",
+          "info": "Unaweza kuchagua chaguzi nyingi",
+          "seeing": {
+            "title": "Kuona"
+          },
+          "hearing": {
+            "title": "Kusikia"
+          },
+          "speaking": {
+            "title": "Kuzungumza"
+          },
+          "mobility": {
+            "title": "Kuweza kutembea kwa urahisi au ustadi wa mikono"
+          },
+          "learning": {
+            "title": "Kuelewa au kujifunza"
+          },
+          "selfCare": {
+            "title": "Kujitunza"
+          },
+          "other": {
+            "title": "Nyingine"
+          }
+        },
+        "other": {
+          "label": "Tafadhali eleza",
+          "placeholder": "Tafadhali toa maelezo zaidi kuhusu hali yako"
+        }
+      },
+      "phoneNumber": {
+        "title": "Namba ya simu",
+        "info": "Namba yako ya simu haitapewa na mtu yeyote",
+        "sensitiveInfo": "Ikiwa utaacha namba yako ya simu, Loop inaweza kuwasiliana nawe kuomba maelezo zaidi au kukupeleka kwa shirika linaloweza kusaidia. Hatupeana namba yako ya simu bila idhini yako.",
+        "explanation": "Kwa nini tunauliza hili?"
+      },
+      "phone": {
+        "title": "Namba ya simu"
+      },
+      "country": {
+        "title": "Nchi",
+        "subtitle": "Hili tukio lilikutendea katika nchi gani?",
+        "helperText": "Kwa nini tunataka kujua nchi unayoishi?",
+        "changeCountry": "Badilisha nchi",
+        "selectCountry": "Chagua nchi",
+        "yourLocation": "Mahali ulipo:"
+      },
+      "location": {
+        "title": "Eneo la maoni",
+        "subtitle": "Maoni yako yalitokea wapi? Hii inaweza kuwa mji, kijiji au kambi. Hatutafichua eneo lako halisi wala kuelezea mtu yeyote.",
+        "helperText": "Kwa nini tunataka kujua eneo la maoni yako?",
+        "useMyLocation": "Tumia eneo langu la sasa",
+        "useLocation": "Tumia eneo linalokaribia",
+        "or": "au",
+        "hint": "Tafuta mji au kijiji karibu nawe",
+        "cancel": "Futa",
+        "addNew": "Tumia jina hili la mahali",
+        "unavailable": "Eneo halipatikani",
+        "required": "Eneo ni la lazima"
+      },
+      "help": {
+        "explanation": "Nisaidie kuchagua"
+      }
+    },
+    "steps": {
+      "step1": {
+        "label": "Andika maoni yako"
+      },
+      "step2": {
+        "label": "Maelezo ya maoni"
+      },
+      "step3": {
+        "label": "Maelezo yako"
+      },
+      "info": {
+        "title": "Taarifa za maoni",
+        "visibility": "Inaonekana mtandaoni kwa kila mtu kuona",
+        "editStory": "Hariri maoni",
+        "storyType": "Aina ya maoni",
+        "thanks": "Asante",
+        "organisation": "Shirika",
+        "location": "Eneo",
+        "storyBy": "Maoni kwa",
+        "consentInfo": "Ninakubali maoni yangu yachapishwe kwenye TalkToLoop.org kusaidia kuboresha huduma",
+        "submit": "Wasilisha maoni",
+        "visibilityHidden": "Haionekani mtandaoni",
+        "sensitiveConsentInfo": "Ninakubali Loop kutumia data kutoka maoni yangu kwa siri kwa takwimu na ripoti. Hii inamaanisha jina lako, maelezo ya mawasiliano na eneo halitumiwi.",
+        "consentInfoError": "Tafadhali toa idhini kabla ya kuwasilisha maoni"
+      }
+    },
+    "heading": {
+      "text": "Wasilisha maoni",
+      "allStories": "Maoni yote",
+      "submitText": "Kagua na wasilisha maoni yako"
+    },
+    "ourloopPromise": {
+      "nonSensitive": {
+        "heading": "Ahadi ya Loop",
+        "content": "Loop itajitahidi kuelekeza maoni yako kwa mashirika husika, na kuwahimiza kujibu. Tutashughulikia maoni yako kwa usiri na usalama wa data. Ikiwa utatupea maelezo yako ya mawasiliano, tutakuarifu ikiwa mtu yeyote atajibu. Hatupeana maelezo yako ya mawasiliano na mtu yeyote.\nTafadhali kumbuka kwamba tutafuta taarifa yoyote binafsi inayoweza kukutambulisha wewe au wengine kabla ya kuchapisha. Maudhui ya maoni yako yatabaki sawa, lakini maelezo yanayoweza kutambulisha hayatatumika kuhakikisha faragha."
+      },
+      "sensitive": {
+        "heading": "Maoni yako yako salama nasi",
+        "content": "Ikiwa maoni yako ni nyeti, hayawekwa mtandaoni, badala yake data yako itasimamiwa kwa siri. Meneja maalum wa kesi ya Loop atawasiliana nawe kupata idhini yako na kujadili chaguzi ili kupata shirika sahihi kusaidia au kuchunguza malalamiko yako. Hii inaweza kufanyika tu ikiwa utatupea maelezo yako ya mawasiliano. Hatupeana maelezo yako binafsi au mawasiliano bila idhini yako."
+      }
+    },
+    "caseManagerMessage": {
+      "role": "Meneja wa kesi, Loop"
+    },
+    "footerText": "© 2021 Our Loop Stichting. Haki zote zimehifadhiwa.",
+    "modals": {
+      "shareExperience": {
+        "title": "Tuelezea jinsi mashirika yanavyofanya kazi katika eneo lako",
+        "topParagraph": "Je, kuna tukio la kukumbukwa ulilowahi kupata na shirika lolote katika eneo lako? Ulikuwa mzuri au mbaya? Ungependa kutuelezea?",
+        "list": {
+          "one": "Loop itajitahidi kuelekeza maoni yako kwa watu sahihi ambao wanaweza kuchukua hatua na kujibu",
+          "two": "Maoni yako yachapishwa mtandaoni ili kuhakikisha sauti yako inasikika",
+          "three": "Ikiwa maoni yako ni nyeti, tutayashughulikia kwa siri na hakuna maelezo ya utambulisho yatakayochapishwa mtandaoni"
+        },
+        "submitButton": "Anza kuandika maoni yako"
+      },
+      "cancel": "Batilisha",
+      "ok": "Sawa",
+      "sensitiveStory": {
+        "title": "Maoni nyeti ni nini?",
+        "topParagraph": "Maoni yanayohusiana na mada zifuatazo yanachukuliwa kuwa nyeti:",
+        "bottomParagraph": "Ikiwa utapeana maoni nyeti, wasimamizi watahakikisha maoni yako yashughulikiwe kwa siri. Hakuna maelezo ya utambulisho wa binafsi yatakayochapishwa mtandaoni.",
+        "list": {
+          "one": "Udhalilishaji au unyanyasaji wa kingono",
+          "two": "Ukatili wa kijinsia",
+          "three": "Masuala ya ulinzi wa watoto",
+          "four": "Ufisadi au udanganyifu",
+          "five": "Kupoteza misaada",
+          "six": "Uvunjaji wa kanuni au sera za shirika",
+          "seven": "Aina nyingine yoyote ya tabia mbaya"
+        }
+      },
+      "storyType": {
+        "title": "Aina ya maoni: chaguzi zako",
+        "paragraph": "Unaweza kupanga maoni yako kama moja au zaidi ya aina zifuatazo. Usijali, ikiwa utaacha tupu, msimamizi wa Loop atachagua alama sahihi kwa maoni yako. Hii inatusaidia kujaribu kupata watu sahihi kusoma na kujibu. Hatukuhakikishii chochote, lakini tutajitahidi kukuunganisha na mashirika yanayoweza kushughulikia maoni yako.",
+        "sections": {
+          "thanks": {
+            "title": "Asante",
+            "content": "Onyesha shukrani kwa shirika, huduma, au mtu katika jamii yako kwa kuandika maoni yenye ujumbe wa shukrani"
+          },
+          "question": {
+            "title": "Ombi la Taarifa",
+            "content": "Ikiwa unataka kuuliza swali kwa shirika, unaweza kuandika maoni yenye swali ndani"
+          },
+          "suggestion_opinion": {
+            "title": "Pendekezo / Maoni",
+            "content": "Je, una maoni makali au ungependa kutuelezea chochote  ulicho sikia na kuona kama ni kweli? Andika maoni na uweke alama kama maoni"
+          },
+          "request": {
+            "title": "Ombi la Msaada",
+            "content": "Je, una wazo jinsi huduma au kazi ya shirika inaweza kuboreshwa? Andika maoni na weka alama kama ombi"
+          },
+          "concern": {
+            "title": "Shida au Wasiwasi",
+            "content": "Je, una wasiwasi kuhusu jambo lolote katika jamii yako? Weka alama ya wasi wasi kwa maoni yako"
+          }
+        }
+      },
+      "country": {
+        "title": "Kwa nini tunataka kujua nchi unayoishi?",
+        "topParagraph": "Kujua nchi unayoishi kunatusaidia kuelewa muktadha wa maoni yako na kuona mifumo katika kila muktadha kusaidia utetezi",
+        "bottomParagraph": "Tunatambua nchi yako kiotomatiki kwa kutumia IP ya kifaa chako. Unaweza kubadilisha au kuondoa nchi hii wakati wowote. Bonyeza 'Badilisha nchi'"
+      },
+      "organisation": {
+        "title": "Kwa nini ni muhimu kuongeza shirika kwa maoni yako",
+        "sensitive": {
+          "paragraph": "Kuongeza shirika kinatusaidia kujua nani anaweza kuchunguza malalamiko yako. Ikiwa hujui jina la shirika, hakuna shida. Unaweza bado kuwasilisha maoni bila jina la shirika. Hata hivyo, huenda hatuwezi kusaidia moja kwa moja. Badala yake, maoni yako yanaweza kutumika kwa ripoti na takwimu, kwa idhini yako"
+        },
+        "nonSensitive": {
+          "topParagraph": "Kuongeza shirika kunasaidia kuhamasisha shirika kujibu maoni yako. Pia kunatuonyesha ni mashirika gani yanayosikia na kujibu maoni kupitia Loop",
+          "bottomParagraph": "Ikiwa hujui jina la shirika, hakuna shida. Unaweza kuwasilisha maoni bila jina, na wasimamizi wa Loop watajitahidi kupata shirika la kuweka alama. Kutoa maelezo zaidi husaidia wasimamizi wa Loop kupata hadhira sahihi kwa maoni yako"
+        }
+      },
+      "name": {
+        "title": "Kwa nini tunauliza jina lako?",
+        "sensitive": {
+          "paragraph": "Unaweza kuchagua kutoa au kuto kutoa jina lako. Ikiwa ungependa kubaki bila kujulikana kabisa, sawa. Acha sehemu ya jina tupu"
+        },
+        "nonSensitive": {
+          "topParagraph": "Jina lako linaonekana kando ya maoni yako ikiwa litachapishwa Loop. Hii husaidia kubinafsisha maoni yako na kuruhusu mtu yeyote kujibu kutaja jina lako. Unaweza kutoa jina kamili, sehemu ya jina, au jina la utani",
+          "bottomParagraph": "Ikiwa ungependa kubaki bila kujulikana kabisa, sawa. Acha sehemu ya jina tupu, maoni yako yatawekwa alama kama bila kujulikana"
+        }
+      },
+      "phoneNumber": {
+        "paragraph": "Ikiwa utaacha namba ya simu, Loop itakuarifu wakati majibu yatakapochapishwa. Namba yako ya simu haitakuwa inayoonekana na haitachapishwa mtandaoni",
+        "title": "Kwa nini tunauliza namba yako ya simu?"
+      },
+      "email": {
+        "bottomParagraph": "Barua pepe yako haitachapishwa mtandaoni, na hatutapeana barua pepe yako",
+        "topParagraph": "Ikiwa utaacha barua pepe yako, tutakuarifu wakati maoni yako yamechapishwa. Pia tutakuarifu kama mtu atajibu maoni yako",
+        "title": "Kwa nini tunauliza barua pepe yako?"
+      },
+      "age": {
+        "paragraph": "Ikiwa uko chini ya miaka 14, unapaswa kuomba mtu mzima unaeamini kusaidia kujaza fomu hii",
+        "title": "Je, itakuwaje kama mimi niko chini ya miaka 14?"
+      },
+      "condition": {
+        "title": "Kwa nini tunauliza ikiwa una hali ya kiafya au mwili?",
+        "topParagraph": "Watu wenye hali ya kiafya au ya akili mara nyingi hutendewa tofauti. Tukijua, tunaweza kusaidia kupata shirika linalojua jinsi ya kusaidia na kukidhi mahitaji yako",
+        "bottomParagraph": "Hii pia itasaidia pia kutafuta msaada na huduma pale ambapo kuna upungufu wa msaada"
+      },
+      "whatNext": {
+        "title": "Nini kitakachotokea kisha?",
+        "topParagraph": "Wasimamizi wa Loop watakagua maoni yako. Watatafsiri ili kueleweka na watu wengi iwezekanavyo",
+        "bottomParagraph": "Ikiwa utaacha barua pepe au namba ya simu, tutakuarifu mara maoni yako yachapishwa mtandaoni",
+        "centerParagraph": {
+          "part1": "Mradi maoni yako havivunjii ",
+          "part3": "yatachapishwa ndani ya masaa 48",
+          "part2": "miongozo ya jamii"
+        }
+      },
+      "whatHappenStory": {
+        "title": "Nini kitakachotokea kwa maoni yako?",
+        "list": {
+          "one": {
+            "title": "Msimamizi atasoma maoni yako",
+            "content": "Wasimamizi wanasoma na kutafsiri maoni yote yanayokuja Loop. Ikiwa wasimamizi wataona maoni yako ni nyeti, watawasilisha kwa Meneja wa Kesi ya Loop. Ikiwa hawataona ni nyeti, hayatachapishwa. Loop itakuarifu sababu na hatua zinazofuata ikiwa utaacha barua pepe au simu. Ikiwa unaweza kuwasiliana kwa usalama kwa wakati fulani, tafadhali eleza katika ujumbe wako"
+          },
+          "two": {
+            "title": "Meneja wa kesi atapewa maoni yako",
+            "content": "Ukiacha mawasiliano yako, meneja wa kesi atakupigia akuulize ruhusa na azungumze nawe kuhusu namna ya kupata msaada sahihi au kuchunguza malalamiko yako. Pia ataomba ruhusa yako kutumia jina lako, namba na mahali ulipo. Wakati huo utaamua mwenyewe kama unataka au la"
+          },
+          "three": {
+            "title": "Tutajaribu kupata mashirika kuchukua hatua",
+            "content": "Meneja wa kesi ya Loop atafuata mashirika yoyote yaliyohusika na maoni yako na kuhamasisha kuchukua hatua"
+          },
+          "four": {
+            "title": "Ikiwa tunaweza kuwasiliana nawe, tutakuarifu kila hatua",
+            "content": "Ikiwa utaacha simu au barua pepe, tutakuarifu kuhusu maendeleo ya kesi yako"
+          }
+        }
+      },
+      "location": {
+        "title": "Kwa nini tunataka kujua eneo la maoni yako?",
+        "sensitive": {
+          "paragraph": "Kwa idhini yako, Loop itatumia eneo lako kutambua huduma karibu nawe kusaidia au kutoa taarifa kwa mashirika kuchunguza malalamiko. Loop haitakusanya eneo lako halisi"
+        },
+        "nonSensitive": {
+          "topParagraph": "Loop inatumia eneo linalokaribia (mfano wilaya au mkoa) kuhamasisha mashirika karibu nawe kujibu maoni",
+          "bottomParagraph": "Loop haitakusanya eneo lako halisi. Hata hivyo, eneo linalokaribia litaonyeshwa kando ya maoni yako. Hii inatusaidia kupata hadhira sahihi"
+        }
+      },
+      "conditionHelpMe": {
+        "topParagraph": "Una hali gani ya kiafya au ya akili?",
+        "middleParagraphPart1": "Maswali haya ni ya kawaida (kama ilivyotolewa na ...) kufafanua aina za ulemavu. ",
+        "middleParagraphPart2": "Tafadhali chagua sanduku husika ikiwa unajibu ndiyo kwa moja au zaidi ya maswali yafuatayo:",
+        "seeing": {
+          "explanation": "Je, una shida kuona hata ukiwa na miwani?",
+          "label": "Kuona"
+        },
+        "hearing": {
+          "label": "Kusikia",
+          "explanation": "Je, una shida kusikia, hata ukiwa na vifaa vya kusikia?"
+        },
+        "speaking": {
+          "label": "Kuzungumza",
+          "explanation": "Kutumia lugha yako ya kawaida, je una shida kuwasiliana? Mfano, kuelewa au kueleweka?"
+        },
+        "selfCare": {
+          "label": "Kujitunza",
+          "explanation": "Je, una shida na kujitunza kama kuoga au kuvaa?"
+        },
+        "learningUnderstanding": {
+          "label": "Kujifunza / Kuelewa",
+          "explanation": "Je, una shida kukumbuka au kuzingatia?"
+        },
+        "mobilityDexterity": {
+          "label": "Kuweza kutembea kwa urahisi au ustadi wa mikono",
+          "explanation": "Je, una shida kutembea au kupanda ngazi?"
+        },
+        "unspecified": {
+          "label": "Bado haijafafanuliwa",
+          "explanation": "Tafadhali fafanua"
+        },
+        "preferNotToAnswer": {
+          "label": "Sipendi kujibu",
+          "explanation": "Ikiwa hupendi kujibu, chagua sanduku hili"
+        }
+      }
+    },
+    "organisations": {
+      "addNewLabel": "Ongeza shirika jipya linaloitwa",
+      "heading": "Shirika",
+      "description": "Maoni yako ni kuhusu shirika gani?",
+      "explanation": "Kwa nini ni muhimu kuongeza shirika kwa maoni yako?",
+      "inputPlaceholder": "Chagua shirika",
+      "addNewLabel2": "Ongeza shirika jingine"
+    },
+    "navigation": {
+      "back": "Nyuma",
+      "submit": "Wasilisha",
+      "next": "Ifuatayo"
+    },
+    "locationPromptText": "Tafadhali ruhusu kivinjari chako cha intaneti kujua eneo lako ili tutambue eneo linalokaribia",
+    "safeMode": "Hali salama — maoni haya hayatakuwa ya umma",
+    "callout": "Usalama wako ni muhimu. Jaza fomu ukiwa salama. Ukiangalia chini kushoto, kuna kitufe cha Exit. Ukihitaji kuondoka, bonyeza tu na utaenda Google bila kuonekana kama ulikuwa hapa."
+  },
+  "country_name": {
+    "gg": "Guernsey",
+    "ne": "Niger",
+    "af": "Afghanistan",
+    "sv": "El Salvador",
+    "hu": "Hungary",
+    "lb": "Lebanon",
+    "la": "Laos",
+    "al": "Albania",
+    "sy": "Syrian Arab Republic",
+    "gn": "Guinea",
+    "gh": "Ghana",
+    "gb": "Uingereza",
+    "uy": "Uruguay",
+    "tn": "Tunisia",
+    "kw": "Kuwait",
+    "ae": "Umoja wa Nchi za Kiarabu",
+    "dj": "Djibouti",
+    "aq": "Antarctica",
+    "cf": "Jamhuri ya Afrika ya Kati",
+    "ng": "Nigeria",
+    "bt": "Bhutan",
+    "kr": "Korea Kusini",
+    "vg": "Visiwa vya Virgin, Uingereza",
+    "ag": "Antigua na Barbuda",
+    "bn": "Brunei Darussalam",
+    "mn": "Mongolia",
+    "er": "Eritrea",
+    "mt": "Malta",
+    "bw": "Botswana",
+    "yt": "Mayotte",
+    "ph": "Ufilipino",
+    "ve": "Venezuela",
+    "ni": "Nicaragua",
+    "pk": "Pakistan",
+    "ie": "Ireland",
+    "ss": "Sudan Kusini",
+    "cc": "Visiwa vya Cocos (Keeling)",
+    "lu": "Luxembourg",
+    "jo": "Jordan",
+    "cy": "Cyprus",
+    "mp": "Visiwa vya Mariana Kaskazini",
+    "fm": "Micronesia",
+    "im": "Isle of Man",
+    "tk": "Tokelau",
+    "ai": "Anguilla",
+    "de": "Ujerumani",
+    "ml": "Mali",
+    "id": "Indonesia",
+    "me": "Montenegro",
+    "eg": "Misri",
+    "ax": "Visiwa vya Åland",
+    "sd": "Sudan",
+    "jm": "Jamaica",
+    "vn": "Vietnam",
+    "st": "São Tomé na Príncipe",
+    "mo": "Macao",
+    "td": "Chad",
+    "nu": "Niue",
+    "ir": "Iran",
+    "ba": "Bosnia na Herzegovina",
+    "ad": "Andorra",
+    "il": "Israel",
+    "cm": "Cameroon",
+    "lc": "Saint Lucia",
+    "nc": "New Caledonia",
+    "ps": "Palestina",
+    "na": "Namibia",
+    "bb": "Barbados",
+    "pw": "Palau",
+    "gw": "Guinea-Bissau",
+    "ki": "Kiribati",
+    "as": "Samoa ya Marekani",
+    "wf": "Wallis na Futuna",
+    "bv": "Kisiwa cha Bouvet",
+    "sa": "Saudi Arabia",
+    "se": "Sweden",
+    "kg": "Kyrgyzstan",
+    "zm": "Zambia",
+    "pt": "Ureno",
+    "cg": "Kongo",
+    "vi": "Visiwa vya Virgin, Marekani",
+    "uz": "Uzbekistan",
+    "za": "Afrika Kusini",
+    "si": "Slovenia",
+    "mv": "Maldives",
+    "do": "Jamhuri ya Dominika",
+    "kn": "Saint Kitts na Nevis",
+    "ee": "Estonia",
+    "vc": "Saint Vincent na Grenadines",
+    "pr": "Puerto Rico",
+    "sh": "Saint Helena",
+    "cx": "Kisiwa cha Christmas",
+    "gs": "Georgia Kusini na Visiwa vya Sandwich Kusini",
+    "pa": "Panama",
+    "mf": "Saint Martin",
+    "bq": "Bonaire, Sint Eustatius na Saba",
+    "gq": "Guinea ya Ikweta",
+    "ws": "Samoa",
+    "pl": "Poland",
+    "ug": "Uganda",
+    "kz": "Kazakhstan",
+    "gd": "Grenada",
+    "nl": "Uholanzi",
+    "hr": "Croatia",
+    "gm": "Gambia",
+    "lt": "Lithuania",
+    "ro": "Romania",
+    "mr": "Mauritania",
+    "bg": "Bulgaria",
+    "io": "Eneo la Bahari ya Hindi la Uingereza",
+    "fk": "Visiwa vya Falkland",
+    "mg": "Madagascar",
+    "aw": "Aruba",
+    "mw": "Malawi",
+    "rs": "Serbia",
+    "jp": "Japani",
+    "bj": "Benin",
+    "pm": "Saint Pierre na Miquelon",
+    "my": "Malaysia",
+    "mh": "Visiwa vya Marshall",
+    "lk": "Sri Lanka",
+    "tj": "Tajikistan",
+    "gp": "Guadeloupe",
+    "bs": "Bahamas",
+    "nz": "New Zealand",
+    "mm": "Myanmar",
+    "bz": "Belize",
+    "py": "Paraguay",
+    "to": "Tonga",
+    "tl": "Timor-Leste",
+    "hn": "Honduras",
+    "bd": "Bangladesh",
+    "fo": "Visiwa vya Faroe",
+    "dz": "Algeria",
+    "cv": "Cabo Verde",
+    "dk": "Denmark",
+    "sx": "Sint Maarten (sehemu ya Uholanzi)",
+    "gi": "Gibraltar",
+    "ca": "Canada",
+    "az": "Azerbaijan",
+    "ge": "Georgia",
+    "je": "Jersey",
+    "cw": "Curaçao",
+    "am": "Armenia",
+    "ms": "Montserrat",
+    "th": "Thailand",
+    "tw": "Taiwan",
+    "tr": "Uturuki",
+    "hk": "Hong Kong",
+    "gr": "Ugiriki",
+    "es": "Uhispania",
+    "lr": "Liberia",
+    "us": "Marekani",
+    "bl": "Saint Barthélemy",
+    "sn": "Senegal",
+    "zw": "Zimbabwe",
+    "by": "Belarus",
+    "in": "India",
+    "it": "Italia",
+    "ec": "Ecuador",
+    "is": "Iceland",
+    "re": "Réunion",
+    "nf": "Kisiwa cha Norfolk",
+    "cu": "Cuba",
+    "cn": "China",
+    "bi": "Burundi",
+    "fi": "Finland",
+    "mk": "Macedonia",
+    "gl": "Greenland",
+    "gf": "Guiana ya Ufaransa",
+    "ly": "Libya",
+    "tc": "Visiwa vya Turks na Caicos",
+    "tm": "Turkmenistan",
+    "ua": "Ukraine",
+    "bm": "Bermuda",
+    "kh": "Cambodia",
+    "kp": "Korea Kaskazini",
+    "co": "Colombia",
+    "rw": "Rwanda",
+    "ck": "Visiwa vya Cook",
+    "no": "Norway",
+    "mc": "Monaco",
+    "ci": "Côte d'Ivoire",
+    "br": "Brazil",
+    "hm": "Kisiwa cha Heard na Visiwa vya McDonald",
+    "ht": "Haiti",
+    "tg": "Togo",
+    "sg": "Singapore",
+    "so": "Somalia",
+    "ma": "Morocco",
+    "tf": "Maeneo ya Kusini ya Ufaransa",
+    "ar": "Argentina",
+    "gu": "Guam",
+    "sr": "Suriname",
+    "lv": "Latvia",
+    "bh": "Bahrain",
+    "au": "Australia",
+    "sc": "Seychelles",
+    "qa": "Qatar",
+    "li": "Liechtenstein",
+    "pf": "Polynesia ya Ufaransa",
+    "sk": "Slovakia",
+    "va": "Mji wa Vatican",
+    "fj": "Fiji",
+    "ye": "Yemen",
+    "an": "Antilles ya Uholanzi",
+    "sm": "San Marino",
+    "iq": "Iraq",
+    "sj": "Svalbard na Jan Mayen",
+    "mz": "Msumbiji",
+    "at": "Austria",
+    "om": "Oman",
+    "bo": "Bolivia",
+    "cr": "Costa Rica",
+    "et": "Ethiopia",
+    "ke": "Kenya",
+    "tz": "Tanzania",
+    "km": "Comoros",
+    "tv": "Tuvalu",
+    "ch": "Uswisi",
+    "pn": "Visiwa vya Pitcairn",
+    "mx": "Mexico",
+    "vu": "Vanuatu",
+    "nr": "Nauru",
+    "sl": "Sierra Leone",
+    "mq": "Martinique",
+    "cz": "Czechia",
+    "be": "Ubelgiji",
+    "gt": "Guatemala",
+    "sb": "Visiwa vya Solomon",
+    "md": "Moldova",
+    "sz": "Eswatini",
+    "ru": "Urusi",
+    "ls": "Lesotho",
+    "ao": "Angola",
+    "um": "Visiwa Vidogo vya Nje vya Marekani",
+    "pe": "Peru",
+    "ga": "Gabon",
+    "gy": "Guyana",
+    "fr": "Ufaransa",
+    "ky": "Visiwa vya Cayman",
+    "pg": "Papua New Guinea",
+    "mu": "Mauritius",
+    "tt": "Trinidad na Tobago",
+    "dm": "Dominica",
+    "cl": "Chile",
+    "np": "Nepal",
+    "bf": "Burkina Faso",
+    "eh": "Sahara Magharibi",
+    "cd": "Jamhuri ya Kidemokrasia ya Kongo",
+    "un": "Haijulikani"
+  },
+  "errors": {
+    "required": "Haijulikani",
+    "maxLength": "Urefu wa juu ni {{requiredLength}}, sasa ni {{actualLength}}",
+    "email": "Huu si barua pepe sahihi",
+    "generic": "Hii si sahihi",
+    "minLength": "Urefu wa chini ni {{requiredLength}}, sasa ni {{actualLength}}",
+    "missingPrefix": "Kichwa cha mwanzo kinakosekana",
+    "countryNotEntered": "Tafadhali chagua nchi",
+    "locationNotEntered": "Tafadhali chagua eneo",
+    "languageNotEntered": "Tafadhali chagua lugha",
+    "thematicsNotEntered": "Tafadhali chagua mada",
+    "passwordMatching": "Nenosiri la kuthibitisha halilingani"
+  },
+  "filtersV2": {
+    "mobileLink": "Vichujio",
+    "seeAllStories": "Ona maoni yote",
+    "country": {
+      "label": "Nchi",
+      "placeholder": "Chagua nchi"
+    },
+    "location": {
+      "label": "Eneo",
+      "searchForPlace": "Tafuta eneo",
+      "searchForCountry": "Tafuta nchi",
+      "setLocation": "Weka eneo",
+      "clearSearch": "Futa utafutaji",
+      "noLocationFound": "Hakuna eneo linalolingana na utafutaji",
+      "tooltip": "Chuja maeneo kwa kubonyeza mshale"
+    },
+    "searchText": {
+      "label": "Tafuta maandishi"
+    },
+    "storyType": {
+      "label": "Aina ya maoni"
+    },
+    "loaction": {
+      "label": "Eneo"
+    },
+    "demographic": {
+      "label": "Kikundi cha watu"
+    },
+    "thematicArea": {
+      "label": "Mada"
+    },
+    "organisation": {
+      "label": "Shirika",
+      "placeholder": "Chagua shirika"
+    },
+    "organisationResponsiveness": {
+      "label": "Jibu la shirika",
+      "placeholder": "Onyesha maoni yenye jibu moja au yasiyo na jibu"
+    },
+    "communityResponsiveness": {
+      "label": "Mwitikio wa jamii",
+      "placeholder": "Onyesha maoni yenye jibu moja au yasiyo na jibu",
+      "tooltip": "Chuja kulingana na mwitikio wa jamii—kama imepokea majibu au kupigiwa kura"
+    },
+    "vulnerabilityFactors": {
+      "label": "Sababu za udhaifu",
+      "children": "Watoto",
+      "youth": "Vijana",
+      "femaleHeadedHouseholds": "Nyumba zinazoongozwa na wanawake",
+      "personsLivingWithDisabilities": "Watu wenye ulemavu",
+      "elderly": "Wazee",
+      "lgbtqPlus": "LGBTQ+",
+      "chronicallyIllPeople": "Wagonjwa wa muda mrefu",
+      "legalStatusRefugees": "Hali ya kisheria (wakimbizi, wahamiaji, wasio na uraia, n.k.)",
+      "indigenousCommunity": "Jamii ya asili",
+      "lowIncomeFamilies": "Familia zenye kipato cha chini",
+      "internallyDisplacedPeople": "Watu waliokoseshwa makazi ndani ya nchi",
+      "alcoholDrugAbuseInFamily": "Matumizi ya pombe au dawa za kulevya kwenye familia",
+      "fosteringOtherFamilyMembers": "Kulea wanafamilia wengine",
+      "hivPlus": "Ukimwi",
+      "memberOfMarginalisedGroup": "Mwanachama wa kundi lililotengwa",
+      "orphan": "Yatima",
+      "other": "Nyingine"
+    },
+    "date": {
+      "label": "Tarehe ya kutuma",
+      "from": "Kutoka",
+      "to": "Hadi",
+      "noRangeSelected": "Hakuna tarehe iliyochaguliwa",
+      "calendar": "Kalenda",
+      "orEnterManually": "Au andika mwenyewe"
+    },
+    "request": {
+      "label": "Ombi la msaada"
+    },
+    "moreFilters": {
+      "label": "Vichujio zaidi"
+    },
+    "clearAll": "Futa vyote",
+    "calendar": "Kalenda",
+    "enterManually": "Andika mwenyewe",
+    "monthFull": {
+      "January": "Januari",
+      "February": "Februari",
+      "March": "Machi",
+      "April": "Aprili",
+      "May": "Mei",
+      "July": "Julai",
+      "August": "Agosti",
+      "September": "Septemba",
+      "October": "Oktoba",
+      "November": "Novemba",
+      "December": "Disemba",
+      "June": "Juni"
+    },
+    "weekdayShort": {
+      "Sunday": "Juma pili",
+      "Monday": "Juma tatu",
+      "Tuesday": "Juma nne",
+      "Wednesday": "Juma tano",
+      "Thursday": "Alhamisi",
+      "Friday": "Ijumaa",
+      "Saturday": "Juma mosi"
+    },
+    "apply": "Tumia",
+    "selectAll": "Chagua vyote",
+    "deselectAll": "Ondoa vyote",
+    "category": {
+      "thanks": "Asante",
+      "question": "Ombi la taarifa",
+      "suggestion_opinion": "Pendekezo / Maoni",
+      "concern": "Shida / Wasiwasi",
+      "request": "Ombi la msaada",
+      "sensitive": "Nyeti"
+    },
+    "modal": {
+      "moreFilters": "Vichujio zaidi",
+      "allFilters": "Vichujio vyote"
+    },
+    "filters": {
+      "title": "Vichujio"
+    },
+    "outcomesOfInvestigation": {
+      "label": "Matokeo ya uchunguzi"
+    },
+    "assistanceReferred": "Msaada umeelekezwa",
+    "typeOfCase": "Aina ya kesi",
+    "age": {
+      "label": "Umri"
+    },
+    "gender": {
+      "label": "Jinsia"
+    },
+    "disability": {
+      "label": "Ulemavu"
+    },
+    "minority": {
+      "label": "Kundi dogo"
+    },
+    "seeAll": "Ona yote",
+    "backBtn": "Rudi",
+    "clear": "Futa",
+    "channel": {
+      "web": "Wavuti",
+      "sms": "SMS",
+      "messenger": "Facebook Messenger",
+      "whatsapp": "WhatsApp",
+      "ivrr": "Sauti",
+      "telegram": "Telegram",
+      "text": "Maandishi",
+      "label": "Njia"
+    },
+    "voiceDuration": {
+      "label": "Urefu"
+    },
+    "preset": {
+      "header": {
+        "label": "Hariri vichujio",
+        "placeholder": "Tafuta",
+        "button": "Tafuta"
+      },
+      "label": "Vichujio vilivyowekwa",
+      "placeholder": "Weka jina la kigezo",
+      "savePreset": "Hifadhi vichujio vya sasa kama kigezo kipya",
+      "removePreset": "Ondoa",
+      "modalLabel": "Chagua jina la kigezo kipya",
+      "shareConfirmation": "Thibitisha kutuma",
+      "editConfirmation": "Thibitisha kusasisha",
+      "deleteConfirmation": "Thibitisha kufuta",
+      "shareExplanation": "Kuweka kigezo hiki kitakifanya kipatikane kwa kila mtu kwenye shirika lako.",
+      "editExplanation": "Una uhakika unataka kusasisha kigezo hiki na vichujio vilivyochaguliwa sasa?",
+      "deleteExplanation": "Una uhakika unataka kufuta kigezo hiki?",
+      "buttons": {
+        "confirm": "Thibitisha",
+        "cancel": "Batilisha"
+      },
+      "tooltip": {
+        "share": "Tuma kwa shirika",
+        "update": "Sasisha",
+        "delete": "Futa"
+      }
+    }
+  },
+  "statistics": {
+    "comingSoon": {
+      "pill": "Endela kufuatilia",
+      "heading": "Inakuja hivi karibuni",
+      "subheading": "Takwimu",
+      "text": "Dashibodi ya kuchambua mwenendo na taarifa za maoni inaandaliwa na itaonekana hapa hivi karibuni.",
+      "linkDescription": "Kwa sasa",
+      "linkText": "Ona maoni"
+    },
+    "navigation": {
+      "stories": "Fungua maoni",
+      "cases": "Kesi nyeti"
+    },
+    "replies": {
+      "title": "Majibu",
+      "summary": {
+        "text1": "ya maoni yamejibiwa",
+        "text2": "ya maoni yamejibiwa na mashirika"
+      },
+      "table": {
+        "header1": "Muda wa wastani wa kujibu:",
+        "header2": "Jumla ya maoni:",
+        "header3": "Jumla ya majibu:",
+        "header4": "Idadi ya waandishi:",
+        "header5": "Idadi ya mashirika:"
+      },
+      "units": {
+        "stories": "maoni",
+        "replies": "majibu",
+        "authors": "waandishi",
+        "organizations": "mashirika yaliyotajwa"
+      },
+      "moreLink": {
+        "content": "Sehemu hii inaonyesha mwenendo wa aina ya maoni yanawekwa kwenye Loop kwa muda. Inaonyesha pia taarifa kuhusu kufunga mzunguko wa maoni: nani anajibu nini, na kwa kasi gani. Vichujio vinaweza kuboresha uchambuzi huu zaidi."
+      },
+      "infoIcon": {
+        "content": "Kuelewa muda wa majibu ya maoni hutupa picha ya jinsi tunavyoshirikiana na maoni ya jamii kama sekta."
+      }
+    },
+    "moreLink": "Zaidi kuhusu sehemu hii",
+    "section1": "Aina ya maoni na majibu",
+    "timeline": {
+      "title": "Maoni yaliyopokelewa kwa muda"
+    },
+    "storiesAndReplies": {
+      "title": "Maoni na majibu",
+      "storyType": "Aina ya maoni",
+      "repliesCommunity": "Majibu kutoka kwa jamii",
+      "repliesOrganization": "Majibu kutoka kwa mashirika",
+      "totalStories": "Jumla ya maoni",
+      "infoIcon": {
+        "content": "Kwa kuona nani anajibu maoni, tunaelewa nani anatumia Loop, na nani anashiriki kwenye maoni yanayowekwa Loop."
+      }
+    },
+    "averageTime": {
+      "title": "Muda wa wastani wa kujibu kulingana na aina ya maoni",
+      "infoIcon": {
+        "content": "Baadhi ya maoni yanajibiwa ndani ya dakika, mengine ndani ya siku chache. Grafu hii inatuonyesha jinsi tunavyoitikia masuala yanayoripotiwa kwenye Loop."
+      }
+    },
+    "section2": "Maeneo ya mada",
+    "section3": "Mgawanyiko wa watu",
+    "thematicArea": {
+      "title": "Maoni kwa kila eneo la mada"
+    },
+    "difficulty": {
+      "title": "Aina ya maoni × uwezo wa mwandishi",
+      "units": {
+        "stories": "maoni"
+      },
+      "seeing": "Shida kuona:",
+      "hearing": "Shida kusikia:",
+      "walkingOrClimbingSteps": "Shida kutembea au kupanda ngazi:",
+      "remembering": "Shida kukumbuka:",
+      "selfCareForExampleWashing": "Shida kutembea au kupanda ngazi:",
+      "communicating": "Shida ya kuzungumza:",
+      "unspecified": "Haijabainishwa:",
+      "preferNotToAnswer": "Sipendi kujibu:"
+    },
+    "ageGender": {
+      "title": "Aina ya maoni × umri na jinsia ya mwandishi",
+      "1417": "14–17",
+      "1829": "18–29",
+      "3059": "30–59",
+      "60": "60+",
+      "na": "Sijui",
+      "male": "Mwanaume",
+      "female": "Mwanamke",
+      "nonBinary": "Asiye na jinsia maalum"
+    },
+    "thematic": {
+      "moreLink": {
+        "content": "Kama watu watatuelezea taarifa zao za kidemografia, tunaziweka hapa kwa ujumla. Hii inatusaidia kuelewa nani anatumia Loop, na nani bado hatufikii. Tunaweza kuona aina ya maoni wanayotoa."
+      }
+    },
+    "demographic": {
+      "moreLink": {
+        "content": "Kama watu wanatupea  taarifa zao za kidemografia, tunaziweka hapa kwa ujumla. Hii inatusaidia kuelewa nani anatumia Loop, na nani bado hatufikii. Tunaweza kuona aina ya maoni wanayotoa."
+      },
+      "infoIcon": {
+        "content": "Kama mtu anatuambia ana changamoto za kimwili au kiakili, tunatumia taarifa hiyo kuonyesha makundi tunayoyasikia na yale tusiyoyasikia."
+      }
+    },
+    "storiesOverTime": {
+      "infoIcon": {
+        "content": "Maoni yote yanayotumwa Loop huwekwa alama kama Shukrani, Swali, Maoni, Ombi, Wasiwasi, au Nyeti. Tukiyaonyesha kwa picha, tunaona mwelekeo wa mazungumzo kwa muda."
+      }
+    },
+    "ageAndGender": {
+      "infoIcon": {
+        "content": "Grafu hii inaeleza watu wanaotoa maoni kwenye Loop."
+      }
+    }
+  },
+  "navbar": {
+    "social": {
+      "twitterLabel": "Twitter yetu ya Loop",
+      "facebookLabel": "Facebook ya Talk to Loop",
+      "linkedinLabel": "LinkedIn ya Talk to Loop",
+      "newsletterLabel": "Tovuti ya Loop"
+    },
+    "static": {
+      "loopWebsiteLabel": "Tovuti ya Loop",
+      "contactLabel": "Wasiliana",
+      "communityGuidelinesLabel": "Kanuni za jamii",
+      "privacyPolicyLabel": "Sera ya faragha",
+      "cookiePolicyLabel": "Sera ya kuki",
+      "termsOfUseLabel": "Masharti ya matumizi"
+    },
+    "languageChange": {
+      "changeLabel": "Badilisha lugha:"
+    },
+    "register": {
+      "createAccount": "Fungua akaunti"
+    },
+    "header": {
+      "closeIconAlt": "Funga"
+    },
+    "authStatus": {
+      "logIn": "Ingia / Jisajili",
+      "hi": "Habari, {{nickname}}",
+      "logInViaMagicLink": "Ingia kwa kiungo maalum"
+    }
+  },
+  "organisationType": {
+    "label": "Aina ya shirika",
+    "governmentAuthorities": "Mamlaka ya Serikali",
+    "nationalArmedForces": "Jeshi la Taifa",
+    "privateSector": "Sekta Binafsi",
+    "nationalCommunityBasedOrganisation": "Mashirika ya Kitaifa / Jamii",
+    "communityMember": "Mwanajamii",
+    "internationalOrganisation": "Shirika la Kimataifa",
+    "other": "Nyingine"
+  },
+  "difficulty": {
+    "seeing": "Kuona",
+    "hearing": "Kusikia",
+    "walkingOrClimbingSteps": "Kuweza kutembea kwa urahisi au ustadi wa mikono",
+    "remembering": "Kujifunza / Kuelewa",
+    "communicating": "Kuongea",
+    "selfCareForExampleWashing": "Kujihudumia",
+    "learning": "Kujifunza / Kuelewa",
+    "other": "Nyingine",
+    "unspecified": "Haijulikani",
+    "preferNotToAnswer": "Sipendi kujibu"
+  },
+  "storyHasNotBeenPublishedOnTalkToLoop": "Maoni yako hayajawekwa kwenye TalkToLoop.org",
+  "organisationHaveBeenTaggedInStoryOnTalkToLoop": "Shirika lako limetajwa kwenye maoni kwenye TalkToLoop.org",
+  "replyHasNotBeenPublishedOnTalkToLoop": "Jibu lako halijachapishwa kwenye TalkToLoop.org",
+  "replyHasBeenPublishedOnTalkToLoop": "Jibu lako limechapishwa kwenye TalkToLoop.org",
+  "storyHasBeenPublishedOnTalkToLoop": "Maoni yako yamechapishwa kwenye TalkToLoop.org",
+  "statisticsCases": {
+    "section1": "Tuna uwajibikaji kiasi gani?",
+    "moreLink": "Zaidi kuhusu sehemu hii",
+    "accountability": {
+      "moreLink": {
+        "content": "Wakati Loop inapokea maoni nyeti yanayoweza kudhuru kama yangechapishwa hadharani, tunayapeleka kwa Meneja wa Kesi aliyefundishwa. Kila dai lazima lishughulikiwe: kuthibitishwa, kutathminiwa, kuchunguzwa kama inafaa, na mtu aliyetoa dai kuarifiwa matokeo. Kila hatua inaonyeshwa kwenye Mchakato wa Uwajibikaji. Ili kuweka manusura katikati, viwango vya sekta vinaweka muda wa kukamilisha kila hatua. Ukurasa wa takwimu wa Loop unaonyesha data ambayo mashirika yanashiriki baada ya kupokea rufaa. Taarifa za kumtambulisha shirika au manusura hazionyeshwi hapa."
+      }
+    },
+    "timeline": {
+      "title": "Watu wanatoa taarifa lini kuhusu masuala nyeti kwa Loop?",
+      "infoIcon": {
+        "content": "Masuala nyeti yamegawanywa katika makundi manne. Grafu  huu unaonyesha mwenendo wake."
+      }
+    },
+    "accountabilityProcess": {
+      "title": "Mchakato wa uwajibikaji",
+      "seeMore": "Tazama zaidi",
+      "description": "Mtu anapotuma maoni nyeti yanayokuwa dai, Meneja wa Kesi wa Loop anapitia dai hilo na kushughulikia kesi ipasavyo. Mtu anayehitajika kuchukua hatua anafuatiliwa hadi dai lifikie mwisho, mwandishi wa maoni aarifiwe, na kesi ifungwe. Hii inaitwa Mchakato wa Uwajibikaji. Imeundwa kufuatilia kila dai la Loop, kuonyesha wazi kinachotokea kwenye kila kesi, wapi kimechelewa, na nani anayehitajika kuchukua hatua.",
+      "stepByStepBtn": "Tazama hatua kwa hatua",
+      "slider": {
+        "submitStory": {
+          "title": "Tuma maoni",
+          "description": "Maoni yanatumwa kwa Loop kwa njia salama"
+        },
+        "moderatorReview": {
+          "title": "Mapitio ya msimamizi",
+          "description": "Msimamizi anapitia na kutafsiri. Yakiwa nyeti, anatuma kwa Meneja wa Kesi"
+        },
+        "caseManagerReview": {
+          "title": "Mapitio ya Meneja wa Kesi",
+          "description": "Meneja wa Kesi anapitia na kutuma kama msaada wa haraka unahitajika"
+        },
+        "storyCase": {
+          "description": "Kesi sasa inaanza kufuatiliwa hatua kwa hatua",
+          "title": "Kesi – Maoni"
+        },
+        "processAndRefer": {
+          "title": "Shughulikia na tuma",
+          "description": "Loop inapaswa kushughulikia na kutuma kesi kwa rufaa ndani ya saa 48"
+        },
+        "responseToReferral": {
+          "description": "Kesi ikitumwa, shirika linalopokea linathibitisha ndani ya saa 48"
+        },
+        "decisionToInvestigate": {
+          "description": "Shirika linapaswa kuchunguza na kuamua kama litachunguza kesi au la"
+        },
+        "investigation": {
+          "description": "Ili kuhakikisha mchakato unafanyika kwa haraka na uwazi, Loop hufuata hatua zote ikiwemo muda wa kumaliza uchunguzi na matokeo yake"
+        },
+        "authorInformed": {
+          "title": "Mwandishi kuarifiwa",
+          "description": "Loop huhakikisha aliye nusurika au muathiriwa  anaambiwa matokeo, na huangalia muda alipoambiwa."
+        }
+      },
+      "seeProcess": {
+        "title": "Mambo yanafanywa hatua kwa hatua, kwa uwazi na uwajibikaji.",
+        "firstParagraph": "Loop ni shirika huru lisilo la kibiashara, linalolenga kutoa njia salama kwa watu kueleza maoni yao ili kuboresha huduma kwa kiwango kikubwa. Kama sehemu ya jukumu letu la kuwalinda, tumetengeneza njia salama ya kupokea na kuelekeza mrejesho nyeti ambao ungeleta madhara kama ungewekwa wazi mtandaoni. Hii inaweza kujumuisha taarifa za unyanyasaji wa kingono, udanganyifu, ufisadi, masuala ya ulinzi au makosa mengine.",
+        "secondParagraph": "Tunakusanya taarifa kwa usalama—za maelezo na za takwimu—ambazo watu wanachagua kutuelezea. Tunazipeleka kwa mashirika yanayofaa ili zisimamiwe na msaada utolewe pale inapohitajika. Baadaye tunaziweka pamoja ili kila mtu aweze kuchambua, kuona mwenendo, maeneo yenye changamoto na sehemu za kuboresha.",
+        "thirdParagraph": "Loop haijibu maoni nyeti, haifanyi uchunguzi wa kesi wala kuandika ripoti za matokeo. Sisi ni njia ya kuwasiliana na watu ambao ni vigumu kufikiwa na kuonyesha mwenendo wa data kuhusu jinsi mashirika tofauti yanavyoshughulikia maoni. Kupitia hili tunaleta sauti na uzoefu wa watu wa eneo kwenye meza za maamuzi.",
+        "fourthParagraph": "Tutaboresha vitambulisho na Mchakato wa Uwajibikaji ili kuendana na mbinu bora zinazobadilika. Tunaweza kuwa na manufaa tu kulingana na data inayotolewa kwetu.",
+        "list": {
+          "1": {
+            "title": "Mtu anaweza kutuma maoni nyeti kwa Loop.",
+            "firstParagraph": "Kila mtu anaweza kutuma maoni nyeti kupitia Loop: aliye nusurika, shahidi, au shirika. Wanatoa maoni kupitia {{homeLink}} au namba ya SMS ya eneo na kuyaweka kama nyeti.",
+            "secondParagraph": "Maoni nyeti hayatawekwa wazi kwenye jukwaa la mtandaoni, hakuna atakayepokea taarifa zinazoweza kumtambua mwandishi, na viwango vya juu vya usalama wa data vinafuatwa."
+          },
+          "2": {
+            "title": "Maoni yanakaguliwa na msimamizi wa Loop. Yakitambulika kama nyeti, yanapelekwa kwa Meneja wa Kesi wa Loop.",
+            "secondParagraph": "Mbinu bora zinataka madai yote yakubaliwe, yakaguliwe, yakichunguzwe pale inapohitajika na mtu aliyetoa madai ajulishwe matokeo. Kila hatua ya mchakato huu inaonyeshwa kwenye Mchakato wa Uwajibikaji.",
+            "firstParagraph": "Msimamizi atatuma maoni yaliyowekwa kama nyeti kwa Meneja wa Kesi. Pia atatuma maoni kwa Meneja wa Kesi ikiwa anaamini yanaweza kuleta madhara yakichapishwa wazi mtandaoni. Tunafuata Itifaki za Loop kuamua ni nini kinachowekwa wazi na nini kinashughulikiwa kupitia mfumo wa siri wa usimamizi wa kesi. Unaweza kusoma na kutusaidia kuboresha itifaki hizi {{hereLink}}."
+          },
+          "3": {
+            "title": "Meneja wa Kesi anakagua maoni nyeti na kuyaelekeza kwa msaada wa haraka, ikiwa unahitajika.",
+            "firstParagraph": "Meneja wa Kesi wa Loop ni mtaalamu aliyefunzwa kushughulikia madai na malalamiko na humpeleka mwandishi wa maoni nyeti kwenye njia zilizopo za kupata msaada. Loop haitoi msaada moja kwa moja. Tunatoa njia salama ya watu kuripoti, na tunajaribu kufikisha taarifa hizi kwa chombo kinachoweza kuchukua hatua. Tunaweza kufuatilia kama msaada umetolewa endapo mashirika yatashirikisha Meneja wa Kesi wa Loop taarifa za maendeleo"
+          },
+          "4": {
+            "title": "Maoni hayo nyeti sasa yanachukuliwa kama \"kesi\" na yanaingizwa kwenye hatua ambazo kila hatua lazima ithibitishwe kwa wakati kabla ya kufungwa.",
+            "firstParagraph": "Kesi hubaki wazi hadi ziwe zimekamilishwa kabisa kulingana na Hatua za Uwajibikaji. Kesi hufungwa pale hakuna hatua zaidi inahitajika na pale inapowezekana mwandishi amejulishwa matokeo. Ili kuhakikisha mtazamo unaomlinda manusura, viwango vya sekta vinaonyesha muda ambao kila hatua inapaswa kukamilishwa.",
+            "secondParagraph": "Ukurasa wa takwimu wa Loop unaonyesha data ambayo mashirika yanaamua kufikisha kwa Loop wakati wa kusimamia kesi. Taarifa yoyote ya kumtambulisha shirika, mwandishi au manusura kamwe haiwekwa hadharani."
+          },
+          "5": {
+            "title": "Kesi hubaki wazi hadi ziwe zimekamilishwa kabisa kulingana na Hatua za Uwajibikaji. Kesi hufungwa pale hakuna hatua zaidi inahitajika na pale inapowezekana mwandishi amejulishwa matokeo. Ili kuhakikisha mtazamo unaomlinda manusura, viwango vya sekta vinaonyesha muda ambao kila hatua inapaswa kukamilishwa.",
+            "firstParagraph": "Loop inapopokea kesi nyeti, Loop itaishughulikia na kuipeleka kwa shirika linaofaa kwa ajili ya 1) Uwajibikaji na 2) kutoa msaada kama unahitajika. Kwa viwango vya sekta, Loop inawajibika kushughulikia na kupeleka shutuma ndani ya saa 48 tangu kupokea. Tunafuatilia taarifa hii ili kuona kama Loop inaweza kutimiza kiwango hiki kinachotarajiwa na kujionesha wazi kwa umma."
+          },
+          "6": {
+            "title": "Response to referral.",
+            "firstParagraph": "Shirika linapopokea rufaa, linatarajiwa, kwa viwango vya sekta, kuthibitisha kupokea ndani ya saa 48. Loop ikipokea uthibitisho huo, tunasasisha data. Tunafuatilia taarifa hii ili kuona kama mashirika yanaweza kutimiza kiwango hiki kinachotarajiwa."
+          },
+          "7": {
+            "title": "Shirika linapopokea rufaa, linatarajiwa, kwa viwango vya sekta, kuthibitisha kupokea ndani ya saa 48. Loop ikipokea uthibitisho huo, tunasasisha data. Tunafuatilia taarifa hii ili kuona kama mashirika yanaweza kutimiza kiwango hiki kinachotarajiwa.",
+            "secondParagraph": "Shirika linapopokea rufaa, linatarajiwa, kwa viwango vya sekta, kutathmini na kuamua kama litachunguza au la ndani ya wiki 6. Mashirika yakituambia uamuzi huu, tunaweza kusasisha data. Loop hufuatilia taarifa hii ili tujifunze muda unaochukuliwa kutathmini na kuamua kuchunguza au la, kulingana na vichujio tofauti.",
+            "firstParagraph": "Ili kupunguza hatari zaidi na kuwalinda watu, shirika linawajibika kutathmini taarifa na kuamua kama na jinsi litakavyochunguza kesi."
+          },
+          "8": {
+            "title": "Loop inafuatilia muda na matokeo",
+            "firstParagraph": "Ili kuhimiza hatua za wakati na uwajibikaji, Loop hufuatilia hatua zote, ikijumuisha muda unaochukuliwa kufunga uchunguzi na matokeo yake",
+            "secondParagraph": "Shirika linapofungua uchunguzi, kuna sababu nyingi zinazoweza kufanya ukamilike kwa muda mrefu. Loop hufuata taarifa hii ili tujifunze muda unaochukua, kwa wastani, kulingana na vichujio tofauti, kukamilisha uchunguzi."
+          },
+          "9": {
+            "title": "Utekelezaji wa mchakato",
+            "firstParagraph": "Mtazamo unaomlinda manusura unahitaji kwamba, pale inapowezekana, mtu aliyewasilisha shutuma apewe angalau taarifa ya matokeo. Mashirika yakituambia yamefanya hivyo, tunaweza kusasisha data. Loop hufuatilia data hii ili tujifunze kama manusura/ waathiriwa wanapewa taarifa au la. Hii ndiyo hatua ya mwisho ya Hatua za Uwajibikaji na kesi inakuwa Kesi Iliyofungwa na data inaendelea kuonekana kwenye jumla ya data na vichujio."
+          }
+        }
+      }
+    },
+    "decisionToInvestigate": "Uamuzi wa kuchunguza",
+    "investigation": "Uchunguzi unaoendelea",
+    "whatTypeOfCasesInAccountabilityProcess": {
+      "title": "Ni kesi gani ziko kwa hatua ",
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Ulinzi",
+        "fraudOrCorruption": "Ulaghai na rushwa",
+        "otherMisconduct": "Makosa mengine"
+      },
+      "stack": {
+        "processAndRefer": "Kushughulikia na kutuma",
+        "respondToAReferal": "Kujibu rufaa",
+        "assessWhetherToInvestigate": "Kutathmini uchunguzi",
+        "ongoingInvestigation": "Uchunguzi unaoendelea",
+        "informingAuthorOfOutcome": "Kumjulisha mwandishi"
+      },
+      "tooltip": "Ufafanuzi wa aina za kesi zilizo katika hatua tofauti za uwajibikaji."
+    },
+    "casesReceived": {
+      "title": "Idadi ya kesi zilizopokelewa",
+      "summary": {
+        "header": "Loop imepokea {{value}} kesi nyeti"
+      },
+      "table": {
+        "header1": "Kesi zilizofungwa",
+        "header2": "Kesi zilizo wazi",
+        "header3": "Jumla ya kesi za dharura",
+        "header4": "Msaada uliotolewa"
+      },
+      "infoIcon": {
+        "content": "Kesi hubaki wazi hadi zipatiwe majibu kamili kulingana na viwango vya sekta. Kesi hufungwa pale ambapo hakuna hatua zaidi inayohitajika na pale inapowezekana mwandishi huarifiwa matokeo. Kesi ni ya dharura iwapo mwandishi yuko kwenye hatari ya haraka na anahitaji msaada wa haraka."
+      }
+    },
+    "averageTimeByCase": {
+      "title": "Muda wa wastani unaotumika kushughulikia aina tofauti za kesi",
+      "types": {
+        "SEAH": "SEAH",
+        "protection": "Ulinzi",
+        "fraudOrCorruption": "Udanganyifu na ufisadi",
+        "otherMisconduct": "Nyingine"
+      },
+      "onAverageToClose": "Kwa kawaida muda kufunga kesi ",
+      "infoIcon": {
+        "content": "Ikiwa mashirika yatatoa taarifa kwa Loop kuhusu kila rufaa waliyoipokea, Loop inaweza kuonyesha mwenendo wa kinachotokea baada ya kuripoti maoni nyeti. Hii inatusaidia sote kuelewa vyema athari za mifumo ya malalamiko na kujua ni wapi pa kuzingatia zaidi ili kuboresha matokeo."
+      }
+    },
+    "averageTimeToCompleteStep": {
+      "title": "Kwa kawaida muda unaotumika kukamilisha kila hatua ya uwajibikaji",
+      "infoTooltip": "Ili kuhakikisha mtazamo unaomlenga manusura, kanuni bora zinaeleza muda wa kukamilisha hatua hizi. Sehemu hii inaonyesha muda wa kawaida uliotumika kukamilisha kila hatua. Kijani ' kwa wakati' Manjano 'imechelewa' Nyekundu 'hakuna majibu'.",
+      "timelinesLink": "Muda uliopendekezwa  na sekta",
+      "respondToReferral": "Kujibu rufaa",
+      "assessWhetherToInvestigate": "Kuangalia kama uchunguzi unahitajika",
+      "completeInvestigation": "Kukamilisha uchunguzi",
+      "informTheAuthorOfOutcome": "Kumjulisha mwandishi matokeo",
+      "closeCase": "Kufunga kesi",
+      "daysTo": "Siku hadi",
+      "dayTo": "Siku hadi",
+      "tooltip": {
+        "content": {
+          "hours": "{{casesCount}} kesi, zilikamilisha hatua hii kwa wastani wa {{value}} saa",
+          "years": "{{casesCount}} kesi, zilikamilisha hatua hii kwa wastani wa {{value}} miaka",
+          "days": "{{casesCount}} kesi, zilikamilisha hatua hii kwa wastani wa {{value}} siku",
+          "months": "{{casesCount}} kesi, zilikamilisha hatua hii kwa wastani wa {{value}} miezi"
+        },
+        "footer": {
+          "hours": "Muda uliopendekezwa na sekta: Ndani ya saa 48",
+          "weeks": "Muda uliopendekezwa na sekta: Ndani ya wiki 6",
+          "years": "Muda uliopendekezwa na sekta: Ndani ya miaka 2"
+        }
+      },
+      "processAndRefer": "Kushughulikia na kuelekeza"
+    },
+    "processAndRefer": "Kushughulikia na kuelekeza",
+    "responseToReferral": "Jibu kwa rufaa",
+    "whatTypeOfPeopleReferredToAssistanceReceivedIt": {
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Ulinzi",
+        "fraudOrCorruption": "Udanganyifu na ufisadi",
+        "otherMisconduct": "Uovu mwingine"
+      },
+      "stack": {
+        "yes": "Ndiyo",
+        "yesServiceWereAllreadyInPlace": "Ndiyo, huduma tayari zilikuwepo",
+        "noAssistanceOfferedButNotReceived": "Hapana, msaada ulitolewa lakini haukupokelewa",
+        "noAssistanceNotRendered": "Hapana, msaada haukutolewa",
+        "yesLongerTerm": "Ndiyo, msaada wa muda mrefu umetolewa"
+      },
+      "title": "Je, {{value}} watu waliotumwa kupata msaada waliupokea?",
+      "tooltip": "Mashirika yakishirikisha Loop data, tunaweza kuonyesha idadi ya manusura waliopokea msaada. Hii hutusaidia kuelewa mwenendo wa iwapo manusura wanapata msaada wanaohitaji. Mchoro huu unaonyesha idadi ya rufaa zilizotoa msaada."
+    },
+    "whatTypeOfOrganizationReceivingAllegation": {
+      "tooltip": "Loop haigawanyi taarifa zinazoweza kumtambua mtu au shirika. Hapa tunaonyesha aina za mashirika na pale mrejesho nyeti ulipo katika uwajibikaji. Hii hutusaidia kuelewa mwenendo na muktadha kulingana na vichujio.",
+      "stack": {
+        "governmentAuthorities": "Mamlaka ya serikali",
+        "nationalArmedForces": "Jeshi la taifa",
+        "privateSector": "Sekta binafsi",
+        "nationalCommunityBasedOrganisation": "Shirika la kitaifa / kijamii",
+        "communityMember": "Mwanajamii",
+        "internationalOrganisation": "Shirika la kimataifa",
+        "other": "Nyingine"
+      },
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Ulinzi",
+        "fraudOrCorruption": "Udanganyifu na ufisadi",
+        "otherMisconduct": "Uovu mwingine"
+      },
+      "title": "Ni aina gani za mashirika yanayopokea tuhuma?"
+    },
+    "howAreOrganisationsHandlingAllegationsMadeAgainstThem": {
+      "title": "Mashirika yanashughulikiaje tuhuma dhidi yao?",
+      "tooltip": "Loop haigawanyi taarifa zinazoweza kumtambua mtu au shirika. Hapa tunaonyesha aina za mashirika na pale mrejesho nyeti ulipo katika uwajibikaji. Hii hutusaidia kuelewa mwenendo na muktadha kulingana na vichujio.",
+      "stack": {
+        "governmentAuthorities": "Mamlaka ya serikali",
+        "nationalArmedForces": "Jeshi la taifa",
+        "privateSector": "Sekta binafsi",
+        "nationalCommunityBasedOrganisation": "Shirika la kitaifa / kijamii",
+        "communityMember": "Mwanajamii",
+        "internationalOrganisation": "Shirika la kimataifa",
+        "other": "Nyingine"
+      },
+      "category": {
+        "processAndRefer": "Kushughulikia na kuelekeza",
+        "respondToReferral": "Kujibu rufaa",
+        "decideToInvestigate": "Kukagua iwapo uchunguzi unahitajika",
+        "completeInvestigation": "Uchunguzi unaoendelea",
+        "informAuthorOfOutcome": "Kumjulisha mwandishi matokeo",
+        "closeACase": "Kesi imefungwa"
+      }
+    },
+    "survivorAge": {
+      "title": "Umri wa manusura",
+      "tooltip": "Loop ikipata taarifa za kutosha, kuhakikisha siri inalindwa, tunaonyesha umri wa manusura kulingana na aina ya tuhuma. Hii hutusaidia kuelewa mwenendo na muktadha na kutupa mwongozo kuhusu nani tunapaswa kulenga kwa msaada na ulinzi.",
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Ulinzi",
+        "fraudOrCorruption": "Udanganyifu na ufisadi",
+        "otherMisconduct": "Uovu mwingine"
+      },
+      "stack": [
+        "0-5",
+        "6-13",
+        "14-17",
+        "18-29",
+        "30-59",
+        "60+",
+        "N/A"
+      ]
+    },
+    "whoIsSharingSensitiveStories": {
+      "title": "Nani anatoa maoni nyeti?",
+      "tooltip": "Loop ikipata taarifa za kutosha kuhakikisha siri inalindwa, tunaonyesha aina ya watu wanaotoa maoni nyeti. Hii hutusaidia kuelewa chanzo cha taarifa na pia kutambua ni nani tunaweza kuhamasisha kutoa maoni nyeti kwa usalama ili kuboresha uwajibikaji, kuzuia udanganyifu na unyanyasaji na kulinda watu vizuri zaidi.",
+      "category": {
+        "SEAH": "SEAH",
+        "protection": "Ulinzi",
+        "fraudOrCorruption": "Udanganyifu na ufisadi",
+        "otherMisconduct": "Uovu mwingine"
+      },
+      "stack": {
+        "survivor": "Manusura",
+        "witness": "Shahidi",
+        "orgPersonnel": "Mfanyakazi wa shirika",
+        "friendOrRelativeOfSurvivor": "Rafiki au ndugu wa manusura",
+        "other": "Nyingine"
+      }
+    },
+    "subtitle2": "Ni mwenendo gani upo kwenye tuhuma na mashirika yanashughulikiaje?",
+    "subtitle3": "Profaili za waandishi na manusura wa masuala nyeti yaliyotolewa kwa Loop ni zipi?",
+    "howResponsiveWeAreByStep": {
+      "title": "Mashirika yanajibu kwa haraka kiasi gani kwa tuhuma?",
+      "stack": {
+        "processAndRefer": "Kushughulikia na kuelekeza",
+        "respondToAReferral": "Kujibu rufaa",
+        "assessWhetherToInvestigate": "Kukagua iwapo uchunguzi unahitajika",
+        "ongoingInvestigation": "Uchunguzi unaoendelea",
+        "informingAuthorOfOutcome": "Kumjulisha mwandishi matokeo"
+      },
+      "category": {
+        "actionTakenOnTime": "Hatua imechukuliwa kwa wakati",
+        "overdue": "Imechelewa",
+        "unresponsive": "Hakuna majibu",
+        "closedCases": "Kesi zilizofungwa"
+      },
+      "tooltip": {
+        "overdueAfter": "Imechelewa baada ya",
+        "unresponsiveAfter": "Hakuna majibu baada ya",
+        "processAndRefer": {
+          "title": "Kushughulikia na kuelekeza",
+          "content": "Loop ikipokea kesi nyeti, inatarajiwa kulingana na viwango vya sekta kushughulikia na kuelekeza kwa shirika sahihi kwa ajili ya uwajibikaji na msaada iwapo unahitajika. Tunatakiwa kufanya hivi ndani ya saa 48. Tunafuatilia taarifa hizi kuona kama Loop inatimiza kiwango hiki na kujihesabisha hadharani.",
+          "overdueAfter": "Saa 48",
+          "unresponsiveAfter": "Wiki 1"
+        },
+        "respondToAReferral": {
+          "title": "Kujibu rufaa",
+          "content": "Shirika likipokea rufaa linatarajiwa kulingana na viwango vya sekta kuthibitisha kupokea ndani ya saa 48. Loop ikipokea uthibitisho tutasasisha taarifa. Tunafuatilia kuona kama mashirika yanatimiza kiwango hiki.",
+          "overdueAfter": "Saa 48",
+          "unresponsiveAfter": "Wiki 1"
+        },
+        "assessWhetherToInvestigate": {
+          "title": "Uamuzi wa kuchunguza",
+          "content": "Shirika likipokea rufaa linatarajiwa kulingana na viwango vya sekta kukagua na kuamua kuchunguza au la ndani ya wiki 6. Mashirika yakijulisha Loop kuhusu uamuzi huu tutasasisha taarifa. Loop hufuatilia ili tujifunze muda unaochukua kuamua kuchunguza au la.",
+          "overdueAfter": "Wiki 6",
+          "unresponsiveAfter": "Miezi 3"
+        },
+        "ongoingInvestigation": {
+          "title": "Muda wa uchunguzi",
+          "content": "Shirika likifungua uchunguzi kuna sababu nyingi zinazoweza kufanya ukamilike kwa muda mrefu. Loop hufuatilia ili tujifunze muda wa wastani unaochukua kukamilisha uchunguzi.",
+          "overdueAfter": "Miaka 2",
+          "unresponsiveAfter": "Miezi 3"
+        },
+        "informingAuthorOfOutcome": {
+          "title": "Kumjulisha mwandishi",
+          "content": "Mtazamo unaomlenga manusura unahitaji, pale inapowezekana, mtu aliyeleta tuhuma ajulishwe matokeo. Mashirika yakimjulisha Loop tutasasisha taarifa. Loop hufuatilia ili tujifunze kama manusura wanajulishwa au la.",
+          "overdueAfter": "Saa 48",
+          "unresponsiveAfter": "Saa 48"
+        }
+      },
+      "infoIcon": {
+        "content": "Kanuni bora zinahitaji tuhuma zote zikubaliwe, zikaguliwe, zichunguzwe iwapo inafaa, na mtu aliyeleta tuhuma ajulishwe matokeo. Kila hatua inaonyeshwa katika uwajibikaji. Viwango vya sekta vinaeleza muda wa kukamilisha kila hatua. Mchoro unaonyesha muda wa wastani wa kesi zote. Kijani = kwa wakati, Njano = imechelewa, Nyekundu = hakuna majibu. Kesi iliyofungwa ni ile ambayo hakuna hatua zaidi inahitajika.",
+        "seeHere": "Angalia hapa",
+        "link": "/"
+      }
+    },
+    "outcomesOfInvestigation": {
+      "infoIcon": {
+        "content": "Kulingana na viwango vya sekta, mashirika yakitupa matokeo ya rufaa na uchunguzi, Loop inaweza kuonyesha mwenendo wa matokeo. Hii hutusaidia kuelewa athari za watu kutoa maoni nyeti na mashirika kufuata uwajibikaji."
+      },
+      "title": "Matokeo ya {{value}} uchunguzi uliokamilika ni yapi?",
+      "types": {
+        "notEnoughInformation": "Taarifa haitoshi kukagua tuhuma",
+        "offenceSubstantiatedAndOffender": "Makosa yamethibitishwa na mkosaji ametenganishwa na shirika na manusura",
+        "offenderFacedDisciplinary": "Mkosaji amechukuliwa hatua za kinidhamu",
+        "offenderResignedFromOrganisation": "Mkosaji amejiuzulu kabla/wakati wa uchunguzi",
+        "other": "Matokeo mengine",
+        "referralToClearCheckMade": "Rufaa kwa Clear check imefanywa",
+        "referralToMisconductDisclosureScheme": "Rufaa kwa mpango wa Misconduct Disclosure",
+        "notSubstantiated": "Haijathibitishwa"
+      }
+    },
+    "survivorGender": {
+      "title": "Jinsia ya manusura",
+      "info": "Loop ikipata taarifa za kutosha, kuhakikisha siri inalindwa, tunaonyesha jinsia ya manusura kulingana na aina ya tuhuma. Hii hutusaidia kuelewa mwenendo na muktadha na kutupa mwongozo kuhusu nani tunapaswa kulenga kwa msaada na ulinzi."
+    },
+    "noAnonymousData": "Kesi hazitoshi kuonyesha taarifa hii kwa usalama na kuhakikisha siri inalindwa"
+  },
+  "caseTypes": {
+    "SEAH": "Unyanyasaji na udhalilishaji wa kingono",
+    "protection": "Ulinzi",
+    "fraudOrCorruption": "Udanganyifu na ufisadi",
+    "otherMisconduct": "Uovu mwingine",
+    "urgentCases": "Kesi za dharura",
+    "label": "Aina ya kesi"
+  },
+  "smsOpenWelcome": "Hii ni huduma ya kiotomatiki ya kutoa maoni kuhusu mashirika katika eneo lako.",
+  "smsOpenReplayOnSubmit": "Asante. Tunajali faragha yako. Maelezo ya ziada utakayotoa yatatusaidia kufikisha maoni yako kwa shirika sahihi.",
+  "smsOpenEndReplay": "Asante kwa kutumia Loop. Tafadhali waambie marafiki na familia yako pia wanaweza kutumia Loop.",
+  "smsOpenOrganisationHasReplied": "Hivi karibuni umetuma maoni kwa Loop. Kuna mtu {organisation} amejibu. Hivi ndivyo walivyosema:",
+  "smsOpenOrganisationHasRepliedEnd": "Ukihitaji kujibu, tuma tu ujumbe na kile unachotaka kusema. Hakuna sharti la kujibu.",
+  "smsOpenNotificationPublishedStory": "Hivi karibuni umetuma maoni kwa TalkToLoop.org. Maoni haya yamechapishwa na msimamizi.",
+  "smsOpenNotificationRejectedStory": "Hivi karibuni umetuma maoni kwa TalkToLoop.org. Msimamizi ameamua kutochapisha maoni yako.",
+  "smsOpenNotificationPublishedReplay": "Hivi karibuni umetuma jibu kwa maoni kwenye TalkToLoop.org. Msimamizi sasa amechapisha jibu lako.",
+  "smsOpenNotificationRejectedReplay": "Hivi karibuni umetuma jibu kwa maoni kwenye TalkToLoop.org. Msimamizi ameamua kutochapisha jibu lako.",
+  "smsCloseWelcome": "Hii ni huduma ya kiotomatiki ya kutulelezea ulichopitia au kutoa malalamiko nyeti. Tunajali faragha yako.",
+  "smsCloseReplayOnSubmit": "Asante. Ukitoa taarifa zaidi itatusaidia kushughulikia maoni yako.",
+  "smsCloseReplayForConsent": "Asante. Je, iwapo tutahija, twaweza kuwasiliana nawe kuhusu maoni yako? Ukikubali, jibu \"Ndiyo\". Ukikataa, jibu \"Hapana\".",
+  "smsCloseReplayOnConsentAccept": "Asante kwa kuamini Loop. Tutashughulikia maoni yako sasa.",
+  "smsCloseReplayOnConsentDecline": "Asante. Hatutawasiliana tena kuhusu jambo hili, lakini tutalichunguza kadiri ya uwezo wetu kwa taarifa tulizo nazo.",
+  "smsOpenWelcome2": "Maoni yako yataonekana mtandaoni. Tutakutumia majibu moja kwa moja kwenye simu yako. Hakuna mtu mwingine atakayepata namba yako. Unaweza kutoa maoni yako sasa.",
+  "smsOpenReplayOnSubmit2": "Jibu kwa jina lako, umri, eneo na shirika ambalo maoni yako yanahusu. Ukikataa, jibu \"Hapana\".",
+  "smsOpenEndReplay2": "Unaweza toa maoni yako nasi kwa kujibu \"Loop\", au \"X\" (kwa masuala nyeti) kwa namba hii. Asante na kwaheri.",
+  "smsOpenOrganisationHasRepliedEnd2": "Unaweza toa maoni yako nasi wakati wowote kwa kutuma \"Loop\" au \"X\" (kwa masuala nyeti) kwa namba hii. Asante na kwaheri.",
+  "smsOpenNotificationRejectedStory2": "Sababu ni {{var:reject_reason:\"\"}}.",
+  "smsOpenNotificationRejectedReplay2": "Sababu ni {{var:reject_reason:\"\"}}{{var:reject_rationale:\"\"}}.",
+  "smsOpenNotificationRejectedStory3": "Msimamizi pia ameandika {{var:reject_rationale:\"\"}}.",
+  "smsCloseWelcome2": "Loop haitashiriki taarifa binafsi bila idhini yako. Sasa unaweza kutoa maoni yako.",
+  "smsCloseReplayOnConsentAccept2": "Unaweza kushiriki uzoefu tena nasi kwa kujibu \"Loop\" (kwa masuala yasiyo nyeti) au \"X\" (kwa masuala nyeti) kwa namba hii. Asante na kwaheri.",
+  "smsCloseReplayOnConsentDecline2": "Unaweza kutuelezea maoni yako nasi kwa kujibu \"Loop\" au \"X\" (kwa masuala nyeti) kwa namba hii. Asante na kwaheri.",
+  "smsCloseReplayOnSubmit2": "Tafadhali jibu ujumbe huu kwa jina lako/ jina la utani, umri, jinsia, eneo, na jina la shirika",
+  "inbox": {
+    "navigation": {
+      "stories": "Maoni",
+      "replies": "Majibu",
+      "requests": "Ombi",
+      "suggestions": "Ombi",
+      "rejections": "Kukataa"
+    },
+    "filters": {
+      "labels": {
+        "language": "Lugha",
+        "country": "Nchi",
+        "channel": "Njia",
+        "targetLanguage": "Lugha unayotaka",
+        "sensitivity": "Hali ya unyeti"
+      },
+      "channel": {
+        "1": "Tovuti",
+        "2": "SMS",
+        "3": "Facebook Messenger",
+        "4": "WhatsApp",
+        "5": "Sauti"
+      }
+    },
+    "table": {
+      "assignedTo": "Imetolewa kwa",
+      "dateTime": "Tarehe na Saa",
+      "channel": "Njia",
+      "status": "Hali",
+      "country": "Nchi",
+      "language": "Lugha",
+      "type": "Aina ya maoni",
+      "stories": {
+        "label": "Kisanduku cha maoni"
+      },
+      "loading": "Inapakia maoni",
+      "actions": {
+        "review": "Mapitio"
+      },
+      "replies": {
+        "label": "Kisanduku cha majibu"
+      },
+      "languageAndCountry": "Lugha na Nchi",
+      "actionsColumn": "Vitendo"
+    },
+    "storiesList": {
+      "sensitive": "Nyeti"
+    },
+    "moderator": {
+      "tags": {
+        "sensitive": "Maoni haya yamewekwa nyeti kiotomatiki kwa sababu umri uko chini ya miaka 14"
+      }
+    }
+  },
+  "language": {
+    "relativeTime": {
+      "s": "Sekunde chache zilizopita",
+      "ss": "{{value}} sekunde zilizopita",
+      "m": "Dakika moja iliyopita",
+      "mm": "{{value}} dakika zilizopita",
+      "h": "Saa moja iliyopita",
+      "hh": "{{value}} saa zilizopita",
+      "d": "Siku moja iliyopita",
+      "dd": "{{value}} siku zilizopita",
+      "M": "Mwezi mmoja uliopita",
+      "MM": "{{value}} miezi iliyopita",
+      "y": "Mwaka mmoja uliopita",
+      "yy": "{{value}} miaka iliyopita"
+    },
+    "monthsShort": {
+      "January": "Jan",
+      "February": "Feb",
+      "March": "Mar",
+      "April": "Apr",
+      "May": "Mei",
+      "June": "Jun",
+      "July": "Jul",
+      "August": "Ago",
+      "September": "Sep",
+      "October": "Okt",
+      "November": "Nov",
+      "December": "Des"
+    }
+  },
+  "assistanceReferred": {
+    "yes": "Ndiyo",
+    "no": "Hapana",
+    "notApplicable": "N/A",
+    "label": "Msaada umetolewa"
+  },
+  "outcomesOfInvestigation": {
+    "offenceSubstantiatedAndOffender": "Kosa limethibitishwa na mkosaji ametenganishwa na shirika na manusura",
+    "offenderResignedFromOrganisation": "Mkosaji amejiuzulu kutoka shirika kabla/wakati wa uchunguzi",
+    "offenderFacedDisciplinary": "Mkosaji amechukuliwa hatua za kinidhamu",
+    "notEnoughInformation": "Taarifa haitoshi kukagua tuhuma",
+    "referralToMisconductDisclosureScheme": "Rufaa kwa mpango wa Misconduct Disclosure na/au Clear check imefanywa",
+    "label": "Matokeo ya Uchunguzi",
+    "other": "Matokeo mengine"
+  },
+  "social-bot": {
+    "messenger": {
+      "HELLO": "Habari! Tumegundua lugha yako ni Kiingereza. Unataka kubadilisha?",
+      "YES": "✅ Ndiyo",
+      "NO": "❌ Hapana",
+      "CHANGED": "Inabadilishwa",
+      "NOTCHANGED": "Haibadilishwi",
+      "CHOOSE_LANG": "Tafadhali chagua lugha unayopendelea kwa kutumia vitufe hapa chini.",
+      "EN": "Kiingereza",
+      "TL": "Wikang Tagalog",
+      "thanks": "Asante",
+      "question": "Ombi la Taarifa",
+      "opinion": "Maoni",
+      "request": "Ombi la Msaada",
+      "concern": " Shida",
+      "STORY_TYPE_SENSITIVE_ISSUE": "Jambo nyeti",
+      "LANG_CHANGED": "Lugha imebadilishwa EN",
+      "SHOW_MORE": "Onyesha zaidi",
+      "SEND_MESSAGE": "Sawa, ujumbe gani wa shukrani ungependa kutoa?",
+      "GET_STARTED_LOOP": "Ili kuanza, tafadhali tuambie ni aina gani ya maoni ungependa kutoa?",
+      "WELCOME": "Karibu Loop! Hii ni huduma ya kiotomatiki.",
+      "TALK_TO_LOOP": "Unaweza kuzungumza na Loop kuhusu mashirika yanayofanya kazi katika eneo lako. Tutatafsiri maoni yako na kujaribu kupata mashirika husika yajibu.",
+      "GET_STARTED": "Anza",
+      "GREETINGS": "Hii ni huduma ya kiotomatiki ya kutoa maoni kuhusu mashirika katika eneo lako.",
+      "PROMOTE_LOOP": "Iwapo unataka kujadili jambo nyeti kama:\n❌ Udhalilishaji na unyanyasaji wa kingono\n❌ Ulinzi wa watoto\n❌ Ufisadi\n❌ Udanganyifu\n❌ Ukiukaji mwingine wa kanuni za maadili\n❌ Uovu mwingine\nTunapendekeza ufanye hivyo moja kwa moja kwenye tovuti yetu hapa:\nHii inahakikisha taarifa zako na maoni yako yapo tu kwenye seva zetu.\nJe, hii ndiyo ulikuwa unatafuta?",
+      "ALTERNATIVE_STORY": "Sawa. Ungependa kutoa maoni yasiyo nyeti au kueleza jambo kuhusu shirika katika eneo lako?",
+      "SENSITIVE_STORY_FLOW_CONFIRMATION": "Sawa. Tunatarajia kupokea maoni yako nyeti kupitia tovuti yetu hivi karibuni. Unaweza kuanzisha tena huduma hii wakati wowote kwa kubofya kitufe hapa chini:",
+      "RESTART": "Anza tena",
+      "SHARE_NEW_STORY": "Toa maoni tena",
+      "PROMOTE_DESCRIPTION": "Sawa. Loop ni jukwaa lako la kutoa maoni kuhusu mambo yanayokuhusu. Unaweza kupata maelezo zaidi kuhusu Loop kwenye tovuti www.talktoloop.org",
+      "END_OF_SERVICE": "Hii ni mwisho wa huduma hii ya kiotomatiki. Unaweza kutuma ujumbe mwingine kwetu wakati wowote kwa kubofya kitufe hapa chini.",
+      "THANKS": "Asante sana kwa kutumia Loop kuinua sauti yako na kuleta mabadiliko.",
+      "ADDITIONAL_INFO": "Kuna jambo lingine unaweza kutoa ili kutusaidia kufikisha maoni kwa watu sahihi?\nKama lipo, jibu ujumbe huu kwa jina la shirika 🏛️ na eneo 🌏️, au lolote unalotaka kuongeza.\nUkimaliza, gusa kitufe hapa chini.",
+      "FINISH": "Maliza 🏁",
+      "THANKS_FOR_SHARING": "🙏 Asante kwa kutoa maoni yako kwa Loop.",
+      "SHARE_DETAILS": "Je, ni sawa tukichapisha maelezo haya kutoka kwa wasifu wako wa Facebook pamoja na maoni yako? Hii hutusaidia kupata shirika husika lijibu maoni yako.\n📛 Jina lako: {{first_name}}\n⚤ Jinsia: {{gender}}",
+      "STORY_REVIEW": "Tutapitia maoni yako sasa na kukujulisha ndani ya saa 48 yatakapochapishwa mtandaoni.",
+      "SHARING_THANKS": "💪 Asante!",
+      "INVALID_OPTION": "Samahani, sijaelewa hilo. Tafadhali chagua kutoka kwa chaguo za haraka hapa chini.",
+      "SEND_QUESTION": "Sawa, swali gani ungependa kuuliza kwenye TalkToLoop.org?",
+      "SEND_OPINION": "Sawa, maoni gani ungependa kutoa kwenye TalkToLoop.org?",
+      "SEND_SUGGESTION": "Sawa, ombi gani ungependa kutoa kwenye TalkToLoop.org?",
+      "SEND_CONCERN": "Sawa, shida gani ungependa kutoa kwenye TalkToLoop.org?",
+      "STORY_STATUS_PUBLISHED": "Hivi karibuni umetuma maoni kwenye TalkToLoop.org. Maoni haya yamechapishwa na msimamizi.",
+      "STORY_STATUS_REJECTED": "Hivi karibuni umetuma maoni kwenye TalkToLoop.org. Msimamizi ameamua kutochapisha maoni yako. Sababu ni {{reasonText}}.",
+      "ORGANIZATION_COMMENT": "Hivi karibuni umetuma maoni kwa Loop. Kuna mtu (kutoka {{organization}}) amejibu.\nUnaweza kuona jibu na kujibu kupitia kiungo {{reply}}\nUnaweza kutoa maoni zaidi kwetu kwa kuandika 'Loop' wakati wowote.",
+      "END_OF_SERVICE_MODERATOR_FLOW": "Asante kwa jibu lako. Msimamizi atapitia maoni yako ndani ya saa 48. Unaweza kutoa maoni zaidi kwetu wakati wowote kwa kubofya kitufe hapa chini.",
+      "ADD_STORY_NOTIFICATION": "Maoni yako yameongezwa kiotomatiki. Asante.",
+      "ADD_STORY_NOTIFICATION_FAILED": "Maoni yako hayawezi kuongezwa. Tafadhali wasiliana nasi.",
+      "FR": "Bonyeza {index} kwa Kifaransa",
+      "AR": "Kiarabu",
+      "ES": "Kihispania",
+      "KEEP_ANONYMOUS": "Hakuna tatizo. Tutakuhifadhi bila jina."
+    },
+    "KEEP_ANONYMOUS": "Hakuna tatizo. Tutakuhifadhi bila jina.",
+    "SKIP": "Ruka",
+    "REUSE_DETAILS": "Je, ni sawa kuchapisha maelezo haya uliyotupa awali pamoja na maoni yako? Jina: {{firstName}} Umri: {{age}} Jinsia: {{gender}} Ulemavu: {{disability}}",
+    "REUSE_DETAILS_BUTTONS": "Tafadhali tumia vitufe hapa chini, au andika 'Ndiyo', au 'Hapana' kujibu",
+    "PERSONAL_DETAILS": "Sawa, karibu umalize. Tunataka kukuuliza maswali mafupi 4 kukuhusu. Hii hutusaidia kufikisha maoni yako kwa watu sahihi.",
+    "DONT_REUSE_DETAILS": "Sawa, unataka kujibu maswali haya tena?",
+    "USER_NAME": "(1/4) Jina lako ni nani?",
+    "USER_AGE": "(2/4) Una umri gani?",
+    "USER_GENDER": "(3/4) Jinsia yako ni ipi?",
+    "USER_DISABILITY": "(4/4) Hatimaye, una ulemavu?",
+    "SHARE_ADDITIONAL_INFO": "Sawa, ukitoa taarifa zaidi watu wengi wanaweza kujibu. Kwa mfano: 🏛️  Jina la shirika 🌏️  Nchi na eneo la maoni",
+    "CHOOSE_LANG": "Unazungumza lugha gani?",
+    "INVALID_OPTION": "Samahani, sijaelewa hilo. Tafadhali chagua kutoka kwa chaguo za haraka hapa chini.",
+    "IF_SENSITIVE_STORY": "Ikiwa maoni yako ni nyeti tafadhali nenda kwa:",
+    "TALK_TO_LOOP": "Vinginevyo, tafadhali toa maoni yako sasa.",
+    "THANKS": "Asante kwa kutumia Loop kuinua sauti yako na kuleta mabadiliko. Tutapitia na kuchapisha maoni yako ndani ya saa 24-48, mara nyingi haraka zaidi. Tutakutumia majibu tutakapoyapata. Kwaheri. Kuanzisha tena andika 'Loop' au gusa kitufe hapa chini wakati wowote 😃",
+    "ADDITIONAL_INFO": "Kuna jambo lingine unaweza kutoa ili kutusaidia kufikisha maoni kwa watu sahihi?\nKama lipo, jibu ujumbe huu kwa jina la shirika 🏛️ na eneo 🌏️, au lolote unalotaka kuongeza.\nUkimaliza, gusa kitufe hapa chini.",
+    "RESTART": "🔄 Anza tena",
+    "ORGANIZATION_COMMENT_WRITE": "Hivi karibuni umetuma maoni kwa Loop. Kuna mtu (kutoka {{organisation}}) amejibu.\nUnaweza kuona jibu na kujibu kupitia kiungo: {{URL}}\nIli kutoa maoni zaidi, andika 'Loop' wakati wowote 😃",
+    "ANY_COMMENT_BUTTON": "Hivi karibuni umetuma maoni kwa Loop. Kuna mtu amejibu maoni yako.\nUnaweza kuona jibu na kujibu kupitia kiungo: {{URL}}\nIli kutoa maoni zaidi, andika 'Loop' au gusa kitufe hapa chini wakati wowote 😃",
+    "YES": "✅ Ndiyo",
+    "NO": "❌ Hapana",
+    "EN": "Bonyeza {index} kwa Kiingereza",
+    "TL": "Pindutin ang {index} para sa Tagalog",
+    "WELCOME": "👋 Karibu TalkToLoop.org!",
+    "GET_STARTED": "Anza",
+    "GREETINGS": "👋 Hii ni huduma ya kiotomatiki ya kutoa maoni kuhusu mashirika katika eneo lako.",
+    "SHARE_NEW_STORY": "✏ Toa maoni zaidi",
+    "PROMOTE_DESCRIPTION": "Sawa. TalkToLoop.org ni jukwaa lako la kutoa maoni kuhusu masuala yanayokuhusu. Unaweza kupata maelezo zaidi kuhusu TalkToLoop kwenye tovuti yetu www.talktoloop.org",
+    "END_OF_SERVICE": "Hii ni mwisho wa huduma hii ya kiotomatiki. Unaweza kutuma ujumbe mwingine kwetu wakati wowote kwa kubofya kitufe hapa chini.",
+    "STORY_STATUS_PUBLISHED": "Hivi karibuni umetuma maoni kwenye TalkToLoop.org. Maoni haya yamechapishwa na msimamizi.",
+    "STORY_STATUS_REJECTED": "Hivi karibuni umetuma maoni kwenye TalkToLoop.org. Msimamizi ameamua kutochapisha maoni yako. Sababu ni {{reasonText}}.",
+    "END_OF_SERVICE_MODERATOR_FLOW_BUTTON": "Asante kwa jibu lako. Msimamizi atapitia maoni yako ndani ya saa 48. Unaweza kutoa maoni zaidi kwetu wakati wowote kwa kubofya kitufe hapa chini.",
+    "ADD_STORY_NOTIFICATION": "Maoni yako yamewasilishwa. Asante.",
+    "ADD_STORY_NOTIFICATION_FAILED": "Maoni yako hayawezi kuwasilishwa. Tafadhali wasiliana nasi.",
+    "FR": "Bonyeza {index} kwa Kifaransa",
+    "AR": "اضغط على {index} للغة العربية",
+    "ES": "Presione {index} para español",
+    "UK": "Натисніть {index} для український",
+    "PL": "Kliknij {index} aby zmienić język na Polski",
+    "LOZ": "Musine {index} Mwa silozi",
+    "NY": "Dinizani {index} Muci nyanja",
+    "BEM": "Tinikeni {index} Muci Bemba",
+    "TOG": "Amutyanke {index} Muci Tonga",
+    "ID": "Pers untuk {index} Bahasa",
+    "REUSE_DETAILS_WRITE": "Tafadhali andika 'Ndiyo', au 'Hapana' kujibu",
+    "ORGANIZATION_COMMENT_BUTTON": "Hivi karibuni umetuma maoni kwa Loop. Kuna mtu (kutoka {{organisation}}) amejibu.\nUnaweza kuona jibu na kujibu kupitia kiungo: {{URL}}\nIli kutoa maoni zaidi, andika 'Loop' au gusa kitufe hapa chini wakati wowote 😃",
+    "ANY_COMMENT_WRITE": "Hivi karibuni umetuma maoni kwa Loop. Kuna mtu amejibu maoni yako.\nUnaweza kuona jibu na kujibu kupitia kiungo: {{URL}}\nIli kutoa maoni zaidi andika 'Loop' wakati wowote 😃",
+    "END_OF_SERVICE_MODERATOR_FLOW_WRITE": "Asante kwa jibu lako. Msimamizi atapitia maoni yako ndani ya saa 48. Unaweza kutoa maoni zaidi kwetu wakati wowote kwa kuandika 'Loop'."
+  },
+  "whatsapp-bot": {
+    "twilio": {
+      "CHOOSE_LANG": "Tafadhali chagua lugha yako:",
+      "EN": "Bonyeza {index} kwa Kiingereza",
+      "TL": "Amutyankke {index} Tagalog",
+      "WELCOME": "👋 Karibu Loop! Hii ni huduma ya kiotomatiki.",
+      "TALK_TO_LOOP": "Unaweza kuzungumza na Loop kuhusu mashirika yanayofanya kazi katika eneo lako. Tutatafsiri maoni yako na kujaribu kupata mashirika husika yajibu.",
+      "CHOOSE_LANG_DIDNT_UNDERSTAND": "Samahani, sijaelewa hilo.\n\nTafadhali chagua lugha yako:",
+      "SEND_OPINION": "Dunia nzima, watu wanatumia Loop kila siku kuinua sauti zao na kuleta mabadiliko. Unasaidia kuleta tofauti halisi katika jamii yako. 💪",
+      "THANKS": "Dunia nzima, watu wanatumia Loop kila siku kuinua sauti zao na kuleta mabadiliko. Unasaidia kuleta tofauti halisi katika jamii yako. 💪",
+      "ADDITIONAL_INFO_STORY": "Kuna maelezo mengine unaweza kutoa ili kutusaidia kufikisha maoni yako kwa watu sahihi?\nKwa mfano, jina la shirika 🏛️ na/au eneo 🌏️.\nUkikosa, jibu tu 'Hapana' kuacha hatua hii.",
+      "THANK_YOU_FOR_SHARING": "🙏 Asante kwa kutoa maoni yako kwa Loop.",
+      "SHARE_YOUR_NAME": "Je, ni sawa tukichapisha jina {{first_name}} kando ya maoni yako?",
+      "SHARE_NAME_YES": "✅ Andika \"1\" ikiwa ni sawa kuchapisha jina {{first_name}} kando ya maoni yako.",
+      "SHARE_NAME_NO": "❌ Andika \"2\" ikiwa unapendelea kubaki bila jina.",
+      "SHARE_YOUR_NAME_FALLBACK": "Samahani, sijaelewa hilo.\n✅ Andika Ndiyo: Ikiwa ni sawa kuchapisha jina {{first_name}} kando ya maoni yako.\n❌ Andika Hapana: Ikiwa unapendelea kubaki bila jina.",
+      "FINISH": "Sawa. Tutapitia maoni yako sasa na kukujulisha hivi karibuni yatakapochapishwa mtandaoni.",
+      "FINISH_RESTART": "Hii ni mwisho wa huduma hii ya kiotomatiki.\nUnaweza kutuma ujumbe mwingine kwetu wakati wowote kwa kuandika 'Loop'.",
+      "PUBLISH_NAME_THANKS": "👍️ Asante!",
+      "STAY_ANONYMOUS": "Hakuna tatizo. Tutakuhifadhi bila jina.",
+      "ABOUT_YOURSELF": "Kuna jambo lingine unaweza kutuambia kukuhusu? Kwa mfano, umri wako, jinsia yako, au mahali ulipo sasa? Hii hutusaidia kupata mashirika husika yajibu maoni yako.\nUkikosa, jibu tu 'Hapana' kuacha hatua hii.",
+      "END_OF_SERVICE_MODERATOR_FLOW": "Asante kwa jibu lako. Msimamizi atapitia maoni yako ndani ya saa 48. Unaweza kutuma ujumbe mwingine kwetu wakati wowote kwa kuandika 'Loop'.",
+      "YES": "Ndiyo",
+      "NO": "Hapana",
+      "SHARE_YOUR_NAME_ANSWERS": "✅ Andika Ndiyo: Ikiwa ni sawa kuchapisha jina {{first_name}} kando ya maoni yako.\n❌ Andika Hapana: Ikiwa unapendelea kubaki bila jina.",
+      "STORY_STATUS_PUBLISHED": "Hivi karibuni umetuma maoni kwenye TalkToLoop.org. Maoni haya yamechapishwa na msimamizi.",
+      "STORY_STATUS_REJECTED": "Hivi karibuni umetuma maoni kwenye TalkToLoop.org. Msimamizi ameamua kutochapisha maoni yako. Sababu ni {{reasonText}}.",
+      "ORGANIZATION_COMMENT": "Hivi karibuni umetuma maoni kwa Loop. Kuna mtu (kutoka {{organization}}) amejibu.\nUnaweza kuona jibu na kujibu kupitia kiungo {{reply}}\nUnaweza kutoa maoni zaidi kwetu kwa kuandika 'Loop' wakati wowote.",
+      "ANY_COMMENT": "Hivi karibuni umetuma maoni kwa Loop. Kuna mtu amejibu. Hivi ndivyo walivyosema: {{reply}}\nUkihitaji kujibu ujumbe huu, bonyeza tu kiungo {{URL}}\nUnaweza kutoa maoni zaidi kwetu kwa kuandika 'Loop' wakati wowote hapa.",
+      "ADD_STORY_NOTIFICATION": "Maoni yako yamewasilishwa kiotomatiki. Asante.",
+      "ADD_STORY_NOTIFICATION_FAILED": "Maoni yako hayawezi kuongezwa. Tafadhali wasiliana nasi.",
+      "LOZ": "Bonyeza {index} kwa Lozi",
+      "NY": "Bonyeza {index} kwa Cinyanja",
+      "BEM": "Bonyeza {index} kwa Bemba",
+      "TOG": "Piliin ang {index} para sa Tonga",
+      "ID": "Pers untuk {{value}} Bahasa Indonesia",
+      "PRESS_FOR_LANG": "Bonyeza {{value}} kwa Kiingereza",
+      "PL": "Kliknij {index} aby zmienić język na Polski",
+      "UK": "Натисніть {index} для український"
+    }
+  },
+  "communityGuidelines": {
+    "header": {
+      "title": "Miongozo ya Jamii",
+      "paragraph": {
+        "main": "Kanuni yetu kuu ni kwamba kuna thamani ya kusikia maoni mbalimbali na kwamba hii inaleta athari kubwa. Kwa hivyo, tunahimiza sauti zote kushirikiwa kwa njia salama, ya kusaidiana, na ya kuchunguza. Kwa heshima kwa mawazo, uzoefu, na mitazamo ya kila mmoja. Tunaweza kutokukubaliana, lakini kutokubaliana si kisingizio cha tabia mbaya. Kuwa wa moja kwa moja, wa kujenga, na chanya.",
+        "1": "Pia, daima chukulia bora zaidi. Elewa kuwa watu wanaweza kushiriki kupitia njia tofauti na vikwazo tofauti: Kutotumia lugha yao ya asili; Kutoka tamaduni tofauti; Kutumia viwakilishi vingine isipokuwa \"yeye\"; Kuishi katika eneo la saa tofauti; Kukabiliwa na changamoto nyingine kushiriki; kutokuzoea mbinu za mitandao ya kijamii.",
+        "2": "Mazungumzo tunayofanya hapa yanaweka sauti kwa kila mtu mpya anayekuja. Tusidie kuathiri mustakabali wa jamii hii kwa kuchagua kushiriki katika mazungumzo yanayofanya jukwaa hili kuwa mahali pa kupendeza — na kuepuka yale yasiyofanya hivyo. Discourse inatoa zana zinazowezesha jamii kutambua pamoja michango bora (na mbaya zaidi): waweke lebo wengine, pigia kura maoni, jibu na uweke alama kwa Loop wasiwasi au masuala yoyote moja kwa moja kusaidia jamii kupata faida kubwa zaidi kutoka kwa jukwaa.",
+        "3": "Kuunda mahali salama pa kusikiliza na kushiriki, msimamizi anakagua maoni au majibu yote kabla ya kuwekwa kwenye jukwaa wazi. Ikiwa maelezo ya mawasiliano yametolewa, mtu ataarifiwa, na msimamizi, wakati yaliwekwa au kwanini hayakuwekwa, na wanaweza kufanya nini kurekebisha, ili yaweze kuwekwa.",
+        "4": "Hatutaweka maoni au majibu kwa sababu tano kuu:"
+      }
+    },
+    "section": {
+      "1": {
+        "paragraph": {
+          "1": "Loop inalenga kuhimiza watu kushiriki kwa usalama na kwa ujumuishi ili kusikiliza sauti zaidi. Kwa hivyo, hatutaweka maoni au majibu ambayo yana:",
+          "2": "<strong>Unyanyasaji au udhalilishaji:</strong> Huwezi kushiriki katika udhalilishaji unaolengwa kwa mtu au kuchochea watu wengine kufanya hivyo. Hii inajumuisha kutamani au kutumaini kwamba mtu anapata madhara ya kimwili, kuwatukana au kuwadharau. Pia inajumuisha maoni au utani wa kingono katika maingiliano."
+        },
+        "title": "Maoni/Jibu lina lugha ya kudhalilisha au ya kibaguzi."
+      },
+      "2": {
+        "title": "Maoni/jibu hayafuati viwango vya jamii vilivyoundwa kuhakikisha nafasi salama ya kushiriki maoni.",
+        "paragraph": {
+          "1": "Loop inaweza kusaidia vyema data kuarifu uboreshaji wa utoaji huduma ikiwa watu wengi kutoka asili tofauti wanaweza kushiriki kushiriki, kujifunza, na kushiriki. Tunahimiza mitazamo mipya kusikika na kusikilizwa kwa makini. Ongoza kwa mfano.",
+          "2": "<strong>Tabia ya chuki:</strong> Huwezi kukuza ukatili dhidi ya, kutishia, au kunyanyasa watu wengine kwa msingi wowote, ikiwa ni pamoja na: rangi, kabila, asili ya kitaifa, kasta, mwelekeo wa kijinsia, jinsia, utambulisho wa kijinsia, ushirika wa kidini, umri, ulemavu, ugonjwa mbaya, lugha ya asili, hali ya kiuchumi kijamii, eneo la kijiografia, nk. Kushambulia mtu kwa maoni yake, imani na mawazo pia hakukubaliki wala lugha ya kudharau au ya ukali",
+          "3": "<strong>Ukatili:</strong> Huwezi kutishia ukatili dhidi ya mtu mmoja au kundi la watu. Pia tunakataza kutukuza ukatili.",
+          "4": "<strong>Ugaidi/msimamo mkali wa ukatili:</strong> Huwezi kutishia au kukuza ugaidi au msimamo mkali wa ukatili.",
+          "5": "<strong>Unyonyaji:</strong> Hatuna uvumilivu wowote kwa aina yoyote ya unyonyaji, hii inajumuisha unyanyasaji wa kijinsia wa watoto.",
+          "6": "<strong>Kujiua au kujiumiza:</strong> Huwezi kukuza au kuhimiza kujiua au kujiumiza.",
+          "7": "<strong>Bidhaa au huduma haramu au zilizodhibitiwa:</strong> Huwezi kutumia huduma yetu kwa madhumuni yoyote haramu au kuendeleza shughuli haramu."
+        }
+      },
+      "3": {
+        "paragraph": {
+          "1": "Loop inahimiza watu kuzungumza kwa nafsi ya kwanza kuhusu maoni na uzoefu wao wenyewe, ambayo inaweza kuwa kwamba mtu mwingine aliwaambia kitu. Hii itahakikisha kuwa kipande kimoja cha maoni kinawakilisha uzoefu mmoja na mtazamo wa mtu mmoja kuhakikisha uwakilishi wa haki wa maoni na uzoefu.",
+          "2": "<strong>Kujifanya mtu mwingine au Kuripoti kwa Uwongo:</strong> Huwezi kujifanya watu binafsi, makundi, au mashirika. Hii inaweza kupotosha, kuchanganya, au kudanganya wengine.",
+          "3": "<strong>Udanganyifu wa jukwaa na spam:</strong> Loop haiwezi kutumika kwa madhumuni ya kudanganya au kuingilia ushiriki wa kiraia. Hii inajumuisha kuweka au kushiriki maudhui ambayo yanaweza kukandamiza ushiriki au kupotosha watu kuhusu wakati, mahali, au jinsi ya kushiriki katika mchakato wa kiraia.",
+          "4": "<strong>Machapisho yaliyotengenezwa na kompyuta:</strong> Huwezi kudanganya machapisho kuimarisha mtazamo fulani au kushawishi maoni. Maoni na majibu yanahitaji kuwa uzoefu wa kweli kutoka kwa mtu anayetuma maoni na sio kuzungumza kwa niaba ya mtu mwingine bila idhini yao.",
+          "5": "<strong>Hakimiliki na alama ya biashara:</strong> Huwezi kudai kuwakilisha shirika au mtu bila idhini yao ya wazi."
+        },
+        "title": "Kuna wasiwasi kuhusu uhalisi wa maoni/jibu."
+      },
+      "4": {
+        "title": "Kuna wasiwasi kuwa maoni/jibu linaweza kusababisha madhara likiwekwa hadharani. Linapelekwa kwa mtaalamu.",
+        "paragraph": {
+          "1": "Loop inalenga Kutofanya Madhara kwa watu binafsi na mashirika kutokana na Maoni au Majibu.",
+          "2": "<strong>Ulinzi:</strong> Ikiwa, kulingana na maoni na taarifa nyingine zilizoshirikiwa kwa hiari, kuweka maoni kwenye tovuti ya wazi inaweza kuhatarisha usalama wa mtu yeyote kwa njia yoyote, ikiwa ni pamoja na uwezekano wa kuwatambua, basi maoni/jibu yatarudishwa kupendekeza kuondolewa kwa taarifa fulani za utambulisho au kuelekezwa kwa mfumo wa maoni nyeti. Msimamizi wa Loop anaweza kuamua kuondoa baadhi ya vitambulisho ambavyo mtu amefichua ikiwa kuna wasiwasi wanaweza kutambuliwa na madhara yanaweza kutokea.",
+          "3": "<strong>Shutuma isiyothibitishwa:</strong> Chapisho linalokuwa na kauli ya uchochezi sana ambayo inaweza kusababisha hatari kubwa kwa mtu mmoja au shirika halitawekwa kwenye tovuti ya wazi lakini litaelekezwa kwa huduma ya Loop Iliyofungwa ili kuelekezwa kwa mhusika anayefaa kusimamia taarifa kwa njia salama na ya uwajibikaji."
+        }
+      },
+      "5": {
+        "paragraph": {
+          "1": "Machapisho yote lazima yaheshimu haki ya watu ya faragha na usiri.",
+          "2": "<strong>Taarifa za kibinafsi:</strong> Huwezi kuchapisha au kuweka taarifa za kibinafsi za watu wengine (kama vile nambari ya simu ya nyumbani na anwani) bila idhini na ruhusa yao ya wazi."
+        },
+        "title": "Maoni hayaheshimu haki ya faragha ya wengine."
+      },
+      "6": {
+        "title": "Jinsi ya kuripoti ikiwa unaamini kuwa Miongozo hii ya Jamii haijaheshimiwa:",
+        "paragraph": {
+          "1": "Hata hivyo ikiwa unahisi kuwa kipande cha maoni au jibu limewekwa ambalo linaweza kukiuka viwango au kanuni zozote zilizo hapo juu, tafadhali tuma barua pepe kwa <a href=\"mailto: hello@talktoloop.org\">hello@TalkToLoop.org</a> na kiungo cha maoni/jibu la wasiwasi na ueleze mtazamo wako. Utapokea jibu ndani ya saa 48.",
+          "2": "Ili kudumisha jamii yetu, wasimamizi wanajihifadhi haki ya kuondoa maudhui yoyote na akaunti yoyote ya mtumiaji kwa sababu yoyote wakati wowote. Wasimamizi wanakagua machapisho yote mapya; wasimamizi na waendeshaji wa tovuti wanafanya kadri wawezavyo kuweka nafasi salama, hata hivyo hatuwezi kuwajibika kwa maudhui yoyote yaliyowekwa na jamii.",
+          "3": "Tumetumia Sheria na Kanuni za Maadili za Twitter na Mozilla kuarifu hati hii. Tutaboresha na kuisasisha tunapojifunza na kukua. Tafadhali shiriki <a href=\"https://community.ready-initiative.org/login\">mapendekezo ya uhariri na uboreshaji</a>."
+        }
+      }
+    }
+  },
+  "routes": {
+    "login": "Ingia",
+    "resetPassword": "Weka upya nenosiri",
+    "changePassword": "Badilisha nenosiri",
+    "communityGuidelines": "Mwongozo wa jamii",
+    "stories": "Maoni",
+    "inbox": "Kisanduku cha kupokea ujumbe",
+    "replies": "Majibu",
+    "reviewReply": "Kagua jibu",
+    "inboxStories": "Maoni",
+    "reviewStory": "Kagua maoni",
+    "newStory": "Tuma maoni",
+    "profile": "Wasifu",
+    "statistics": "Takwimu",
+    "openStories": "Fungua maoni",
+    "sensitiveCases": "Kesi nyeti",
+    "storyDetails": "Maelezo ya maoni",
+    "inboxReplies": "Majibu",
+    "confirmUser": "Weka nenosiri",
+    "translateStory": "Tafsiri maoni",
+    "outbox": "kisanduku cha nje",
+    "outboxInProgress": "Inaendelea",
+    "outboxRejected": "Imekataliwa",
+    "outboxPendingRecording": "Inasubiri kurekodiwa",
+    "transcribeReply": "Andika tena jibu",
+    "reviewAndTranslate": "Kagua na tafsiri",
+    "magicLinkLogin": "Ingia kwa kiungo cha kipekee",
+    "register": "Karibu Loop",
+    "registerIndividual": "Tunakuuitaje?",
+    "magicLinkSent": "Asante!",
+    "registerOrganization": "Tafuta shirika lako",
+    "createOrganization": "Unda shirika jipya",
+    "processing": "Subiri kidogo tunapothibitisha akaunti yako",
+    "acceptTerms": "Tunajali faragha ya taarifa zako",
+    "confirmName": "Thibitisha jina lako kamili"
+  },
+  "outbox": {
+    "navigation": {
+      "pending-recording": "Inasubiri kurekodiwa",
+      "archive": "Kumbukumbu",
+      "in-progress": "Inaendelea"
+    },
+    "table": {
+      "targetLanguage": "Lugha unayotaka",
+      "dateTime": "Tarehe na saa",
+      "moderator": "Msimamizi",
+      "reply": "Jibu",
+      "actions": {
+        "review": "Kagua"
+      },
+      "pendingRecording": {
+        "label": "Kisanduku cha kutuma ujumbe cha kurekodi"
+      }
+    },
+    "details": {
+      "title": "Rekodi ujumbe wa kutoka",
+      "subtitle": "Rekodi maandiko kwenye kisanduku cha zambarau",
+      "introAudio": "Sauti ya utangulizi",
+      "preRecorder": "Iliyorekodiwa awali",
+      "audioToRecord": "Sauti ya kurekodi",
+      "outroAudio": "Sauti ya mwisho",
+      "sendThreeMessages": "Tuma ujumbe 3",
+      "hideStory": "Ficha maoni",
+      "showStory": "Onyesha maoni",
+      "backToOutbox": "Rudi kwenye kisanduku cha kutuma ujumbe",
+      "startHere": "Anza hapa",
+      "noContentForSelectedLanguageToast": {
+        "title": "Lugha bado haipo",
+        "subtitle": "Lugha yako haipo kupitia IVRR"
+      },
+      "originalStoryInformation": "Taarifa asili ya maoni"
+    }
+  },
+  "pin-to-story": {
+    "story": "Maoni",
+    "pinned": "Imebandikwa kwenye maoni",
+    "pin": "Bandika kwenye maoni",
+    "unpin": "Ondoa bandiko"
+  },
+  "smsOpenLanguageSentence": "\\nBonyeza {index} kwa Kiingereza",
+  "smsOpenTrigger": "Asante kwa kuwasiliana na Loop. Tafadhali chagua lugha yako:",
+  "smsCloseTrigger": "Karibu Loop ya ndani. Tafadhali chagua lugha yako:",
+  "got": {
+    "it": "Sawa"
+  },
+  "Registration": {
+    "Early_Access": "TalkToLoop.org – Upatikanaji wa mapema",
+    "Header_1": "Tunafurahi umechagua kujiunga na Loop!",
+    "Header_2": "Kuwa na akaunti kunamaanisha unahitaji kuingiza taarifa zako mara moja tu, hivyo kutoa maoni yako kunakuwa rahisi na haraka kila wakati.",
+    "Header_3": "Kwa mashirika, inamaanisha pia mtapokea taarifa kuhusu mijadala mnayoshiriki au mkitajwa ndani yake.",
+    "Header_4": "Je, unafanya kazi kwa shirika linalotoa msaada kwa watu wanaohitaji?",
+    "Header_5": "Kwa mfano shirika la kibinadamu, maendeleo, lisilo la kiserikali, lisilo la faida, misaada au shirika la kiraia? Ikiwa sivyo, acha kisanduku hiki bila tiki.",
+    "Name": "Jina au jina la utani",
+    "Name_1": "Tafadhali toa jina lako au jina la utani hapa chini. Hili litaonekana kando ya maoni au majibu utakayotuma kwenye TalkToLoop.org.",
+    "Email": "Anwani ya barua pepe",
+    "Email_1": "Weka barua pepe yako hapa chini. Tutakutaarifu hapa ikiwa kuna jibu kwa chochote utakachotuma.",
+    "Phone": "Nambari ya simu",
+    "Phone_1": "Kupokea ujumbe wa mara moja wakati TalkToLoop.org itapatikana kupitia WhatsApp na/au SMS, weka nambari yako kamili ya simu hapa chini.",
+    "Phone_2": "Tafadhali ongeza nambari ya kimataifa ya nchi kama ilivyoonyeshwa hapa chini. Hatutatoa nambari hii kwa mtu mwingine yeyote.",
+    "Phonenumber": "Philippines: +63 (0)12-345-6789",
+    "Phonenumber_1": "Zambia: +260 (0)123-456789",
+    "Consent": "Idhini",
+    "Consent_1": "Ninakubali jina langu kama lilivyoandikwa hapo juu kuchapishwa kando ya maoni au majibu nitakayotuma kwenye TalkToLoop.org",
+    "Submit": "Tuma",
+    "Submit_1": "Usitumie nenosiri kupitia fomu za Airtable. Ripoti fomu hatarishi"
+  },
+  "comment": {
+    "status": {
+      "published_and_pending_call": "Simu inayosubiri"
+    },
+    "previewReply": "Kagua jibu",
+    "reRecordReply": "Rekodi tena jibu"
+  },
+  "createNewOrganization": {
+    "title": "Unda shirika jipya",
+    "description": {
+      "text": "Weka nchi kwenye sehemu ya jina tu ikiwa ni sehemu ya jina rasmi la shirika. Tumia herufi kubwa kwa majina maalum pekee (mfano 'Alliance for Community Action' si 'ALLIANCE For Community Action').",
+      "title": "Jina kamili la shirika"
+    },
+    "acronym": {
+      "text": "Shirika hili linajulikana zaidi kwa kifupi (mfano CARE, ADRA, UNICEF)",
+      "title": "Jina la kifupi",
+      "description": "Jina la kifupi hiki kitakuwa jina kuu la kuonyesha kwa shirika hili. Jina kamili la shirika litaonekana kwa kuongezea tu."
+    },
+    "country": {
+      "title": "Tawi la nchi",
+      "description": "Nchi zinatumika kutofautisha kati ya matawi tofauti ya shirika moja. Chagua tawi la nchi kwa shirika hili."
+    },
+    "cancel": "Ghairi",
+    "create": "Unda shirika jipya"
+  },
+  "organisation": {
+    "invitation": {
+      "title": "Alika mtu kwenye shirika",
+      "invite": "Alika",
+      "errorMessage": "Chagua shirika la kualika barua pepe hapo juu ijiunge.",
+      "linkEmail": "Unganisha barua pepe na shirika",
+      "email": "Barua pepe ya shirika",
+      "language": "Lugha ya mwaliko",
+      "userExistsPart1": "Mtu mwenye barua pepe",
+      "userExistsPart2": "tayari ni mwanachama wa shirika lililotajwa",
+      "userExistsPart3": "Haiwezekani kumualika mtu huyu kwenye shirika lingine.",
+      "noResult": "Hakuna shirika linalolingana na utafutaji wako lililopatikana",
+      "emailInvitedPart2": "tayari yupo kwenye orodha ya mwaliko wa maoni haya."
+    }
+  },
+  "yourMagicLinkNotification": "Habari,\n\nKuingia kwenye akaunti yako ya TalkToLoop.org, bonyeza kiungo hapo chini\n\nKiungo cha Kipekee\n\nKiungo chako cha kipekee kitaisha baada ya\n\ndakika.\n\n\nIkiwa kiungo chako kitaisha tafadhali\n\ningia tena,\n\nkupokea kiungo kingine.\n\nSalamu za dhati, Timu ya TalkToLoop.org",
+  "youHaveBeenConnectedToOrganizationNotification": "Habari,\n\nTalkToLoop.org ni jukwaa la bure linalokunganisha na jamii unazofanya nao kazi. Loop inasambaa kwa kasi na mashirika kama lako, na jamii katika {{var:organisation}} na maeneo mengine pia.\n\n\n\nTumeaanza kuchapisha maoni kutoka kwa jamii ambayo tunadhani yanafaa kwa shirika lako.\n\n\n\nTazama na ujibu maoni kwa kutumia kitufe hapo chini.\n\nTAZAMA MAONI\n\nIkiwa kitufe hakifanyi kazi, nakili na ubandike URL hapo chini kwenye kivinjari chako:\n\nSalamu za dhati, Timu ya TalkToLoop.org",
+  "youHaveBeenInvitedToOrganizationNotification": "Habari,\n\nTalkToLoop.org ni jukwaa la bure linalokunganisha na jamii unazofanya nao kazi. Loop inasambaa kwa kasi na mashirika kama lako na jamii duniani kote.\n\nUmealikwa kujiunga na {{var:organisation.name}} kwenye TalkToLoop.org. Kukubali mwaliko huu bonyeza kitufe hapo chini.\n\nKUBALI MWALIKO\n\nIkiwa kitufe hakifanyi kazi unaweza kunakili na kubandika URL ifuatayo kwenye kivinjari chako\n\nSalamu za dhati, Timu ya TalkToLoop.org",
+  "downloadButton": {
+    "text": "Pakua"
+  },
+  "unifiedFeedbackExportButton": {
+    "text": "Usafirishaji wa pamoja"
+  },
+  "requestPremium": {
+    "modal": {
+      "header": {
+        "text": "Kuwa Mwanaharakati wa Loop ili kupakua data"
+      },
+      "table": {
+        "free": {
+          "title": "Bure",
+          "subtitle": "milele"
+        },
+        "premium": {
+          "title": "Mwanaharakati",
+          "subtitle": {
+            "part1": "€1000*",
+            "part2": "/kwa mwaka"
+          }
+        },
+        "rows": {
+          "first": "Pakua data kama faili ya CSV",
+          "second": "Toa data kiotomatiki kupitia API",
+          "third": "Chuja data kwenye ukurasa wetu wa takwimu",
+          "fourth": "Jibu maoni kwa lugha mbalimbali",
+          "fifth": "Pokea taarifa pale shirika lako litakapotajwa kwenye maoni"
+        },
+        "additionalInfo": {
+          "text": "Kiwango cha Mwanaharakati kinapatikana bila malipo kwa mashirika ya kiraia ya ndani.",
+          "button": {
+            "text": "Omba sasa"
+          }
+        }
+      },
+      "footer": {
+        "cancelButton": {
+          "text": "Ghairi"
+        },
+        "requestButton": {
+          "text": "Kuwa Mwanaharakati wa Loop"
+        }
+      }
+    },
+    "description": "Mwanachama wa timu yetu atawasiliana nawe hivi karibuni.",
+    "title": "Ombi lako limewasilishwa"
+  },
+  "min": "Ndogo",
+  "max": "Kubwa",
+  "seconds": "Sekunde",
+  "wordCount": {
+    "singleWord": "neno",
+    "multipleWords": "maneno"
+  },
+  "duration": {
+    "minutes": "dakika",
+    "seconds": "sekunde"
+  },
+  "simplePlayer": {
+    "playing": "Inachezwa...",
+    "play": "Cheza",
+    "loading": "Inapakia..."
+  },
+  "pagination": {
+    "info": "{{firstVisibleItemNumber}} - {{lastVisibleItemNumber}} kati ya {{totalItems}}",
+    "itemsPerPage": "Vitu kwa kila ukurasa",
+    "selectAll": "Chagua vyote",
+    "reject": "Kataa ({{count}})",
+    "assignModerators": "Wape wasimamizi ({{count}})",
+    "deselectAll": "Ondoa chaguo zote"
+  },
+  "report": {
+    "submitReport": "Tuma ripoti",
+    "title": "Ombi la kuondoa kipande cha maoni yaliyochapishwa au jibu",
+    "intro": "Tafadhali tumia fomu hii kutueleza kwa nini tunapaswa kuondoa kipande cha maoni yaliyochapishwa au jibu kutoka kwenye jukwaa la Talk to Loop.",
+    "introFormLinked": "Fomu hii imeunganishwa na kipande kimoja cha maoni au jibu moja.",
+    "introConfidential": "Tutaangalia maombi yote na kuyashughulikia kwa usiri ndani ya wiki moja ya kazi.",
+    "introGuidelines": "Tafadhali rejelea mwongozo wa jamii",
+    "guidelinesLink": "hapa",
+    "reportAboutLabel": "Ripoti yangu inahusu:",
+    "originalFeedback": "Kipande cha maoni ya asili",
+    "oneOfReplies": "Moja ya majibu",
+    "specifyReply": "Tafadhali taja jibu husika ikiwa yapo zaidi ya moja.",
+    "guidelinesBreachLabel": "Maoni haya au jibu hili linakiuka moja ya miongozo ya jamii ya Loop ifuatayo:",
+    "offensiveLanguage": "Lugha ya matusi au ya kibaguzi",
+    "communityStandards": "Halifuati viwango vya jamii vilivyowekwa ili kuhakikisha usalama",
+    "authenticityConcern": "Wasiwasi kuhusu uhalisia wa maoni au jibu",
+    "causesHarm": "Husababisha madhara kwa wengine",
+    "privacyViolation": "Haliheshimu faragha ya wengine",
+    "additionalInfo": "Je, kuna taarifa nyingine za ziada za kuunga mkono ombi lako?",
+    "contactEmail": "Iwapo unataka kupokea maoni kuhusu uamuzi wetu, tafadhali andika barua pepe yako",
+    "emailPlaceholder": "yako@email.com",
+    "optional": "(si lazima)",
+    "submitButton": "Tuma ripoti",
+    "cancelButton": "Ghairi",
+    "successMessage": "Ripoti yako imetumwa kwa mafanikio"
+  }
+}

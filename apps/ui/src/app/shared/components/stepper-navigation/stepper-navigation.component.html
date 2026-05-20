@@ -1,0 +1,27 @@
+<div class="stepper-navigation" tabindex="-1">
+  <div>
+    <app-button
+      cy="stepper-back-btn"
+      *ngIf="prevVisible"
+      [disabled]="!prevEnabled"
+      (clicked)="prevClicked.emit()"
+      class="back-button"
+      mode="v2"
+      variant="secondary"
+    >
+      <app-arrow-previous-icon class="mr-0625"></app-arrow-previous-icon>{{ 'newStoryV2.navigation.back' | translate }}</app-button
+    >
+  </div>
+  <div>
+    <app-button
+      cy="stepper-next-btn"
+      *ngIf="nextVisible"
+      [disabled]="!nextEnabled"
+      (clicked)="nextClicked.emit()"
+      class="next-button"
+      mode="v2"
+      variant="primary"
+      >{{ 'newStoryV2.navigation.next' | translate }}<app-arrow-next-icon class="ml-0625"></app-arrow-next-icon
+    ></app-button>
+  </div>
+</div>

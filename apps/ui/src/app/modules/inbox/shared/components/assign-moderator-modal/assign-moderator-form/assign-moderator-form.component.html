@@ -1,0 +1,64 @@
+<loop-modal>
+  <div class="assign-moderator">
+    <h2>{{ 'admin.assignModeratorModal.title' | translate }}</h2>
+
+    <loop-input
+      [showClearBtn]="false"
+      [showCloseIcon]="false"
+      [placeholder]="getPlaceholder()"
+      [formControl]="searchOrganisation"
+      class="flex-grow-1"
+      cy="autocomplete-loop-input"
+      autocomplete="off"
+      [solidPlaceholder]="true"
+    >
+      <app-search-icon prefix class="autocomplete__icon autocomplete__search-icon"></app-search-icon>
+    </loop-input>
+
+    <div class="assign-moderator__content">
+      <mat-table [dataSource]="moderators" class="inbox-table">
+        <ng-container matColumnDef="moderator">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let moderator" class="item" [class.selected]="moderator.selected">
+            <div class="header" [class.selected]="moderator.selected">
+              <div class="main">
+                <div class="story-content">
+                  <app-checkbox
+                    [checked]="moderator.selected"
+                    [v2]="true"
+                    (click)="onModeratorSelect(moderator)"
+                    [alwaysRenderCheckmark]="true"
+                  ></app-checkbox>
+                  <div class="intro">
+                    <div>{{ moderator.nickname }}</div>
+                    <div>{{ moderator.email }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['moderator']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['moderator']"></tr>
+      </mat-table>
+    </div>
+
+    <div class="assign-form__actions" action-buttons>
+      <app-button (click)="onModalClose()" class="assign-form__button" mode="v2" variant="outlined">
+        <span>{{ 'admin.assignModeratorModal.cancelButton' | translate }}</span>
+      </app-button>
+
+      <app-button
+        (click)="confirmAssignment()"
+        data-testid="assign-form-app-button-submit"
+        class="assign-form__button"
+        mode="v2"
+        variant="danger"
+        [disabled]="isModeratorSelected"
+      >
+        <span>{{ 'admin.assignModeratorModal.assignButton' | translate }}</span>
+      </app-button>
+    </div>
+  </div>
+</loop-modal>

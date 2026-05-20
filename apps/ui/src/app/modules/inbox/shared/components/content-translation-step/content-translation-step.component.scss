@@ -1,0 +1,100 @@
+@import 'variables';
+@import 'mixins';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form {
+  &__selector {
+    display: inline-block;
+    max-width: 20.125rem;
+    width: 100%;
+
+    &--small {
+      width: 11rem;
+    }
+  }
+
+  &__target-language {
+    &-row {
+      &-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &-selector {
+        max-width: 11rem;
+      }
+    }
+
+    &-title {
+      margin-bottom: 1rem;
+      margin-top: 1.875rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+
+      @include mobile-up {
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &__translated-text {
+    margin-top: 1.844rem;
+
+    ::ng-deep {
+      .bx--text-area {
+        min-height: 20rem;
+        font-size: 1rem;
+
+        &::placeholder {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  &__error {
+    color: $support-01;
+    font-size: 0.75rem;
+  }
+}
+
+.icon-margin {
+  @include margin-right(0.625rem);
+}
+
+.save-translation__button {
+  font-size: 1.125rem;
+  height: 2.5rem;
+
+  @include mobile-up {
+    height: 3.75rem;
+  }
+}
+
+.new-translation__textarea {
+  display: block;
+  padding: 1rem 0;
+
+  @include mobile-up {
+    padding: 1.25rem 0;
+  }
+}
+
+.add-translation__button {
+  display: flex;
+  height: 3.125rem;
+
+  @include mobile-up {
+    height: 4.063rem;
+  }
+
+  &-title {
+    margin-top: 1.875rem;
+  }
+}

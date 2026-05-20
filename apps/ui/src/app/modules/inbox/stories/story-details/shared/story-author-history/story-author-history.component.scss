@@ -1,0 +1,33 @@
+.feedback-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px; /* Add padding inside each line */
+    margin-bottom: 10px; /* Add space between rows */
+    border: 1px solid #ccc; /* Full-width border around each row */
+    border-radius: 2px; /* Optional: slight rounding for aesthetics */
+  }
+
+  .feedback-item.clickable {
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .feedback-item.clickable:hover {
+    background-color: #f5f5f5;
+    border-color: #999;
+  }
+
+  .feedback-item.clickable:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  }
+  
+  .feedback-status {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .feedback-date {
+    font-size: 15px;
+    color: #747474;
+  }

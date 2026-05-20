@@ -1,0 +1,8 @@
+<app-story-action-buttons
+  [loading]="performingSaveAction"
+  [rejectTranslateKey]="'story.details.review.buttons.rejectStory'"
+  [submitTranslateKey]="storyDetailsService.story.isSensitive ? 'admin.pendingStoryReview.sendToCaseManager' : 'story.details.review.buttons.publishStory'"
+  [backButtonDisplayCondition]="false"
+  (rejectClick)="handleRejectClick()"
+  (submitClick)="handlePublishClick()"
+></app-story-action-buttons>

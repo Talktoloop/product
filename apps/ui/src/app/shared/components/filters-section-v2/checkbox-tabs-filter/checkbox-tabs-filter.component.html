@@ -1,0 +1,50 @@
+<div *ngIf="title" class="filter-v2-container__section-title" [class.mobile-title]="(ui.mobileView$ | async) && nestedModalMode">
+  <div class="d-flex-space-between">
+    <span class="filter-v2-container__section-title-name">{{ title }}</span>
+    <app-button
+      mode="v2"
+      variant="link-3"
+      class="filtersV2-link-button modal-see-all__button"
+      *ngIf="isModal && !nestedModalMode && isAllFiltersModal"
+      (clicked)="onSeeAllClicked($event)"
+    >
+      {{ 'filtersV2.seeAll' | translate }}
+      <app-expand-more-icon class="modal-see-all__icon"></app-expand-more-icon>
+    </app-button>
+  </div>
+  <div *ngIf="!isNestedModalMode" class="separator" [class.no-bottom-margin]="isModal"></div>
+</div>
+<mat-tab-group *ngIf="!isModal; else modalView" mat-align-tabs="start" animationDuration="0ms" [disableRipple]="true">
+  <mat-tab [label]="tab.translationKey | translate" *ngFor="let tab of data">
+    <form [formGroup]="form">
+      <loop-checkbox-wrapper
+        [formControlName]="tab.controlName"
+        [options]="tab.data"
+        [isModal]="isModal"
+        (totalSelectedChange)="selectionChanged(tab.controlName, $event)"
+        [strictTranslationCode]="true"
+      >
+      </loop-checkbox-wrapper>
+    </form>
+  </mat-tab>
+</mat-tab-group>
+
+<ng-template #modalView>
+  <form [formGroup]="form" class="checkbox-list__modal-view" *ngIf="isNestedModalMode || !isAllFiltersModal">
+    <ng-container *ngFor="let tab of data; let i = index">
+      <div *ngIf="i < data.length" class="filter-v2-container__section-title">
+        <div class="separator above"></div>
+        <span class="filter-v2-container__section-title-name">{{ tab.translationKey | translate }}</span>
+        <div class="separator"></div>
+      </div>
+      <loop-checkbox-wrapper
+        [formControlName]="tab.controlName"
+        [options]="tab.data"
+        [wideStyle]="true"
+        [isModal]="isModal"
+        [strictTranslationCode]="true"
+      >
+      </loop-checkbox-wrapper>
+    </ng-container>
+  </form>
+</ng-template>

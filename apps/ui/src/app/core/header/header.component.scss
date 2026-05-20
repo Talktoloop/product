@@ -1,0 +1,248 @@
+@import 'variables';
+@import 'mixins';
+@import 'loop-design-system/colors';
+@import 'loop-design-system-v2/colors';
+
+$padding-vert: 0.625rem;
+
+$header-common-styles: (
+  padding-top: $padding-vert,
+  padding-bottom: $padding-vert,
+  background: $color-green-light,
+  align-items: center
+);
+
+.header {
+  $self: &;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $header-zindex;
+
+  @include mobile-only {
+    transition: transform 0.8s ease;
+  }
+
+  &.hide {
+    @include mobile-only {
+      transform: translateY(-100%);
+    }
+  }
+
+  &__element {
+    @each $property, $value in $header-common-styles {
+      #{$property}: #{$value};
+    }
+    @include padding-right(0.647rem);
+
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr) auto auto auto auto;
+    column-gap: 1px;
+    align-items: center;
+    align-content: center;
+
+    @include mobile-up {
+      height: $header-height;
+    }
+  }
+
+  &__login_header {
+    @each $property, $value in $header-common-styles {
+      #{$property}: #{$value};
+    }
+    @include padding-left(1.75rem);
+    @include padding-right(0.647rem);
+
+    display: flex;
+    justify-content: space-between;
+
+    @include mobile-up {
+      height: $header-height;
+    }
+  }
+
+  &__hamburger {
+    @include margin-right(2.063rem);
+    align-items: center;
+    background: none;
+    border-radius: 8px;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    height: 3.5rem;
+    justify-content: center;
+    padding: 1.313rem 1.125rem 1.313rem;
+    width: 3.5rem;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &__logo {
+    @include margin-right(5.5rem);
+  }
+
+  &__nav-links {
+    @include margin-right(0.313rem);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+  }
+
+  &__nav-link {
+    align-items: center;
+    color: #ffffff;
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: 500;
+    height: $header-height;
+    line-height: normal;
+    margin: -($padding-vert) 0;
+    outline: none;
+    padding: 0 1.04rem;
+    position: relative;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.3s;
+
+    &__badge {
+      @include margin-left(0.625rem);
+      display: flex;
+      font-weight: bold;
+      padding: 0.125rem 0.5rem;
+      border-radius: 50px;
+      background-color: #ffffff;
+      color: $color-green-90;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 0.25rem;
+      background: transparent;
+    }
+
+    &:focus,
+    &:hover {
+      background: $color-green-stepper;
+
+      &::before {
+        background: $color-green-very-light;
+      }
+    }
+
+    &--active {
+      cursor: default;
+      background: #ffffff !important;
+      color: $color-green-60 !important;
+
+      .header__nav-link__badge {
+        background-color: $color-green-90;
+        color: #ffffff;
+      }
+
+      &::before {
+        background: $loop-orange !important;
+      }
+    }
+  }
+
+  &__login-status {
+    @include mobile-only {
+      position: relative;
+      width: 3rem;
+      height: 1.375rem;
+    }
+  }
+
+  &__separator {
+    height: 1.25rem;
+    margin: 0 0.13rem;
+    padding: 0;
+    background: $color-green-very-light;
+    width: 0.063rem;
+  }
+
+  &__lang-picker {
+    margin-left: auto;
+    @include margin-right(0.603rem);
+  }
+
+  @media (max-width: 1400px) {
+    .header__logo,
+    .header__hamburger {
+      @include margin-right(0);
+    }
+  }
+
+  @media (max-width: 1100px) {
+    &__element {
+      padding-top: $padding-vert;
+      padding-bottom: $padding-vert;
+      @include padding-left($padding-vert);
+      @include padding-right($padding-vert);
+    }
+
+    &__nav-link {
+      padding: 0.95rem;
+    }
+  }
+
+  @media (max-width: 900px) {
+    &__nav-link {
+      padding: 1.375rem 0.25rem;
+    }
+  }
+
+  @include mobile-only {
+    &__element {
+      grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+      @include padding-left(1.3125rem);
+      @include padding-right(1.3125rem);
+    }
+
+    &__nav-links {
+      display: none;
+    }
+
+    .header__hamburger {
+      width: 0.9375rem;
+      height: unset;
+      padding: 0;
+      @include margin-right(1.4375rem);
+
+      app-menu-icon {
+        ::ng-deep svg {
+          height: 1.25rem;
+        }
+      }
+    }
+    .header__logo {
+      object-fit: scale-down;
+      width: .34rem;
+    }
+    &__separator {
+      height: 1.75rem;
+    }
+  }
+}
+
+
+.main-logo {
+  width: 160px;
+  object-fit: scale-down;
+
+  @include mobile-only {
+    width: 120px;
+  }
+}

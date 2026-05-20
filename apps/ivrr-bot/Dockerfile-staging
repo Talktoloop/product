@@ -1,0 +1,39 @@
+FROM public.ecr.aws/bitnami/node:16
+
+RUN apt-get update && apt-get install -y \
+       build-essential \
+       libssl-dev \
+       jq
+
+RUN apt-get update && \
+    apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-setuptools \
+        groff \
+        less \
+    && pip3 install --upgrade pip \
+    && apt-get clean
+
+RUN pip3 --no-cache-dir install --upgrade awscli
+
+RUN mkdir -p /app
+
+COPY . /var/www/backend
+WORKDIR /var/www/backend
+
+RUN chmod +x /var/www/backend/entrypoint.sh
+
+ARG NPM_TOKEN
+ENV ENV_NPM_TOKEN=$NPM_TOKEN
+
+EXPOSE 5002
+
+RUN env
+RUN npm config set @ourloop:registry https://gitlab.com/api/v4/packages/npm/
+RUN npm config set '//gitlab.com/api/v4/packages/npm/:_authToken' $ENV_NPM_TOKEN
+RUN npm config set '//gitlab.com/api/v4/projects/24487110/packages/npm/:_authToken' $ENV_NPM_TOKEN
+RUN yarn
+RUN yarn run build
+
+ENTRYPOINT /var/www/backend/entrypoint.sh

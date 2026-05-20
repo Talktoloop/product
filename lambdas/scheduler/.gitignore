@@ -1,0 +1,10 @@
+# Build-time copies of shared/ produced by buildspec.yml
+registration_scheduler/shared/
+loop_advocate_scheduler/shared/
+ivrr_scheduler/shared/
+ivrr_clear_history/shared/
+gateway_scheduler/shared/
+
+# npm
+**/node_modules/
+**/package-lock.json

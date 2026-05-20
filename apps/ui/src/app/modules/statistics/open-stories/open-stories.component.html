@@ -1,0 +1,12 @@
+<div class="stats-container">
+  <ng-container *ngIf="filtersConfig$ | async as config">
+    <loop-filter-section-v2
+      [config]="config"
+      [showAllStoriesButton]="false"
+      (filtersChanged)="fetchMetabaseUrl($event)"
+    ></loop-filter-section-v2>
+  </ng-container>
+  <ng-container *ngIf="iframeURL">
+    <iframe [src]="iframeURL" width="100%" height="2000px" allowtransparency [frameBorder]="0"></iframe>
+  </ng-container>
+</div>

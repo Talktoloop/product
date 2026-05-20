@@ -10,13 +10,15 @@ const delegatedProps = computed(() => {
 
   return delegated
 })
+
+const descriptionClass = tw`
+  text-sm
+  text-muted-foreground dark:text-muted-foreground
+`
 </script>
 
 <template>
-  <DialogDescription
-    :class="cn('text-sm text-muted-foreground', props.class)"
-    v-bind="delegatedProps"
-  >
+  <DialogDescription :class="cn(descriptionClass, props.class)" v-bind="delegatedProps">
     <slot />
   </DialogDescription>
 </template>

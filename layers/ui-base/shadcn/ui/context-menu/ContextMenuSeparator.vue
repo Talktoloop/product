@@ -10,11 +10,16 @@ const props = defineProps<ContextMenuSeparatorProps & { class?: HTMLAttributes['
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props
-
   return delegated
 })
+
+const separatorClasses = tw`
+  -mx-1 my-1 h-px 
+  bg-border
+  dark:bg-dark-border
+`
 </script>
 
 <template>
-  <ContextMenuSeparator v-bind="delegatedProps" :class="cn('-mx-1 my-1 h-px bg-border', props.class)" />
+  <ContextMenuSeparator v-bind="delegatedProps" :class="cn(separatorClasses, props.class)" />
 </template>

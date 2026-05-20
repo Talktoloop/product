@@ -1,0 +1,51 @@
+<nav class="aside" (appClickOutside)="closed.emit()">
+  <div class="aside__header">
+    <img class="main-logo" src="assets/new-logo-loop.png" />
+    <button class="aside__header-close" (click)="closeAside()"
+      [attr.aria-label]="'navbar.header.closeIconAlt' | translate">
+      <app-close-icon></app-close-icon>
+    </button>
+  </div>
+
+  <div class="aside__links">
+    <ul class="aside__links-static-menu">
+      <li *ngFor="let link of menuStaticLinks; let last = last; trackBy: linkTrackFn">
+        <ng-container *ngIf="link.url; else routerLink">
+          <a class="aside__link aside__link--big" [class.aside__link--last]="last" [href]="link.url"
+            [attr.target]="link.target">
+            <span>{{ link.code | translate }}</span>
+            <app-open-in-new-icon *ngIf="link.target === '_blank'" class="aside__link-icon"></app-open-in-new-icon>
+          </a>
+        </ng-container>
+        <ng-template #routerLink>
+          <a class="aside__link aside__link--big" [class.aside__link--last]="last" [routerLink]="link.routerLink"
+            (click)="closeAside()">
+            <span>{{ link.code | translate }}</span>
+          </a>
+        </ng-template>
+      </li>
+    </ul>
+
+    <ul>
+      <li *ngFor="let link of staticLinks; trackBy: linkTrackFn">
+        <a class="aside__link" [href]="link.url" [attr.target]="link.target">{{ link.code | translate }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="aside__footer">
+    <div class="aside__footer-auth">
+      <app-login-status (click)="closeAside()" [showTextOnMobiles]="true"></app-login-status>
+    </div>
+    <!-- <div class="aside__footer-lang">
+      <span>{{ 'navbar.languageChange.changeLabel' | translate }} </span><app-language-picker></app-language-picker>
+    </div> -->
+    <div>
+      <a *ngFor="let link of socialLinks; trackBy: linkTrackFn" class="aside__social-link" [href]="link.url"
+        [attr.target]="link" [attr.aria-label]="link.code | translate">
+        <img [src]="link.imagePath" [alt]="link.code | translate" />
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="aside__blur"></div>

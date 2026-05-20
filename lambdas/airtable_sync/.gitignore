@@ -1,0 +1,8 @@
+# Build-time copies of shared/ produced by buildspec.yml
+case_manager_sync/shared/
+organisations_sync/shared/
+organisation_user_save/shared/
+
+# npm
+**/node_modules/
+**/package-lock.json

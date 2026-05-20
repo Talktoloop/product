@@ -1,0 +1,54 @@
+<div class="transcribe-container" *ngIf="reply">
+  <div class="transcribe-header">
+    <h1 class="transcribe-header__title">{{ 'global.transcribeReply' | translate }}</h1>
+
+    <p class="transcribe-header__subtitle">
+      {{ 'story.details.transcribe.header.subtitle' | translate }}
+    </p>
+  </div>
+
+  <div class="transcribe-content">
+    <app-audio-player [isEscapeButtonEnable]="true" [audioSrc]="audioSrc$ | async"></app-audio-player>
+    <div class="p-rel">
+      <loop-textarea
+        [formControl]="transcribeControl"
+        [maxLength]="30000"
+        [autosize]="true"
+        [placeholder]="'story.details.transcribe.content.placeholder' | translate"
+        [small]="true"
+      >
+      </loop-textarea>
+    </div>
+  </div>
+
+  <div class="transcribe-footer">
+    <app-slide-toggle
+      (changed$)="poorAudioQualityChange($event)"
+      [checked]="poorAudioQuality"
+      [text]="'story.details.transcribe.footer.poorAudioQuality' | translate"
+    ></app-slide-toggle>
+
+    <app-button
+      *ngIf="!poorAudioQuality"
+      class="transcribe-footer__review-button"
+      mode="v2"
+      variant="primary"
+      [disabled]="loading"
+      (clicked)="submitTranscribe()"
+    >
+      <span>{{ 'admin.pendingReplyReview.heading' | translate }}</span>
+      <app-arrow-next-icon></app-arrow-next-icon>
+    </app-button>
+
+    <app-button
+      *ngIf="poorAudioQuality"
+      class="transcribe-footer__reject-button"
+      mode="v2"
+      variant="danger"
+      [disabled]="loading"
+      (clicked)="handleRejectClick()"
+    >
+      <span>{{ 'admin.pendingReplyReview.rejectReply' | translate }}</span>
+    </app-button>
+  </div>
+</div>

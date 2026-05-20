@@ -1,0 +1,4 @@
+<div *ngIf="isVisible" class="callout" [ngClass]="variant">
+  <button class="close-btn" (click)="close()">×</button>
+  <ng-content></ng-content>
+</div>

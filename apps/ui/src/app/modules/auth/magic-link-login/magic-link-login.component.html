@@ -1,0 +1,44 @@
+<div class="login-panel">
+  <div class="login-panel__logo" [routerLink]="['/']">
+    <img [src]="logoPath" alt="Talk to Loop Logo" />
+  </div>
+  <div class="login-panel__form-container">
+    <h2 *ngIf="accountRequired">{{ 'auth.magicLinkLogin.form.title' | translate }}</h2>
+    <h4>{{ 'auth.magicLinkLogin.form.description' | translate }}</h4>
+    <form form [formGroup]="loginForm" class="login-panel__form">
+      <label class="login-panel__label-container">
+        <span class="login-panel__label-content">
+          {{ 'auth.magicLinkLogin.form.username.label' | translate }}
+        </span>
+        <loop-input (keydown.enter)="sendMagicLink($event)" [showClearBtn]="true" [showCloseIcon]="true"
+          autocomplete="email" formControlName="email" id="email" inputmode="email" type="email"></loop-input>
+      </label>
+      <app-button *ngIf="!requestProcessing; else loaderTemplate" mode="v2" variant="primary"
+        (click)="sendMagicLink($event)">{{
+        'auth.magicLinkLogin.form.button.text' | translate
+        }}</app-button>
+      <ng-template #loaderTemplate>
+        <div class="login-panel__loader">
+          <img src="assets/icons/loader.gif" />
+        </div>
+      </ng-template>
+    </form>
+  </div>
+  <div class="login-panel__footer">
+    <h2>
+      <span>{{ 'auth.magicLinkLogin.footer.separator' | translate }}</span>
+    </h2>
+    <app-button [routerLink]="['/']" mode="v2" variant="link-3">{{ 'auth.magicLinkLogin.footer.button.text' | translate
+      }}</app-button>
+    <div class="login-panel__social-links">
+      <a *ngFor="let link of socialLinks" class="login-panel__social-link" [href]="link.url" [attr.target]="link.target"
+        [attr.aria-label]="link.code | translate">
+        <img [src]="link.imagePath" [alt]="link.code | translate" />
+      </a>
+    </div>
+  </div>
+</div>
+<div class="login-image" *ngIf="!isMobile && !isTablet">
+  <div [innerHTML]="magicLinkLoginSvg"></div>
+  <h3 class="login-image__description">{{ 'auth.magicLinkLogin.image.description' | translate }}</h3>
+</div>

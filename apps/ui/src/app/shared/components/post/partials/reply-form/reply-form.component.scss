@@ -1,0 +1,163 @@
+@import 'variables';
+@import 'loop-design-system/colors';
+@import 'mixins';
+
+.bx--form-item {
+  margin-bottom: 1.5rem !important;
+}
+
+.reply-gray {
+  color: $text-secondary;
+}
+
+.subtext-textarea {
+  color: grey;
+  font-size: smaller;
+}
+
+.reply-form {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: -0.313rem;
+
+    &-icon {
+      color: $loop-green-100;
+      @include margin-right(0.938rem);
+    }
+
+    &-text {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: $dark-grey;
+    }
+  }
+
+  &__section {
+    margin-bottom: 1.875rem;
+
+    &:last-of-type {
+      margin-bottom: 2.5rem;
+    }
+
+    &-heading {
+      font-size: 1.125rem;
+      font-weight: 600;
+      @include text-align-left;
+      color: $dark-grey;
+      margin-bottom: 0.063rem;
+    }
+
+    $input-max-width: 24.75rem;
+
+    &-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      @include text-align-left;
+      color: $grey;
+      margin-bottom: 0;
+      max-width: $input-max-width;
+
+      @include mobile-only {
+        max-width: 100%;
+      }
+    }
+
+    &-input {
+      display: block;
+      margin-top: 0.938rem;
+      max-width: $input-max-width;
+
+      @include mobile-only {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+  }
+
+  &__submit-button {
+    flex-grow: 1;
+
+    ::ng-deep {
+      button {
+        max-width: 19.063rem;
+        width: 100%;
+        padding: 1.25rem 1.625rem;
+
+        .content {
+          justify-content: space-between;
+        }
+
+        @include mobile-only {
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__success-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5.18rem;
+    padding-bottom: 2.813rem;
+
+    @include mobile-only {
+      padding-top: 4rem;
+    }
+
+    &-icon {
+      ::ng-deep {
+        svg {
+          height: 2.875rem;
+          width: 2.875rem;
+        }
+      }
+
+      color: $loop-green-100;
+      margin-bottom: 1.25rem;
+
+      @include mobile-only {
+        margin-bottom: 1.675rem;
+      }
+    }
+
+    &-text {
+      font-size: 1.25rem;
+      font-weight: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+      color: $dark-grey;
+      margin-bottom: 1.25rem;
+
+      @include mobile-only {
+        font-size: 1rem;
+        margin-bottom: 0.808rem;
+      }
+    }
+
+    ::ng-deep {
+      .button {
+        .content {
+          font-size: 1.125rem;
+          font-weight: 600;
+          font-style: normal;
+
+          @include mobile-only {
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-community-guidelines',
+  templateUrl: './community-guidelines.component.html',
+  styleUrls: ['./community-guidelines.component.scss'],
+})
+export class CommunityGuidelinesComponent {}

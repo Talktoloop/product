@@ -1,0 +1,40 @@
+<loop-card class="single-reply">
+  <div class="reply-heading-container">
+    <app-post-author-date class="d-block mb-125" [postData]="comment" class="post-author-date"></app-post-author-date>
+    <loop-post-context-menu
+      *ngIf="comment && comment.status !== COMMENT_STATUS.PENDING_REVIEW"
+      [id]="comment.id"
+      [postType]="'reply'"
+    ></loop-post-context-menu>
+  </div>
+  <app-pill
+    *ngIf="comment.solution_proposed"
+    [text]="'comments.reply.solutionProposedTag' | translate"
+    [verified]="true"
+    variant="new"
+    theme="green"
+  >
+  </app-pill>
+  <app-story-content class="post__content d-block mb-1438" [content]="commentContent"></app-story-content>
+  <div class="thematic_tags" >Thematic Tags: {{ thematicAreas | async }}</div>
+  <app-story-translations
+    *ngIf="comment.translations && comment.translations.length"
+    (languageSelected)="handleCommentLanguageChange($event)"
+    [currentTranslationType]="comment.contentType"
+    [originalLanguage]="comment.language"
+    [selectedLanguage]="selectedContentLang"
+    [translations]="comment.translations"
+    class="post__translations d-block mb-125"
+  ></app-story-translations>
+  <div class="post__section-separator"></div>
+  <app-comment-actions
+    (replyClick)="handleReplyClick()"
+    (upvoteClick)="handleUpvoteClick()"
+    [isReplyEnable]="isReplyEnable"
+    [isUpVoteEnable]="isUpVoteEnable"
+    [isReplyFormShown]="isReplyFormShown"
+    [voted]="voted"
+    [votes]="votes"
+    class="d-block mt-1125"
+  ></app-comment-actions>
+</loop-card>

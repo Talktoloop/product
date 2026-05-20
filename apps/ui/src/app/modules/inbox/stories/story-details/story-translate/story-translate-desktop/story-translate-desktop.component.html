@@ -1,0 +1,46 @@
+<div class="story-translate">
+  <div class="story-translate__details-container parent-container">
+    <!-- Right container -->
+    <div class="story-translate__right-container">
+      <div class="background">
+        <app-post-translation-controller
+          *ngIf="storyDetailsService.story"
+          (deleteTranslation)="deleteTranslation($event)"
+          (languagesChanged)="updatedLanguages($event)"
+          (retryTranslation)="retryTranslation($event)"
+          (verifyTranslation)="verifyTranslation($event)"
+          [initialTranslations]="translations"
+          [originalLanguage]="storyDetailsService.story.language"
+          [processing]="processing"
+          [selectedLanguage]="targetLanguage"
+          [selectedLanguageContent]="translatedText"
+        ></app-post-translation-controller>
+
+        <app-content-translation-step
+          *ngIf="storyDetailsService.story && !allTranslated"
+          (submitTranslation)="submitTranslation()"
+          (targetLanguageChange)="targetLanguage = $event"
+          (translatedTextChange)="translatedText = $event"
+          [atLeastOneTranslated]="atLeastOneTranslated"
+          [languagesOptions]="translationOptions"
+          [originalLanguage]="storyDetailsService.story.language"
+          [processing]="processing"
+          [targetLanguage]="targetLanguage"
+          [translatedText]="translatedText"
+        ></app-content-translation-step>
+
+        <app-divider class="full-width__divider pt-2"></app-divider>
+
+        <app-story-translate-action-buttons></app-story-translate-action-buttons>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div *ngIf="submittingError" class="story-translate__validation-banner">
+    <loop-banner
+      [bannerTheme]="BannerTheme.ERROR"
+      [prefixIcon]="LoopIcon.Name.Info"
+      [text]="'story.details.translate.form.toast.error.translateError' | translate"
+    ></loop-banner>
+  </div> -->
+</div>
