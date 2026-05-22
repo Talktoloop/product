@@ -3,7 +3,7 @@
     "Region": "eu-central-1",
     "UserPoolId": "eu-central-1_KjtYqDo4D",
     "ClientId": "64rargu0qhc91kjdr7ns31fts6",
-    "LoginUrl": "https://auth.talktoloop.org/log_in"
+    "LoginUrl": "https://auth.prod.talktoloop.org/log_in"
   },
   "frontendSessionTime": 3600,
   "rollbarConfig": {
