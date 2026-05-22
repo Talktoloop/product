@@ -13,7 +13,17 @@ phases:
       - cd ${APP_PATH}
       - docker login --username abeloop --password dckr_pat_ajdMae5o45IQ3J1XZ6yeVwoEEAc
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-8)
-      - docker build . --target=final --tag $ECR_URL:$IMAGE_TAG
+      # Map CodeBuild's $ENVIRONMENT (e.g. dev, production) to the Angular config filename
+      # in src/assets/config-${BUILD_ENV}.json. Stays env-agnostic — same buildspec on every branch.
+      - |
+        case "$ENVIRONMENT" in
+          production) BUILD_ENV=production ;;
+          dev|development) BUILD_ENV=development ;;
+          staging)    BUILD_ENV=staging ;;
+          *)          echo "Unknown ENVIRONMENT=$ENVIRONMENT, defaulting to staging" && BUILD_ENV=staging ;;
+        esac
+      - echo "Building UI with config-${BUILD_ENV}.json"
+      - docker build . --target=final --build-arg env=${BUILD_ENV} --tag $ECR_URL:$IMAGE_TAG
 
   post_build:
     commands:
