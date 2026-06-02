@@ -17,13 +17,9 @@ import { CommunicatorConfig } from '../common/type/communicator-config.type';
 import { Messages } from '../common/type/messages.type';
 import { ConfigService } from '@nestjs/config';
 import { RedisService } from '../communicator/service/redis.service';
-import { getLocalizedTemplate, TwilioLocalizedTemplates } from '../common/constant/twilio-templates';
-import { TwilioTemplateKey } from '../common/enum/twilio-template-key.enum';
 
 @Injectable()
 export class FlowService {
-  private flow: Array<FlowRecordInterface> = [];
-
   constructor(
     private readonly storageService: StorageService,
     private readonly i18n: I18nService,
@@ -50,10 +46,11 @@ export class FlowService {
       );
     }
     
+    let flow = await createFlowArray(pageConfig, user?.lang ?? pageConfig.defaultLanguage);
+
     const moderatorFlow = await this.handleModeratorFlow(
       senderId,
       pageConfig.pageId,
-      pageConfig.defaultLanguage,
       receivedMessages,
     );
 
@@ -84,6 +81,7 @@ export class FlowService {
           senderId,
           pageConfig.pageId,
           pageConfig,
+          flow,
         );
         return messagesToSend;
       }
@@ -92,6 +90,7 @@ export class FlowService {
         senderId,
         pageConfig,
         receivedMessages,
+        flow,
       );
     } else {
       messagesToSend = await this.generateMessagesForNewFlow(user, pageConfig);
@@ -111,8 +110,6 @@ export class FlowService {
       pageConfig,
     );
     
-    this.flow = await createFlowArray(pageConfig, pageConfig.defaultLanguage);
-
     const flow = await createFlowArray(pageConfig, pageConfig.defaultLanguage);
     const flowRecord = flow[0];
 
@@ -133,7 +130,6 @@ export class FlowService {
   async handleModeratorFlow(
     senderId: string,
     pageId: string,
-    defaultLang: string,
     messages: Messages,
   ): Promise<boolean> {
     const userModeratorFlow = await this.storageService.getUserModeratorFlow(
@@ -145,39 +141,11 @@ export class FlowService {
       return false;
     }
 
-    const userResponse = this.communicatorService.getLastMessage(messages);
-
-    const languageCode = userModeratorFlow.language || defaultLang;
-      const contentSid = getLocalizedTemplate(
-        languageCode as keyof typeof TwilioLocalizedTemplates,
-      TwilioTemplateKey.END_OF_SERVICE
-      );
-
-    const thanksResponse = this.i18n.translate('main.END_OF_SERVICE_MODERATOR_FLOW', {
-          lang: languageCode,
-    }).trim();
-
-      await this.communicatorService.sendMessage(
-        {
-          recipient: {
-            id: senderId,
-          },
-          message: {
-            text: thanksResponse,
-            contentSid: contentSid,
-            contentVariables: { title: thanksResponse },
-          },
-        },
-        pageId,
-      );
-
     await this.clientProxyService.sendUserModeratorResponse({
       messengerConversationId: userModeratorFlow.messengerConversationId,
-      senderId: senderId,
-      message: userResponse,
-      thanksResponse: thanksResponse,
+      senderId,
+      message: this.communicatorService.getLastMessage(messages),
     });
-    await this.storageService.clearUserModeratorFlow(senderId, pageId);
 
     return true;
   }
@@ -186,12 +154,13 @@ export class FlowService {
     senderId: string,
     pageConfig: CommunicatorConfig,
     incomingMessages: Messages,
+    flow: Array<FlowRecordInterface>,
   ): Promise<Array<MessageInterface>> {
     const user = await this.storageService.getUser(senderId, pageConfig.pageId);
     if (!user) {
       return [];
     }
-    const flowElement = this.getFlowElement(user.lastFlowId, this.flow);
+    const flowElement = this.getFlowElement(user.lastFlowId, flow);
 
     if (!flowElement) {
       return [];
@@ -217,7 +186,10 @@ export class FlowService {
           userResponse,
           pageConfig,
         );
-        
+        if (result?.updatedFlow) {
+          flow = result.updatedFlow;
+        }
+
         if (result?.nextFlowId) {
           nextFlowId = result.nextFlowId;
           break;
@@ -225,6 +197,10 @@ export class FlowService {
       }
 
       if (flowMessage.contentSid) {
+        if (!userResponse || !String(userResponse).trim()) {
+          nextFlowId = null;
+          break;
+        }
         const isValidOption = await this.validateQuickReply(
           [flowMessage],
           userResponse,
@@ -234,9 +210,10 @@ export class FlowService {
         if (!isValidOption) {
           nextFlowId = flowMessage.fallbackFlow;
         } else {
-          userResponse = !this.configService.get('application.supportedQuickReplies')
-            ? userResponse === '1' ? 'YES' : userResponse === '2' ? 'NO' : userResponse
-            : userResponse;
+          userResponse = this.normalizeTemplateButtonPayload(
+            userResponse,
+            flowElement,
+          );
           nextFlowId = await this.getFlowByQuickReply(
             user,
             flowElement,
@@ -249,7 +226,7 @@ export class FlowService {
     }
 
     if (nextFlowId) {
-      let nextFlowElement = this.getFlowElement(nextFlowId, this.flow);
+      let nextFlowElement = this.getFlowElement(nextFlowId, flow);
 
       if (!nextFlowElement) {
         nextFlowElement = EMPTY_FLOW;
@@ -316,6 +293,18 @@ export class FlowService {
     return flow.find((flowRecord) => flowRecord?.flowId === flowId);
   }
 
+  private normalizeTemplateButtonPayload(
+    userResponse: string,
+    flowElement: FlowRecordInterface,
+  ): string {
+    const next = flowElement.nextFlowId;
+    const mapNumeric =
+      (typeof next === 'object' && next !== null && 'YES' in next && 'NO' in next) ||
+      !this.configService.get('application.supportedQuickReplies');
+    if (!mapNumeric) return userResponse;
+    return userResponse === '1' ? 'YES' : userResponse === '2' ? 'NO' : userResponse;
+  }
+
   async getQuickReplies(
     flowMessages: FlowMessageInterface[],
     lang: string
@@ -369,7 +358,7 @@ export class FlowService {
     handlerName: string,
     userResponse: string,
     pageConfig: CommunicatorConfig,
-  ): Promise<{ nextFlowId: Flow }> {
+  ): Promise<{ nextFlowId?: Flow; updatedFlow?: Array<FlowRecordInterface> }> {
     if (!userResponse) {
       return;
     }
@@ -461,7 +450,8 @@ export class FlowService {
           pageConfig,
         );
 
-        break;
+        const updatedFlow = await createFlowArray(pageConfig, updatedLang);
+        return { updatedFlow };
       }
 
       case 'shareStory': {
@@ -571,19 +561,16 @@ export class FlowService {
     senderId: string,
     pageId: string,
     pageConfig: CommunicatorConfig,
+    flow: Array<FlowRecordInterface>,
   ): Promise<Array<MessageInterface>> {
     const user = await this.storageService.getUser(senderId, pageId);
-    const flow = await createFlowArray(
-      pageConfig,
-      user?.lang ?? pageConfig.defaultLanguage,
-    );
 
     if (!user) {
       return [];
     }
 
-    const flowIndex = this.flow.findIndex(
-      (flow) => flow.flowId === user.lastFlowId,
+    const flowIndex = flow.findIndex(
+      (flowRecord) => flowRecord.flowId === user.lastFlowId,
     );
 
     const flowRecord = flow[flowIndex];

@@ -15,7 +15,6 @@ import { NotificationController } from './controller/notification.controller';
 import { SmsModule } from '../sms/sms.module';
 import { UserRepository } from '../user/repository/user.repository';
 import { OrganisationRepository } from './../organisation/organisation.repository';
-import { CaseManagerModule } from '../case-manager/case-manager.module';
 
 @Module({
   imports: [
@@ -30,8 +29,6 @@ import { CaseManagerModule } from '../case-manager/case-manager.module';
       OrganisationRepository,
     ]),
     SmsModule,
-    CaseManagerModule
-
   ],
   controllers: [NotificationController],
   providers: [
