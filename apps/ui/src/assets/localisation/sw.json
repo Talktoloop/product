@@ -3375,13 +3375,14 @@
     "deselectAll": "Ondoa chaguo zote"
   },
   "report": {
-    "submitReport": "Tuma ripoti",
+    "submitReport": "Tuma ombi la kutoa",
     "title": "Ombi la kuondoa kipande cha maoni yaliyochapishwa au jibu",
     "intro": "Tafadhali tumia fomu hii kutueleza kwa nini tunapaswa kuondoa kipande cha maoni yaliyochapishwa au jibu kutoka kwenye jukwaa la Talk to Loop.",
     "introFormLinked": "Fomu hii imeunganishwa na kipande kimoja cha maoni au jibu moja.",
     "introConfidential": "Tutaangalia maombi yote na kuyashughulikia kwa usiri ndani ya wiki moja ya kazi.",
     "introGuidelines": "Tafadhali rejelea mwongozo wa jamii",
     "guidelinesLink": "hapa",
+    "guidelinesLinkSuffix": "kwa maelezo zaidi.",
     "reportAboutLabel": "Ripoti yangu inahusu:",
     "originalFeedback": "Kipande cha maoni ya asili",
     "oneOfReplies": "Moja ya majibu",
@@ -3396,7 +3397,7 @@
     "contactEmail": "Iwapo unataka kupokea maoni kuhusu uamuzi wetu, tafadhali andika barua pepe yako",
     "emailPlaceholder": "yako@email.com",
     "optional": "(si lazima)",
-    "submitButton": "Tuma ripoti",
+    "submitButton": "Tuma ombi la kutoa",
     "cancelButton": "Ghairi",
     "successMessage": "Ripoti yako imetumwa kwa mafanikio"
   }
