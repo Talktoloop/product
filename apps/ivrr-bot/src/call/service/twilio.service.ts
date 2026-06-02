@@ -452,54 +452,55 @@ export class TwilioService {
   async clearArchiveTwilioData(dateBefore: Date) {
     this.logger.debug('Removing archive twilio data...');
 
-    const archiveRecordings = await this.twilio.twilioClient.recordings.list({
+    const PAGE_SIZE = 50;
+
+    let recordingsRemoved = 0;
+    let recordingsPage = await this.twilio.twilioClient.recordings.page({
       dateCreatedBefore: dateBefore,
+      pageSize: PAGE_SIZE,
     });
+    while (recordingsPage) {
+      for (const recording of recordingsPage.instances) {
+        try {
+          await this.twilio.twilioClient.recordings(recording.sid).remove();
+          recordingsRemoved++;
+        } catch (error) {
+          this.logger.debug(
+            `Cannot remove recording ${recording.sid}: ${error}`,
+          );
+        }
+      }
+      recordingsPage = await recordingsPage.nextPage();
+    }
+    this.logger.debug(`Recordings removed: ${recordingsRemoved}`);
 
-    await Promise.all(
-      archiveRecordings.map((recording) =>
-        this.twilio.twilioClient.recordings(recording.sid).remove(),
-      ),
-    );
-
-    const archiveCalls = await this.twilio.twilioClient.calls.list({
+    let callsRemoved = 0;
+    let callsPage = await this.twilio.twilioClient.calls.page({
       startTimeBefore: dateBefore,
+      pageSize: PAGE_SIZE,
     });
-
-    this.logger.debug(`Call logs to remove: ${archiveCalls.length}`);
-
-    const operations = [];
-
-    archiveCalls.forEach((call) => {
-      operations.push(
-        this.removeRecord(call.sid)
-          .catch((error) =>
-            this.logger.debug(
-              `Cannot remove record for call ${call.sid}: ${error}`,
-            ),
+    while (callsPage) {
+      for (const call of callsPage.instances) {
+        await this.removeRecord(call.sid).catch((error) =>
+          this.logger.debug(
+            `Cannot remove record for call ${call.sid}: ${error}`,
           ),
-      );
-
-      operations.push(
-        this.removeFlowExecutionLogFromTwilio(call).catch((error) =>
+        );
+        await this.removeFlowExecutionLogFromTwilio(call).catch((error) =>
           this.logger.debug(
             `Cannot remove flow execution log for call ${call.sid}: ${error}`,
           ),
-        ),
-      );
-
-      operations.push(
-        this.removeCallLogFromTwilio(call.sid).catch((error) =>
+        );
+        await this.removeCallLogFromTwilio(call.sid).catch((error) =>
           this.logger.debug(
             `Cannot remove call log for call ${call.sid}: ${error}`,
           ),
-        ),
-      );
-    });
-
-    if (operations.length > 0) {
-      await Promise.all(operations);
+        );
+        callsRemoved++;
+      }
+      callsPage = await callsPage.nextPage();
     }
+    this.logger.debug(`Call logs removed: ${callsRemoved}`);
 
     this.logger.debug('clearArchiveTwilioData: DONE');
   }
@@ -508,18 +509,23 @@ export class TwilioService {
     this.logger.debug('Removing archive s3 audio files...');
 
     const archiveFiles = (await this.s3Service.listFiles()).Contents.filter(
-      (file) => file.LastModified <= dateBefore,
+      (file: { Key?: string; LastModified?: Date }) =>
+        file.LastModified && file.LastModified <= dateBefore,
     );
 
     this.logger.debug(`Files to remove: ${archiveFiles.length}`);
 
-    await Promise.all(
-      archiveFiles.map((file) => {
-        this.s3Service.deleteFile(file.Key);
-      }),
-    );
+    let removed = 0;
+    for (const file of archiveFiles) {
+      try {
+        await this.s3Service.deleteFile(file.Key);
+        removed++;
+      } catch (error) {
+        this.logger.debug(`Cannot delete S3 key ${file.Key}: ${error}`);
+      }
+    }
 
-    this.logger.debug('clearArchiveTwilioS3Files: DONE');
+    this.logger.debug(`clearArchiveTwilioS3Files: DONE (removed=${removed})`);
   }
 
   private getLastFlowDataByPhoneNumber = (
