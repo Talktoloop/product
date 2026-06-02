@@ -10,12 +10,12 @@ import { RedisService } from '../service/redis.service';
 @Controller()
 export class WhatsappController {
   private readonly logger: Logger = new Logger(WhatsappController.name);
-  
+
   constructor(
     private readonly communicatorService: CommunicatorService,
     private readonly redisService: RedisService
   ) {}
-  
+
 
   @MessagePattern({
     cmd: 'checkWhatsappConversationAvailability',
@@ -35,24 +35,24 @@ export class WhatsappController {
     data: ModeratorFlowMessageInterface,
   ): Promise<Array<UserFlowMessageInterface> | { status: string }> {
     this.logger.debug('--- sendMessageToWhatsappChat ---', JSON.stringify(data, null, 2));
-    
+
     const key = `moderator:${data.storyId}:${data.messengerConversationId}`;
     // const ttlSeconds = 30;
-    
+
     const alreadySent = await this.redisService.checkIfAlreadySent(key);
-    
+
     if (alreadySent) {
       this.logger.log('⛔ Duplicate message. Skipping...');
       return []; // race protection
     }
-    
+
     // const success = await this.redisService.markAsSentIfNotExists(key, ttlSeconds);
     //
     // if (!success) {
     //   this.logger.log('❗Message already being processed. Skipping...');
     //   return []; // race protection
     // }
-    
+
     return this.communicatorService.sendChatMessage(data);
   }
 
@@ -87,13 +87,13 @@ export class WhatsappController {
     // this.logger.debug('--- sendCommentWhatsappNotification ---', JSON.stringify(notification, null, 2));
     const key = `comment:${notification.messengerConversationId}:${notification.senderId}`;
     // const ttlSeconds = 30;
-    
+
     const alreadySent = await this.redisService.checkIfAlreadySent(key);
     if (alreadySent) {
       this.logger.log('⛔ Duplicate comment. Skipping...');
       return { messengerConversationId: notification.messengerConversationId, messages: null };
     }
-    
+
     // const success = await this.redisService.markAsSentIfNotExists(key, ttlSeconds);
     // if (!success) {
     //   this.logger.log('❗Comment notification already being processed. Skipping...');
@@ -101,5 +101,13 @@ export class WhatsappController {
     // }
 
     return await this.communicatorService.sendOrganizationCommentNotification(notification);
+  }
+
+  @MessagePattern({ cmd: 'clearWhatsappArchiveData' })
+  async clearWhatsappArchiveData(): Promise<{ success: boolean }> {
+    this.logger.warn(
+      'clearWhatsappArchiveData received but cleanup logic is not yet implemented — acknowledging without doing work',
+    );
+    return { success: true };
   }
 }
