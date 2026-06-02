@@ -114,7 +114,6 @@ export class ClientProxyService {
     senderId: string;
     message: string;
     messengerConversationId: number;
-    thanksResponse: string;
   }): Promise<void> {
     await lastValueFrom(
       this.clientProxy
@@ -126,12 +125,6 @@ export class ClientProxyService {
               {
                 content: data.message,
                 type: FlowMessageType.RECEIVED,
-                createdAt: new Date(),
-                isStory: false,
-              },
-              {
-                content: data.thanksResponse,
-                type: FlowMessageType.SEND,
                 createdAt: new Date(),
                 isStory: false,
               },

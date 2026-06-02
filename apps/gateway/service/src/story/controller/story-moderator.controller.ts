@@ -172,7 +172,10 @@ export class StoryModeratorController {
 
     if (success) {
       try {
-        const caseManagers = await this.caseManagerService.findWithEmail();
+        const story = await this.storyService.findById(storyId);
+        const caseManagers = await this.caseManagerService.findWithEmail(
+          story.countryId,
+        );
         await this.storyModeratorService.sendNotificationAfterExportToAirTable(
           user,
           caseManagers,
@@ -182,7 +185,10 @@ export class StoryModeratorController {
           );
         });
         if (data.immediateAssistance) {
-          await this.storyNotificationService.sendNotificationAfterUrgentStory(storyId).catch((error) => {
+          await this.storyNotificationService.sendNotificationAfterUrgentStory(
+            storyId,
+            caseManagers,
+          ).catch((error) => {
             this.logger.error(
               `[exportStoryToAirTable] Failed to send notification after urgent story for story ${storyId}: ${error?.message}`,
             );

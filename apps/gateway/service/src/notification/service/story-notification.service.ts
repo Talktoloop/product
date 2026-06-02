@@ -14,7 +14,7 @@ import { LANGUAGES_CONSTANTS } from '../../common/constant/languages.constants';
 import { StoryTranslationEntity } from '../../story/entity/story-translation.entity';
 import { DI_CONSTANTS as COMMON_DI } from '../../common/constant/di.constant';
 import { ConfigService } from '@nestjs/config';
-import { CaseManagerService } from '../../case-manager/service/case-manager.service';
+import { CaseManagerEntity } from '../../case-manager/entity/case-manager.entity';
 
 @Injectable()
 export class StoryNotificationService {
@@ -26,7 +26,6 @@ export class StoryNotificationService {
     private readonly userService: UserService,
     @Inject(COMMON_DI.CONFIG)
     private readonly config: ConfigService,
-    private caseManagerService: CaseManagerService
   ) { }
 
   async sendNotificationsAfterStoryPublication(
@@ -108,24 +107,25 @@ export class StoryNotificationService {
     this.logger.log('[sendNotificationsAfterStoryPublication] END', { storyId: story.id });
   }
 
-  async sendNotificationAfterUrgentStory(storyId: string): Promise<void> {
+  async sendNotificationAfterUrgentStory(
+    storyId: string,
+    caseManagers: CaseManagerEntity[],
+  ): Promise<void> {
     const confirmationLink = await prepareURL(
       this.config.get('frontend.url'),
       'story/details',
       storyId,
     );
-    const caseManagers = await this.caseManagerService.findWithEmail();
     for (let i = 0; i < caseManagers.length; i++) {
       const { email } = caseManagers[i];
       if (email) {
         await this.notificationService.sendEmail(
           MANAGER_TEMPLATES.URGENT_CASE,
-          { confirmation_link: confirmationLink, }
-          , {},
+          { confirmation_link: confirmationLink },
+          {},
           [{ Email: email }],
-        )
+        );
       }
-
     }
   }
 

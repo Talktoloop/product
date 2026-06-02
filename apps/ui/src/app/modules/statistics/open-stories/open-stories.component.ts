@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   // IAgeGenderBreakdown,
   // IDifficultyBreakdown,
@@ -28,7 +28,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './open-stories.component.html',
   styleUrls: ['./open-stories.component.scss'],
 })
-export class OpenStoriesComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class OpenStoriesComponent extends BaseComponent implements OnInit {
   iframeURL: SafeResourceUrl;
   filteringData: IGetStatisticsFiltersAPI;
   // postTimeline: IPostTimeline[];
@@ -70,13 +70,18 @@ export class OpenStoriesComponent extends BaseComponent implements OnInit, After
   }
 
   baseMetabaseUrl: string;
-
-  ngAfterViewInit() {
-    this.fetchMetabaseUrl();
-  }
+  private lastMetabaseFiltersKey: string;
 
   private fetchMetabaseUrl() {
-    this.statisticsService.getOpenStoriesSignedUrl(prepareFilterDataFromSessionStorage(openStoriesFiltersConfig)).subscribe((data) => {
+    // Skip the iframe reload when filters are unchanged.
+    const filters = prepareFilterDataFromSessionStorage(openStoriesFiltersConfig);
+    const filtersKey = JSON.stringify(filters);
+    if (filtersKey === this.lastMetabaseFiltersKey) {
+      return;
+    }
+    this.lastMetabaseFiltersKey = filtersKey;
+
+    this.statisticsService.getOpenStoriesSignedUrl(filters).subscribe((data) => {
       this.baseMetabaseUrl = data.url;
 
       this.iframeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseMetabaseUrl);
@@ -86,7 +91,10 @@ export class OpenStoriesComponent extends BaseComponent implements OnInit, After
   ngOnInit(): void {
     this.fetchMetabaseUrl();
     this.filteringData = this.prepareFromTo();
-    this.filtersService.filtersChanged$.pipe(takeUntil(this.destroyed$)).subscribe(() => this.refreshData(this.filtersService.userFilters));
+    this.filtersService.filtersChanged$.pipe(takeUntil(this.destroyed$)).subscribe(() => {
+      this.refreshData(this.filtersService.userFilters);
+      this.fetchMetabaseUrl();
+    });
 
     prepareStoriesFilterData(this.destroyed$, this.filtersService, this.filtersConfig$);
 

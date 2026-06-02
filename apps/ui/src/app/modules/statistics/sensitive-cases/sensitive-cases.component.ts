@@ -161,7 +161,10 @@ export class SensitiveCasesComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.populateIFrame();
     this.refreshData(prepareFilterDataFromSessionStorage(casesFiltersConfig));
-    this.filtersService.filtersChanged$.pipe(takeUntil(this.destroyed$)).subscribe(() => this.refreshData(this.filtersService.userFilters));
+    this.filtersService.filtersChanged$.pipe(takeUntil(this.destroyed$)).subscribe(() => {
+      this.refreshData(this.filtersService.userFilters);
+      this.populateIFrame();
+    });
 
     this.filtersService.casesFiltersData$.pipe(take(1), takeUntil(this.destroyed$)).subscribe((filtersData) => {
       this.filtersConfig$.next(
