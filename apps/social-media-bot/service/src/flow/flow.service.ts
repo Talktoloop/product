@@ -526,7 +526,7 @@ export class FlowService {
       }
 
       case 'contactConsent': {
-        const value = userResponse !== '1';
+        const value = userResponse === '1';
 
         await this.storageService.setShareUserInfoManual(
           profile.senderId,
