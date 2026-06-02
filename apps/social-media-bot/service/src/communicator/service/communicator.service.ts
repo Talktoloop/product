@@ -91,18 +91,12 @@ export class CommunicatorService {
   async sendChatMessage(
     data: ModeratorFlowMessageInterface,
   ): Promise<Array<UserFlowMessageInterface> | { status: string }> {
-    const flowExists = await this.userHasOngoingFlow(
+    await this.storageService.purgeCurrentMessageFlowData(
       data.senderId,
       data.pageId,
     );
 
-    if (flowExists) {
-      return [];
-    }
-
-    let messages = [];
-
-    messages = await this.prepareChatMessage(data);
+    const messages = await this.prepareChatMessage(data);
 
     const messageDeliveryStatus = await this.getMessageDeliveryResult(
       messages[0]?.sid,
@@ -209,7 +203,7 @@ export class CommunicatorService {
       return false;
     }
 
-    return !!userRecord?.storyUuid;
+    return !!userRecord?.lastFlowId;
   }
 
   async markSeenChat(senderId: string, pageId: string): Promise<unknown> {
