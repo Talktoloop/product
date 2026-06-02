@@ -45,8 +45,6 @@ export class SchedulerController {
 
   @MessagePattern({ cmd: 'clearIVRRArchiveData' })
   async clearTwilioAndS3ArchiveData(): Promise<SuccessRO> {
-    return { success: false };
-
     try {
       const today = new Date();
       const dateBefore = new Date(
