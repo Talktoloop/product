@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CaseManagerEntity } from '../entity/case-manager.entity';
 import { CaseManagerRepository } from '../repository/case-manager.repository';
-import { IsNull, Not } from 'typeorm';
 
 @Injectable()
 export class CaseManagerService {
@@ -10,17 +9,7 @@ export class CaseManagerService {
     return this.caseManagerRepository.getRandomManager();
   }
 
-  async findWithEmail(): Promise<CaseManagerEntity[]> {
-    return this.caseManagerRepository
-      .findByParams({
-        email: Not(IsNull()),
-      })
-      .then((data) => {
-        if (!data) {
-          return;
-        }
-
-        return data;
-      });
+  async findWithEmail(countryId: number): Promise<CaseManagerEntity[]> {
+    return this.caseManagerRepository.findRecipientsForCountry(countryId);
   }
 }
