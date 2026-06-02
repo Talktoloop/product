@@ -470,7 +470,7 @@ export class TwilioService {
           );
         }
       }
-      recordingsPage = await recordingsPage.nextPage();
+      recordingsPage = (await recordingsPage.nextPage()) as typeof recordingsPage;
     }
     this.logger.debug(`Recordings removed: ${recordingsRemoved}`);
 
@@ -498,7 +498,7 @@ export class TwilioService {
         );
         callsRemoved++;
       }
-      callsPage = await callsPage.nextPage();
+      callsPage = (await callsPage.nextPage()) as typeof callsPage;
     }
     this.logger.debug(`Call logs removed: ${callsRemoved}`);
 
