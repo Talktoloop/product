@@ -1,14 +1,14 @@
 {
   "cognitoConfig": {
     "Region": "eu-central-1",
-    "UserPoolId": "eu-central-1_RhXpGkS5g",
-    "ClientId": "44vgmm65kjlmel5204nt93t7cv",
-    "LoginUrl": "https://p5sp45bw4ljjz3xtsyytmmd7c40gjqwy.lambda-url.eu-central-1.on.aws/"
+    "UserPoolId": "eu-central-1_yIChD6CuE",
+    "ClientId": "4snki1ljs7kj3cdcak7shrh6uv",
+    "LoginUrl": "https://auth.dev.talktoloop.org/log_in"
   },
   "frontendSessionTime": 3600,
   "rollbarConfig": {
     "accessToken": "",
-    "environment": "staging"
+    "environment": "development"
   },
   "apiUrl": "https://api.dev.talktoloop.org/api/v1",
   "metabaseStoriesDashboardUrl": "https://meta.dev.talktoloop.org/public/dashboard/5708c729-6c87-4b9e-a064-624b2853c62d?age_group=&channel=&country=&disability=&feedback_type=&gender_group=&minority_group=&organization=&submission_date=&tab=4-overview&thematic_area="
