@@ -30,6 +30,10 @@ export const airTableSyncSchema: Joi.ObjectSchema = Joi.object({
   survivorDisability: Joi.array()
     .items(Joi.string().allow(null).trim().max(100))
     .optional(),
+  vulnerabilityFactors: Joi.array()
+    .items(Joi.string().allow(null).trim().max(100))
+    .optional(),
+  minorityGroup: Joi.string().trim().max(100).allow('').allow(null).optional(),
   authorNeedAssistance: Joi.string()
     .trim()
     .max(200)
