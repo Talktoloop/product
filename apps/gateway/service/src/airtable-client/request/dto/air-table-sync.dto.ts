@@ -143,6 +143,17 @@ export class AirTableSyncDTO {
   })
   survivorDisability?: string[];
 
+  @ApiProperty({
+    type: String,
+    required: false,
+    example: ['Female-headed household'],
+    isArray: true,
+  })
+  vulnerabilityFactors?: string[];
+
+  @ApiProperty({ required: false, example: 'No' })
+  minorityGroup?: string;
+
   @ApiProperty({ required: false, example: 'No, not applicable' })
   authorNeedAssistance?: string;
 
