@@ -1,5 +1,6 @@
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { ExtractJwt } from 'passport-jwt';
 import { UserService } from '../user/service/user.service';
 import { Strategy } from './strategy';
@@ -20,7 +21,7 @@ export class CognitoStrategy extends PassportStrategy(Strategy, 'cognito') {
         auth: authService,
       },
       async (request, token, done) => {
-        let user = await this.userService.findById(token.sub);
+        let user = await this.userService.findByCognitoSubId(token.sub);
 
         if (user && !user.isEnabled) {
           done(null);
@@ -40,14 +41,13 @@ export class CognitoStrategy extends PassportStrategy(Strategy, 'cognito') {
           user = await this.userService.findByEmail(userAttributes.email);
 
           if (user) {
-            await this.userService.migrateUser(user, token.sub);
-            this.airTableUserService.findByEmailAndUpdateId(
-              userAttributes.email,
-              token.sub,
-            );
+            // Existing user whose login moved to a new Cognito pool:
+            // link the new sub without touching user.id or its foreign keys.
+            await this.userService.updateCognitoSubId(user.id, token.sub);
           } else {
             await this.userService.saveUser({
-              id: token.sub,
+              id: randomUUID(),
+              cognitoSubId: token.sub,
               email: userAttributes.email,
               nickname: userAttributes.name,
               role: ROLE.USER,
@@ -57,7 +57,7 @@ export class CognitoStrategy extends PassportStrategy(Strategy, 'cognito') {
             });
           }
 
-          user = await this.userService.findById(token.sub);
+          user = await this.userService.findByCognitoSubId(token.sub);
         }
 
         await this.userService.updateLastActivity(user.id);

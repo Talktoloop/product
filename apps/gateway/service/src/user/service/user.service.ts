@@ -348,6 +348,17 @@ export class UserService {
     return this.userRepository.findById(id, relations);
   }
 
+  findByCognitoSubId(
+    cognitoSubId: string,
+    relations?: string[],
+  ): Promise<UserEntity> {
+    if (!cognitoSubId) {
+      return;
+    }
+
+    return this.userRepository.findByCognitoSubId(cognitoSubId, relations);
+  }
+
   findByEmail(email: string, relations?: string[]): Promise<UserEntity> {
     if (!email) return;
 
@@ -447,6 +458,10 @@ export class UserService {
     const now = new Date();
     await this.userRepository.update(userId, { lastActivity: now });
     this.airTableUserService.updateLastActivity(now, userId);
+  }
+
+  async updateCognitoSubId(userId: string, cognitoSubId: string): Promise<void> {
+    await this.userRepository.update(userId, { cognitoSubId });
   }
 
   async updateUserAccountStatus(userId: string): Promise<REGISTRATION_STATUS> {
