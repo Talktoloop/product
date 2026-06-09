@@ -238,7 +238,14 @@ export class SubscriptionService {
           where: { id: organisationId },
         })
       } else {
-        const user = await this.userRepository.findOneOrFail({ where: { id: userId } });
+        // Airtable sends the Cognito sub as userId; resolve the user by
+        // cognito_sub, then use the internal user.id downstream (token
+        // storage FKs reference user.id, not the sub).
+        const user = await this.userRepository.findOneOrFail({
+          where: { cognitoSubId: userId },
+        });
+        userId = user.id;
+        data.userId = user.id;
         // if a user already belongs to an org fetch the org id
         if (user?.organisation_id) {
           organisationId = user.organisation_id

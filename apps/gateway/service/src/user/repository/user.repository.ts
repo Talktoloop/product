@@ -43,6 +43,18 @@ export class UserRepository extends Repository<UserEntity> {
     });
   }
 
+  findByCognitoSubId(
+    cognitoSubId: string,
+    relations?: string[],
+  ): Promise<UserEntity> {
+    if (!cognitoSubId) return;
+
+    return this.findOne({
+      where: { cognitoSubId },
+      relations: relations ?? [],
+    });
+  }
+
   saveUser(data: DeepPartial<UserEntity>): Promise<UserEntity> {
     return this.save(data);
   }
