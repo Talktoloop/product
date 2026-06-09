@@ -32,9 +32,13 @@ async function query(sql, params) {
 class DbService {
   async getOrganisationApplicationByUserId(userId) {
     try {
+      // Airtable sends the Cognito sub; resolve the application via the user's
+      // cognito_sub_id and return the internal user_id for downstream calls.
       const sql =
-        'SELECT `id`, `user_id` AS userId, `organisation_id` AS organisationId ' +
-        'FROM user_organisation_application WHERE user_id = ?';
+        'SELECT uoa.`id`, uoa.`user_id` AS userId, uoa.`organisation_id` AS organisationId ' +
+        'FROM user_organisation_application uoa ' +
+        'JOIN `user` u ON u.`id` = uoa.`user_id` ' +
+        'WHERE u.`cognito_sub_id` = ?';
       const [rows] = await query(sql, [userId]);
       return rows && rows.length ? rows[rows.length - 1] : undefined;
     } catch (error) {
@@ -59,7 +63,7 @@ class DbService {
   async assignUserToOrganisation(userId, organisationId) {
     try {
       const [result] = await query(
-        'UPDATE user SET organisation_id = ? WHERE cognito_sub_id = ?',
+        'UPDATE user SET organisation_id = ? WHERE id = ?',
         [organisationId, userId],
       );
       return result;
