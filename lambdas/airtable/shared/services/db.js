@@ -32,9 +32,13 @@ async function query(sql, params) {
 class DbService {
   async getOrganisationApplicationByUserId(userId) {
     try {
+      // Airtable sends the Cognito sub; resolve the application via the user's
+      // cognito_sub_id and return the internal user_id for downstream calls.
       const sql =
-        'SELECT `id`, `user_id` AS userId, `organisation_id` AS organisationId ' +
-        'FROM user_organisation_application WHERE user_id = ?';
+        'SELECT uoa.`id`, uoa.`user_id` AS userId, uoa.`organisation_id` AS organisationId ' +
+        'FROM user_organisation_application uoa ' +
+        'JOIN `user` u ON u.`id` = uoa.`user_id` ' +
+        'WHERE u.`cognito_sub_id` = ?';
       const [rows] = await query(sql, [userId]);
       return rows && rows.length ? rows[rows.length - 1] : undefined;
     } catch (error) {
@@ -105,7 +109,7 @@ class DbService {
   async updateUserOrganisation(userId, organisationId) {
     try {
       const [result] = await query(
-        'UPDATE user SET organisation_id = ? WHERE id = ?',
+        'UPDATE user SET organisation_id = ? WHERE cognito_sub_id = ?',
         [organisationId, userId],
       );
       return result;
@@ -156,9 +160,10 @@ class DbService {
 
   async getOrganisationUserIds(organisationId) {
     try {
-      const [rows] = await query('SELECT id FROM user WHERE organisation_id = ?', [
-        organisationId,
-      ]);
+      const [rows] = await query(
+        'SELECT cognito_sub_id AS id FROM user WHERE organisation_id = ?',
+        [organisationId],
+      );
       return (rows || []).map((row) => row.id);
     } catch (error) {
       logError('Get organisation user ids database error', error);
@@ -256,9 +261,10 @@ class DbService {
 
   async getUsersOrganisation(userId) {
     try {
-      const [rows] = await query('SELECT organisation_id FROM user WHERE id = ?', [
-        userId,
-      ]);
+      const [rows] = await query(
+        'SELECT organisation_id FROM user WHERE cognito_sub_id = ?',
+        [userId],
+      );
       return rows && rows[0] ? rows[0].organisation_id : undefined;
     } catch (error) {
       logError('Get user organisation database error', error);
@@ -268,7 +274,10 @@ class DbService {
 
   async updateAccountStatus(userId) {
     try {
-      await query("UPDATE user SET account_status = 'complete' WHERE id = ?", [userId]);
+      await query(
+        "UPDATE user SET account_status = 'complete' WHERE cognito_sub_id = ?",
+        [userId],
+      );
     } catch (error) {
       logError('Update user account status database error', error);
       throw error;
@@ -277,7 +286,7 @@ class DbService {
 
   async updateInvitationDate(userId) {
     try {
-      await query('UPDATE user SET invitation_date = ? WHERE id = ?', [
+      await query('UPDATE user SET invitation_date = ? WHERE cognito_sub_id = ?', [
         new Date(),
         userId,
       ]);
