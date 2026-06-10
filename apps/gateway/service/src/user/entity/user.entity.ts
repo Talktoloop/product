@@ -27,6 +27,10 @@ export class UserEntity {
   @PrimaryColumn({ type: 'varchar', length: 36 })
   id: string;
 
+  @Column({ name: 'cognito_sub_id', type: 'varchar', length: 36, nullable: true })
+  @Index()
+  cognitoSubId: string;
+
   @Column({ name: 'language_id', type: 'smallint' })
   languageId: number;
 

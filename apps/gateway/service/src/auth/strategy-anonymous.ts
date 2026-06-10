@@ -32,7 +32,7 @@ export class StrategyAnonymous {
         .authenticate(token)
         .catch(() => this.fail());
 
-      const user = await this.user.findById(decodedToken?.sub);
+      const user = await this.user.findByCognitoSubId(decodedToken?.sub);
 
       if (!user || !user.isEnabled) {
         return this.fail();
