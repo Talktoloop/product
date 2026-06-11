@@ -22,6 +22,15 @@ export class LoopToastComponent extends Toast {
     this.toastrService.clear();
   }
 
+  onContentClick(event: MouseEvent): void {
+    if ((event.target as HTMLElement).closest('.toast-action-button')) {
+      return;
+    }
+    if (this.options?.buttons?.length) {
+      this.action(this.options.buttons[0]);
+    }
+  }
+
   removeToast(event: MouseEvent): void {
     event.stopPropagation();
     event.preventDefault();

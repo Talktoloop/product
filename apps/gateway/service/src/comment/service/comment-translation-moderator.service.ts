@@ -79,14 +79,11 @@ export class CommentTranslationModeratorService {
         ));
       }
 
-      this.languageService.runTranslationLambda(
+      await this.languageService.invokeTranslation(
         comment.id,
-        languageEntity,
         content,
-        language.code,
+        language.id,
         SOURCE_TYPE.COMMENT,
-        languageEntity.provider,
-        languageEntity.alternativeProvider,
       );
 
       return true;

@@ -22,8 +22,6 @@ import { StoryTranslationEntity } from '../entity/story-translation.entity';
 import { TRANSLATION_STATUS_CONSTANTS } from '../../common/constant/translation-status.constants';
 import { SOURCE_TYPE } from '../../common/constant/source-type.constants';
 import { LanguageEntity } from '../../language/entity/language.entity';
-import { LANGUAGES_CONSTANTS } from '../../common/constant/languages.constants';
-import { getPayloadFromTranslation } from '../../language/utils/aws';
 import { CHANNEL_CONSTANTS } from '../../common/constant/channel.constant';
 import { StoryRepository } from '../repository/story.repository';
 import { StoryConversationEntity } from '../entity/story-conversation.entity';
@@ -202,7 +200,8 @@ export class StoryTranslationModeratorService {
         });
       }
 
-      let content, language: LanguageEntity;
+      let content: string;
+      let language: LanguageEntity;
 
       ({ content, language } = story.translations.find(
         ({ language: { id } }) => id === story.languageId,
@@ -217,43 +216,11 @@ export class StoryTranslationModeratorService {
         ));
       }
 
-      if (languageEntity.provider !== language.provider) {
-        const enLang = await this.languageService.getLanguageByCode(
-          LANGUAGES_CONSTANTS.ENGLISH,
-        );
-        //check if eng translation exist
-        const enTranslation = await this.storyTranslationRepository.findOne({
-          where: { storyId, languageId: enLang.id, content: Not('') },
-        });
-
-        if (!enTranslation) {
-          //Run AWS lambda for translate to EN
-          const translation =
-            await this.languageService.runTranslationLambdaSync(
-              story.id,
-              enLang,
-              content,
-              language.code,
-              SOURCE_TYPE.STORY,
-              language.provider,
-              language.alternativeProvider ?? enLang.provider,
-            );
-
-          content = getPayloadFromTranslation(translation);
-        } else {
-          content = enTranslation.content;
-        }
-        language.code = LANGUAGES_CONSTANTS.ENGLISH;
-      }
-
-      this.languageService.runTranslationLambda(
+      await this.languageService.invokeTranslation(
         story.id,
-        languageEntity,
         content,
-        language.code,
+        language.id,
         SOURCE_TYPE.STORY,
-        language.provider,
-        language.alternativeProvider ?? languageEntity.provider,
       );
 
       return true;

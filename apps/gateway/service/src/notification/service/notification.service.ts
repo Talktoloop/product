@@ -132,7 +132,7 @@ export class NotificationService extends MailJetService {
       const confirmationMessage = `
         <p>Thank you for submitting your report.</p>
         <p>Your report is being investigated. We will review your request and treat it confidentially within 1 work week.</p>
-        <p><strong>Reported content</strong>
+        <p><strong>Reported content</strong> 
         <br/>
         Click <a href="${feedbackUrl}">here</a> to view or copy the link below in the browser
         <a href="${feedbackUrl}">${feedbackUrl}</a></p>
