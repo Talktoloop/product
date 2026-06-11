@@ -4,10 +4,7 @@ import { LanguageRepository } from './language.repository';
 import { DatabaseModule } from '../database/database.module';
 import { LanguageController } from './language.controller';
 import { LanguageService } from './language.service';
-import {
-  AwsTranslationServiceProvider,
-  LambdaServiceProvider,
-} from '../common/provider/aws-translation-provider';
+import { AwsTranslationServiceProvider } from '../common/provider/aws-translation-provider';
 import { GoogleTranslationServiceProvider } from '../common/provider/google-translation-provider';
 import { StoryModule } from '../story/story.module';
 import { CommentModule } from '../comment/comment.module';
@@ -28,7 +25,6 @@ import { ConfigModule } from '@nestjs/config';
   providers: [
     LanguageService,
     AwsTranslationServiceProvider,
-    LambdaServiceProvider,
     GoogleTranslationServiceProvider,
     ConfigProvider,
   ],

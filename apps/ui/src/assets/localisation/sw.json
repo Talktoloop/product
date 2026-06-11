@@ -928,7 +928,8 @@
         "published": {
           "success": {
             "title": "Maoni yamechapishwa",
-            "subtitle": "Maoni yamechapishwa."
+            "subtitle": "Maoni yamechapishwa.",
+            "viewButton": "Tazama maoni"
           },
           "error": {
             "title": "Hitilafu",
@@ -2152,7 +2153,7 @@
       "children": "Watoto",
       "youth": "Vijana",
       "femaleHeadedHouseholds": "Nyumba zinazoongozwa na wanawake",
-      "personsLivingWithDisabilities": "Watu wenye ulemavu",
+      "personsLivingWithDisabilities": "Mtunza wa mtu mwenye ulemavu",
       "elderly": "Wazee",
       "lgbtqPlus": "LGBTQ+",
       "chronicallyIllPeople": "Wagonjwa wa muda mrefu",

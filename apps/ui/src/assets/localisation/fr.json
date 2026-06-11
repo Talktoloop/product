@@ -918,7 +918,8 @@
         "published": {
           "success": {
             "title": "Rétroaction publiée",
-            "subtitle": "La rétroaction a été publiée."
+            "subtitle": "La rétroaction a été publiée.",
+            "viewButton": "Voir la rétroaction"
           },
           "error": {
             "title": "Erreur",
@@ -2145,7 +2146,7 @@
       "children": "Enfants",
       "youth": "Jeunes",
       "femaleHeadedHouseholds": "Foyers dirigés par des femmes",
-      "personsLivingWithDisabilities": "Personnes en situation de handicap",
+      "personsLivingWithDisabilities": "Aidant d'une personne en situation de handicap",
       "elderly": "Personnes âgées",
       "lgbtqPlus": "LGBTQ+",
       "chronicallyIllPeople": "Personnes atteintes de maladies chroniques",
@@ -3292,7 +3293,7 @@
       "emailInvitedPart2": "is already on the invitation list for this feedback."
     }
   },
-  "yourMagicLinkNotification": "Bonjour,\n\nPour vous connecter à votre compte TalkToLoop.org, cliquez sur le lien ci-dessous\n\nLien magique\n\nVotre lien magique expirera dans\n\nminutes.\n\n\u2028Si votre lien expire, veuillez\n\n vous reconnecter,\n\npour recevoir un autre lien.\n\nCordialement, L'équipe TalkToLoop.org",
+  "yourMagicLinkNotification": "Bonjour,\n\nPour vous connecter à votre compte TalkToLoop.org, cliquez sur le lien ci-dessous\n\nLien magique\n\nVotre lien magique expirera dans\n\nminutes.\n\nSi votre lien expire, veuillez\n\n vous reconnecter,\n\npour recevoir un autre lien.\n\nCordialement, L'équipe TalkToLoop.org",
   "youHaveBeenConnectedToOrganizationNotification": "Hello,\n\nTalkToLoop.org is a free platform that connects you with the communities you work with. Loop is spreading fast with both organisations like yours, and communities in {{var:organisation}} and further afield too.\n\n\n\nWe’ve just published feedback from the community that we think would be relevant to your organisation. \n\n\n\nView and respond to the feedback using the button below.\n\nVIEW FEEDBACK\n\nIf the button doesn’t work, copy and paste the URL below into the address bar of your browser:\n\nKind regards, The TalkToLoop.org Team",
   "youHaveBeenInvitedToOrganizationNotification": "Hello,\n\nTalkToLoop.org is a free platform that connects you with the communities you work with. Loop is spreading fast with both organisations like yours and communities around the world.\n\nYou've been invited to join {{var:organisation.name}} on TalkToLoop.org. To accept this invitation click the button below. \n\nACCEPT INVITATION\n\nIf the button doesn't work you can copy and paste the following URL into your browser\n\nKind regards, The TalkToLoop.org Team",
   "downloadButton": {
@@ -3366,13 +3367,14 @@
     "deselectAll": "Deselect all"
   },
   "report": {
-    "submitReport": "Soumettre le signalement",
+    "submitReport": "Soumettre votre demande de suppression",
     "title": "Demande de suppression d'un retour publié ou d'une réponse",
     "intro": "Veuillez utiliser ce formulaire pour nous indiquer pourquoi nous devrions supprimer un retour publié ou une réponse de la plateforme Talk to Loop.",
     "introFormLinked": "Ce formulaire est lié à un seul retour ou à une seule réponse.",
     "introConfidential": "Nous examinerons toutes les demandes et les traiterons de manière confidentielle dans un délai d'une semaine ouvrable.",
     "introGuidelines": "Veuillez consulter nos lignes directrices communautaires",
     "guidelinesLink": "ici",
+    "guidelinesLinkSuffix": "pour plus de détails.",
     "reportAboutLabel": "Mon signalement concerne :",
     "originalFeedback": "Le retour d'information initial",
     "oneOfReplies": "Une des réponses",
@@ -3387,7 +3389,7 @@
     "contactEmail": "Si vous souhaitez recevoir un retour concernant notre décision, veuillez indiquer votre adresse e-mail.",
     "emailPlaceholder": "votre@email.com",
     "optional": "(facultatif)",
-    "submitButton": "Soumettre le signalement",
+    "submitButton": "Soumettre votre demande de suppression",
     "cancelButton": "Annuler",
     "successMessage": "Votre signalement a été soumis avec succès"
   }

@@ -17,6 +17,7 @@ import rateLimit from 'axios-rate-limit';
 export class AirTableUserService {
   private readonly logger = new Logger(AirTableUserService.name);
   private readonly apiKey: string = this.config.get('airTable.apiKey');
+  private readonly disableSync: boolean = this.config.get('airTable.disableSync');
   private readonly usersUrl: string = this.config.get('airTable.url.users');
   private readonly organisationsUrl: string = this.config.get(
     'airTable.url.organisations',
@@ -37,6 +38,7 @@ export class AirTableUserService {
   }
 
   async importUsersToAirtable(): Promise<AirTableUserInterface[]> {
+    if (this.disableSync) return [];
     const users = await this.userRepository.findUsersToAirtable();
     const usersChunks = chunkArray(users, 10);
     const allAirTableUsers = [];
@@ -70,6 +72,7 @@ export class AirTableUserService {
   async postUsersToAirTable(
     users: { fields: AirTableUserInterface }[],
   ): Promise<AirTableUserRO[]> {
+    if (this.disableSync) return [];
     try {
       const airTableUserData = await this.axiosInstance.post(
         this.usersUrl,
@@ -95,6 +98,7 @@ export class AirTableUserService {
   async findAndUpdateAirTableOrganisation(
     airTableUsers: AirTableUserRO[],
   ): Promise<void> {
+    if (this.disableSync) return;
     try {
       for (const airTableUser of airTableUsers) {
         const { dBUserId } = airTableUser;
@@ -137,6 +141,7 @@ export class AirTableUserService {
     userId: string,
     airTableUserCellId: string,
   ): Promise<void> {
+    if (this.disableSync) return;
     try {
       if (!userId) return;
 
@@ -163,6 +168,7 @@ export class AirTableUserService {
   }
 
   async getAirTableUserData(userId: string): Promise<any> {
+    if (this.disableSync) return;
     try {
       const airTableUser = await this.axiosInstance.get(
         `${this.usersUrl}?filterByFormula=FIND('${userId}', {ID})`,
@@ -190,6 +196,7 @@ export class AirTableUserService {
   }
 
   async updateAirTableUser(userData: AirTableUserInterface): Promise<void> {
+    if (this.disableSync) return;
     const airTableUserId = (await this.getAirTableUserData(userData?.ID))
       ?.airTableId;
     if (airTableUserId) {
@@ -216,6 +223,7 @@ export class AirTableUserService {
     airTableOrganisationId: string,
     updateOrganisation: boolean,
   ): Promise<void> {
+    if (this.disableSync) return;
     try {
       if (airTableOrganisationId) {
         let fieldsToUpdate: Record<string, string[]> = {};
@@ -244,6 +252,7 @@ export class AirTableUserService {
   }
 
   async findByEmailAndUpdateId(userEmail: string, newId: string) {
+    if (this.disableSync) return;
     try {
       const airTableUserData = await this.axiosInstance.get(
         `${this.usersUrl}?filterByFormula=FIND('${userEmail}', {Email})`,
@@ -276,6 +285,7 @@ export class AirTableUserService {
     organisationId: string,
     numberOfUsers: number,
   ): Promise<void> {
+    if (this.disableSync) return;
     try {
       const airTableId =
         await this.airTableOrganisationService.getAirTableOrgnisationCellId(
@@ -296,6 +306,7 @@ export class AirTableUserService {
   }
 
   async syncNumberOfUsersToAirtable(organisationId: string): Promise<void> {
+    if (this.disableSync) return;
     try {
       const numberOfUsers = (
         await this.organisationRepository.findOrganisationsToAirtable(
@@ -309,6 +320,7 @@ export class AirTableUserService {
   }
 
   async updateLastActivity(time: Date, userId: string): Promise<void> {
+    if (this.disableSync) return;
     const airTableUserData = await this.getAirTableUserData(userId);
     const airTableLastActivity = airTableUserData?.lastActivity?.replace(
       /(\d{4})-(\d{2})-(\d{2})/,

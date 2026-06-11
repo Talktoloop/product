@@ -31,6 +31,7 @@ export const configSchema: Joi.ObjectSchema = Joi.object({
   REDIS_PASSWORD: Joi.string(),
   REDIS_SCHEMA: Joi.string(),
   AIRTABLE_APIKEY: Joi.string(),
+  AIRTABLE_DISABLE_SYNC: Joi.string().optional(),
   AIRTABLE_SENSITIVE_CASES_BASE: Joi.string(),
   AIRTABLE_DASHBOARD_BASE: Joi.string(),
   BASIC_TOKEN: Joi.string(),
@@ -42,6 +43,5 @@ export const configSchema: Joi.ObjectSchema = Joi.object({
   ONLY_GET_REQUEST: Joi.string(),
   INNGEST_SIGNING_KEY: Joi.string(),
   INNGEST_EVENT_KEY: Joi.string(),
-  METABASE_SITE_URL: Joi.string().uri().optional(),
 }).options({ allowUnknown: true, presence: 'required' });
 

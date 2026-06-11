@@ -35,14 +35,8 @@ export class AuthService {
         this.pem = jwkToPem(jwks);
       })
       .catch((error) => {
-        const status = error.response?.status;
-        const data = error.response?.data;
-        this.logger.error(
-          `JWKS fetch failed: ${error.message} (status: ${status})`,
-        );
-        if (data) {
-          this.logger.error(`JWKS response: ${JSON.stringify(data)}`);
-        }
+        this.logger.error(error.response);
+        this.logger.error('AWS credentials are wrong');
       });
   }
 

@@ -28,11 +28,6 @@ import { IvrrCallEntity } from '../entity/ivrr-call.entity';
 import { SaveIvrrCallDto } from '../request/dto/save-ivrr-call.dto';
 import { StoryRepository } from '../../story/repository/story.repository';
 import { RpcException } from '@nestjs/microservices';
-import {
-  LambdaClient,
-  InvokeCommand,
-  InvokeAsyncCommandOutput,
-} from '@aws-sdk/client-lambda';
 import { lastValueFrom } from 'rxjs';
 import { CommentEntity } from '../../comment/entity/comment.entity';
 import { StoryEntity } from '../../story/entity/story.entity';
@@ -74,8 +69,6 @@ export class IvrrService {
     private readonly commentService: CommentService,
     @Inject(forwardRef(() => StoryService))
     private readonly storyService: StoryService,
-    @Inject(COMMON_DI.LAMBDA)
-    private readonly lambdaProvider: LambdaClient,
     private readonly s3Service: S3Service,
     private readonly httpService: HttpService,
     private readonly storyTranslationModeratorService: StoryTranslationModeratorService,
@@ -245,7 +238,7 @@ export class IvrrService {
     this.logger.log(`shouldRunTranscription: ${shouldRunTranscription}`);
     this.logger.log(`STORY_ID-> ${story.id}`);
     if (shouldRunTranscription && recordingWithMinDuration) {
-      await this.runTranscriptionLambdaAsync(
+      await this.requestTranscription(
         SOURCE_TYPE.COMMENT,
         ivrrCall.id,
         story.conversation?.language?.transcribeLang,
@@ -339,7 +332,7 @@ export class IvrrService {
         transcribeLang &&
         (recordingWithMinDuration || dto.isSensitiveStory)
       ) {
-        await this.runTranscriptionLambdaAsync(
+        await this.requestTranscription(
           SOURCE_TYPE.STORY,
           ivrrCall.id,
           transcribeLang,
@@ -568,33 +561,33 @@ export class IvrrService {
     }
   }
 
-  async runTranscriptionLambdaAsync(
+  async requestTranscription(
     sourceType: SOURCE_TYPE,
     callId: number,
     language: string,
     storyId: string
-  ): Promise<InvokeAsyncCommandOutput | void> {
+  ): Promise<void> {
     const call = await this.ivrrCallRepository.findOne({ where: { id: callId } });
 
     if (!call) {
       this.logger.error(
-        `[runTranscriptionLambdaAsync] Call not found - callId=${callId}`,
+        `[requestTranscription] Call not found - callId=${callId}`,
       );
       return;
     }
 
     if (!call.s3FileId) {
       this.logger.warn(
-        `[runTranscriptionLambdaAsync] No s3FileId on call - callId=${callId}`,
+        `[requestTranscription] No s3FileId on call - callId=${callId}`,
       );
       return;
     }
     const audioUrl = await this.s3Service.getFilePublicUrl(call.s3FileId);
 
-
-    this.logger.log(`run transcribe for ${callId} and  ${language}`);
+    this.logger.log(
+      `[requestTranscription] enqueue transcription for callId=${callId} language=${language}`,
+    );
     try {
-
       await inngest.send({
         name: 'transcription/requested.v1',
         data: {
@@ -602,39 +595,16 @@ export class IvrrService {
           language,
           sourceType,
           audioUrl,
-          storyId
+          s3Key: call.s3FileId,
+          storyId,
         },
       });
     } catch (error) {
-      this.logger.warn(`[runTranscriptionLambdaAsync] INNGEST FAILED`)
+      this.logger.error(
+        `[requestTranscription] Failed to enqueue transcription event for callId=${callId}`,
+        error instanceof Error ? error.stack : String(error),
+      );
     }
-
-    const payload = {
-      callId,
-      language,
-      sourceType,
-    };
-
-    const params = {
-      FunctionName: this.config.get('transcribe.aws.lambdaARN'),
-      Payload: JSON.stringify(payload),
-    };
-    return new Promise((resolve, reject) => {
-      const command = new InvokeCommand(params);
-
-      this.lambdaProvider.send(command, (error, data) => {
-        if (error) {
-          this.logger.error(
-            `runTranscriptionLambdaSync invoke error ${JSON.stringify(error)}`,
-          );
-          reject(error);
-        }
-        this.logger.log(
-          `runTranscriptionLambdaSync invoke resolve ${JSON.stringify(data)}`,
-        );
-        resolve(data);
-      });
-    });
   }
 
   async getS3FileAudioDuration(s3FileId: string) {
