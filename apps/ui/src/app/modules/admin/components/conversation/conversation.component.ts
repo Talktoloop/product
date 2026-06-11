@@ -40,7 +40,7 @@ import { delay, repeat, retryWhen, take, takeUntil } from 'rxjs/operators';
 })
 export class ConversationComponent extends BaseComponent implements OnInit, OnDestroy, OnChanges {
   readonly maxSmsReplyLength = 320;
-  readonly phoneAvailabilityInterval = 3000;
+  phoneAvailabilityInterval = 3000;
   readonly dateFormat = 'd MMM y';
 
   @Input() contactAccepted: boolean;
@@ -100,6 +100,10 @@ export class ConversationComponent extends BaseComponent implements OnInit, OnDe
       this.channel = this.route.snapshot.paramMap.get('channel') as CHANNEL_CONSTANTS;
     }
 
+    if (this.channel === CHANNEL_CONSTANTS.WHATSAPP) {
+      this.phoneAvailabilityInterval = 2000;
+    }
+
     this.conversationService = this.conversationServiceFactory(this.injector, this.channel);
 
     this.messages = this.mapMessagesByDate(this.storyMessages);
@@ -119,6 +123,10 @@ export class ConversationComponent extends BaseComponent implements OnInit, OnDe
             this.availabilityStatusRepeat$.complete();
           }
           this.cd.markForCheck();
+
+          if (this.channel === CHANNEL_CONSTANTS.WHATSAPP) {
+            this.storyDetailsService.refreshWhatsappConversationMessages().pipe(take(1)).subscribe();
+          }
         });
     }
   }

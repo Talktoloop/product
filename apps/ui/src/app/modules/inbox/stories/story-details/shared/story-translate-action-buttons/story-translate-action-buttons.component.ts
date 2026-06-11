@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { INBOX_ROUTES, MAIN_ROUTES } from '@app/app-routing.props';
+import { INBOX_ROUTES, MAIN_ROUTES, STORY_ROUTES } from '@app/app-routing.props';
 import { CHANNEL_CONSTANTS } from '@app/core/services/api/model/channel.enum';
 import { IRejectReason } from '@app/core/services/api/model/request/reject-reason.model';
 import { ISendStoryToCaseManager } from '@app/core/services/api/model/request/send-story-to-case-manager.model';
@@ -141,14 +141,31 @@ export class StoryTranslateActionButtonsComponent extends BaseComponent {
       .subscribe(
         (res) => {
           if (res.success) {
-            this.toastr.success(
-              this.translateService.instant(`admin.story.toast.published.success.title`),
-              this.translateService.instant('admin.story.toast.published.success.subtitle'),
-            );
-            this.homeService.resetState();
-            setTimeout(() => {
-              this.router.navigate([this.storiesListUrl], { queryParams: { processedStoryId: this.storyDetailsService.story.id } });
+            const storyId = this.storyDetailsService.story.id;
+            const publishedStoryUrl = `/${MAIN_ROUTES.STORY}/${STORY_ROUTES.DETAILS}`.replace(':id', storyId);
+
+            const redirectTimeout = setTimeout(() => {
+              this.router.navigate([this.storiesListUrl], { queryParams: { processedStoryId: storyId } });
             });
+
+            this.toastr
+              .success(
+                this.translateService.instant('admin.story.toast.published.success.subtitle'),
+                this.translateService.instant('admin.story.toast.published.success.title'),
+                {
+                  buttons: [
+                    {
+                      title: this.translateService.instant('admin.story.toast.published.success.viewButton'),
+                    },
+                  ],
+                } as unknown,
+              )
+              .onAction.subscribe(() => {
+                clearTimeout(redirectTimeout);
+                this.router.navigate([publishedStoryUrl]);
+              });
+
+            this.homeService.resetState();
             this.sendInvitation();
           } else {
             handleErrorResponse();

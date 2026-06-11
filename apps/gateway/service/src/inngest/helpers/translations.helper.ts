@@ -55,9 +55,10 @@ export async function updateStoryStatus(storyId: string, status: STORY_STATUS) {
 export async function saveTranscription(content: string, storyId: string, languageCode: string) {
     const ds = await getDataSource();
     const translationRepo = ds.getRepository(StoryTranslationEntity);
-    const languageRepo = ds.getRepository(LanguageEntity);
-    const language = await languageRepo.findOneOrFail({ where: { code: languageCode.split("-")[0] } });
-    const translation = await translationRepo.findOneOrFail({ where: { storyId, languageId: language.id } });
+    // The transcript is the story's original-language content. Match the original
+    // row directly — its language_id is the story's language, which may be a Somali
+    // dialect (Maxatiri/af Maay) whose id differs from the base `so` code.
+    const translation = await translationRepo.findOneOrFail({ where: { storyId, isOriginalContent: true } });
     translation.content = content;
     await translationRepo.save(translation);
     await updateStoryStatus(storyId, STORY_STATUS.PENDING_TRANSLATION)
@@ -71,19 +72,9 @@ export async function saveTranslationForStory(
 ) {
     const ds = await getDataSource();
     const translationRepo = ds.getRepository(StoryTranslationEntity);
-    const languageRepo = ds.getRepository(LanguageEntity);
-
-    // Find language by ID
-    const language = await languageRepo.findOneOrFail({ where: { id: languageId } });
-
-    // Try to update existing translation for this story/language.
-    // NOTE: If your table distinguishes translation "type" per row, we use TEXT as the default.
-    const existing = await translationRepo.findOne({
-        where: {
-            storyId,
-            languageId: language.id,
-        },
-    });
+    const language = await ds
+        .getRepository(LanguageEntity)
+        .findOneOrFail({ where: { id: languageId } });
 
     const payload: Partial<StoryTranslationEntity> = {
         storyId,
@@ -95,12 +86,41 @@ export async function saveTranslationForStory(
         status: TRANSLATION_STATUS_CONSTANTS.TRANSLATED,
     };
 
-    if (existing) {
-        return translationRepo.save({
-            ...existing,
-            ...payload,
-        } as StoryTranslationEntity);
-    }
+    // Atomic INSERT ... ON DUPLICATE KEY UPDATE on the (story_id, language_id)
+    // unique index — safe under concurrent/duplicate translation runs.
+    return translationRepo.upsert(payload, ['storyId', 'languageId']);
+}
 
-    return translationRepo.save(payload as StoryTranslationEntity);
+// Marks one story/language translation as ERROR so moderators can retry it.
+// Never downgrades a successful (TRANSLATED) row.
+export async function markTranslationError(storyId: string, languageId: number) {
+    const ds = await getDataSource();
+    const translationRepo = ds.getRepository(StoryTranslationEntity);
+    const existing = await translationRepo.findOne({ where: { storyId, languageId } });
+    if (existing?.status === TRANSLATION_STATUS_CONSTANTS.TRANSLATED) return existing;
+    if (existing) {
+        existing.status = TRANSLATION_STATUS_CONSTANTS.ERROR;
+        return translationRepo.save(existing);
+    }
+    return translationRepo.save({
+        storyId,
+        languageId,
+        content: "",
+        numberOfWords: 0,
+        isOriginalContent: false,
+        type: TRANSLATION_TYPE_CONSTANTS.MACHINE,
+        status: TRANSLATION_STATUS_CONSTANTS.ERROR,
+    } as StoryTranslationEntity);
+}
+
+// Marks every machine-translatable target (visible + has a provider, excluding the
+// source language) ERROR unless already TRANSLATED. Used when the whole translation
+// run exhausts its retries, so each unfinished language is retryable.
+export async function markStoryTranslationsError(storyId: string, originalTextLangCode: string) {
+    const ds = await getDataSource();
+    const languages = await ds.getRepository(LanguageEntity).find({ where: { visible: true } });
+    const targets = languages.filter((l) => !!l.provider && l.code !== originalTextLangCode);
+    for (const lang of targets) {
+        await markTranslationError(storyId, lang.id);
+    }
 }

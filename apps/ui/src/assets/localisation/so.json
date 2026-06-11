@@ -918,7 +918,8 @@
         "published": {
           "success": {
             "title": "La daaacay sheekada",
-            "subtitle": "Sheekada waa la daabacay"
+            "subtitle": "Sheekada waa la daabacay",
+            "viewButton": "Eeg sheekada"
           },
           "error": {
             "title": "Khalad",
@@ -2107,7 +2108,7 @@
       "children": "Carruur",
       "youth": "Dhallinyaro",
       "femaleHeadedHouseholds": "Guryaha uu hoggaamiyo haweeney",
-      "personsLivingWithDisabilities": "Dadka naafada ah",
+      "personsLivingWithDisabilities": "Daryeele qof naafada ah",
       "elderly": "Waayeel",
       "lgbtqPlus": "LGBTQ+",
       "chronicallyIllPeople": "Dadka qaba cudurro daba-dheeraaday",
@@ -3327,15 +3328,16 @@
     "deselectAll": "Dhamaan  ha dooran"
   },
   "report": {
-    "submitReport": "Gudbi warbixinta",
+    "submitReport": "Gudbi codsi si looga saaro",
     "title": "Codsi in laga tirro/saaro ra'yi-celin la daabacay ama jawaab celin",
-    "intro": "Fadlan isticmaal Form-kan si aad noola wadaagto ujeedada aan uga saarayno ra'yi-celinta ama jawaab celinta lagu daabacay bogga Talk to Loop.",
-    "introFormLinked": "Foormkan wuxuu khuseeyaa oo kaliya hal ra'yi-celin ama jawaab celin.",
+    "intro": "Fadlan isticmaal foomkan si aad noola wadaagto ujeedada aan uga saarayno ra'yi-celinta ama jawaab celinta lagu daabacay bogga Talk to Loop.",
+    "introFormLinked": "Foomkan wuxuu khuseeyaa oo kaliya hal ra'yi-celin ama jawaab celin.",
     "introConfidential": "Waanu ku eegi doonaa dhamaan codsiyada mudo hal usbuuc ah, waxana aanu ilaalin doonaa xogta.",
-    "introGuidelines": "Fadlan halkan ka eeg tilmaamaha bulsho si aad u hesho macluumaad dheeraad ah.",
+    "introGuidelines": "Fadlan",
     "guidelinesLink": "halkan",
-    "reportAboutLabel": "Warbixin taydu waxay khusaysaa:",
-    "originalFeedback": "Ra'yi celin hore",
+    "guidelinesLinkSuffix": "ka eeg tilmaamaha bulsho si aad u hesho macluumaad dheeraad ah.",
+    "reportAboutLabel": "Warbixintaydu waxay khusaysaa:",
+    "originalFeedback": "Ra'yi-cellin hore",
     "oneOfReplies": "Mid ka mida Jawaab celino",
     "specifyReply": "Fadlan cayin ama cadee jawaab celintaada hadii ay yihiin wax ka badan hal",
     "guidelinesBreachLabel": "Ra'yi-celinta ama jawaab celintu waxay khilaafsan tahay mid kamida tilmaamaha bulsho ee hoose",
@@ -3348,7 +3350,7 @@
     "contactEmail": "Hadii aad rabto inaad hesho jawaab ku saabsan go'aanka, fadlan qor email kaaga",
     "emailPlaceholder": "your@email.com",
     "optional": "(ikhtiyaari)",
-    "submitButton": "Gudbi warbixinta",
+    "submitButton": "Gudbi codsi si looga saaro",
     "cancelButton": "Ka noqo",
     "successMessage": "Warbixintaadii waa la diray si guul leh"
   }

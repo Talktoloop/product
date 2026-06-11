@@ -104,6 +104,7 @@ import { AssignStoriesDTO } from '../request/dto/assign-stories.dto';
 import { StoryOrganisationTagRepository } from '../repository/story-organisation-tag.repository';
 import { UpdateTranscriptionDto } from '../request/dto/update-transcription.dto';
 import { ConfigService } from '@nestjs/config';
+import { inngest } from '../../inngest/client';
 
 @Injectable()
 export class StoryModeratorService {
@@ -147,18 +148,32 @@ export class StoryModeratorService {
     moderator: UserEntity,
     caseManagers: CaseManagerEntity[],
   ) {
+    console.log(
+      `[TEST] sendNotificationAfterExportToAirTable: ${caseManagers.length} case manager(s) selected`,
+    );
     return Promise.all(
-      caseManagers.map((caseManager) =>
-        this.notificationService.sendEmail(
-          MANAGER_TEMPLATES.NEW_STORY_IN_CASE_MANAGER_SYSTEM,
+      caseManagers.map((caseManager) => {
+        console.log(
+          '[TEST] Would send "new sensitive feedback sent to Airtable" email',
           {
-            manager_name: caseManager.nickname,
-            moderator_name: moderator?.nickname,
+            template: MANAGER_TEMPLATES.NEW_STORY_IN_CASE_MANAGER_SYSTEM,
+            to: caseManager.email,
+            managerName: caseManager.nickname,
+            managerCountryId: caseManager.countryId,
+            moderatorName: moderator?.nickname,
           },
-          {},
-          [{ Email: caseManager.email }],
-        ),
-      ),
+        );
+        // TEST: email sending disabled for local testing — uncomment to restore
+        // return this.notificationService.sendEmail(
+        //   MANAGER_TEMPLATES.NEW_STORY_IN_CASE_MANAGER_SYSTEM,
+        //   {
+        //     manager_name: caseManager.nickname,
+        //     moderator_name: moderator?.nickname,
+        //   },
+        //   {},
+        //   [{ Email: caseManager.email }],
+        // );
+      }),
     );
   }
 
@@ -319,25 +334,31 @@ export class StoryModeratorService {
     );
     fields[SENSITIVE_STORY_COLUMNS.INBOX_RECEIVED_DATE] = story.createdAt;
 
-    await this.airTable
-      .table('Sensitive Stories')
-      .create({
-        records: [
-          {
-            fields,
-          },
-        ],
-      })
-      .then((result) => {
-        if (result?.error) {
-          throw new CustomError(SENSITIVE_STORY_EXPORT_ERROR, {
-            error: result?.error,
-          });
-        }
-      })
-      .catch((error) => {
-        throw new CustomError(SENSITIVE_STORY_EXPORT_ERROR, error);
-      });
+    if (this.config.get('application.environment') === 'local') {
+      this.logger.log(
+        `[exportStoryToAirTable] Local environment — skipping Airtable export for story ${story.id}`,
+      );
+    } else {
+      await this.airTable
+        .table('Sensitive Stories')
+        .create({
+          records: [
+            {
+              fields,
+            },
+          ],
+        })
+        .then((result) => {
+          if (result?.error) {
+            throw new CustomError(SENSITIVE_STORY_EXPORT_ERROR, {
+              error: result?.error,
+            });
+          }
+        })
+        .catch((error) => {
+          throw new CustomError(SENSITIVE_STORY_EXPORT_ERROR, error);
+        });
+    }
 
     return this.storyRepository.update(
       { id: story.id },
@@ -603,8 +624,9 @@ export class StoryModeratorService {
     story: StoryEntity,
     data: UpdateTranscriptionDto,
   ): Promise<StoryEntity | void> {
-    this.logger.debug(`[updateStoryTranscription] storyId=${story.id} hasEditedContent=${!!data.editedContent} hasContent=${!!data.content}`);
     console.log(data.content, data.editedContent);
+    let newTranscriptionContent: string | undefined;
+
     if (data.editedContent && data.editedContent.length > 0) {
       let historicalContent = await this.storyHistoricalTranslationModeratorService.findHistoricaloriginalContentForStory(story, {
         createdAt: story.channel === CHANNEL_CONSTANTS.IVRR ? 'DESC' : 'ASC',
@@ -624,10 +646,25 @@ export class StoryModeratorService {
         await this.storyTranslationModeratorService.storyHistoricalTranslationService.updateOldStories(story);
         await this.storyTranslationModeratorService.updateTranscription(historicalContent, userId, true);
       }
+      newTranscriptionContent = data.editedContent;
     }
     if (!data.editedContent && data.content && data.content.length > 0) {
       await this.storyTranslationModeratorService.updateCurrentTranslation(story, data.content);
+      newTranscriptionContent = data.content;
     }
+
+    if (newTranscriptionContent) {
+      await inngest.send({
+        name: 'translation/requested.v1',
+        data: {
+          sourceId: story.id,
+          sourceType: 'STORY',
+          content: newTranscriptionContent,
+          originalTextLangCode: story.language.code,
+        },
+      });
+    }
+
     return story;
   }
 

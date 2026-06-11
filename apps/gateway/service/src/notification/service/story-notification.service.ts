@@ -116,16 +116,28 @@ export class StoryNotificationService {
       'story/details',
       storyId,
     );
+    console.log(
+      `[TEST] sendNotificationAfterUrgentStory: ${caseManagers.length} case manager(s) selected`,
+    );
     for (let i = 0; i < caseManagers.length; i++) {
       const { email } = caseManagers[i];
       if (email) {
-        await this.notificationService.sendEmail(
-          MANAGER_TEMPLATES.URGENT_CASE,
-          { confirmation_link: confirmationLink },
-          {},
-          [{ Email: email }],
-        );
+        console.log('[TEST] Would send "urgent sensitive feedback" email', {
+          template: MANAGER_TEMPLATES.URGENT_CASE,
+          to: email,
+          managerName: caseManagers[i].nickname,
+          managerCountryId: caseManagers[i].countryId,
+          confirmationLink,
+        });
+        // TEST: email sending disabled for local testing — uncomment to restore
+        // await this.notificationService.sendEmail(
+        //   MANAGER_TEMPLATES.URGENT_CASE,
+        //   { confirmation_link: confirmationLink, }
+        //   , {},
+        //   [{ Email: email }],
+        // )
       }
+
     }
   }
 

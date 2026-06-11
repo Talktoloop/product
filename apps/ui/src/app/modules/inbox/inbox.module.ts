@@ -5,6 +5,7 @@ import { CountryPipe } from '@app/shared/pipes/country.pipe';
 import { SharedModule } from '@app/shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { FilterSectionV2Module } from '@shared/components/filters-section-v2/filter-section-v2.module';
+import { InboxChannelMetricsService } from './inbox-channel-metrics.service';
 import { InboxFiltersService } from './inbox-filters.service';
 import { InboxRoutingModule } from './inbox-routing.module';
 import { InboxComponent } from './inbox.component';
@@ -21,6 +22,6 @@ import { SharedInboxModule } from './shared/shared.module';
     InboxRoutingModule,
     FilterSectionV2Module,
   ],
-  providers: [InboxFiltersService, CountryPipe],
+  providers: [InboxFiltersService, InboxChannelMetricsService, CountryPipe],
 })
 export class InboxModule {}

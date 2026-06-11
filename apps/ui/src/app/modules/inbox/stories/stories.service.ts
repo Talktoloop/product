@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { INBOX_ROUTES, MAIN_ROUTES } from '@app/app-routing.props';
 import { UIService } from '@app/core/services/ui/ui.service';
 import { inboxFiltersConfig } from '@app/modules/inbox/inbox-filters.config';
+import { InboxChannelMetricsService } from '@app/modules/inbox/inbox-channel-metrics.service';
 import { IGetPendingStoriesFiltersAPI } from '@app/modules/inbox/inbox-filters.service';
 import { IBasePaginatedAPI } from '@core/services/api/model/response/base-paginated-api.model';
 import { IModeratorStoryBrief } from '@core/services/api/model/response/get-stories-moderator.model';
@@ -13,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MobileTableAction, MobileTableDataRow } from '@shared/components/mobile-table/mobile-table.model';
 import { prepareFilterDataFromSessionStorage } from '@shared/utils/filters.utils';
 import { BehaviorSubject } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { debounceTime, finalize } from 'rxjs/operators';
 import { PaginationService } from './pagination/pagination.service';
 
 @Injectable()
@@ -36,15 +37,18 @@ export class StoriesService {
     private filtersService: FiltersService,
     private paginationService: PaginationService,
     private uiService: UIService,
+    private inboxChannelMetricsService: InboxChannelMetricsService,
   ) {
-    this.filtersService.filtersChanged$.pipe().subscribe(() => {
+    this.filtersService.filtersChanged$.pipe(debounceTime(300)).subscribe(() => {
       this.currentPage = 1;
-      if (this.router.url.includes(`${MAIN_ROUTES.INBOX}/${INBOX_ROUTES.STORIES}`)) {
+      if (this.isStoriesRoute()) {
         this.fetchData();
+        this.inboxChannelMetricsService.refresh(this.storyService);
       }
     });
 
     this.fetchData();
+    this.inboxChannelMetricsService.refresh(this.storyService);
   }
 
   onScroll(): void {
@@ -97,6 +101,10 @@ export class StoriesService {
         },
         error: () => this.paginationService.restoreStateAfterError(),
       });
+  }
+
+  private isStoriesRoute(): boolean {
+    return this.router.url.includes(`${MAIN_ROUTES.INBOX}/${INBOX_ROUTES.STORIES}`);
   }
 
   private prepareListElementsWithCustomAction(items: IModeratorStoryBrief[]): MobileTableDataRow<IModeratorStoryBrief>[] {
