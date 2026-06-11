@@ -1,180 +1,166 @@
-// gateway/service/src/inngest/functions/transcribe.ts
-
-import { saveTranscription } from '../helpers/translations.helper';
 import { Logger } from '@nestjs/common';
-import { inngest } from '../client';
+import { randomUUID } from 'crypto';
 import axios from 'axios';
 import {
     TranscribeClient,
     StartTranscriptionJobCommand,
+    GetTranscriptionJobCommand,
 } from '@aws-sdk/client-transcribe';
-import { randomUUID } from 'crypto';
+import { doSpeechToTextByAzure } from '@ourloop/shared';
+import { inngest } from '../client';
+import { saveTranscription } from '../helpers/translations.helper';
 
+const AWS_REGION = process.env.AWS_REGION || 'eu-central-1';
+const transcribeClient = new TranscribeClient({ region: AWS_REGION });
 
-export const transcribeCall = inngest.createFunction(
-    { id: 'ivrr-transcription' },
-    { event: 'transcription/requested.v1', retry: { limit: 3, } },
-    async ({ event, step }) => {
-        const logger = new Logger('[INNGEST]')
-        const { callId, language, sourceType } = event.data;
+const POLL_INTERVAL = '15s';
+const MAX_POLLS = 40;
 
-        // For now, just log so we can verify the wiring works
-        await step.run('log-transcription-request', async () => {
-            logger.log('[ivrr-transcription] received event', {
-                callId,
-                language,
-                sourceType,
-            });
-        });
-        const azureLanguages = JSON.parse(process.env.AZURE_TRANSCRIBE_LANGUAGES || '["so-SO"]');
-
-        if (!event.data.audioUrl) {
-            await step.run('no-audio-url', async () => {
-                logger.warn('[ivrr-transcription] No audioUrl provided in event data; skipping STT.');
-            });
-            return;
-        }
-
-        const audioUrl = event.data.audioUrl;
-
-        // If language is supported by Azure, we transcribe immediately with Azure (legacy behavior).
-        if (azureLanguages.includes(language)) {
-            const content = await step.run('stt-azure-transcribe', async () => {
-                logger.log('[ivrr-transcription] transcribing with azure stt', { callId, language });
-                return await transcribeWithAzure(audioUrl, language);
-            });
-
-            if (!content) {
-                await step.run('no-content', async () => {
-                    logger.warn('[ivrr-transcription] No content returned from Azure STT', { callId, language });
-                });
-                return;
-            }
-
-            await step.run('save-transcription', async () => {
-                await saveTranscription(content, event.data.storyId, event.data.language);
-                logger.log('[ivrr-transcription] saved transcription (azure)', { callId, language });
-            });
-
-            await step.run('emit-translation-request', async () => {
-                await inngest.send({
-                    name: 'translation/requested.v1',
-                    data: {
-                        sourceId: event.data.storyId,
-                        sourceType,
-                        content,
-                        originalTextLangCode: event.data.language.split('-')[0],
-                    },
-                });
-
-                logger.log('[ivrr-transcription] emitted translation/requested.v1 (azure)', {
-                    callId,
-                    sourceType,
-                });
-            });
-
-            return;
-        }
-
-        // Default path: start AWS Transcribe job (no polling). A separate handler should persist results.
-        await step.run('stt-aws-start-job', async () => {
-            logger.log('[ivrr-transcription] starting aws transcribe job', { callId, language });
-            const jobName = await startAwsTranscriptionJob(audioUrl, language, String(callId));
-            logger.log('[ivrr-transcription] aws transcribe job started', { callId, language, jobName });
-        });
-
-        return;
-    },
-
-
-
+const AZURE_LANGUAGES: string[] = JSON.parse(
+    process.env.AZURE_TRANSCRIBE_LANGUAGES || '["so-SO"]',
 );
 
-async function transcribeWithAzure(
-    audioUrl: string,
-    language: string,
-): Promise<string | null> {
-    const subscriptionKey = process.env.AZURE_SPEECH_KEY;
-    if (!subscriptionKey) {
-        console.error(
-            '[ivrr-transcription] AZURE_SPEECH_KEY env var is missing; cannot run STT.',
-        );
-        return null;
-    }
+type JobResult = {
+    status: string;
+    transcriptUri?: string;
+    failureReason?: string;
+};
 
-    try {
-        const audioResponse = await axios.get<ArrayBuffer>(audioUrl, {
-            responseType: 'arraybuffer',
+export const transcribeCall = inngest.createFunction(
+    {
+        id: 'ivrr-transcription',
+        concurrency: { limit: 10 },
+        retries: 3,
+        triggers: [{ event: 'transcription/requested.v1' }],
+    },
+    async ({ event, step }) => {
+        const logger = new Logger('[INNGEST]');
+        const { callId, language, sourceType, storyId } = event.data;
+        const audioUrl: string | undefined = event.data.audioUrl;
+        const s3Key: string | undefined = event.data.s3Key;
+
+        if (!audioUrl) {
+            logger.warn('[ivrr-transcription] No audioUrl provided; skipping STT.', { callId });
+            return { skipped: 'no-audio-url' };
+        }
+
+        let transcript: string | null = null;
+
+        if (AZURE_LANGUAGES.includes(language)) {
+            transcript = await step.run('stt-azure-transcribe', async () => {
+                const token = process.env.AZURE_SUBSCRIPTION_TOKEN;
+                if (!token) {
+                    throw new Error('[ivrr-transcription] AZURE_SUBSCRIPTION_TOKEN missing; cannot run Azure STT.');
+                }
+                logger.log('[ivrr-transcription] transcribing with Azure (primary)', { callId, language });
+                const content = await doSpeechToTextByAzure(token, audioUrl, 0, language);
+                return content ?? null;
+            });
+        } else {
+            transcript = await runAwsTranscribe({ step, logger, callId, language, s3Key, audioUrl });
+        }
+
+        if (!transcript) {
+            logger.warn('[ivrr-transcription] No transcript produced (timed out or empty result)', { callId, language });
+            return { transcript: null };
+        }
+
+        await step.run('save-transcription', async () => {
+            await saveTranscription(transcript as string, storyId, language);
+            logger.log('[ivrr-transcription] saved transcription', { callId, storyId, language });
         });
 
-        // Call Azure Speech-to-Text REST API directly with subscription key
-        const sttEndpoint = `https://westeurope.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=${encodeURIComponent(
-            language,
-        )}`;
-
-        const sttResponse = await axios.post(sttEndpoint, audioResponse.data, {
-            headers: {
-                'Ocp-Apim-Subscription-Key': subscriptionKey,
-                'Content-Type': 'audio/wav',
+        await step.sendEvent('emit-translation-request', {
+            name: 'translation/requested.v1',
+            data: {
+                sourceId: storyId,
+                sourceType,
+                content: transcript,
+                originalTextLangCode: String(language).split('-')[0],
             },
         });
 
-        const status = sttResponse.data['RecognitionStatus'];
-        const text = sttResponse.data['DisplayText'] as string | undefined;
+        return { transcriptLength: transcript.length };
+    },
+);
 
-        if (status === 'Success' && text) {
-            return text;
+async function runAwsTranscribe(args: {
+    step: any;
+    logger: Logger;
+    callId: unknown;
+    language: string;
+    s3Key?: string;
+    audioUrl: string;
+}): Promise<string | null> {
+    const { step, logger, callId, language, s3Key, audioUrl } = args;
+
+    const jobName = await step.run('stt-aws-start-job', async () => {
+        const name = await startTranscriptionJob(s3Key, audioUrl, language, String(callId));
+        logger.log('[ivrr-transcription] AWS Transcribe job started', { callId, language, jobName: name });
+        return name;
+    });
+
+    for (let attempt = 0; attempt < MAX_POLLS; attempt++) {
+        const job = await step.run(`stt-aws-poll-${attempt}`, async () =>
+            getTranscriptionJob(jobName),
+        );
+
+        if (job.status === 'COMPLETED') {
+            return step.run(`stt-aws-fetch-${attempt}`, async () =>
+                job.transcriptUri ? fetchTranscript(job.transcriptUri) : null,
+            );
         }
 
-        console.warn('[ivrr-transcription] Azure STT did not return text', {
-            status,
-            data: sttResponse.data,
-        });
+        if (job.status === 'FAILED') {
+            throw new Error(
+                `[ivrr-transcription] AWS Transcribe job ${jobName} failed: ${job.failureReason ?? 'unknown reason'}`,
+            );
+        }
 
-        return null;
-    } catch (error: any) {
-        console.error(
-            '[ivrr-transcription] Error during Azure STT request',
-            error?.message || error,
-        );
-        return null;
+        await step.sleep(`stt-aws-wait-${attempt}`, POLL_INTERVAL);
     }
+
+    return null;
 }
 
-async function startAwsTranscriptionJob(
-    audioUrlOrKey: string,
+async function startTranscriptionJob(
+    s3Key: string | undefined,
+    audioUrl: string,
     language: string,
     callId: string,
 ): Promise<string> {
-    const region = process.env.AWS_REGION || 'eu-central-1';
-    const bucketName = process.env.BUCKET_NAME;
-
-    if (!bucketName) {
-        throw new Error('BUCKET_NAME env var is missing; cannot start AWS Transcribe job.');
-    }
-
-    const client = new TranscribeClient({ region });
-
-    // Match legacy: `${uuid}_${callId}`
     const jobName = `${randomUUID()}_${callId}`;
 
-    // If caller passes a full URL (e.g. s3 https), use it; otherwise treat as S3 key.
-    const mediaUri =
-        audioUrlOrKey.startsWith('http://') || audioUrlOrKey.startsWith('https://')
-            ? audioUrlOrKey
-            : `https://${bucketName}.s3.${region}.amazonaws.com/${audioUrlOrKey}`;
+    const bucket = process.env.AWS_S3_BUCKET;
+    const mediaUri = s3Key && bucket ? `s3://${bucket}/${s3Key}` : audioUrl;
 
-    await client.send(
+    await transcribeClient.send(
         new StartTranscriptionJobCommand({
             TranscriptionJobName: jobName,
             LanguageCode: language as any,
             MediaFormat: 'wav',
-            OutputBucketName: bucketName,
-            Media: {
-                MediaFileUri: mediaUri,
-            },
+            Media: { MediaFileUri: mediaUri },
         }),
     );
 
     return jobName;
+}
+
+async function getTranscriptionJob(jobName: string): Promise<JobResult> {
+    const { TranscriptionJob } = await transcribeClient.send(
+        new GetTranscriptionJobCommand({ TranscriptionJobName: jobName }),
+    );
+
+    return {
+        status: TranscriptionJob?.TranscriptionJobStatus ?? 'UNKNOWN',
+        transcriptUri: TranscriptionJob?.Transcript?.TranscriptFileUri,
+        failureReason: TranscriptionJob?.FailureReason,
+    };
+}
+
+async function fetchTranscript(transcriptUri: string): Promise<string | null> {
+    const resp = await axios.get(transcriptUri, { responseType: 'json' });
+    const data = typeof resp.data === 'string' ? JSON.parse(resp.data) : resp.data;
+    const transcript: string | undefined = data?.results?.transcripts?.[0]?.transcript;
+    return transcript && transcript.trim() ? transcript : null;
 }

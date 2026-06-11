@@ -1,4 +1,41 @@
+@import 'variables';
+
 :host {
+  .inbox__channel-metrics,
+  .inbox__channel-metrics-skeleton {
+    display: flex-wrap;
+    gap: 6px;
+    width: 100%;
+    max-width: 850px;
+    margin: 12px auto 12px;
+  }
+
+  .inbox__channel-metric {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid $border;
+    border-radius: 20px;
+    background: $white;
+    color: $text-secondary;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .inbox__channel-metric--skeleton {
+    cursor: default;
+    opacity: 0.65;
+  }
+
+  .inbox__channel-metric-label {
+    font-weight: 500;
+  }
+
+  .inbox__channel-metric-count {
+    font-weight: 700;
+  }
+
   ::ng-deep {
     loop-filter-section-v2 {
       .filters-section {

@@ -165,7 +165,7 @@ describe('CommentTranslationModeratorService', () => {
       comment.translations[1].content = faker.lorem.sentence();
     });
 
-    it('retryTranslation() does call LanguageService.runTranslationLambda() with the expected parameters', async () => {
+    it('retryTranslation() does call LanguageService.invokeTranslation() with the expected parameters', async () => {
       jest
         .spyOn(languageServiceMock, 'getLanguageByCode')
         .mockReturnValue(
@@ -180,14 +180,11 @@ describe('CommentTranslationModeratorService', () => {
         comment.translations[1].language.code,
       );
 
-      expect(languageServiceMock.runTranslationLambda).toHaveBeenCalledWith(
+      expect(languageServiceMock.invokeTranslation).toHaveBeenCalledWith(
         comment.id,
-        comment.translations[1].language,
         comment.translations[0].content,
-        comment.translations[0].language.code,
+        comment.translations[0].language.id,
         SOURCE_TYPE.COMMENT,
-        PROVIDER_TYPE.AWS,
-        undefined,
       );
 
       comment.translations[1].status = TRANSLATION_STATUS_CONSTANTS.TRANSLATED;
@@ -225,14 +222,11 @@ describe('CommentTranslationModeratorService', () => {
         comment.translations[2].language.code,
       );
 
-      expect(languageServiceMock.runTranslationLambda).toHaveBeenCalledWith(
+      expect(languageServiceMock.invokeTranslation).toHaveBeenCalledWith(
         comment.id,
-        comment.translations[2].language,
         comment.translations[0].content,
-        comment.translations[0].language.code,
+        comment.translations[0].language.id,
         SOURCE_TYPE.COMMENT,
-        PROVIDER_TYPE.AWS,
-        undefined,
       );
     });
   });

@@ -918,7 +918,8 @@
         "published": {
           "success": {
             "title": "تم نشر التعليقات.",
-            "subtitle": "تم نشر التعليقات."
+            "subtitle": "تم نشر التعليقات.",
+            "viewButton": "عرض التعليقات"
           },
           "error": {
             "title": "خطأ",
@@ -2105,7 +2106,7 @@
       "children": "الأطفال",
       "youth": "الشباب",
       "femaleHeadedHouseholds": "الأسر التي ترأسها نساء",
-      "personsLivingWithDisabilities": "الأشخاص ذوو الإعاقة",
+      "personsLivingWithDisabilities": "مقدم رعاية لشخص من ذوي الإعاقة",
       "elderly": "كبار السن",
       "lgbtqPlus": "LGBTQ+",
       "chronicallyIllPeople": "الأشخاص المصابون بأمراض مزمنة",
@@ -3325,13 +3326,14 @@
     "deselectAll": "الغاء تحديد الكل"
   },
   "report": {
-    "submitReport": "إرسال الطلب",
+    "submitReport": "تقديم طلب إزالة",
     "title": "طلب إزالة تعليق منشور أو رد",
     "intro": "يرجى استخدام هذا النموذج لتوضيح الأسباب التي تستدعي إزالة تعليق منشور أو رد من منصة Talk to Loop.",
     "introFormLinked": "هذا النموذج مرتبط بتعليق واحد أو رد واحد فقط.",
     "introConfidential": "سنقوم بمراجعة جميع الطلبات والتعامل معها بسرية تامة خلال أسبوع عمل واحد.",
     "introGuidelines": "يرجى الرجوع إلى إرشادات المجتمع الخاصة بنا",
     "guidelinesLink": "هنا",
+    "guidelinesLinkSuffix": "للحصول على مزيد من التفاصيل.",
     "reportAboutLabel": "تقريري يتعلق بـ:",
     "originalFeedback": "التعليق الأصلي",
     "oneOfReplies": "أحد الردود",
@@ -3346,7 +3348,7 @@
     "contactEmail": "إذا كنتم ترغبون في تلقي رد بخصوص قرارنا، يرجى كتابة البريد الإلكتروني.",
     "emailPlaceholder": "your@email.com",
     "optional": "(اختياري)",
-    "submitButton": "إرسال الطلب",
+    "submitButton": "تقديم طلب إزالة",
     "cancelButton": "إلغاء",
     "successMessage": "تم إرسال بلاغك بنجاح"
   }
