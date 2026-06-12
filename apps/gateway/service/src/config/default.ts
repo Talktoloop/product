@@ -123,8 +123,6 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
       env.COGNITO_CLIENT_ID,
       env.COGNITO_USER_POOL_ID,
       env.GOOGLE_LOCATIONS_API_KEY,
-      env.TRANSCRIBE_FUNCTION_ARN,
-      env.TRANSLATE_FUNCTION_ARN,
       env.GOOGLE_TRANSLATION_PROJECT_ID,
       env.GOOGLE_TRANSLATION_LOCATION,
       env.TRANSLATION_MINIMUM_PROBABILITY,
@@ -218,11 +216,10 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
       communicationTimeout: Number.parseInt(
         checkParameterValue(parameters, env.COMMUNICATION_TIMEOUT),
       ),
+      awsEndpoint: environment === 'local' ? 'host.docker.internal:3001' : undefined,
       awsAccessKey: env.AWS_ACCESS_KEY,
       awsSecretKey: env.AWS_SECRET_KEY,
       awsRegion: env.AWS_REGION,
-      cognitoAccessKeyId: env.COGNITO_ACCESS_KEY_ID || env.AWS_ACCESS_KEY,
-      cognitoSecretAccessKey: env.COGNITO_SECRET_ACCESS_KEY || env.AWS_SECRET_KEY,
       awsS3Bucket: checkParameterValue(parameters, env.AWS_S3_BUCKET),
       onlyGetRequest: isTrue(
         checkParameterValue(parameters, env.ONLY_GET_REQUEST),
@@ -269,6 +266,9 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
     },
     airTable: {
       apiKey: checkParameterValue(parameters, env.AIRTABLE_APIKEY),
+      disableSync: isTrue(
+        checkParameterValue(parameters, env.AIRTABLE_DISABLE_SYNC),
+      ),
       base: {
         sensitiveCases: checkParameterValue(
           parameters,
@@ -321,15 +321,7 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
         checkParameterValue(parameters, env.GOOGLE_LOCATIONS_API_KEY) || '',
     },
     recordings: 'recordings.json',
-    transcribe: {
-      aws: {
-        lambdaARN: checkParameterValue(parameters, env.TRANSCRIBE_FUNCTION_ARN),
-      },
-    },
     translation: {
-      aws: {
-        lambdaARN: checkParameterValue(parameters, env.TRANSLATE_FUNCTION_ARN),
-      },
       google: {
         projectId: checkParameterValue(
           parameters,
@@ -375,7 +367,6 @@ export const dynamicConfiguration = async (): Promise<Record<string, any>> => {
     brevo: {
       apiKey: env.BREVO_API_KEY
     },
-    metabase_secret_key: env.METABASE_SECRET_KEY,
-    metabase_site_url: env.METABASE_SITE_URL || 'http://localhost:3000',
+    metabase_secret_key: env.METABASE_SECRET_KEY
   };
 };

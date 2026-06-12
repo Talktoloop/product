@@ -4,7 +4,7 @@ import { googleTranslateText } from "../providers";
 import { awsTranslateText } from "../providers/translate.aws";
 import { getDataSource } from "../helpers/db";
 import { LanguageEntity } from "../../language/entity/language.entity";
-import { updateStoryStatus } from "../helpers/translations.helper";
+import { saveTranslation, updateStoryStatus, markTranslationError, markStoryTranslationsError } from "../helpers/translations.helper";
 import { STORY_STATUS } from "@ourloop/shared";
 
 
@@ -20,17 +20,27 @@ type TranslationRequested = {
 export const translateAndSave = inngest.createFunction(
     {
         id: "translation.translate-and-save",
-        concurrency: { limit: 5 },
+        concurrency: [
+            { limit: 5 },
+            { limit: 1, key: "event.data.sourceId" },
+        ],
         retries: 4,
+        triggers: [{ event: "translation/requested.v1" }],
+        onFailure: async ({ event }) => {
+            const original = (event as any)?.data?.event;
+            const data = original?.data ?? {};
+            if (data.sourceType === "STORY" && data.sourceId) {
+                await markStoryTranslationsError(data.sourceId, data.originalTextLangCode);
+            }
+        },
     },
-    { event: "translation/requested.v1" },
     async ({ event, step }) => {
         const {
             sourceId,
             sourceType,
             content: originalContent,
             originalTextLangCode,
-        } = (event as TranslationRequested).data;
+        } = event.data as TranslationRequested["data"];
 
         let baseContent = originalContent;
 
@@ -52,29 +62,9 @@ export const translateAndSave = inngest.createFunction(
             return getEnglishAndTargets(originalTextLangCode);
         });
 
-        // For now, only translate into English + French (skip all other languages)
-        const allowedTargetCodes = new Set<string>([english.code, "fr"]);
         const filteredTargets = (to as TargetLang[]).filter(
-            (t) => !!t?.code && allowedTargetCodes.has(t.code)
+            (t) => !!t?.code && !!t.provider
         );
-
-
-        if (currentFrom !== english.code) {
-            await step.run(`hop-to-en:${sourceId}`, async () => {
-                if (english.provider === "aws") {
-                    const res = await awsTranslateText({
-                        text: baseContent,
-                        sourceLanguageCode: currentFrom,
-                        targetLanguageCode: english.code,
-                    });
-                    baseContent = res.translatedText;
-                } else {
-                    baseContent = await googleTranslateText(baseContent, currentFrom, english.code);
-                }
-                currentFrom = english.code;
-                return baseContent;
-            });
-        }
 
         const summary = {
             total: filteredTargets.length,
@@ -91,6 +81,52 @@ export const translateAndSave = inngest.createFunction(
                 }
             >,
         };
+
+        if (currentFrom !== english.code) {
+            const enText = await step.run(`hop-to-en:${sourceId}`, async () => {
+                if (english.provider === "aws") {
+                    const res = await awsTranslateText({
+                        text: baseContent,
+                        sourceLanguageCode: currentFrom,
+                        targetLanguageCode: english.code,
+                    });
+                    return res.translatedText;
+                } else {
+                    return await googleTranslateText(baseContent, currentFrom, english.code);
+                }
+            });
+            baseContent = enText;
+            currentFrom = english.code;
+
+            if (filteredTargets.some((t) => t.code === english.code)) {
+                await step.run(`save-translation:${sourceId}:${english.code}`, async () => {
+                    return saveTranslation({
+                        sourceType,
+                        sourceId,
+                        languageId: english.id,
+                        translatedText: enText,
+                        providerUsed: english.provider === "aws" ? "AWS" : "GOOGLE",
+                    });
+                });
+
+                summary.translated += 1;
+                summary.results[english.code] = {
+                    status: "TRANSLATED",
+                    providerUsed: english.provider,
+                    text: enText,
+                };
+
+                await step.sendEvent("completed-en", {
+                    name: "translation/completed.v1",
+                    data: {
+                        sourceId,
+                        to: english.code,
+                        providerUsed: english.provider,
+                        status: "TRANSLATED",
+                    },
+                });
+            }
+        }
 
         for (const target of filteredTargets) {
             if (!target?.code) continue;
@@ -150,15 +186,14 @@ export const translateAndSave = inngest.createFunction(
                     text: translatedText,
                 };
 
-                // Persist the translation (idempotent step key per source+lang)
                 await step.run(`save-translation:${sourceId}:${target.code}`, async () => {
-                    // return saveTranslation({
-                    //     sourceType,
-                    //     sourceId,
-                    //     languageId: target.id,
-                    //     translatedText,
-                    //     providerUsed: providerUsed === "aws" ? "AWS" : "GOOGLE",
-                    // });
+                    return saveTranslation({
+                        sourceType,
+                        sourceId,
+                        languageId: target.id,
+                        translatedText,
+                        providerUsed: providerUsed === "aws" ? "AWS" : "GOOGLE",
+                    });
                 });
 
                 await step.sendEvent("completed", {
@@ -178,6 +213,11 @@ export const translateAndSave = inngest.createFunction(
                     summary.skippedUnsupported += 1;
                 } else {
                     summary.failures += 1;
+                    if (sourceType === "STORY") {
+                        await step.run(`mark-error:${sourceId}:${target.code}`, async () => {
+                            return markTranslationError(sourceId, target.id);
+                        });
+                    }
                 }
 
                 summary.results[target.code] = {
@@ -198,7 +238,11 @@ export const translateAndSave = inngest.createFunction(
             }
         }
 
-        await step.run("update-story", async () => { updateStoryStatus(sourceId, STORY_STATUS.PENDING_EDIT); });
+        if (sourceType === "STORY") {
+            await step.run("update-story", async () => {
+                await updateStoryStatus(sourceId, STORY_STATUS.PENDING_EDIT);
+            });
+        }
 
         return summary;
 

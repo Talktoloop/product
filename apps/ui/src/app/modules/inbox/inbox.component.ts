@@ -7,8 +7,10 @@ import { NavigationEnd, Router } from '@angular/router';
 import { INBOX_ROUTES, MAIN_ROUTES } from '@app/app-routing.props';
 
 import { InboxFilters, inboxFiltersConfig, SensitiveFilters } from '@app/modules/inbox/inbox-filters.config';
+import { InboxChannelMetricsService } from '@app/modules/inbox/inbox-channel-metrics.service';
 
 import { InboxFiltersService } from '@app/modules/inbox/inbox-filters.service';
+import { IInboxChannelMetricConfig } from '@app/modules/inbox/models/inbox-channel-metrics.model';
 
 import { ISupportedLanguage } from '@core/services/api/meta-data/model/supported-language.model';
 
@@ -51,6 +53,7 @@ export class InboxComponent extends BaseComponent implements OnInit {
   inboxRoutes: SubNavigationRoute[] = [];
   setMaxWidth: boolean;
   filtersConfig$ = new BehaviorSubject<IFilterV2<InboxFilters>[]>(null);
+  isStoriesRoute = false;
 
   @ViewChild('subNavigationBar') subNavigationBar: SubnavigationBarComponent;
   isFiltersVisible = false;
@@ -65,6 +68,7 @@ export class InboxComponent extends BaseComponent implements OnInit {
     private languageService: SupportedLanguagesService,
     public ui: UIService,
     private filtersService: FiltersService,
+    public inboxChannelMetricsService: InboxChannelMetricsService,
   ) {
     super();
 
@@ -75,6 +79,7 @@ export class InboxComponent extends BaseComponent implements OnInit {
       )
       .subscribe((event: NavigationEnd) => {
         this.isFiltersVisible = event.url.split('/').length <= 3;
+        this.isStoriesRoute = event.url.includes(`/${MAIN_ROUTES.INBOX}/${INBOX_ROUTES.STORIES}`);
         this.setMaxWidth =
           this.setMaxWidthPaths.includes(event.url) ||
           (!!this.setMaxWidthPaths.find((path) => event.url.startsWith(`${path}?`)) &&
@@ -201,5 +206,9 @@ export class InboxComponent extends BaseComponent implements OnInit {
         return languageList;
       }),
     );
+  }
+
+  trackMetric(_: number, metric: IInboxChannelMetricConfig): string {
+    return `${metric.key}`;
   }
 }

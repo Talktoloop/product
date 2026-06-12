@@ -1,7 +1,11 @@
 <div class="toast-content">
   <app-info-icon class="toast-icon"></app-info-icon>
 
-  <div class="toast-main-content">
+  <div
+    class="toast-main-content"
+    [class.toast-clickable]="options?.buttons?.length"
+    (click)="options?.buttons?.length ? onContentClick($event) : null"
+  >
     <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title" class="toast-title">
       {{ title }}
     </div>
