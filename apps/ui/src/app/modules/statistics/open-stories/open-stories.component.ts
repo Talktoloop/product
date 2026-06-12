@@ -73,7 +73,7 @@ export class OpenStoriesComponent extends BaseComponent implements OnInit {
   private lastMetabaseFiltersKey: string;
 
   private fetchMetabaseUrl() {
-    // Skip the iframe reload when filters are unchanged.
+    // Triggered from ngOnInit, the filter subscription and the filter output; skip the iframe reload when filters are unchanged.
     const filters = prepareFilterDataFromSessionStorage(openStoriesFiltersConfig);
     const filtersKey = JSON.stringify(filters);
     if (filtersKey === this.lastMetabaseFiltersKey) {

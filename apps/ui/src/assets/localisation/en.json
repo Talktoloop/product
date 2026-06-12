@@ -928,7 +928,8 @@
         "published": {
           "success": {
             "title": "Feedback published",
-            "subtitle": "Feedback has been published."
+            "subtitle": "Feedback has been published.",
+            "viewButton": "View feedback"
           },
           "error": {
             "title": "Error",
@@ -2155,7 +2156,7 @@
       "children": "Children",
       "youth": "Youth",
       "femaleHeadedHouseholds": "Female-headed households",
-      "personsLivingWithDisabilities": "Persons living with disabilities",
+      "personsLivingWithDisabilities": "Caregiver of person living with disability",
       "elderly": "Elderly",
       "lgbtqPlus": "LGBTQ+",
       "chronicallyIllPeople": "Chronically ill people",
@@ -3301,7 +3302,7 @@
       "emailInvitedPart2": "is already on the invitation list for this feedback."
     }
   },
-  "yourMagicLinkNotification": "Hello,\n\nTo log into your TalkToLoop.org account, click the link below\n\nMagic Link\n\nYour magic link will expire in\n\nminutes.\n\n\u2028If your link expires please\n\n log in again,\n\nto receive another link.\n\nKind regards, The TalkToLoop.org Team",
+  "yourMagicLinkNotification": "Hello,\n\nTo log into your TalkToLoop.org account, click the link below\n\nMagic Link\n\nYour magic link will expire in\n\nminutes.\n\nIf your link expires please\n\n log in again,\n\nto receive another link.\n\nKind regards, The TalkToLoop.org Team",
   "youHaveBeenConnectedToOrganizationNotification": "Hello,\n\nTalkToLoop.org is a free platform that connects you with the communities you work with. Loop is spreading fast with both organisations like yours, and communities in {{var:organisation}} and further afield too.\n\n\n\nWe’ve just published feedback from the community that we think would be relevant to your organisation. \n\n\n\nView and respond to the feedback using the button below.\n\nVIEW FEEDBACK\n\nIf the button doesn’t work, copy and paste the URL below into the address bar of your browser:\n\nKind regards, The TalkToLoop.org Team",
   "youHaveBeenInvitedToOrganizationNotification": "Hello,\n\nTalkToLoop.org is a free platform that connects you with the communities you work with. Loop is spreading fast with both organisations like yours and communities around the world.\n\nYou've been invited to join {{var:organisation.name}} on TalkToLoop.org. To accept this invitation click the button below. \n\nACCEPT INVITATION\n\nIf the button doesn't work you can copy and paste the following URL into your browser\n\nKind regards, The TalkToLoop.org Team",
   "downloadButton": {
@@ -3378,13 +3379,14 @@
     "deselectAll": "Deselect all"
   },
   "report": {
-    "submitReport": "Submit a report",
+    "submitReport": "Submit request to remove",
     "title": "Request to remove a piece of published feedback or a reply",
     "intro": "Please use this form to tell us why we should remove a piece of published feedback or a reply from the Talk to Loop platform.",
     "introFormLinked": "This form is linked to one piece of feedback or one reply.",
     "introConfidential": "We will review all requests and treat them confidentially within 1 work week.",
     "introGuidelines": "Please refer to our community guidelines",
     "guidelinesLink": "here",
+    "guidelinesLinkSuffix": "for more details.",
     "reportAboutLabel": "My report is about:",
     "originalFeedback": "The original piece of feedback",
     "oneOfReplies": "One of the replies",
@@ -3399,7 +3401,7 @@
     "contactEmail": "If you want to receive feedback about our decision, please write your email",
     "emailPlaceholder": "your@email.com",
     "optional": "(optional)",
-    "submitButton": "Submit report",
+    "submitButton": "Submit request to remove",
     "cancelButton": "Cancel",
     "successMessage": "Your report has been submitted successfully"
   }

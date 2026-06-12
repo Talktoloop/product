@@ -10,6 +10,28 @@
     </ng-container>
 
     <div class="inbox__content-wrapper" [class.max-width]="setMaxWidth" [class.padding-sides]="ui.tabletView || ui.desktopView">
+      <div class="inbox__channel-metrics" *ngIf="isStoriesRoute && isFiltersVisible">
+        <ng-container *ngIf="(inboxChannelMetricsService.metricsLoading$ | async) === false; else metricsSkeleton">
+          <div
+            class="inbox__channel-metric"
+            *ngFor="let metric of inboxChannelMetricsService.metricChannels; trackBy: trackMetric"
+          >
+            <span class="inbox__channel-metric-label">{{ metric.labelKey | translate }}</span>
+            <span class="inbox__channel-metric-count">{{ (inboxChannelMetricsService.metrics$ | async)?.[metric.key] || 0 }}</span>
+          </div>
+        </ng-container>
+      </div>
+      <ng-template #metricsSkeleton>
+        <div class="inbox__channel-metrics-skeleton">
+          <div
+            class="inbox__channel-metric inbox__channel-metric--skeleton"
+            *ngFor="let metric of inboxChannelMetricsService.metricChannels; trackBy: trackMetric"
+          >
+            <span class="inbox__channel-metric-label">{{ metric.labelKey | translate }}</span>
+            <span class="inbox__channel-metric-count">...</span>
+          </div>
+        </div>
+      </ng-template>
       <router-outlet></router-outlet>
     </div>
   </main>

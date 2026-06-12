@@ -37,6 +37,10 @@
     line-height: 1.5rem;
   }
 
+  .toast-clickable {
+    cursor: pointer;
+  }
+
   .toast-buttons-content {
     display: flex;
     margin-top: 1.625rem;

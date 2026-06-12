@@ -852,6 +852,7 @@ export class StoryService {
     }
 
     let operations: IOperations = { isUrgent: false, isMinority: false };
+    let story: StoryEntity | undefined;
 
     try {
       operations = await this.setStoryAttributes(data);
@@ -895,7 +896,7 @@ export class StoryService {
       }
       recipient = await this.storyRecipientRepository.save(updatedOrSaveBody);
 
-      const story = await this.storyRepository.save({
+      story = await this.storyRepository.save({
         id: uuidv4(),
         place: data.place,
         recipientId: recipient.id,
@@ -940,12 +941,6 @@ export class StoryService {
             data.content,
             languageId,
           );
-
-          //           this.languageService.invokeTranslationViaInngest(
-          //   story.id,
-          //   data.content,
-          //   languageId,
-          // );
         }
       }
 
@@ -955,17 +950,16 @@ export class StoryService {
         );
       }
 
-      if (data.organisations?.length > 0 && operations?.organisations?.length > 0) {
-        for (let i = 0; i < data.organisations.length; i++) {
-          const element = data.organisations[i];
-          await this.storyOrganisationTagRepository.save({ organisation: { id: element }, story: { id: story.id } })
+      if (operations?.organisations?.length > 0) {
+        for (const organisation of operations.organisations) {
+          await this.storyOrganisationTagRepository.save({ organisation: { id: organisation.id }, story: { id: story.id } })
         }
       }
 
       return story;
     } catch (error) {
       this.notificationService.sendFeedbackErrorSlackNotification(
-        'unknown',
+        story?.id ?? 'unknown',
         error?.message || JSON.stringify(error),
       );
       throw new CustomError(STORY_ADD_ERROR, error);

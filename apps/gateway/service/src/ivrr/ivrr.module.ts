@@ -15,7 +15,6 @@ import { IvrrCallEntity } from './entity/ivrr-call.entity';
 import { IvrrCallRepository } from './repository/ivrr-call.repository';
 import { StoryRepository } from '../story/repository/story.repository';
 import { StoryEntity } from '../story/entity/story.entity';
-import { LambdaServiceProvider } from '../common/provider/aws-translation-provider';
 import { CommentModule } from '../comment/comment.module';
 import { CommentEntity } from '../comment/entity/comment.entity';
 import { CommentRepository } from '../comment/repository/comment.repository';
@@ -51,7 +50,6 @@ import { CerbosService } from '../common/cerbos/cerbos.service';
     IvrrService,
     ClientProxyProvider,
     ConfigProvider,
-    LambdaServiceProvider,
     S3Provider,
     S3Service,
     CerbosService,
