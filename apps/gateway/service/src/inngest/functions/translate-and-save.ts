@@ -29,7 +29,7 @@ export const translateAndSave = inngest.createFunction(
         onFailure: async ({ event }) => {
             const original = (event as any)?.data?.event;
             const data = original?.data ?? {};
-            if (data.sourceType === "STORY" && data.sourceId) {
+            if (data.sourceType?.toUpperCase() === "STORY" && data.sourceId) {
                 await markStoryTranslationsError(data.sourceId, data.originalTextLangCode);
             }
         },
@@ -213,7 +213,7 @@ export const translateAndSave = inngest.createFunction(
                     summary.skippedUnsupported += 1;
                 } else {
                     summary.failures += 1;
-                    if (sourceType === "STORY") {
+                    if (sourceType?.toUpperCase() === "STORY") {
                         await step.run(`mark-error:${sourceId}:${target.code}`, async () => {
                             return markTranslationError(sourceId, target.id);
                         });
@@ -238,7 +238,7 @@ export const translateAndSave = inngest.createFunction(
             }
         }
 
-        if (sourceType === "STORY") {
+        if (sourceType?.toUpperCase() === "STORY") {
             await step.run("update-story", async () => {
                 await updateStoryStatus(sourceId, STORY_STATUS.PENDING_EDIT);
             });

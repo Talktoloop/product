@@ -25,7 +25,7 @@ export async function saveTranslation(params: {
     const ds = await getDataSource();
 
     // STORY translations are stored in story_translation and reference LanguageEntity by id.
-    if (params.sourceType === "STORY") {
+    if (params.sourceType?.toUpperCase() === "STORY") {
         return saveTranslationForStory(
             params.sourceId,
             params.languageId,
