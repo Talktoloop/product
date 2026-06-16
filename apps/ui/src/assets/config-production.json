@@ -3,13 +3,13 @@
     "Region": "eu-central-1",
     "UserPoolId": "eu-central-1_KjtYqDo4D",
     "ClientId": "64rargu0qhc91kjdr7ns31fts6",
-    "LoginUrl": "https://auth.prod.talktoloop.org/log_in"
+    "LoginUrl": "https://auth.talktoloop.org/log_in"
   },
   "frontendSessionTime": 3600,
   "rollbarConfig": {
     "accessToken": "da35c36196904867bb63bf574c830742",
     "environment": "production-ol"
   },
-  "apiUrl": "https://api.prod.talktoloop.org/api/v1",
-  "metabaseStoriesDashboardUrl": "https://meta.prod.talktoloop.org/public/dashboard/5708c729-6c87-4b9e-a064-624b2853c62d?age_group=&channel=&country=&disability=&feedback_type=&gender_group=&minority_group=&organization=&submission_date=&tab=4-overview&thematic_area="
+  "apiUrl": "https://api.talktoloop.org/api/v1",
+  "metabaseStoriesDashboardUrl": "https://meta.talktoloop.org/public/dashboard/5708c729-6c87-4b9e-a064-624b2853c62d?age_group=&channel=&country=&disability=&feedback_type=&gender_group=&minority_group=&organization=&submission_date=&tab=4-overview&thematic_area="
 }
