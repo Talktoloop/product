@@ -3343,7 +3343,7 @@
     "@opentelemetry/core" "^2.0.0"
 
 "@ourloop/shared@^1.0.74":
-  version "1.1.6"
+  version "1.1.10"
   dependencies:
     "@aws-sdk/client-s3" "^3.478.0"
     "@aws-sdk/client-ssm" "^3.478.0"

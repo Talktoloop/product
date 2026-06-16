@@ -152,10 +152,16 @@ exports.handler = async (event, context) => {
           UserAttributes: [{ Name: 'custom:authChallenge', Value: tokenB64 }]
         }).promise();
 
-        await cognitoClient.adminConfirmSignUp({
-          UserPoolId: envVars.COGNITO_USER_POOL_ID,
-          Username:   email
-        }).promise();
+        try {
+          await cognitoClient.adminConfirmSignUp({
+            UserPoolId: envVars.COGNITO_USER_POOL_ID,
+            Username:   email
+          }).promise();
+        } catch (confirmErr) {
+          if (confirmErr.code !== 'NotAuthorizedException') {
+            throw confirmErr;
+          }
+        }
 
         await sesClient.sendEmail({
           Source: envVars.SENDER_EMAIL_ADDRESS,
