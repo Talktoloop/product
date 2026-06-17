@@ -39,7 +39,10 @@ export class StoryNotificationService {
       translationsCount: story.translations?.length ?? 0,
     });
 
-    const isRePublish = story.edited && this.config.get('application.disableNotificationsAfterEdit');
+    const isRePublish =
+      !!story.publishedAt &&
+      story.edited &&
+      this.config.get('application.disableNotificationsAfterEdit');
 
     // Author notification: only on first publish and only if user accepts contact
     if (isRePublish) {
