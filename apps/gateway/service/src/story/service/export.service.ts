@@ -25,11 +25,11 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { DI_CONSTANTS } from '../../common/constant/di.constant';
 import { StoryRepository } from '../repository/story.repository';
+import { StoryVoteRepository } from '../repository/story-vote.repository';
 import { AGE_VALUE, GENDER_VALUE } from '../../common/types';
 import * as AirTable from 'airtable-node';
 import { ExternalData } from '../type/external-data.type';
 import { staticConfig } from '../../config/default';
-import { placeMapper } from '../../country/mapper/place.mapper';
 import { ExportedStory } from '../type/exported-story.type';
 import { PaginationWithOrderAndFilterDto } from '../../common/dto/pagination-with-order-and-filter.dto';
 import { LanguageEntity } from '../../language/entity/language.entity';
@@ -50,6 +50,8 @@ import {
   ThematicAreaToExport,
   StoryRecipientToExport,
   VulnerabilityFactorToExport,
+  CommentToExport,
+  StoryVoteCountToExport,
 } from '../type/data-to-export.type';
 import { StoryAdministrativeDataRepository } from '../repository/story-administrative-data.repository';
 import { CountryService } from '../../country/service/country.service';
@@ -79,6 +81,7 @@ export class ExportService {
     private readonly categoryService: CategoryService,
     private readonly languageService: LanguageService,
     private readonly storyRepository: StoryRepository,
+    private readonly storyVoteRepository: StoryVoteRepository,
     private readonly notificationService: NotificationService,
     @Inject(DI_CONSTANTS.CONFIG)
     private readonly config: ConfigService,
@@ -111,6 +114,73 @@ export class ExportService {
         .replace(/\t/g, ' ')
         .replace(/\//g, '-')
       : value;
+  }
+
+  // Renders the comment author as "Nickname (Organisation)" using only the
+  // public, pseudonymous identity (no account real names — the CSV is public).
+  private formatCommentAuthor(meta: CommentToExport): string {
+    const name = meta.nickname?.trim() || 'Anonymous';
+
+    return meta.organisationName ? `${name} (${meta.organisationName})` : name;
+  }
+
+  // Collapses the per-(comment, language) rows into one "[date] Author: text"
+  // entry per comment (preferring the comment's original language), then joins
+  // all of a story's comments/replies chronologically into a single cell.
+  buildCommentTextByStory(comments: CommentToExport[]): Record<string, string> {
+    const grouped: Record<
+      string,
+      { meta: CommentToExport; contentByLang: Record<number, string> }
+    > = {};
+
+    for (const row of comments) {
+      if (!grouped[row.commentId]) {
+        grouped[row.commentId] = { meta: row, contentByLang: {} };
+      }
+
+      if (row.content != null && row.translationLanguageId != null) {
+        grouped[row.commentId].contentByLang[row.translationLanguageId] =
+          row.content;
+      }
+    }
+
+    const perStory: Record<string, { createdAt: Date; text: string }[]> = {};
+
+    for (const commentId in grouped) {
+      const { meta, contentByLang } = grouped[commentId];
+      const content =
+        contentByLang[meta.commentLanguageId] ??
+        Object.values(contentByLang)[0] ??
+        '';
+
+      if (!content) {
+        continue;
+      }
+
+      const date = meta.createdAt
+        ? format(new Date(meta.createdAt), 'yyyy-MM-dd')
+        : '';
+      const replyMarker = meta.parentCommentId ? ' (reply)' : '';
+      const text = `[${date}] ${this.formatCommentAuthor(
+        meta,
+      )}${replyMarker}: ${content}`;
+
+      (perStory[meta.storyId] ??= []).push({ createdAt: meta.createdAt, text });
+    }
+
+    const result: Record<string, string> = {};
+
+    for (const storyId in perStory) {
+      result[storyId] = perStory[storyId]
+        .sort(
+          (a, b) =>
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+        )
+        .map((entry) => entry.text)
+        .join(' || ');
+    }
+
+    return result;
   }
 
   collectColumnNames(
@@ -219,6 +289,8 @@ export class ExportService {
         administrativeData: [],
         publishedAt: story.publishedAt,
         numberOfComments: 0,
+        communityReactions: 0,
+        commentsText: '',
         channel: story.channel,
         content: null,
         originalContent: null,
@@ -244,6 +316,23 @@ export class ExportService {
 
     for (const comment of data.comments) {
       items[comment.storyId].numberOfComments++;
+    }
+
+    // Community reactions = number of upvotes (story_vote) on the story.
+    for (const vote of data.voteCounts ?? []) {
+      if (items[vote.storyId]) {
+        items[vote.storyId].communityReactions = Number(vote.count) || 0;
+      }
+    }
+
+    // Full text of every published comment and reply, grouped per story.
+    const commentTextByStory = this.buildCommentTextByStory(
+      data.commentContents ?? [],
+    );
+    for (const storyId in commentTextByStory) {
+      if (items[storyId]) {
+        items[storyId].commentsText = commentTextByStory[storyId];
+      }
     }
 
     for (const translation of data.translations) {
@@ -713,8 +802,10 @@ export class ExportService {
           .join(separator),
         date: items[key].publishedAt
           ? this.makeDateReadable(items[key].publishedAt)
-          : undefined,
+          : null,
         didAnyoneComment: items[key].numberOfComments ? 'true' : 'false',
+        communityReactions: items[key].communityReactions ?? 0,
+        comments: this.clearCSVData(items[key].commentsText),
         channel: items[key].channel,
         content: this.clearCSVData(items[key].content),
         originalContent: this.clearCSVData(items[key].originalContent),
@@ -1138,6 +1229,49 @@ export class ExportService {
     return data.filter((item) => storyIds.includes(item.storyId));
   }
 
+  async findCommentContentsByStoryIds(
+    storyIds: string[],
+  ): Promise<CommentToExport[]> {
+    const prefix = 'comment-content';
+    const fileName = this.findCacheFile(prefix);
+
+    let data = [];
+
+    if (fileName) {
+      data = JSON.parse(this.readFile(fileName, 'utf-8'));
+    } else {
+      data = await this.commentRepository.findPublishedCommentsToExport();
+
+      this.saveCacheFile(
+        this.generateFileName(prefix, 'txt'),
+        JSON.stringify(data),
+      );
+    }
+
+    return data.filter((item) => storyIds.includes(item.storyId));
+  }
+
+  async findVoteCountsByStoryIds(
+    storyIds: string[],
+  ): Promise<StoryVoteCountToExport[]> {
+    if (!storyIds.length) {
+      return [];
+    }
+
+    const data = await this.storyVoteRepository
+      .createQueryBuilder('vote')
+      .select('vote.story_id', 'storyId')
+      .addSelect('COUNT(vote.id)', 'count')
+      .where('vote.story_id IN (:...storyIds)', { storyIds })
+      .groupBy('vote.story_id')
+      .getRawMany();
+
+    return data.map((item) => ({
+      storyId: item.storyId,
+      count: Number(item.count) || 0,
+    }));
+  }
+
   async findStoriesToExportByIds(storyIds: string[]): Promise<StoryEntity[]> {
     const prefix = 'stories';
     const fileName = this.findCacheFile(prefix);
@@ -1243,6 +1377,8 @@ export class ExportService {
 
     const [
       comments,
+      commentContents,
+      voteCounts,
       stories,
       translations,
       administrativeData,
@@ -1261,6 +1397,8 @@ export class ExportService {
       storyVulnerabilityFactors,
     ] = await Promise.all([
       this.findCommentIdsToExportByStoryIds(storyIds),
+      this.findCommentContentsByStoryIds(storyIds),
+      this.findVoteCountsByStoryIds(storyIds),
       this.findStoriesToExportByIds(storyIds),
       this.findTranslationsByStoryIds(storyIds),
       this.findAdministrativeDataToExportByStoryIds(storyIds),
@@ -1284,6 +1422,8 @@ export class ExportService {
     return {
       stories,
       comments,
+      commentContents,
+      voteCounts,
       translations,
       administrativeData,
       categories,

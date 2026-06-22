@@ -102,6 +102,50 @@ export class CommentRepository extends Repository<CommentEntity> {
     return this.getQueryForFilteredComments(params, statuses).getCount();
   }
 
+  // Returns published comments (and replies) with their translated text and the
+  // PUBLIC author identity (recipient nickname + organisation), for the data
+  // export. We deliberately do NOT expose the account holder's real first/last
+  // name here: the export is downloadable without a login, and the public
+  // comment view only ever shows the pseudonymous nickname + organisation
+  // (see comment-list.mapper.ts). One row per (comment, language); callers pick
+  // the original-language content and group by storyId.
+  async findPublishedCommentsToExport(): Promise<
+    Array<{
+      commentId: string;
+      storyId: string;
+      parentCommentId: string | null;
+      commentLanguageId: number;
+      translationLanguageId: number;
+      content: string;
+      createdAt: Date;
+      nickname?: string;
+      organisationName?: string;
+    }>
+  > {
+    return this.createQueryBuilder('comment')
+      .select('comment.id', 'commentId')
+      .addSelect('comment.story_id', 'storyId')
+      .addSelect('comment.parent_comment_id', 'parentCommentId')
+      .addSelect('comment.language_id', 'commentLanguageId')
+      .addSelect('comment.created_at', 'createdAt')
+      .addSelect('translations.language_id', 'translationLanguageId')
+      .addSelect('translations.content', 'content')
+      .addSelect('recipient.nickname', 'nickname')
+      .addSelect('organisation.name', 'organisationName')
+      .leftJoin('comment.translations', 'translations')
+      .leftJoin('comment.recipient', 'recipient')
+      .leftJoin('comment.user', 'user')
+      .leftJoin('user.organisation', 'organisation')
+      .where('comment.status = :status', {
+        status: COMMENT_STATUS.PUBLISHED,
+      })
+      .execute()
+      .catch((error) => {
+        this.logger.error(error);
+        throw new BadRequestException(GET_COMMENTS_FAILED);
+      });
+  }
+
   async findCommentIdsByCountryAndStatus(
     countryId: number,
     status: COMMENT_STATUS,
