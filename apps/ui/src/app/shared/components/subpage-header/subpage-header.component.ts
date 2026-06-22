@@ -22,7 +22,7 @@ export class SubpageHeaderComponent {
 
   filteredLanguages$: Observable<ISupportedLanguage[]>;
 
-  readonly allowedLanguages = ['en', 'fr', 'es', 'so', 'ar', 'sw']
+  readonly allowedLanguages = ['en', 'fr', 'so', 'ar', 'sw']
   constructor(
     private translateService: TranslateService,
     public ui: UIService,
