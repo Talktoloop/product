@@ -8,7 +8,7 @@ import { Logger, BadRequestException } from '@nestjs/common';
 export class StoryRecipientRepository extends Repository<StoryRecipientEntity> {
   private readonly logger = new Logger(StoryRecipientRepository.name);
 
-  async findDataToExport(): Promise<
+  async findDataToExport(storyIds: string[]): Promise<
     (StoryRecipientEntity & { storyId: string })[]
   > {
     return this.createQueryBuilder('recipient')
@@ -20,7 +20,7 @@ export class StoryRecipientRepository extends Repository<StoryRecipientEntity> {
         'story',
         'story.recipient_id = recipient.id',
       )
-      .where('story.status = :status', { status: STORY_STATUS.PUBLISHED })
+      .where('story.id IN (:...storyIds)', { storyIds })
       .execute()
       .catch((error) => {
         this.logger.error(error);
