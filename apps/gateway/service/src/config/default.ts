@@ -84,6 +84,8 @@ export const staticConfig: Record<string, any> = {
       loopOnboarding: 'LOOP onboarding',
       url: 'URL',
       numberOfComments: 'Did anyone comment?',
+      communityReactions: 'Community reactions',
+      commentsText: 'Comments / Replies',
       channel: 'Communication channel',
       originalContentLanguage: 'Original content language',
       isMinority: 'Is Minority'

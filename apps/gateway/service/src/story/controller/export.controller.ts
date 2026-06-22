@@ -8,7 +8,6 @@ import {
   Res,
   UseInterceptors,
   Inject,
-  ForbiddenException,
 } from '@nestjs/common';
 import { StoryService } from '../service/story.service';
 import {
@@ -40,7 +39,6 @@ import { ConfigService } from '@nestjs/config';
 import { DI_CONSTANTS } from '../../common/constant/di.constant';
 import { Auth } from '../../auth/auth.decorator';
 import { UserEntity } from '../../user/entity/user.entity';
-import { SubscriptionService } from '../../subscription/service/subscription.service';
 import { ExportedStoriesWithPaginationRO } from '../response/exported-stories-pagination.ro';
 import { ExportToJsonDTO } from '../request/dto/export-to-json.dto';
 import { exportToJsonSchema } from '../request/schema/export-to-json.schema';
@@ -49,14 +47,12 @@ import { HttpCacheInterceptor } from '../../common/interceptor/http-cache.interc
 import { PosthogService } from '../service/posthog.service';
 import { UNDataExportService } from '../service/un-data-export.service';
 import { CerbosService } from '../../common/cerbos/cerbos.service';
-import { CERBOS_ACTIONS, CERBOS_RESOURCES } from '../../auth/cerbos/permission.enum';
 
 @ApiTags('Story Export')
 @Controller('export')
 export class ExportController {
   constructor(
     private readonly storyService: StoryService,
-    private readonly subscriptionService: SubscriptionService,
     private readonly exportService: ExportService,
     private readonly countryService: CountryService,
     private readonly organisationService: OrganisationService,
@@ -172,14 +168,14 @@ export class ExportController {
   }
 
   @ApiBearerAuth()
-  @UseGuards(AuthGuard('cognito'))
+  @UseGuards(AuthGuard(['cognito', 'anonymous']))
   @ApiHeader({
     name: 'content-language',
     enum: LANGUAGES_CONSTANTS,
   })
   @Get('csv')
   @ApiOperation({
-    summary: 'Export stories to CSV by user with subscription.',
+    summary: 'Export stories to CSV. Public — no login required.',
   })
   @ApiResponse({ status: 200 })
   async exportToCsv(
@@ -188,22 +184,9 @@ export class ExportController {
     @LanguageId() userLanguageId: number,
     @Res() response: Response,
   ): Promise<Response<any, Record<string, any>> | SuccessRO> {
-    const tokenData = await this.subscriptionService.getUserSubscriptionToken(
-      user,
-    );
-
-    // const hasPermission = await this.cerbosService.checkPermissionWithToken(
-    //   { id: user.id, role: user.role },
-    //   { kind: CERBOS_RESOURCES.STORY, id: CERBOS_ACTIONS.EXPORT, attr: { token: tokenData.token } },
-    //   CERBOS_ACTIONS.EXPORT
-    // );
-
-    // if (!hasPermission) {
-    //   throw new ForbiddenException();
-    // }
-    if (!tokenData) {
-      throw new ForbiddenException();
-    }
+    // Export is open to everyone (the platform is being archived/shut down):
+    // no subscription / "Loop Advocate" gate. `user` may be undefined for
+    // anonymous callers.
     const userLanguage = userLanguageId
       ? await this.languageService.getLanguageById(userLanguageId)
       : await this.languageService.getDefaultLanguage();
@@ -215,7 +198,7 @@ export class ExportController {
     const csvFileName = this.exportService.findCacheFile(
       `${generateMD5(JSON.stringify(filters))}-${userLanguage?.code}`,
     );
-    this.posthogService.trackDataExport(user.id, 'subscription')
+    this.posthogService.trackDataExport(user?.id ?? 'anonymous', 'public')
     if (csvFileName) {
       return response
         .set({

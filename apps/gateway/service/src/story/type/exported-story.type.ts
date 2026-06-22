@@ -23,6 +23,8 @@ export type ExportedStory = {
   defaultLanguageIdForAdministrativeData: number;
   organisations: string[];
   numberOfComments: number;
+  communityReactions: number;
+  commentsText: string;
   channel: string;
   originalContentLanguage: string;
   isMinority: boolean;
