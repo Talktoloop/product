@@ -206,7 +206,7 @@ export class StoryRepository extends Repository<StoryEntity> {
     });
   }
 
-  async findTranslationsToExport(): Promise<
+  async findTranslationsToExport(storyIds: string[]): Promise<
     Array<StoryTranslationEntity & { storyLanguageId: number }>
   > {
     return this.createQueryBuilder('story')
@@ -215,7 +215,7 @@ export class StoryRepository extends Repository<StoryEntity> {
       .addSelect('translations.story_id', 'storyId')
       .addSelect('translations.content', 'content')
       .leftJoin('story.translations', 'translations')
-      .where('story.status = :status', { status: STORY_STATUS.PUBLISHED })
+      .where('story.id IN (:...storyIds)', { storyIds })
       .execute()
       .catch((error) => {
         this.logger.error(error);
@@ -223,8 +223,8 @@ export class StoryRepository extends Repository<StoryEntity> {
       });
   }
 
-  async findStoriesToExport(): Promise<StoryEntity[]> {
-    const query = this.createQueryBuilder('story')
+  async findStoriesToExport(storyIds: string[]): Promise<StoryEntity[]> {
+    return this.createQueryBuilder('story')
       .select('story.id', 'id')
       .addSelect('story.status', 'status')
       .addSelect('story.channel', 'channel')
@@ -233,13 +233,13 @@ export class StoryRepository extends Repository<StoryEntity> {
       .addSelect('story.place', 'place')
       .addSelect('story.published_at', 'publishedAt')
       .addSelect('story.country_id', 'countryId')
-      .where('story.status = :status', { status: STORY_STATUS.PUBLISHED })
-      .orderBy('story.publishedAt', 'DESC');
-
-    return query.execute().catch((error) => {
-      this.logger.error(error);
-      throw new BadRequestException(GET_STORY_FAILED);
-    });
+      .where('story.id IN (:...storyIds)', { storyIds })
+      .orderBy('story.publishedAt', 'DESC')
+      .execute()
+      .catch((error) => {
+        this.logger.error(error);
+        throw new BadRequestException(GET_STORY_FAILED);
+      });
   }
 
   async findStoriesByIds(
