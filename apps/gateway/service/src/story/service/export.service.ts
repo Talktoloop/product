@@ -1030,128 +1030,68 @@ export class ExportService {
     queryRunner: QueryRunner,
     storyIds: string[],
   ): Promise<CategoryToExport[]> {
-    const prefix = 'categories';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await queryRunner.manager
-        .createQueryBuilder()
-        .select('category.story_id', 'storyId')
-        .addSelect('category.category_id', 'categoryId')
-        .from('story_category', 'category')
-        .execute()
-        .catch((error) => {
-          this.logger.error(error);
-          throw new BadRequestException(GET_STORY_FAILED);
-        });
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return queryRunner.manager
+      .createQueryBuilder()
+      .select('category.story_id', 'storyId')
+      .addSelect('category.category_id', 'categoryId')
+      .from('story_category', 'category')
+      .where('category.story_id IN (:...storyIds)', { storyIds })
+      .execute()
+      .catch((error) => {
+        this.logger.error(error);
+        throw new BadRequestException(GET_STORY_FAILED);
+      });
   }
 
   async findDifficultiesToExportByStoryIds(
     queryRunner: QueryRunner,
     storyIds: string[],
   ): Promise<DifficultyToExport[]> {
-    const prefix = 'difficulties';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await queryRunner.manager
-        .createQueryBuilder()
-        .select('difficulty.story_id', 'storyId')
-        .addSelect('difficulty.difficulty_id', 'difficultyId')
-        .from('story_difficulty', 'difficulty')
-        .execute()
-        .catch((error) => {
-          this.logger.error(error);
-          throw new BadRequestException(GET_STORY_FAILED);
-        });
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return queryRunner.manager
+      .createQueryBuilder()
+      .select('difficulty.story_id', 'storyId')
+      .addSelect('difficulty.difficulty_id', 'difficultyId')
+      .from('story_difficulty', 'difficulty')
+      .where('difficulty.story_id IN (:...storyIds)', { storyIds })
+      .execute()
+      .catch((error) => {
+        this.logger.error(error);
+        throw new BadRequestException(GET_STORY_FAILED);
+      });
   }
 
   async findOrganisationsToExportByStoryIds(
     queryRunner: QueryRunner,
     storyIds: string[],
   ): Promise<OrganisationToExport[]> {
-    const prefix = 'organisations';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await queryRunner.manager
-        .createQueryBuilder()
-        .select('organisation.story_id', 'storyId')
-        .addSelect('organisation.organisation_id', 'organisationId')
-        .from('story_organisation', 'organisation')
-        .execute()
-        .catch((error) => {
-          this.logger.error(error);
-          throw new BadRequestException(GET_STORY_FAILED);
-        });
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return queryRunner.manager
+      .createQueryBuilder()
+      .select('organisation.story_id', 'storyId')
+      .addSelect('organisation.organisation_id', 'organisationId')
+      .from('story_organisation', 'organisation')
+      .where('organisation.story_id IN (:...storyIds)', { storyIds })
+      .execute()
+      .catch((error) => {
+        this.logger.error(error);
+        throw new BadRequestException(GET_STORY_FAILED);
+      });
   }
 
   async findThematicAreasToExportByStoryIds(
     queryRunner: QueryRunner,
     storyIds: string[],
   ): Promise<ThematicAreaToExport[]> {
-    const prefix = 'thematic-areas';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await queryRunner.manager
-        .createQueryBuilder()
-        .select('thematicArea.story_id', 'storyId')
-        .addSelect('thematicArea.thematic_id', 'thematicAreaId')
-        .from('story_thematic', 'thematicArea')
-        .execute()
-        .catch((error) => {
-          this.logger.error(error);
-          throw new BadRequestException(GET_STORY_FAILED);
-        });
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return queryRunner.manager
+      .createQueryBuilder()
+      .select('thematicArea.story_id', 'storyId')
+      .addSelect('thematicArea.thematic_id', 'thematicAreaId')
+      .from('story_thematic', 'thematicArea')
+      .where('thematicArea.story_id IN (:...storyIds)', { storyIds })
+      .execute()
+      .catch((error) => {
+        this.logger.error(error);
+        throw new BadRequestException(GET_STORY_FAILED);
+      });
   }
 
   async findStoryRecipientToExportByStoryIds(
@@ -1177,56 +1117,30 @@ export class ExportService {
     queryRunner: QueryRunner,
     storyIds: string[],
   ): Promise<VulnerabilityFactorToExport[]> {
-    const prefix = 'vulnerability-factors';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await queryRunner.manager
-        .createQueryBuilder()
-        .select('fvf.feedback_id', 'storyId')
-        .addSelect('fvf.vulnerability_factor_id', 'vulnerabilityFactorId')
-        .from('feedback_vulnerability_factors', 'fvf')
-        .execute()
-        .catch((error) => {
-          this.logger.error(error);
-          throw new BadRequestException(GET_STORY_FAILED);
-        });
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return queryRunner.manager
+      .createQueryBuilder()
+      .select('fvf.feedback_id', 'storyId')
+      .addSelect('fvf.vulnerability_factor_id', 'vulnerabilityFactorId')
+      .from('feedback_vulnerability_factors', 'fvf')
+      .where('fvf.feedback_id IN (:...storyIds)', { storyIds })
+      .execute()
+      .catch((error) => {
+        this.logger.error(error);
+        throw new BadRequestException(GET_STORY_FAILED);
+      });
   }
 
   async findCommentIdsToExportByStoryIds(
     storyIds: string[],
   ): Promise<CommentEntity[]> {
-    const prefix = 'comment-id';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await this.commentRepository.findCommentIdsByStatus(
-        COMMENT_STATUS.PUBLISHED,
-      );
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
+    if (!storyIds.length) {
+      return [];
     }
 
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return this.commentRepository.findCommentIdsByStatus(
+      COMMENT_STATUS.PUBLISHED,
+      storyIds,
+    );
   }
 
   async findCommentContentsByStoryIds(
@@ -1257,90 +1171,25 @@ export class ExportService {
   }
 
   async findStoriesToExportByIds(storyIds: string[]): Promise<StoryEntity[]> {
-    const prefix = 'stories';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await this.storyRepository.findStoriesToExport();
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.id));
+    return this.storyRepository.findStoriesToExport(storyIds);
   }
 
   async findTranslationsByStoryIds(
     storyIds: string[],
   ): Promise<(StoryTranslationEntity & { storyLanguageId: number })[]> {
-    const prefix = 'translations';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await this.storyRepository.findTranslationsToExport();
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return this.storyRepository.findTranslationsToExport(storyIds);
   }
 
   async findAdministrativeDataToExportByStoryIds(
     storyIds: string[],
   ): Promise<AdministrativeDataToExport[]> {
-    const prefix = 'administrative-data';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data =
-        await this.storyAdministrativeDataRepository.findAdministrativeDataToExport();
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return this.storyAdministrativeDataRepository.findAdministrativeDataToExport(storyIds);
   }
 
   async findRecipientsToExportByStoryIds(
     storyIds: string[],
   ): Promise<(StoryRecipientEntity & { storyId: string })[]> {
-    const prefix = 'recipients';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await this.storyRecipientRepository.findDataToExport();
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return this.storyRecipientRepository.findDataToExport(storyIds);
   }
 
   async findDataByStoryIds(

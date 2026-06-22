@@ -81,18 +81,21 @@ export class CommentRepository extends Repository<CommentEntity> {
 
   async findCommentIdsByStatus(
     status: COMMENT_STATUS,
+    storyIds?: string[],
   ): Promise<Array<CommentEntity>> {
-    return this.createQueryBuilder('comment')
+    const query = this.createQueryBuilder('comment')
       .select('comment.id', 'id')
       .addSelect('comment.story_id', 'storyId')
-      .where('comment.status = :status', {
-        status,
-      })
-      .execute()
-      .catch((error) => {
-        this.logger.error(error);
-        throw new BadRequestException(GET_COMMENTS_FAILED);
-      });
+      .where('comment.status = :status', { status });
+
+    if (storyIds?.length) {
+      query.andWhere('comment.story_id IN (:...storyIds)', { storyIds });
+    }
+
+    return query.execute().catch((error) => {
+      this.logger.error(error);
+      throw new BadRequestException(GET_COMMENTS_FAILED);
+    });
   }
 
   async getNumberOfComments(
