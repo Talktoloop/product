@@ -1232,23 +1232,7 @@ export class ExportService {
   async findCommentContentsByStoryIds(
     storyIds: string[],
   ): Promise<CommentToExport[]> {
-    const prefix = 'comment-content';
-    const fileName = this.findCacheFile(prefix);
-
-    let data = [];
-
-    if (fileName) {
-      data = JSON.parse(this.readFile(fileName, 'utf-8'));
-    } else {
-      data = await this.commentRepository.findPublishedCommentsToExport();
-
-      this.saveCacheFile(
-        this.generateFileName(prefix, 'txt'),
-        JSON.stringify(data),
-      );
-    }
-
-    return data.filter((item) => storyIds.includes(item.storyId));
+    return this.commentRepository.findPublishedCommentsToExport(storyIds);
   }
 
   async findVoteCountsByStoryIds(

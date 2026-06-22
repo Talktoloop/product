@@ -109,7 +109,7 @@ export class CommentRepository extends Repository<CommentEntity> {
   // comment view only ever shows the pseudonymous nickname + organisation
   // (see comment-list.mapper.ts). One row per (comment, language); callers pick
   // the original-language content and group by storyId.
-  async findPublishedCommentsToExport(): Promise<
+  async findPublishedCommentsToExport(storyIds: string[]): Promise<
     Array<{
       commentId: string;
       storyId: string;
@@ -122,6 +122,10 @@ export class CommentRepository extends Repository<CommentEntity> {
       organisationName?: string;
     }>
   > {
+    if (!storyIds.length) {
+      return [];
+    }
+
     return this.createQueryBuilder('comment')
       .select('comment.id', 'commentId')
       .addSelect('comment.story_id', 'storyId')
@@ -139,6 +143,7 @@ export class CommentRepository extends Repository<CommentEntity> {
       .where('comment.status = :status', {
         status: COMMENT_STATUS.PUBLISHED,
       })
+      .andWhere('comment.story_id IN (:...storyIds)', { storyIds })
       .execute()
       .catch((error) => {
         this.logger.error(error);
