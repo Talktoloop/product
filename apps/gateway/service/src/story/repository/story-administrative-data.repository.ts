@@ -19,7 +19,7 @@ export class StoryAdministrativeDataRepository extends Repository<StoryAdministr
     });
   }
 
-  async findAdministrativeDataToExport(): Promise<
+  async findAdministrativeDataToExport(storyIds: string[]): Promise<
     AdministrativeDataToExport[]
   > {
     return this.createQueryBuilder('storyAdministrativeData')
@@ -38,7 +38,7 @@ export class StoryAdministrativeDataRepository extends Repository<StoryAdministr
         'names',
         'names.administrativeAreaId = administrativeData.id',
       )
-
+      .where('storyAdministrativeData.story_id IN (:...storyIds)', { storyIds })
       .execute()
       .catch((error) => {
         this.logger.error(error);
