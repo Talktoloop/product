@@ -33,15 +33,19 @@ export async function saveTranslation(params: {
         );
     }
 
-    // Comments currently use a different entity shape (kept as-is).
+    // Comments are stored in the same table; upsert on (story_id, language_id) so
+    // re-translation / concurrent runs can't trip the unique index.
     const repo = ds.getRepository(StoryTranslationEntity);
 
-    return repo.save({
+    return repo.upsert({
         storyId: params.sourceId,
         languageId: params.languageId,
         content: params.translatedText,
-        provider: params.providerUsed,
-    });
+        numberOfWords: countWords(params.translatedText),
+        isOriginalContent: false,
+        type: TRANSLATION_TYPE_CONSTANTS.MACHINE,
+        status: TRANSLATION_STATUS_CONSTANTS.TRANSLATED,
+    }, ['storyId', 'languageId']);
 }
 
 export async function updateStoryStatus(storyId: string, status: STORY_STATUS) {

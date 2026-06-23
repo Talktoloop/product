@@ -81,18 +81,21 @@ export class CommentRepository extends Repository<CommentEntity> {
 
   async findCommentIdsByStatus(
     status: COMMENT_STATUS,
+    storyIds?: string[],
   ): Promise<Array<CommentEntity>> {
-    return this.createQueryBuilder('comment')
+    const query = this.createQueryBuilder('comment')
       .select('comment.id', 'id')
       .addSelect('comment.story_id', 'storyId')
-      .where('comment.status = :status', {
-        status,
-      })
-      .execute()
-      .catch((error) => {
-        this.logger.error(error);
-        throw new BadRequestException(GET_COMMENTS_FAILED);
-      });
+      .where('comment.status = :status', { status });
+
+    if (storyIds?.length) {
+      query.andWhere('comment.story_id IN (:...storyIds)', { storyIds });
+    }
+
+    return query.execute().catch((error) => {
+      this.logger.error(error);
+      throw new BadRequestException(GET_COMMENTS_FAILED);
+    });
   }
 
   async getNumberOfComments(
@@ -100,6 +103,55 @@ export class CommentRepository extends Repository<CommentEntity> {
     statuses: COMMENT_STATUS[],
   ): Promise<number> {
     return this.getQueryForFilteredComments(params, statuses).getCount();
+  }
+
+  // Returns published comments (and replies) with their translated text and the
+  // PUBLIC author identity (recipient nickname + organisation), for the data
+  // export. We deliberately do NOT expose the account holder's real first/last
+  // name here: the export is downloadable without a login, and the public
+  // comment view only ever shows the pseudonymous nickname + organisation
+  // (see comment-list.mapper.ts). One row per (comment, language); callers pick
+  // the original-language content and group by storyId.
+  async findPublishedCommentsToExport(storyIds: string[]): Promise<
+    Array<{
+      commentId: string;
+      storyId: string;
+      parentCommentId: string | null;
+      commentLanguageId: number;
+      translationLanguageId: number;
+      content: string;
+      createdAt: Date;
+      nickname?: string;
+      organisationName?: string;
+    }>
+  > {
+    if (!storyIds.length) {
+      return [];
+    }
+
+    return this.createQueryBuilder('comment')
+      .select('comment.id', 'commentId')
+      .addSelect('comment.story_id', 'storyId')
+      .addSelect('comment.parent_comment_id', 'parentCommentId')
+      .addSelect('comment.language_id', 'commentLanguageId')
+      .addSelect('comment.created_at', 'createdAt')
+      .addSelect('translations.language_id', 'translationLanguageId')
+      .addSelect('translations.content', 'content')
+      .addSelect('recipient.nickname', 'nickname')
+      .addSelect('organisation.name', 'organisationName')
+      .leftJoin('comment.translations', 'translations')
+      .leftJoin('comment.recipient', 'recipient')
+      .leftJoin('comment.user', 'user')
+      .leftJoin('user.organisation', 'organisation')
+      .where('comment.status = :status', {
+        status: COMMENT_STATUS.PUBLISHED,
+      })
+      .andWhere('comment.story_id IN (:...storyIds)', { storyIds })
+      .execute()
+      .catch((error) => {
+        this.logger.error(error);
+        throw new BadRequestException(GET_COMMENTS_FAILED);
+      });
   }
 
   async findCommentIdsByCountryAndStatus(
