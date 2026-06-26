@@ -7,7 +7,10 @@ export const storyListSchema: Joi.ObjectSchema = Joi.object({
   ...listWithStoryPaginationSchemaObject,
   country: Joi.alternatives().try(
     Joi.array().items(Joi.string().max(3)),
-    Joi.string().max(30),
+    // Country codes arrive comma-joined (e.g. "ke,ug,so,..."), one per selected
+    // country. The old max(30) capped this at ~10 countries and threw E1000 for
+    // larger selections. ISO-3166 has ~249 countries (~3 chars each), so allow 1000.
+    Joi.string().max(1000),
   ),
   type: Joi.alternatives().try(Joi.number().max(2), Joi.string().max(20)),
   regionId: filterConditions.regionId,
