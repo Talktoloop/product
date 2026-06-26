@@ -7,6 +7,7 @@ import { UserDataGuard } from '@core/services/guards/user-data/user-data.guard';
 import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
 import { AUTH_ROUTES, MAIN_ROUTES } from './app-routing.props';
 import { OutboxGuard } from './core/services/guards/auth/outbox.guard';
+import { ProvideFeedbackDisabledGuard } from './core/services/guards/feature/provide-feedback-disabled.guard';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
       },
       {
         path: MAIN_ROUTES.NEW_STORY,
+        canActivate: [ProvideFeedbackDisabledGuard],
         loadChildren: () => import('./modules/new-story-v2/new-story-v2.module').then((m) => m.NewStoryV2Module),
       },
       {
