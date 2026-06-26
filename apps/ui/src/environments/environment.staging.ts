@@ -13,6 +13,7 @@ export const environment = {
   },
   includeE2E: true,
   registerUrl: 'https://airtable.com/shrnAhKGNfOLIdFCV',
+  landingPageUrl: 'https://talktoloop.org/',
   gaTrackingCode: '',
   posthog_key: '***REMOVED***',
   posthog_host: 'https://eu.i.posthog.com'
