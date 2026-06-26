@@ -7,7 +7,6 @@ import { UserDataGuard } from '@core/services/guards/user-data/user-data.guard';
 import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
 import { AUTH_ROUTES, MAIN_ROUTES } from './app-routing.props';
 import { OutboxGuard } from './core/services/guards/auth/outbox.guard';
-import { ProvideFeedbackDisabledGuard } from './core/services/guards/feature/provide-feedback-disabled.guard';
 
 const routes: Routes = [
   {
@@ -35,9 +34,15 @@ const routes: Routes = [
         loadChildren: () => import('./modules/profile/profile.module').then((m) => m.ProfileModule),
       },
       {
+        // Submit-feedback flow is temporarily disabled: redirect to the public
+        // landing page on every navigation (client-side click, direct link or
+        // refresh). To re-enable, restore the loadChildren -> NewStoryV2Module
+        // route below and remove FeedbackClosedRedirectComponent.
         path: MAIN_ROUTES.NEW_STORY,
-        canActivate: [ProvideFeedbackDisabledGuard],
-        loadChildren: () => import('./modules/new-story-v2/new-story-v2.module').then((m) => m.NewStoryV2Module),
+        loadComponent: () =>
+          import('./core/feedback-closed-redirect/feedback-closed-redirect.component').then(
+            (m) => m.FeedbackClosedRedirectComponent,
+          ),
       },
       {
         path: MAIN_ROUTES.INBOX,
