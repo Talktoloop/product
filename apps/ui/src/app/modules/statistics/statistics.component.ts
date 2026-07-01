@@ -2,12 +2,14 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { STATISTICS_ROUTES } from '@app/app-routing.props';
 import { StatisticsCountService } from '@app/modules/statistics/statistics-count.service';
+import { ProfileService } from '@core/services/api/profile/profile.service';
 import { StoryService } from '@core/services/api/story/story.service';
 import { FiltersService } from '@core/services/filters/filters.service';
 import { TranslateService } from '@ngx-translate/core';
 import { BaseComponent } from '@shared/components/base.component';
 import { casesFiltersConfig, openStoriesFiltersConfig } from '@shared/components/filters-section-v2/filters.config';
 import { prepareFilterDataFromSessionStorage } from '@shared/utils/filters.utils';
+import { environment } from '@env/environment';
 import { forkJoin } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
@@ -44,6 +46,7 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
     private cd: ChangeDetectorRef,
     private filterService: FiltersService,
     private statisticsCountService: StatisticsCountService,
+    private profileService: ProfileService,
   ) {
     super();
     let previousRoute = null;
@@ -62,6 +65,13 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Statistics temporarily hidden for non-admins — redirect to landing page.
+    // To re-enable for all, remove the if-block and restore the navbar/mobile-nav links.
+    if (!this.profileService.isAdmin) {
+      window.location.href = environment.landingPageUrl;
+      return;
+    }
+
     this.filterService.filtersChanged$.pipe(takeUntil(this.destroyed$)).subscribe(() => this.refreshCounts());
   }
 
