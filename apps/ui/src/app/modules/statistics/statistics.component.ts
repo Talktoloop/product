@@ -66,8 +66,9 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     // Statistics temporarily hidden for non-admins — redirect to landing page.
-    // To re-enable for all, remove the if-block and restore the navbar/mobile-nav links.
-    if (!this.profileService.isAdmin) {
+    // isAdmin$ has the correct value here because UserDataGuard loads the profile before activation.
+    // To re-enable for all, remove this block and restore the navbar/mobile-nav links.
+    if (!this.profileService.isAdmin$.getValue()) {
       window.location.href = environment.landingPageUrl;
       return;
     }
