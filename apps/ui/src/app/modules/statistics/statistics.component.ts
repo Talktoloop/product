@@ -66,7 +66,6 @@ export class StatisticsComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     // Statistics temporarily hidden for non-admins — redirect to landing page.
-    // To re-enable for all, remove the if-block and restore the navbar/mobile-nav links.
     if (!this.profileService.isAdmin) {
       window.location.href = environment.landingPageUrl;
       return;
