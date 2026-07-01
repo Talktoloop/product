@@ -1,4 +1,3 @@
-import { FormSectionModule } from '@admin/components/form-section/form-section.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +27,6 @@ import { LocationSectionComponent } from './location-section.component';
     LocationIconModule,
     CyModule,
     ReactiveFormsModule,
-    FormSectionModule,
     CloseIconModule,
     LocationModule,
   ],

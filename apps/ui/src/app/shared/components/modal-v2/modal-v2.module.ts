@@ -9,7 +9,7 @@ import { FiltersPresetService } from "@core/services/api/filters-preset/filters-
 
 @NgModule({
   declarations: [ModalV2Component],
-  imports: [CloseIconModule, CommonModule, TranslateModule.forChild(), CyModule, SharedModule],
+  imports: [CloseIconModule, CommonModule, TranslateModule, CyModule, SharedModule],
   exports: [ModalV2Component],
   providers: [FiltersPresetService],
 })

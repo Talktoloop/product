@@ -13,7 +13,7 @@ import { FormSectionComponent } from './form-section.component';
 
 @NgModule({
   declarations: [FormSectionComponent],
-  exports: [FormSectionComponent],
+  exports: [FormSectionComponent, TranslateModule],
   imports: [
     CommonModule,
     TranslateModule,
