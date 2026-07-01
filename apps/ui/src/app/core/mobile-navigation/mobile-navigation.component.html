@@ -15,7 +15,8 @@
       *ngTemplateOutlet="(profileService.isAdmin$ | async) ? navigationButton : noTemplate; context: { link: MAIN_ROUTES.OUTBOX }"
     ></ng-container>
   </ng-container>
-  <ng-container *ngTemplateOutlet="navigationButton; context: { link: MAIN_ROUTES.STATISTICS }"></ng-container>
+  <!-- statistics hidden — redirects to landing page on direct URL hit (same as submit-feedback flow) -->
+  <!-- <ng-container *ngTemplateOutlet="navigationButton; context: { link: MAIN_ROUTES.STATISTICS }"></ng-container> -->
 </div>
 
 <ng-template #noTemplate></ng-template>

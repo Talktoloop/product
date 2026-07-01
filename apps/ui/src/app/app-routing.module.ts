@@ -57,6 +57,9 @@ const routes: Routes = [
         canActivateChild: [OutboxGuard],
       },
       {
+        // Statistics is temporarily hidden — redirect to landing page on direct URL hit,
+        // same pattern as the disabled submit-feedback flow.
+        // To re-enable, restore: loadChildren: () => import('./modules/statistics/statistics.module').then((m) => m.StatisticsModule)
         path: MAIN_ROUTES.STATISTICS,
         loadChildren: () => import('./modules/statistics/statistics.module').then((m) => m.StatisticsModule),
       },

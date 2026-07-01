@@ -22,6 +22,7 @@ import { FilterSectionV2Module } from '@app/shared/components/filters-section-v2
     }),
     SubnavigationBarModule,
   ],
+  exports: [RouterModule, SubnavigationBarModule],
   providers: [DatePipe, StatisticsCountService],
 })
 export class StatisticsModule {}
