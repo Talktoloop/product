@@ -15,7 +15,10 @@
       *ngTemplateOutlet="(profileService.isAdmin$ | async) ? navigationButton : noTemplate; context: { link: MAIN_ROUTES.OUTBOX }"
     ></ng-container>
   </ng-container>
-  <ng-container *ngTemplateOutlet="navigationButton; context: { link: MAIN_ROUTES.STATISTICS }"></ng-container>
+  <!-- statistics visible only to admins -->
+  <ng-container
+    *ngTemplateOutlet="(profileService.isAdmin$ | async) ? navigationButton : noTemplate; context: { link: MAIN_ROUTES.STATISTICS }"
+  ></ng-container>
 </div>
 
 <ng-template #noTemplate></ng-template>

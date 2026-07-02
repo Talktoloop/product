@@ -1,4 +1,4 @@
-import { Pill } from '@admin/components/form-section/form-section.component';
+import { Pill } from '@app/modules/inbox/shared/components/form-section/form-section.component';
 import {
   AfterViewInit,
   ChangeDetectorRef,

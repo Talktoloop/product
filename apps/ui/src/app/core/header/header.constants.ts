@@ -7,7 +7,8 @@ const getRoute = (route: string): string => {
 
 export const MENU_LINKS = {
   feedback: { route: getRoute(MAIN_ROUTES.STORIES), protected: false, exact: false },
-  statistics: { route: getRoute(MAIN_ROUTES.STATISTICS), protected: false, exact: false },
+  // statistics visible only to admins (protected: true), hidden from regular users
+  statistics: { route: getRoute(MAIN_ROUTES.STATISTICS), protected: true, exact: false },
   inbox: { route: getRoute(`${MAIN_ROUTES.INBOX}`), protected: true, exact: false },
   outbox: { route: getRoute(`${MAIN_ROUTES.OUTBOX}`), protected: true, exact: false },
 };
