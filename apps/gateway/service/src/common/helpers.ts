@@ -1078,14 +1078,11 @@ export function addResponsivenessConditions(
 
     else if (comResp === 2) {
       query.andWhere(`
-        NOT EXISTS (
-          SELECT 1 FROM story_comment sc
-          LEFT JOIN user u ON u.id = sc.user_id
-          WHERE sc.story_id = story.id
-            AND (sc.user_id IS NULL OR u.organisation_id IS NULL)
-            AND sc.status IN (:...commentStatuses)
+        EXISTS (
+          SELECT 1 FROM story_vote sv
+          WHERE sv.story_id = story.id
         )
-      `, { commentStatuses });
+      `);
     }
   }
 
